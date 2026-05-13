@@ -1,0 +1,36 @@
+# Core (이전 저장소 기반)
+torch>=2.4.0
+transformers>=5.7.0          # Gemma 4 (model_type=gemma4) 지원
+peft>=0.13.0
+huggingface_hub>=0.24.0
+accelerate>=1.0.0
+bitsandbytes>=0.43.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+Pillow>=10.0.0               # GIF 합성 (tools/plot_3d_motion.py)
+
+# ArtifactRouter 신규 의존성
+scipy>=1.11.0                # signal filtering (velocity smoothing, jerk computation)
+einops>=0.7.0                # tensor reshape (skeleton normalizer)
+networkx>=3.0                # Kinematic Dependency Graph (orchestrator/kdg.py)
+
+# Motion generator wrappers (선택적, 외부 generator 도입 시)
+# diffusers>=0.27.0          # MDM / MLD diffusion-based generator
+# spacy>=3.5.0               # text caption parsing (optional)
+
+# Evaluation / Statistics
+scikit-learn>=1.3.0          # contextual bandit, supervised selector
+pandas>=2.0.0                # experiment result aggregation
+pyyaml>=6.0                  # tool registry configuration
+
+# 시각화·user study
+seaborn>=0.13.0
+imageio>=2.31.0              # GIF export
+imageio-ffmpeg>=0.4.9        # MP4 export (optional)
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# 선택적 — flash-attention 2 (RTX 5090 Blackwell SM 12.0 환경에서는 prebuilt wheel 없음)
+# flash-attn>=2.5.0

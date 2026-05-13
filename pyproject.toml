@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "motion-artifact-router"
+version = "0.1.0"
+description = "ArtifactRouter: Artifact-Conditioned Tool Selection for Generator-Agnostic Human Motion Refinement"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "TBD"}
+authors = [
+    {name = "rjsdn4403"},
+]
+
+[tool.setuptools.packages.find]
+include = [
+    "generators*",
+    "skeleton_normalizer*",
+    "evaluators*",
+    "correction_tools*",
+    "orchestrator*",
+    "refinement_loop*",
+    "tools*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
