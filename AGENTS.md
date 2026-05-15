@@ -48,11 +48,11 @@
 
 본 저장소는 **motion refinement framework (ArtifactRouter) 의 독립 프로젝트** 이다. 이전 저장소 [`3D-Motion-Trajectory-prediction`](../3D-Motion-Trajectory-prediction/) 의 LLM-based motion generation 실험 (H-2026-101·102) 의 **후속 연구가 아니다**. 이전 저장소에서 import 하는 자산은 **public 데이터셋 + 시각화 utility 수준** 에 한정한다:
 
-- `external_assets/processed_noaug/` — HumanML3D root-relative + sliding window JSON (이전 저장소 directory junction, 본 프로젝트 active 사용).
+- `external_assets/processed_noaug/` — HumanML3D root-relative + sliding window JSON (본 저장소 내부 복사본, 본 프로젝트 active 사용).
 - `external_assets/HumanML3D/` — 원본 HumanML3D 데이터셋 (GT 분포, public).
 - `external_assets/code/plot_3d_motion.py` — 시각화 utility (본 프로젝트 active 사용).
 - `external_assets/code/` 의 기타 파일 (`stage1_mpjpe_and_gif.py`, `stage1_autoregressive_chain.py`, `make_prompt_3d.py`, `convert_3d_delta.py`) — 이전 저장소의 LLM motion experiment 전용. **본 프로젝트 active 사용 없음**, 보존만.
-- `external_assets/local_lora_g3/` — 이전 저장소의 학습된 LoRA adapter. **본 프로젝트 scope 외**, junction 만 유지 (후일 별도 연구 시 참조 가능).
+- `external_assets/local_lora_g3/` — 이전 저장소의 학습된 LoRA adapter (vestigial archive, 본 저장소 내부 복사본). **본 프로젝트 scope 외**, 보존만 (후일 별도 연구 시 참조 가능).
 
 본 프로젝트에서 새로 도입하는 외부 자산:
 
@@ -76,7 +76,7 @@
 - [`docs/harness-research-template/`](docs/harness-research-template/) — 4계층 하네스 원본 (이전 저장소에서 복사).
 - [`docs/motion_research_strategy_summary.md`](docs/motion_research_strategy_summary.md) — 연구 명세 (단일 출처).
 - [`.claude/`](.claude/) — Claude Code 운영 자산 (phase + skill 적용본).
-- [`external_assets/`](external_assets/) — 이전 저장소 자산 (junction + 복사).
+- [`external_assets/`](external_assets/) — public dataset (HumanML3D) · 시각화 utility · vestigial archive. 본 저장소 내부 실제 복사본 (2026-05-15 마이그레이션 완료, 이전 저장소 의존 제거).
 
 프로파일/환경 구성:
 
@@ -95,18 +95,26 @@ conda activate motion-router
 pip install -r requirements.txt
 ```
 
-데이터 자산 준비 (HumanML3D + 전처리). 현재는 이전 저장소에서 junction 으로 참조 중이나 **이전 저장소 의존 제거 (마이그레이션)** 가 진행 예정 (별도 단계):
+데이터 자산 준비 — **본 저장소 내부의 실제 복사본** 으로 보유 (2026-05-15 마이그레이션 완료, 이전 저장소 의존 제거):
+
+- `external_assets/HumanML3D/` — 4.7 GB, public HumanML3D 데이터셋 (79,867 files).
+- `external_assets/processed_noaug/` — 3.0 GB, sliding window 전처리 JSON.
+- `external_assets/local_lora_g3/` — 275 MB, **vestigial archive** (이전 저장소 LoRA 자산, 본 프로젝트 scope 외, 보존만).
+- `external_assets/code/` — 시각화 utility + 이전 저장소 LLM motion experiment 보존 코드.
+
+본 자산들은 `.gitignore` 에 의해 git 추적에서 제외된다. **fresh clone 시점에는 자동으로 따라오지 않으므로** 아래 방법 중 하나로 확보:
 
 ```
-# 현재: 이전 저장소에서 junction (Windows directory junction, admin 권한 불필요)
-cd external_assets
-cmd /c "mklink /J processed_noaug ..\..\3D-Motion-Trajectory-prediction\processed_noaug"
-cmd /c "mklink /J HumanML3D ..\..\3D-Motion-Trajectory-prediction\data\HumanML3D"
-
-# 마이그레이션 후 (예정): 본 저장소 안의 실제 복사본으로 대체. 이전 저장소 의존 제거.
+# 옵션 A: HumanML3D 를 공식 repo 에서 새로 다운로드 + 전처리
+#   https://github.com/EricGuo5513/HumanML3D 의 절차 따라 data/HumanML3D 생성
+#   processed_noaug 는 본 저장소의 전처리 스크립트로 생성 (TBD)
+#
+# 옵션 B: 이미 보유한 사본에서 복사
+#   robocopy <source> external_assets\HumanML3D /E /MT:8
+#   robocopy <source> external_assets\processed_noaug /E /MT:8
 ```
 
-`external_assets/local_lora_g3/` junction 은 본 프로젝트 scope 외 자산이므로 새로 생성하지 않는다 (현재 baseline 에 있다면 그대로 보존만, 사용 안 함).
+이전 저장소 (`3D-Motion-Trajectory-prediction`) 의 디렉토리에 대한 junction 은 더 이상 생성·필요하지 않다. 본 저장소는 이전 저장소 파일시스템에 의존하지 않는다.
 
 MotionGPT (G2) 공식 설치 — 별도 경로:
 
@@ -197,7 +205,7 @@ KDG ordering rule 변경은 사용자 승인 게이트 ([§3-11](#3-11-가설-�
 
 G1 (high-quality, diffusion-based) · G2 (token-based, MotionGPT) generator 결과는 결과 디렉토리·파일명·raw record 의 generator id 로 명확히 분리한다. 한 generator 결과를 다른 generator 평가기에 입력 금지. 명세 §9.2 quality-tier coverage 의무.
 
-본 프로젝트의 active generator scope 는 **G1 + G2** 이다. 이전 저장소의 LLM motion experiment 산출물 (Gemma 4 LoRA 등) 은 본 프로젝트의 generator tier 가 아니다 — `external_assets/local_lora_g3/` junction 이 있더라도 본 프로젝트 코드에서 import·실행하지 않는다.
+본 프로젝트의 active generator scope 는 **G1 + G2** 이다. 이전 저장소의 LLM motion experiment 산출물 (Gemma 4 LoRA 등) 은 본 프로젝트의 generator tier 가 아니다 — `external_assets/local_lora_g3/` (vestigial archive) 의 코드를 본 프로젝트 코드에서 import·실행하지 않는다.
 
 ### 3-6. 평가 기록 의무
 
@@ -286,15 +294,15 @@ max_iterations 또는 종료 조건 변경 → 변경 사유 + 기존 trial 결�
 
 ### 4-8. `external_assets/**`
 
-이전 저장소의 자산이 junction 으로 참조됨. 본 디렉토리 직접 수정 금지 — 이전 저장소가 freeze 상태라야 본 저장소 결과 재현 가능. 이전 저장소 변경 필요 시 사용자 승인 후 진행.
+본 저장소 내부 복사본으로 보유 (2026-05-15 마이그레이션 완료, 이전 저장소 의존 제거). 본 디렉토리 직접 수정 금지 — 본 복사본은 freeze 상태로 취급해야 본 저장소 결과 재현 가능. 변경 필요 시 사용자 승인 + 변경 사유 명시.
 
 ---
 
 ## 5. 실패 대응 & 흔한 실수
 
-### 5-1. `external_assets/` junction 깨짐
+### 5-1. `external_assets/` 손실·손상
 
-이전 저장소 디렉토리 이동·이름 변경 시 junction 깨짐. 본 저장소의 `external_assets/<name>` 을 삭제 후 재생성 (cmd `mklink /J`).
+2026-05-15 이후 본 저장소는 이전 저장소 junction 에 의존하지 않는다 (실제 복사본). `external_assets/HumanML3D/` 등이 누락 또는 손상된 경우 §2-1 옵션 A (공식 HumanML3D repo 재다운로드) 또는 옵션 B (이미 보유한 사본에서 robocopy) 로 복구. fresh clone 시점에도 동일.
 
 ### 5-2. Generator inference 비결정성 (일반)
 
@@ -322,7 +330,7 @@ orchestrator 가 같은 joint 에 두 tool 을 연속 호출 시 KDG ConflictSco
 
 ### 6-1. 거대 산출물 git 커밋
 
-generator output · LoRA · HumanML3D 데이터 (GB 단위) 를 git 에 커밋 금지. `.gitignore` 등재 + symlink/junction 경유 참조.
+generator output · LoRA · HumanML3D 데이터 (GB 단위) 를 git 에 커밋 금지. `.gitignore` 등재. `external_assets/` 의 dataset·archive 는 본 저장소 내부 복사본으로 보유하되 git 추적 제외.
 
 ### 6-2. 평가 결과 재기록
 
@@ -414,7 +422,7 @@ Claude Code 운영 자산. `rules/phase/` 는 phase 판단 규칙, `skills/` 는
 
 ### 7-11. `external_assets/`
 
-이전 저장소 자산 import. junction 경유 read-only 참조. 본 디렉토리 직접 수정 금지 (§4-8).
+public dataset (HumanML3D) · 시각화 utility · vestigial archive. 본 저장소 내부 실제 복사본 (2026-05-15 마이그레이션 완료), read-only 취급. 본 디렉토리 직접 수정 금지 (§4-8).
 
 ### 7-12. `experiments/`
 
