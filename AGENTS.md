@@ -23,34 +23,41 @@
 
 본 연구는 새로운 motion generator를 개발하지 않는다. 새로운 단일 correction algorithm 도 개발하지 않는다. **artifact 상태 → correction action 매핑을 학습 가능한 routing 문제로 정식화**해 fixed post-processing 또는 monolithic refinement 대비 net gain 우위를 정량 입증하는 것이 본 연구의 핵심 contribution.
 
-연구의 우선순위는 (1) 연구 정직성 (가설 사전 등록·HARKing 차단·negative result 보존·우회 ledger 의무), (2) 재현성 (시드·환경·산출물 버전·tool call trace 추적), (3) 비교 가능성 (G1/G2/G3 generator quality-tier 분리·동일 metric 사전), (4) 효율성 (refinement stage FLOPs·tool call count·wall-clock), (5) 편의성 순이다.
+연구의 우선순위는 (1) 연구 정직성 (가설 사전 등록·HARKing 차단·negative result 보존·우회 ledger 의무), (2) 재현성 (시드·환경·산출물 버전·tool call trace 추적), (3) 비교 가능성 (G1/G2 generator quality-tier 분리·동일 metric 사전), (4) 효율성 (refinement stage FLOPs·tool call count·wall-clock), (5) 편의성 순이다.
 
-핵심 가설은 다음과 같다 (상세는 [`evals/hypotheses/`](evals/hypotheses/) 에 사전 등록).
+핵심 가설은 다음과 같다 (상세는 [`evals/hypotheses/`](evals/hypotheses/) 에 사전 등록). 본 프로젝트의 1차 contribution 은 **강화학습 기반 refinement** 의 효과 입증이며, generation 단계는 검증된 외부 generator (G1 diffusion · G2 MotionGPT) 의 output 만 사용한다.
 
-- [H-2026-200](evals/hypotheses/H-2026-200.md) — Artifact-conditioned tool selection 이 fixed post-processing 보다 효과적이며 closed-loop refinement 가 single-step 보다 artifact reduction 과 motion fidelity 의 trade-off 를 더 잘 관리한다.
-- [H-2026-201](evals/hypotheses/H-2026-201.md) — Artifact state → correction action 매핑은 학습 가능한 routing 문제. supervised / contextual-bandit selector 가 rule-based baseline 대비 net gain 을 의미 있게 개선한다.
-- [H-2026-202](evals/hypotheses/H-2026-202.md) — 학습된 selector 는 새로운 generator output 에 대해서도 generator-agnostic 일반화 가능 (zero-shot + small-calibration transfer).
+- [H-2026-204](evals/hypotheses/H-2026-204.md) (H-2026-200 supersede) — Artifact-conditioned tool selection 이 fixed post-processing 보다 효과적이며 closed-loop refinement 가 single-step 보다 artifact reduction 과 motion fidelity 의 trade-off 를 더 잘 관리한다.
+- [H-2026-205](evals/hypotheses/H-2026-205.md) (H-2026-201 supersede) — Artifact state → correction action 매핑은 학습 가능한 routing 문제. supervised / contextual-bandit (RL-style) selector 가 rule-based baseline 대비 net gain 을 의미 있게 개선한다.
+- [H-2026-206](evals/hypotheses/H-2026-206.md) (H-2026-202 supersede) — 학습된 selector 는 새로운 generator output 에 대해서도 generator-agnostic 일반화 가능 (G1↔G2 bidirectional, zero-shot + small-calibration transfer).
 - [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary) — High-quality motion (SOTA generator output) 에 대해 No-harm 운영 특성 — 분포 (FID_motion / FGD) · semantic · fidelity 훼손 없음.
+
+종결 가설 (참고): [H-2026-200](evals/hypotheses/H-2026-200.md), [H-2026-201](evals/hypotheses/H-2026-201.md), [H-2026-202](evals/hypotheses/H-2026-202.md) — 2026-05-15 supersede. 초기 등록 시 generator scope 를 `[G1, G2, G3]` 로 기재했으나 G3 는 본 프로젝트 scope 가 아니므로 이를 정정한 새 H-id 로 promote 한 결과.
 
 가설 본문 수정·status 전환은 §3-11 에 따라 [`.claude/skills/hypothesis-registry/SKILL.md §4`](.claude/skills/hypothesis-registry/SKILL.md) 사용자 승인 게이트를 거친다. AGENTS.md §1 핵심 가설은 본 등록 가설과 동기화되어야 한다.
 
 기술 스택은 다음과 같다:
 
 - 언어/런타임은 Python 3.10 (메인 환경 `motion-router`, conda) 이다.
-- 핵심 라이브러리는 `torch>=2.4.0`, `transformers>=5.7.0`, `peft>=0.13.0`, `bitsandbytes>=0.43.0`, `numpy`, `matplotlib`, `Pillow`, `scipy`, `einops`, `networkx`, `scikit-learn` 이다 ([requirements.txt](requirements.txt)).
+- 핵심 라이브러리는 `torch>=2.4.0`, `transformers>=5.7.0`, `numpy`, `matplotlib`, `Pillow`, `scipy`, `einops`, `networkx`, `scikit-learn` 이다 ([requirements.txt](requirements.txt)). MotionGPT (G2) 의 inference 환경 의존성은 별도 (§2-1 참조).
 - 사용 generator (외부 의존, [`generators/`](generators/) 에 wrapper):
   - **G1** — high-quality SOTA generator (예: MDM, MLD — diffusion-based).
-  - **G2** — token-based generator (예: MotionGPT, T2M-GPT).
-  - **G3** — legacy/lightweight artifact-rich generator (본 프로젝트의 default — 이전 저장소의 `external_assets/local_lora_g3` LoRA-fine-tuned Gemma 4 E4B-it).
+  - **G2** — token-based generator (**공식 MotionGPT** — <https://github.com/OpenMotionLab/MotionGPT> — 외부 repo clone + pretrained checkpoint).
 - 빌드 도구: `pyproject.toml` + pip. 별도 빌드 단계 없음.
 - 정형 테스트 러너: **pytest**. round-trip + integration smoke + end-to-end refinement loop 검증.
 
-본 저장소는 이전 저장소 [`3D-Motion-Trajectory-prediction`](../3D-Motion-Trajectory-prediction/) 의 sanity check 결과 위에 시작한 **독립 후속 프로젝트** 이며, 이전 저장소의 자산을 다음과 같이 import 한다:
+본 저장소는 **motion refinement framework (ArtifactRouter) 의 독립 프로젝트** 이다. 이전 저장소 [`3D-Motion-Trajectory-prediction`](../3D-Motion-Trajectory-prediction/) 의 LLM-based motion generation 실험 (H-2026-101·102) 의 **후속 연구가 아니다**. 이전 저장소에서 import 하는 자산은 **public 데이터셋 + 시각화 utility 수준** 에 한정한다:
 
-- `external_assets/processed_noaug/` — HumanML3D root-relative + sliding window JSON (이전 저장소 directory junction).
-- `external_assets/local_lora_g3/` — 이전 저장소의 학습된 LoRA adapter (G3 generator 로 사용).
-- `external_assets/HumanML3D/` — 원본 HumanML3D 데이터셋 (GT 분포).
-- `external_assets/code/` — `plot_3d_motion.py`, `stage1_mpjpe_and_gif.py`, `stage1_autoregressive_chain.py`, `make_prompt_3d.py`, `convert_3d_delta.py` (이전 저장소에서 복사).
+- `external_assets/processed_noaug/` — HumanML3D root-relative + sliding window JSON (이전 저장소 directory junction, 본 프로젝트 active 사용).
+- `external_assets/HumanML3D/` — 원본 HumanML3D 데이터셋 (GT 분포, public).
+- `external_assets/code/plot_3d_motion.py` — 시각화 utility (본 프로젝트 active 사용).
+- `external_assets/code/` 의 기타 파일 (`stage1_mpjpe_and_gif.py`, `stage1_autoregressive_chain.py`, `make_prompt_3d.py`, `convert_3d_delta.py`) — 이전 저장소의 LLM motion experiment 전용. **본 프로젝트 active 사용 없음**, 보존만.
+- `external_assets/local_lora_g3/` — 이전 저장소의 학습된 LoRA adapter. **본 프로젝트 scope 외**, junction 만 유지 (후일 별도 연구 시 참조 가능).
+
+본 프로젝트에서 새로 도입하는 외부 자산:
+
+- **MotionGPT (G2)** — 공식 repo clone + pretrained checkpoint, 별도 경로 (junction 아님). 설치 절차는 §2-1.
+- **G1 generator (MDM 또는 MLD)** — 공식 repo clone + pretrained checkpoint. 본격 도입은 Week 3+ (명세 §12).
 
 소스 디렉토리 구조는 다음과 같다:
 
@@ -88,23 +95,36 @@ conda activate motion-router
 pip install -r requirements.txt
 ```
 
-이전 저장소 자산 import (Windows directory junction, admin 권한 불필요):
+데이터 자산 준비 (HumanML3D + 전처리). 현재는 이전 저장소에서 junction 으로 참조 중이나 **이전 저장소 의존 제거 (마이그레이션)** 가 진행 예정 (별도 단계):
 
 ```
+# 현재: 이전 저장소에서 junction (Windows directory junction, admin 권한 불필요)
 cd external_assets
 cmd /c "mklink /J processed_noaug ..\..\3D-Motion-Trajectory-prediction\processed_noaug"
-cmd /c "mklink /J local_lora_g3 ..\..\3D-Motion-Trajectory-prediction\lora_3d_delta_h2026004_singlesample_002989_stage1_seed42"
 cmd /c "mklink /J HumanML3D ..\..\3D-Motion-Trajectory-prediction\data\HumanML3D"
+
+# 마이그레이션 후 (예정): 본 저장소 안의 실제 복사본으로 대체. 이전 저장소 의존 제거.
+```
+
+`external_assets/local_lora_g3/` junction 은 본 프로젝트 scope 외 자산이므로 새로 생성하지 않는다 (현재 baseline 에 있다면 그대로 보존만, 사용 안 함).
+
+MotionGPT (G2) 공식 설치 — 별도 경로:
+
+```
+# MotionGPT 공식 repo clone (본 저장소 안의 external_assets/MotionGPT/ 또는 별도 경로)
+git clone https://github.com/OpenMotionLab/MotionGPT.git external_assets/MotionGPT
+cd external_assets/MotionGPT
+# 이후 공식 README 에 따라 pretrained checkpoint 다운로드 + dependency 설치 (별도 conda env 권장)
 ```
 
 ### 2-2. 핵심 실행 명령어
 
 ```
-# G3 generator (이전 저장소 LoRA) inference
-python -m generators.local_lora_wrapper --prompt "walking" --n-frames 40
-
-# 외부 generator wrapper (MotionGPT 등) — wrapper 추가 후
+# G2 generator (MotionGPT) inference — Week 1+ active
 python -m generators.motiongpt_wrapper --prompt "walking" --n-frames 40
+
+# G1 generator (MDM/MLD) — wrapper 추가 후 active
+python -m generators.mdm_wrapper --prompt "walking" --n-frames 40
 
 # Skeleton normalization
 python -m skeleton_normalizer.normalizer --input <motion.npy> --output <normalized.json>
@@ -115,8 +135,8 @@ python -m evaluators.contact_evaluator --input <motion.json>
 # Correction tool 단위 적용
 python -m correction_tools.foot_lock_tool --input <motion.json> --target-frames 10:30
 
-# End-to-end refinement loop
-python -m refinement_loop.loop --generator G3 --prompt "walking" --max-iterations 5
+# End-to-end refinement loop (active generator: G1 또는 G2)
+python -m refinement_loop.loop --generator G2 --prompt "walking" --max-iterations 5
 ```
 
 ### 2-3. 센서 명령어
@@ -175,7 +195,9 @@ KDG ordering rule 변경은 사용자 승인 게이트 ([§3-11](#3-11-가설-�
 
 ### 3-5. Generator Quality-tier 분리
 
-G1 (high-quality) · G2 (token-based) · G3 (legacy artifact-rich) generator 결과는 결과 디렉토리·파일명·raw record 의 generator id 로 명확히 분리한다. 한 generator 결과를 다른 generator 평가기에 입력 금지. 명세 §9.2 quality-tier coverage 의무.
+G1 (high-quality, diffusion-based) · G2 (token-based, MotionGPT) generator 결과는 결과 디렉토리·파일명·raw record 의 generator id 로 명확히 분리한다. 한 generator 결과를 다른 generator 평가기에 입력 금지. 명세 §9.2 quality-tier coverage 의무.
+
+본 프로젝트의 active generator scope 는 **G1 + G2** 이다. 이전 저장소의 LLM motion experiment 산출물 (Gemma 4 LoRA 등) 은 본 프로젝트의 generator tier 가 아니다 — `external_assets/local_lora_g3/` junction 이 있더라도 본 프로젝트 코드에서 import·실행하지 않는다.
 
 ### 3-6. 평가 기록 의무
 
@@ -236,7 +258,7 @@ G1 (high-quality) · G2 (token-based) · G3 (legacy artifact-rich) generator 결
 
 ### 4-1. `skeleton_normalizer/`
 
-canonical format 정의 또는 root-relative 로직 변경 → 전체 generator (G1/G2/G3) output 의 round-trip 재검증. 충분성 지표 (artifact metric coverage) 재산출.
+canonical format 정의 또는 root-relative 로직 변경 → active generator (G1, G2) output 의 round-trip 재검증. 충분성 지표 (artifact metric coverage) 재산출.
 
 ### 4-2. `evaluators/<name>_evaluator.py`
 
@@ -274,9 +296,11 @@ max_iterations 또는 종료 조건 변경 → 변경 사유 + 기존 trial 결�
 
 이전 저장소 디렉토리 이동·이름 변경 시 junction 깨짐. 본 저장소의 `external_assets/<name>` 을 삭제 후 재생성 (cmd `mklink /J`).
 
-### 5-2. NF4 inter-session 비결정성 (G3 generator)
+### 5-2. Generator inference 비결정성 (일반)
 
-이전 저장소의 LoRA 를 G3 generator 로 사용 시 같은 seed·같은 입력에서 ±0.02 정도 결과 변동 발생 가능 ([이전 저장소 W-2026-010](external_assets/code/../../../3D-Motion-Trajectory-prediction/evals/workarounds/W-2026-010.md) 참고). 본 프로젝트의 G3 inference 는 N≥3 generation 평균 또는 `torch.use_deterministic_algorithms(True)` 적용 권장.
+Diffusion-based generator (G1) 와 token-based generator (G2 MotionGPT) 모두 sampling stochastic 요소를 포함한다. 같은 seed·같은 입력이라도 cuda non-determinism·sampling temperature·KV-cache 미세 차이로 결과 변동이 발생할 수 있다. 평가 시 N≥3 generation 평균 또는 `torch.use_deterministic_algorithms(True)` (속도 저하 trade-off) 적용 권장.
+
+(참고) 이전 저장소의 LLM motion experiment 에서는 NF4 양자화 inter-session 비결정성이 known issue 였다 ([이전 저장소 W-2026-010](../3D-Motion-Trajectory-prediction/evals/workarounds/W-2026-010.md)). 본 프로젝트는 해당 자산을 active 사용하지 않으므로 직접 영향 없음.
 
 ### 5-3. Tool conflict 의도치 않은 발생
 
@@ -289,7 +313,7 @@ orchestrator 가 같은 joint 에 두 tool 을 연속 호출 시 KDG ConflictSco
 ### 5-5. 연구 차원 리스크
 
 - **Artifact 정의의 도메인 의존성**: foot sliding · jitter 등 metric 의 임계가 motion category (걷기 vs 점프 등) 에 따라 다를 수 있음. 명세 §9.3.1 의 정의를 단일 출처로 유지하되, 일부 metric 의 robust 검증 필요. [`reproducibility-checklist SKILL §3`](.claude/skills/reproducibility-checklist/SKILL.md) 지표 정의 사전에 적용 도메인 명시.
-- **Tool effect의 generator dependency**: 명세 §9.2 G1/G2/G3 별로 효과 다를 수 있음. tool effect matrix (E2 ablation) 로 정량.
+- **Tool effect의 generator dependency**: 명세 §9.2 G1/G2 별로 효과 다를 수 있음. tool effect matrix (E2 ablation) 로 정량.
 - **No-harm 평가의 보수성**: G1 high-quality generator output 에 orchestrator 가 적용된 후 motion 이 미세하게라도 손상되면 H-2026-203 contradicts. fid threshold·user study non-inferiority margin 사전 등록 필수.
 
 ---
@@ -334,7 +358,7 @@ NetGain 임계, artifact reduction 임계, fidelity loss 상한 등을 낮춰 �
 
 ### 6-10. Generator transfer 결과 임의 일반화
 
-H-2026-202 (generator-agnostic) 검증 시 1-2개 generator 결과만으로 일반화 단정 금지. 최소 3 generator (G1/G2/G3) 의 다양한 quality-tier 확인 + paired test.
+[H-2026-206](evals/hypotheses/H-2026-206.md) (H-2026-202 supersede, generator-agnostic) 검증 시 단일 generator 결과만으로 일반화 단정 금지. 본 프로젝트의 active scope (G1 + G2) 에서는 **최소 2 generator (G1 ↔ G2 bidirectional) + paired test** 가 의무. 후일 추가 generator 도입 시 H-id 확장.
 
 ---
 
@@ -428,7 +452,7 @@ MVP feasibility study (Week 1-4) 의 segregated workspace. 각 Week 의 산출�
 1. `generators/<name>_wrapper.py` 작성 — `Generator` base class 상속.
 2. `generate(prompt, n_frames) -> (motion, metadata)` 구현. motion 은 `[T, 22, 3]` 또는 wrapper 내부에서 변환.
 3. skeleton normalizer 와의 round-trip 검증.
-4. G1/G2/G3 quality-tier 분류 결정 (명세 §9.2).
+4. G1 (diffusion) / G2 (token-based) quality-tier 분류 결정 (명세 §9.2).
 5. evals/raw 의 `generator_id` 필드에 등록.
 
 ### 9-4. 신규 가설 등록
@@ -481,7 +505,7 @@ MVP feasibility study (Week 1-4) 의 segregated workspace. 각 Week 의 산출�
 
 ### 10-3. 결과 파일 분리
 
-- generator (G1/G2/G3) · evaluator config · tool registry config · seed 별로 결과 파일 분리.
+- generator (G1, G2) · evaluator config · tool registry config · seed 별로 결과 파일 분리.
 
 ### 10-4. 참고 문서
 

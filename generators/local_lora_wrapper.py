@@ -1,16 +1,33 @@
-"""Local LoRA generator wrapper — 이전 저장소의 학습된 LoRA를 G3로 wrap.
+"""Local LoRA generator wrapper — 이전 저장소의 LLM motion experiment 자산 wrapper.
 
-이전 저장소 (`3D-Motion-Trajectory-prediction`) 의 학습된 LoRA adapter
-(`external_assets/local_lora_g3/`, Gemma 4 E4B-it + NF4 + Both Special Only,
-sid=002989 단일 sample × 5 windows × 50 epochs 학습) 를 ArtifactRouter 의 **G3**
-(legacy / lightweight / artifact-rich) generator 로 사용한다.
+⚠️ OUT-OF-SCOPE FOR THIS PROJECT (2026-05-15) ⚠️
+================================================
+본 wrapper 는 **본 프로젝트 (ArtifactRouter) 의 active scope 가 아니다**.
+
+본 저장소는 motion refinement framework 의 독립 프로젝트이며, 이전 저장소
+(`3D-Motion-Trajectory-prediction`) 의 LLM-based motion generation 실험
+(이전 저장소 가설 H-2026-101·102) 의 후속 연구가 아니다. 본 wrapper 는
+초기 scaffold 단계에서 inadvertent inclusion 된 산출물이며, 코드 자체는
+참고 자료로 보존한다.
+
+본 프로젝트의 active generator scope: G1 (diffusion-based: MDM / MLD) +
+G2 (token-based: 공식 MotionGPT). 자세한 내용은 [AGENTS.md §1](../AGENTS.md).
+
+본 wrapper 를 active 평가·실험에 import·실행하지 마라. 후일 별도 연구
+(LLM motion generation) 를 본 저장소에서 시작할 경우 새 가설 등록 +
+새 wrapper 작성으로 진행한다.
+================================================
+
+(아래는 본 wrapper 가 작성된 시점의 원래 의도 — 참고용 보존)
+
+이전 저장소 의 학습된 LoRA adapter (`external_assets/local_lora_g3/`,
+Gemma 4 E4B-it + NF4 + Both Special Only, sid=002989 단일 sample × 5 windows
+× 50 epochs 학습) 를 wrap 한다.
 
 이전 저장소의 sanity check 결과:
   - short-horizon (≤1.0s) bit-exact reconstruction.
   - 1.5s+ autoregressive drift.
   - chain 5+ format collapse.
-
-위 세 가지가 본 ArtifactRouter 의 artifact source.
 
 본 wrapper 는 이전 저장소의 `tools/stage1_autoregressive_chain.py` 로직을 import 해
 prompt-free autoregressive generation 으로 motion 을 생성하고, generator output 을
