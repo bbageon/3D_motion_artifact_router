@@ -116,14 +116,39 @@ pip install -r requirements.txt
 
 이전 저장소 (`3D-Motion-Trajectory-prediction`) 의 디렉토리에 대한 junction 은 더 이상 생성·필요하지 않다. 본 저장소는 이전 저장소 파일시스템에 의존하지 않는다.
 
-MotionGPT (G2) 공식 설치 — 별도 경로:
+MotionGPT (G2) 공식 설치 — 별도 conda env (`mgpt`):
 
 ```
-# MotionGPT 공식 repo clone (본 저장소 안의 external_assets/MotionGPT/ 또는 별도 경로)
+# 1. clone (이미 본 저장소에 있다면 skip — external_assets/MotionGPT/ 는 .gitignore 제외)
 git clone https://github.com/OpenMotionLab/MotionGPT.git external_assets/MotionGPT
+
+# 2. 별도 conda env 생성 (motion-router 와 dependency 충돌 회피)
+conda create -n mgpt python=3.10 -y
+conda activate mgpt
+
+# 3. setuptools pinning (chumpy 빌드 호환)
+pip install --upgrade "setuptools<58" wheel
+
+# 4. MotionGPT requirements 설치 (chumpy 가 build_meta error 내면 --no-build-isolation 사용)
 cd external_assets/MotionGPT
-# 이후 공식 README 에 따라 pretrained checkpoint 다운로드 + dependency 설치 (별도 conda env 권장)
+pip install -r requirements.txt
+# 위가 chumpy 에서 실패하면:
+#   pip install chumpy==0.70 --no-build-isolation
+#   pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+
+# 5. 보조 자산 (SMPL + T5) — Linux/Mac 의 bash 스크립트, Windows 는 한 줄씩 실행
+bash prepare/download_smpl_model.sh   # 또는 동등한 manual download (deps/smpl)
+bash prepare/prepare_t5.sh            # 또는 transformers 로 t5-base 직접 다운로드
+
+# 6. Pretrained checkpoint (HuggingFace LFS, 1.24GB)
+git lfs install
+mkdir -p checkpoints && cd checkpoints
+git clone https://huggingface.co/OpenMotionLab/MotionGPT-base
+# → checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar
 ```
+
+본 저장소의 wrapper ([`generators/motiongpt_wrapper.py`](generators/motiongpt_wrapper.py)) 는 `conda run -n mgpt python -m generators._motiongpt_inference ...` 로 환경을 격리해 호출하므로 motion-router env 에서 호출해도 무방. checkpoint 자동 탐색 (`external_assets/MotionGPT/checkpoints/MotionGPT-base/*.tar` 또는 `*.ckpt`).
 
 ### 2-2. 핵심 실행 명령어
 
