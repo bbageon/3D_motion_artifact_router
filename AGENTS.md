@@ -23,6 +23,15 @@
 
 본 연구는 새로운 motion generator를 개발하지 않는다. 새로운 단일 correction algorithm 도 개발하지 않는다. **artifact 상태 → correction action 매핑을 학습 가능한 routing 문제로 정식화**해 fixed post-processing 또는 monolithic refinement 대비 net gain 우위를 정량 입증하는 것이 본 연구의 핵심 contribution.
 
+정확히는, ArtifactRouter 는 **generator 를 개선하는 모델이 아니라 canonicalized motion artifact state 위에서 cost · risk 를 고려해 correction intervention 또는 STOP (abstain) 을 선택하는 tool-extensible decision system** 이다. 본 연구의 가설들은 본 decision system 이 다음 4 차원을 단계적으로 검증한다:
+
+1. **fixed intervention 보다 나은가** — [H-2026-204](evals/hypotheses/H-2026-204.md) (RQ1+RQ2).
+2. **학습 가능한가** — [H-2026-205](evals/hypotheses/H-2026-205.md) (RQ3, contextual-bandit / RL-style).
+3. **generator shift 하에서도 유지되는가** — [H-2026-206](evals/hypotheses/H-2026-206.md) (RQ4, G1↔G2).
+4. **high-quality input 에서 abstain / no-harm 을 만족하는가** — [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary).
+
+`cost` 와 `risk` 는 NetGain (명세 §9.4) 의 negative term (FidelityLoss · CorrectionMagnitude · ToolCallCost) 으로, **STOP** 은 closed-loop refinement 의 종료 action 으로 측정된다. tool registry 가 확장될 때 (`correction_tools/` 신규 추가) 본 decision system 의 action space 가 자동 확장되는 것이 **tool-extensible** 의 의미이다.
+
 연구의 우선순위는 (1) 연구 정직성 (가설 사전 등록·HARKing 차단·negative result 보존·우회 ledger 의무), (2) 재현성 (시드·환경·산출물 버전·tool call trace 추적), (3) 비교 가능성 (G1/G2 generator quality-tier 분리·동일 metric 사전), (4) 효율성 (refinement stage FLOPs·tool call count·wall-clock), (5) 편의성 순이다.
 
 핵심 가설은 다음과 같다 (상세는 [`evals/hypotheses/`](evals/hypotheses/) 에 사전 등록). 본 프로젝트의 1차 contribution 은 **강화학습 기반 refinement** 의 효과 입증이며, generation 단계는 검증된 외부 generator (G1 diffusion · G2 MotionGPT) 의 output 만 사용한다.
