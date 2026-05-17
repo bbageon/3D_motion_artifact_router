@@ -144,20 +144,46 @@ pip install -r requirements.txt
 # 위가 chumpy 에서 실패하면:
 #   pip install chumpy==0.70 --no-build-isolation
 #   pip install -r requirements.txt
+# MotionGPT 의 requirements.txt 에 누락된 항목 (m2t metric 의 transitive import) 추가 설치:
+pip install bert_score gdown
 python -m spacy download en_core_web_sm
 
-# 5. 보조 자산 (SMPL + T5) — Linux/Mac 의 bash 스크립트, Windows 는 한 줄씩 실행
-bash prepare/download_smpl_model.sh   # 또는 동등한 manual download (deps/smpl)
-bash prepare/prepare_t5.sh            # 또는 transformers 로 t5-base 직접 다운로드
+# 5. 보조 자산 (T5 LM + SMPL body + t2m mean/std + glove)
+# 5-1. T5 (flan-t5-base, 7.8GB) — HuggingFace LFS
+cd deps
+git lfs install
+git clone https://huggingface.co/google/flan-t5-base
+
+# 5-2. SMPL model + t2m evaluators (Google Drive, gdown 으로)
+cd deps
+gdown "https://drive.google.com/uc?id=1qrFkPZyRwRGd0Q3EY76K8oJaIgs_WK9i" -O smpl.tar.gz
+tar xfz smpl.tar.gz                    # → deps/smpl_models/
+gdown "https://drive.google.com/uc?id=1AYsmEG8I3fAAoraT4vau0GnesWBWyeT8" -O t2m.tar.gz
+tar xfz t2m.tar.gz                     # → deps/t2m/{glove, t2m/{kit, t2m/*/meta/mean.npy,std.npy}}
+# 추출 구조에 t2m 레벨이 한 번 더 들어가 있으면 평탄화 필요:
+#   mv t2m/glove glove ; mv t2m/t2m _inner ; rm -rf t2m ; mv _inner t2m
 
 # 6. Pretrained checkpoint (HuggingFace LFS, 1.24GB)
 git lfs install
 mkdir -p checkpoints && cd checkpoints
 git clone https://huggingface.co/OpenMotionLab/MotionGPT-base
 # → checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar
+
+# 7. HumanML3D dataset junction (config 의 datasets/humanml3d 경로 위해)
+cd external_assets/MotionGPT
+mkdir -p datasets
+cmd /c "mklink /J datasets\humanml3d ..\HumanML3D"
+
+# 7-1. HumanML3D 의 texts/ 가 nested 구조 (texts/texts/*.txt) 라면 평탄화:
+#   cd external_assets/HumanML3D
+#   mv texts texts_outer && mv texts_outer/texts texts && rm -rf texts_outer
 ```
 
 본 저장소의 wrapper ([`generators/motiongpt_wrapper.py`](generators/motiongpt_wrapper.py)) 는 `conda run -n mgpt python -m generators._motiongpt_inference ...` 로 환경을 격리해 호출하므로 motion-router env 에서 호출해도 무방. checkpoint 자동 탐색 (`external_assets/MotionGPT/checkpoints/MotionGPT-base/*.tar` 또는 `*.ckpt`).
+
+#### MotionGPT 의 known issue
+
+- **Length 제어 불가능**: `model.forward(batch, task='t2m')` 는 `batch['length']` 를 capture 만 하고 실제 generation 은 LM (T5) 의 `generate_direct(texts, do_sample=True)` 에 위임 — n_frames 인자는 effective 하지 않음. 짧은 prompt 는 4 frames 같은 degenerate 출력 발생. 권장: 공식 `demos/t2m.txt` 의 60+ 단어급 상세 prompt 사용. wrapper 는 metadata 의 `length_generated` 로 실제 길이 기록.
 
 ### 2-2. 핵심 실행 명령어
 
