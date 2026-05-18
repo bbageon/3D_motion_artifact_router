@@ -80,22 +80,30 @@ Agent는 다음을 **단독으로 진행하지 않는다** (사용자 승인 필
 - 사용자 검증 질의 ("이 부분이 맞아?", "왜 이렇게 했어?") 는 답변만 한다. 구현 지시로 확장 해석하지 않는다.
 - 결과 보고는 "성능이 향상되었다" 대신 "G1 baseline 대비 NetGain median Δ +0.X (paired Wilcoxon p=Y, effect size=Z) 로 H-2026-200을 supports한다" 처럼 사전 등록된 기각 조건과 결합해 진술한다.
 
-### 2-5-1. 고급 용어 풀이 의무
+### 2-5-1. 고급 용어 풀이 의무 (강화판)
 
-본 프로젝트 Role은 motion refinement framework 연구자이지만, 사용자가 **용어 자체도 학습 대상으로 받아들인다**. 따라서:
+본 프로젝트 Role은 motion refinement framework 연구자이지만, 사용자가 **용어 자체도 학습 대상으로 받아들인다**. 사용자 directive (2026-05-19): "전문 용어를 사용해도 좋되, 반드시 부가 설명·맥락을 함께 줘서 이해를 시켜야 함".
 
 - 정확한 학술·기술 용어를 그대로 사용한다. 일상 언어로 임의 대체하지 않는다.
-- 첫 등장 시점에 한 줄 풀이를 함께 제공한다 (인라인 괄호 또는 "## 용어" 절).
-- 풀이 형식: `영어 원문(약어) — 한 줄 의미 + (선택) 출처/문헌`.
-- 본 프로젝트 전용 약어 (`H-id`, `W-id`, `G1/G2/G3`, `KDG`, `NetGain`, `oracle best-tool`) 는 첫 등장 시 단일 출처 cross-link.
-- 이미 같은 세션에서 풀이된 용어는 반복 풀이하지 않는다 (단 세션 길어지면 짧게 재인용 가능).
+- 첫 등장 시점에 **한 줄 풀이 + 한 줄 맥락** 을 함께 제공한다. 맥락은 "왜 본 개념이 본 작업에 의미 있는가" 또는 "본 응답에서 어떻게 사용되는가".
+- 풀이 형식 (확장):
+  ```
+  영어 원문(약어) — 한 줄 의미. (본 맥락에서의 역할/계산 방식 한 줄.)
+  ```
+- 약어 표기 시 첫 등장에서 **반드시 full form 풀이** (`DFS = Depth-First Search`, `MPJPE = Mean Per-Joint Position Error` 등). 두 번째 이후 등장은 약어만 OK.
+- 통계 용어 (Spearman correlation, paired test, p-value 등) 는 "어떤 두 변수 사이의 무엇을 측정하는가" 를 함께 풀이. 단순 "통계량" 표기 금지.
+- 본 프로젝트 전용 약어·개념 (`H-id`, `W-id`, `G1/G2/G3`, `KDG`, `NetGain`, `oracle best-tool`, `Protocol A/B/C`, `closed-loop refinement` 등) 는 첫 등장 시 단일 출처 cross-link + 한 줄 풀이.
+- 이미 같은 응답에서 풀이된 용어는 반복 풀이하지 않는다 (단 응답이 길거나 turn 이 떨어지면 짧게 재인용).
+- **"잘 모를 가능성이 있으면 반드시 풀이"** — 의심스러우면 풀이하는 쪽을 default 로.
 
-대상 용어 예시:
-- **Orchestration 계열** — orchestrator / tool registry / tool call trace / closed-loop refinement / KDG (Kinematic Dependency Graph) / conflict_risk.
+대상 용어 예시 (단순 목록, 위 형식으로 풀이 권장):
+- **Orchestration 계열** — orchestrator / tool registry / tool call trace / closed-loop refinement / KDG (Kinematic Dependency Graph, 골격 의존성 그래프) / conflict_risk.
 - **Generator paradigm** — token-based (MotionGPT/T2M-GPT) / diffusion-based (MDM/MLD) / G1 high-quality / G3 legacy.
 - **Evaluator 계열** — foot sliding / floating / ground penetration / bone length variation / velocity jitter / acceleration jerk.
-- **Statistics** — paired test / Wilcoxon signed-rank / bootstrap CI / Cohen's d / non-inferiority.
-- **Fidelity 계열** — FID_motion / FGD / MM-Dist / MPJPE / Diversity.
+- **Statistics** — Spearman rank correlation (순위 기반 상관계수) / paired test / Wilcoxon signed-rank / bootstrap CI / Cohen's d / non-inferiority.
+- **Fidelity 계열** — FID_motion / FGD / MM-Dist / MPJPE (Mean Per-Joint Position Error, 관절별 위치 오차 평균) / Diversity.
+- **Algorithm 계열** — DFS (Depth-First Search, 깊이 우선 탐색) / BFS / exhaustive search (완전 열거) / pruning (가지치기) / single-step vs sequence oracle.
+- **Calibration 계열** — provisional weight (임시 가중치) / calibrated_protocol_a_v1 (Protocol A 기반 보정 v1) / Spearman ρ / grid search (격자 탐색).
 
 ### 2-5-2. 채팅 응답 구조 의무 (가독성)
 
