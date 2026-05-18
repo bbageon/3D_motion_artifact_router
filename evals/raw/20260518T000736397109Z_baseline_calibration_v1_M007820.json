@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_smoke",
+  "timestamp": "20260518T000736397109Z",
+  "task_id": "baseline_calibration_v1",
+  "trial_id": "M007820",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M007820.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "e9a284e8db9b68053f0ef9c6f4596c441ac8f2c5bc1df5a4bcef6939f393ebad",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "tool_registry_config_hash": null,
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    92,
+    22,
+    3
+  ],
+  "fps": 20,
+  "ground_y_estimated": 0.0,
+  "seed": 42,
+  "evaluator_reports": {
+    "FootFloatingEvaluator": [
+      {
+        "agent": "FootFloatingEvaluator",
+        "error_type": "left_foot_floating",
+        "body_part": "left_foot",
+        "frames": [
+          57,
+          57
+        ],
+        "score": 0.010869565217391304,
+        "severity": "low",
+        "recommendation": "foot_lock_tool",
+        "metadata": {
+          "tau_float_m": 0.05,
+          "ground_y": 0.0,
+          "mean_height_above_ground": 0.029771867741225793,
+          "max_height_above_ground": 0.1839422732591629,
+          "contact_frame_ratio": 0.9456521739130435
+        }
+      },
+      {
+        "agent": "FootFloatingEvaluator",
+        "error_type": "right_foot_floating",
+        "body_part": "right_foot",
+        "frames": [
+          71,
+          72
+        ],
+        "score": 0.021739130434782608,
+        "severity": "low",
+        "recommendation": "foot_lock_tool",
+        "metadata": {
+          "tau_float_m": 0.05,
+          "ground_y": 0.0,
+          "mean_height_above_ground": 0.03095765928130435,
+          "max_height_above_ground": 0.18976551294326782,
+          "contact_frame_ratio": 0.9347826086956522
+        }
+      }
+    ],
+    "BoneLengthEvaluator": [],
+    "VelocityJitterEvaluator": [
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "global_velocity_jitter",
+        "body_part": "full_body",
+        "frames": [
+          0,
+          91
+        ],
+        "score": 0.009269937598814533,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "max_per_frame": 0.12715662010969583,
+          "n_frames_accel": 90
+        }
+      },
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "legs_velocity_jitter",
+        "body_part": "legs",
+        "frames": [
+          0,
+          91
+        ],
+        "score": 0.008239285731053815,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "n_joints": 8,
+          "max_per_frame": 0.12715662010969583
+        }
+      },
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "arms_velocity_jitter",
+        "body_part": "arms",
+        "frames": [
+          0,
+          91
+        ],
+        "score": 0.011198061045918795,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "n_joints": 8,
+          "max_per_frame": 0.11306035771687085
+        }
+      },
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "spine_head_velocity_jitter",
+        "body_part": "spine_head",
+        "frames": [
+          0,
+          91
+        ],
+        "score": 0.008073308826356469,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "n_joints": 6,
+          "max_per_frame": 0.05317386753263773
+        }
+      }
+    ]
+  },
+  "metrics_not_applicable": {
+    "NetGain": "baseline; no refinement",
+    "FidelityLoss": "baseline; no refinement",
+    "ToolCallCost": "baseline; no tool invocation",
+    "tool_call_trace": "baseline; no tool invocation"
+  },
+  "negative_result": false
+}

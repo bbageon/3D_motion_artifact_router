@@ -44,11 +44,25 @@ PART_JOINTS: dict[str, list[int]] = {
     ],
 }
 
+#: Severity 정의 버전. threshold 변경 시 bump + 일지·snapshot 에 versioning 기록.
+#: AGENTS.md §4-2 evaluator 정의 변경 → aggregation_rule_version 상승 의무.
+SEVERITY_VERSION = "1.1.0-2026-05-18"
+
 # Severity thresholds — mean acceleration magnitude (m / frame^2). 20fps 기준.
-# 추후 HumanML3D GT 분포 측정 후 갱신 예정 (현재는 보수적 default).
-SEV_LOW = 0.005
-SEV_MED = 0.020
-SEV_HIGH = 0.050
+#
+# Version 1.1.0 (2026-05-18) — HumanML3D 150 sample (seed=42, task_id=
+# baseline_calibration_v1) 분포 기반 calibration:
+#   clean motion 의 global jitter score 분포:
+#     median 0.0068, p75 0.011, p90 0.019, p95 0.026, p99 0.040, max 0.057
+#   목표: clean motion 의 ~95% 가 sub-low (report 면제). corrupted motion
+#   (synthetic inject_jitter noise_std≥0.05) 은 의미 있는 severity 분류.
+#   raw record: evals/raw/<...>_baseline_calibration_v1_*.json (150 개).
+#   snapshot: evals/snapshots/baseline_calibration_v1.json.
+#
+# Version 1.0.0 (Week 2 prototype) — 보수적 default (0.005 / 0.020 / 0.050).
+SEV_LOW = 0.030
+SEV_MED = 0.060
+SEV_HIGH = 0.120
 
 
 class VelocityJitterEvaluator(Evaluator):

@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_smoke",
+  "timestamp": "20260518T001450370701Z",
+  "task_id": "baseline_holdout_v2",
+  "trial_id": "M007706",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M007706.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "tool_registry_config_hash": null,
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    199,
+    22,
+    3
+  ],
+  "fps": 20,
+  "ground_y_estimated": 0.0,
+  "seed": 99,
+  "evaluator_reports": {
+    "FootFloatingEvaluator": [
+      {
+        "agent": "FootFloatingEvaluator",
+        "error_type": "left_foot_floating",
+        "body_part": "left_foot",
+        "frames": [
+          125,
+          125
+        ],
+        "score": 0.005025125628140704,
+        "severity": "low",
+        "recommendation": "foot_lock_tool",
+        "metadata": {
+          "severity_version": "1.2.0-2026-05-18",
+          "tau_float_m": 0.05,
+          "v_contact_thresh_m_per_frame": 0.02,
+          "contact_heuristic": "velocity_based_v1.1.0",
+          "ground_y": 0.0,
+          "mean_height_above_ground": 0.050804727419452675,
+          "max_height_above_ground": 0.26784461736679077,
+          "contact_frame_ratio": 0.49748743718592964
+        }
+      },
+      {
+        "agent": "FootFloatingEvaluator",
+        "error_type": "right_foot_floating",
+        "body_part": "right_foot",
+        "frames": [
+          32,
+          198
+        ],
+        "score": 0.04522613065326633,
+        "severity": "low",
+        "recommendation": "foot_lock_tool",
+        "metadata": {
+          "severity_version": "1.2.0-2026-05-18",
+          "tau_float_m": 0.05,
+          "v_contact_thresh_m_per_frame": 0.02,
+          "contact_heuristic": "velocity_based_v1.1.0",
+          "ground_y": 0.0,
+          "mean_height_above_ground": 0.07067838764103626,
+          "max_height_above_ground": 0.29650527238845825,
+          "contact_frame_ratio": 0.4723618090452261
+        }
+      }
+    ],
+    "BoneLengthEvaluator": [],
+    "VelocityJitterEvaluator": [
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "global_velocity_jitter",
+        "body_part": "full_body",
+        "frames": [
+          0,
+          198
+        ],
+        "score": 0.018071143600919354,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "max_per_frame": 0.10522136317836674,
+          "n_frames_accel": 197
+        }
+      },
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "legs_velocity_jitter",
+        "body_part": "legs",
+        "frames": [
+          0,
+          198
+        ],
+        "score": 0.01981608435851383,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "n_joints": 8,
+          "max_per_frame": 0.0875759008734159
+        }
+      },
+      {
+        "agent": "VelocityJitterEvaluator",
+        "error_type": "arms_velocity_jitter",
+        "body_part": "arms",
+        "frames": [
+          0,
+          198
+        ],
+        "score": 0.0189801619313176,
+        "severity": "low",
+        "recommendation": "velocity_smoothing_tool",
+        "metadata": {
+          "fps": 20,
+          "n_joints": 8,
+          "max_per_frame": 0.10522136317836674
+        }
+      }
+    ]
+  },
+  "metrics_not_applicable": {
+    "NetGain": "baseline; no refinement",
+    "FidelityLoss": "baseline; no refinement",
+    "ToolCallCost": "baseline; no tool invocation",
+    "tool_call_trace": "baseline; no tool invocation"
+  },
+  "negative_result": false
+}
