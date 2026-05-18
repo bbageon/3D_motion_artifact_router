@@ -1,0 +1,3636 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "tool_effect_matrix_sample",
+  "timestamp": "20260518T005720476320Z",
+  "task_id": "tool_effect_matrix_v1",
+  "split_id": "calibration_v1",
+  "trial_id": "011768",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\011768.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    128,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "tool_effect_entries": [
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "FootLockTool",
+      "strength": "small",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.19921875,
+      "target_delta": -0.1875,
+      "correction_magnitude": 0.053894927906389056,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.109375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.026306998359349684
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "low",
+            "score": 0.03274283349767705
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.026975216515025078
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.02286838577511104
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": -0.020930676161673066,
+        "VelocityJitterEvaluator": -0.00040702287793954045
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "FootLockTool",
+      "strength": "medium",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.03515625,
+      "target_delta": -0.3515625,
+      "correction_magnitude": 0.10778985581277811,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "low",
+            "score": 0.046875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.0234375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.031680189073562445
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "low",
+            "score": 0.032753852881584056
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.026617570623923694
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.021884859574582236
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": -0.018238571112613185,
+        "VelocityJitterEvaluator": -0.0007423159008470848
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "FootLockTool",
+      "strength": "large",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.0,
+      "target_delta": -0.38671875,
+      "correction_magnitude": 0.17964975968796357,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "medium",
+            "score": 0.0511549370420189
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.05138677602921504
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.026349103263424874
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.021146574333210485
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": 0.0008152644454305358,
+        "VelocityJitterEvaluator": -0.00099400405131473
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "FootLockTool",
+      "strength": "small",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.055261650174860955,
+      "target_delta": -0.07517322856895636,
+      "correction_magnitude": 0.029894927906389056,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.109375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.016797183376328153
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "low",
+            "score": 0.018552888404437397
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027671444175264574
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.02286838577511104
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.1875,
+        "VelocityJitterEvaluator": -0.00040702287793954045
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "FootLockTool",
+      "strength": "medium",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.06604992130481346,
+      "target_delta": -0.06438495743900385,
+      "correction_magnitude": 0.05978985581277812,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "low",
+            "score": 0.046875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.0234375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.03239487208119795
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "low",
+            "score": 0.03532001308942513
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027313798284163193
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.021884859574582236
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.3515625,
+        "VelocityJitterEvaluator": -0.0007423159008470848
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "FootLockTool",
+      "strength": "large",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.07903029427460749,
+      "target_delta": -0.05140458446920983,
+      "correction_magnitude": 0.09964975968796352,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "medium",
+            "score": 0.05147271469357045
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.05518328938643471
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027045330923664374
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.021146574333210485
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.38671875,
+        "VelocityJitterEvaluator": -0.000994004051314723
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "FootLockTool",
+      "strength": "small",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.19852432798110897,
+      "target_delta": -0.0014642624901154422,
+      "correction_magnitude": 0.03188701826743137,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.2064632096072866
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20250491464702008
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.19844580135529732
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.18905905432738798
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": -0.0016821929067670494
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "FootLockTool",
+      "strength": "medium",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.19750959013365982,
+      "target_delta": -0.0024790003375645964,
+      "correction_magnitude": 0.06377403653486274,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.20742597818707037
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20030878275365388
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.1973634143180182
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1860824899748706
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": -0.0019288655694835177
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "FootLockTool",
+      "strength": "large",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.19721350955842426,
+      "target_delta": -0.002775080912800154,
+      "correction_magnitude": 0.10629006089143789,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "low",
+            "score": 0.015625
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.0234375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.2118295485201836
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20284873009921306
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.19704759503776692
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1852139869541795
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.01953125,
+        "BoneLengthEvaluator": -0.0005401620337490698
+      },
+      "metadata": {
+        "tool_target_part": "both_feet",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "BoneProjectionTool",
+      "strength": "small",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.38671875,
+      "target_delta": 0.0,
+      "correction_magnitude": 3.8014751126544185e-08,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409376312505163
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332010470798794
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": 0.0,
+        "VelocityJitterEvaluator": 1.932198040455191e-09
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "BoneProjectionTool",
+      "strength": "medium",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.38671875,
+      "target_delta": 0.0,
+      "correction_magnitude": 7.602950225685823e-08,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.02740937837381817
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332011037659872
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": 0.0,
+        "VelocityJitterEvaluator": 3.864678986553738e-09
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "BoneProjectionTool",
+      "strength": "large",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.38671875,
+      "target_delta": 0.0,
+      "correction_magnitude": 1.2671583709020668e-07,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409381122704975
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.033320117936037424
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": 0.0,
+        "VelocityJitterEvaluator": 6.44176036124211e-09
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "BoneProjectionTool",
+      "strength": "small",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.0913044151206721,
+      "target_delta": -0.03913046362314522,
+      "correction_magnitude": 0.008992531641849877,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "medium",
+            "score": 0.0913044151206721
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027995971022397034
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.034933240160190594
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "VelocityJitterEvaluator": -0.00010277895875285964
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "BoneProjectionTool",
+      "strength": "medium",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.052173951497526926,
+      "target_delta": -0.07826092724629038,
+      "correction_magnitude": 0.017985063283699747,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "medium",
+            "score": 0.052173951497526926
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027895771977404196
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.034657692786460276
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "VelocityJitterEvaluator": -0.00019671556343364704
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "BoneProjectionTool",
+      "strength": "large",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.0,
+      "target_delta": -0.13043487874381732,
+      "correction_magnitude": 0.029975105472832927,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027844566775158817
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.0345168784802855
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "VelocityJitterEvaluator": -0.00024472044053868575
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "BoneProjectionTool",
+      "strength": "small",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.19873849356050566,
+      "target_delta": -0.0012500969107187565,
+      "correction_magnitude": 0.01517874089576175,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.16225307617583826
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.19867424463998712
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20322327793535847
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": -0.013907406529357513
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "BoneProjectionTool",
+      "strength": "medium",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.20038019767659587,
+      "target_delta": 0.0003916072053714581,
+      "correction_magnitude": 0.0303574817915235,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "medium",
+            "score": 0.0927160435290504
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20042539569714998
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20803894334255646
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": -0.02781481305871511
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "BoneProjectionTool",
+      "strength": "large",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.20604563971671236,
+      "target_delta": 0.006057049245487944,
+      "correction_magnitude": 0.0505958029858725,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20646853387327424
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.22465757332689812
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0006568423971538839
+      },
+      "metadata": {
+        "tool_target_part": "right_arm",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "small",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.40234375,
+      "target_delta": 0.015625,
+      "correction_magnitude": 0.0029173492528142666,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.4921875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "high",
+            "score": 0.3125
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04425198055907156
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.0562858622153634
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.023148850094911612
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.019842221651673986
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.028202912848777007
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.020818937680741265
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": -0.00018667070296895377,
+        "VelocityJitterEvaluator": -0.004192504508499655
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "medium",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.36328125,
+      "target_delta": -0.0234375,
+      "correction_magnitude": 0.010981459652770637,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.4765625
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.25
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.044222041691055036
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.05680070714354078
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.017478287955398537
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.021895956942985045
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.01643976198701535
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": 5.578232711147407e-05,
+        "VelocityJitterEvaluator": -0.008591066115725982
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "large",
+      "target_evaluator": "FootFloatingEvaluator",
+      "target_score_before": 0.38671875,
+      "target_score_after": 0.359375,
+      "target_delta": -0.02734375,
+      "correction_magnitude": 0.03213119343286752,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04414529773632245
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.056765886444050416
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.027409374251493913
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03332009904020702
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.421875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.296875
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "low",
+            "score": 0.04459320307689032
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "medium",
+            "score": 0.05606419413638654
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "low",
+            "score": 0.020021376598785515
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "low",
+            "score": 0.019343712526449966
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.01626741252806172
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": -0.015449970505558352,
+        "VelocityJitterEvaluator": -0.010928322549463902
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "small",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.1298117529960858,
+      "target_delta": -0.0006231257477315177,
+      "correction_magnitude": 0.002990620559950408,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.4921875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "high",
+            "score": 0.3125
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.1298117529960858
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.02367225540101519
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.019842221651673986
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.029642277440561842
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.020818937680741265
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.015625,
+        "VelocityJitterEvaluator": -0.004354525465502083
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "medium",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.12834552585827486,
+      "target_delta": -0.0020893528855424615,
+      "correction_magnitude": 0.011217847271619468,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.4765625
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.25
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.12834552585827486
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.01777969708864718
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.022724832059418824
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.01643976198701535
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.0234375,
+        "VelocityJitterEvaluator": -0.008867018130639701
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "large",
+      "target_evaluator": "BoneLengthEvaluator",
+      "target_score_before": 0.13043487874381732,
+      "target_score_after": 0.07237677492845096,
+      "target_delta": -0.05805810381536636,
+      "correction_magnitude": 0.032686971700275534,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.484375
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.2890625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.13043487874381732
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.028105601911733412
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.024062319550400346
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03523472510586564
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.023991147468001205
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.421875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "medium",
+            "score": 0.296875
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.12540983733045197
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "low",
+            "score": 0.019343712526449966
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.016863429273449485
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.02734375,
+        "VelocityJitterEvaluator": -0.010985019235550668
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "small",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.1307839862759493,
+      "target_delta": -0.0692046041952751,
+      "correction_magnitude": 0.02117111416712115,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.015625
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.18609451415474593
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.18418755720290134
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2588499527294924
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.1981287048701708
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.20480413683030108
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.13081033197214642
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1270524395378035
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.13488437276085474
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.13038880083299256
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.015625,
+        "BoneLengthEvaluator": -0.02800450525371903
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "small"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "medium",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.03508372857799787,
+      "target_delta": -0.16490486189322653,
+      "correction_magnitude": 0.05701028540284958,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "low",
+            "score": 0.1328125
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "low",
+            "score": 0.1484375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.13644064081365997
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.14027671431502767
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2187033027982001
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.14416941096144675
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.14529781421257135
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "low",
+            "score": 0.03515492537479342
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "low",
+            "score": 0.0337366766319741
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.03742753567915941
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "low",
+            "score": 0.03401577662606456
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.140625,
+        "BoneLengthEvaluator": -0.07743990179106017
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "medium"
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "tool_name": "VelocitySmoothingTool",
+      "strength": "large",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "target_score_before": 0.19998859047122441,
+      "target_score_after": 0.01764344634414084,
+      "target_delta": -0.18234514412708358,
+      "correction_magnitude": 0.07651279634250387,
+      "cross_evaluator_scores_before": {
+        "FootFloatingEvaluator": [],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.21062465520589044
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.20675443358225154
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.2780915243533276
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.23179010882262602
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.2448266700921112
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "global_velocity_jitter",
+            "body_part": "full_body",
+            "severity": "high",
+            "score": 0.20000768134475377
+          },
+          {
+            "error_type": "legs_velocity_jitter",
+            "body_part": "legs",
+            "severity": "high",
+            "score": 0.1933542242983933
+          },
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "high",
+            "score": 0.20689022887346678
+          },
+          {
+            "error_type": "spine_head_velocity_jitter",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.19970222736828375
+          }
+        ]
+      },
+      "cross_evaluator_scores_after": {
+        "FootFloatingEvaluator": [
+          {
+            "error_type": "left_foot_floating",
+            "body_part": "left_foot",
+            "severity": "high",
+            "score": 0.3671875
+          },
+          {
+            "error_type": "right_foot_floating",
+            "body_part": "right_foot",
+            "severity": "high",
+            "score": 0.359375
+          }
+        ],
+        "BoneLengthEvaluator": [
+          {
+            "error_type": "right_leg_bone_length_variation",
+            "body_part": "right_leg",
+            "severity": "high",
+            "score": 0.10526998605108788
+          },
+          {
+            "error_type": "left_leg_bone_length_variation",
+            "body_part": "left_leg",
+            "severity": "high",
+            "score": 0.10750314349836039
+          },
+          {
+            "error_type": "spine_head_bone_length_variation",
+            "body_part": "spine_head",
+            "severity": "high",
+            "score": 0.17070907457649034
+          },
+          {
+            "error_type": "right_arm_bone_length_variation",
+            "body_part": "right_arm",
+            "severity": "high",
+            "score": 0.10993153370745212
+          },
+          {
+            "error_type": "left_arm_bone_length_variation",
+            "body_part": "left_arm",
+            "severity": "high",
+            "score": 0.11107645986827658
+          }
+        ],
+        "VelocityJitterEvaluator": [
+          {
+            "error_type": "arms_velocity_jitter",
+            "body_part": "arms",
+            "severity": "low",
+            "score": 0.01764344634414084
+          }
+        ]
+      },
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.36328125,
+        "BoneLengthEvaluator": -0.11351943887090789
+      },
+      "metadata": {
+        "tool_target_part": "full_body",
+        "tool_frame_range": [
+          0,
+          127
+        ],
+        "tool_report_strength": "large"
+      }
+    }
+  ],
+  "metrics_not_applicable": {
+    "NetGain": "tool effect matrix is single-step apply; NetGain weights (α/β/γ) are provisional — see AGENTS.md §6-11",
+    "tool_call_trace": "single-step apply per cell; no sequential trace",
+    "netgain_weight_status": "provisional"
+  },
+  "negative_result": false
+}
