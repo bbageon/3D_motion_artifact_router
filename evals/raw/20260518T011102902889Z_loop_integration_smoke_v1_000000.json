@@ -1,0 +1,598 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "loop_integration_smoke",
+  "timestamp": "20260518T011102902889Z",
+  "task_id": "loop_integration_smoke_v1",
+  "split_id": "loop_integration_smoke_v1",
+  "trial_id": "000000",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\000000.npy",
+  "generator_id": "humanml3d_gt",
+  "artifact_kind": "global_jitter",
+  "seed": 42,
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    116,
+    22,
+    3
+  ],
+  "fps": 20,
+  "loop_config": {
+    "orchestrator": "RuleBasedOrchestrator",
+    "max_iterations": 5,
+    "score_increase_tolerance": 0.01
+  },
+  "result": {
+    "converged": false,
+    "max_iterations_reached": true,
+    "rolled_back": false,
+    "n_tool_applications": 5,
+    "n_decisions": 5,
+    "score_trace": [
+      1.9550398750718465,
+      1.7654687591556488,
+      1.5630867800922597,
+      1.3995572374777214,
+      0.9811951300651628,
+      0.8061256946525563
+    ],
+    "score_initial": 1.9550398750718465,
+    "score_final": 0.8061256946525563,
+    "score_total_change": -1.1489141804192902,
+    "tool_call_trace": [
+      {
+        "tool": "BoneProjectionTool",
+        "target_part": "spine_head",
+        "frame_range": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "modified_joints": [
+          "SPINE1",
+          "SPINE2",
+          "SPINE3",
+          "NECK",
+          "HEAD"
+        ],
+        "correction_magnitude": 0.04480970071841143,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "strength_factor": 1.0,
+          "chain": [
+            "PELVIS",
+            "SPINE1",
+            "SPINE2",
+            "SPINE3",
+            "NECK",
+            "HEAD"
+          ],
+          "n_bones_corrected": 5
+        }
+      },
+      {
+        "tool": "BoneProjectionTool",
+        "target_part": "left_arm",
+        "frame_range": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "modified_joints": [
+          "LEFT_COLLAR",
+          "LEFT_SHOULDER",
+          "LEFT_ELBOW",
+          "LEFT_WRIST"
+        ],
+        "correction_magnitude": 0.05735946958760043,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "strength_factor": 1.0,
+          "chain": [
+            "SPINE3",
+            "LEFT_COLLAR",
+            "LEFT_SHOULDER",
+            "LEFT_ELBOW",
+            "LEFT_WRIST"
+          ],
+          "n_bones_corrected": 4
+        }
+      },
+      {
+        "tool": "VelocitySmoothingTool",
+        "target_part": "spine_head",
+        "frame_range": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "modified_joints": [
+          "PELVIS",
+          "SPINE1",
+          "SPINE2",
+          "SPINE3",
+          "NECK",
+          "HEAD"
+        ],
+        "correction_magnitude": 0.08744412989829965,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "sigma_frames": 2.0,
+          "n_joints": 6,
+          "n_frames_smoothed": 116
+        }
+      },
+      {
+        "tool": "VelocitySmoothingTool",
+        "target_part": "arms",
+        "frame_range": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "modified_joints": [
+          "LEFT_COLLAR",
+          "LEFT_SHOULDER",
+          "LEFT_ELBOW",
+          "LEFT_WRIST",
+          "RIGHT_COLLAR",
+          "RIGHT_SHOULDER",
+          "RIGHT_ELBOW",
+          "RIGHT_WRIST"
+        ],
+        "correction_magnitude": 0.08469555042599768,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "sigma_frames": 2.0,
+          "n_joints": 8,
+          "n_frames_smoothed": 116
+        }
+      },
+      {
+        "tool": "BoneProjectionTool",
+        "target_part": "left_leg",
+        "frame_range": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "modified_joints": [
+          "LEFT_HIP",
+          "LEFT_KNEE",
+          "LEFT_ANKLE",
+          "LEFT_FOOT"
+        ],
+        "correction_magnitude": 0.048040951186905184,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "strength_factor": 1.0,
+          "chain": [
+            "PELVIS",
+            "LEFT_HIP",
+            "LEFT_KNEE",
+            "LEFT_ANKLE",
+            "LEFT_FOOT"
+          ],
+          "n_bones_corrected": 4
+        }
+      }
+    ],
+    "decision_trace": [
+      {
+        "decision": "revise",
+        "primary_error": "spine_head_bone_length_variation",
+        "selected_tool": "BoneProjectionTool",
+        "target_part": "spine_head",
+        "target_frames": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.27339568951999954,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "bone_projection_tool",
+          "primary_severity": "high",
+          "primary_agent": "BoneLengthEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_leg_bone_length_variation",
+              "body_part": "right_leg",
+              "severity": "high",
+              "score": 0.2096322167254948
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_leg_bone_length_variation",
+              "body_part": "left_leg",
+              "severity": "high",
+              "score": 0.20422820360046162
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "spine_head_bone_length_variation",
+              "body_part": "spine_head",
+              "severity": "high",
+              "score": 0.27339568951999954
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_arm_bone_length_variation",
+              "body_part": "right_arm",
+              "severity": "high",
+              "score": 0.22581324566654182
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_arm_bone_length_variation",
+              "body_part": "left_arm",
+              "severity": "high",
+              "score": 0.25073114050315787
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "global_velocity_jitter",
+              "body_part": "full_body",
+              "severity": "high",
+              "score": 0.1977666009147064
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "legs_velocity_jitter",
+              "body_part": "legs",
+              "severity": "high",
+              "score": 0.19193771026407533
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "arms_velocity_jitter",
+              "body_part": "arms",
+              "severity": "high",
+              "score": 0.20307656537324184
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "spine_head_velocity_jitter",
+              "body_part": "spine_head",
+              "severity": "high",
+              "score": 0.19845850250416733
+            }
+          ],
+          "tool_history_len": 0
+        }
+      },
+      {
+        "decision": "revise",
+        "primary_error": "left_arm_bone_length_variation",
+        "selected_tool": "BoneProjectionTool",
+        "target_part": "left_arm",
+        "target_frames": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.25647582830590343,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "bone_projection_tool",
+          "primary_severity": "high",
+          "primary_agent": "BoneLengthEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_leg_bone_length_variation",
+              "body_part": "right_leg",
+              "severity": "high",
+              "score": 0.2096322167254948
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_leg_bone_length_variation",
+              "body_part": "left_leg",
+              "severity": "high",
+              "score": 0.20422820360046162
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_arm_bone_length_variation",
+              "body_part": "right_arm",
+              "severity": "high",
+              "score": 0.23329530787749164
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_arm_bone_length_variation",
+              "body_part": "left_arm",
+              "severity": "high",
+              "score": 0.25647582830590343
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "global_velocity_jitter",
+              "body_part": "full_body",
+              "severity": "high",
+              "score": 0.2128947059697292
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "legs_velocity_jitter",
+              "body_part": "legs",
+              "severity": "high",
+              "score": 0.19193771026407533
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "arms_velocity_jitter",
+              "body_part": "arms",
+              "severity": "high",
+              "score": 0.20307656537324184
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "spine_head_velocity_jitter",
+              "body_part": "spine_head",
+              "severity": "high",
+              "score": 0.25392822103925083
+            }
+          ],
+          "tool_history_len": 1
+        }
+      },
+      {
+        "decision": "revise",
+        "primary_error": "spine_head_velocity_jitter",
+        "selected_tool": "VelocitySmoothingTool",
+        "target_part": "spine_head",
+        "target_frames": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.25392822103925083,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "velocity_smoothing_tool",
+          "primary_severity": "high",
+          "primary_agent": "VelocityJitterEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_leg_bone_length_variation",
+              "body_part": "right_leg",
+              "severity": "high",
+              "score": 0.2096322167254948
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_leg_bone_length_variation",
+              "body_part": "left_leg",
+              "severity": "high",
+              "score": 0.20422820360046162
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_arm_bone_length_variation",
+              "body_part": "right_arm",
+              "severity": "high",
+              "score": 0.23329530787749164
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "global_velocity_jitter",
+              "body_part": "full_body",
+              "severity": "high",
+              "score": 0.22731973243439965
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "legs_velocity_jitter",
+              "body_part": "legs",
+              "severity": "high",
+              "score": 0.19193771026407533
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "arms_velocity_jitter",
+              "body_part": "arms",
+              "severity": "high",
+              "score": 0.24274538815108562
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "spine_head_velocity_jitter",
+              "body_part": "spine_head",
+              "severity": "high",
+              "score": 0.25392822103925083
+            }
+          ],
+          "tool_history_len": 2
+        }
+      },
+      {
+        "decision": "revise",
+        "primary_error": "arms_velocity_jitter",
+        "selected_tool": "VelocitySmoothingTool",
+        "target_part": "arms",
+        "target_frames": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.24274538815108562,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "velocity_smoothing_tool",
+          "primary_severity": "high",
+          "primary_agent": "VelocityJitterEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_leg_bone_length_variation",
+              "body_part": "right_leg",
+              "severity": "high",
+              "score": 0.1985957574900315
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_leg_bone_length_variation",
+              "body_part": "left_leg",
+              "severity": "high",
+              "score": 0.2013015851905356
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "spine_head_bone_length_variation",
+              "body_part": "spine_head",
+              "severity": "high",
+              "score": 0.12598947747778041
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_arm_bone_length_variation",
+              "body_part": "right_arm",
+              "severity": "high",
+              "score": 0.2177154187025991
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_arm_bone_length_variation",
+              "body_part": "left_arm",
+              "severity": "medium",
+              "score": 0.06104008442047796
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "global_velocity_jitter",
+              "body_part": "full_body",
+              "severity": "high",
+              "score": 0.16023181578113574
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "legs_velocity_jitter",
+              "body_part": "legs",
+              "severity": "high",
+              "score": 0.19193771026407533
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "arms_velocity_jitter",
+              "body_part": "arms",
+              "severity": "high",
+              "score": 0.24274538815108562
+            }
+          ],
+          "tool_history_len": 3
+        }
+      },
+      {
+        "decision": "revise",
+        "primary_error": "left_leg_bone_length_variation",
+        "selected_tool": "BoneProjectionTool",
+        "target_part": "left_leg",
+        "target_frames": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.2013015851905356,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "bone_projection_tool",
+          "primary_severity": "high",
+          "primary_agent": "BoneLengthEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_leg_bone_length_variation",
+              "body_part": "right_leg",
+              "severity": "high",
+              "score": 0.1985957574900315
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_leg_bone_length_variation",
+              "body_part": "left_leg",
+              "severity": "high",
+              "score": 0.2013015851905356
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "spine_head_bone_length_variation",
+              "body_part": "spine_head",
+              "severity": "high",
+              "score": 0.12598947747778041
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_arm_bone_length_variation",
+              "body_part": "right_arm",
+              "severity": "high",
+              "score": 0.1254440431487167
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_arm_bone_length_variation",
+              "body_part": "left_arm",
+              "severity": "medium",
+              "score": 0.06266214037971665
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "global_velocity_jitter",
+              "body_part": "full_body",
+              "severity": "medium",
+              "score": 0.07526441611430652
+            },
+            {
+              "agent": "VelocityJitterEvaluator",
+              "error_type": "legs_velocity_jitter",
+              "body_part": "legs",
+              "severity": "high",
+              "score": 0.19193771026407533
+            }
+          ],
+          "tool_history_len": 4
+        }
+      }
+    ],
+    "metadata": {
+      "stop_reason": null,
+      "errors": [],
+      "rollback": null,
+      "max_iterations": 5,
+      "score_increase_tolerance": 0.01
+    }
+  },
+  "metrics_not_applicable": {
+    "NetGain": "integration smoke; NetGain is not the test target",
+    "netgain_weight_status": "n/a (integration smoke)"
+  },
+  "agents_md_obligation_note": "AGENTS.md §6-13 — 본 record 의 record_type='loop_integration_smoke' 는 가설 supports/contradicts 의 근거로 인용 금지. integration smoke 통과 사실은 파이프라인이 죽지 않고 도는지의 확인일 뿐, 통계적 근거 아님.",
+  "negative_result": false
+}

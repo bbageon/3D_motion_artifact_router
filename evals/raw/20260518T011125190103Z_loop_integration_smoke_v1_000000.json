@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "loop_integration_smoke",
+  "timestamp": "20260518T011125190103Z",
+  "task_id": "loop_integration_smoke_v1",
+  "split_id": "loop_integration_smoke_v1",
+  "trial_id": "000000",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\000000.npy",
+  "generator_id": "humanml3d_gt",
+  "artifact_kind": "foot_floating",
+  "seed": 42,
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    116,
+    22,
+    3
+  ],
+  "fps": 20,
+  "loop_config": {
+    "orchestrator": "RuleBasedOrchestrator",
+    "max_iterations": 5,
+    "score_increase_tolerance": 0.01
+  },
+  "result": {
+    "converged": true,
+    "max_iterations_reached": false,
+    "rolled_back": true,
+    "n_tool_applications": 0,
+    "n_decisions": 1,
+    "score_trace": [
+      0.5232845805430962
+    ],
+    "score_initial": 0.5232845805430962,
+    "score_final": 0.5232845805430962,
+    "score_total_change": 0.0,
+    "tool_call_trace": [],
+    "decision_trace": [
+      {
+        "decision": "revise",
+        "primary_error": "left_foot_floating",
+        "selected_tool": "FootLockTool",
+        "target_part": "left_foot",
+        "target_frames": [
+          5,
+          77
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.3448275862068966,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "foot_lock_tool",
+          "primary_severity": "high",
+          "primary_agent": "FootFloatingEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "FootFloatingEvaluator",
+              "error_type": "left_foot_floating",
+              "body_part": "left_foot",
+              "severity": "high",
+              "score": 0.3448275862068966
+            },
+            {
+              "agent": "FootFloatingEvaluator",
+              "error_type": "right_foot_floating",
+              "body_part": "right_foot",
+              "severity": "medium",
+              "score": 0.16379310344827586
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "left_leg_bone_length_variation",
+              "body_part": "left_leg",
+              "severity": "low",
+              "score": 0.014663890887923864
+            }
+          ],
+          "tool_history_len": 0
+        }
+      }
+    ],
+    "metadata": {
+      "stop_reason": "rollback_score_increase",
+      "errors": [],
+      "rollback": {
+        "step": 0,
+        "tool": "FootLockTool",
+        "strength": "large",
+        "score_before": 0.5232845805430962,
+        "score_candidate": 1.1860702966922883,
+        "delta": 0.662785716149192
+      },
+      "max_iterations": 5,
+      "score_increase_tolerance": 0.01
+    }
+  },
+  "metrics_not_applicable": {
+    "NetGain": "integration smoke; NetGain is not the test target",
+    "netgain_weight_status": "n/a (integration smoke)"
+  },
+  "agents_md_obligation_note": "AGENTS.md §6-13 — 본 record 의 record_type='loop_integration_smoke' 는 가설 supports/contradicts 의 근거로 인용 금지. integration smoke 통과 사실은 파이프라인이 죽지 않고 도는지의 확인일 뿐, 통계적 근거 아님.",
+  "negative_result": false
+}

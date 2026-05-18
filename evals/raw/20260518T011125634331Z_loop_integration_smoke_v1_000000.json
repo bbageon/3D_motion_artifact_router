@@ -1,0 +1,260 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "loop_integration_smoke",
+  "timestamp": "20260518T011125634331Z",
+  "task_id": "loop_integration_smoke_v1",
+  "split_id": "loop_integration_smoke_v1",
+  "trial_id": "000000",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\000000.npy",
+  "generator_id": "humanml3d_gt",
+  "artifact_kind": "bone_stretch_right_arm",
+  "seed": 42,
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    116,
+    22,
+    3
+  ],
+  "fps": 20,
+  "loop_config": {
+    "orchestrator": "RuleBasedOrchestrator",
+    "max_iterations": 5,
+    "score_increase_tolerance": 0.01
+  },
+  "result": {
+    "converged": true,
+    "max_iterations_reached": false,
+    "rolled_back": false,
+    "n_tool_applications": 3,
+    "n_decisions": 4,
+    "score_trace": [
+      0.19077965827735377,
+      0.0603448275862069,
+      0.008620689655172414,
+      0.0
+    ],
+    "score_initial": 0.19077965827735377,
+    "score_final": 0.0,
+    "score_total_change": -0.19077965827735377,
+    "tool_call_trace": [
+      {
+        "tool": "BoneProjectionTool",
+        "target_part": "right_arm",
+        "frame_range": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "modified_joints": [
+          "RIGHT_COLLAR",
+          "RIGHT_SHOULDER",
+          "RIGHT_ELBOW",
+          "RIGHT_WRIST"
+        ],
+        "correction_magnitude": 0.029975078148070086,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "strength_factor": 1.0,
+          "chain": [
+            "SPINE3",
+            "RIGHT_COLLAR",
+            "RIGHT_SHOULDER",
+            "RIGHT_ELBOW",
+            "RIGHT_WRIST"
+          ],
+          "n_bones_corrected": 4
+        }
+      },
+      {
+        "tool": "FootLockTool",
+        "target_part": "right_foot",
+        "frame_range": [
+          19,
+          25
+        ],
+        "strength": "small",
+        "modified_joints": [
+          "RIGHT_FOOT"
+        ],
+        "correction_magnitude": 0.01927117125264236,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "ground_y": 0.0,
+          "strength_factor": 0.3,
+          "propagation_weights": {
+            "LEFT_ANKLE": 0.5,
+            "RIGHT_ANKLE": 0.5,
+            "LEFT_KNEE": 0.2,
+            "RIGHT_KNEE": 0.2
+          }
+        }
+      },
+      {
+        "tool": "FootLockTool",
+        "target_part": "right_foot",
+        "frame_range": [
+          23,
+          23
+        ],
+        "strength": "small",
+        "modified_joints": [
+          "RIGHT_FOOT"
+        ],
+        "correction_magnitude": 0.015162608698010449,
+        "score_before": null,
+        "score_after": null,
+        "metadata": {
+          "ground_y": 0.0,
+          "strength_factor": 0.3,
+          "propagation_weights": {
+            "LEFT_ANKLE": 0.5,
+            "RIGHT_ANKLE": 0.5,
+            "LEFT_KNEE": 0.2,
+            "RIGHT_KNEE": 0.2
+          }
+        }
+      }
+    ],
+    "decision_trace": [
+      {
+        "decision": "revise",
+        "primary_error": "right_arm_bone_length_variation",
+        "selected_tool": "BoneProjectionTool",
+        "target_part": "right_arm",
+        "target_frames": [
+          0,
+          115
+        ],
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "score": 0.13043483069114686,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "bone_projection_tool",
+          "primary_severity": "high",
+          "primary_agent": "BoneLengthEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "FootFloatingEvaluator",
+              "error_type": "right_foot_floating",
+              "body_part": "right_foot",
+              "severity": "low",
+              "score": 0.0603448275862069
+            },
+            {
+              "agent": "BoneLengthEvaluator",
+              "error_type": "right_arm_bone_length_variation",
+              "body_part": "right_arm",
+              "severity": "high",
+              "score": 0.13043483069114686
+            }
+          ],
+          "tool_history_len": 0
+        }
+      },
+      {
+        "decision": "revise",
+        "primary_error": "right_foot_floating",
+        "selected_tool": "FootLockTool",
+        "target_part": "right_foot",
+        "target_frames": [
+          19,
+          25
+        ],
+        "strength": "small",
+        "next_step": "apply_then_evaluate",
+        "score": 0.0603448275862069,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "foot_lock_tool",
+          "primary_severity": "low",
+          "primary_agent": "FootFloatingEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "FootFloatingEvaluator",
+              "error_type": "right_foot_floating",
+              "body_part": "right_foot",
+              "severity": "low",
+              "score": 0.0603448275862069
+            }
+          ],
+          "tool_history_len": 1
+        }
+      },
+      {
+        "decision": "revise",
+        "primary_error": "right_foot_floating",
+        "selected_tool": "FootLockTool",
+        "target_part": "right_foot",
+        "target_frames": [
+          23,
+          23
+        ],
+        "strength": "small",
+        "next_step": "apply_then_evaluate",
+        "score": 0.008620689655172414,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "selected_tool_recommendation": "foot_lock_tool",
+          "primary_severity": "low",
+          "primary_agent": "FootFloatingEvaluator",
+          "before_snapshot": [
+            {
+              "agent": "FootFloatingEvaluator",
+              "error_type": "right_foot_floating",
+              "body_part": "right_foot",
+              "severity": "low",
+              "score": 0.008620689655172414
+            }
+          ],
+          "tool_history_len": 2
+        }
+      },
+      {
+        "decision": "STOP",
+        "primary_error": null,
+        "selected_tool": null,
+        "target_part": null,
+        "target_frames": null,
+        "strength": null,
+        "next_step": "STOP",
+        "score": 0.0,
+        "metadata": {
+          "orchestrator": "RuleBasedOrchestrator",
+          "stop_reason": "no_evaluator_reports",
+          "tool_history_len": 3
+        }
+      }
+    ],
+    "metadata": {
+      "stop_reason": "no_evaluator_reports",
+      "errors": [],
+      "rollback": null,
+      "max_iterations": 5,
+      "score_increase_tolerance": 0.01
+    }
+  },
+  "metrics_not_applicable": {
+    "NetGain": "integration smoke; NetGain is not the test target",
+    "netgain_weight_status": "n/a (integration smoke)"
+  },
+  "agents_md_obligation_note": "AGENTS.md §6-13 — 본 record 의 record_type='loop_integration_smoke' 는 가설 supports/contradicts 의 근거로 인용 금지. integration smoke 통과 사실은 파이프라인이 죽지 않고 도는지의 확인일 뿐, 통계적 근거 아님.",
+  "negative_result": false
+}
