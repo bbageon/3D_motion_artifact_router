@@ -1,0 +1,882 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_single_step_sample",
+  "timestamp": "20260518T115827346502Z",
+  "task_id": "oracle_single_step_v2",
+  "split_id": "calibration_v1",
+  "trial_id": "M000374",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M000374.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    158,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "oracle_type": "single_step",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "selections": {
+    "foot_floating": {
+      "artifact_kind": "foot_floating",
+      "target_evaluator": "FootFloatingEvaluator",
+      "oracle_type": "single_step",
+      "netgain_weight_status": "provisional",
+      "netgain_weights": {
+        "alpha": 5.0,
+        "beta": 0.0,
+        "gamma": 0.0
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_part": "both_feet",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.25949367088607594,
+          "target_delta": 0.056962025316455694,
+          "fidelity_loss_protocol_a": -0.0020519950704242385,
+          "correction_magnitude": 0.050389978062273064,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": -0.0062786266539571894,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -0.046702049964334504,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 0.3,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_part": "both_feet",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.3860759493670886,
+          "target_delta": 0.18354430379746836,
+          "fidelity_loss_protocol_a": 0.0007629358016583588,
+          "correction_magnitude": 0.10077995612454614,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": -0.008839828003229579,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -0.18735898280576016,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 0.6,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_part": "both_feet",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.0,
+          "target_delta": -0.20253164556962025,
+          "fidelity_loss_protocol_a": 0.008359080937396846,
+          "correction_magnitude": 0.16796659354091026,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.00733297112971289,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.16073624088263602,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 1.0,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_part": "right_arm",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.20253164556962025,
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_a": 7.473698560196695e-09,
+          "correction_magnitude": 2.727710760383814e-08,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -3.736849280098348e-08,
+          "correction_report_metadata": {
+            "strength_factor": 0.3,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_part": "right_arm",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.20253164556962025,
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_a": 1.4947397122128114e-08,
+          "correction_magnitude": 5.4554215208313214e-08,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -7.473698561064057e-08,
+          "correction_report_metadata": {
+            "strength_factor": 0.6,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_part": "right_arm",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.20253164556962025,
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_a": 2.4912328540349638e-08,
+          "correction_magnitude": 9.09236920106291e-08,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -1.245616427017482e-07,
+          "correction_report_metadata": {
+            "strength_factor": 1.0,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_part": "full_body",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.20253164556962025,
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_a": 0.0004215489920823025,
+          "correction_magnitude": 0.000499120841664204,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.00029410383300632406,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -0.0021077449604115124,
+          "correction_report_metadata": {
+            "sigma_frames": 0.5,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_part": "full_body",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.15189873417721517,
+          "target_delta": -0.05063291139240508,
+          "fidelity_loss_protocol_a": 0.0018044091323936272,
+          "correction_magnitude": 0.002123918438622191,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.0012876154733598225,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.041610865730436944,
+          "correction_report_metadata": {
+            "sigma_frames": 1.0,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_part": "full_body",
+          "target_score_before": 0.20253164556962025,
+          "target_score_after": 0.08227848101265822,
+          "target_delta": -0.12025316455696203,
+          "fidelity_loss_protocol_a": 0.0061378725567668956,
+          "correction_magnitude": 0.007066825285728646,
+          "cross_evaluator_delta": {
+            "BoneLengthEvaluator": 0.004123558070904636,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.08956380177312755,
+          "correction_report_metadata": {
+            "sigma_frames": 2.0,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        }
+      ],
+      "best_candidate": {
+        "tool_name": "FootLockTool",
+        "strength": "large",
+        "target_part": "both_feet",
+        "target_score_before": 0.20253164556962025,
+        "target_score_after": 0.0,
+        "target_delta": -0.20253164556962025,
+        "fidelity_loss_protocol_a": 0.008359080937396846,
+        "correction_magnitude": 0.16796659354091026,
+        "cross_evaluator_delta": {
+          "BoneLengthEvaluator": 0.00733297112971289,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "netgain_provisional": 0.16073624088263602,
+        "correction_report_metadata": {
+          "ground_y": 0.0,
+          "strength_factor": 1.0,
+          "propagation_weights": {
+            "LEFT_ANKLE": 0.5,
+            "RIGHT_ANKLE": 0.5,
+            "LEFT_KNEE": 0.2,
+            "RIGHT_KNEE": 0.2
+          }
+        },
+        "skipped": false,
+        "skip_reason": null
+      },
+      "metadata": {
+        "n_candidates": 9,
+        "n_valid": 9,
+        "n_skipped": 0,
+        "mpjpe_corrupted_vs_clean": 0.0072727272727272745,
+        "frame_range": [
+          0,
+          157
+        ]
+      }
+    },
+    "bone_stretch_right_arm": {
+      "artifact_kind": "bone_stretch_right_arm",
+      "target_evaluator": "BoneLengthEvaluator",
+      "oracle_type": "single_step",
+      "netgain_weight_status": "provisional",
+      "netgain_weights": {
+        "alpha": 5.0,
+        "beta": 0.0,
+        "gamma": 0.0
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_part": "both_feet",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.05142415716816821,
+          "target_delta": -0.07901062116840976,
+          "fidelity_loss_protocol_a": 0.0035986333721281464,
+          "correction_magnitude": 0.026389978062273063,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.1392405063291139,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.06101745430776903,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 0.3,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_part": "both_feet",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.05932770981834562,
+          "target_delta": -0.07110706851823234,
+          "fidelity_loss_protocol_a": 0.007197266744256289,
+          "correction_magnitude": 0.052779956124546126,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": -0.1930379746835443,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.035120734796950895,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 0.6,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_part": "both_feet",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.0697615010205985,
+          "target_delta": -0.06067327731597946,
+          "fidelity_loss_protocol_a": 0.011995444573760485,
+          "correction_magnitude": 0.08796659354091022,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": -0.22784810126582278,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.00069605444717704,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 1.0,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_part": "right_arm",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.0913043448356046,
+          "target_delta": -0.039130433500973366,
+          "fidelity_loss_protocol_a": -1.6046918215141537e-05,
+          "correction_magnitude": 0.008992523632971518,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.039210668092049074,
+          "correction_report_metadata": {
+            "strength_factor": 0.3,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_part": "right_arm",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.052173911334631166,
+          "target_delta": -0.07826086700194679,
+          "fidelity_loss_protocol_a": -3.2093836428799885e-05,
+          "correction_magnitude": 0.017985047265943035,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.07842133618409079,
+          "correction_report_metadata": {
+            "strength_factor": 0.6,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_part": "right_arm",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.0,
+          "target_delta": -0.13043477833657796,
+          "fidelity_loss_protocol_a": -5.3489727375732876e-05,
+          "correction_magnitude": 0.029975078776571726,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.13070222697345663,
+          "correction_report_metadata": {
+            "strength_factor": 1.0,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_part": "full_body",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.13006132817583738,
+          "target_delta": -0.0003734501607405849,
+          "fidelity_loss_protocol_a": 0.0004492172965998055,
+          "correction_magnitude": 0.0005321890205793486,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0031645569620253333,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -0.0018726363222584426,
+          "correction_report_metadata": {
+            "sigma_frames": 0.5,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_part": "full_body",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.12914228467041972,
+          "target_delta": -0.0012924936661582453,
+          "fidelity_loss_protocol_a": 0.0019074919216439563,
+          "correction_magnitude": 0.0022369165173881512,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.01898734177215189,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -0.008244965942061536,
+          "correction_report_metadata": {
+            "sigma_frames": 1.0,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_part": "full_body",
+          "target_score_before": 0.13043477833657796,
+          "target_score_after": 0.1275078174157484,
+          "target_delta": -0.0029269609208295577,
+          "fidelity_loss_protocol_a": 0.00634055818172643,
+          "correction_magnitude": 0.007315566811182029,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.01582278481012661,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": -0.028775829987802592,
+          "correction_report_metadata": {
+            "sigma_frames": 2.0,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        }
+      ],
+      "best_candidate": {
+        "tool_name": "BoneProjectionTool",
+        "strength": "large",
+        "target_part": "right_arm",
+        "target_score_before": 0.13043477833657796,
+        "target_score_after": 0.0,
+        "target_delta": -0.13043477833657796,
+        "fidelity_loss_protocol_a": -5.3489727375732876e-05,
+        "correction_magnitude": 0.029975078776571726,
+        "cross_evaluator_delta": {
+          "FootFloatingEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "netgain_provisional": 0.13070222697345663,
+        "correction_report_metadata": {
+          "strength_factor": 1.0,
+          "chain": [
+            "SPINE3",
+            "RIGHT_COLLAR",
+            "RIGHT_SHOULDER",
+            "RIGHT_ELBOW",
+            "RIGHT_WRIST"
+          ],
+          "n_bones_corrected": 4
+        },
+        "skipped": false,
+        "skip_reason": null
+      },
+      "metadata": {
+        "n_candidates": 9,
+        "n_valid": 9,
+        "n_skipped": 0,
+        "mpjpe_corrupted_vs_clean": 0.009103561413475427,
+        "frame_range": [
+          0,
+          157
+        ]
+      }
+    },
+    "global_jitter": {
+      "artifact_kind": "global_jitter",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "oracle_type": "single_step",
+      "netgain_weight_status": "provisional",
+      "netgain_weights": {
+        "alpha": 5.0,
+        "beta": 0.0,
+        "gamma": 0.0
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_part": "both_feet",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.19756278630935264,
+          "target_delta": -0.001350268854603709,
+          "fidelity_loss_protocol_a": -7.304852465486733e-06,
+          "correction_magnitude": 0.02973569554533145,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": -0.0007311663670810931
+          },
+          "netgain_provisional": 0.0013867931169311426,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 0.3,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_part": "both_feet",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.1966460624922227,
+          "target_delta": -0.002266992671733664,
+          "fidelity_loss_protocol_a": 0.0015794154883442824,
+          "correction_magnitude": 0.0594713910906629,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": -0.0009848848797741894
+          },
+          "netgain_provisional": -0.005630084769987748,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 0.6,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_part": "both_feet",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.19644378744626914,
+          "target_delta": -0.0024692677176872124,
+          "fidelity_loss_protocol_a": 0.005005901481506647,
+          "correction_magnitude": 0.09911898515110484,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": -0.0005199145591609222
+          },
+          "netgain_provisional": -0.022560239689846023,
+          "correction_report_metadata": {
+            "ground_y": 0.0,
+            "strength_factor": 1.0,
+            "propagation_weights": {
+              "LEFT_ANKLE": 0.5,
+              "RIGHT_ANKLE": 0.5,
+              "LEFT_KNEE": 0.2,
+              "RIGHT_KNEE": 0.2
+            }
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_part": "right_arm",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.19779118234145177,
+          "target_delta": -0.0011218728225045882,
+          "fidelity_loss_protocol_a": -0.0005269569056775836,
+          "correction_magnitude": 0.014747908680717205,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": -0.013516568595574041
+          },
+          "netgain_provisional": 0.003756657350892506,
+          "correction_report_metadata": {
+            "strength_factor": 0.3,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_part": "right_arm",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.20009664794624185,
+          "target_delta": 0.0011835927822854975,
+          "fidelity_loss_protocol_a": 0.00026246189612950943,
+          "correction_magnitude": 0.029495817361434404,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": -0.027033137191148138
+          },
+          "netgain_provisional": -0.0024959022629330446,
+          "correction_report_metadata": {
+            "strength_factor": 0.6,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_part": "right_arm",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.20720320949607984,
+          "target_delta": 0.00829015433212349,
+          "fidelity_loss_protocol_a": 0.0029532185665326893,
+          "correction_magnitude": 0.04915969560239068,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": 0.0013229356344819365
+          },
+          "netgain_provisional": -0.023056247164786936,
+          "correction_report_metadata": {
+            "strength_factor": 1.0,
+            "chain": [
+              "SPINE3",
+              "RIGHT_COLLAR",
+              "RIGHT_SHOULDER",
+              "RIGHT_ELBOW",
+              "RIGHT_WRIST"
+            ],
+            "n_bones_corrected": 4
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_part": "full_body",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.12931091120756202,
+          "target_delta": -0.06960214395639433,
+          "fidelity_loss_protocol_a": -0.016164948827364634,
+          "correction_magnitude": 0.021069875852663008,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.0,
+            "BoneLengthEvaluator": -0.025847387222865587
+          },
+          "netgain_provisional": 0.1504268880932175,
+          "correction_report_metadata": {
+            "sigma_frames": 0.5,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_part": "full_body",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.0304063828940423,
+          "target_delta": -0.16850667226991406,
+          "fidelity_loss_protocol_a": -0.03782192676467016,
+          "correction_magnitude": 0.05623260916389732,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.05379746835443038,
+            "BoneLengthEvaluator": -0.07788912673077539
+          },
+          "netgain_provisional": 0.3576163060932649,
+          "correction_report_metadata": {
+            "sigma_frames": 1.0,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_part": "full_body",
+          "target_score_before": 0.19891305516395635,
+          "target_score_after": 0.0,
+          "target_delta": -0.19891305516395635,
+          "fidelity_loss_protocol_a": -0.04875354586397038,
+          "correction_magnitude": 0.06985734318263644,
+          "cross_evaluator_delta": {
+            "FootFloatingEvaluator": 0.25949367088607594,
+            "BoneLengthEvaluator": -0.11599817601003835
+          },
+          "netgain_provisional": 0.4426807844838082,
+          "correction_report_metadata": {
+            "sigma_frames": 2.0,
+            "n_joints": 22,
+            "n_frames_smoothed": 158
+          },
+          "skipped": false,
+          "skip_reason": null
+        }
+      ],
+      "best_candidate": {
+        "tool_name": "VelocitySmoothingTool",
+        "strength": "large",
+        "target_part": "full_body",
+        "target_score_before": 0.19891305516395635,
+        "target_score_after": 0.0,
+        "target_delta": -0.19891305516395635,
+        "fidelity_loss_protocol_a": -0.04875354586397038,
+        "correction_magnitude": 0.06985734318263644,
+        "cross_evaluator_delta": {
+          "FootFloatingEvaluator": 0.25949367088607594,
+          "BoneLengthEvaluator": -0.11599817601003835
+        },
+        "netgain_provisional": 0.4426807844838082,
+        "correction_report_metadata": {
+          "sigma_frames": 2.0,
+          "n_joints": 22,
+          "n_frames_smoothed": 158
+        },
+        "skipped": false,
+        "skip_reason": null
+      },
+      "metadata": {
+        "n_candidates": 9,
+        "n_valid": 9,
+        "n_skipped": 0,
+        "mpjpe_corrupted_vs_clean": 0.08018100676389854,
+        "frame_range": [
+          0,
+          157
+        ]
+      }
+    }
+  },
+  "negative_result": false
+}

@@ -50,9 +50,16 @@ from orchestrator import (
     select_best_tool_single_step,
 )
 from orchestrator.oracle_single_step import (
+    CALIBRATED_PROTOCOL_A_NETGAIN_WEIGHTS_V1,
     DEFAULT_PROVISIONAL_NETGAIN_WEIGHTS,
     ORACLE_TYPE,
 )
+
+#: weight preset → (weights dict, status tag).
+WEIGHT_PRESETS: dict[str, tuple[dict[str, float], str]] = {
+    "provisional": (DEFAULT_PROVISIONAL_NETGAIN_WEIGHTS, "provisional"),
+    "calibrated_protocol_a_v1": (CALIBRATED_PROTOCOL_A_NETGAIN_WEIGHTS_V1, "calibrated_protocol_a_v1"),
+}
 from tools.synthetic_injection import (
     inject_bone_stretch,
     inject_foot_floating,
@@ -123,6 +130,7 @@ def _measure_one_sample(
     seed: int,
     tools_with_target_parts: list[tuple[CorrectionTool, str]],
     strengths: tuple[str, ...],
+    netgain_weights: dict[str, float],
 ) -> dict[str, OracleSelection]:
     """한 sample 의 각 artifact_kind 별 OracleSelection 산출."""
     clean = np.load(str(sample_path)).astype(np.float64)
@@ -140,6 +148,7 @@ def _measure_one_sample(
             tools_with_target_parts=tools_with_target_parts,
             evaluators=list(DEFAULT_EVALUATORS),
             strengths=strengths,
+            netgain_weights=netgain_weights,
         )
         selections[spec["kind"]] = sel
     return selections
@@ -158,6 +167,8 @@ def _make_raw_record(
     evaluator_config_hashes: dict[str, str],
     evaluator_severity_versions: dict[str, str],
     tool_class_hashes: dict[str, str],
+    netgain_weight_status: str,
+    netgain_weights: dict[str, float],
 ) -> dict[str, Any]:
     return {
         "schema_version": SCHEMA_VERSION,
@@ -176,8 +187,8 @@ def _make_raw_record(
         "fps": 20,
         "seed": int(seed),
         "oracle_type": ORACLE_TYPE,  # AGENTS.md §3-16
-        "netgain_weight_status": "provisional",  # AGENTS.md §6-11
-        "netgain_weights": dict(DEFAULT_PROVISIONAL_NETGAIN_WEIGHTS),
+        "netgain_weight_status": netgain_weight_status,  # AGENTS.md §6-11
+        "netgain_weights": dict(netgain_weights),
         "selections": {kind: sel.to_dict() for kind, sel in selections.items()},
         "negative_result": False,
     }
@@ -275,8 +286,12 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--strengths", type=str, nargs="+",
                         default=["small", "medium", "large"])
+    parser.add_argument("--netgain-preset", type=str, default="provisional",
+                        choices=list(WEIGHT_PRESETS.keys()),
+                        help="NetGain weight preset. provisional 또는 calibrated_protocol_a_v1.")
     args = parser.parse_args()
 
+    netgain_weights, netgain_weight_status = WEIGHT_PRESETS[args.netgain_preset]
     split_id = args.split_id if args.split_id is not None else args.task_id
 
     rng = np.random.default_rng(args.seed)
@@ -316,6 +331,7 @@ def main() -> None:
                 seed=args.seed,
                 tools_with_target_parts=tools_with_target_parts,
                 strengths=tuple(args.strengths),
+                netgain_weights=netgain_weights,
             )
         except ValueError as e:
             print(f"[WARN] skipping {trial_id}: {e}", file=sys.stderr)
@@ -337,6 +353,8 @@ def main() -> None:
                 evaluator_config_hashes=evaluator_config_hashes,
                 evaluator_severity_versions=evaluator_severity_versions,
                 tool_class_hashes=tool_class_hashes,
+                netgain_weight_status=netgain_weight_status,
+                netgain_weights=netgain_weights,
             )
             out_path = raw_dir / f"{timestamp}_{args.task_id}_{trial_id}.json"
             out_path.write_text(
@@ -359,8 +377,8 @@ def main() -> None:
         "raw_records_dir": str(raw_dir) if raw_dir else None,
         "trial_ids": sorted(selections_by_sample),
         "oracle_type": ORACLE_TYPE,  # AGENTS.md §3-16
-        "netgain_weight_status": "provisional",  # AGENTS.md §6-11
-        "netgain_weights": dict(DEFAULT_PROVISIONAL_NETGAIN_WEIGHTS),
+        "netgain_weight_status": netgain_weight_status,  # AGENTS.md §6-11
+        "netgain_weights": dict(netgain_weights),
         **aggregate,
     }
 

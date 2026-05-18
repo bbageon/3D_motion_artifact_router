@@ -1,0 +1,169 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_single_step_summary",
+  "task_id": "oracle_single_step_v2",
+  "split_id": "calibration_v1",
+  "seed": 42,
+  "n_samples_evaluated": 30,
+  "data_dir": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "strengths": [
+    "small",
+    "medium",
+    "large"
+  ],
+  "raw_records_dir": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\evals\\raw",
+  "trial_ids": [
+    "002554",
+    "002652",
+    "002806",
+    "003787",
+    "005366",
+    "005915",
+    "010854",
+    "011768",
+    "012644",
+    "012814",
+    "012957",
+    "013152",
+    "M000004",
+    "M000374",
+    "M000758",
+    "M001324",
+    "M004244",
+    "M004533",
+    "M005780",
+    "M006376",
+    "M006908",
+    "M007659",
+    "M008021",
+    "M008256",
+    "M008383",
+    "M009465",
+    "M009955",
+    "M010479",
+    "M012465",
+    "M013874"
+  ],
+  "oracle_type": "single_step",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "target_evaluator": "BoneLengthEvaluator",
+      "n_samples": 30,
+      "n_all_skipped": 0,
+      "best_tool_freq": {
+        "BoneProjectionTool": 30
+      },
+      "best_strength_freq": {
+        "large": 30
+      },
+      "best_netgain_provisional": {
+        "mean": 0.1729551671393115,
+        "median": 0.1869205345404562,
+        "p25": 0.1433696163749318,
+        "p75": 0.18927309922599628,
+        "min": 0.12920693512699538,
+        "max": 0.1977242991641175
+      },
+      "best_target_delta": {
+        "mean": -0.1440589075538595,
+        "median": -0.14911101925557177
+      },
+      "best_fidelity_loss_protocol_a": {
+        "mean": -0.005779251917090391,
+        "median": -0.007611073395944929
+      },
+      "best_correction_magnitude": {
+        "mean": 0.029830491922715675,
+        "median": 0.029824449852502745
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "target_evaluator": "FootFloatingEvaluator",
+      "n_samples": 30,
+      "n_all_skipped": 0,
+      "best_tool_freq": {
+        "FootLockTool": 30
+      },
+      "best_strength_freq": {
+        "medium": 21,
+        "large": 7,
+        "small": 2
+      },
+      "best_netgain_provisional": {
+        "mean": 0.4419565638732856,
+        "median": 0.4408236660838655,
+        "p25": 0.2750639580760428,
+        "p75": 0.5905113525206482,
+        "min": 0.012261365776981364,
+        "max": 1.0153235209488172
+      },
+      "best_target_delta": {
+        "mean": -0.4366601931803405,
+        "median": -0.42839195979899497
+      },
+      "best_fidelity_loss_protocol_a": {
+        "mean": -0.0010592741385890352,
+        "median": -0.0022188149465138867
+      },
+      "best_correction_magnitude": {
+        "mean": 0.08015024810100915,
+        "median": 0.07235701455972797
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "n_samples": 30,
+      "n_all_skipped": 0,
+      "best_tool_freq": {
+        "VelocitySmoothingTool": 30
+      },
+      "best_strength_freq": {
+        "large": 30
+      },
+      "best_netgain_provisional": {
+        "mean": 0.42582110841523196,
+        "median": 0.4326493774526208,
+        "p25": 0.4192627692258807,
+        "p75": 0.44253483305416624,
+        "min": 0.34410598096766565,
+        "max": 0.4475854986626773
+      },
+      "best_target_delta": {
+        "mean": -0.19694841817356604,
+        "median": -0.1976862353423653
+      },
+      "best_fidelity_loss_protocol_a": {
+        "mean": -0.045774538048333195,
+        "median": -0.04681541890713614
+      },
+      "best_correction_magnitude": {
+        "mean": 0.07103364292515371,
+        "median": 0.07046406337156066
+      }
+    }
+  ]
+}

@@ -40,12 +40,23 @@ from correction_tools import (
 )
 from evaluators import DEFAULT_EVALUATORS, Evaluator, EvaluatorReport
 
-#: Provisional NetGain weights — α/β/γ 가 perceptual rating grid search 전 임시값.
+#: Provisional NetGain weights — α/β/γ 의 perceptual rating grid search 전 임의값.
 #: AGENTS.md §6-11 의무: 본 weight 로 계산된 NetGain 은 "provisional" 태그 동반.
 DEFAULT_PROVISIONAL_NETGAIN_WEIGHTS: dict[str, float] = {
     "alpha": 1.0,  # FidelityLoss
     "beta": 1.0,   # CorrectionMagnitude
     "gamma": 0.1,  # ToolCallCost
+}
+
+#: Calibrated NetGain weights v1 — Protocol A FidelityLoss 와의 Spearman rank
+#: correlation grid search 결과. `tools/netgain_weight_grid.py` 의 best_global
+#: (810 candidate, oracle_single_step_v1 raw record 기반, ρ=+0.6525). status tag
+#: 는 `calibrated_protocol_a_v1` — provisional 보다 한 단계 위, perceptual 보다
+#: 아래. 후일 perceptual rating 으로 재calibration 시 별도 dict 추가.
+CALIBRATED_PROTOCOL_A_NETGAIN_WEIGHTS_V1: dict[str, float] = {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0,
 }
 
 ORACLE_TYPE = "single_step"  # AGENTS.md §3-16 의 명시 의무
