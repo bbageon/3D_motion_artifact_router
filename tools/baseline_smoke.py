@@ -59,18 +59,24 @@ def _make_raw_record(
     timestamp: str,
     task_id: str,
     trial_id: str,
+    split_id: str,
     sample_path: Path,
     motion: np.ndarray,
     fps: int,
     ground_y_estimated: float,
     evaluator_config_hashes: dict[str, str],
+    evaluator_severity_versions: dict[str, str],
     reports_by_evaluator: dict[str, list[EvaluatorReport]],
     seed: int,
 ) -> dict[str, Any]:
-    """AGENTS.md §3-6 기준 평가 기록 의무 항목을 충족하는 baseline smoke raw record.
+    """AGENTS.md §3-6 평가 기록 의무 + §3-15 raw record metadata 의무 항목을 충족하는
+    baseline smoke raw record.
 
     correction tool 미적용·refinement loop 미실행이므로 NetGain / FidelityLoss /
     tool call trace 는 N/A. metadata 에 명시.
+
+    `severity_versions` 와 `split_id` 는 AGENTS.md §3-15 의무 — 누락 시 후속 비교 평가
+    에서 본 record 의 score·severity 해석 불가.
     """
     return {
         "schema_version": SCHEMA_VERSION,
@@ -78,9 +84,11 @@ def _make_raw_record(
         "timestamp": timestamp,
         "task_id": task_id,
         "trial_id": trial_id,
+        "split_id": split_id,  # AGENTS.md §3-15 의무
         "sample_path": str(sample_path),
         "generator_id": "humanml3d_gt",  # clean GT, generator 없음
         "evaluator_config_hashes": evaluator_config_hashes,
+        "evaluator_severity_versions": evaluator_severity_versions,  # AGENTS.md §3-15 의무
         "tool_registry_config_hash": None,  # baseline 은 tool 미적용
         "skeleton_normalizer_model_card_hash": None,  # normalize 미사용 (이미 canonical)
         "motion_shape": [int(motion.shape[0]), int(motion.shape[1]), int(motion.shape[2])],
@@ -96,9 +104,23 @@ def _make_raw_record(
             "FidelityLoss": "baseline; no refinement",
             "ToolCallCost": "baseline; no tool invocation",
             "tool_call_trace": "baseline; no tool invocation",
+            "netgain_weight_status": "n/a (baseline)",  # AGENTS.md §6-11 — netgain 미계산 시 명시
         },
         "negative_result": False,
     }
+
+
+def _get_severity_version(evaluator: Any) -> str:
+    """evaluator 모듈의 SEVERITY_VERSION 상수 추출. 부재 시 'unversioned' 반환.
+
+    AGENTS.md §3-15 raw record metadata 의무 — 모든 evaluator 가 SEVERITY_VERSION
+    상수를 노출해야 본 record 가 후속 비교에서 해석 가능.
+    """
+    import sys
+    mod = sys.modules.get(type(evaluator).__module__)
+    if mod is None:
+        return "unversioned"
+    return getattr(mod, "SEVERITY_VERSION", "unversioned")
 
 
 def run_baseline(
@@ -107,10 +129,13 @@ def run_baseline(
     seed: int = 42,
     raw_output_dir: Path | None = None,
     task_id: str = "baseline_smoke_humanml3d",
+    split_id: str | None = None,
 ) -> dict[str, Any]:
     """Sample n 개 motion 에 evaluator 3 종을 적용해 score 통계 + raw record 산출.
 
     raw_output_dir 가 명시되면 각 sample 별로 raw record 를 저장한다.
+
+    `split_id` 가 None 이면 `task_id` 와 동일하게 설정한다 (AGENTS.md §3-15).
     """
     rng = np.random.default_rng(seed)
     npy_files = sorted(data_dir.glob("*.npy"))
@@ -121,9 +146,16 @@ def run_baseline(
     else:
         chosen = np.array(npy_files)
 
-    # evaluator config hashes — 본 run 전체 공통
+    if split_id is None:
+        split_id = task_id
+
+    # evaluator config hashes + severity versions — 본 run 전체 공통.
+    # AGENTS.md §3-15: 모든 raw record 에 두 항목 모두 박제 의무.
     evaluator_config_hashes: dict[str, str] = {
         ev.name: ev.evaluator_class_hash() for ev in DEFAULT_EVALUATORS
+    }
+    evaluator_severity_versions: dict[str, str] = {
+        ev.name: _get_severity_version(ev) for ev in DEFAULT_EVALUATORS
     }
 
     # 통계 누적
@@ -166,11 +198,13 @@ def run_baseline(
                 timestamp=timestamp,
                 task_id=task_id,
                 trial_id=trial_id,
+                split_id=split_id,
                 sample_path=path,
                 motion=motion,
                 fps=20,
                 ground_y_estimated=ground_y_estimated,
                 evaluator_config_hashes=evaluator_config_hashes,
+                evaluator_severity_versions=evaluator_severity_versions,
                 reports_by_evaluator=reports_by_evaluator,
                 seed=seed,
             )
@@ -185,8 +219,10 @@ def run_baseline(
         "n_samples_evaluated": int(len(trial_ids)),
         "data_dir": str(data_dir),
         "task_id": task_id,
+        "split_id": split_id,
         "seed": int(seed),
         "evaluator_config_hashes": evaluator_config_hashes,
+        "evaluator_severity_versions": evaluator_severity_versions,
         "raw_records_dir": str(raw_dir) if raw_dir else None,
         "per_evaluator_stats": {},
         "trial_ids": trial_ids,
@@ -235,7 +271,10 @@ def main() -> None:
                         help="sample-level raw record 디렉토리 (보통 evals/raw/). "
                              "None 이면 raw record 저장 안 함.")
     parser.add_argument("--task-id", type=str, default="baseline_smoke_humanml3d",
-                        help="raw record 의 task_id (split 등 분리용).")
+                        help="raw record 의 task_id (run 식별자).")
+    parser.add_argument("--split-id", type=str, default=None,
+                        help="raw record 의 split_id (AGENTS.md §3-15 의무). "
+                             "None 이면 task_id 와 동일하게 설정.")
     args = parser.parse_args()
 
     summary = run_baseline(
@@ -244,6 +283,7 @@ def main() -> None:
         seed=args.seed,
         raw_output_dir=args.raw_output_dir,
         task_id=args.task_id,
+        split_id=args.split_id,
     )
     text = json.dumps(summary, indent=2, ensure_ascii=False)
     if args.output:

@@ -318,6 +318,25 @@ G1 (high-quality, diffusion-based) · G2 (token-based, MotionGPT) generator 결�
 
 정공법으로 해결 못 하고 우회·간접 해결 (라이브러리 미호환·하드웨어 한계·tool 인터페이스 제약·임시 generator 사용 등) 한 사항은 발견 즉시 [`.claude/skills/workaround-tracking/SKILL.md §4`](.claude/skills/workaround-tracking/SKILL.md) 에 따라 `evals/workarounds/<W-id>.md` 등록 (append-only). `status: open` + `severity: critical` 인 항목 1개라도 있으면 외부 공개 보류.
 
+### 3-15. Raw record metadata 의무 — severity_version · split_id · evaluator config hash
+
+모든 evaluation raw record (`evals/raw/<timestamp>_<task_id>_<trial_id>.json`) 는 다음 metadata 를 누락 없이 포함한다:
+
+1. **`severity_versions`** — 본 record 생성 시점의 각 evaluator 별 `SEVERITY_VERSION` 상수 (예: `{"FootFloatingEvaluator": "1.2.0-2026-05-18", ...}`). evaluator 의 metric 계산식 또는 severity threshold 가 변경되면 SEVERITY_VERSION 도 bump 되며 (AGENTS.md §4-2), record 의 score·severity 해석은 본 version 안에서만 유효. 누락 시 후속 비교 평가에서 해석 불가.
+2. **`split_id`** — 본 trial 이 속한 split (예: `calibration_v1`, `holdout_v1`, `holdout_v2`, `experiment_<id>`). 한 sample 이 여러 split 에 재사용될 때도 record 별로 split 식별 가능해야 함. calibration 에 사용한 sample 을 experiment 의 hold-out 으로 다시 쓰는 silent leakage 차단.
+3. **`evaluator_config_hashes`** — evaluator 의 `evaluator_class_hash()` 결과 (구현 소스 hash). SEVERITY_VERSION 과 별개로 evaluator 의 코드 자체가 동일한지 검증하는 보조 키.
+
+raw record 생성 도구 (`baseline_smoke`, 향후 `eval-collect` 등) 는 본 metadata 를 누락 없이 기록한다. 누락된 record 는 비교 평가·5단계 리포트의 근거로 인용 금지.
+
+### 3-16. Oracle best-tool 의 type 명시 의무
+
+[H-2026-204](evals/hypotheses/H-2026-204.md) 등에서 사용하는 **Oracle best-tool baseline (B8)** 은 다음 두 type 중 하나로 명시한다:
+
+- **Single-step oracle**: 각 sample 에 후보 tool 을 **개별** 로 적용 후, NetGain 이 가장 높은 단일 tool 선택. closed-loop 와 비교 가능하지만 sequence 효과는 측정 안 함.
+- **Sequence oracle (= closed-loop oracle)**: 각 sample 에 tool 시퀀스 (apply → re-evaluate → next tool → ... → STOP) 의 모든 가능한 path 중 최종 NetGain 이 가장 높은 sequence 선택. closed-loop refinement 의 fair upper bound.
+
+두 oracle 의 성능은 다르므로 (sequence ≥ single-step), 가설 평가 시 어느 baseline 을 썼는지 raw record 와 5단계 리포트에 **`oracle_type` field** 로 명시한다. 두 type 의 결과를 동일 baseline 으로 묶어 인용 금지 (AGENTS.md §6-5 metadata 우회와 동질).
+
 ---
 
 ## 4. 경로별 조건 분기
@@ -427,6 +446,22 @@ NetGain 임계, artifact reduction 임계, fidelity loss 상한 등을 낮춰 �
 ### 6-10. Generator transfer 결과 임의 일반화
 
 [H-2026-206](evals/hypotheses/H-2026-206.md) (H-2026-202 supersede, generator-agnostic) 검증 시 단일 generator 결과만으로 일반화 단정 금지. 본 프로젝트의 active scope (G1 + G2) 에서는 **최소 2 generator (G1 ↔ G2 bidirectional) + paired test** 가 의무. 후일 추가 generator 도입 시 H-id 확장.
+
+### 6-11. Provisional NetGain weight 의 tagless 인용 금지
+
+[H-2026-204](evals/hypotheses/H-2026-204.md) 등에서 사용하는 NetGain 의 weight `α / β / γ` (각각 FidelityLoss, CorrectionMagnitude, ToolCallCost 의 negative coefficient — 명세 §9.4) 는 perceptual rating 상관 최대화 grid search 로 결정되어야 한다. 본 grid search 가 완료되기 전에는 임의 default (예: α=β=γ=1.0) 가 `provisional` 인 상태이며, 본 weight 로 계산된 NetGain 은:
+
+1. raw record 의 `netgain_weight_status` field 에 **`"provisional"`** 또는 **`"calibrated"`** 로 명시.
+2. `provisional` 인 결과는 5단계 리포트 ([`eval-compare SKILL §6`](.claude/skills/eval-compare/SKILL.md)) 에서 가설 supports/contradicts 의 근거로 인용 시 같은 단어 (provisional weight 사용) 동반 의무.
+3. 외부 공개 (논문·발표·README) 에 `provisional` 결과를 calibration 완료된 것처럼 인용 금지.
+
+### 6-12. Cross-evaluator side effects 미기록
+
+correction tool 적용 후 tool effect matrix 또는 closed-loop step trace 를 기록할 때, **target evaluator 의 score 변화만 기록하고 다른 evaluator 의 score 변화를 누락 금지**. 한 tool 이 target artifact (예: foot floating) 를 줄이면서 다른 artifact (예: velocity jitter) 를 악화시킬 수 있으며, 본 trade-off 가 NetGain 의 FidelityLoss·CorrectionMagnitude 에 반영되어야 한다. tool effect matrix schema 는 모든 evaluator 의 before/after score 를 column 으로 포함한다 (이하 `cross_evaluator_effects` field 필수).
+
+### 6-13. Integration smoke 의 가설 근거 인용
+
+`refinement_loop/loop.py` 의 end-to-end smoke·`orchestrator` 의 single-sample smoke 등 **integration test 의 통과 사실은 가설 supports/contradicts 의 근거가 아니다**. integration smoke 는 "파이프라인이 죽지 않고 끝까지 돈다" 는 것만 보장하며, 통계적 근거가 아니다. 가설 평가의 근거는 [`eval-compare SKILL §6`](.claude/skills/eval-compare/SKILL.md) 5단계 리포트의 trial ≥ 20 / paired test / effect size 조건 충족 결과에서만 인용 가능.
 
 ---
 

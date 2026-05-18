@@ -28,6 +28,11 @@ from skeleton_normalizer.canonical_smpl_22 import (
     T2M_KINEMATIC_CHAIN,
 )
 
+#: Severity 정의 버전. AGENTS.md §3-15 raw record metadata 의무.
+#: BoneLength 는 baseline calibration (150 sample) 에서 0 report 였으므로 prototype
+#: threshold 유지가 안전 — calibration 으로 변경 사유가 발생할 때 bump.
+SEVERITY_VERSION = "1.0.0-2026-05-13"
+
 # Severity thresholds (mean relative bone length deviation)
 SEV_LOW = 0.02   # 2%
 SEV_MED = 0.05   # 5%
