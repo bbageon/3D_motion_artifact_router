@@ -30,35 +30,44 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RAW_DIR = REPO_ROOT / "evals" / "raw"
 
 
-def _load_baseline_netgains(raw_dir: Path, prefix: str) -> dict[tuple[str, str], float]:
+BASELINE_RECORD_TYPES = (
+    "baseline_fixed_pipeline_sample",
+    "baseline_rule_based_sample",
+)
+ORACLE_RECORD_TYPES = (
+    "oracle_single_step_sample",
+    "oracle_sequence_sample",
+)
+
+
+def _load_netgains_any(raw_dir: Path, prefix: str) -> dict[tuple[str, str], float]:
+    """raw record 의 record_type 에 따라 자동 분기.
+       baseline 은 selections[art].netgain_provisional, oracle 은 best_candidate.netgain_provisional.
+    """
     out: dict[tuple[str, str], float] = {}
     for p in sorted(raw_dir.glob(f"*{prefix}*.json")):
         with open(p, encoding="utf-8") as f:
             r = json.load(f)
-        if r.get("record_type") != "baseline_fixed_pipeline_sample":
-            continue
-        trial = r["trial_id"]
-        for art, sel in r.get("selections", {}).items():
-            out[(trial, art)] = float(sel["netgain_provisional"])
+        rec_type = r.get("record_type")
+        trial = r.get("trial_id")
+        if rec_type in BASELINE_RECORD_TYPES:
+            for art, sel in r.get("selections", {}).items():
+                if "netgain_provisional" in sel:
+                    out[(trial, art)] = float(sel["netgain_provisional"])
+        elif rec_type in ORACLE_RECORD_TYPES:
+            for art, sel in r.get("selections", {}).items():
+                best = sel.get("best_candidate")
+                if best is not None:
+                    out[(trial, art)] = float(best["netgain_provisional"])
     return out
+
+
+def _load_baseline_netgains(raw_dir: Path, prefix: str) -> dict[tuple[str, str], float]:
+    return _load_netgains_any(raw_dir, prefix)
 
 
 def _load_oracle_netgains(raw_dir: Path, prefix: str) -> dict[tuple[str, str], float]:
-    out: dict[tuple[str, str], float] = {}
-    for p in sorted(raw_dir.glob(f"*{prefix}*.json")):
-        with open(p, encoding="utf-8") as f:
-            r = json.load(f)
-        if r.get("record_type") not in (
-            "oracle_single_step_sample",
-            "oracle_sequence_sample",
-        ):
-            continue
-        trial = r["trial_id"]
-        for art, sel in r.get("selections", {}).items():
-            best = sel.get("best_candidate")
-            if best is not None:
-                out[(trial, art)] = float(best["netgain_provisional"])
-    return out
+    return _load_netgains_any(raw_dir, prefix)
 
 
 def _bootstrap_ci(a: np.ndarray, b: np.ndarray, n_iter: int = 1000, seed: int = 42) -> dict[str, float]:

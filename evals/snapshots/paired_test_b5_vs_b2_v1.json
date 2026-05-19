@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_baseline_vs_oracle",
+  "n_keys_compared": 90,
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "n_pairs": 30,
+      "oracle_netgain_mean": 0.1526646107302888,
+      "oracle_netgain_median": 0.18682629559520256,
+      "baseline_netgain_mean": 0.004791557834785393,
+      "baseline_netgain_median": 3.629638057090368e-05,
+      "delta_mean": 0.14787305289550337,
+      "delta_median": 0.1769185052676308,
+      "delta_percent_median": 487427.40318701154,
+      "n_oracle_advantage": 30,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.862645149230957e-09,
+      "wilcoxon_p_greater_one_sided": 9.313225746154785e-10,
+      "cohens_d_paired": 2.785601646760803,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.13758914409481662,
+        "median_ci_hi_95": 0.180454387859404,
+        "mean_ci_lo_95": 0.12892604066130925,
+        "mean_ci_hi_95": 0.165646123159956
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "n_pairs": 30,
+      "oracle_netgain_mean": 0.016521576344062712,
+      "oracle_netgain_median": -0.001732637454133737,
+      "baseline_netgain_mean": 0.0003533522256661062,
+      "baseline_netgain_median": -0.0034560416611925,
+      "delta_mean": 0.01616822411839662,
+      "delta_median": 0.014818963274408285,
+      "delta_percent_median": 428.78427771310584,
+      "n_oracle_advantage": 16,
+      "n_tie": 0,
+      "n_baseline_advantage": 14,
+      "wilcoxon_statistic": 231.0,
+      "wilcoxon_p_two_sided": 0.9838335812091827,
+      "wilcoxon_p_greater_one_sided": 0.49191679060459137,
+      "cohens_d_paired": 0.03692882945513407,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": -0.19158829051720486,
+        "median_ci_hi_95": 0.1699848412340368,
+        "mean_ci_lo_95": -0.13246140577546248,
+        "mean_ci_hi_95": 0.17213723828076138
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "n_pairs": 30,
+      "oracle_netgain_mean": -0.04893329149717509,
+      "oracle_netgain_median": -0.047800066561494346,
+      "baseline_netgain_mean": 0.35261662712511543,
+      "baseline_netgain_median": 0.3533473503574691,
+      "delta_mean": -0.40154991862229045,
+      "delta_median": -0.40138913161437156,
+      "delta_percent_median": -113.59619117231252,
+      "n_oracle_advantage": 0,
+      "n_tie": 0,
+      "n_baseline_advantage": 30,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.862645149230957e-09,
+      "wilcoxon_p_greater_one_sided": 1.0,
+      "cohens_d_paired": -75.83068787365409,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": -0.4026072508594102,
+        "median_ci_hi_95": -0.4004704880273746,
+        "mean_ci_lo_95": -0.4034397218301015,
+        "mean_ci_hi_95": -0.3996409785777399
+      }
+    }
+  ],
+  "pooled": {
+    "n_pairs": 90,
+    "delta_mean": -0.07916954720279681,
+    "delta_median": 0.014818963274408285,
+    "n_oracle_advantage": 46,
+    "n_tie": 0,
+    "n_baseline_advantage": 44,
+    "wilcoxon_statistic": 1478.0,
+    "wilcoxon_p_two_sided": 0.021935045499661625,
+    "wilcoxon_p_greater_one_sided": 0.9890324772501692,
+    "cohens_d_paired": -0.22963691425406707,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": -0.38664779357169143,
+      "median_ci_hi_95": 0.1285676676366917,
+      "mean_ci_lo_95": -0.14483460954401883,
+      "mean_ci_hi_95": -0.009065838867967083
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: oracle > baseline.",
+    "effect_size_convention": "Cohen's d_paired = mean(oracle - baseline) / std. |d|>0.2 small, 0.5 medium, 0.8 large.",
+    "h_2026_204_rq1_threshold": "Oracle (B8) vs fixed smoothing (B2): NetGain median Delta >= +10% (명세 §11 Go 5). Rule-based (B5) vs fixed smoothing (B2): median Delta >= +5%, p<0.05, Cohen's d >= 0.3."
+  },
+  "baseline_prefix": "baseline_b2_fixed_smoothing_v1",
+  "oracle_prefix": "baseline_b5_rule_based_v1"
+}

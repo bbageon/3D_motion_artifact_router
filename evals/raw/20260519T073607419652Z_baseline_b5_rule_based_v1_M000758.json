@@ -1,0 +1,121 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_rule_based_sample",
+  "timestamp": "20260519T073607419652Z",
+  "task_id": "baseline_b5_rule_based_v1",
+  "split_id": "calibration_v1",
+  "trial_id": "M000758",
+  "baseline_type": "b5_rule_based",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M000758.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    177,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "selections": {
+    "foot_floating": {
+      "artifact_kind": "foot_floating",
+      "target_evaluator": "FootFloatingEvaluator",
+      "orchestrator": "RuleBasedOrchestrator",
+      "decision_trace": {
+        "decision": "revise",
+        "primary_error": "left_foot_floating",
+        "selected_tool": "FootLockTool",
+        "target_part": "left_foot",
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "correction_magnitude": 0.1571120851806834,
+        "applied": true
+      },
+      "target_score_before": 0.6016949152542372,
+      "target_score_after": 0.062146892655367235,
+      "target_delta": -0.53954802259887,
+      "fidelity_loss_protocol_a": 0.0034394603532284075,
+      "correction_magnitude": 0.1571120851806834,
+      "tool_call_cost": 1.0,
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": -0.019381544653629797,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "netgain_provisional": 0.522350720832728
+    },
+    "bone_stretch_right_arm": {
+      "artifact_kind": "bone_stretch_right_arm",
+      "target_evaluator": "BoneLengthEvaluator",
+      "orchestrator": "RuleBasedOrchestrator",
+      "decision_trace": {
+        "decision": "revise",
+        "primary_error": "left_foot_floating",
+        "selected_tool": "FootLockTool",
+        "target_part": "left_foot",
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "correction_magnitude": 0.07711208518068333,
+        "applied": true
+      },
+      "target_score_before": 0.14915234239728473,
+      "target_score_after": 0.08476412247617165,
+      "target_delta": -0.06438821992111307,
+      "fidelity_loss_protocol_a": 0.005257642171410227,
+      "correction_magnitude": 0.07711208518068333,
+      "tool_call_cost": 1.0,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.019774011299435013,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "netgain_provisional": 0.03810000906406194
+    },
+    "global_jitter": {
+      "artifact_kind": "global_jitter",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "orchestrator": "RuleBasedOrchestrator",
+      "decision_trace": {
+        "decision": "revise",
+        "primary_error": "spine_head_bone_length_variation",
+        "selected_tool": "BoneProjectionTool",
+        "target_part": "spine_head",
+        "strength": "large",
+        "next_step": "apply_then_evaluate",
+        "correction_magnitude": 0.04685740431096223,
+        "applied": true
+      },
+      "target_score_before": 0.1984307971119072,
+      "target_score_after": 0.21865028638160577,
+      "target_delta": 0.020219489269698576,
+      "fidelity_loss_protocol_a": 0.007084476556400834,
+      "correction_magnitude": 0.04685740431096223,
+      "tool_call_cost": 1.0,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": -0.006794059950034764
+      },
+      "netgain_provisional": -0.05564187205170275
+    }
+  },
+  "negative_result": false
+}
