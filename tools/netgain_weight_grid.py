@@ -45,12 +45,24 @@ DEFAULT_RAW_DIR = REPO_ROOT / "evals" / "raw"
 #: Q = -fidelity_loss_protocol_a (작은 fidelity_loss = 더 큰 Q = better quality).
 QUALITY_PROXY = "neg_fidelity_loss_protocol_a"
 
-#: Grid space. 6 × 5 × 4 = 120 조합.
+#: v1 grid (legacy). best 가 α=5.0 boundary 에 위치 → v2 에서 확장.
 DEFAULT_GRID = {
     "alpha": [0.0, 0.25, 0.5, 1.0, 2.0, 5.0],
     "beta": [0.0, 0.25, 0.5, 1.0, 2.0],
     "gamma": [0.0, 0.1, 0.5, 1.0],
 }
+
+#: v2 grid. v1 best (α=5.0) 가 grid boundary 였으므로 α ∈ {5, 10, 20, 50}
+#: 까지 확장해 correlation plateau / 회복 / 추가 상승을 확인. β·γ 는 v1 best
+#: 가 0.0 으로 안정적이었으므로 동일 범위 유지 (확장 시 conditioning 약화).
+#: 9 × 5 × 4 = 180 조합.
+GRID_V2 = {
+    "alpha": [0.0, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0],
+    "beta": [0.0, 0.25, 0.5, 1.0, 2.0],
+    "gamma": [0.0, 0.1, 0.5, 1.0],
+}
+
+GRID_REGISTRY = {"v1": DEFAULT_GRID, "v2": GRID_V2}
 
 
 def _load_candidates(
@@ -175,6 +187,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="NetGain weight grid search (Protocol A)")
     parser.add_argument("--raw-records-dir", type=Path, default=DEFAULT_RAW_DIR)
     parser.add_argument("--task-id-prefix", type=str, default="oracle_single_step_v1")
+    parser.add_argument(
+        "--grid-version",
+        type=str,
+        default="v1",
+        choices=sorted(GRID_REGISTRY.keys()),
+        help="Grid 정의 선택. v1=legacy (α max 5.0), v2=extended (α max 50.0).",
+    )
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
@@ -185,7 +204,9 @@ def main() -> None:
             f"with task_id prefix {args.task_id_prefix!r}"
         )
 
-    summary = grid_search(candidates, DEFAULT_GRID)
+    grid = GRID_REGISTRY[args.grid_version]
+    summary = grid_search(candidates, grid)
+    summary["grid_version"] = args.grid_version
     text = json.dumps(summary, indent=2, ensure_ascii=False)
     if args.output:
         args.output.parent.mkdir(parents=True, exist_ok=True)
