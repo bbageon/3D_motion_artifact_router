@@ -168,7 +168,12 @@ def _measure_one_sample(
         )
 
         # Orchestrator decide.
-        decision = orchestrator.decide(all_reports_before, tool_history=[])
+        # artifact_kind_hint 전달: synthetic injection setting 에서 target evaluator
+        # 의 report 만 primary 후보로 사용. v1 의 jitter→BoneProjectionTool mis-mapping
+        # bug fix (RuleBasedOrchestrator.decide 의 hint 동작 — orchestrator/rule_based.py).
+        decision = orchestrator.decide(
+            all_reports_before, tool_history=[], artifact_kind_hint=spec["kind"]
+        )
         trace_step: dict[str, Any] = {
             "decision": decision.decision,
             "primary_error": decision.primary_error,

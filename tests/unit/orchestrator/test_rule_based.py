@@ -110,6 +110,88 @@ def test_orchestrator_unknown_recommendation_rejects() -> None:
     assert "before_snapshot" in decision.metadata
 
 
+def test_orchestrator_hint_jitter_selects_velocity_smoothing() -> None:
+    """artifact_kind_hint='global_jitter' 시 BoneLengthEvaluator 가 더 높은 severity
+    인 환경에서도 VelocityJitterEvaluator 의 report 만 primary 후보가 되어
+    VelocitySmoothingTool 이 선택되어야 한다.
+
+    [W-2026-001 RESOLVED 이후 발견된 B5 v1 bug]
+    (jitter motion 에 BoneLengthEvaluator 가 'high' severity report → BoneProjectionTool
+    잘못 선택) 의 fix 검증.
+    """
+    orch = RuleBasedOrchestrator()
+    reports = [
+        # Jitter motion 에 BoneLengthEvaluator 가 더 큰 severity 를 보고 (실제 발생 case)
+        _mk_report("BoneLengthEvaluator", "spine_head_bone_length_variation", "spine_head",
+                   0.7, "high", "bone_projection_tool"),
+        # VelocityJitter 는 medium 또는 score 가 더 작음
+        _mk_report("VelocityJitterEvaluator", "global_velocity_jitter", "full_body",
+                   0.3, "medium", "velocity_smoothing_tool"),
+    ]
+    # hint 없으면 (default) BoneProjectionTool 선택 (v1 bug 재현)
+    d_no_hint = orch.decide(reports, [], artifact_kind_hint=None)
+    assert d_no_hint.selected_tool == "BoneProjectionTool"
+    # hint 있으면 VelocitySmoothingTool 선택 (v2 fix)
+    d_hint = orch.decide(reports, [], artifact_kind_hint="global_jitter")
+    assert d_hint.decision == "revise"
+    assert d_hint.selected_tool == "VelocitySmoothingTool"
+    assert d_hint.primary_error == "global_velocity_jitter"
+
+
+def test_orchestrator_hint_bone_selects_bone_projection() -> None:
+    """artifact_kind_hint='bone_stretch_right_arm' → BoneLengthEvaluator filter."""
+    orch = RuleBasedOrchestrator()
+    reports = [
+        _mk_report("FootFloatingEvaluator", "right_foot_floating", "right_foot",
+                   0.8, "high", "foot_lock_tool"),
+        _mk_report("BoneLengthEvaluator", "right_arm_bone_length_variation", "right_arm",
+                   0.4, "medium", "bone_projection_tool"),
+    ]
+    d_hint = orch.decide(reports, [], artifact_kind_hint="bone_stretch_right_arm")
+    assert d_hint.decision == "revise"
+    assert d_hint.selected_tool == "BoneProjectionTool"
+    assert d_hint.primary_error == "right_arm_bone_length_variation"
+
+
+def test_orchestrator_hint_foot_selects_foot_lock() -> None:
+    """artifact_kind_hint='foot_floating' → FootFloatingEvaluator filter."""
+    orch = RuleBasedOrchestrator()
+    reports = [
+        _mk_report("VelocityJitterEvaluator", "global_velocity_jitter", "full_body",
+                   0.9, "high", "velocity_smoothing_tool"),
+        _mk_report("FootFloatingEvaluator", "left_foot_floating", "left_foot",
+                   0.3, "medium", "foot_lock_tool"),
+    ]
+    d_hint = orch.decide(reports, [], artifact_kind_hint="foot_floating")
+    assert d_hint.decision == "revise"
+    assert d_hint.selected_tool == "FootLockTool"
+    assert d_hint.primary_error == "left_foot_floating"
+
+
+def test_orchestrator_hint_unknown_artifact_falls_back() -> None:
+    """artifact_kind_hint 가 ARTIFACT_TO_TARGET_EVALUATOR 에 없으면 filter 없이 동작."""
+    orch = RuleBasedOrchestrator()
+    reports = [
+        _mk_report("FootFloatingEvaluator", "left_foot_floating", "left_foot",
+                   0.5, "high", "foot_lock_tool"),
+    ]
+    d_hint = orch.decide(reports, [], artifact_kind_hint="unknown_kind")
+    assert d_hint.decision == "revise"
+    assert d_hint.selected_tool == "FootLockTool"
+
+
+def test_orchestrator_hint_target_evaluator_no_reports_stops() -> None:
+    """target evaluator 가 report 가 없으면 STOP."""
+    orch = RuleBasedOrchestrator()
+    reports = [
+        _mk_report("BoneLengthEvaluator", "right_arm_bone_length_variation", "right_arm",
+                   0.5, "high", "bone_projection_tool"),
+    ]
+    d_hint = orch.decide(reports, [], artifact_kind_hint="global_jitter")
+    # VelocityJitterEvaluator 의 report 가 없으므로 STOP
+    assert d_hint.decision == "STOP"
+
+
 def test_orchestrator_decision_metadata_includes_before_snapshot() -> None:
     """Guard 5 의 'before' snapshot — decision 시점의 모든 evaluator score 가 박제됨."""
     orch = RuleBasedOrchestrator()

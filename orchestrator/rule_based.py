@@ -50,6 +50,22 @@ SEVERITY_TO_STRENGTH: dict[str, str] = {
     "high": "large",
 }
 
+#: artifact_kind → target evaluator (소속/책임 evaluator). synthetic injection 처럼
+#: artifact_kind 가 사전 알려진 경우 decide() 에 hint 로 전달하면 본 evaluator 의
+#: report 만 primary 후보로 사용. multi-evaluator 환경 (e.g. jitter motion 의 bone
+#: length 가 임계 초과) 에서 잘못된 cross-evaluator primary 선택 차단.
+#:
+#: [W-2026-001 RESOLVED 이후 발견 — B5 v1 의 jitter→BoneProjectionTool mis-selection
+#: bug (`evals/reports/2026-05-19_h_2026_204_rq1_threshold_2.md` §3-1)] 의 fix.
+ARTIFACT_TO_TARGET_EVALUATOR: dict[str, str] = {
+    "foot_floating": "FootFloatingEvaluator",
+    "bone_stretch_right_arm": "BoneLengthEvaluator",
+    "bone_stretch_left_arm": "BoneLengthEvaluator",
+    "bone_stretch_right_leg": "BoneLengthEvaluator",
+    "bone_stretch_left_leg": "BoneLengthEvaluator",
+    "global_jitter": "VelocityJitterEvaluator",
+}
+
 
 class RuleBasedOrchestrator(Orchestrator):
     """Rule-based orchestrator (Week 4 prototype).
@@ -97,6 +113,7 @@ class RuleBasedOrchestrator(Orchestrator):
         self,
         evaluator_reports: list[EvaluatorReport],
         tool_history: list[CorrectionReport],
+        artifact_kind_hint: Optional[str] = None,
         **kwargs: Any,
     ) -> OrchestratorDecision:
         """규칙 기반 결정.
@@ -105,6 +122,11 @@ class RuleBasedOrchestrator(Orchestrator):
             evaluator_reports: 현재 motion 의 evaluator reports.
             tool_history: 이전 step 들의 CorrectionReport (현 prototype 에서는
                 oscillation 방지의 보조 정보로만 사용).
+            artifact_kind_hint: synthetic injection 처럼 artifact_kind 가 사전 알려진
+                경우, [ARTIFACT_TO_TARGET_EVALUATOR](./rule_based.py) 의 매핑으로
+                target evaluator 를 결정하고 본 evaluator 의 report 만 actionable
+                후보로 사용. None 이면 모든 evaluator 의 report 가 후보 (real-world
+                generator-output 시 default).
 
         Returns:
             OrchestratorDecision — STOP 또는 revise.
@@ -120,6 +142,12 @@ class RuleBasedOrchestrator(Orchestrator):
                     "tool_history_len": len(tool_history),
                 },
             )
+
+        # artifact_kind_hint 적용: target evaluator 의 report 만 filter.
+        if artifact_kind_hint is not None:
+            target_eval = ARTIFACT_TO_TARGET_EVALUATOR.get(artifact_kind_hint)
+            if target_eval is not None:
+                evaluator_reports = [r for r in evaluator_reports if r.agent == target_eval]
 
         stop_rank = SEVERITY_RANK[self.stop_severity_threshold]
         actionable = [
