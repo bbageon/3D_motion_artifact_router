@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_oracle_comparison",
+  "n_keys_compared": 90,
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "n_pairs": 30,
+      "sequence_netgain_mean": 0.17296019752757488,
+      "sequence_netgain_median": 0.1869205345404562,
+      "single_step_netgain_mean": 0.17295516713931144,
+      "single_step_netgain_median": 0.1869205345404562,
+      "delta_mean": 5.030388263405072e-06,
+      "delta_median": 2.7755575615628914e-17,
+      "delta_percent_median": 1.4848863814703904e-14,
+      "n_strict_advantage": 4,
+      "n_tie": 26,
+      "n_loss": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 3.023152631104422e-05,
+      "wilcoxon_p_greater_one_sided": 1.511576315552211e-05,
+      "cohens_d_paired": 0.2903991758103742,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 2.7755575615628914e-17,
+        "median_ci_hi_95": 5.551115123125783e-17,
+        "mean_ci_lo_95": 1.0580218880726817e-07,
+        "mean_ci_hi_95": 1.2437515100873603e-05
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "n_pairs": 30,
+      "sequence_netgain_mean": 0.44642450786583127,
+      "sequence_netgain_median": 0.44287288412254444,
+      "single_step_netgain_mean": 0.4419565638732856,
+      "single_step_netgain_median": 0.4408236660838655,
+      "delta_mean": 0.004467943992545576,
+      "delta_median": 0.002807182975779754,
+      "delta_percent_median": 0.6368040538108712,
+      "n_strict_advantage": 22,
+      "n_tie": 8,
+      "n_loss": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 4.009964816469138e-05,
+      "wilcoxon_p_greater_one_sided": 2.004982408234569e-05,
+      "cohens_d_paired": 0.8426096496198842,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.000876923185892664,
+        "median_ci_hi_95": 0.004226818235582186,
+        "mean_ci_lo_95": 0.002686875787081047,
+        "mean_ci_hi_95": 0.006517407080362
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "n_pairs": 30,
+      "sequence_netgain_mean": 0.43662204484192385,
+      "sequence_netgain_median": 0.4361270550358401,
+      "single_step_netgain_mean": 0.425821108415232,
+      "single_step_netgain_median": 0.4326493774526208,
+      "delta_mean": 0.01080093642669177,
+      "delta_median": 0.005800654677650924,
+      "delta_percent_median": 1.340728770212122,
+      "n_strict_advantage": 30,
+      "n_tie": 0,
+      "n_loss": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.862645149230957e-09,
+      "wilcoxon_p_greater_one_sided": 9.313225746154785e-10,
+      "cohens_d_paired": 1.052618886930683,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.0033700591505182453,
+        "median_ci_hi_95": 0.015657477181868495,
+        "mean_ci_lo_95": 0.0075895608373473,
+        "mean_ci_hi_95": 0.01457423564182235
+      }
+    }
+  ],
+  "pooled": {
+    "n_pairs": 90,
+    "delta_mean": 0.00509130360250025,
+    "delta_median": 0.000998181505572876,
+    "n_strict_advantage": 56,
+    "n_tie": 34,
+    "n_loss": 0,
+    "wilcoxon_statistic": 0.0,
+    "wilcoxon_p_two_sided": 7.548255107025107e-14,
+    "wilcoxon_p_greater_one_sided": 3.7741275535125533e-14,
+    "cohens_d_paired": 0.6398759826445145,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": 1.164950116978869e-05,
+      "median_ci_hi_95": 0.0029448730630965425,
+      "mean_ci_lo_95": 0.003500848278168497,
+      "mean_ci_hi_95": 0.006799904584030795
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: sequence > single_step.",
+    "effect_size_convention": "Cohen's d_paired = mean(seq - ss) / std(seq - ss). |d| > 0.2 small, 0.5 medium, 0.8 large (Cohen 1988).",
+    "ci_method": "Paired bootstrap (N=1000) of median and mean differences, percentile method.",
+    "h_2026_204_rq2_threshold": "NetGain median Delta >= +3% on artifact-rich input, paired Wilcoxon p < 0.05, Cohen's d >= 0.1 (보수적). 본 측정은 calibration_v1 (synthetic injection Protocol A)."
+  }
+}
