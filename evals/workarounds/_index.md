@@ -4,13 +4,13 @@
 
 ## Active (open)
 
-| W-id | severity | discovered | 한 줄 | resolution_target |
-|---|---|---|---|---|
-| [W-2026-001](W-2026-001.md) | **critical** | 2026-05-19 | MotionGPT (G2) length 제어 불가능 (degenerate 4-frame output). H-2026-204 의 G2 측 검증 blocker. | 단기 scope 재정의 + 중기 T5 LM 직접 호출 시도 |
+(없음)
 
 ## Resolved
 
-(없음)
+| W-id | severity | discovered | resolved | 한 줄 | Resolution |
+|---|---|---|---|---|---|
+| [W-2026-001](W-2026-001.md) | critical | 2026-05-19 | 2026-05-19 | MotionGPT (G2) length 제어 불가능 (degenerate 4-frame output). 진단 5차 (B+A) 결과 transformers 5.8.1 의 weight tying 처리가 broken — shared.weight 자리에 lm_head.weight 값 load. | **transformers==4.30.2 + tokenizers==0.13.3** downgrade (mgpt-clean env). demo.py 재실행 결과 92/176 frame 정상 출력. |
 
 ## Accepted-permanent
 

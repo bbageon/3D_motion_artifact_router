@@ -148,6 +148,14 @@ pip install -r requirements.txt
 pip install bert_score gdown
 python -m spacy download en_core_web_sm
 
+# 4-1. transformers / tokenizers 버전 pinning — W-2026-001 (RESOLVED) 의 정공법.
+# requirements.txt 가 transformers 버전을 명시하지 않아 최신 (예: 5.x) 가 설치되는데,
+# 최신 transformers 의 T5ForConditionalGeneration 이 MotionGPT (2023) 학습 시점의
+# weight tying 처리와 incompatible — shared.weight 자리에 lm_head.weight 값을 잘못
+# load 하여 LM input embedding 이 broken, prompt-independent 4-frame collapse 발생.
+# transformers 4.30.2 + tokenizers 0.13.3 로 명시 downgrade 필수.
+pip install "transformers==4.30.2" "tokenizers==0.13.3"
+
 # 5. 보조 자산 (T5 LM + SMPL body + t2m mean/std + glove)
 # 5-1. T5 (flan-t5-base, 7.8GB) — HuggingFace LFS
 cd deps
@@ -181,9 +189,10 @@ cmd /c "mklink /J datasets\humanml3d ..\HumanML3D"
 
 본 저장소의 wrapper ([`generators/motiongpt_wrapper.py`](generators/motiongpt_wrapper.py)) 는 `conda run -n mgpt python -m generators._motiongpt_inference ...` 로 환경을 격리해 호출하므로 motion-router env 에서 호출해도 무방. checkpoint 자동 탐색 (`external_assets/MotionGPT/checkpoints/MotionGPT-base/*.tar` 또는 `*.ckpt`).
 
-#### MotionGPT 의 known issue
+#### MotionGPT 의 known issues
 
-- **Length 제어 불가능**: `model.forward(batch, task='t2m')` 는 `batch['length']` 를 capture 만 하고 실제 generation 은 LM (T5) 의 `generate_direct(texts, do_sample=True)` 에 위임 — n_frames 인자는 effective 하지 않음. 짧은 prompt 는 4 frames 같은 degenerate 출력 발생. 권장: 공식 `demos/t2m.txt` 의 60+ 단어급 상세 prompt 사용. wrapper 는 metadata 의 `length_generated` 로 실제 길이 기록.
+- **transformers 버전 incompatibility (W-2026-001 — RESOLVED)**: transformers 5.x 의 T5ForConditionalGeneration 이 MotionGPT 학습 시점 (transformers 4.x, 2023) 의 weight tying 처리와 incompatible. `shared.weight` 자리에 `lm_head.weight` 값을 잘못 load → LM input embedding broken → prompt-independent 4-frame collapse (`(1, 4, 22, 3)` 만 출력, prompt 무시). **transformers==4.30.2 + tokenizers==0.13.3 명시 downgrade 필수** (Step 4-1).
+- **Length 제어 (residual issue)**: transformers 4.30.2 downgrade 후에도 `batch['length']` 자체는 capture only — generation 길이는 LM 의 `do_sample` 결과에 의존. 단 prompt 에 따라 92/176 frames 등 정상 길이 동적 생성됨이 확인됨. wrapper 는 metadata 의 `length_generated` 로 실제 길이 기록.
 
 ### 2-2. 핵심 실행 명령어
 
