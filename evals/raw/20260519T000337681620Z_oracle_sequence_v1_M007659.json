@@ -1,0 +1,1178 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_sequence_sample",
+  "timestamp": "20260519T000337681620Z",
+  "task_id": "oracle_sequence_v1",
+  "split_id": "calibration_v1",
+  "trial_id": "M007659",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M007659.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    97,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "oracle_type": "sequence",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "max_depth": 3,
+  "selections": {
+    "foot_floating": {
+      "artifact_kind": "foot_floating",
+      "target_evaluator": "FootFloatingEvaluator",
+      "oracle_type": "sequence",
+      "netgain_weight_status": "calibrated_protocol_a_v1",
+      "netgain_weights": {
+        "alpha": 5.0,
+        "beta": 0.0,
+        "gamma": 0.0
+      },
+      "max_depth": 3,
+      "score_increase_tolerance": 0.01,
+      "n_candidates_explored": 662,
+      "n_candidates_pruned": 95,
+      "best_candidate": {
+        "sequence": [
+          [
+            "FootLockTool",
+            "medium"
+          ]
+        ],
+        "length": 1,
+        "target_score_initial": 0.1134020618556701,
+        "target_score_final": 0.0,
+        "target_delta_total": -0.1134020618556701,
+        "fidelity_loss_protocol_a": -0.001178678752446126,
+        "cumulative_correction_magnitude": 0.06666052146552019,
+        "cross_evaluator_delta_total": {
+          "BoneLengthEvaluator": -3.5503848247884356e-05,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "netgain_provisional": 0.11929545561790074,
+        "intermediate_total_scores": [
+          0.2503293745387491,
+          0.023454243130913127
+        ],
+        "metadata": {}
+      },
+      "top_k_candidates": [
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "medium"
+            ]
+          ],
+          "length": 1,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.001178678752446126,
+          "cumulative_correction_magnitude": 0.06666052146552019,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929545561790074,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.0011786743628547343,
+          "cumulative_correction_magnitude": 0.06666053682055784,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929543366994377,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.023454243130913127,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "FootLockTool",
+              "medium"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.0011786743628547343,
+          "cumulative_correction_magnitude": 0.06666053682055784,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929543366994377,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.2503293745387491,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.0011786712901407587,
+          "cumulative_correction_magnitude": 0.0666605475690842,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.1192954183063739,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.023454243130913127,
+            0.023454243130913127,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "FootLockTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.0011786712901407587,
+          "cumulative_correction_magnitude": 0.0666605475690842,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.1192954183063739,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.2503293745387491,
+            0.023454243130913127,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "FootLockTool",
+              "medium"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.0011786712901407587,
+          "cumulative_correction_magnitude": 0.0666605475690842,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.1192954183063739,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.2503293745387491,
+            0.2503293745387491,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "medium"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.00117866997326334,
+          "cumulative_correction_magnitude": 0.0666605521755955,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929541172198681,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.023454243130913127,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "FootLockTool",
+              "medium"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.00117866997326334,
+          "cumulative_correction_magnitude": 0.0666605521755955,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929541172198681,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.2503293745387491,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "medium"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.0011786682174267857,
+          "cumulative_correction_magnitude": 0.06666055831761054,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929540294280402,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.023454243130913127,
+            0.023454243130913127,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.1134020618556701,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.1134020618556701,
+          "fidelity_loss_protocol_a": -0.001178668217426784,
+          "cumulative_correction_magnitude": 0.06666055831761056,
+          "cross_evaluator_delta_total": {
+            "BoneLengthEvaluator": -3.5503848247884356e-05,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.11929540294280402,
+          "intermediate_total_scores": [
+            0.2503293745387491,
+            0.023454243130913127,
+            0.023454243130913127,
+            0.023454243130913127
+          ],
+          "metadata": {}
+        }
+      ],
+      "candidate_netgain_stats": {
+        "mean": 0.06867809743898794,
+        "median": 0.06592871222392727,
+        "p95": 0.11929386149635544,
+        "min": -0.004313484432492548,
+        "max": 0.11929545561790074
+      },
+      "metadata": {
+        "mpjpe_corrupted_vs_clean": 0.007272727272727273,
+        "target_score_initial": 0.1134020618556701,
+        "total_score_initial": 0.2503293745387491
+      }
+    },
+    "bone_stretch_right_arm": {
+      "artifact_kind": "bone_stretch_right_arm",
+      "target_evaluator": "BoneLengthEvaluator",
+      "oracle_type": "sequence",
+      "netgain_weight_status": "calibrated_protocol_a_v1",
+      "netgain_weights": {
+        "alpha": 5.0,
+        "beta": 0.0,
+        "gamma": 0.0
+      },
+      "max_depth": 3,
+      "score_increase_tolerance": 0.01,
+      "n_candidates_explored": 375,
+      "n_candidates_pruned": 130,
+      "best_candidate": {
+        "sequence": [
+          [
+            "BoneProjectionTool",
+            "small"
+          ],
+          [
+            "BoneProjectionTool",
+            "small"
+          ],
+          [
+            "BoneProjectionTool",
+            "large"
+          ]
+        ],
+        "length": 3,
+        "target_score_initial": 0.14845347029413586,
+        "target_score_final": 0.0,
+        "target_delta_total": -0.14845347029413586,
+        "fidelity_loss_protocol_a": -0.00762529688890424,
+        "cumulative_correction_magnitude": 0.029666062582071096,
+        "cross_evaluator_delta_total": {
+          "FootFloatingEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "netgain_provisional": 0.18657995473865707,
+        "intermediate_total_scores": [
+          0.14845347029413586,
+          0.10391742920589511,
+          0.07274220044412658,
+          0.0
+        ],
+        "metadata": {}
+      },
+      "top_k_candidates": [
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.00762529688890424,
+          "cumulative_correction_magnitude": 0.029666062582071096,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.10391742920589511,
+            0.07274220044412658,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904243,
+          "cumulative_correction_magnitude": 0.029666062582071107,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.10391742920589511,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904243,
+          "cumulative_correction_magnitude": 0.02966606258207112,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.10391742920589511,
+            0.0,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "medium"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904243,
+          "cumulative_correction_magnitude": 0.029666062582071134,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.10391742920589511,
+            0.0,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904242,
+          "cumulative_correction_magnitude": 0.029666062582071155,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.10391742920589511,
+            0.0,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904242,
+          "cumulative_correction_magnitude": 0.029666062582071107,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.05938138811765435,
+            0.04156697168235804,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904241,
+          "cumulative_correction_magnitude": 0.02966606258207111,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.05938138811765435,
+            0.023752555247061755,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904242,
+          "cumulative_correction_magnitude": 0.029666062582071107,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.05938138811765435,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904242,
+          "cumulative_correction_magnitude": 0.02966606258207112,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.05938138811765435,
+            0.0,
+            0.0
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "medium"
+            ],
+            [
+              "BoneProjectionTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "medium"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.14845347029413586,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.14845347029413586,
+          "fidelity_loss_protocol_a": -0.007625296888904241,
+          "cumulative_correction_magnitude": 0.029666062582071134,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.0,
+            "VelocityJitterEvaluator": 0.0
+          },
+          "netgain_provisional": 0.18657995473865707,
+          "intermediate_total_scores": [
+            0.14845347029413586,
+            0.05938138811765435,
+            0.0,
+            0.0
+          ],
+          "metadata": {}
+        }
+      ],
+      "candidate_netgain_stats": {
+        "mean": 0.08317902762974073,
+        "median": 0.09373561892468822,
+        "p95": 0.18657995473865707,
+        "min": -0.04937547729509399,
+        "max": 0.18657995473865707
+      },
+      "metadata": {
+        "mpjpe_corrupted_vs_clean": 0.007625358254385644,
+        "target_score_initial": 0.14845347029413586,
+        "total_score_initial": 0.14845347029413586
+      }
+    },
+    "global_jitter": {
+      "artifact_kind": "global_jitter",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "oracle_type": "sequence",
+      "netgain_weight_status": "calibrated_protocol_a_v1",
+      "netgain_weights": {
+        "alpha": 5.0,
+        "beta": 0.0,
+        "gamma": 0.0
+      },
+      "max_depth": 3,
+      "score_increase_tolerance": 0.01,
+      "n_candidates_explored": 753,
+      "n_candidates_pruned": 40,
+      "best_candidate": {
+        "sequence": [
+          [
+            "VelocitySmoothingTool",
+            "large"
+          ],
+          [
+            "BoneProjectionTool",
+            "small"
+          ]
+        ],
+        "length": 2,
+        "target_score_initial": 0.19817236097738225,
+        "target_score_final": 0.0,
+        "target_delta_total": -0.19817236097738225,
+        "fidelity_loss_protocol_a": -0.041961192001031565,
+        "cumulative_correction_magnitude": 0.07825222031164208,
+        "cross_evaluator_delta_total": {
+          "FootFloatingEvaluator": 0.3969072164948454,
+          "BoneLengthEvaluator": -0.12188425075870403
+        },
+        "netgain_provisional": 0.40797832098254005,
+        "intermediate_total_scores": [
+          1.938466940961303,
+          1.3595154863471044,
+          1.3301706762479446
+        ],
+        "metadata": {}
+      },
+      "top_k_candidates": [
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.041961192001031565,
+          "cumulative_correction_magnitude": 0.07825222031164208,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.3969072164948454,
+            "BoneLengthEvaluator": -0.12188425075870403
+          },
+          "netgain_provisional": 0.40797832098254005,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.3595154863471044,
+            1.3301706762479446
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ]
+          ],
+          "length": 2,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.04195427476655881,
+          "cumulative_correction_magnitude": 0.08632153890164933,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.3969072164948454,
+            "BoneLengthEvaluator": -0.11916622292829913
+          },
+          "netgain_provisional": 0.4079437348101763,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.8678426497287113,
+            1.343760815399969
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.041909881780172055,
+          "cumulative_correction_magnitude": 0.09088019214626183,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.3969072164948454,
+            "BoneLengthEvaluator": -0.124089904691303
+          },
+          "netgain_provisional": 0.4077217698782425,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.8678426497287113,
+            1.343760815399969,
+            1.3191424065849497
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ]
+          ],
+          "length": 1,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.041900195535747066,
+          "cumulative_correction_magnitude": 0.07261401771671544,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.3969072164948454,
+            "BoneLengthEvaluator": -0.11601528873887204
+          },
+          "netgain_provisional": 0.40767333865611755,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.3595154863471044
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.04183273590685932,
+          "cumulative_correction_magnitude": 0.08219896212809073,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.3969072164948454,
+            "BoneLengthEvaluator": -0.12599252417258644
+          },
+          "netgain_provisional": 0.4073360405116788,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.3595154863471044,
+            1.3301706762479446,
+            1.3096293091785325
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.04182557400526988,
+          "cumulative_correction_magnitude": 0.08151038810924684,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.38659793814432986,
+            "BoneLengthEvaluator": -0.1230199049625532
+          },
+          "netgain_provisional": 0.40730023100373164,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.536663796367171,
+            1.332975772198054,
+            1.3038738485276673
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "small"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.04182557400526988,
+          "cumulative_correction_magnitude": 0.07924993041653935,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.38659793814432986,
+            "BoneLengthEvaluator": -0.12301990496255331
+          },
+          "netgain_provisional": 0.40730023100373164,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.3595154863471044,
+            1.3329757721980535,
+            1.303873848527667
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.041820292469740915,
+          "cumulative_correction_magnitude": 0.07929905094803316,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.38659793814432986,
+            "BoneLengthEvaluator": -0.12300061959964234
+          },
+          "netgain_provisional": 0.40727382332608686,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.3595154863471044,
+            1.3301706762479446,
+            1.303970275342222
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.04181534910196544,
+          "cumulative_correction_magnitude": 0.08963196219345151,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.38659793814432986,
+            "BoneLengthEvaluator": -0.12028388006077675
+          },
+          "netgain_provisional": 0.40724910648720947,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.8678426497287113,
+            1.4815581915227702,
+            1.3175539730365495
+          ],
+          "metadata": {}
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "small"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "large"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "small"
+            ]
+          ],
+          "length": 3,
+          "target_score_initial": 0.19817236097738225,
+          "target_score_final": 0.0,
+          "target_delta_total": -0.19817236097738225,
+          "fidelity_loss_protocol_a": -0.041815349101965445,
+          "cumulative_correction_magnitude": 0.08736352549500616,
+          "cross_evaluator_delta_total": {
+            "FootFloatingEvaluator": 0.38659793814432986,
+            "BoneLengthEvaluator": -0.12028388006077687
+          },
+          "netgain_provisional": 0.40724910648720947,
+          "intermediate_total_scores": [
+            1.938466940961303,
+            1.8678426497287113,
+            1.343760815399969,
+            1.3175539730365493
+          ],
+          "metadata": {}
+        }
+      ],
+      "candidate_netgain_stats": {
+        "mean": 0.2220775993304705,
+        "median": 0.3369714429849903,
+        "p95": 0.4059781465662008,
+        "min": -0.023546100762245795,
+        "max": 0.40797832098254005
+      },
+      "metadata": {
+        "mpjpe_corrupted_vs_clean": 0.08015892410635622,
+        "target_score_initial": 0.19817236097738225,
+        "total_score_initial": 1.938466940961303
+      }
+    }
+  },
+  "negative_result": false
+}

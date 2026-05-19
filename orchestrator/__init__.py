@@ -22,6 +22,11 @@ rule_based orchestrator + tool effect matrix 도구 + oracle best-tool baseline 
 우회로 산출물 동질화) 위반 차단.
 """
 from orchestrator.base import KDGOrderingViolation, Orchestrator, OrchestratorDecision
+from orchestrator.oracle_sequence import (
+    SequenceCandidate,
+    SequenceOracleSelection,
+    select_best_sequence_oracle,
+)
 from orchestrator.oracle_single_step import (
     OracleCandidate,
     OracleSelection,
@@ -38,4 +43,7 @@ __all__ = [
     "OracleCandidate",
     "OracleSelection",
     "select_best_tool_single_step",
+    "SequenceCandidate",
+    "SequenceOracleSelection",
+    "select_best_sequence_oracle",
 ]
