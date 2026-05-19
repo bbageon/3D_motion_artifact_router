@@ -4,7 +4,9 @@
 
 ## Active (open)
 
-(없음 — 본 저장소 시작 시점.)
+| W-id | severity | discovered | 한 줄 | resolution_target |
+|---|---|---|---|---|
+| [W-2026-001](W-2026-001.md) | **critical** | 2026-05-19 | MotionGPT (G2) length 제어 불가능 (degenerate 4-frame output). H-2026-204 의 G2 측 검증 blocker. | 단기 scope 재정의 + 중기 T5 LM 직접 호출 시도 |
 
 ## Resolved
 
