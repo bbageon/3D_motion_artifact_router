@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_rule_based_summary",
+  "task_id": "baseline_b5_rule_based_v3",
+  "split_id": "calibration_v1",
+  "baseline_type": "b5_rule_based",
+  "orchestrator": "RuleBasedOrchestrator",
+  "seed": 42,
+  "n_samples_evaluated": 30,
+  "data_dir": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854"
+  },
+  "raw_records_dir": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\evals\\raw",
+  "trial_ids": [
+    "002554",
+    "002652",
+    "002806",
+    "003787",
+    "005366",
+    "005915",
+    "010854",
+    "011768",
+    "012644",
+    "012814",
+    "012957",
+    "013152",
+    "M000004",
+    "M000374",
+    "M000758",
+    "M001324",
+    "M004244",
+    "M004533",
+    "M005780",
+    "M006376",
+    "M006908",
+    "M007659",
+    "M008021",
+    "M008256",
+    "M008383",
+    "M009465",
+    "M009955",
+    "M010479",
+    "M012465",
+    "M013874"
+  ],
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "target_evaluator": "BoneLengthEvaluator",
+      "n_samples": 30,
+      "decision_distribution": {
+        "revise": 30
+      },
+      "selected_tool_distribution": {
+        "BoneProjectionTool": 30
+      },
+      "netgain_provisional": {
+        "mean": 0.1729551671393115,
+        "median": 0.1869205345404562,
+        "p25": 0.1433696163749318,
+        "p75": 0.18927309922599628,
+        "min": 0.12920693512699538,
+        "max": 0.1977242991641175
+      },
+      "target_delta": {
+        "mean": -0.1440589075538595,
+        "median": -0.14911101925557177
+      },
+      "fidelity_loss_protocol_a": {
+        "mean": -0.005779251917090391,
+        "median": -0.007611073395944929
+      },
+      "correction_magnitude": {
+        "mean": 0.029830491922715675,
+        "median": 0.029824449852502745
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "target_evaluator": "FootFloatingEvaluator",
+      "n_samples": 30,
+      "decision_distribution": {
+        "revise": 28,
+        "STOP": 2
+      },
+      "selected_tool_distribution": {
+        "FootLockTool": 28,
+        "NONE": 2
+      },
+      "netgain_provisional": {
+        "mean": 0.01663708550767164,
+        "median": 0.0,
+        "p25": -0.34726909434840114,
+        "p75": 0.25648167892978585,
+        "min": -0.6683874632511478,
+        "max": 1.0075533039392957
+      },
+      "target_delta": {
+        "mean": -0.020013389490973674,
+        "median": 0.0
+      },
+      "fidelity_loss_protocol_a": {
+        "mean": 0.0006752607966604083,
+        "median": 0.00047308594179448164
+      },
+      "correction_magnitude": {
+        "mean": 0.10343634898282808,
+        "median": 0.1090709223745317
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "n_samples": 30,
+      "decision_distribution": {
+        "revise": 30
+      },
+      "selected_tool_distribution": {
+        "VelocitySmoothingTool": 30
+      },
+      "netgain_provisional": {
+        "mean": 0.35261662712511543,
+        "median": 0.3533473503574691,
+        "p25": 0.3506195329829015,
+        "p75": 0.35540992108309943,
+        "min": 0.34083759992012624,
+        "max": 0.35841149623116975
+      },
+      "target_delta": {
+        "mean": -0.16671274134124622,
+        "median": -0.16677329408980596
+      },
+      "fidelity_loss_protocol_a": {
+        "mean": -0.037180777156773835,
+        "median": -0.037286996360550294
+      },
+      "correction_magnitude": {
+        "mean": 0.05616066183989152,
+        "median": 0.056171103013693935
+      }
+    }
+  ]
+}

@@ -66,6 +66,21 @@ ARTIFACT_TO_TARGET_EVALUATOR: dict[str, str] = {
     "global_jitter": "VelocityJitterEvaluator",
 }
 
+#: artifact_kind → tool 적용 config override. severity-based strength + evaluator 의
+#: body_part 가 fixed baseline 보다 약한 효과를 줄 때, 본 dict 의 strength /
+#: target_part 로 override.
+#:
+#: [B5 v2 → v3 fix (`evals/reports/2026-05-19_h_2026_204_rq1_threshold_2.md` §D-6)]
+#: jitter 의 경우 severity-based small/medium strength + evaluator 의 body_part
+#: (legs 등) 적용 시 B2 (fixed full_body + medium) 보다 약함이 관측됨. 본
+#: override 로 jitter 에 강제 medium + full_body.
+#:
+#: 다른 artifact 는 default 유지 (foot/bone 은 default 가 이미 oracle 수준 또는
+#: inconclusive — 별개 이슈).
+ARTIFACT_TOOL_CONFIG_OVERRIDE: dict[str, dict[str, str]] = {
+    "global_jitter": {"strength": "medium", "target_part": "full_body"},
+}
+
 
 class RuleBasedOrchestrator(Orchestrator):
     """Rule-based orchestrator (Week 4 prototype).
@@ -197,12 +212,19 @@ class RuleBasedOrchestrator(Orchestrator):
 
         selected_tool = self._tool_by_class_name[tool_class_name]
         strength = SEVERITY_TO_STRENGTH.get(primary.severity, "medium")
+        target_part = primary.body_part
+
+        # artifact_kind_hint override: strength / target_part 강제.
+        if artifact_kind_hint is not None and artifact_kind_hint in ARTIFACT_TOOL_CONFIG_OVERRIDE:
+            override = ARTIFACT_TOOL_CONFIG_OVERRIDE[artifact_kind_hint]
+            strength = override.get("strength", strength)
+            target_part = override.get("target_part", target_part)
 
         return OrchestratorDecision(
             decision="revise",
             primary_error=primary.error_type,
             selected_tool=type(selected_tool).__name__,
-            target_part=primary.body_part,
+            target_part=target_part,
             target_frames=tuple(primary.frames),
             strength=strength,  # type: ignore[arg-type]
             next_step="apply_then_evaluate",
@@ -212,6 +234,11 @@ class RuleBasedOrchestrator(Orchestrator):
                 "selected_tool_recommendation": rec,
                 "primary_severity": primary.severity,
                 "primary_agent": primary.agent,
+                "artifact_kind_hint": artifact_kind_hint,
+                "override_applied": (
+                    artifact_kind_hint is not None
+                    and artifact_kind_hint in ARTIFACT_TOOL_CONFIG_OVERRIDE
+                ),
                 "before_snapshot": _build_before_snapshot(evaluator_reports),
                 "tool_history_len": len(tool_history),
             },

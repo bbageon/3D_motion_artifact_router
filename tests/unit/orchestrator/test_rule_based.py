@@ -180,6 +180,44 @@ def test_orchestrator_hint_unknown_artifact_falls_back() -> None:
     assert d_hint.selected_tool == "FootLockTool"
 
 
+def test_orchestrator_jitter_hint_applies_override_full_body_medium() -> None:
+    """artifact_kind_hint='global_jitter' 시 ARTIFACT_TOOL_CONFIG_OVERRIDE 가
+    strength='medium', target_part='full_body' 로 강제 override 한다.
+
+    [B5 v2 → v3 fix] severity-based small strength + evaluator 의 body_part='legs'
+    가 fixed (B2) 보다 약한 효과를 주는 한계를 해소.
+    """
+    orch = RuleBasedOrchestrator()
+    reports = [
+        # severity=low (default → strength=small), body_part=legs
+        _mk_report("VelocityJitterEvaluator", "legs_velocity_jitter", "legs",
+                   0.025, "low", "velocity_smoothing_tool"),
+    ]
+    d = orch.decide(reports, [], artifact_kind_hint="global_jitter")
+    assert d.decision == "revise"
+    assert d.selected_tool == "VelocitySmoothingTool"
+    # override 적용 확인.
+    assert d.strength == "medium", f"expected medium override, got {d.strength}"
+    assert d.target_part == "full_body", f"expected full_body override, got {d.target_part}"
+    assert d.metadata["override_applied"] is True
+
+
+def test_orchestrator_no_override_for_bone_artifact() -> None:
+    """ARTIFACT_TOOL_CONFIG_OVERRIDE 에 없는 artifact 는 default 동작 (severity/body_part)."""
+    orch = RuleBasedOrchestrator()
+    reports = [
+        _mk_report("BoneLengthEvaluator", "right_arm_bone_length_variation", "right_arm",
+                   0.15, "high", "bone_projection_tool"),
+    ]
+    d = orch.decide(reports, [], artifact_kind_hint="bone_stretch_right_arm")
+    assert d.decision == "revise"
+    assert d.selected_tool == "BoneProjectionTool"
+    # default: severity=high → strength=large, body_part=right_arm.
+    assert d.strength == "large"
+    assert d.target_part == "right_arm"
+    assert d.metadata["override_applied"] is False
+
+
 def test_orchestrator_hint_target_evaluator_no_reports_stops() -> None:
     """target evaluator 가 report 가 없으면 STOP."""
     orch = RuleBasedOrchestrator()
