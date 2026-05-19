@@ -167,3 +167,47 @@ def test_top_k_length_limited() -> None:
         top_k=3,
     )
     assert len(sel.top_k_candidates) <= 3
+
+
+def test_tiebreak_prefers_shorter_sequence_on_netgain_tie() -> None:
+    """NetGain 동률 시 짧은 sequence 가 best 로 선택됨 (Occam 간결성).
+
+    bone_stretch 에 FootLockTool 을 prefix 로 끼운 sequence 는 BoneProjection 만 한
+    sequence 와 final NetGain 이 같다 (FL 이 bone 에 영향 0). 이런 동률 케이스에서
+    short sequence 가 우선되어야 한다.
+    """
+    from correction_tools import BoneProjectionTool
+    from evaluators import BoneLengthEvaluator
+    from tools.synthetic_injection import inject_bone_stretch
+
+    rng = np.random.default_rng(42)
+    rest = rng.uniform(-0.3, 0.3, (22, 3)).astype(np.float64)
+    clean = np.tile(rest[None, :, :], (30, 1, 1))
+    # partial-frame stretch (tool_effect_matrix 의 inject 패턴)
+    half = 15
+    corrupted = np.concatenate([
+        inject_bone_stretch(clean[:half], chain_label="right_arm", stretch_factor=1.30, seed=42),
+        clean[half:],
+    ], axis=0)
+    sel = select_best_sequence_oracle(
+        clean_motion=clean,
+        corrupted_motion=corrupted,
+        artifact_kind="bone_stretch_right_arm",
+        target_evaluator_name="BoneLengthEvaluator",
+        tools_with_target_parts=[
+            (FootLockTool(default_ground_y=0.0), "both_feet"),
+            (BoneProjectionTool(), "right_arm"),
+        ],
+        evaluators=[BoneLengthEvaluator(), FootFloatingEvaluator()],
+        strengths=("large",),
+        max_depth=3,
+    )
+    assert sel.best_candidate is not None
+    best_ng = sel.best_candidate.netgain_provisional
+    # top_k 의 candidates 중 best 와 NetGain 이 동률인 것들의 length 가 best 보다 크거나 같아야 함.
+    for c in sel.top_k_candidates:
+        if abs(c.netgain_provisional - best_ng) < 1e-9:
+            assert c.length >= sel.best_candidate.length, (
+                f"tiebreak violated: best length={sel.best_candidate.length}, "
+                f"tied candidate length={c.length}"
+            )

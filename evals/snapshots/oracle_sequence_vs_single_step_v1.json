@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_per_sample_gap_summary",
+  "single_step_prefix": "oracle_single_step_v2",
+  "sequence_prefix": "oracle_sequence_v1_1_tiebreak",
+  "n_keys_compared": 90,
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "n_samples": 30,
+      "n_strict_advantage": 22,
+      "n_tie": 8,
+      "n_loss": 0,
+      "gap": {
+        "mean": 5.030388263405072e-06,
+        "median": 2.7755575615628914e-17,
+        "p25": 6.938893903907228e-18,
+        "p75": 7.632783294297951e-17,
+        "min": 0.0,
+        "max": 7.858839147870111e-05
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "n_samples": 30,
+      "n_strict_advantage": 22,
+      "n_tie": 8,
+      "n_loss": 0,
+      "gap": {
+        "mean": 0.004467943992545576,
+        "median": 0.002807182975779754,
+        "p25": 2.4369082568947986e-06,
+        "p75": 0.005181124861104697,
+        "min": 0.0,
+        "max": 0.020068429332816162
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "n_samples": 30,
+      "n_strict_advantage": 30,
+      "n_tie": 0,
+      "n_loss": 0,
+      "gap": {
+        "mean": 0.01080093642669177,
+        "median": 0.005800654677650924,
+        "p25": 0.001776923162886565,
+        "p75": 0.017969318653415667,
+        "min": 4.787635046055172e-05,
+        "max": 0.031225729577420536
+      }
+    }
+  ],
+  "interpretation": {
+    "gap_definition": "sequence_best_netgain - single_step_best_netgain (per sample, per artifact)",
+    "mathematical_lower_bound": "gap >= 0 (sequence oracle 의 후보 set 이 single-step 의 superset, 즉 sequence 의 max NetGain >= single-step 의 max NetGain)",
+    "strict_advantage_meaning": "n_strict_advantage = closed-loop refinement (반복 적용) 가 single-step 으로는 도달 불가능한 NetGain 을 달성한 sample 수",
+    "tie_meaning": "n_tie = sequence 의 best 가 length-1 sequence (= single-step) 와 동일 NetGain. closed-loop 의 추가 가치 없음",
+    "h_2026_204_rq2_implication": "RQ2 (closed-loop vs single-step) 의 정확한 척도는 본 per-sample gap 분포이며, 'closed-loop 가 항상 single-step 보다 낫다' 는 수학적으로 (gap >= 0) 성립하나 empirically n_strict_advantage / n_samples 비율로 판정해야 한다"
+  }
+}

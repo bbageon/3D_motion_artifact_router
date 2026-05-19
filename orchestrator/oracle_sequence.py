@@ -316,9 +316,20 @@ def select_best_sequence_oracle(
         top_k_list: list[SequenceCandidate] = []
         stats: dict[str, float] = {}
     else:
-        best = max(all_candidates, key=lambda c: c.netgain_provisional)
+        # Tie-break: NetGain 동률 시 **짧은 sequence** 우선 (Occam 의 간결성 원칙).
+        # 이유: 동일 NetGain 을 얻을 수 있다면 더 적은 tool 호출이 simpler·cheaper·
+        # tool_call_cost 면에서도 우월. 또한 closed-loop refinement 의 "추가 가치"
+        # 측정에서 sequence 가 single-step 보다 길어야만 우위라고 주장하려면 strict
+        # 우위여야 함 — 동률에 길이 우위는 closed-loop 의 fair upper bound 측정의
+        # artifact. tuple key (NetGain desc, length asc) 로 정렬.
+        best = max(
+            all_candidates,
+            key=lambda c: (c.netgain_provisional, -c.length),
+        )
         top_k_list = sorted(
-            all_candidates, key=lambda c: c.netgain_provisional, reverse=True
+            all_candidates,
+            key=lambda c: (c.netgain_provisional, -c.length),
+            reverse=True,
         )[:top_k]
         netgains = np.array([c.netgain_provisional for c in all_candidates])
         stats = {
