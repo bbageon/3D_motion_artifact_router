@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "g2_natural_artifact_sample",
+  "timestamp": "20260519T073136941819Z",
+  "task_id": "g2_natural_artifact_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_002",
+  "sample_path": "external_assets\\g2_generated_v1\\motion_002.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "generator_class_hash": "1effc6df6a6be0a9_f9a03a11cadf5c08",
+  "generator_seed": 43,
+  "generator_prompt": "I need a motion that represents the power of a man steps forward, then picks something up with his right hand, then with his right hand, brings them close together, and sets them back down in the same order. to create progress. Can you generate it for me?",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    176,
+    22,
+    3
+  ],
+  "fps": 20,
+  "evaluator_data": {
+    "FootFloatingEvaluator": {
+      "n_reports": 1,
+      "score_mean": 0.011363636363636364,
+      "score_max": 0.011363636363636364,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "left_foot",
+          "frames": [
+            18,
+            19
+          ],
+          "score": 0.011363636363636364,
+          "severity": "low",
+          "error_type": "left_foot_floating"
+        }
+      ]
+    },
+    "BoneLengthEvaluator": {
+      "n_reports": 5,
+      "score_mean": 0.016167381182705547,
+      "score_max": 0.01973598872317177,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "right_leg",
+          "frames": [
+            0,
+            175
+          ],
+          "score": 0.013457560193495616,
+          "severity": "low",
+          "error_type": "right_leg_bone_length_variation"
+        },
+        {
+          "body_part": "left_leg",
+          "frames": [
+            0,
+            175
+          ],
+          "score": 0.011550852733775836,
+          "severity": "low",
+          "error_type": "left_leg_bone_length_variation"
+        },
+        {
+          "body_part": "spine_head",
+          "frames": [
+            0,
+            175
+          ],
+          "score": 0.017721758328726793,
+          "severity": "low",
+          "error_type": "spine_head_bone_length_variation"
+        },
+        {
+          "body_part": "right_arm",
+          "frames": [
+            0,
+            175
+          ],
+          "score": 0.018370745934357727,
+          "severity": "low",
+          "error_type": "right_arm_bone_length_variation"
+        },
+        {
+          "body_part": "left_arm",
+          "frames": [
+            0,
+            175
+          ],
+          "score": 0.01973598872317177,
+          "severity": "low",
+          "error_type": "left_arm_bone_length_variation"
+        }
+      ]
+    },
+    "VelocityJitterEvaluator": {
+      "n_reports": 0,
+      "score_mean": null,
+      "score_max": null,
+      "max_severity": null,
+      "reports": []
+    }
+  },
+  "negative_result": false
+}

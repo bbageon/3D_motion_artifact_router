@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "g2_natural_artifact_sample",
+  "timestamp": "20260519T073136959622Z",
+  "task_id": "g2_natural_artifact_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_016",
+  "sample_path": "external_assets\\g2_generated_v1\\motion_016.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "generator_class_hash": "1effc6df6a6be0a9_f9a03a11cadf5c08",
+  "generator_seed": 57,
+  "generator_prompt": "Give me a motion that expresses a person walks to the right makes a u-turn clockwise and returns to the left of their initial position facing away",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    96,
+    22,
+    3
+  ],
+  "fps": 20,
+  "evaluator_data": {
+    "FootFloatingEvaluator": {
+      "n_reports": 2,
+      "score_mean": 0.015625,
+      "score_max": 0.020833333333333332,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "left_foot",
+          "frames": [
+            28,
+            38
+          ],
+          "score": 0.020833333333333332,
+          "severity": "low",
+          "error_type": "left_foot_floating"
+        },
+        {
+          "body_part": "right_foot",
+          "frames": [
+            27,
+            27
+          ],
+          "score": 0.010416666666666666,
+          "severity": "low",
+          "error_type": "right_foot_floating"
+        }
+      ]
+    },
+    "BoneLengthEvaluator": {
+      "n_reports": 5,
+      "score_mean": 0.024578867166348262,
+      "score_max": 0.032068651105687934,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "right_leg",
+          "frames": [
+            0,
+            95
+          ],
+          "score": 0.020138981623310077,
+          "severity": "low",
+          "error_type": "right_leg_bone_length_variation"
+        },
+        {
+          "body_part": "left_leg",
+          "frames": [
+            0,
+            95
+          ],
+          "score": 0.026456091415501735,
+          "severity": "low",
+          "error_type": "left_leg_bone_length_variation"
+        },
+        {
+          "body_part": "spine_head",
+          "frames": [
+            0,
+            95
+          ],
+          "score": 0.022213993439879082,
+          "severity": "low",
+          "error_type": "spine_head_bone_length_variation"
+        },
+        {
+          "body_part": "right_arm",
+          "frames": [
+            0,
+            95
+          ],
+          "score": 0.022016618247362476,
+          "severity": "low",
+          "error_type": "right_arm_bone_length_variation"
+        },
+        {
+          "body_part": "left_arm",
+          "frames": [
+            0,
+            95
+          ],
+          "score": 0.032068651105687934,
+          "severity": "low",
+          "error_type": "left_arm_bone_length_variation"
+        }
+      ]
+    },
+    "VelocityJitterEvaluator": {
+      "n_reports": 1,
+      "score_mean": 0.018281083313995736,
+      "score_max": 0.018281083313995736,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "legs",
+          "frames": [
+            0,
+            95
+          ],
+          "score": 0.018281083313995736,
+          "severity": "low",
+          "error_type": "legs_velocity_jitter"
+        }
+      ]
+    }
+  },
+  "negative_result": false
+}

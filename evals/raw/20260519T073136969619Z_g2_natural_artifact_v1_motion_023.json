@@ -1,0 +1,126 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "g2_natural_artifact_sample",
+  "timestamp": "20260519T073136969619Z",
+  "task_id": "g2_natural_artifact_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_023",
+  "sample_path": "external_assets\\g2_generated_v1\\motion_023.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "generator_class_hash": "1effc6df6a6be0a9_f9a03a11cadf5c08",
+  "generator_seed": 64,
+  "generator_prompt": "Create a motion that depicts  Input: a person rotates their head, then rotates the arms from the shoulders left, right, then left, and then rotates the arms from the elbows in each direction.",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    128,
+    22,
+    3
+  ],
+  "fps": 20,
+  "evaluator_data": {
+    "FootFloatingEvaluator": {
+      "n_reports": 2,
+      "score_mean": 0.01953125,
+      "score_max": 0.0234375,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "left_foot",
+          "frames": [
+            21,
+            23
+          ],
+          "score": 0.0234375,
+          "severity": "low",
+          "error_type": "left_foot_floating"
+        },
+        {
+          "body_part": "right_foot",
+          "frames": [
+            20,
+            40
+          ],
+          "score": 0.015625,
+          "severity": "low",
+          "error_type": "right_foot_floating"
+        }
+      ]
+    },
+    "BoneLengthEvaluator": {
+      "n_reports": 5,
+      "score_mean": 0.01814391302399817,
+      "score_max": 0.021785561820997328,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "right_leg",
+          "frames": [
+            0,
+            127
+          ],
+          "score": 0.01544591586236808,
+          "severity": "low",
+          "error_type": "right_leg_bone_length_variation"
+        },
+        {
+          "body_part": "left_leg",
+          "frames": [
+            0,
+            127
+          ],
+          "score": 0.01647251925612737,
+          "severity": "low",
+          "error_type": "left_leg_bone_length_variation"
+        },
+        {
+          "body_part": "spine_head",
+          "frames": [
+            0,
+            127
+          ],
+          "score": 0.020541685505105444,
+          "severity": "low",
+          "error_type": "spine_head_bone_length_variation"
+        },
+        {
+          "body_part": "right_arm",
+          "frames": [
+            0,
+            127
+          ],
+          "score": 0.021785561820997328,
+          "severity": "low",
+          "error_type": "right_arm_bone_length_variation"
+        },
+        {
+          "body_part": "left_arm",
+          "frames": [
+            0,
+            127
+          ],
+          "score": 0.016473882675392633,
+          "severity": "low",
+          "error_type": "left_arm_bone_length_variation"
+        }
+      ]
+    },
+    "VelocityJitterEvaluator": {
+      "n_reports": 0,
+      "score_mean": null,
+      "score_max": null,
+      "max_severity": null,
+      "reports": []
+    }
+  },
+  "negative_result": false
+}

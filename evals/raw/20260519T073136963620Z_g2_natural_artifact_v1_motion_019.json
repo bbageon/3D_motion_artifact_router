@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "g2_natural_artifact_sample",
+  "timestamp": "20260519T073136963620Z",
+  "task_id": "g2_natural_artifact_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_019",
+  "sample_path": "external_assets\\g2_generated_v1\\motion_019.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "generator_class_hash": "1effc6df6a6be0a9_f9a03a11cadf5c08",
+  "generator_seed": 60,
+  "generator_prompt": "I want a motion that represents the power of a man gets up from the ground pushing off with his right hand then walks in a counter counterclockwise circle back to where he began then lays down flat on the ground on his back. to create positive change in the arts. Can you generate that?",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    196,
+    22,
+    3
+  ],
+  "fps": 20,
+  "evaluator_data": {
+    "FootFloatingEvaluator": {
+      "n_reports": 2,
+      "score_mean": 0.03316326530612245,
+      "score_max": 0.05102040816326531,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "left_foot",
+          "frames": [
+            106,
+            108
+          ],
+          "score": 0.015306122448979591,
+          "severity": "low",
+          "error_type": "left_foot_floating"
+        },
+        {
+          "body_part": "right_foot",
+          "frames": [
+            3,
+            14
+          ],
+          "score": 0.05102040816326531,
+          "severity": "low",
+          "error_type": "right_foot_floating"
+        }
+      ]
+    },
+    "BoneLengthEvaluator": {
+      "n_reports": 5,
+      "score_mean": 0.05232837892510256,
+      "score_max": 0.06136362621538559,
+      "max_severity": "medium",
+      "reports": [
+        {
+          "body_part": "right_leg",
+          "frames": [
+            0,
+            195
+          ],
+          "score": 0.0531600547990142,
+          "severity": "medium",
+          "error_type": "right_leg_bone_length_variation"
+        },
+        {
+          "body_part": "left_leg",
+          "frames": [
+            0,
+            195
+          ],
+          "score": 0.04720760148227932,
+          "severity": "low",
+          "error_type": "left_leg_bone_length_variation"
+        },
+        {
+          "body_part": "spine_head",
+          "frames": [
+            0,
+            195
+          ],
+          "score": 0.06136362621538559,
+          "severity": "medium",
+          "error_type": "spine_head_bone_length_variation"
+        },
+        {
+          "body_part": "right_arm",
+          "frames": [
+            0,
+            195
+          ],
+          "score": 0.047809738048397075,
+          "severity": "low",
+          "error_type": "right_arm_bone_length_variation"
+        },
+        {
+          "body_part": "left_arm",
+          "frames": [
+            0,
+            195
+          ],
+          "score": 0.05210087408043662,
+          "severity": "medium",
+          "error_type": "left_arm_bone_length_variation"
+        }
+      ]
+    },
+    "VelocityJitterEvaluator": {
+      "n_reports": 1,
+      "score_mean": 0.016473700133910602,
+      "score_max": 0.016473700133910602,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "legs",
+          "frames": [
+            0,
+            195
+          ],
+          "score": 0.016473700133910602,
+          "severity": "low",
+          "error_type": "legs_velocity_jitter"
+        }
+      ]
+    }
+  },
+  "negative_result": false
+}

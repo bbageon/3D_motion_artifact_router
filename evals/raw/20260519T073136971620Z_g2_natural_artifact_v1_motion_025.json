@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "g2_natural_artifact_sample",
+  "timestamp": "20260519T073136971620Z",
+  "task_id": "g2_natural_artifact_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_025",
+  "sample_path": "external_assets\\g2_generated_v1\\motion_025.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "generator_class_hash": "1effc6df6a6be0a9_f9a03a11cadf5c08",
+  "generator_seed": 66,
+  "generator_prompt": "Describe the movements of a person walking down a flight of stairs in a person who is standing with his arms by his sides does three straight jumping jacks and returns to standing with his arms by his sides..",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    100,
+    22,
+    3
+  ],
+  "fps": 20,
+  "evaluator_data": {
+    "FootFloatingEvaluator": {
+      "n_reports": 1,
+      "score_mean": 0.01,
+      "score_max": 0.01,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "left_foot",
+          "frames": [
+            28,
+            28
+          ],
+          "score": 0.01,
+          "severity": "low",
+          "error_type": "left_foot_floating"
+        }
+      ]
+    },
+    "BoneLengthEvaluator": {
+      "n_reports": 5,
+      "score_mean": 0.017294739380692502,
+      "score_max": 0.022897486419864423,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "right_leg",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.014512188038914079,
+          "severity": "low",
+          "error_type": "right_leg_bone_length_variation"
+        },
+        {
+          "body_part": "left_leg",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.015245935254763334,
+          "severity": "low",
+          "error_type": "left_leg_bone_length_variation"
+        },
+        {
+          "body_part": "spine_head",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.013307841314316712,
+          "severity": "low",
+          "error_type": "spine_head_bone_length_variation"
+        },
+        {
+          "body_part": "right_arm",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.020510245875603975,
+          "severity": "low",
+          "error_type": "right_arm_bone_length_variation"
+        },
+        {
+          "body_part": "left_arm",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.022897486419864423,
+          "severity": "low",
+          "error_type": "left_arm_bone_length_variation"
+        }
+      ]
+    },
+    "VelocityJitterEvaluator": {
+      "n_reports": 4,
+      "score_mean": 0.019390590905802342,
+      "score_max": 0.021443186423149328,
+      "max_severity": "low",
+      "reports": [
+        {
+          "body_part": "full_body",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.019495290002302375,
+          "severity": "low",
+          "error_type": "global_velocity_jitter"
+        },
+        {
+          "body_part": "legs",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.01880378273945581,
+          "severity": "low",
+          "error_type": "legs_velocity_jitter"
+        },
+        {
+          "body_part": "arms",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.021443186423149328,
+          "severity": "low",
+          "error_type": "arms_velocity_jitter"
+        },
+        {
+          "body_part": "spine_head",
+          "frames": [
+            0,
+            99
+          ],
+          "score": 0.017820104458301865,
+          "severity": "low",
+          "error_type": "spine_head_velocity_jitter"
+        }
+      ]
+    }
+  },
+  "negative_result": false
+}
