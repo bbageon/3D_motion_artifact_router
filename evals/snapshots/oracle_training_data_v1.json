@@ -1,0 +1,3830 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_supervised_training_data",
+  "oracle_prefix": "oracle_single_step_v2",
+  "n_tuples": 90,
+  "feature_names": [
+    "is_foot_floating",
+    "is_bone_stretch_right_arm",
+    "is_global_jitter",
+    "score_FootFloatingEvaluator",
+    "score_BoneLengthEvaluator",
+    "score_VelocityJitterEvaluator"
+  ],
+  "n_features": 6,
+  "n_classes_joint": 9,
+  "label_distribution": {
+    "tool": {
+      "FootLockTool": 30,
+      "BoneProjectionTool": 30,
+      "VelocitySmoothingTool": 30
+    },
+    "strength": {
+      "medium": 21,
+      "large": 67,
+      "small": 2
+    },
+    "joint": {
+      "FootLockTool/medium": 21,
+      "BoneProjectionTool/large": 30,
+      "VelocitySmoothingTool/large": 30,
+      "FootLockTool/large": 7,
+      "FootLockTool/small": 2
+    },
+    "per_artifact": {
+      "foot_floating": {
+        "FootLockTool/medium": 21,
+        "FootLockTool/large": 7,
+        "FootLockTool/small": 2
+      },
+      "bone_stretch_right_arm": {
+        "BoneProjectionTool/large": 30
+      },
+      "global_jitter": {
+        "VelocitySmoothingTool/large": 30
+      }
+    }
+  },
+  "tuples": [
+    {
+      "trial_id": "M004244",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.7386934673366834,
+          "BoneLengthEvaluator": 0.018013054864579114,
+          "VelocityJitterEvaluator": 0.016387342778944734
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.7386934673366834,
+          0.018013054864579114,
+          0.016387342778944734
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.567269573364955
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M004244",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.07035175879396985,
+          "BoneLengthEvaluator": 0.1492461172714166,
+          "VelocityJitterEvaluator": 0.017484291726809816
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.07035175879396985,
+          0.1492461172714166,
+          0.017484291726809816
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1899061077702354
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M004244",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2712673066255261,
+          "VelocityJitterEvaluator": 0.2041692392927493
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2712673066255261,
+          0.2041692392927493
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4184085059485867
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000758",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.6214689265536724,
+          "BoneLengthEvaluator": 0.054853938040425876,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.6214689265536724,
+          0.054853938040425876,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.6105808660324493
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M000758",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.6214689265536724,
+          "BoneLengthEvaluator": 0.14915234239728473,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.6214689265536724,
+          0.14915234239728473,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18687561584099846
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000758",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.28257630447091164,
+          "VelocityJitterEvaluator": 0.20462784293295963
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.28257630447091164,
+          0.20462784293295963
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4364082525727786
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012644",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.9098360655737705,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.9098360655737705,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.5828773590048384
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012644",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.07377049180327869,
+          "BoneLengthEvaluator": 0.13043473092059532,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.07377049180327869,
+          0.13043473092059532,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.12956601496053136
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012644",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2597553075782152,
+          "VelocityJitterEvaluator": 0.2041847740730934
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2597553075782152,
+          0.2041847740730934
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4420969787652404
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M010479",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.22085889570552147,
+          "BoneLengthEvaluator": 0.06019088788688154,
+          "VelocityJitterEvaluator": 0.02988098822564283
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.22085889570552147,
+          0.06019088788688154,
+          0.02988098822564283
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.20726030313451418
+      },
+      "joint_class_idx": 0,
+      "tool_class_idx": 0,
+      "strength_class_idx": 0
+    },
+    {
+      "trial_id": "M010479",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.018404907975460124,
+          "BoneLengthEvaluator": 0.14907938660157818,
+          "VelocityJitterEvaluator": 0.02988098822564283
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.018404907975460124,
+          0.14907938660157818,
+          0.02988098822564283
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1921930874213195
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M010479",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.26838127214306834,
+          "VelocityJitterEvaluator": 0.20633081926440358
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.26838127214306834,
+          0.20633081926440358
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.34410598096766565
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "002652",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.518918918918919,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.518918918918919,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.531245975050775
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "002652",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14918908240671697,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14918908240671697,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18928997606004408
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "002652",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2724887804131059,
+          "VelocityJitterEvaluator": 0.20436562125932134
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2724887804131059,
+          0.20436562125932134
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4465152199702409
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "002806",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.5121951219512195,
+          "BoneLengthEvaluator": 0.028150272849612776,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.5121951219512195,
+          0.028150272849612776,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.4874497977701916
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "002806",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.024390243902439025,
+          "BoneLengthEvaluator": 0.13043478816877568,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.024390243902439025,
+          0.13043478816877568,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.13022304802331372
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "002806",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.26696663889478506,
+          "VelocityJitterEvaluator": 0.2040099230091918
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.26696663889478506,
+          0.2040099230091918
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.42863692314553137
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "005366",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.9195979899497487,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.9195979899497487,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.897291865615984
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "005366",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14924606206186872,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14924606206186872,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18922246872385287
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "005366",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.30089718910000324,
+          "VelocityJitterEvaluator": 0.20331349091243914
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.30089718910000324,
+          0.20331349091243914
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4438661268781047
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M009465",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.7741935483870968,
+          "BoneLengthEvaluator": 0.019551130994120466,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.7741935483870968,
+          0.019551130994120466,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.6926145613824352
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M009465",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.08602150537634409,
+          "BoneLengthEvaluator": 0.14838676266947698,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.08602150537634409,
+          0.14838676266947698,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18696545323991393
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M009465",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.26868680788373633,
+          "VelocityJitterEvaluator": 0.2025115326481432
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.26868680788373633,
+          0.2025115326481432
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.40739210818196503
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008383",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.4727272727272727,
+          "BoneLengthEvaluator": 0.02585330688327834,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.4727272727272727,
+          0.02585330688327834,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.4290152598458332
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M008383",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.5818181818181818,
+          "BoneLengthEvaluator": 0.14727237385393616,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.5818181818181818,
+          0.14727237385393616,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.193124902276994
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008383",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.267152346834661,
+          "VelocityJitterEvaluator": 0.2029410631486343
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.267152346834661,
+          0.2029410631486343
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.43731878278727854
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M005780",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.6080402010050251,
+          "BoneLengthEvaluator": 0.027796970327172522,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.6080402010050251,
+          0.027796970327172522,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.47359636949634354
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M005780",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.020100502512562814,
+          "BoneLengthEvaluator": 0.14924598637350384,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.020100502512562814,
+          0.14924598637350384,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.19032455217310318
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M005780",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.27960115083688863,
+          "VelocityJitterEvaluator": 0.20352561125778107
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.27960115083688863,
+          0.20352561125778107
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.42345517732272075
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "003787",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.9849246231155779,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.9849246231155779,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.5275104626444581
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "003787",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14924596418442412,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14924596418442412,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1906488883169399
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "003787",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2723214046675972,
+          "VelocityJitterEvaluator": 0.20336444036892437
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2723214046675972,
+          0.20336444036892437
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4448461449576264
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "005915",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.8091603053435115,
+          "BoneLengthEvaluator": 0.014248006476926854,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.8091603053435115,
+          0.014248006476926854,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.5930560170259183
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "005915",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.04580152671755725,
+          "BoneLengthEvaluator": 0.14885478580951783,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.04580152671755725,
+          0.14885478580951783,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1868125114079011
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "005915",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.007633587786259542,
+          "BoneLengthEvaluator": 0.26720049589936823,
+          "VelocityJitterEvaluator": 0.20391662797613355
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.007633587786259542,
+          0.26720049589936823,
+          0.20391662797613355
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.42691395379789543
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M013874",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.7688442211055276,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.7688442211055276,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.44694411609658685
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M013874",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14924615218787154,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14924615218787154,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.184823308657181
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M013874",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.005025125628140704,
+          "BoneLengthEvaluator": 0.27496657728307744,
+          "VelocityJitterEvaluator": 0.20336932955271256
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.005025125628140704,
+          0.27496657728307744,
+          0.20336932955271256
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4432978373356789
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000374",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.25949367088607594,
+          "BoneLengthEvaluator": 0.025493177378141316,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.25949367088607594,
+          0.025493177378141316,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.16073624088263602
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000374",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.24050632911392406,
+          "BoneLengthEvaluator": 0.13043477833657796,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.24050632911392406,
+          0.13043477833657796,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.13070222697345663
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000374",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2701859652110477,
+          "VelocityJitterEvaluator": 0.20478177894929905
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2701859652110477,
+          0.20478177894929905
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4426807844838082
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M009955",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.4020100502512563,
+          "BoneLengthEvaluator": 0.03303949970984848,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.4020100502512563,
+          0.03303949970984848,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.3094048121689435
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M009955",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.04020100502512563,
+          "BoneLengthEvaluator": 0.14924602566976605,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.04020100502512563,
+          0.14924602566976605,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18978643322936192
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M009955",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.28910958222378685,
+          "VelocityJitterEvaluator": 0.20346900170752036
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.28910958222378685,
+          0.20346900170752036
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.42309253094389254
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008256",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 1.0,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 1.0153235209488172
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008256",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14914265190956535,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14914265190956535,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18728135079688996
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008256",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.27011843245186584,
+          "VelocityJitterEvaluator": 0.20418908062433797
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.27011843245186584,
+          0.20418908062433797
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4475854986626773
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "010854",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.5769230769230769,
+          "BoneLengthEvaluator": 0.035100832111803586,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.5769230769230769,
+          0.035100832111803586,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.37330553006318007
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "010854",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.09615384615384616,
+          "BoneLengthEvaluator": 0.1304347629601288,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.09615384615384616,
+          0.1304347629601288,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1306334418040289
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "010854",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.009615384615384616,
+          "BoneLengthEvaluator": 0.27249223761258523,
+          "VelocityJitterEvaluator": 0.20285988883172318
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.009615384615384616,
+          0.27249223761258523,
+          0.20285988883172318
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.41351576533779943
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M006908",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.4824120603015075,
+          "BoneLengthEvaluator": 0.016665104161558898,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.4824120603015075,
+          0.016665104161558898,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.38933093871960045
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M006908",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.01507537688442211,
+          "BoneLengthEvaluator": 0.14924609279880166,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.01507537688442211,
+          0.14924609279880166,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18702939228471685
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M006908",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.005025125628140704,
+          "BoneLengthEvaluator": 0.27620296054636195,
+          "VelocityJitterEvaluator": 0.20402016386986155
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.005025125628140704,
+          0.27620296054636195,
+          0.20402016386986155
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4167927838535471
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "011768",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.484375,
+          "BoneLengthEvaluator": 0.056765886444050416,
+          "VelocityJitterEvaluator": 0.03332009904020702
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.484375,
+          0.056765886444050416,
+          0.03332009904020702
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.3481154810620534
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "011768",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.484375,
+          "BoneLengthEvaluator": 0.13043487874381732,
+          "VelocityJitterEvaluator": 0.03523472510586564
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.484375,
+          0.13043487874381732,
+          0.03523472510586564
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.12920693512699538
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "011768",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2780915243533276,
+          "VelocityJitterEvaluator": 0.20689022887346678
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2780915243533276,
+          0.20689022887346678
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.34862039266736755
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012814",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.2964824120603015,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.2964824120603015,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.2816209260773871
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "012814",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14924593487727136,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14924593487727136,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18765865568100987
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012814",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2729523657306241,
+          "VelocityJitterEvaluator": 0.203345055392864
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2729523657306241,
+          0.203345055392864
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4443031657348944
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012957",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.017298460539307135
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.0,
+          0.0,
+          0.017298460539307135
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.012824663731477535
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "012957",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14924606652649638,
+          "VelocityJitterEvaluator": 0.019725913487911514
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14924606652649638,
+          0.019725913487911514
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1977242991641175
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "012957",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2756515817900103,
+          "VelocityJitterEvaluator": 0.2045070385187212
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2756515817900103,
+          0.2045070385187212
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4169291895830337
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M001324",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.16265060240963855,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.16265060240963855,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.11486316942205389
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M001324",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.006024096385542169,
+          "BoneLengthEvaluator": 0.13043479728372903,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.006024096385542169,
+          0.13043479728372903,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.13054589094894103
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M001324",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.27340018820024914,
+          "VelocityJitterEvaluator": 0.20530662707005884
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.27340018820024914,
+          0.20530662707005884
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.42946383492669005
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "013152",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.5879396984924623,
+          "BoneLengthEvaluator": 0.02238372946412053,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.5879396984924623,
+          0.02238372946412053,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.43470321607114404
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "013152",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.01507537688442211,
+          "BoneLengthEvaluator": 0.14924604463555152,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.01507537688442211,
+          0.14924604463555152,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18758357716869162
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "013152",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2810234832632639,
+          "VelocityJitterEvaluator": 0.20345361198609904
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2810234832632639,
+          0.20345361198609904
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.43213967321725355
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000004",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 1.0,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.8863840104870957
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M000004",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14924587185710922,
+          "VelocityJitterEvaluator": 0.015341652581760307
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14924587185710922,
+          0.015341652581760307
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1813717845793574
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M000004",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.28883322239227277,
+          "VelocityJitterEvaluator": 0.20372422632989567
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.28883322239227277,
+          0.20372422632989567
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4360005072153548
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008021",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.3417085427135678,
+          "BoneLengthEvaluator": 0.027504021205426003,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.3417085427135678,
+          0.027504021205426003,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.27287830207559466
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M008021",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.05025125628140704,
+          "BoneLengthEvaluator": 0.14924592649459495,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.05025125628140704,
+          0.14924592649459495,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18684007978250403
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M008021",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2838420439703568,
+          "VelocityJitterEvaluator": 0.203514571121049
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2838420439703568,
+          0.203514571121049
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4331675618166122
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M012465",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.012261365776981364
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M012465",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.13043491182804487,
+          "VelocityJitterEvaluator": 0.017288762293867176
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.13043491182804487,
+          0.017288762293867176
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1303853170521109
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M012465",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.28381884083735104,
+          "VelocityJitterEvaluator": 0.20440364755019563
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.28381884083735104,
+          0.20440364755019563
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.433159081687988
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M006376",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.7482517482517482,
+          "BoneLengthEvaluator": 0.017874844109144812,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.7482517482517482,
+          0.017874844109144812,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "large",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.7054177820875743
+      },
+      "joint_class_idx": 2,
+      "tool_class_idx": 0,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M006376",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.04195804195804196,
+          "BoneLengthEvaluator": 0.14895093020126415,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.04195804195804196,
+          0.14895093020126415,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18797973378029584
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M006376",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2724363204487552,
+          "VelocityJitterEvaluator": 0.20425100565760684
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2724363204487552,
+          0.20425100565760684
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.445037556283597
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M004533",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.08571428571428572,
+          "BoneLengthEvaluator": 0.0,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.08571428571428572,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.025640422086838158
+      },
+      "joint_class_idx": 0,
+      "tool_class_idx": 0,
+      "strength_class_idx": 0
+    },
+    {
+      "trial_id": "M004533",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.04285714285714286,
+          "BoneLengthEvaluator": 0.13043480010069333,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.04285714285714286,
+          0.13043480010069333,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1305310094896817
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M004533",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2754921867460497,
+          "VelocityJitterEvaluator": 0.20549772721640053
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2754921867460497,
+          0.20549772721640053
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.4393840356972504
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "002554",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.8091603053435115,
+          "BoneLengthEvaluator": 0.027384520280356397,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.8091603053435115,
+          0.027384520280356397,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.7498785524540077
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "002554",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.3893129770992366,
+          "BoneLengthEvaluator": 0.14885474719127073,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.3893129770992366,
+          0.14885474719127073,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.1868389967061988
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "002554",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.28393787113450725,
+          "VelocityJitterEvaluator": 0.2045715095266766
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.28393787113450725,
+          0.2045715095266766
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.42182555905776276
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M007659",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_kind": "foot_floating",
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.12371134020618557,
+          "BoneLengthEvaluator": 0.012279012391130216,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.12371134020618557,
+          0.012279012391130216,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain_provisional": 0.11929545561790074
+      },
+      "joint_class_idx": 1,
+      "tool_class_idx": 0,
+      "strength_class_idx": 1
+    },
+    {
+      "trial_id": "M007659",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_kind": "bone_stretch_right_arm",
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.14845347029413586,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.14845347029413586,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "large",
+        "best_target_part": "right_arm",
+        "best_netgain_provisional": 0.18657995473865707
+      },
+      "joint_class_idx": 5,
+      "tool_class_idx": 1,
+      "strength_class_idx": 2
+    },
+    {
+      "trial_id": "M007659",
+      "artifact_kind": "global_jitter",
+      "state": {
+        "artifact_kind": "global_jitter",
+        "artifact_onehot": [
+          0,
+          0,
+          1
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2719413029843955,
+          "VelocityJitterEvaluator": 0.20256925312243704
+        },
+        "feature_vector": [
+          0,
+          0,
+          1,
+          0.0,
+          0.2719413029843955,
+          0.20256925312243704
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "large",
+        "best_target_part": "full_body",
+        "best_netgain_provisional": 0.40767333865611755
+      },
+      "joint_class_idx": 8,
+      "tool_class_idx": 2,
+      "strength_class_idx": 2
+    }
+  ]
+}

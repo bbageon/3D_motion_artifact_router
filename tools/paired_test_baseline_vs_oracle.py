@@ -33,6 +33,7 @@ DEFAULT_RAW_DIR = REPO_ROOT / "evals" / "raw"
 BASELINE_RECORD_TYPES = (
     "baseline_fixed_pipeline_sample",
     "baseline_rule_based_sample",
+    "baseline_supervised_sample",
 )
 ORACLE_RECORD_TYPES = (
     "oracle_single_step_sample",
