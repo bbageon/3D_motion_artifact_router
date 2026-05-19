@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_fixed_pipeline_sample",
+  "timestamp": "20260519T010353374244Z",
+  "task_id": "baseline_b2_fixed_smoothing_v1",
+  "split_id": "calibration_v1",
+  "trial_id": "002806",
+  "baseline_type": "b2",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\002806.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_registry_config_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854"
+  },
+  "skeleton_normalizer_model_card_hash": null,
+  "motion_shape": [
+    82,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "selections": {
+    "foot_floating": {
+      "artifact_kind": "foot_floating",
+      "target_evaluator": "FootFloatingEvaluator",
+      "baseline_type": "b2",
+      "target_score_before": 0.4878048780487805,
+      "target_score_after": 0.47560975609756095,
+      "target_delta": -0.012195121951219523,
+      "fidelity_loss_protocol_a": 0.0022132635125516253,
+      "correction_magnitude": 0.002606616618673162,
+      "tool_call_cost": 1.0,
+      "cross_evaluator_delta": {
+        "BoneLengthEvaluator": 0.0013084936493009437,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "netgain_provisional": 0.0011288043884613956,
+      "tool_call_trace": [
+        {
+          "tool": "VelocitySmoothingTool",
+          "target_part": "full_body",
+          "strength": "medium",
+          "skipped": false,
+          "correction_magnitude": 0.002606616618673162
+        }
+      ]
+    },
+    "bone_stretch_right_arm": {
+      "artifact_kind": "bone_stretch_right_arm",
+      "target_evaluator": "BoneLengthEvaluator",
+      "baseline_type": "b2",
+      "target_score_before": 0.13043478816877568,
+      "target_score_after": 0.12808872018747447,
+      "target_delta": -0.002346067981301214,
+      "fidelity_loss_protocol_a": 0.0023458845296070435,
+      "correction_magnitude": 0.0027748918615067347,
+      "tool_call_cost": 1.0,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": -0.012195121951219513,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "netgain_provisional": -0.009383354666734003,
+      "tool_call_trace": [
+        {
+          "tool": "VelocitySmoothingTool",
+          "target_part": "full_body",
+          "strength": "medium",
+          "skipped": false,
+          "correction_magnitude": 0.0027748918615067347
+        }
+      ]
+    },
+    "global_jitter": {
+      "artifact_kind": "global_jitter",
+      "target_evaluator": "VelocityJitterEvaluator",
+      "baseline_type": "b2",
+      "target_score_before": 0.19649472500777215,
+      "target_score_after": 0.030521221147280876,
+      "target_delta": -0.16597350386049128,
+      "fidelity_loss_protocol_a": -0.03688295628446202,
+      "correction_magnitude": 0.055469071565505644,
+      "tool_call_cost": 1.0,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.15853658536585366,
+        "BoneLengthEvaluator": -0.07336636032354452
+      },
+      "netgain_provisional": 0.3503882852828014,
+      "tool_call_trace": [
+        {
+          "tool": "VelocitySmoothingTool",
+          "target_part": "full_body",
+          "strength": "medium",
+          "skipped": false,
+          "correction_magnitude": 0.055469071565505644
+        }
+      ]
+    }
+  },
+  "negative_result": false
+}

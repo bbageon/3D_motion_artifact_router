@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_baseline_vs_oracle",
+  "n_keys_compared": 90,
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "n_pairs": 30,
+      "oracle_netgain_mean": 0.17295516713931144,
+      "oracle_netgain_median": 0.1869205345404562,
+      "baseline_netgain_mean": 0.004791557834785393,
+      "baseline_netgain_median": 3.629638057090368e-05,
+      "delta_mean": 0.16816360930452606,
+      "delta_median": 0.1795142727450609,
+      "delta_percent_median": 494578.99085663975,
+      "n_oracle_advantage": 30,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.862645149230957e-09,
+      "wilcoxon_p_greater_one_sided": 9.313225746154785e-10,
+      "cohens_d_paired": 5.973149437033282,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.15667544022712881,
+        "median_ci_hi_95": 0.18413938541536862,
+        "mean_ci_lo_95": 0.15655386704074012,
+        "mean_ci_hi_95": 0.17751375927099536
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "n_pairs": 30,
+      "oracle_netgain_mean": 0.4419565638732856,
+      "oracle_netgain_median": 0.4408236660838655,
+      "baseline_netgain_mean": 0.0003533522256661062,
+      "baseline_netgain_median": -0.0034560416611925,
+      "delta_mean": 0.4416032116476195,
+      "delta_median": 0.42304840352315454,
+      "delta_percent_median": 12240.836338100813,
+      "n_oracle_advantage": 30,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.862645149230957e-09,
+      "wilcoxon_p_greater_one_sided": 9.313225746154785e-10,
+      "cohens_d_paired": 1.6639967449728645,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.34913180726009885,
+        "median_ci_hi_95": 0.550480508044416,
+        "mean_ci_lo_95": 0.34798972920141813,
+        "mean_ci_hi_95": 0.5398983230109664
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "n_pairs": 30,
+      "oracle_netgain_mean": 0.425821108415232,
+      "oracle_netgain_median": 0.4326493774526208,
+      "baseline_netgain_mean": 0.35261662712511543,
+      "baseline_netgain_median": 0.3533473503574691,
+      "delta_mean": 0.07320448129011661,
+      "delta_median": 0.07814414659155355,
+      "delta_percent_median": 22.115390567524525,
+      "n_oracle_advantage": 30,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.862645149230957e-09,
+      "wilcoxon_p_greater_one_sided": 9.313225746154785e-10,
+      "cohens_d_paired": 3.510170711454784,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.07099733946715042,
+        "median_ci_hi_95": 0.08552065623485908,
+        "mean_ci_lo_95": 0.06516586691810713,
+        "mean_ci_hi_95": 0.08037404333152488
+      }
+    }
+  ],
+  "pooled": {
+    "n_pairs": 90,
+    "delta_mean": 0.2276571007474207,
+    "delta_median": 0.14673933960375335,
+    "n_oracle_advantage": 90,
+    "n_tie": 0,
+    "n_baseline_advantage": 0,
+    "wilcoxon_statistic": 0.0,
+    "wilcoxon_p_two_sided": 1.7437900167092118e-16,
+    "wilcoxon_p_greater_one_sided": 8.718950083546059e-17,
+    "cohens_d_paired": 1.0389718247083994,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": 0.11814283636532169,
+      "median_ci_hi_95": 0.18107066858845938,
+      "mean_ci_lo_95": 0.18549103291533733,
+      "mean_ci_hi_95": 0.2749833362543098
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: oracle > baseline.",
+    "effect_size_convention": "Cohen's d_paired = mean(oracle - baseline) / std. |d|>0.2 small, 0.5 medium, 0.8 large.",
+    "h_2026_204_rq1_threshold": "Oracle (B8) vs fixed smoothing (B2): NetGain median Delta >= +10% (명세 §11 Go 5). Rule-based (B5) vs fixed smoothing (B2): median Delta >= +5%, p<0.05, Cohen's d >= 0.3."
+  },
+  "baseline_prefix": "baseline_b2_fixed_smoothing_v1",
+  "oracle_prefix": "oracle_single_step_v2"
+}
