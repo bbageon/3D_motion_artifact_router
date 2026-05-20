@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_multi_artifact_sample",
+  "timestamp": "20260520T134034539553Z",
+  "task_id": "baseline_b2_fixed_smoothing_multi_n60",
+  "split_id": "multi_artifact_n60",
+  "trial_id": "013628",
+  "baseline_type": "b2_fixed_smoothing",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\013628.npy",
+  "generator_id": "humanml3d_gt",
+  "multi_artifact_recipe": [
+    "foot_floating(lift=0.08, seed=base)",
+    "global_jitter(noise=0.05, seed=base+1000)"
+  ],
+  "target_evaluators": [
+    "FootFloatingEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "total_artifact_score_definition": "mean(FootFloating_max, VelocityJitter_max)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "foot_floating_AND_global_jitter": {
+      "trial_id": "013628",
+      "target_score_before": 0.099536012956268,
+      "target_score_after": 0.07524093319240518,
+      "target_delta": -0.024295079763862817,
+      "fidelity_loss_protocol_a": -0.03552040747181017,
+      "correction_magnitude": 0.05567941709824054,
+      "netgain_provisional": 0.2018971171229137,
+      "trace": {
+        "baseline_type": "b2_fixed_smoothing",
+        "tool": "VelocitySmoothingTool",
+        "strength": "medium",
+        "target_part": "full_body",
+        "correction_magnitude": 0.05567941709824054
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2979722257829739,
+        "VelocityJitterEvaluator": 0.199072025912536
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.11557788944723618,
+        "BoneLengthEvaluator": 0.21601591535936557,
+        "VelocityJitterEvaluator": 0.0349039769375742
+      }
+    }
+  },
+  "negative_result": false
+}

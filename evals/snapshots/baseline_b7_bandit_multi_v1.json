@@ -1,0 +1,2525 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_b7_bandit_multi_summary",
+  "task_id": "baseline_b7_bandit_multi_v1",
+  "split_id": "bandit_eval_v1",
+  "baseline_type": "b7_bandit_closed_loop",
+  "max_iterations": 4,
+  "model_type": "random_forest",
+  "model_random_state": 1,
+  "train_ratio": 0.5,
+  "n_train_tuples": 300,
+  "n_eval_trials": 30,
+  "train_metrics": {
+    "model_type": "random_forest",
+    "n_train": 300,
+    "train_r2": 0.9219541514560045
+  },
+  "multi_artifact_recipe": [
+    "foot_floating",
+    "global_jitter"
+  ],
+  "target_evaluators": [
+    "FootFloatingEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "netgain_provisional": {
+    "mean": 0.16843123618618364,
+    "median": 0.1738435575855638,
+    "min": 0.003710569500269767,
+    "max": 0.3396524754265572,
+    "p25": 0.14095934343173358,
+    "p75": 0.21006826278595395
+  },
+  "tool_call_count": {
+    "mean": 2.1666666666666665,
+    "median": 1.0,
+    "max": 4
+  },
+  "termination": {
+    "rolled_back": 19,
+    "max_iterations_reached": 11,
+    "bandit_chose_stop": 0
+  },
+  "trial_ids": [
+    "001275",
+    "001885",
+    "002012",
+    "002551",
+    "002803",
+    "004546",
+    "005358",
+    "005716",
+    "005907",
+    "006669",
+    "008117",
+    "010650",
+    "012631",
+    "012943",
+    "013020",
+    "M001304",
+    "M003876",
+    "M004223",
+    "M004512",
+    "M005226",
+    "M005756",
+    "M006878",
+    "M007563",
+    "M007631",
+    "M007995",
+    "M008162",
+    "M009590",
+    "M010450",
+    "M011492",
+    "M013736"
+  ],
+  "results": [
+    {
+      "trial_id": "001275",
+      "target_score_before": 0.10383948066755427,
+      "target_score_after": 0.11100080714860186,
+      "target_delta": 0.007161326481047586,
+      "fidelity_loss_protocol_a": -0.03600355886855352,
+      "correction_magnitude": 0.05531503135563794,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.17285646786172001,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0024241002042362306,
+            0.011603087167278092,
+            0.017035901661574024,
+            0.01293380365394206,
+            0.005533478730347669,
+            -0.006139634104007954,
+            -0.03311730551181868,
+            0.10708157777820833,
+            0.19296229099044868,
+            0.05244419874622049
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9878766204803486,
+        1.1815046912168334
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.2849025485069923,
+        "VelocityJitterEvaluator": 0.19762871007882715
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.19095477386934673,
+        "BoneLengthEvaluator": 0.22017980447670457,
+        "VelocityJitterEvaluator": 0.031046840427857006
+      }
+    },
+    {
+      "trial_id": "001885",
+      "target_score_before": 0.09976915137934439,
+      "target_score_after": 0.048672566371681415,
+      "target_delta": -0.051096585007662974,
+      "fidelity_loss_protocol_a": -0.04583143875617423,
+      "correction_magnitude": 0.09464541841733215,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.28025377878853414,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002640116579790936,
+            0.004558183950822487,
+            0.005250901768550723,
+            -0.003408759216952426,
+            0.003125764057198429,
+            -0.0032044227830170823,
+            -0.030098417057620237,
+            0.10723810762713314,
+            0.20295864366639635,
+            0.06938590424510101
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.950473545591363,
+        1.0130537822414514,
+        0.8568405175398097,
+        0.7385348061043926,
+        0.6206849976330505
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2842280780115395,
+        "VelocityJitterEvaluator": 0.19953830275868878
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.09734513274336283,
+        "BoneLengthEvaluator": 0.1317733043732326,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "002012",
+      "target_score_before": 0.10237487837898855,
+      "target_score_after": 0.08040201005025126,
+      "target_delta": -0.021972868328737294,
+      "fidelity_loss_protocol_a": 0.0036524597656935054,
+      "correction_magnitude": 0.13838490006386972,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.003710569500269767,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.0023600784381854188,
+            0.008139449105106476,
+            0.012280580137183002,
+            -0.004840701991754815,
+            0.00013879152663073732,
+            -0.01049392065820264,
+            -0.035528668650052074,
+            0.10894204703107638,
+            0.2079388706421311,
+            0.05386517561320404
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.026221725522064,
+        1.1287052196869953,
+        1.1113751366898412,
+        1.0372296116429427,
+        1.0121358849270903
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.2881998226882187,
+        "VelocityJitterEvaluator": 0.1997246311298364
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.16080402010050251,
+        "BoneLengthEvaluator": 0.15344655725779005,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "002551",
+      "target_score_before": 0.10416045736923965,
+      "target_score_after": 0.10963089056244615,
+      "target_delta": 0.005470433193206503,
+      "fidelity_loss_protocol_a": -0.03606021610052282,
+      "correction_magnitude": 0.05523481303983845,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.1748306473094076,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002498042516357122,
+            0.010693272573844387,
+            0.016344342586007927,
+            0.010276489737336223,
+            0.005278529685057052,
+            -0.006282932950787298,
+            -0.034032944052318936,
+            0.10831273446517638,
+            0.18423060416442227,
+            0.04573560004866446
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.960626498724006,
+        1.180933261420299
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.00819672131147541,
+        "BoneLengthEvaluator": 0.2862332320789338,
+        "VelocityJitterEvaluator": 0.20012419342700388
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.1885245901639344,
+        "BoneLengthEvaluator": 0.22583200374296922,
+        "VelocityJitterEvaluator": 0.03073719096095789
+      }
+    },
+    {
+      "trial_id": "002803",
+      "target_score_before": 0.1034070797224128,
+      "target_score_after": 0.16972332970552106,
+      "target_delta": 0.06631624998310827,
+      "fidelity_loss_protocol_a": -0.03600603348595835,
+      "correction_magnitude": 0.05524239917186534,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.11371391744668348,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.002316750965273666,
+            0.008230408519751391,
+            0.012623590372397653,
+            -0.004561759944755304,
+            0.00032670688447733015,
+            -0.010441572367961552,
+            -0.03490212282397862,
+            0.10755995546453859,
+            0.18797198360553094,
+            0.04178604501786595
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9531916727286363,
+        1.479613372630753
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.007352941176470588,
+        "BoneLengthEvaluator": 0.2874780303001339,
+        "VelocityJitterEvaluator": 0.199461218268355
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.3088235294117647,
+        "BoneLengthEvaluator": 0.2251549864524503,
+        "VelocityJitterEvaluator": 0.03062312999927739
+      }
+    },
+    {
+      "trial_id": "004546",
+      "target_score_before": 0.09961147145875017,
+      "target_score_after": 0.07916180969838275,
+      "target_delta": -0.020449661760367416,
+      "fidelity_loss_protocol_a": -0.03588332177215907,
+      "correction_magnitude": 0.05518899721613045,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.19986627062116277,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002414925133126194,
+            0.004332992504157746,
+            0.004302830304782375,
+            -0.02211197599370705,
+            0.002900572610533687,
+            -0.0034677188233467526,
+            -0.03040345272558627,
+            0.10784539905223513,
+            0.2044331732812898,
+            0.10950070234426884
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9423414138353394,
+        1.1384610155258728
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2853357687545421,
+        "VelocityJitterEvaluator": 0.19922294291750034
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.1276595744680851,
+        "BoneLengthEvaluator": 0.22043200395976653,
+        "VelocityJitterEvaluator": 0.030664044928680422
+      }
+    },
+    {
+      "trial_id": "005358",
+      "target_score_before": 0.09964216830067446,
+      "target_score_after": 0.011055457659937836,
+      "target_delta": -0.08858671064073663,
+      "fidelity_loss_protocol_a": -0.02020315593593163,
+      "correction_magnitude": 0.09433944780677694,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.18960249032039478,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.003512862289278961,
+            0.005293400524020081,
+            0.00671743311108064,
+            -0.01178053286847274,
+            0.0038616838058852404,
+            -0.002463122846166684,
+            -0.029276047691864013,
+            0.10764295907169641,
+            0.21557096757459707,
+            0.16610340247897729
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002459533074726209,
+            0.00522382821502193,
+            0.0063946316459630595,
+            -0.026562641674088762,
+            0.003127168075104631,
+            -0.0036926772799431517,
+            -0.03143676703896173,
+            0.1053223547494646,
+            0.2088585080703335,
+            0.18567260568255425
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002459533074726209,
+            0.00522382821502193,
+            0.0063946316459630595,
+            -0.026562641674088762,
+            0.003127168075104631,
+            -0.0036926772799431517,
+            -0.03143676703896173,
+            0.1053223547494646,
+            0.2088585080703335,
+            0.18567260568255425
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002459533074726209,
+            0.00522382821502193,
+            0.0063946316459630595,
+            -0.026562641674088762,
+            0.003127168075104631,
+            -0.0036926772799431517,
+            -0.03143676703896173,
+            0.1053223547494646,
+            0.2088585080703335,
+            0.18567260568255425
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9260087148854357,
+        0.9870465454294548,
+        0.8398523631977576,
+        0.7538450805128802,
+        0.693807358159567
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.26927263794440387,
+        "VelocityJitterEvaluator": 0.19928433660134892
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1757307092087413,
+        "VelocityJitterEvaluator": 0.022110915319875673
+      }
+    },
+    {
+      "trial_id": "005716",
+      "target_score_before": 0.1003875387331165,
+      "target_score_after": 0.09216853854040481,
+      "target_delta": -0.008219000192711684,
+      "fidelity_loss_protocol_a": -0.04104998532963453,
+      "correction_magnitude": 0.06796412355592102,
+      "tool_call_count": 2,
+      "netgain_provisional": 0.21346892684088434,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0028157355177808423,
+            0.004733802888812393,
+            0.004208264446090029,
+            -0.003195390501988973,
+            0.0033013829951883357,
+            -0.0036644442051184346,
+            -0.03229594448525344,
+            0.10982222558005741,
+            0.20962911261179248,
+            0.11604187998966836
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.018493760449069557,
+            0.013667512140106954,
+            0.005435369953453181,
+            -0.005561577012007768,
+            -0.03172949863117795,
+            0.09259000370291924,
+            0.17717002898362508,
+            0.16716985343269286
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9543435407728973,
+        0.9583125945350915,
+        0.9441537892264887
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2814962447874544,
+        "VelocityJitterEvaluator": 0.200775077466233
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.16666666666666666,
+        "BoneLengthEvaluator": 0.18532354702985437,
+        "VelocityJitterEvaluator": 0.01767041041414296
+      }
+    },
+    {
+      "trial_id": "005907",
+      "target_score_before": 0.103871911824968,
+      "target_score_after": 0.14375121293932797,
+      "target_delta": 0.03987930111435997,
+      "fidelity_loss_protocol_a": -0.03599589550816406,
+      "correction_magnitude": 0.055334475062877586,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.14010017642646033,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002766914415277391,
+            0.011633700285526563,
+            0.017212976512823327,
+            0.0132894209073652,
+            0.005705841886998696,
+            -0.007541757456037673,
+            -0.03615571287568802,
+            0.10821988712268847,
+            0.1759572127504503,
+            -0.01295172759929211
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9825144907687193,
+        1.3374049253207203
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.2971474697049513,
+        "VelocityJitterEvaluator": 0.1976935723936546
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.2562814070351759,
+        "BoneLengthEvaluator": 0.21472152158423538,
+        "VelocityJitterEvaluator": 0.031221018843480036
+      }
+    },
+    {
+      "trial_id": "006669",
+      "target_score_before": 0.09871873013458615,
+      "target_score_after": 0.10387450719943395,
+      "target_delta": 0.005155777064847794,
+      "fidelity_loss_protocol_a": -0.03607013205539508,
+      "correction_magnitude": 0.05541588148974238,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.17519488321212762,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0021251745154068197,
+            0.005026998791992968,
+            0.005786651796391156,
+            -0.027763846527372408,
+            0.0029296354765864546,
+            -0.004155639034044628,
+            -0.032498269652259354,
+            0.10718448641030834,
+            0.206690097231568,
+            0.11604856970218648
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9597572830646124,
+        1.2467050178208203
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2830853116945716,
+        "VelocityJitterEvaluator": 0.1974374602691723
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.1744186046511628,
+        "BoneLengthEvaluator": 0.22744154492288252,
+        "VelocityJitterEvaluator": 0.033330409747705105
+      }
+    },
+    {
+      "trial_id": "008117",
+      "target_score_before": 0.0991155380003392,
+      "target_score_after": 0.08461538461538462,
+      "target_delta": -0.014500153384954584,
+      "fidelity_loss_protocol_a": -0.025192552515099158,
+      "correction_magnitude": 0.11115268392563919,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.14046291596045038,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.002606953323246746,
+            -0.0003518664766223944,
+            -0.005863184891294988,
+            -0.0418027450735579,
+            -0.002205650635062939,
+            -0.0067011257698090625,
+            -0.03112826394681244,
+            0.10882335874946124,
+            0.20634729594273366,
+            0.1420863261498363
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.017537596443083427,
+            0.013667512140106954,
+            0.005435369953453181,
+            -0.005561577012007768,
+            -0.03172949863117795,
+            0.10567409528232691,
+            0.21156406874072192,
+            0.16663633254130122
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.0046434796006913,
+        0.9904392747531269,
+        0.8930884917242805,
+        0.8964641435598208,
+        0.8052766188908957
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28673488517543755,
+        "VelocityJitterEvaluator": 0.1982310760006784
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.16923076923076924,
+        "BoneLengthEvaluator": 0.14125698734400155,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "010650",
+      "target_score_before": 0.10948663427259206,
+      "target_score_after": 0.03804347826086957,
+      "target_delta": -0.07144315601172249,
+      "fidelity_loss_protocol_a": -0.05364186388296695,
+      "correction_magnitude": 0.08889339892241077,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.3396524754265572,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0026938521252962166,
+            0.011742643210333057,
+            0.017407799054031857,
+            0.013323047864473794,
+            0.005666201332458722,
+            -0.006984984749254839,
+            -0.03487927935897271,
+            0.10772939083161198,
+            0.20674501486880806,
+            0.09017712758576414
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.013853525406259,
+        1.4904494182845245,
+        0.9697760693339081,
+        0.7584084087164564,
+        0.5728039443020596
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.021739130434782608,
+        "BoneLengthEvaluator": 0.2935007922328083,
+        "VelocityJitterEvaluator": 0.19723413811040152
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.07608695652173914,
+        "BoneLengthEvaluator": 0.14317091982013552,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "012631",
+      "target_score_before": 0.10387151233419314,
+      "target_score_after": 0.0909024859909009,
+      "target_delta": -0.01296902634329225,
+      "fidelity_loss_protocol_a": -0.03600491844183282,
+      "correction_magnitude": 0.055332249148537745,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.19299361855245634,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002766914415277391,
+            0.011633700285526563,
+            0.017212976512823327,
+            0.01322618459360572,
+            0.005705841886998696,
+            -0.007317419118963431,
+            -0.0356194763635192,
+            0.10837722167888834,
+            0.17494439369394812,
+            -0.011918128325329784
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9809542290781152,
+        1.1396865337000213
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.2944486594455766,
+        "VelocityJitterEvaluator": 0.1976927734121049
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.1507537688442211,
+        "BoneLengthEvaluator": 0.2169584647801396,
+        "VelocityJitterEvaluator": 0.0310512031375807
+      }
+    },
+    {
+      "trial_id": "012943",
+      "target_score_before": 0.10133608160588457,
+      "target_score_after": 0.05573471821916057,
+      "target_delta": -0.045601363386724006,
+      "fidelity_loss_protocol_a": -0.035997226536527795,
+      "correction_magnitude": 0.0553147987463457,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.22558749606936296,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002841920810103837,
+            0.011843079953407516,
+            0.017066224849866352,
+            0.0132727717483446,
+            0.0056554158015541854,
+            -0.006961872674952319,
+            -0.03561210732034933,
+            0.10632918573646785,
+            0.20002297316375728,
+            0.06578418661675595
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9946086983861648,
+        1.0830169042146858
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.301465955200972,
+        "VelocityJitterEvaluator": 0.19764703758362845
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.08040201005025126,
+        "BoneLengthEvaluator": 0.21877953400467912,
+        "VelocityJitterEvaluator": 0.031067426388069874
+      }
+    },
+    {
+      "trial_id": "013020",
+      "target_score_before": 0.10007397383356204,
+      "target_score_after": 0.08163265306122448,
+      "target_delta": -0.018441320772337552,
+      "fidelity_loss_protocol_a": 0.0003010354249873004,
+      "correction_magnitude": 0.13339146868673613,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.01693614364740105,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.003279029458577407,
+            0.005059567693318529,
+            0.005621564791403983,
+            -0.0023063737333189655,
+            0.0036278509751836874,
+            -0.0030011842380245142,
+            -0.03117132679604665,
+            0.10977617853964095,
+            0.22668041541597755,
+            0.19581986763292392
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9012493655617948,
+        1.2083471177364848,
+        0.9809829444559718,
+        0.8367679768384542,
+        0.7388992621793721
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2599106035370277,
+        "VelocityJitterEvaluator": 0.20014794766712407
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.16326530612244897,
+        "BoneLengthEvaluator": 0.11887455702642624,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M001304",
+      "target_score_before": 0.1014344052298124,
+      "target_score_after": 0.12118024808301325,
+      "target_delta": 0.019745842853200857,
+      "fidelity_loss_protocol_a": -0.03596400555380387,
+      "correction_magnitude": 0.055355101403426796,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.16007418491581848,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002725413257647348,
+            0.01138734874651298,
+            0.016527763560944347,
+            0.012678914674273227,
+            0.005362534404783434,
+            -0.006745215816034863,
+            -0.034735339098841335,
+            0.10894125849170441,
+            0.1934642981442593,
+            0.041787371219816155
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9621129893046918,
+        1.286242569702939
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.28945854523802006,
+        "VelocityJitterEvaluator": 0.1978436848314841
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.21105527638190955,
+        "BoneLengthEvaluator": 0.2113674392032426,
+        "VelocityJitterEvaluator": 0.03130521978411696
+      }
+    },
+    {
+      "trial_id": "M003876",
+      "target_score_before": 0.10314202857480229,
+      "target_score_after": 0.1139230312105059,
+      "target_delta": 0.010781002635703613,
+      "fidelity_loss_protocol_a": -0.03591538403955028,
+      "correction_magnitude": 0.05545709278228955,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.1687959175620478,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.0023905600731402637,
+            0.008156599411884792,
+            0.012791539959291826,
+            -0.004599403819050528,
+            0.00025289777661073246,
+            -0.010703324099893824,
+            -0.03706638331338999,
+            0.10918584496823164,
+            0.18258341030654557,
+            0.036697833287631404
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9785641065282888,
+        1.1712308209907285
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.006097560975609756,
+        "BoneLengthEvaluator": 0.2874732066143058,
+        "VelocityJitterEvaluator": 0.2001864961739948
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.1951219512195122,
+        "BoneLengthEvaluator": 0.21080620492639973,
+        "VelocityJitterEvaluator": 0.032724111201499595
+      }
+    },
+    {
+      "trial_id": "M004223",
+      "target_score_before": 0.124066074228917,
+      "target_score_after": 0.3048780487804878,
+      "target_delta": 0.1808119745515708,
+      "fidelity_loss_protocol_a": -0.044344573525940914,
+      "correction_magnitude": 0.08025381582105263,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.04091089307813375,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "small",
+          "action_id": 7,
+          "q_values": [
+            0.0018765575882395591,
+            0.009941591767721802,
+            0.016212412422340318,
+            0.010062564756664056,
+            0.004489832799010774,
+            -0.007134140118811896,
+            -0.029554743114806215,
+            0.09192486843736764,
+            0.08091759464759608,
+            -0.023482086164713728
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "small",
+          "action_id": 7,
+          "q_values": [
+            0.002060791509828472,
+            0.011109582594865315,
+            0.01656451541218993,
+            0.012622517601272244,
+            0.005002958078011196,
+            -0.007025185116134239,
+            -0.031314742310066125,
+            0.10012686370962547,
+            0.10000478560072343,
+            0.02110300279389124
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.001960018823900854,
+            0.0095708975666788,
+            0.015430230841624912,
+            0.0018670621035502513,
+            0.0010123303832616517,
+            -0.0105583603857176,
+            -0.03613786163379347,
+            0.09256948440716627,
+            0.15078459223591614,
+            0.1375651892130987
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.0248218195225878,
+        1.6624645165639707,
+        1.4190015999722714,
+        1.3214026440396938,
+        1.2303669391685208
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.04878048780487805,
+        "BoneLengthEvaluator": 0.3125672976206424,
+        "VelocityJitterEvaluator": 0.19935166065295595
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.6097560975609756,
+        "BoneLengthEvaluator": 0.20092096739120632,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M004512",
+      "target_score_before": 0.09888720340698781,
+      "target_score_after": 0.05527638190954774,
+      "target_delta": -0.04361082149744007,
+      "fidelity_loss_protocol_a": -0.04204861042991782,
+      "correction_magnitude": 0.06708608809188324,
+      "tool_call_count": 2,
+      "netgain_provisional": 0.25385387364702916,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0016863235727574482,
+            0.0038281758020493255,
+            0.0013134561518696644,
+            -0.01662886912592549,
+            0.0020876262609412573,
+            -0.004682686698833493,
+            -0.03659939698635307,
+            0.10782145561016632,
+            0.2066435381711807,
+            0.1541339211915846
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.018493760449069557,
+            0.013667512140106954,
+            0.005435369953453181,
+            -0.005561577012007768,
+            -0.03172949863117795,
+            0.09259000370291924,
+            0.17717002898362508,
+            0.16561707804715728
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.981179135760961,
+        0.9675147450918007,
+        0.8210423444481638
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2947570206075736,
+        "VelocityJitterEvaluator": 0.19777440681397562
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.11055276381909548,
+        "BoneLengthEvaluator": 0.19449010206617934,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M005226",
+      "target_score_before": 0.10080286298312527,
+      "target_score_after": 0.10855263157894737,
+      "target_delta": 0.007749768595822104,
+      "fidelity_loss_protocol_a": -0.03986432436325858,
+      "correction_magnitude": 0.09964478090195604,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.19157185322047082,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.00012366883910559583,
+            0.0013736501390697333,
+            -0.00306563123595504,
+            -0.03720402932013127,
+            0.00013938266675828605,
+            -0.004966197299157622,
+            -0.03369224883334479,
+            0.10943630556065408,
+            0.20050855592299718,
+            0.07108535771833231
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9755058233016447,
+        1.1025739086168493,
+        0.9361635471283971,
+        0.8397721539962444,
+        0.8313277731180481
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29258317520193533,
+        "VelocityJitterEvaluator": 0.20160572596625054
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.21710526315789475,
+        "BoneLengthEvaluator": 0.1483466193162984,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M005756",
+      "target_score_before": 0.11645295366149173,
+      "target_score_after": 0.21929824561403508,
+      "target_delta": 0.10284529195254334,
+      "fidelity_loss_protocol_a": -0.049161172226230364,
+      "correction_magnitude": 0.08534903040478435,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.1429605691786085,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "small",
+          "action_id": 7,
+          "q_values": [
+            0.0021356801150913575,
+            0.010845247545690152,
+            0.016897054561703886,
+            0.011406685866081732,
+            0.0048872065081825,
+            -0.007470449771810797,
+            -0.03263440892351685,
+            0.09181447738341761,
+            0.08333240107451273,
+            0.018884009782939172
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0026175628343691614,
+            0.011666353919406004,
+            0.017923347365843084,
+            0.014493406765783872,
+            0.005559729402551885,
+            -0.0074664608783656765,
+            -0.03474998321750462,
+            0.09078669127079247,
+            0.09695274922237586,
+            0.032835558345766576
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.042077944575082,
+        1.747206429298215,
+        1.496739684277918,
+        1.087677176467046,
+        0.9512724465170048
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.03508771929824561,
+        "BoneLengthEvaluator": 0.3157650539905428,
+        "VelocityJitterEvaluator": 0.19781818802473786
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.43859649122807015,
+        "BoneLengthEvaluator": 0.17435569763469422,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M006878",
+      "target_score_before": 0.11980857237973523,
+      "target_score_after": 0.21875,
+      "target_delta": 0.09894142762026477,
+      "fidelity_loss_protocol_a": -0.047440460473743166,
+      "correction_magnitude": 0.07776466865011707,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.13826087474845106,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "small",
+          "action_id": 7,
+          "q_values": [
+            0.0021356801150913575,
+            0.010845247545690152,
+            0.016999132616344278,
+            0.011975706426796726,
+            0.0048872065081825,
+            -0.007398507071252881,
+            -0.03119475535454757,
+            0.09106405585379537,
+            0.0796030811063153,
+            0.016023975131265758
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "small",
+          "action_id": 7,
+          "q_values": [
+            0.002060791509828472,
+            0.011109582594865315,
+            0.01750280613264652,
+            0.013400125577081125,
+            0.005002958078011196,
+            -0.007012590821050412,
+            -0.03119048165732841,
+            0.09078669127079247,
+            0.07856321504556628,
+            0.021282493153239074
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0026938521252962166,
+            0.011742643210333057,
+            0.018718195851598403,
+            0.014801221410095811,
+            0.005666201332458722,
+            -0.006943712397853273,
+            -0.03470368574812057,
+            0.09256625276113799,
+            0.13904898424912068,
+            0.10821838854357599
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.051030189719956,
+        1.7903263786141617,
+        1.5225576383678323,
+        1.4444251431539241,
+        0.9971868772570281
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.041666666666666664,
+        "BoneLengthEvaluator": 0.32930870538858853,
+        "VelocityJitterEvaluator": 0.1979504780928038
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.4375,
+        "BoneLengthEvaluator": 0.1859823033489297,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M007563",
+      "target_score_before": 0.09884309912698717,
+      "target_score_after": 0.1211797867800129,
+      "target_delta": 0.022336687653025725,
+      "fidelity_loss_protocol_a": -0.03596171084763434,
+      "correction_magnitude": 0.055330827665213654,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.15747186658514595,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.0010703662821085044,
+            0.0014107096016214207,
+            -0.0026633110832324546,
+            -0.056033269762670174,
+            -0.0004885012924724811,
+            -0.0064847827366562305,
+            -0.03541188511779713,
+            0.10862337861444737,
+            0.2012836622928785,
+            0.11273620288084593
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9845048029911643,
+        1.270228659484206
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2914672394610787,
+        "VelocityJitterEvaluator": 0.19768619825397435
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.21105527638190955,
+        "BoneLengthEvaluator": 0.2180808626882614,
+        "VelocityJitterEvaluator": 0.03130429717811626
+      }
+    },
+    {
+      "trial_id": "M007631",
+      "target_score_before": 0.10171299833671717,
+      "target_score_after": 0.1407035175879397,
+      "target_delta": 0.03899051925122253,
+      "fidelity_loss_protocol_a": -0.024419424435238875,
+      "correction_magnitude": 0.11382736014210468,
+      "tool_call_count": 4,
+      "netgain_provisional": 0.08310660292497184,
+      "converged": false,
+      "max_iterations_reached": true,
+      "rolled_back": false,
+      "stop_reason": null,
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002574676864453935,
+            0.011236612353319566,
+            0.016377027167750934,
+            0.009888310900620532,
+            0.00521179801159002,
+            -0.006686676656319696,
+            -0.03430274470763578,
+            0.10691076451548012,
+            0.20039647295365876,
+            0.008338899454590338
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.990326507724821,
+        1.1672981832557956,
+        1.1752302693059142,
+        1.1247410628186065,
+        1.0614075759339903
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.2967310219704962,
+        "VelocityJitterEvaluator": 0.19840087104529364
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.2814070351758794,
+        "BoneLengthEvaluator": 0.14765422142330714,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "M007995",
+      "target_score_before": 0.10408737376303646,
+      "target_score_after": 0.09989481162022708,
+      "target_delta": -0.004192562142809386,
+      "fidelity_loss_protocol_a": -0.036164367075232504,
+      "correction_magnitude": 0.05520664113297696,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.18501439751897192,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002498042516357122,
+            0.010693272573844387,
+            0.016344342586007927,
+            0.010276489737336223,
+            0.005278529685057052,
+            -0.006317496334123159,
+            -0.034029477658525036,
+            0.10834415565234208,
+            0.18209559380890428,
+            0.0436263893738585
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9512370395156613,
+        1.1710937136794402
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.008064516129032258,
+        "BoneLengthEvaluator": 0.28638171632261267,
+        "VelocityJitterEvaluator": 0.20011023139704068
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.1693548387096774,
+        "BoneLengthEvaluator": 0.22949608914745823,
+        "VelocityJitterEvaluator": 0.03043478453077676
+      }
+    },
+    {
+      "trial_id": "M008162",
+      "target_score_before": 0.10387103417367077,
+      "target_score_after": 0.14122707717184158,
+      "target_delta": 0.0373560429981708,
+      "fidelity_loss_protocol_a": -0.0359609337687508,
+      "correction_magnitude": 0.05532830337427838,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.1424486258455832,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.002766914415277391,
+            0.011633700285526563,
+            0.017212976512823327,
+            0.0132894209073652,
+            0.005705841886998696,
+            -0.007773161486415059,
+            -0.03666088147503518,
+            0.10821007831277826,
+            0.17504883965715393,
+            -0.04352194732009191
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.985025733495996,
+        1.3659714063441857
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.2979864315406426,
+        "VelocityJitterEvaluator": 0.19769181709106015
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.25125628140703515,
+        "BoneLengthEvaluator": 0.21782803128417233,
+        "VelocityJitterEvaluator": 0.03119787293664798
+      }
+    },
+    {
+      "trial_id": "M009590",
+      "target_score_before": 0.10386855179197917,
+      "target_score_after": 0.14118885187827596,
+      "target_delta": 0.03732030008629679,
+      "fidelity_loss_protocol_a": -0.036009856928976194,
+      "correction_magnitude": 0.05537819142868134,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.14272898455858418,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0026938521252962166,
+            0.011742643210333057,
+            0.017321919437629823,
+            0.013398363832171696,
+            0.005656123458819356,
+            -0.007336542848522858,
+            -0.03566229417624118,
+            0.1081711166207806,
+            0.175200097516862,
+            -0.0080239839221188
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.983856877416334,
+        1.3544428786520564
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.29644317652607716,
+        "VelocityJitterEvaluator": 0.19768685232767694
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.25125628140703515,
+        "BoneLengthEvaluator": 0.21634511540335657,
+        "VelocityJitterEvaluator": 0.03112142234951676
+      }
+    },
+    {
+      "trial_id": "M010450",
+      "target_score_before": 0.1026490793208026,
+      "target_score_after": 0.053052532498800986,
+      "target_delta": -0.04959654682200161,
+      "fidelity_loss_protocol_a": -0.03385845174659831,
+      "correction_magnitude": 0.056999148608786084,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.21888880555499313,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0022199834031450525,
+            0.010237385640894136,
+            0.01575250810385376,
+            0.010573813096697584,
+            0.0047188533679612095,
+            -0.006704783386305676,
+            -0.035044404337698974,
+            0.10810532128546431,
+            0.19760232010097142,
+            -0.0020279024907883685
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        2.021262556040206,
+        1.0969249153737541
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.29744775912167876,
+        "VelocityJitterEvaluator": 0.2002730330134645
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.06532663316582915,
+        "BoneLengthEvaluator": 0.23136810609227804,
+        "VelocityJitterEvaluator": 0.04077843183177282
+      }
+    },
+    {
+      "trial_id": "M011492",
+      "target_score_before": 0.10024963990411206,
+      "target_score_after": 0.052929325654815076,
+      "target_delta": -0.04732031424929699,
+      "fidelity_loss_protocol_a": -0.0355875457674152,
+      "correction_magnitude": 0.05550242772710032,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.22525804308637298,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            -0.008135849692794352,
+            -0.004156405409076211,
+            -0.01306296077145656,
+            -0.058717380052528474,
+            -0.007872798186930471,
+            -0.012043188822885471,
+            -0.03569240805994583,
+            0.11062352862928627,
+            0.20679088087429556,
+            0.11144463338103686
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9694754715627252,
+        1.0744396961828255
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2884816193859231,
+        "VelocityJitterEvaluator": 0.20049927980822413
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.072,
+        "BoneLengthEvaluator": 0.22784812355692496,
+        "VelocityJitterEvaluator": 0.033858651309630165
+      }
+    },
+    {
+      "trial_id": "M013736",
+      "target_score_before": 0.09892547506022036,
+      "target_score_after": 0.0560275066041965,
+      "target_delta": -0.04289796845602385,
+      "fidelity_loss_protocol_a": -0.03589256934408595,
+      "correction_magnitude": 0.05540113782038188,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.22236081517645362,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0017729815226151257,
+            0.003914833751907004,
+            0.0014001141017273419,
+            -0.009118090046483509,
+            0.0021742842107989355,
+            -0.004666075169506677,
+            -0.03546406499868975,
+            0.10792814600187285,
+            0.20324893173777325,
+            0.14679225988114872
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9762485351665835,
+        1.0638639108591919
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29726576000192184,
+        "VelocityJitterEvaluator": 0.1978509501204407
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.08040201005025126,
+        "BoneLengthEvaluator": 0.22165341018116563,
+        "VelocityJitterEvaluator": 0.03165300315814175
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_b7_bandit_multi_sample",
+  "timestamp": "20260520T133932503593Z",
+  "task_id": "baseline_b7_bandit_multi_v1",
+  "split_id": "bandit_eval_v1",
+  "trial_id": "M013736",
+  "baseline_type": "b7_bandit_closed_loop",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M013736.npy",
+  "generator_id": "humanml3d_gt",
+  "max_iterations": 4,
+  "score_increase_tolerance": 0.01,
+  "model_type": "random_forest",
+  "model_random_state": 1,
+  "train_ratio": 0.5,
+  "multi_artifact_recipe": [
+    "foot_floating",
+    "global_jitter"
+  ],
+  "target_evaluators": [
+    "FootFloatingEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "total_artifact_score_definition": "mean(FootFloating_max, VelocityJitter_max)",
+  "state_features": [
+    "FootFloatingEvaluator",
+    "BoneLengthEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "foot_floating_AND_global_jitter": {
+      "trial_id": "M013736",
+      "target_score_before": 0.09892547506022036,
+      "target_score_after": 0.0560275066041965,
+      "target_delta": -0.04289796845602385,
+      "fidelity_loss_protocol_a": -0.03589256934408595,
+      "correction_magnitude": 0.05540113782038188,
+      "tool_call_count": 1,
+      "netgain_provisional": 0.22236081517645362,
+      "converged": true,
+      "max_iterations_reached": false,
+      "rolled_back": true,
+      "stop_reason": "rollback_score_increase",
+      "decision_trace": [
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "medium",
+          "action_id": 8,
+          "q_values": [
+            0.0017729815226151257,
+            0.003914833751907004,
+            0.0014001141017273419,
+            -0.009118090046483509,
+            0.0021742842107989355,
+            -0.004666075169506677,
+            -0.03546406499868975,
+            0.10792814600187285,
+            0.20324893173777325,
+            0.14679225988114872
+          ]
+        },
+        {
+          "decision": "revise",
+          "selected_tool": "VelocitySmoothingTool",
+          "strength": "large",
+          "action_id": 9,
+          "q_values": [
+            0.002462817388142956,
+            0.011504275214894388,
+            0.01860507035069745,
+            0.014236532700821954,
+            0.005435369953453181,
+            -0.005578004622109836,
+            -0.031737367796624893,
+            0.09252065361354385,
+            0.15872405679442086,
+            0.1681948643498415
+          ]
+        }
+      ],
+      "score_trace": [
+        1.9762485351665835,
+        1.0638639108591919
+      ],
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29726576000192184,
+        "VelocityJitterEvaluator": 0.1978509501204407
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.08040201005025126,
+        "BoneLengthEvaluator": 0.22165341018116563,
+        "VelocityJitterEvaluator": 0.03165300315814175
+      }
+    }
+  },
+  "negative_result": false
+}

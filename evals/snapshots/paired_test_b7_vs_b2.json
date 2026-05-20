@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_baseline_vs_oracle",
+  "n_keys_compared": 0,
+  "per_artifact": [],
+  "pooled": {
+    "n_pairs": 0,
+    "delta_mean": NaN,
+    "delta_median": NaN,
+    "n_oracle_advantage": 0,
+    "n_tie": 0,
+    "n_baseline_advantage": 0,
+    "wilcoxon_statistic": NaN,
+    "wilcoxon_p_two_sided": NaN,
+    "wilcoxon_p_greater_one_sided": NaN,
+    "cohens_d_paired": NaN,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": NaN,
+      "median_ci_hi_95": NaN,
+      "mean_ci_lo_95": NaN,
+      "mean_ci_hi_95": NaN
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: oracle > baseline.",
+    "effect_size_convention": "Cohen's d_paired = mean(oracle - baseline) / std. |d|>0.2 small, 0.5 medium, 0.8 large.",
+    "h_2026_204_rq1_threshold": "Oracle (B8) vs fixed smoothing (B2): NetGain median Delta >= +10% (명세 §11 Go 5). Rule-based (B5) vs fixed smoothing (B2): median Delta >= +5%, p<0.05, Cohen's d >= 0.3."
+  },
+  "baseline_prefix": "baseline_b2_fixed_smoothing_multi_v1",
+  "oracle_prefix": "baseline_b7_bandit_multi_v1"
+}

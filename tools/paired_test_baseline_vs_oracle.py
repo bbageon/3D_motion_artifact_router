@@ -36,6 +36,7 @@ BASELINE_RECORD_TYPES = (
     "baseline_supervised_sample",
     "baseline_multi_artifact_sample",
     "baseline_b6_closed_loop_multi_sample",
+    "baseline_b7_bandit_multi_sample",
 )
 ORACLE_RECORD_TYPES = (
     "oracle_single_step_sample",
