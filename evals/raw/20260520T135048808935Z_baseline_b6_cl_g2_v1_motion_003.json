@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_g2_natural_sample",
+  "timestamp": "20260520T135048808935Z",
+  "task_id": "baseline_b6_cl_g2_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_003",
+  "baseline_type": "b6_closed_loop",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_003.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "g2_prompt": "Describe the movements of a person walking down a flight of stairs in person walks up then takes a large step to their left and then goes back onto the same path they were on.",
+  "g2_seed": 44,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating_max, BoneLength_max, VelocityJitter_max)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weight_caveat": "α=5.0 calibration is from synthetic Protocol A — transfer to G2 Protocol B magnitudes is calibration-dependent.",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "g2_natural_multi_artifact": {
+      "trial_id": "motion_003",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in person wal",
+      "motion_shape": [
+        160,
+        22,
+        3
+      ],
+      "target_score_before": 0.018829362513795852,
+      "target_score_after": 0.018829362513795852,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0013764118574066306,
+      "correction_magnitude": 0.005748314042495539,
+      "tool_call_count": 4.0,
+      "netgain": -0.006882059287033154,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.005748314042495539,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.14156376283122996,
+          0.11608722023365398,
+          0.11608722023365398,
+          0.11608722023365398,
+          0.11608722023365398
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.025,
+        "BoneLengthEvaluator": 0.03148808754138756,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.025,
+        "BoneLengthEvaluator": 0.03148808754138756,
+        "VelocityJitterEvaluator": 0.0
+      }
+    }
+  },
+  "transfer_diagnostic_note": "본 실험은 single-step ceiling 의 G2 natural 재현 검증. 최종 우위 검증 아님.",
+  "negative_result": false
+}

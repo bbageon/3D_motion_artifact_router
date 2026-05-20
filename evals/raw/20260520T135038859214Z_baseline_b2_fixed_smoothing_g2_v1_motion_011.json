@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_g2_natural_sample",
+  "timestamp": "20260520T135038859214Z",
+  "task_id": "baseline_b2_fixed_smoothing_g2_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_011",
+  "baseline_type": "b2_fixed_smoothing",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_011.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "g2_prompt": "Describe the movements of a person doing a plank in a person stands with arms out partway to each side, lifts his right leg, swings it forward briefly, then sweeps it in a semicircle behind him before moving it forward and standing again; he then repeats the action..",
+  "g2_seed": 52,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating_max, BoneLength_max, VelocityJitter_max)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weight_caveat": "α=5.0 calibration is from synthetic Protocol A — transfer to G2 Protocol B magnitudes is calibration-dependent.",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "g2_natural_multi_artifact": {
+      "trial_id": "motion_011",
+      "g2_prompt": "Describe the movements of a person doing a plank in a person stands with arms ou",
+      "motion_shape": [
+        96,
+        22,
+        3
+      ],
+      "target_score_before": 0.019083863282985426,
+      "target_score_after": 0.03072562691103524,
+      "target_delta": 0.011641763628049813,
+      "fidelity_loss_protocol_b": 0.007632193383977744,
+      "correction_magnitude": 0.007632193383977744,
+      "tool_call_count": 1.0,
+      "netgain": -0.04980273054793854,
+      "trace": {
+        "decision": "revise",
+        "tool": "VelocitySmoothingTool",
+        "strength": "medium",
+        "target_part": "full_body",
+        "correction_magnitude": 0.007632193383977744,
+        "tool_call_count": 1
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.02501208459860859,
+        "VelocityJitterEvaluator": 0.021822838583681024
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.052083333333333336,
+        "BoneLengthEvaluator": 0.023031512790606324,
+        "VelocityJitterEvaluator": 0.017062034609166055
+      }
+    }
+  },
+  "transfer_diagnostic_note": "본 실험은 single-step ceiling 의 G2 natural 재현 검증. 최종 우위 검증 아님.",
+  "negative_result": false
+}

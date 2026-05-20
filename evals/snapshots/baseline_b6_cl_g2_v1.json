@@ -1,0 +1,1969 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_g2_natural_summary",
+  "task_id": "baseline_b6_cl_g2_v1",
+  "split_id": "g2_natural_v1",
+  "baseline_type": "b6_closed_loop",
+  "n_samples": 30,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating, BoneLength, VelocityJitter max scores)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weight_caveat": "α=5.0 calibration is from synthetic Protocol A — G2 Protocol B transfer caveat.",
+  "transfer_diagnostic_note": "본 실험은 single-step ceiling 의 G2 natural 재현 검증.",
+  "netgain": {
+    "mean": 0.006870683365637036,
+    "median": -0.00461115127717448,
+    "p25": -0.006221290117064259,
+    "p75": -0.0,
+    "min": -0.02719401478551245,
+    "max": 0.16311114364796636
+  },
+  "target_delta": {
+    "mean": -0.016618346497221537,
+    "median": -0.00023136037658753536
+  },
+  "fidelity_loss_protocol_b": {
+    "mean": 0.0019495326263169002,
+    "median": 0.0014058867042187856
+  },
+  "tool_call_count": {
+    "mean": 3.0,
+    "median": 4.0
+  },
+  "tool_distribution": {
+    "FootLockTool": 12,
+    "BoneProjectionTool": 81
+  },
+  "strength_distribution": {
+    "large": 86,
+    "medium": 7
+  },
+  "per_evaluator_reduction_median": {
+    "FootFloatingEvaluator": 0.0,
+    "BoneLengthEvaluator": 0.0,
+    "VelocityJitterEvaluator": 0.0
+  },
+  "per_evaluator_reduction_mean": {
+    "FootFloatingEvaluator": 0.04885937930796802,
+    "BoneLengthEvaluator": 0.0009479980220550172,
+    "VelocityJitterEvaluator": 4.766216164157321e-05
+  },
+  "trial_ids": [
+    "motion_001",
+    "motion_002",
+    "motion_003",
+    "motion_004",
+    "motion_005",
+    "motion_006",
+    "motion_007",
+    "motion_008",
+    "motion_009",
+    "motion_010",
+    "motion_011",
+    "motion_012",
+    "motion_013",
+    "motion_014",
+    "motion_015",
+    "motion_016",
+    "motion_017",
+    "motion_018",
+    "motion_019",
+    "motion_020",
+    "motion_021",
+    "motion_022",
+    "motion_023",
+    "motion_024",
+    "motion_025",
+    "motion_026",
+    "motion_027",
+    "motion_028",
+    "motion_029",
+    "motion_030"
+  ],
+  "results": [
+    {
+      "trial_id": "motion_001",
+      "g2_prompt": "Please create a motion that represents the power of the figure takes a few sligh",
+      "motion_shape": [
+        160,
+        22,
+        3
+      ],
+      "target_score_before": 0.032794228020749876,
+      "target_score_after": 0.014461403730729364,
+      "target_delta": -0.018332824290020512,
+      "fidelity_loss_protocol_b": 0.004225537884308768,
+      "correction_magnitude": 0.07898056251626642,
+      "tool_call_count": 4.0,
+      "netgain": -0.0027948651315233275,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.07898056251626642,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "large",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.18380933673608973,
+          0.12265106716389948,
+          0.10482517163116173,
+          0.10482517163116173,
+          0.10482517163116173
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.075,
+        "BoneLengthEvaluator": 0.023382684062249637,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.00625,
+        "BoneLengthEvaluator": 0.03713421119218809,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_002",
+      "g2_prompt": "I need a motion that represents the power of a man steps forward, then picks som",
+      "motion_shape": [
+        176,
+        22,
+        3
+      ],
+      "target_score_before": 0.01036654169560271,
+      "target_score_after": 0.01036654169560271,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.09220054227716411
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.011363636363636364,
+        "BoneLengthEvaluator": 0.01973598872317177,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.011363636363636364,
+        "BoneLengthEvaluator": 0.01973598872317177,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_003",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in person wal",
+      "motion_shape": [
+        160,
+        22,
+        3
+      ],
+      "target_score_before": 0.018829362513795852,
+      "target_score_after": 0.018829362513795852,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0013764118574066306,
+      "correction_magnitude": 0.005748314042495539,
+      "tool_call_count": 4.0,
+      "netgain": -0.006882059287033154,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.005748314042495539,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.14156376283122996,
+          0.11608722023365398,
+          0.11608722023365398,
+          0.11608722023365398,
+          0.11608722023365398
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.025,
+        "BoneLengthEvaluator": 0.03148808754138756,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.025,
+        "BoneLengthEvaluator": 0.03148808754138756,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_004",
+      "g2_prompt": "I need a motion that represents the power of a person lifts both hands above the",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.010306561188342186,
+      "target_score_after": 0.007606137050021958,
+      "target_delta": -0.0027004241383202284,
+      "fidelity_loss_protocol_b": 0.0012671606586615927,
+      "correction_magnitude": 0.005908195066805913,
+      "tool_call_count": 1.0,
+      "netgain": -0.0036353791549877355,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 1,
+        "correction_magnitude": 0.005908195066805913,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.09871686795544105,
+          0.07289922520674101
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.025817642748700027,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.017716370333739344,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_005",
+      "g2_prompt": "Generate a motion that embodies the idea of a person takes two steps forward, th",
+      "motion_shape": [
+        104,
+        22,
+        3
+      ],
+      "target_score_before": 0.01272149632594379,
+      "target_score_after": 0.01272149632594379,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.10252826773881046
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.019230769230769232,
+        "BoneLengthEvaluator": 0.01893371974706214,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.019230769230769232,
+        "BoneLengthEvaluator": 0.01893371974706214,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_006",
+      "g2_prompt": "Give me a gesture that visualizes a person walks forward one foot in front of th",
+      "motion_shape": [
+        108,
+        22,
+        3
+      ],
+      "target_score_before": 0.20877825431285682,
+      "target_score_after": 0.012790049458717034,
+      "target_delta": -0.19598820485413979,
+      "fidelity_loss_protocol_b": 0.006575412241234685,
+      "correction_magnitude": 0.05258275868098203,
+      "tool_call_count": 4.0,
+      "netgain": 0.16311114364796636,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.05258275868098203,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          1.0460454073947283,
+          0.17599410522953546,
+          0.13299267562429837,
+          0.13299267562429837,
+          0.13299267562429837
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.5833333333333334,
+        "BoneLengthEvaluator": 0.043001429605237076,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0383701483761511,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_007",
+      "g2_prompt": "Produce a movement that visualizes  Input: a person's right hand moves towards t",
+      "motion_shape": [
+        148,
+        22,
+        3
+      ],
+      "target_score_before": 0.19675434674985195,
+      "target_score_after": 0.19675434674985195,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          }
+        ],
+        "score_trace": [
+          1.155726115912425
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.527027027027027,
+        "BoneLengthEvaluator": 0.06323601322252898,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.527027027027027,
+        "BoneLengthEvaluator": 0.06323601322252898,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_008",
+      "g2_prompt": "I need a motion that represents the power of a person's squats down using mainly",
+      "motion_shape": [
+        192,
+        22,
+        3
+      ],
+      "target_score_before": 0.12071025771315835,
+      "target_score_after": 0.016317628967315607,
+      "target_delta": -0.10439262874584275,
+      "fidelity_loss_protocol_b": 0.0027875330044887844,
+      "correction_magnitude": 0.03412222226608322,
+      "tool_call_count": 4.0,
+      "netgain": 0.09045496372339883,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.03412222226608322,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.627128527254463,
+          0.1601435723988752,
+          0.13789166006112474,
+          0.13789166006112474,
+          0.13789166006112474
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.3177083333333333,
+        "BoneLengthEvaluator": 0.044422439806141724,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.005208333333333333,
+        "BoneLengthEvaluator": 0.04374455356861348,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_009",
+      "g2_prompt": "hands go to the chest moving back and forth, left hand place on the right upper ",
+      "motion_shape": [
+        192,
+        22,
+        3
+      ],
+      "target_score_before": 0.004619451819218908,
+      "target_score_after": 0.004619451819218908,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.03888106823646403
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.013858355457656724,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.013858355457656724,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_010",
+      "g2_prompt": "Create a sequence of movements that exemplifies person walks to the right then t",
+      "motion_shape": [
+        180,
+        22,
+        3
+      ],
+      "target_score_before": 0.011775664240732125,
+      "target_score_after": 0.011775664240732125,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0010242616660599787,
+      "correction_magnitude": 0.00414780845686725,
+      "tool_call_count": 4.0,
+      "netgain": -0.005121308330299893,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.00414780845686725,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.10892286693560699,
+          0.08979806089079627,
+          0.08979806089079627,
+          0.08979806089079627,
+          0.08979806089079627
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.011111111111111112,
+        "BoneLengthEvaluator": 0.02421588161108526,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.011111111111111112,
+        "BoneLengthEvaluator": 0.02421588161108526,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_011",
+      "g2_prompt": "Describe the movements of a person doing a plank in a person stands with arms ou",
+      "motion_shape": [
+        96,
+        22,
+        3
+      ],
+      "target_score_before": 0.019083863282985426,
+      "target_score_after": 0.018763162314705702,
+      "target_delta": -0.0003207009682797239,
+      "fidelity_loss_protocol_b": 0.0013149771985213005,
+      "correction_magnitude": 0.005927740491020339,
+      "tool_call_count": 4.0,
+      "netgain": -0.006254185024326778,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.005927740491020339,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.15314099399125933,
+          0.12839507101101486,
+          0.12839507101101486,
+          0.12839507101101486,
+          0.12839507101101488
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.02501208459860859,
+        "VelocityJitterEvaluator": 0.021822838583681024
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.023854796506969044,
+        "VelocityJitterEvaluator": 0.0220180237704814
+      }
+    },
+    {
+      "trial_id": "motion_012",
+      "g2_prompt": "I would like to see the motion of a person is attempting to jump rope by hopping",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.03525430934991319,
+      "target_score_after": 0.03444382993997816,
+      "target_delta": -0.0008104794099350332,
+      "fidelity_loss_protocol_b": 0.002063975260131423,
+      "correction_magnitude": 0.009813161455302527,
+      "tool_call_count": 1.0,
+      "netgain": -0.009509396890722081,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 1,
+        "correction_magnitude": 0.009813161455302527,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          }
+        ],
+        "score_trace": [
+          0.32868861928633797,
+          0.29202269380627416
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.03571428571428571,
+        "BoneLengthEvaluator": 0.036842494258090094,
+        "VelocityJitterEvaluator": 0.03320614807736378
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.03571428571428571,
+        "BoneLengthEvaluator": 0.03441105602828499,
+        "VelocityJitterEvaluator": 0.03320614807736378
+      }
+    },
+    {
+      "trial_id": "motion_013",
+      "g2_prompt": "Demonstrate a dance that symbolizes the feeling of the figure walks from the bot",
+      "motion_shape": [
+        124,
+        22,
+        3
+      ],
+      "target_score_before": 0.04155059331116083,
+      "target_score_after": 0.014668872881053304,
+      "target_delta": -0.026881720430107524,
+      "fidelity_loss_protocol_b": 0.003035443355080659,
+      "correction_magnitude": 0.02751778296022162,
+      "tool_call_count": 4.0,
+      "netgain": 0.01170450365470423,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.02751778296022162,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.24757278918648007,
+          0.16382542472838785,
+          0.14218452996430642,
+          0.14218452996430642,
+          0.14218452996430642
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.08064516129032258,
+        "BoneLengthEvaluator": 0.04400661864315991,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04400661864315991,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_014",
+      "g2_prompt": "I need a motion that represents the power of a man waves his hands from side to ",
+      "motion_shape": [
+        172,
+        22,
+        3
+      ],
+      "target_score_before": 0.007997874450700887,
+      "target_score_after": 0.005003210770198161,
+      "target_delta": -0.002994663680502726,
+      "fidelity_loss_protocol_b": 0.0011855180478469768,
+      "correction_magnitude": 0.005886319565880588,
+      "tool_call_count": 1.0,
+      "netgain": -0.0029329265587321575,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 1,
+        "correction_magnitude": 0.005886319565880588,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.03900325566269714,
+          0.015009632310594483
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.023993623352102658,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.015009632310594483,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_015",
+      "g2_prompt": "Give me a motion that reflects the idea of a person standing up throws something",
+      "motion_shape": [
+        80,
+        22,
+        3
+      ],
+      "target_score_before": 0.006706567627876543,
+      "target_score_after": 0.006706567627876543,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.000953403674069508,
+      "correction_magnitude": 0.004663230441857893,
+      "tool_call_count": 4.0,
+      "netgain": -0.00476701837034754,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.004663230441857893,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.06178562739603454,
+          0.0422902219877706,
+          0.0422902219877706,
+          0.0422902219877706,
+          0.0422902219877706
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02011970288362963,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02011970288362963,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_016",
+      "g2_prompt": "Give me a motion that expresses a person walks to the right makes a u-turn clock",
+      "motion_shape": [
+        96,
+        22,
+        3
+      ],
+      "target_score_before": 0.023727689251005667,
+      "target_score_after": 0.023727689251005667,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0012079661728848189,
+      "correction_magnitude": 0.004631175564327389,
+      "tool_call_count": 4.0,
+      "netgain": -0.006039830864424094,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.004631175564327389,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.17242541914573706,
+          0.15040880089837455,
+          0.15040880089837455,
+          0.15040880089837455,
+          0.15040880089837455
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.020833333333333332,
+        "BoneLengthEvaluator": 0.032068651105687934,
+        "VelocityJitterEvaluator": 0.018281083313995736
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.020833333333333332,
+        "BoneLengthEvaluator": 0.032068651105687934,
+        "VelocityJitterEvaluator": 0.018281083313995736
+      }
+    },
+    {
+      "trial_id": "motion_017",
+      "g2_prompt": "I need a motion that represents the transformation of a person makes a shaking m",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.010566535313309358,
+      "target_score_after": 0.006858966034082355,
+      "target_delta": -0.0037075692792270026,
+      "fidelity_loss_protocol_b": 0.0016325706926456848,
+      "correction_magnitude": 0.007965293726248204,
+      "tool_call_count": 4.0,
+      "netgain": -0.004455284184001421,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.007965293726248204,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.08227877404431196,
+          0.050579168104383884,
+          0.050579168104383884,
+          0.050579168104383884,
+          0.050579168104383884
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03169960593992807,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.020576898102247065,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_018",
+      "g2_prompt": "Create a dance that symbolizes a person bends down to pick something up with the",
+      "motion_shape": [
+        172,
+        22,
+        3
+      ],
+      "target_score_before": 0.01407010928168457,
+      "target_score_after": 0.01407010928168457,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0012245210790553405,
+      "correction_magnitude": 0.005339432377876376,
+      "tool_call_count": 4.0,
+      "netgain": -0.006122605395276703,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.005339432377876376,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.15017757216282404,
+          0.12496520181931095,
+          0.12496520181931095,
+          0.12496520181931095,
+          0.12496520181931095
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04221032784505371,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04221032784505371,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_019",
+      "g2_prompt": "I want a motion that represents the power of a man gets up from the ground pushi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.04295257817085383,
+      "target_score_after": 0.04295257817085383,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0027305829859716607,
+      "correction_magnitude": 0.010100536576149465,
+      "tool_call_count": 4.0,
+      "netgain": -0.013652914929858304,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.010100536576149465,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.3444421253716683,
+          0.29663238732327124,
+          0.29663238732327124,
+          0.29663238732327124,
+          0.29663238732327124
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.05102040816326531,
+        "BoneLengthEvaluator": 0.06136362621538559,
+        "VelocityJitterEvaluator": 0.016473700133910602
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.05102040816326531,
+        "BoneLengthEvaluator": 0.06136362621538559,
+        "VelocityJitterEvaluator": 0.016473700133910602
+      }
+    },
+    {
+      "trial_id": "motion_020",
+      "g2_prompt": "Develop a movement that represents  Input: the person is in a sitting position w",
+      "motion_shape": [
+        188,
+        22,
+        3
+      ],
+      "target_score_before": 0.010165820618694829,
+      "target_score_after": 0.010165820618694829,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0014065256870689248,
+      "correction_magnitude": 0.007162766518904496,
+      "tool_call_count": 4.0,
+      "netgain": -0.007032628435344624,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.007162766518904496,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.11095345650900405,
+          0.0833451061315311,
+          0.0833451061315311,
+          0.0833451061315311,
+          0.0833451061315311
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.030497461856084488,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.030497461856084488,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_021",
+      "g2_prompt": "Please create a motion that represents the power of someone put their arms on th",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.012344651037868323,
+      "target_score_after": 0.012344651037868323,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0017765215594483274,
+      "correction_magnitude": 0.008356542989614123,
+      "tool_call_count": 4.0,
+      "netgain": -0.008882607797241636,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.008356542989614123,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.09368421496132592,
+          0.06047546548043635,
+          0.06047546548043635,
+          0.06047546548043635,
+          0.06047546548043635
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03703395311360497,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03703395311360497,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_022",
+      "g2_prompt": "Describe the movements of a person doing a handstand press in the person throws ",
+      "motion_shape": [
+        76,
+        22,
+        3
+      ],
+      "target_score_before": 0.010555054430157376,
+      "target_score_after": 0.007133142360749171,
+      "target_delta": -0.003421912069408205,
+      "fidelity_loss_protocol_b": 0.0016457105924414241,
+      "correction_magnitude": 0.00735345581219212,
+      "tool_call_count": 4.0,
+      "netgain": -0.0048066408927989164,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.00735345581219212,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.08709180949947487,
+          0.05542664620900274,
+          0.05542664620900274,
+          0.05542664620900274,
+          0.05542664620900274
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03166516329047213,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.021399427082247513,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_023",
+      "g2_prompt": "Create a motion that depicts  Input: a person rotates their head, then rotates t",
+      "motion_shape": [
+        128,
+        22,
+        3
+      ],
+      "target_score_before": 0.015074353940332443,
+      "target_score_after": 0.01205556183503515,
+      "target_delta": -0.0030187921052972928,
+      "fidelity_loss_protocol_b": 0.0014052477213686461,
+      "correction_magnitude": 0.10286580427865685,
+      "tool_call_count": 4.0,
+      "netgain": -0.004007446501545938,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.10286580427865685,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "large",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.12978206511999085,
+          0.11024153768893724,
+          0.0884559758679399,
+          0.0884559758679399,
+          0.0884559758679399
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0234375,
+        "BoneLengthEvaluator": 0.021785561820997328,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.015625,
+        "BoneLengthEvaluator": 0.020541685505105444,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_024",
+      "g2_prompt": "Develop a motion that symbolizes a person lifts up their arm at a 120 degree ang",
+      "motion_shape": [
+        60,
+        22,
+        3
+      ],
+      "target_score_before": 0.02330506458016936,
+      "target_score_after": 0.01613795762867563,
+      "target_delta": -0.0071671069514937305,
+      "fidelity_loss_protocol_b": 0.006872224347401236,
+      "correction_magnitude": 0.0870795265874186,
+      "tool_call_count": 4.0,
+      "netgain": -0.02719401478551245,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0870795265874186,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "large",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.10602507489165679,
+          0.10507094639745493,
+          0.09725256780978929,
+          0.08452367046139048,
+          0.08452367046139048
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.03333333333333333,
+        "BoneLengthEvaluator": 0.01402601450396419,
+        "VelocityJitterEvaluator": 0.02255584590321057
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.027057017664177847,
+        "VelocityJitterEvaluator": 0.021356855221849047
+      }
+    },
+    {
+      "trial_id": "motion_025",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in a person w",
+      "motion_shape": [
+        100,
+        22,
+        3
+      ],
+      "target_score_before": 0.018113557614337916,
+      "target_score_after": 0.01797153782944257,
+      "target_delta": -0.0001420197848953468,
+      "fidelity_loss_protocol_b": 0.001149310944994048,
+      "correction_magnitude": 0.00481769005151185,
+      "tool_call_count": 4.0,
+      "netgain": -0.005604534940074893,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.00481769005151185,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.17403606052667192,
+          0.15294482462195058,
+          0.15294482462195058,
+          0.15294482462195058,
+          0.15294482462195058
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.01,
+        "BoneLengthEvaluator": 0.022897486419864423,
+        "VelocityJitterEvaluator": 0.021443186423149328
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.01,
+        "BoneLengthEvaluator": 0.022897486419864423,
+        "VelocityJitterEvaluator": 0.02101712706846328
+      }
+    },
+    {
+      "trial_id": "motion_026",
+      "g2_prompt": "Please create a motion that represents the magic of the person steps a little wi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.014279024541364156,
+      "target_score_after": 0.006462177751023143,
+      "target_delta": -0.007816846790341014,
+      "fidelity_loss_protocol_b": 0.0020190017255819824,
+      "correction_magnitude": 0.009316412235302454,
+      "tool_call_count": 1.0,
+      "netgain": -0.0022781618375688987,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 1,
+        "correction_magnitude": 0.009316412235302454,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.06752588387230851,
+          0.029790851064542573
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.03773503280776594,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.0142844924367429,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_027",
+      "g2_prompt": "Please create a motion that represents the uniqueness of a man is mixing somethi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.009651226457102322,
+      "target_score_after": 0.009651226457102322,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0011511896637675018,
+      "correction_magnitude": 0.004735898807975546,
+      "tool_call_count": 4.0,
+      "netgain": -0.005755948318837509,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.004735898807975546,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.09708636551904423,
+          0.07402536732301672,
+          0.07402536732301672,
+          0.07402536732301672,
+          0.07402536732301672
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.028953679371306967,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.028953679371306967,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_028",
+      "g2_prompt": "Create a motion for the caption: a person takes a step forward, squats down, pla",
+      "motion_shape": [
+        192,
+        22,
+        3
+      ],
+      "target_score_before": 0.12425344740949401,
+      "target_score_after": 0.021002715310155587,
+      "target_delta": -0.10325073209933842,
+      "fidelity_loss_protocol_b": 0.004566387665881836,
+      "correction_magnitude": 0.03780795413820359,
+      "tool_call_count": 4.0,
+      "netgain": 0.08041879376992925,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.03780795413820359,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.481525089514169,
+          0.16185991949864303,
+          0.1276412439368277,
+          0.1276412439368277,
+          0.1276412439368277
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.3385416666666667,
+        "BoneLengthEvaluator": 0.03421867556181535,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.05259147926380009,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_029",
+      "g2_prompt": "Create a choreography for the caption: a person makes an underhanded throw with ",
+      "motion_shape": [
+        156,
+        22,
+        3
+      ],
+      "target_score_before": 0.04274717434462345,
+      "target_score_after": 0.02514340502512666,
+      "target_delta": -0.01760376931949679,
+      "fidelity_loss_protocol_b": 0.002474231536933724,
+      "correction_magnitude": 0.03687785129540851,
+      "tool_call_count": 2.0,
+      "netgain": 0.005232611634828169,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 2,
+        "correction_magnitude": 0.03687785129540851,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "medium",
+            "target_part": "both_feet"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "FootLockTool",
+            "strength": "large",
+            "target_part": "both_feet"
+          }
+        ],
+        "score_trace": [
+          0.26041364944561285,
+          0.17500465164105933,
+          0.1365067183507787
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.08974358974358974,
+        "BoneLengthEvaluator": 0.03849793329028061,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.038461538461538464,
+        "BoneLengthEvaluator": 0.03696867661384151,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_030",
+      "g2_prompt": "Generate a motion that conveys a person does a single knee down with left leg wi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.019592272874399342,
+      "target_score_after": 0.019592272874399342,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.00141435156625153,
+      "correction_magnitude": 0.0053140709709062865,
+      "tool_call_count": 4.0,
+      "netgain": -0.007071757831257649,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0053140709709062865,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          }
+        ],
+        "score_trace": [
+          0.16689522899545525,
+          0.14038793432785332,
+          0.14038793432785332,
+          0.14038793432785332,
+          0.14038793432785332
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.01020408163265306,
+        "BoneLengthEvaluator": 0.032075693281582746,
+        "VelocityJitterEvaluator": 0.01649704370896223
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.01020408163265306,
+        "BoneLengthEvaluator": 0.032075693281582746,
+        "VelocityJitterEvaluator": 0.01649704370896223
+      }
+    }
+  ]
+}

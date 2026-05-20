@@ -1,0 +1,1960 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_g2_natural_summary",
+  "task_id": "baseline_b7_bandit_g2_v1",
+  "split_id": "g2_natural_v1",
+  "baseline_type": "b7_bandit",
+  "n_samples": 30,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating, BoneLength, VelocityJitter max scores)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weight_caveat": "α=5.0 calibration is from synthetic Protocol A — G2 Protocol B transfer caveat.",
+  "transfer_diagnostic_note": "본 실험은 single-step ceiling 의 G2 natural 재현 검증.",
+  "netgain": {
+    "mean": -0.03288075897263243,
+    "median": -0.019952892115904376,
+    "p25": -0.04839931985496766,
+    "p75": -0.007072800248937582,
+    "min": -0.11834561826663359,
+    "max": -0.0
+  },
+  "target_delta": {
+    "mean": -0.005647615186753393,
+    "median": -0.00025538235024794237
+  },
+  "fidelity_loss_protocol_b": {
+    "mean": 0.007705674831877164,
+    "median": 0.004400714029008668
+  },
+  "tool_call_count": {
+    "mean": 2.933333333333333,
+    "median": 4.0
+  },
+  "tool_distribution": {
+    "VelocitySmoothingTool": 98
+  },
+  "strength_distribution": {
+    "large": 17,
+    "medium": 81
+  },
+  "per_evaluator_reduction_median": {
+    "FootFloatingEvaluator": 0.0,
+    "BoneLengthEvaluator": 1.2575867986997294e-05,
+    "VelocityJitterEvaluator": 0.0
+  },
+  "per_evaluator_reduction_mean": {
+    "FootFloatingEvaluator": 0.014315757875953728,
+    "BoneLengthEvaluator": 1.1823726625236758e-06,
+    "VelocityJitterEvaluator": 0.0026259053116439285
+  },
+  "trial_ids": [
+    "motion_001",
+    "motion_002",
+    "motion_003",
+    "motion_004",
+    "motion_005",
+    "motion_006",
+    "motion_007",
+    "motion_008",
+    "motion_009",
+    "motion_010",
+    "motion_011",
+    "motion_012",
+    "motion_013",
+    "motion_014",
+    "motion_015",
+    "motion_016",
+    "motion_017",
+    "motion_018",
+    "motion_019",
+    "motion_020",
+    "motion_021",
+    "motion_022",
+    "motion_023",
+    "motion_024",
+    "motion_025",
+    "motion_026",
+    "motion_027",
+    "motion_028",
+    "motion_029",
+    "motion_030"
+  ],
+  "results": [
+    {
+      "trial_id": "motion_001",
+      "g2_prompt": "Please create a motion that represents the power of the figure takes a few sligh",
+      "motion_shape": [
+        160,
+        22,
+        3
+      ],
+      "target_score_before": 0.032794228020749876,
+      "target_score_after": 0.021371760657548155,
+      "target_delta": -0.01142246736320172,
+      "fidelity_loss_protocol_b": 0.024362919091438555,
+      "correction_magnitude": 0.025001584585653974,
+      "tool_call_count": 3.0,
+      "netgain": -0.11039212809399106,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 3,
+        "correction_magnitude": 0.025001584585653974,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.18380933673608973,
+          0.1441265780351175,
+          0.1269130904098151,
+          0.12752701081163934
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.075,
+        "BoneLengthEvaluator": 0.023382684062249637,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0375,
+        "BoneLengthEvaluator": 0.02661528197264446,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_002",
+      "g2_prompt": "I need a motion that represents the power of a man steps forward, then picks som",
+      "motion_shape": [
+        176,
+        22,
+        3
+      ],
+      "target_score_before": 0.01036654169560271,
+      "target_score_after": 0.00637938874854769,
+      "target_delta": -0.003987152947055021,
+      "fidelity_loss_protocol_b": 0.004193350097315812,
+      "correction_magnitude": 0.004390210256482679,
+      "tool_call_count": 4.0,
+      "netgain": -0.01697959753952404,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.004390210256482679,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.09220054227716411,
+          0.08532369961515868,
+          0.08481630585576651,
+          0.08446004275669007,
+          0.07855077226244643
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.011363636363636364,
+        "BoneLengthEvaluator": 0.01973598872317177,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.01913816624564307,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_003",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in person wal",
+      "motion_shape": [
+        160,
+        22,
+        3
+      ],
+      "target_score_before": 0.018829362513795852,
+      "target_score_after": 0.012342199544678757,
+      "target_delta": -0.006487162969117095,
+      "fidelity_loss_protocol_b": 0.011127413509937002,
+      "correction_magnitude": 0.011538475595609353,
+      "tool_call_count": 4.0,
+      "netgain": -0.04914990458056791,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.011538475595609353,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.14156376283122996,
+          0.13260093686125798,
+          0.12582356040087658,
+          0.11934251357373446,
+          0.1129179577712064
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.025,
+        "BoneLengthEvaluator": 0.03148808754138756,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.00625,
+        "BoneLengthEvaluator": 0.03077659863403627,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_004",
+      "g2_prompt": "I need a motion that represents the power of a person lifts both hands above the",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.010306561188342186,
+      "target_score_after": 0.00825061164114758,
+      "target_delta": -0.002055949547194607,
+      "fidelity_loss_protocol_b": 0.005322086598286496,
+      "correction_magnitude": 0.0056136803135887915,
+      "tool_call_count": 4.0,
+      "netgain": -0.024554483444237874,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0056136803135887915,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.09871686795544105,
+          0.09603074012627942,
+          0.09470371949220524,
+          0.08869155835338788,
+          0.08800104429703062
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.025817642748700027,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02475183492344274,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_005",
+      "g2_prompt": "Generate a motion that embodies the idea of a person takes two steps forward, th",
+      "motion_shape": [
+        104,
+        22,
+        3
+      ],
+      "target_score_before": 0.01272149632594379,
+      "target_score_after": 0.005971650470925704,
+      "target_delta": -0.006749845855018086,
+      "fidelity_loss_protocol_b": 0.010579482306637003,
+      "correction_magnitude": 0.01092912659520176,
+      "tool_call_count": 4.0,
+      "netgain": -0.04614756567816693,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.01092912659520176,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.10252826773881046,
+          0.08897178307888967,
+          0.07800939623188644,
+          0.07719158048635863,
+          0.07667205759183349
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.019230769230769232,
+        "BoneLengthEvaluator": 0.01893371974706214,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.017914951412777113,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_006",
+      "g2_prompt": "Give me a gesture that visualizes a person walks forward one foot in front of th",
+      "motion_shape": [
+        108,
+        22,
+        3
+      ],
+      "target_score_before": 0.20877825431285682,
+      "target_score_after": 0.20877825431285682,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          1.0460454073947283
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.5833333333333334,
+        "BoneLengthEvaluator": 0.043001429605237076,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.5833333333333334,
+        "BoneLengthEvaluator": 0.043001429605237076,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_007",
+      "g2_prompt": "Produce a movement that visualizes  Input: a person's right hand moves towards t",
+      "motion_shape": [
+        148,
+        22,
+        3
+      ],
+      "target_score_before": 0.19675434674985195,
+      "target_score_after": 0.13538724108468544,
+      "target_delta": -0.06136710566516651,
+      "fidelity_loss_protocol_b": 0.015441475918306751,
+      "correction_magnitude": 0.015791717782940924,
+      "tool_call_count": 2.0,
+      "netgain": -0.01584027392636725,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 2,
+        "correction_magnitude": 0.015791717782940924,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          1.155726115912425,
+          0.873824823386706,
+          0.737579095861216
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.527027027027027,
+        "BoneLengthEvaluator": 0.06323601322252898,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.34459459459459457,
+        "BoneLengthEvaluator": 0.06156712865946176,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_008",
+      "g2_prompt": "I need a motion that represents the power of a person's squats down using mainly",
+      "motion_shape": [
+        192,
+        22,
+        3
+      ],
+      "target_score_before": 0.12071025771315835,
+      "target_score_after": 0.11071299355181848,
+      "target_delta": -0.009997264161339878,
+      "fidelity_loss_protocol_b": 0.014098372358082674,
+      "correction_magnitude": 0.014590985172308994,
+      "tool_call_count": 4.0,
+      "netgain": -0.0604945976290735,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.014590985172308994,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.627128527254463,
+          0.6110259807720501,
+          0.6028696961028659,
+          0.5852893744272681,
+          0.5785337672076291
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.3177083333333333,
+        "BoneLengthEvaluator": 0.044422439806141724,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.2916666666666667,
+        "BoneLengthEvaluator": 0.04047231398878877,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_009",
+      "g2_prompt": "hands go to the chest moving back and forth, left hand place on the right upper ",
+      "motion_shape": [
+        192,
+        22,
+        3
+      ],
+      "target_score_before": 0.004619451819218908,
+      "target_score_after": 0.004378740847129542,
+      "target_delta": -0.00024071097208936635,
+      "fidelity_loss_protocol_b": 0.0022991795361536754,
+      "correction_magnitude": 0.0024777389977206524,
+      "tool_call_count": 4.0,
+      "netgain": -0.011255186708679012,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0024777389977206524,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.03888106823646403,
+          0.038332816232759026,
+          0.03792542072916196,
+          0.03757509972021725,
+          0.03726352052280073
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.013858355457656724,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.013136222541388624,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_010",
+      "g2_prompt": "Create a sequence of movements that exemplifies person walks to the right then t",
+      "motion_shape": [
+        180,
+        22,
+        3
+      ],
+      "target_score_before": 0.011775664240732125,
+      "target_score_after": 0.00767179554051023,
+      "target_delta": -0.004103868700221895,
+      "fidelity_loss_protocol_b": 0.008947587902610714,
+      "correction_magnitude": 0.009231454116247128,
+      "tool_call_count": 4.0,
+      "netgain": -0.04063407081283167,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.009231454116247128,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.10892286693560699,
+          0.09415041445423983,
+          0.0929864622224129,
+          0.09253202668188289,
+          0.0770988687012568
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.011111111111111112,
+        "BoneLengthEvaluator": 0.02421588161108526,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02301538662153069,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_011",
+      "g2_prompt": "Describe the movements of a person doing a plank in a person stands with arms ou",
+      "motion_shape": [
+        96,
+        22,
+        3
+      ],
+      "target_score_before": 0.019083863282985426,
+      "target_score_after": 0.019083863282985426,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.15314099399125933
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.02501208459860859,
+        "VelocityJitterEvaluator": 0.021822838583681024
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.02501208459860859,
+        "VelocityJitterEvaluator": 0.021822838583681024
+      }
+    },
+    {
+      "trial_id": "motion_012",
+      "g2_prompt": "I would like to see the motion of a person is attempting to jump rope by hopping",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.03525430934991319,
+      "target_score_after": 0.03525430934991319,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.32868861928633797
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.03571428571428571,
+        "BoneLengthEvaluator": 0.036842494258090094,
+        "VelocityJitterEvaluator": 0.03320614807736378
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.03571428571428571,
+        "BoneLengthEvaluator": 0.036842494258090094,
+        "VelocityJitterEvaluator": 0.03320614807736378
+      }
+    },
+    {
+      "trial_id": "motion_013",
+      "g2_prompt": "Demonstrate a dance that symbolizes the feeling of the figure walks from the bot",
+      "motion_shape": [
+        124,
+        22,
+        3
+      ],
+      "target_score_before": 0.04155059331116083,
+      "target_score_after": 0.0149285052838053,
+      "target_delta": -0.02662208802735553,
+      "fidelity_loss_protocol_b": 0.02749771412324725,
+      "correction_magnitude": 0.028227953225331084,
+      "tool_call_count": 4.0,
+      "netgain": -0.11086648258888071,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.028227953225331084,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.24757278918648007,
+          0.20547080885440533,
+          0.15951306245401511,
+          0.1603927082646911,
+          0.16128579563186599
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.08064516129032258,
+        "BoneLengthEvaluator": 0.04400661864315991,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0447855158514159,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_014",
+      "g2_prompt": "I need a motion that represents the power of a man waves his hands from side to ",
+      "motion_shape": [
+        172,
+        22,
+        3
+      ],
+      "target_score_before": 0.007997874450700887,
+      "target_score_after": 0.008018139204022882,
+      "target_delta": 2.02647533219958e-05,
+      "fidelity_loss_protocol_b": 0.0026220365120285466,
+      "correction_magnitude": 0.0027849906343159563,
+      "tool_call_count": 4.0,
+      "netgain": -0.013130447313464728,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0027849906343159563,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.03900325566269714,
+          0.03886467032522109,
+          0.03897907298360014,
+          0.03916192276588549,
+          0.039414631036414946
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.023993623352102658,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.024054417612068647,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_015",
+      "g2_prompt": "Give me a motion that reflects the idea of a person standing up throws something",
+      "motion_shape": [
+        80,
+        22,
+        3
+      ],
+      "target_score_before": 0.006706567627876543,
+      "target_score_after": 0.006701555911487373,
+      "target_delta": -5.011716389170286e-06,
+      "fidelity_loss_protocol_b": 0.005727359686032556,
+      "correction_magnitude": 0.005994577465033839,
+      "tool_call_count": 4.0,
+      "netgain": -0.02863178671377361,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.005994577465033839,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.06178562739603454,
+          0.06038839224745657,
+          0.0600306263793081,
+          0.06008506732119148,
+          0.05029989196482146
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02011970288362963,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02010466773446212,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_016",
+      "g2_prompt": "Give me a motion that expresses a person walks to the right makes a u-turn clock",
+      "motion_shape": [
+        96,
+        22,
+        3
+      ],
+      "target_score_before": 0.023727689251005667,
+      "target_score_after": 0.009911943726662953,
+      "target_delta": -0.013815745524342714,
+      "fidelity_loss_protocol_b": 0.013846124730965192,
+      "correction_magnitude": 0.014221600187076988,
+      "tool_call_count": 3.0,
+      "netgain": -0.05541487813048325,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 3,
+        "correction_magnitude": 0.014221600187076988,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.17242541914573706,
+          0.12779467548734386,
+          0.11638207512706222,
+          0.11636406251453668
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.020833333333333332,
+        "BoneLengthEvaluator": 0.032068651105687934,
+        "VelocityJitterEvaluator": 0.018281083313995736
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02973583117998886,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_017",
+      "g2_prompt": "I need a motion that represents the transformation of a person makes a shaking m",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.010566535313309358,
+      "target_score_after": 0.011205388410202901,
+      "target_delta": 0.0006388530968935435,
+      "fidelity_loss_protocol_b": 0.001697023887784253,
+      "correction_magnitude": 0.0018365004829570318,
+      "tool_call_count": 4.0,
+      "netgain": -0.009123972535814808,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0018365004829570318,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.08227877404431196,
+          0.0824141043780447,
+          0.0827351686499693,
+          0.0831099096023034,
+          0.08350915643117607
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03169960593992807,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0336161652306087,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_018",
+      "g2_prompt": "Create a dance that symbolizes a person bends down to pick something up with the",
+      "motion_shape": [
+        172,
+        22,
+        3
+      ],
+      "target_score_before": 0.01407010928168457,
+      "target_score_after": 0.014653519322240093,
+      "target_delta": 0.000583410040555522,
+      "fidelity_loss_protocol_b": 0.004608077960701524,
+      "correction_magnitude": 0.004887404335840014,
+      "tool_call_count": 4.0,
+      "netgain": -0.02362379984406314,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.004887404335840014,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.15017757216282404,
+          0.14912236191630915,
+          0.14889776074813862,
+          0.1488573094578121,
+          0.1490409043299147
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04221032784505371,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04396055796672028,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_019",
+      "g2_prompt": "I want a motion that represents the power of a man gets up from the ground pushi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.04295257817085383,
+      "target_score_after": 0.04295257817085383,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.3444421253716683
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.05102040816326531,
+        "BoneLengthEvaluator": 0.06136362621538559,
+        "VelocityJitterEvaluator": 0.016473700133910602
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.05102040816326531,
+        "BoneLengthEvaluator": 0.06136362621538559,
+        "VelocityJitterEvaluator": 0.016473700133910602
+      }
+    },
+    {
+      "trial_id": "motion_020",
+      "g2_prompt": "Develop a movement that represents  Input: the person is in a sitting position w",
+      "motion_shape": [
+        188,
+        22,
+        3
+      ],
+      "target_score_before": 0.010165820618694829,
+      "target_score_after": 0.010057030947867219,
+      "target_delta": -0.00010878967082761024,
+      "fidelity_loss_protocol_b": 0.00129957316482789,
+      "correction_magnitude": 0.0014085066228886223,
+      "tool_call_count": 4.0,
+      "netgain": -0.00638907615331184,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0014085066228886223,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.11095345650900405,
+          0.11049502481769524,
+          0.11022183413039108,
+          0.10998457476200019,
+          0.10980408740021762
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.030497461856084488,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.030171092843601657,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_021",
+      "g2_prompt": "Please create a motion that represents the power of someone put their arms on th",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.012344651037868323,
+      "target_score_after": 0.011870192138783908,
+      "target_delta": -0.0004744588990844151,
+      "fidelity_loss_protocol_b": 0.002686474725079699,
+      "correction_magnitude": 0.0028820572662909306,
+      "tool_call_count": 4.0,
+      "netgain": -0.01295791472631408,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0028820572662909306,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.09368421496132592,
+          0.09277041485580026,
+          0.09216016774376828,
+          0.09163454094106753,
+          0.09115320907711812
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03703395311360497,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03561057641635172,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_022",
+      "g2_prompt": "Describe the movements of a person doing a handstand press in the person throws ",
+      "motion_shape": [
+        76,
+        22,
+        3
+      ],
+      "target_score_before": 0.010555054430157376,
+      "target_score_after": 0.011854776914194981,
+      "target_delta": 0.0012997224840376048,
+      "fidelity_loss_protocol_b": 0.007467049266526046,
+      "correction_magnitude": 0.007753794979959228,
+      "tool_call_count": 4.0,
+      "netgain": -0.038634968816667836,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.007753794979959228,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.08709180949947487,
+          0.08582187404211628,
+          0.07747192605442044,
+          0.0802551087591031,
+          0.08294797673141788
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03166516329047213,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03556433074258494,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_023",
+      "g2_prompt": "Create a motion that depicts  Input: a person rotates their head, then rotates t",
+      "motion_shape": [
+        128,
+        22,
+        3
+      ],
+      "target_score_before": 0.015074353940332443,
+      "target_score_after": 0.015074353940332443,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.12978206511999085
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0234375,
+        "BoneLengthEvaluator": 0.021785561820997328,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0234375,
+        "BoneLengthEvaluator": 0.021785561820997328,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_024",
+      "g2_prompt": "Develop a motion that symbolizes a person lifts up their arm at a 120 degree ang",
+      "motion_shape": [
+        60,
+        22,
+        3
+      ],
+      "target_score_before": 0.02330506458016936,
+      "target_score_after": 0.012039261494396528,
+      "target_delta": -0.011265803085772833,
+      "fidelity_loss_protocol_b": 0.020555871139880055,
+      "correction_magnitude": 0.021178826008595674,
+      "tool_call_count": 4.0,
+      "netgain": -0.09151355261362744,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.021178826008595674,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.10602507489165679,
+          0.07154115505823282,
+          0.05746825938538281,
+          0.06059479884431204,
+          0.06336399935880581
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.03333333333333333,
+        "BoneLengthEvaluator": 0.01402601450396419,
+        "VelocityJitterEvaluator": 0.02255584590321057
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.016666666666666666,
+        "BoneLengthEvaluator": 0.019451117816522923,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_025",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in a person w",
+      "motion_shape": [
+        100,
+        22,
+        3
+      ],
+      "target_score_before": 0.018113557614337916,
+      "target_score_after": 0.007410464794240286,
+      "target_delta": -0.01070309282009763,
+      "fidelity_loss_protocol_b": 0.025809742217346242,
+      "correction_magnitude": 0.026219074493092236,
+      "tool_call_count": 4.0,
+      "netgain": -0.11834561826663359,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.026219074493092236,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.17403606052667192,
+          0.09215296346467719,
+          0.0724694786691973,
+          0.07204827430668272,
+          0.0634464630016013
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.01,
+        "BoneLengthEvaluator": 0.022897486419864423,
+        "VelocityJitterEvaluator": 0.021443186423149328
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.022231394382720857,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_026",
+      "g2_prompt": "Please create a motion that represents the magic of the person steps a little wi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.014279024541364156,
+      "target_score_after": 0.019377693162088525,
+      "target_delta": 0.005098668620724368,
+      "fidelity_loss_protocol_b": 0.0035655036143120693,
+      "correction_magnitude": 0.003785955061932708,
+      "tool_call_count": 4.0,
+      "netgain": -0.022926186692284717,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.003785955061932708,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.06752588387230851,
+          0.07215448118229979,
+          0.07700112667219608,
+          0.06681215520658917,
+          0.0718739495932231
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.03773503280776594,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.02040816326530612,
+        "BoneLengthEvaluator": 0.037724916220959456,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_027",
+      "g2_prompt": "Please create a motion that represents the uniqueness of a man is mixing somethi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.009651226457102322,
+      "target_score_after": 0.009381172728695803,
+      "target_delta": -0.0002700537284065184,
+      "fidelity_loss_protocol_b": 0.002273386232278702,
+      "correction_magnitude": 0.0024619762907706656,
+      "tool_call_count": 4.0,
+      "netgain": -0.011096877432986992,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.0024619762907706656,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.09708636551904423,
+          0.09600734102345172,
+          0.09532225643520481,
+          0.09475356215207348,
+          0.09424849347250933
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.028953679371306967,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02814351818608741,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_028",
+      "g2_prompt": "Create a motion for the caption: a person takes a step forward, squats down, pla",
+      "motion_shape": [
+        192,
+        22,
+        3
+      ],
+      "target_score_before": 0.12425344740949401,
+      "target_score_after": 0.12425344740949401,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.481525089514169
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.3385416666666667,
+        "BoneLengthEvaluator": 0.03421867556181535,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.3385416666666667,
+        "BoneLengthEvaluator": 0.03421867556181535,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_029",
+      "g2_prompt": "Create a choreography for the caption: a person makes an underhanded throw with ",
+      "motion_shape": [
+        156,
+        22,
+        3
+      ],
+      "target_score_before": 0.04274717434462345,
+      "target_score_after": 0.04274717434462345,
+      "target_delta": 0.0,
+      "fidelity_loss_protocol_b": 0.0,
+      "correction_magnitude": 0.0,
+      "tool_call_count": 0.0,
+      "netgain": -0.0,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 0,
+        "correction_magnitude": 0.0,
+        "converged": true,
+        "rolled_back": true,
+        "max_iter_reached": false,
+        "stop_reason": "rollback_score_increase",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "large",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.26041364944561285
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.08974358974358974,
+        "BoneLengthEvaluator": 0.03849793329028061,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.08974358974358974,
+        "BoneLengthEvaluator": 0.03849793329028061,
+        "VelocityJitterEvaluator": 0.0
+      }
+    },
+    {
+      "trial_id": "motion_030",
+      "g2_prompt": "Generate a motion that conveys a person does a single knee down with left leg wi",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.019592272874399342,
+      "target_score_after": 0.012199469928945142,
+      "target_delta": -0.0073928029454542,
+      "fidelity_loss_protocol_b": 0.015142440376536207,
+      "correction_magnitude": 0.015598572149868184,
+      "tool_call_count": 4.0,
+      "netgain": -0.06831939893722683,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 4,
+        "correction_magnitude": 0.015598572149868184,
+        "converged": false,
+        "rolled_back": false,
+        "max_iter_reached": true,
+        "stop_reason": null,
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          },
+          {
+            "decision": "revise",
+            "tool": "VelocitySmoothingTool",
+            "strength": "medium",
+            "target_part": "full_body"
+          }
+        ],
+        "score_trace": [
+          0.16689522899545525,
+          0.13768134438521146,
+          0.138166934118355,
+          0.1396539356781048,
+          0.14161066034015832
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.01020408163265306,
+        "BoneLengthEvaluator": 0.032075693281582746,
+        "VelocityJitterEvaluator": 0.01649704370896223
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.0314963689705089,
+        "VelocityJitterEvaluator": 0.0
+      }
+    }
+  ]
+}

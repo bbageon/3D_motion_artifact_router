@@ -37,6 +37,7 @@ BASELINE_RECORD_TYPES = (
     "baseline_multi_artifact_sample",
     "baseline_b6_closed_loop_multi_sample",
     "baseline_b7_bandit_multi_sample",
+    "baseline_g2_natural_sample",
 )
 ORACLE_RECORD_TYPES = (
     "oracle_single_step_sample",
@@ -56,8 +57,10 @@ def _load_netgains_any(raw_dir: Path, prefix: str) -> dict[tuple[str, str], floa
         trial = r.get("trial_id")
         if rec_type in BASELINE_RECORD_TYPES:
             for art, sel in r.get("selections", {}).items():
-                if "netgain_provisional" in sel:
-                    out[(trial, art)] = float(sel["netgain_provisional"])
+                # G2 natural record 는 'netgain', baseline 들은 'netgain_provisional'.
+                ng_key = "netgain_provisional" if "netgain_provisional" in sel else "netgain"
+                if ng_key in sel:
+                    out[(trial, art)] = float(sel[ng_key])
         elif rec_type in ORACLE_RECORD_TYPES:
             for art, sel in r.get("selections", {}).items():
                 best = sel.get("best_candidate")

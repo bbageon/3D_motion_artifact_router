@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_g2_natural_sample",
+  "timestamp": "20260520T135048816373Z",
+  "task_id": "baseline_b6_cl_g2_v1",
+  "split_id": "g2_natural_v1",
+  "trial_id": "motion_004",
+  "baseline_type": "b6_closed_loop",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_004.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "g2_prompt": "I need a motion that represents the power of a person lifts both hands above their head, moves both hands rapidly outwards and back to above their head, then lowers both arms. to create positive change in the fight against hunger and malnutrition. Can you generate it for me?",
+  "g2_seed": 45,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating_max, BoneLength_max, VelocityJitter_max)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weight_caveat": "α=5.0 calibration is from synthetic Protocol A — transfer to G2 Protocol B magnitudes is calibration-dependent.",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "g2_natural_multi_artifact": {
+      "trial_id": "motion_004",
+      "g2_prompt": "I need a motion that represents the power of a person lifts both hands above the",
+      "motion_shape": [
+        196,
+        22,
+        3
+      ],
+      "target_score_before": 0.010306561188342186,
+      "target_score_after": 0.007606137050021958,
+      "target_delta": -0.0027004241383202284,
+      "fidelity_loss_protocol_b": 0.0012671606586615927,
+      "correction_magnitude": 0.005908195066805913,
+      "tool_call_count": 1.0,
+      "netgain": -0.0036353791549877355,
+      "trace": {
+        "decision": "closed_loop",
+        "tool_call_count": 1,
+        "correction_magnitude": 0.005908195066805913,
+        "converged": true,
+        "rolled_back": false,
+        "max_iter_reached": false,
+        "stop_reason": "all_targets_below_threshold",
+        "decision_trace": [
+          {
+            "decision": "revise",
+            "tool": "BoneProjectionTool",
+            "strength": "large",
+            "target_part": "right_arm"
+          },
+          {
+            "decision": "STOP",
+            "tool": null,
+            "strength": null,
+            "target_part": null
+          }
+        ],
+        "score_trace": [
+          0.09871686795544105,
+          0.07289922520674101
+        ]
+      },
+      "per_evaluator_before_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.025817642748700027,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "per_evaluator_after_max": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.017716370333739344,
+        "VelocityJitterEvaluator": 0.0
+      }
+    }
+  },
+  "transfer_diagnostic_note": "본 실험은 single-step ceiling 의 G2 natural 재현 검증. 최종 우위 검증 아님.",
+  "negative_result": false
+}
