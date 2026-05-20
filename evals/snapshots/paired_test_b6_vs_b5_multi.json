@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_baseline_vs_oracle",
+  "n_keys_compared": 30,
+  "per_artifact": [
+    {
+      "artifact_kind": "foot_floating_AND_global_jitter",
+      "n_pairs": 30,
+      "oracle_netgain_mean": 0.06129862163059952,
+      "oracle_netgain_median": 0.06791968920466623,
+      "baseline_netgain_mean": -0.05920166032677113,
+      "baseline_netgain_median": -0.05790856323845719,
+      "delta_mean": 0.12050028195737064,
+      "delta_median": 0.12765129106263545,
+      "delta_percent_median": 220.4359492342956,
+      "n_oracle_advantage": 27,
+      "n_tie": 0,
+      "n_baseline_advantage": 3,
+      "wilcoxon_statistic": 10.0,
+      "wilcoxon_p_two_sided": 8.009374141693115e-08,
+      "wilcoxon_p_greater_one_sided": 4.0046870708465576e-08,
+      "cohens_d_paired": 1.3897914873252062,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.08070378688823149,
+        "median_ci_hi_95": 0.16581294580488393,
+        "mean_ci_lo_95": 0.0913435188483565,
+        "mean_ci_hi_95": 0.15005679422689738
+      }
+    }
+  ],
+  "pooled": {
+    "n_pairs": 30,
+    "delta_mean": 0.12050028195737064,
+    "delta_median": 0.12765129106263545,
+    "n_oracle_advantage": 27,
+    "n_tie": 0,
+    "n_baseline_advantage": 3,
+    "wilcoxon_statistic": 10.0,
+    "wilcoxon_p_two_sided": 8.009374141693115e-08,
+    "wilcoxon_p_greater_one_sided": 4.0046870708465576e-08,
+    "cohens_d_paired": 1.3897914873252062,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": 0.08070378688823149,
+      "median_ci_hi_95": 0.16581294580488393,
+      "mean_ci_lo_95": 0.0913435188483565,
+      "mean_ci_hi_95": 0.15005679422689738
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: oracle > baseline.",
+    "effect_size_convention": "Cohen's d_paired = mean(oracle - baseline) / std. |d|>0.2 small, 0.5 medium, 0.8 large.",
+    "h_2026_204_rq1_threshold": "Oracle (B8) vs fixed smoothing (B2): NetGain median Delta >= +10% (명세 §11 Go 5). Rule-based (B5) vs fixed smoothing (B2): median Delta >= +5%, p<0.05, Cohen's d >= 0.3."
+  },
+  "baseline_prefix": "baseline_b5_rule_based_multi_v1",
+  "oracle_prefix": "baseline_b6_supervised_multi_v1"
+}
