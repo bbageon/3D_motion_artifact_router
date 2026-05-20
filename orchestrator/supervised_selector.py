@@ -59,7 +59,16 @@ ARTIFACT_TO_TARGET_PART: dict[str, str] = {
     "global_jitter": "full_body",
 }
 
+#: artifact_kind → tool name (rule-based mapping, used by
+#: ablation_mode='rule_tool_learned_strength').
+ARTIFACT_TO_TARGET_TOOL: dict[str, str] = {
+    "foot_floating": "FootLockTool",
+    "bone_stretch_right_arm": "BoneProjectionTool",
+    "global_jitter": "VelocitySmoothingTool",
+}
+
 ModelType = Literal["random_forest", "logistic_regression", "dummy_most_frequent"]
+AblationMode = Literal["none", "score_only", "rule_tool_learned_strength"]
 
 
 @dataclass
@@ -86,12 +95,32 @@ class SupervisedSelector:
         self,
         model_type: ModelType = "random_forest",
         random_state: int = 42,
+        ablation_mode: AblationMode = "none",
     ) -> None:
+        """Args:
+            ablation_mode:
+              - 'none' (default): full features (artifact_kind onehot + evaluator scores) + tool/strength 둘 다 학습.
+              - 'score_only': artifact_kind onehot 제거, evaluator scores 만 사용 → 일반화 가능성 검증.
+              - 'rule_tool_learned_strength': tool 은 ARTIFACT_TO_TARGET_TOOL rule lookup,
+                strength 만 학습 → 학습 신호의 strength-isolation.
+        """
         self.model_type = model_type
         self.random_state = random_state
+        self.ablation_mode = ablation_mode
         self.tool_clf: Optional[Any] = None
         self.strength_clf: Optional[Any] = None
         self._feature_names: Optional[list[str]] = None
+
+    def _preprocess(self, X: np.ndarray) -> np.ndarray:
+        """ablation_mode 에 따라 feature 변환.
+
+        Default state vector schema: [artifact_onehot(3), evaluator_scores(3)] = 6-dim.
+        - 'score_only': first 3 (artifact_onehot) 제거 → 3-dim.
+        - others: pass-through.
+        """
+        if self.ablation_mode == "score_only":
+            return X[:, 3:] if X.ndim == 2 else X[3:].reshape(1, -1)
+        return X
 
     def _make_classifier(self) -> Any:
         if self.model_type == "random_forest":
@@ -121,39 +150,53 @@ class SupervisedSelector:
             {"tool_train_score", "strength_train_score", "model_type"}.
         """
         self._feature_names = feature_names
-        self.tool_clf = self._make_classifier()
+        X_proc = self._preprocess(X)
+        # tool_clf: ablation_mode='rule_tool_learned_strength' 이면 학습 안 함.
+        if self.ablation_mode == "rule_tool_learned_strength":
+            self.tool_clf = None
+            tool_train_acc = float("nan")
+        else:
+            self.tool_clf = self._make_classifier()
+            self.tool_clf.fit(X_proc, tool_labels)
+            tool_train_acc = float(self.tool_clf.score(X_proc, tool_labels))
+        # strength_clf: 항상 학습.
         self.strength_clf = self._make_classifier()
-        self.tool_clf.fit(X, tool_labels)
-        self.strength_clf.fit(X, strength_labels)
+        self.strength_clf.fit(X_proc, strength_labels)
         return {
             "model_type": self.model_type,
+            "ablation_mode": self.ablation_mode,
             "n_train": X.shape[0],
-            "tool_train_accuracy": float(self.tool_clf.score(X, tool_labels)),
-            "strength_train_accuracy": float(self.strength_clf.score(X, strength_labels)),
+            "n_features_after_preprocess": X_proc.shape[1] if X_proc.ndim == 2 else len(X_proc),
+            "tool_train_accuracy": tool_train_acc,
+            "strength_train_accuracy": float(self.strength_clf.score(X_proc, strength_labels)),
         }
 
     def predict(self, state_vector: np.ndarray, artifact_kind: str) -> SupervisedSelectorPrediction:
-        """state vector + artifact_kind → SupervisedSelectorPrediction.
-
-        Args:
-            state_vector: [n_features] single sample feature vector.
-            artifact_kind: 'foot_floating' / 'bone_stretch_right_arm' / 'global_jitter'.
-        """
-        if self.tool_clf is None or self.strength_clf is None:
+        """state vector + artifact_kind → SupervisedSelectorPrediction."""
+        if self.strength_clf is None:
             raise RuntimeError("SupervisedSelector not trained yet — call train() first.")
         X = state_vector.reshape(1, -1)
-        tool_pred = str(self.tool_clf.predict(X)[0])
-        strength_pred = str(self.strength_clf.predict(X)[0])
+        X_proc = self._preprocess(X)
 
-        # probabilities (if classifier supports).
+        # Tool prediction: rule or learned.
         tool_proba: dict[str, float] = {}
+        if self.ablation_mode == "rule_tool_learned_strength":
+            tool_pred = ARTIFACT_TO_TARGET_TOOL.get(artifact_kind, "FootLockTool")
+            tool_proba = {tool_pred: 1.0}
+        else:
+            if self.tool_clf is None:
+                raise RuntimeError("tool_clf 가 None — ablation_mode 와 train state 불일치.")
+            tool_pred = str(self.tool_clf.predict(X_proc)[0])
+            if hasattr(self.tool_clf, "predict_proba"):
+                probs = self.tool_clf.predict_proba(X_proc)[0]
+                classes = list(self.tool_clf.classes_)
+                tool_proba = {str(c): float(p) for c, p in zip(classes, probs)}
+
+        # Strength prediction: 항상 learned.
+        strength_pred = str(self.strength_clf.predict(X_proc)[0])
         strength_proba: dict[str, float] = {}
-        if hasattr(self.tool_clf, "predict_proba"):
-            probs = self.tool_clf.predict_proba(X)[0]
-            classes = list(self.tool_clf.classes_)
-            tool_proba = {str(c): float(p) for c, p in zip(classes, probs)}
         if hasattr(self.strength_clf, "predict_proba"):
-            probs = self.strength_clf.predict_proba(X)[0]
+            probs = self.strength_clf.predict_proba(X_proc)[0]
             classes = list(self.strength_clf.classes_)
             strength_proba = {str(c): float(p) for c, p in zip(classes, probs)}
 
@@ -166,6 +209,7 @@ class SupervisedSelector:
             strength_proba=strength_proba,
             metadata={
                 "model_type": self.model_type,
+                "ablation_mode": self.ablation_mode,
                 "artifact_kind": artifact_kind,
             },
         )
@@ -175,17 +219,34 @@ class SupervisedSelector:
         X_eval: np.ndarray,
         tool_eval_labels: np.ndarray,
         strength_eval_labels: np.ndarray,
+        artifact_kinds: Optional[list[str]] = None,
     ) -> dict[str, Any]:
-        """Compute eval-set accuracy / agreement."""
-        if self.tool_clf is None or self.strength_clf is None:
+        """Compute eval-set accuracy / agreement.
+
+        Args:
+            artifact_kinds: ablation_mode='rule_tool_learned_strength' 시 tool prediction
+                위해 필요. None 이면 tool_acc 계산 안 함 (NaN).
+        """
+        if self.strength_clf is None:
             raise RuntimeError("SupervisedSelector not trained yet — call train() first.")
-        tool_pred = self.tool_clf.predict(X_eval)
-        strength_pred = self.strength_clf.predict(X_eval)
+        X_proc = self._preprocess(X_eval)
+        # Tool predictions.
+        if self.ablation_mode == "rule_tool_learned_strength":
+            if artifact_kinds is None:
+                tool_pred = np.array(["UNKNOWN"] * X_eval.shape[0])
+            else:
+                tool_pred = np.array([ARTIFACT_TO_TARGET_TOOL.get(a, "UNKNOWN") for a in artifact_kinds])
+        else:
+            if self.tool_clf is None:
+                raise RuntimeError("tool_clf is None — ablation_mode mismatch.")
+            tool_pred = self.tool_clf.predict(X_proc)
+        strength_pred = self.strength_clf.predict(X_proc)
         tool_acc = float(np.mean(tool_pred == tool_eval_labels))
         strength_acc = float(np.mean(strength_pred == strength_eval_labels))
         joint_acc = float(np.mean((tool_pred == tool_eval_labels) & (strength_pred == strength_eval_labels)))
         return {
             "model_type": self.model_type,
+            "ablation_mode": self.ablation_mode,
             "n_eval": X_eval.shape[0],
             "tool_accuracy": tool_acc,
             "strength_accuracy": strength_acc,

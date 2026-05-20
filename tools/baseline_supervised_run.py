@@ -237,6 +237,11 @@ def main() -> None:
     parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--netgain-preset", type=str, default="calibrated_protocol_a_v1",
                         choices=list(WEIGHT_PRESETS.keys()))
+    parser.add_argument("--ablation-mode", type=str, default="none",
+                        choices=["none", "score_only", "rule_tool_learned_strength"],
+                        help="ablation: 'none' = full features + tool/strength 학습, "
+                             "'score_only' = artifact_onehot 제거, "
+                             "'rule_tool_learned_strength' = tool 은 rule, strength 만 학습.")
     args = parser.parse_args()
 
     netgain_weights, netgain_weight_status = WEIGHT_PRESETS[args.netgain_preset]
@@ -252,12 +257,17 @@ def main() -> None:
 
     # Train.
     model_random_state = args.model_random_state if args.model_random_state is not None else args.seed
-    selector = SupervisedSelector(model_type=args.model_type, random_state=model_random_state)
+    selector = SupervisedSelector(
+        model_type=args.model_type,
+        random_state=model_random_state,
+        ablation_mode=args.ablation_mode,
+    )
     X_train, tool_train, strength_train = tuples_to_arrays(train_tuples)
     X_eval, tool_eval, strength_eval = tuples_to_arrays(eval_tuples)
     train_metrics = selector.train(X_train, tool_train, strength_train,
                                    feature_names=td.get("feature_names"))
-    eval_metrics = selector.evaluate(X_eval, tool_eval, strength_eval)
+    artifact_kinds_eval = [t["artifact_kind"] for t in eval_tuples]
+    eval_metrics = selector.evaluate(X_eval, tool_eval, strength_eval, artifact_kinds=artifact_kinds_eval)
     print(f"[INFO] train metrics: {train_metrics}")
     print(f"[INFO] eval metrics: {eval_metrics}")
 
