@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_baseline_vs_oracle",
+  "n_keys_compared": 42,
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "n_pairs": 14,
+      "oracle_netgain_mean": 0.1764970491165474,
+      "oracle_netgain_median": 0.18715537154080342,
+      "baseline_netgain_mean": 0.008529977644571115,
+      "baseline_netgain_median": 0.0034531654686771607,
+      "delta_mean": 0.16796707147197631,
+      "delta_median": 0.17849970991572267,
+      "delta_percent_median": 5169.161788939769,
+      "n_oracle_advantage": 14,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 0.0001220703125,
+      "wilcoxon_p_greater_one_sided": 6.103515625e-05,
+      "cohens_d_paired": 5.169784540091901,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.1396341686673186,
+        "median_ci_hi_95": 0.18777517767316546,
+        "mean_ci_lo_95": 0.15041358017915668,
+        "mean_ci_hi_95": 0.1825234898447402
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "n_pairs": 14,
+      "oracle_netgain_mean": 0.3635920085049686,
+      "oracle_netgain_median": 0.31486820356972023,
+      "baseline_netgain_mean": -0.0041430845913827735,
+      "baseline_netgain_median": -0.0031336551256572493,
+      "delta_mean": 0.36773509309635133,
+      "delta_median": 0.3315957001285764,
+      "delta_percent_median": 10581.754750661272,
+      "n_oracle_advantage": 14,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 0.0001220703125,
+      "wilcoxon_p_greater_one_sided": 6.103515625e-05,
+      "cohens_d_paired": 1.5030488510412852,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.22589696509230925,
+        "median_ci_hi_95": 0.4863209933817302,
+        "mean_ci_lo_95": 0.24601385156938246,
+        "mean_ci_hi_95": 0.48787907731034735
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "n_pairs": 14,
+      "oracle_netgain_mean": 0.4180671966602118,
+      "oracle_netgain_median": 0.42604605023412606,
+      "baseline_netgain_mean": 0.35127743276426093,
+      "baseline_netgain_median": 0.35164302872309133,
+      "delta_mean": 0.0667897638959509,
+      "delta_median": 0.07329869190779686,
+      "delta_percent_median": 20.84463103789197,
+      "n_oracle_advantage": 14,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 0.0001220703125,
+      "wilcoxon_p_greater_one_sided": 6.103515625e-05,
+      "cohens_d_paired": 2.381576816817093,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.06644821682919738,
+        "median_ci_hi_95": 0.08405447764928195,
+        "mean_ci_lo_95": 0.052723874632786945,
+        "mean_ci_hi_95": 0.07795899565653477
+      }
+    }
+  ],
+  "pooled": {
+    "n_pairs": 42,
+    "delta_mean": 0.20083064282142615,
+    "delta_median": 0.15667544022712881,
+    "n_oracle_advantage": 42,
+    "n_tie": 0,
+    "n_baseline_advantage": 0,
+    "wilcoxon_statistic": 0.0,
+    "wilcoxon_p_two_sided": 4.547473508864641e-13,
+    "wilcoxon_p_greater_one_sided": 2.2737367544323206e-13,
+    "cohens_d_paired": 1.0647062068406026,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": 0.08948974377771104,
+      "median_ci_hi_95": 0.1877340678571261,
+      "mean_ci_lo_95": 0.14944658025868185,
+      "mean_ci_hi_95": 0.25980453486627114
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: oracle > baseline.",
+    "effect_size_convention": "Cohen's d_paired = mean(oracle - baseline) / std. |d|>0.2 small, 0.5 medium, 0.8 large.",
+    "h_2026_204_rq1_threshold": "Oracle (B8) vs fixed smoothing (B2): NetGain median Delta >= +10% (명세 §11 Go 5). Rule-based (B5) vs fixed smoothing (B2): median Delta >= +5%, p<0.05, Cohen's d >= 0.3."
+  },
+  "baseline_prefix": "baseline_b2_fixed_smoothing_v1",
+  "oracle_prefix": "baseline_b6_supervised_v2_seed1"
+}

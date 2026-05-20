@@ -228,7 +228,9 @@ def main() -> None:
     parser.add_argument("--model-type", type=str, default="random_forest",
                         choices=["random_forest", "logistic_regression", "dummy_most_frequent"])
     parser.add_argument("--train-ratio", type=float, default=0.7)
-    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--seed", type=int, default=42, help="split seed + injection seed.")
+    parser.add_argument("--model-random-state", type=int, default=None,
+                        help="model (RandomForest) random_state. None 이면 --seed 사용. n_seeds ≥ 3 robust 측정 시 별도 지정.")
     parser.add_argument("--task-id", type=str, required=True)
     parser.add_argument("--split-id", type=str, default="supervised_eval_v1")
     parser.add_argument("--raw-output-dir", type=Path, default=None)
@@ -249,7 +251,8 @@ def main() -> None:
     print(f"[INFO] train: {len(train_tuples)} tuples, eval: {len(eval_tuples)} tuples")
 
     # Train.
-    selector = SupervisedSelector(model_type=args.model_type, random_state=args.seed)
+    model_random_state = args.model_random_state if args.model_random_state is not None else args.seed
+    selector = SupervisedSelector(model_type=args.model_type, random_state=model_random_state)
     X_train, tool_train, strength_train = tuples_to_arrays(train_tuples)
     X_eval, tool_eval, strength_eval = tuples_to_arrays(eval_tuples)
     train_metrics = selector.train(X_train, tool_train, strength_train,
@@ -321,6 +324,7 @@ def main() -> None:
                 "netgain_weights": dict(netgain_weights),
                 "selector_model_type": args.model_type,
                 "train_eval_split_seed": int(args.seed),
+                "model_random_state": int(model_random_state),
                 "train_ratio": float(args.train_ratio),
                 "selections": {artifact_kind: result},
                 "negative_result": False,

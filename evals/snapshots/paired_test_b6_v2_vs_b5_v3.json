@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "paired_test_baseline_vs_oracle",
+  "n_keys_compared": 42,
+  "per_artifact": [
+    {
+      "artifact_kind": "bone_stretch_right_arm",
+      "n_pairs": 14,
+      "oracle_netgain_mean": 0.1764970491165474,
+      "oracle_netgain_median": 0.18715537154080342,
+      "baseline_netgain_mean": 0.1764970491165474,
+      "baseline_netgain_median": 0.18715537154080342,
+      "delta_mean": 0.0,
+      "delta_median": 0.0,
+      "delta_percent_median": 0.0,
+      "n_oracle_advantage": 0,
+      "n_tie": 14,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 1.0,
+      "wilcoxon_p_greater_one_sided": 1.0,
+      "cohens_d_paired": 0.0,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.0,
+        "median_ci_hi_95": 0.0,
+        "mean_ci_lo_95": 0.0,
+        "mean_ci_hi_95": 0.0
+      }
+    },
+    {
+      "artifact_kind": "foot_floating",
+      "n_pairs": 14,
+      "oracle_netgain_mean": 0.3635920085049686,
+      "oracle_netgain_median": 0.31486820356972023,
+      "baseline_netgain_mean": 0.042306418036942954,
+      "baseline_netgain_median": 0.009618677055704078,
+      "delta_mean": 0.32128559046802563,
+      "delta_median": 0.2779265312700503,
+      "delta_percent_median": 2889.446538858834,
+      "n_oracle_advantage": 13,
+      "n_tie": 0,
+      "n_baseline_advantage": 1,
+      "wilcoxon_statistic": 12.0,
+      "wilcoxon_p_two_sided": 0.008544921875,
+      "wilcoxon_p_greater_one_sided": 0.0042724609375,
+      "cohens_d_paired": 0.687625742060867,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.057482628263095276,
+        "median_ci_hi_95": 0.5918978266095237,
+        "mean_ci_lo_95": 0.0871852537114647,
+        "mean_ci_hi_95": 0.5389999524072264
+      }
+    },
+    {
+      "artifact_kind": "global_jitter",
+      "n_pairs": 14,
+      "oracle_netgain_mean": 0.4180671966602118,
+      "oracle_netgain_median": 0.42604605023412606,
+      "baseline_netgain_mean": 0.35127743276426093,
+      "baseline_netgain_median": 0.35164302872309133,
+      "delta_mean": 0.0667897638959509,
+      "delta_median": 0.07329869190779686,
+      "delta_percent_median": 20.84463103789197,
+      "n_oracle_advantage": 14,
+      "n_tie": 0,
+      "n_baseline_advantage": 0,
+      "wilcoxon_statistic": 0.0,
+      "wilcoxon_p_two_sided": 0.0001220703125,
+      "wilcoxon_p_greater_one_sided": 6.103515625e-05,
+      "cohens_d_paired": 2.381576816817093,
+      "bootstrap_ci_95": {
+        "median_ci_lo_95": 0.06644821682919738,
+        "median_ci_hi_95": 0.08405447764928195,
+        "mean_ci_lo_95": 0.052723874632786945,
+        "mean_ci_hi_95": 0.07795899565653477
+      }
+    }
+  ],
+  "pooled": {
+    "n_pairs": 42,
+    "delta_mean": 0.12935845145465885,
+    "delta_median": 0.06313340858320154,
+    "n_oracle_advantage": 27,
+    "n_tie": 14,
+    "n_baseline_advantage": 1,
+    "wilcoxon_statistic": 26.0,
+    "wilcoxon_p_two_sided": 5.5648397659557105e-05,
+    "wilcoxon_p_greater_one_sided": 2.7824198829778552e-05,
+    "cohens_d_paired": 0.4333690681547967,
+    "bootstrap_ci_95": {
+      "median_ci_lo_95": 0.0016341905237697019,
+      "median_ci_hi_95": 0.07824863786272995,
+      "mean_ci_lo_95": 0.041615235087123156,
+      "mean_ci_hi_95": 0.22332357669708527
+    }
+  },
+  "interpretation": {
+    "test": "Wilcoxon signed-rank paired test. Alternative 'greater' = H1: oracle > baseline.",
+    "effect_size_convention": "Cohen's d_paired = mean(oracle - baseline) / std. |d|>0.2 small, 0.5 medium, 0.8 large.",
+    "h_2026_204_rq1_threshold": "Oracle (B8) vs fixed smoothing (B2): NetGain median Delta >= +10% (명세 §11 Go 5). Rule-based (B5) vs fixed smoothing (B2): median Delta >= +5%, p<0.05, Cohen's d >= 0.3."
+  },
+  "baseline_prefix": "baseline_b5_rule_based_v3",
+  "oracle_prefix": "baseline_b6_supervised_v2_seed1"
+}

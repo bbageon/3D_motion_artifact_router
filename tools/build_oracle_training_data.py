@@ -108,12 +108,16 @@ def _extract_state(motion: np.ndarray, artifact_kind: str) -> dict[str, Any]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build supervised selector training data from oracle raw records")
     parser.add_argument("--raw-records-dir", type=Path, default=DEFAULT_RAW_DIR)
-    parser.add_argument("--oracle-prefix", type=str, default="oracle_single_step_v2")
+    parser.add_argument("--oracle-prefix", type=str, nargs="+", default=["oracle_single_step_v2"],
+                        help="하나 이상의 prefix. 본 prefix 의 모든 raw record 합쳐 training data.")
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
     tuples: list[dict[str, Any]] = []
-    for path in sorted(args.raw_records_dir.glob(f"*{args.oracle_prefix}*.json")):
+    raw_paths: list[Path] = []
+    for prefix in args.oracle_prefix:
+        raw_paths.extend(sorted(args.raw_records_dir.glob(f"*{prefix}*.json")))
+    for path in raw_paths:
         with open(path, encoding="utf-8") as f:
             r = json.load(f)
         if r.get("record_type") != "oracle_single_step_sample":
@@ -164,6 +168,8 @@ def main() -> None:
         "schema_version": "1.0.0",
         "record_type": "oracle_supervised_training_data",
         "oracle_prefix": args.oracle_prefix,
+        "split_ids_included": sorted(set(t.get("trial_id", "") for t in tuples)),
+        "n_unique_trials": len({t["trial_id"] for t in tuples}),
         "n_tuples": len(tuples),
         "feature_names": tuples[0]["state"]["feature_names"] if tuples else [],
         "n_features": len(tuples[0]["state"]["feature_vector"]) if tuples else 0,
