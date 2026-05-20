@@ -254,6 +254,138 @@ class SupervisedSelector:
         }
 
 
+class SupervisedSelectorOrchestrator:
+    """SupervisedSelector 의 Orchestrator interface wrapper.
+
+    `RefinementLoop` 가 호출하는 `decide(reports, tool_history)` interface 를 충족.
+    evaluator reports 에서 state vector 추출 + primary artifact 결정 + supervised
+    selector.predict() → OrchestratorDecision.
+
+    Multi-artifact closed-loop: primary artifact = target evaluator 중 max score
+    score 의 evaluator 에 매핑된 artifact_kind.
+
+    STOP 조건:
+      - target evaluator 의 score 가 모두 stop_score_threshold 미만 → 모든 artifact
+        충분히 처리됨.
+      - tool_history 가 max_iterations 도달은 RefinementLoop 가 처리.
+    """
+
+    name = "SupervisedSelectorOrchestrator"
+
+    #: target evaluator → primary artifact_kind 매핑 (multi-artifact closed-loop).
+    EVALUATOR_TO_ARTIFACT: dict[str, str] = {
+        "FootFloatingEvaluator": "foot_floating",
+        "BoneLengthEvaluator": "bone_stretch_right_arm",
+        "VelocityJitterEvaluator": "global_jitter",
+    }
+
+    def __init__(
+        self,
+        selector: "SupervisedSelector",
+        stop_score_threshold: float = 0.02,
+        target_evaluators: Optional[list[str]] = None,
+    ) -> None:
+        """
+        Args:
+            selector: trained SupervisedSelector.
+            stop_score_threshold: 모든 target evaluator max score 가 본 값 미만이면 STOP.
+            target_evaluators: 본 selector 가 처리할 evaluator name list.
+                None 이면 모든 EVALUATOR_TO_ARTIFACT key.
+        """
+        self.selector = selector
+        self.stop_score_threshold = stop_score_threshold
+        self.target_evaluators = (
+            target_evaluators if target_evaluators is not None
+            else list(self.EVALUATOR_TO_ARTIFACT.keys())
+        )
+
+    def decide(
+        self,
+        evaluator_reports: list[Any],
+        tool_history: list[Any],
+        **kwargs: Any,
+    ) -> Any:
+        """state vector 추출 + supervised predict → OrchestratorDecision."""
+        from orchestrator.base import OrchestratorDecision
+
+        # group reports by agent.
+        reports_by_agent: dict[str, list[Any]] = {}
+        for r in evaluator_reports:
+            reports_by_agent.setdefault(r.agent, []).append(r)
+
+        # target evaluator 의 max score.
+        target_scores: dict[str, float] = {}
+        for ev_name in self.target_evaluators:
+            rs = reports_by_agent.get(ev_name, [])
+            target_scores[ev_name] = max((r.score for r in rs), default=0.0)
+
+        # STOP 조건: 모든 target evaluator score < threshold.
+        max_score = max(target_scores.values()) if target_scores else 0.0
+        if max_score < self.stop_score_threshold:
+            return OrchestratorDecision(
+                decision="STOP",
+                next_step="STOP",
+                metadata={
+                    "orchestrator": self.name,
+                    "stop_reason": "all_targets_below_threshold",
+                    "target_scores": target_scores,
+                    "tool_history_len": len(tool_history),
+                },
+            )
+
+        # Primary artifact: max-score target evaluator → artifact_kind.
+        primary_ev = max(target_scores, key=target_scores.get)
+        primary_artifact = self.EVALUATOR_TO_ARTIFACT.get(primary_ev)
+        if primary_artifact is None:
+            return OrchestratorDecision(
+                decision="STOP", next_step="STOP",
+                metadata={"orchestrator": self.name, "stop_reason": f"no_artifact_for_{primary_ev}"},
+            )
+
+        # State vector: artifact_kind onehot + evaluator max scores (3).
+        artifact_onehot = [1 if k == primary_artifact else 0 for k in ARTIFACT_KINDS]
+        eval_scores_ordered = [target_scores.get(name, 0.0) for name in EVALUATOR_NAMES]
+        state_vector = np.array(artifact_onehot + eval_scores_ordered, dtype=np.float64)
+
+        # Predict.
+        pred = self.selector.predict(state_vector, primary_artifact)
+        # primary_error: highest-score evaluator report 의 error_type.
+        primary_reports = reports_by_agent.get(primary_ev, [])
+        primary_error = None
+        target_frames = None
+        if primary_reports:
+            primary_reports_sorted = sorted(primary_reports, key=lambda r: r.score, reverse=True)
+            top = primary_reports_sorted[0]
+            primary_error = top.error_type
+            target_frames = tuple(top.frames) if top.frames else None
+
+        return OrchestratorDecision(
+            decision="revise",
+            primary_error=primary_error,
+            selected_tool=pred.tool_name,
+            target_part=pred.target_part,
+            target_frames=target_frames,
+            strength=pred.strength,
+            next_step="apply_then_evaluate",
+            score=float(max_score),
+            metadata={
+                "orchestrator": self.name,
+                "primary_artifact_kind": primary_artifact,
+                "primary_evaluator": primary_ev,
+                "target_scores": target_scores,
+                "tool_proba": pred.tool_proba,
+                "strength_proba": pred.strength_proba,
+                "tool_history_len": len(tool_history),
+            },
+        )
+
+    def orchestrator_class_hash(self) -> str:
+        import hashlib
+        import inspect
+        source = inspect.getsource(type(self))
+        return hashlib.sha256(source.encode("utf-8")).hexdigest()
+
+
 def split_train_eval_by_trial(
     tuples: list[dict[str, Any]],
     train_ratio: float = 0.7,
