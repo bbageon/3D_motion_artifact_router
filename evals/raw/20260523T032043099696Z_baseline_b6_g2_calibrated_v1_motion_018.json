@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_b6_g2_calibrated_sample",
+  "timestamp": "20260523T032043099696Z",
+  "task_id": "baseline_b6_g2_calibrated_v1",
+  "split_id": "g2_small_calibration_v1",
+  "trial_id": "motion_018",
+  "baseline_type": "b6_g2_calibrated",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_018.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "g2_prompt": "Create a dance that symbolizes a person bends down to pick something up with their left arm, sets it down with their right arm, and then starts to pour something into it.",
+  "g2_seed": 59,
+  "model_random_state": 1,
+  "train_ratio": 0.5,
+  "g2_train_ids_count": 15,
+  "g2_eval_ids_count": 15,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating, BoneLength, VelocityJitter max scores)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "g2_natural_multi_artifact": {
+      "zero_shot": {
+        "decision": "revise",
+        "tool": "BoneProjectionTool",
+        "strength": "large",
+        "primary_artifact": "bone_stretch_right_arm",
+        "primary_evaluator": "BoneLengthEvaluator",
+        "target_score_before": 0.01407010928168457,
+        "target_score_after": 0.01407010928168457,
+        "target_delta": 0.0,
+        "fidelity_loss": 0.0012245210790553394,
+        "correction_magnitude": 0.0053394323778762735,
+        "tool_call_count": 1,
+        "netgain": -0.006122605395276697,
+        "evaluator_before": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.04221032784505371,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "evaluator_after": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.04221032784505371,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "trial_id": "motion_018",
+        "g2_prompt": "Create a dance that symbolizes a person bends down to pick something up with the"
+      },
+      "calibrated": {
+        "decision": "revise",
+        "tool": "BoneProjectionTool",
+        "strength": "medium",
+        "primary_artifact": "bone_stretch_right_arm",
+        "primary_evaluator": "BoneLengthEvaluator",
+        "target_score_before": 0.01407010928168457,
+        "target_score_after": 0.01407010928168457,
+        "target_delta": 0.0,
+        "fidelity_loss": 0.0007347126474332036,
+        "correction_magnitude": 0.0032036594267257643,
+        "tool_call_count": 1,
+        "netgain": -0.003673563237166018,
+        "evaluator_before": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.04221032784505371,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "evaluator_after": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.04221032784505371,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "trial_id": "motion_018",
+        "g2_prompt": "Create a dance that symbolizes a person bends down to pick something up with the"
+      },
+      "netgain": -0.003673563237166018
+    }
+  },
+  "transfer_diagnostic_note": "G2 small-calibration: zero-shot vs G2-calibrated B6.",
+  "negative_result": false
+}

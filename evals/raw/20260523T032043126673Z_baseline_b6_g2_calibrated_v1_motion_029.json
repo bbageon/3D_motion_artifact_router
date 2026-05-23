@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "baseline_b6_g2_calibrated_sample",
+  "timestamp": "20260523T032043126673Z",
+  "task_id": "baseline_b6_g2_calibrated_v1",
+  "split_id": "g2_small_calibration_v1",
+  "trial_id": "motion_029",
+  "baseline_type": "b6_g2_calibrated",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_029.npy",
+  "generator_id": "G2_motiongpt_motiongpt_s3_h3d",
+  "g2_prompt": "Create a choreography for the caption: a person makes an underhanded throw with his right arm, as if rolling a ball, before raising both arms into the air as if throwing a ball, then he takes two steps back and runs forwards quickly.",
+  "g2_seed": 70,
+  "model_random_state": 1,
+  "train_ratio": 0.5,
+  "g2_train_ids_count": 15,
+  "g2_eval_ids_count": 15,
+  "fidelity_loss_reference": "original_g2_motion",
+  "target_score_definition": "mean(FootFloating, BoneLength, VelocityJitter max scores)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "selections": {
+    "g2_natural_multi_artifact": {
+      "zero_shot": {
+        "decision": "revise",
+        "tool": "FootLockTool",
+        "strength": "medium",
+        "primary_artifact": "foot_floating",
+        "primary_evaluator": "FootFloatingEvaluator",
+        "target_score_before": 0.04274717434462345,
+        "target_score_after": 0.019242900840349946,
+        "target_delta": -0.0235042735042735,
+        "fidelity_loss": 0.0031704813860669416,
+        "correction_magnitude": 0.023250196831157574,
+        "tool_call_count": 1,
+        "netgain": 0.0076518665739387925,
+        "evaluator_before": {
+          "FootFloatingEvaluator": 0.08974358974358974,
+          "BoneLengthEvaluator": 0.03849793329028061,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "evaluator_after": {
+          "FootFloatingEvaluator": 0.019230769230769232,
+          "BoneLengthEvaluator": 0.03849793329028061,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "trial_id": "motion_029",
+        "g2_prompt": "Create a choreography for the caption: a person makes an underhanded throw with "
+      },
+      "calibrated": {
+        "decision": "skip",
+        "netgain": 0.0,
+        "tool": "BoneProjectionTool",
+        "strength": "medium",
+        "target_delta": 0.0,
+        "fidelity_loss": 0.0,
+        "correction_magnitude": 0.0,
+        "tool_call_count": 0,
+        "skip_reason": "target_part 'both_feet' not in ['right_leg', 'left_leg', 'spine_head', 'right_arm', 'left_arm']. BoneProjectionTool 는 kinematic chain 단위로만 적용.",
+        "evaluator_before": {
+          "FootFloatingEvaluator": 0.08974358974358974,
+          "BoneLengthEvaluator": 0.03849793329028061,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "evaluator_after": {
+          "FootFloatingEvaluator": 0.08974358974358974,
+          "BoneLengthEvaluator": 0.03849793329028061,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "trial_id": "motion_029",
+        "g2_prompt": "Create a choreography for the caption: a person makes an underhanded throw with "
+      },
+      "netgain": 0.0
+    }
+  },
+  "transfer_diagnostic_note": "G2 small-calibration: zero-shot vs G2-calibrated B6.",
+  "negative_result": false
+}
