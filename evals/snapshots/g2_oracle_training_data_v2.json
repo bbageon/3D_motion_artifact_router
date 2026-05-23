@@ -1,0 +1,5687 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "g2_oracle_training_data",
+  "n_tuples": 50,
+  "feature_names": [
+    "is_foot_floating",
+    "is_bone_stretch_right_arm",
+    "is_global_jitter",
+    "score_FootFloatingEvaluator",
+    "score_BoneLengthEvaluator",
+    "score_VelocityJitterEvaluator"
+  ],
+  "fidelity_loss_reference": "original_g2_motion (Protocol B simplified)",
+  "target_score_definition": "mean(FootFloating, BoneLength, VelocityJitter max scores)",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weight_caveat": "α=5.0 from synthetic Protocol A — G2 transfer caveat.",
+  "label_distribution": {
+    "tool": {
+      "BoneProjectionTool": 28,
+      "FootLockTool": 19,
+      "VelocitySmoothingTool": 3
+    },
+    "strength": {
+      "small": 43,
+      "medium": 7
+    },
+    "joint": {
+      "BoneProjectionTool/small": 27,
+      "FootLockTool/small": 13,
+      "FootLockTool/medium": 6,
+      "VelocitySmoothingTool/small": 3,
+      "BoneProjectionTool/medium": 1
+    }
+  },
+  "tuples": [
+    {
+      "trial_id": "motion_001",
+      "g2_prompt": "Please create a motion that represents the power of the figure takes a few sligh",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.075,
+          "BoneLengthEvaluator": 0.023382684062249637,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.075,
+          0.023382684062249637,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0014556705946060548
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.01594367603568831,
+          "fidelity_loss_protocol_b": 0.024914704645396506,
+          "correction_magnitude": 0.18270783406624103,
+          "netgain": -0.14051719926267084
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.04998555382890172,
+          "fidelity_loss_protocol_b": 0.04982940929079301,
+          "correction_magnitude": 0.36541566813248205,
+          "netgain": -0.2991326002828668
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.039268536181812606,
+          "fidelity_loss_protocol_b": 0.08304901548465503,
+          "correction_magnitude": 0.6090261135541368,
+          "netgain": -0.45451361360508774
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00029113411892121095,
+          "correction_magnitude": 0.0012276595573151982,
+          "netgain": -0.0014556705946060548
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005822682378424215,
+          "correction_magnitude": 0.002455319114630394,
+          "netgain": -0.0029113411892121074
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009704470630707039,
+          "correction_magnitude": 0.004092198524383991,
+          "netgain": -0.004852235315353519
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.0019687699984018495,
+          "fidelity_loss_protocol_b": 0.0010099716035881772,
+          "correction_magnitude": 0.0010099716035881772,
+          "netgain": -0.007018628016342735
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0024218222827331534,
+          "fidelity_loss_protocol_b": 0.003872055997409623,
+          "correction_magnitude": 0.003872055997409623,
+          "netgain": -0.01693845770431496
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.008640416639346709,
+          "fidelity_loss_protocol_b": 0.011450967136687525,
+          "correction_magnitude": 0.011450967136687525,
+          "netgain": -0.04861441904409092
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_002",
+      "g2_prompt": "I need a motion that represents the power of a man steps forward, then picks som",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.011363636363636364,
+          "BoneLengthEvaluator": 0.01973598872317177,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.011363636363636364,
+          0.01973598872317177,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.0012594509366550162
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.003787878787878788,
+          "fidelity_loss_protocol_b": 0.0005056855702447544,
+          "correction_magnitude": 0.0037083608484615315,
+          "netgain": 0.0012594509366550162
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.003787878787878788,
+          "fidelity_loss_protocol_b": 0.0010113711404895088,
+          "correction_magnitude": 0.007416721696923063,
+          "netgain": -0.0012689769145687556
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.003787878787878788,
+          "fidelity_loss_protocol_b": 0.0016856185674825144,
+          "correction_magnitude": 0.012361202828205107,
+          "netgain": -0.0046402140495337835
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0002841876266372658,
+          "correction_magnitude": 0.001182814885224868,
+          "netgain": -0.0014209381331863292
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005683752532745298,
+          "correction_magnitude": 0.0023656297704497363,
+          "netgain": -0.002841876266372649
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009472920887908825,
+          "correction_magnitude": 0.003942716284082895,
+          "netgain": -0.004736460443954413
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -2.5428121324682154e-05,
+          "fidelity_loss_protocol_b": 0.0004246808618688227,
+          "correction_magnitude": 0.0004246808618688227,
+          "netgain": -0.0020979761880194313
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0019736997523196863,
+          "fidelity_loss_protocol_b": 0.0015180377994658044,
+          "correction_magnitude": 0.0015180377994658044,
+          "netgain": -0.005616489245009335
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0039871344314514464,
+          "fidelity_loss_protocol_b": 0.004192921439918714,
+          "correction_magnitude": 0.004192921439918714,
+          "netgain": -0.016977472768142123
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_003",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in person wal",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.025,
+          "BoneLengthEvaluator": 0.03148808754138756,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.025,
+          0.03148808754138756,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.002064617786109944
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.005258667355890161,
+          "fidelity_loss_protocol_b": 0.0029656856704704374,
+          "correction_magnitude": 0.021748361583449876,
+          "netgain": -0.009569760996462026
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.012969691340186513,
+          "fidelity_loss_protocol_b": 0.005931371340940876,
+          "correction_magnitude": 0.04349672316689975,
+          "netgain": -0.0426265480448909
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.006796349946441446,
+          "fidelity_loss_protocol_b": 0.009885618901568126,
+          "correction_magnitude": 0.0724945386114996,
+          "netgain": -0.056224444454282076
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0004129235572219888,
+          "correction_magnitude": 0.0017244942127486195,
+          "netgain": -0.002064617786109944
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008258471144439773,
+          "correction_magnitude": 0.0034489884254972417,
+          "netgain": -0.004129235572219886
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0013764118574066317,
+          "correction_magnitude": 0.005748314042495402,
+          "netgain": -0.006882059287033159
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.00010889263633412707,
+          "fidelity_loss_protocol_b": 0.0010228859758993063,
+          "correction_magnitude": 0.0010228859758993063,
+          "netgain": -0.005005537243162404
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0023270008302042136,
+          "fidelity_loss_protocol_b": 0.0038344499906078637,
+          "correction_magnitude": 0.0038344499906078637,
+          "netgain": -0.016845249122835106
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.006487131556478723,
+          "fidelity_loss_protocol_b": 0.01112641346686286,
+          "correction_magnitude": 0.01112641346686286,
+          "netgain": -0.04914493577783558
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_004",
+      "g2_prompt": "I need a motion that represents the power of a person lifts both hands above the",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.00510204081632653,
+          "BoneLengthEvaluator": 0.025817642748700027,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.00510204081632653,
+          0.025817642748700027,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.0006810232868776137
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0006759017104834166,
+          "correction_magnitude": 0.0049566125435450544,
+          "netgain": -0.0016788282803082391
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0013518034209668332,
+          "correction_magnitude": 0.009913225087090109,
+          "netgain": -0.005058336832725322
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0022530057016113885,
+          "correction_magnitude": 0.01652204181181685,
+          "netgain": -0.0095643482359481
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.002581764274870003,
+          "fidelity_loss_protocol_b": 0.00038014819759847786,
+          "correction_magnitude": 0.001772458520041774,
+          "netgain": 0.0006810232868776137
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0027004241383202284,
+          "fidelity_loss_protocol_b": 0.0007602963951969561,
+          "correction_magnitude": 0.00354491704008355,
+          "netgain": -0.0011010578376645522
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0027004241383202284,
+          "fidelity_loss_protocol_b": 0.0012671606586615927,
+          "correction_magnitude": 0.005908195066805913,
+          "netgain": -0.0036353791549877355
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -6.0736404117692905e-05,
+          "fidelity_loss_protocol_b": 0.0005776429089979704,
+          "correction_magnitude": 0.0005776429089979704,
+          "netgain": -0.002827478140872159
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.00017907352034840854,
+          "fidelity_loss_protocol_b": 0.002009135425620888,
+          "correction_magnitude": 0.002009135425620888,
+          "netgain": -0.009866603607756031
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0020559157008697027,
+          "fidelity_loss_protocol_b": 0.005321618313017029,
+          "correction_magnitude": 0.005321618313017029,
+          "netgain": -0.024552175864215445
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_005",
+      "g2_prompt": "Generate a motion that embodies the idea of a person takes two steps forward, th",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.019230769230769232,
+          "BoneLengthEvaluator": 0.01893371974706214,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.019230769230769232,
+          0.01893371974706214,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.00030911085444631885
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.00651132254650125,
+          "fidelity_loss_protocol_b": 0.001240442338410986,
+          "correction_magnitude": 0.009096577148347234,
+          "netgain": 0.00030911085444631885
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.005853540545452912,
+          "fidelity_loss_protocol_b": 0.002480884676821972,
+          "correction_magnitude": 0.01819315429669447,
+          "netgain": -0.0065508828386569495
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.004192583589290776,
+          "fidelity_loss_protocol_b": 0.004134807794703288,
+          "correction_magnitude": 0.03032192382782411,
+          "netgain": -0.016481455384225664
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0002077325438104456,
+          "correction_magnitude": 0.0009564851640981101,
+          "netgain": -0.001038662719052228
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00041546508762088874,
+          "correction_magnitude": 0.0019129703281962193,
+          "netgain": -0.002077325438104444
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006924418127014833,
+          "correction_magnitude": 0.003188283880327029,
+          "netgain": -0.0034622090635074163
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0033364019283260195,
+          "fidelity_loss_protocol_b": 0.0009251243987065838,
+          "correction_magnitude": 0.0009251243987065838,
+          "netgain": -0.0012892200652068996
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.003556960521466833,
+          "fidelity_loss_protocol_b": 0.003557480355306999,
+          "correction_magnitude": 0.003557480355306999,
+          "netgain": -0.014230441255068164
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.006749739531883582,
+          "fidelity_loss_protocol_b": 0.01057859089082704,
+          "correction_magnitude": 0.01057859089082704,
+          "netgain": -0.04614321492225161
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_006",
+      "g2_prompt": "Give me a gesture that visualizes a person walks forward one foot in front of th",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.5833333333333334,
+          "BoneLengthEvaluator": 0.043001429605237076,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.5833333333333334,
+          0.043001429605237076,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.1700414411671874
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.06481481481481483,
+          "fidelity_loss_protocol_b": 0.002440300327725709,
+          "correction_magnitude": 0.017895535736655192,
+          "netgain": 0.05261331317618628
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.19444444444444448,
+          "fidelity_loss_protocol_b": 0.004880600655451417,
+          "correction_magnitude": 0.035791071473310385,
+          "netgain": 0.1700414411671874
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.19444444444444448,
+          "fidelity_loss_protocol_b": 0.008134334425752362,
+          "correction_magnitude": 0.05965178578885065,
+          "netgain": 0.15377277231568265
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0015437604096953383,
+          "fidelity_loss_protocol_b": 0.0007162012113598902,
+          "correction_magnitude": 0.002851625148186423,
+          "netgain": -0.0020372456471041125
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0015437604096953383,
+          "fidelity_loss_protocol_b": 0.0014324024227197793,
+          "correction_magnitude": 0.005703250296372848,
+          "netgain": -0.005618251703903558
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0015437604096953383,
+          "fidelity_loss_protocol_b": 0.0023873373711996325,
+          "correction_magnitude": 0.00950541716062141,
+          "netgain": -0.010392926446302825
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.012232709870052483,
+          "fidelity_loss_protocol_b": 0.0008977633839203369,
+          "correction_magnitude": 0.0008977633839203369,
+          "netgain": -0.01672152678965417
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.015061530459211075,
+          "fidelity_loss_protocol_b": 0.0031733860587759293,
+          "correction_magnitude": 0.0031733860587759293,
+          "netgain": -0.030928460753090723
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.014867418189653925,
+          "fidelity_loss_protocol_b": 0.008645382177726596,
+          "correction_magnitude": 0.008645382177726596,
+          "netgain": -0.058094329078286905
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_007",
+      "g2_prompt": "Produce a movement that visualizes  Input: a person's right hand moves towards t",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.527027027027027,
+          "BoneLengthEvaluator": 0.06323601322252898,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.527027027027027,
+          0.06323601322252898,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.00271419140066005
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.027475563534266556,
+          "fidelity_loss_protocol_b": 0.0019587587244540945,
+          "correction_magnitude": 0.014364230645996696,
+          "netgain": -0.03726935715653703
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.07876627732651234,
+          "fidelity_loss_protocol_b": 0.003917517448908189,
+          "correction_magnitude": 0.028728461291993385,
+          "netgain": -0.09835386457105329
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.08134998821592507,
+          "fidelity_loss_protocol_b": 0.006529195748180316,
+          "correction_magnitude": 0.047880768819988984,
+          "netgain": -0.11399596695682665
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005428382801320101,
+          "correction_magnitude": 0.0021235791309931087,
+          "netgain": -0.00271419140066005
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001085676560264019,
+          "correction_magnitude": 0.00424715826198622,
+          "netgain": -0.005428382801320095
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001809460933773366,
+          "correction_magnitude": 0.007078597103310364,
+          "netgain": -0.00904730466886683
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.006665692893840752,
+          "fidelity_loss_protocol_b": 0.0009653967418149525,
+          "correction_magnitude": 0.0009653967418149525,
+          "netgain": -0.011492676602915515
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.011053265872021684,
+          "fidelity_loss_protocol_b": 0.0033840888354967967,
+          "correction_magnitude": 0.0033840888354967967,
+          "netgain": -0.027973710049505666
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.02969679634528269,
+          "fidelity_loss_protocol_b": 0.009203950245067559,
+          "correction_magnitude": 0.009203950245067559,
+          "netgain": -0.016322954880055106
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_008",
+      "g2_prompt": "I need a motion that represents the power of a person's squats down using mainly",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.3177083333333333,
+          "BoneLengthEvaluator": 0.044422439806141724,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.3177083333333333,
+          0.044422439806141724,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.09341452361266703
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.06521748872981462,
+          "fidelity_loss_protocol_b": 0.0013564447159958282,
+          "correction_magnitude": 0.009947261250636075,
+          "netgain": 0.05843526514983548
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.1069789707726253,
+          "fidelity_loss_protocol_b": 0.0027128894319916564,
+          "correction_magnitude": 0.019894522501272147,
+          "netgain": 0.09341452361266703
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.10660932619878047,
+          "fidelity_loss_protocol_b": 0.004521482386652761,
+          "correction_magnitude": 0.03315753750212025,
+          "netgain": 0.08400191426551666
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00034684591076569325,
+          "correction_magnitude": 0.0015139464426354911,
+          "netgain": -0.0017342295538284663
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006936918215313861,
+          "correction_magnitude": 0.0030278928852709793,
+          "netgain": -0.0034684591076569304
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0011561530358856426,
+          "correction_magnitude": 0.0050464881421183,
+          "netgain": -0.005780765179428213
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -4.4899515236229703e-05,
+          "fidelity_loss_protocol_b": 0.0005430285878030872,
+          "correction_magnitude": 0.0005430285878030872,
+          "netgain": -0.0026702434237792063
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.00016058302378180178,
+          "fidelity_loss_protocol_b": 0.001849211971211324,
+          "correction_magnitude": 0.001849211971211324,
+          "netgain": -0.009085476832274817
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0022357393914991114,
+          "fidelity_loss_protocol_b": 0.004936946498333948,
+          "correction_magnitude": 0.004936946498333948,
+          "netgain": -0.02244899310017063
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_009",
+      "g2_prompt": "hands go to the chest moving back and forth, left hand place on the right upper ",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.013858355457656724,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.013858355457656724,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0009752835368715897
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005567670958539979,
+          "correction_magnitude": 0.004082958702929318,
+          "netgain": -0.0027838354792699897
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0011135341917079958,
+          "correction_magnitude": 0.008165917405858637,
+          "netgain": -0.005567670958539979
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0018558903195133264,
+          "correction_magnitude": 0.013609862343097728,
+          "netgain": -0.009279451597566633
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0001507183973575993,
+          "fidelity_loss_protocol_b": 0.00022520038684583778,
+          "correction_magnitude": 0.0009281482791478712,
+          "netgain": -0.0009752835368715897
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0001507183973575993,
+          "fidelity_loss_protocol_b": 0.00045040077369167556,
+          "correction_magnitude": 0.0018562965582957435,
+          "netgain": -0.0021012854711007787
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0001507183973575993,
+          "fidelity_loss_protocol_b": 0.0007506679561527907,
+          "correction_magnitude": 0.003093827597159571,
+          "netgain": -0.0036026213834063543
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -1.9121174883606276e-05,
+          "fidelity_loss_protocol_b": 0.0002976686694254186,
+          "correction_magnitude": 0.0002976686694254186,
+          "netgain": -0.0014692221722434867
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -7.654049195043432e-05,
+          "fidelity_loss_protocol_b": 0.0009716255798001393,
+          "correction_magnitude": 0.0009716255798001393,
+          "netgain": -0.004781587407050262
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00024067979513372247,
+          "fidelity_loss_protocol_b": 0.0022989707722017787,
+          "correction_magnitude": 0.0022989707722017787,
+          "netgain": -0.011254174065875172
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_010",
+      "g2_prompt": "Create a sequence of movements that exemplifies person walks to the right then t",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.011111111111111112,
+          "BoneLengthEvaluator": 0.02421588161108526,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.011111111111111112,
+          0.02421588161108526,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": -0.0007020117312418125
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.003334667619402199,
+          "fidelity_loss_protocol_b": 0.0008073358701288023,
+          "correction_magnitude": 0.005920463047611217,
+          "netgain": -0.0007020117312418125
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0027960804415599026,
+          "fidelity_loss_protocol_b": 0.0016146717402576046,
+          "correction_magnitude": 0.011840926095222434,
+          "netgain": -0.005277278259728121
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.001931389916177393,
+          "fidelity_loss_protocol_b": 0.002691119567096008,
+          "correction_magnitude": 0.01973487682537072,
+          "netgain": -0.011524207919302646
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003072784998179928,
+          "correction_magnitude": 0.001244342537060128,
+          "netgain": -0.001536392499089964
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006145569996359866,
+          "correction_magnitude": 0.002488685074120256,
+          "netgain": -0.0030727849981799327
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0010242616660599783,
+          "correction_magnitude": 0.0041478084568670965,
+          "netgain": -0.005121308330299891
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.00011927606470513684,
+          "fidelity_loss_protocol_b": 0.000771658429202529,
+          "correction_magnitude": 0.000771658429202529,
+          "netgain": -0.0037390160813075084
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0021656078124271394,
+          "fidelity_loss_protocol_b": 0.002925938123960583,
+          "correction_magnitude": 0.002925938123960583,
+          "netgain": -0.012464082807375775
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.004103781970684722,
+          "fidelity_loss_protocol_b": 0.008946596131847213,
+          "correction_magnitude": 0.008946596131847213,
+          "netgain": -0.040629198688551346
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_011",
+      "g2_prompt": "Describe the movements of a person doing a plank in a person stands with arms ou",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.010416666666666666,
+          "BoneLengthEvaluator": 0.02501208459860859,
+          "VelocityJitterEvaluator": 0.021822838583681024
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.010416666666666666,
+          0.02501208459860859,
+          0.021822838583681024
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0015789105269359408
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.006944444444444444,
+          "fidelity_loss_protocol_b": 0.0012833648193257181,
+          "correction_magnitude": 0.0094113420083886,
+          "netgain": -0.013361268541073034
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.020833333333333336,
+          "fidelity_loss_protocol_b": 0.0025667296386514362,
+          "correction_magnitude": 0.0188226840167772,
+          "netgain": -0.03366698152659052
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0013859307669032428,
+          "fidelity_loss_protocol_b": 0.004277882731085728,
+          "correction_magnitude": 0.031371140027962006,
+          "netgain": -0.020003482888525395
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0003935552708460091,
+          "fidelity_loss_protocol_b": 0.00039449315955638996,
+          "correction_magnitude": 0.0017783221473060698,
+          "netgain": -0.0015789105269359408
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0003780184500801996,
+          "fidelity_loss_protocol_b": 0.0007889863191127815,
+          "correction_magnitude": 0.0035566442946121405,
+          "netgain": -0.003566913145483708
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0003207009682797239,
+          "fidelity_loss_protocol_b": 0.0013149771985213005,
+          "correction_magnitude": 0.0059277404910202305,
+          "netgain": -0.006254185024326778
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.0026113226546933647,
+          "fidelity_loss_protocol_b": 0.0018671166674833245,
+          "correction_magnitude": 0.0018671166674833245,
+          "netgain": -0.011946905992109987
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.011641763628049813,
+          "fidelity_loss_protocol_b": 0.007632193383977744,
+          "correction_magnitude": 0.007632193383977744,
+          "netgain": -0.04980273054793854
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.018926013516038065,
+          "fidelity_loss_protocol_b": 0.02319747694669424,
+          "correction_magnitude": 0.02319747694669424,
+          "netgain": -0.13491339824950926
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_012",
+      "g2_prompt": "I would like to see the motion of a person is attempting to jump rope by hopping",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.03571428571428571,
+          "BoneLengthEvaluator": 0.036842494258090094,
+          "VelocityJitterEvaluator": 0.03320614807736378
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.03571428571428571,
+          0.036842494258090094,
+          0.03320614807736378
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.002285483480262103
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.006396229790301487,
+          "fidelity_loss_protocol_b": 0.0059972021575405475,
+          "correction_magnitude": 0.04397948248863068,
+          "netgain": -0.036382240578004224
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.013266361730095357,
+          "fidelity_loss_protocol_b": 0.011994404315081095,
+          "correction_magnitude": 0.08795896497726136,
+          "netgain": -0.07323838330550084
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.006996085637657218,
+          "fidelity_loss_protocol_b": 0.01999067385846849,
+          "correction_magnitude": 0.14659827496210226,
+          "netgain": -0.10694945492999967
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0008104794099350332,
+          "fidelity_loss_protocol_b": 0.0006191925780394273,
+          "correction_magnitude": 0.0029439484365907584,
+          "netgain": -0.002285483480262103
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0008104794099350332,
+          "fidelity_loss_protocol_b": 0.001238385156078854,
+          "correction_magnitude": 0.005887896873181517,
+          "netgain": -0.005381446370459238
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0008104794099350332,
+          "fidelity_loss_protocol_b": 0.002063975260131423,
+          "correction_magnitude": 0.009813161455302527,
+          "netgain": -0.009509396890722081
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.0018330748813602318,
+          "fidelity_loss_protocol_b": 0.0033310994552176254,
+          "correction_magnitude": 0.0033310994552176254,
+          "netgain": -0.018488572157448358
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.01052721733317031,
+          "fidelity_loss_protocol_b": 0.013457235767902672,
+          "correction_magnitude": 0.013457235767902672,
+          "netgain": -0.07781339617268368
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.013802679217285375,
+          "fidelity_loss_protocol_b": 0.03628826833308359,
+          "correction_magnitude": 0.03628826833308359,
+          "netgain": -0.1952440208827033
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_013",
+      "g2_prompt": "Demonstrate a dance that symbolizes the feeling of the figure walks from the bot",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.08064516129032258,
+          "BoneLengthEvaluator": 0.04400661864315991,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.08064516129032258,
+          0.04400661864315991,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.016154435910646397
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.024193548387096774,
+          "fidelity_loss_protocol_b": 0.0016078224952900753,
+          "correction_magnitude": 0.011790698298793888,
+          "netgain": 0.016154435910646397
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.026881720430107524,
+          "fidelity_loss_protocol_b": 0.0032156449905801506,
+          "correction_magnitude": 0.023581396597587775,
+          "netgain": 0.01080349547720677
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.026881720430107524,
+          "fidelity_loss_protocol_b": 0.005359408317633585,
+          "correction_magnitude": 0.03930232766264629,
+          "netgain": 8.467884193959913e-05
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003388886227594295,
+          "correction_magnitude": 0.0013232518706874155,
+          "netgain": -0.0016944431137971474
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006777772455188612,
+          "correction_magnitude": 0.00264650374137483,
+          "netgain": -0.003388886227594306
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0011296287425314343,
+          "correction_magnitude": 0.0044108395689580505,
+          "netgain": -0.0056481437126571716
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.005449586321261815,
+          "fidelity_loss_protocol_b": 0.001206881474071129,
+          "correction_magnitude": 0.001206881474071129,
+          "netgain": -0.0005848210490938307
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.008240311715387125,
+          "fidelity_loss_protocol_b": 0.004549038835003239,
+          "correction_magnitude": 0.004549038835003239,
+          "netgain": -0.014504882459629071
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.010898208248238003,
+          "fidelity_loss_protocol_b": 0.013591550992661829,
+          "correction_magnitude": 0.013591550992661829,
+          "netgain": -0.05705954671507113
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_014",
+      "g2_prompt": "I need a motion that represents the power of a man waves his hands from side to ",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.023993623352102658,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.023993623352102658,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.0006210852634398025
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003028919211742379,
+          "correction_magnitude": 0.002221207421944412,
+          "netgain": -0.0015144596058711897
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006057838423484761,
+          "correction_magnitude": 0.004442414843888824,
+          "netgain": -0.0030289192117423803
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0010096397372474598,
+          "correction_magnitude": 0.007404024739814706,
+          "netgain": -0.005048198686237299
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0023993623352102653,
+          "fidelity_loss_protocol_b": 0.00035565541435409256,
+          "correction_magnitude": 0.0017658958697641747,
+          "netgain": 0.0006210852634398025
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.002994663680502726,
+          "fidelity_loss_protocol_b": 0.0007113108287081858,
+          "correction_magnitude": 0.0035317917395283516,
+          "netgain": -0.000561890463038203
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.002994663680502726,
+          "fidelity_loss_protocol_b": 0.0011855180478469768,
+          "correction_magnitude": 0.005886319565880588,
+          "netgain": -0.0029329265587321575
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -1.541812506070453e-05,
+          "fidelity_loss_protocol_b": 0.0003142024484502901,
+          "correction_magnitude": 0.0003142024484502901,
+          "netgain": -0.001555594117190746
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -2.9452222441521056e-05,
+          "fidelity_loss_protocol_b": 0.0010597936408469166,
+          "correction_magnitude": 0.0010597936408469166,
+          "netgain": -0.0052695159817930624
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 2.0245310377899062e-05,
+          "fidelity_loss_protocol_b": 0.0026218208444502354,
+          "correction_magnitude": 0.0026218208444502354,
+          "netgain": -0.013129349532629076
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_015",
+      "g2_prompt": "Give me a motion that reflects the idea of a person standing up throws something",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.02011970288362963,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.02011970288362963,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0014301055111042601
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00044539200962224806,
+          "correction_magnitude": 0.0032662080705631526,
+          "netgain": -0.0022269600481112403
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008907840192444961,
+          "correction_magnitude": 0.006532416141126305,
+          "netgain": -0.004453920096222481
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0014846400320741601,
+          "correction_magnitude": 0.010887360235210508,
+          "netgain": -0.0074232001603708
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.000286021102220852,
+          "correction_magnitude": 0.001398969132557333,
+          "netgain": -0.0014301055111042601
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005720422044417036,
+          "correction_magnitude": 0.0027979382651146653,
+          "netgain": -0.002860211022208518
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009534036740695087,
+          "correction_magnitude": 0.0046632304418577795,
+          "netgain": -0.004767018370347543
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -3.0033186766267872e-05,
+          "fidelity_loss_protocol_b": 0.0005519176941865971,
+          "correction_magnitude": 0.0005519176941865971,
+          "netgain": -0.0027295552841667173
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -9.613667916367509e-05,
+          "fidelity_loss_protocol_b": 0.0020172262756803653,
+          "correction_magnitude": 0.0020172262756803653,
+          "netgain": -0.00998999469923815
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -5.0383061811713065e-06,
+          "fidelity_loss_protocol_b": 0.005726803008672179,
+          "correction_magnitude": 0.005726803008672179,
+          "netgain": -0.028628976737179727
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_016",
+      "g2_prompt": "Give me a motion that expresses a person walks to the right makes a u-turn clock",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.020833333333333332,
+          "BoneLengthEvaluator": 0.032068651105687934,
+          "VelocityJitterEvaluator": 0.018281083313995736
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.020833333333333332,
+          0.032068651105687934,
+          0.018281083313995736
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0018119492593272242
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.007141623483349936,
+          "fidelity_loss_protocol_b": 0.0029752134621958246,
+          "correction_magnitude": 0.02181823205610271,
+          "netgain": -0.007734443827629186
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.001723508537155246,
+          "fidelity_loss_protocol_b": 0.005950426924391649,
+          "correction_magnitude": 0.04363646411220543,
+          "netgain": -0.028028626084803
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.007349952499178809,
+          "fidelity_loss_protocol_b": 0.009917378207319416,
+          "correction_magnitude": 0.07272744018700905,
+          "netgain": -0.05693684353577589
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00036238985186544485,
+          "correction_magnitude": 0.0013893526692981793,
+          "netgain": -0.0018119492593272242
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0007247797037308924,
+          "correction_magnitude": 0.0027787053385963565,
+          "netgain": -0.003623898518654462
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001207966172884819,
+          "correction_magnitude": 0.004631175564327264,
+          "netgain": -0.006039830864424095
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0008810025255615792,
+          "fidelity_loss_protocol_b": 0.0015496919700494149,
+          "correction_magnitude": 0.0015496919700494149,
+          "netgain": -0.006867457324685495
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.009957478844423374,
+          "fidelity_loss_protocol_b": 0.005967306092101162,
+          "correction_magnitude": 0.005967306092101162,
+          "netgain": -0.019879051616082437
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.010253682150369476,
+          "fidelity_loss_protocol_b": 0.01708794076456136,
+          "correction_magnitude": 0.01708794076456136,
+          "netgain": -0.07518602167243732
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_017",
+      "g2_prompt": "I need a motion that represents the transformation of a person makes a shaking m",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.03169960593992807,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.03169960593992807,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.0007211045550242824
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00017259776227673818,
+          "correction_magnitude": 0.0012657169233627466,
+          "netgain": -0.0008629888113836909
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00034519552455347636,
+          "correction_magnitude": 0.002531433846725493,
+          "netgain": -0.0017259776227673818
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005753258742557939,
+          "correction_magnitude": 0.004219056411209155,
+          "netgain": -0.0028766293712789693
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.003169960593992811,
+          "fidelity_loss_protocol_b": 0.0004897712077937057,
+          "correction_magnitude": 0.0023895881178744366,
+          "netgain": 0.0007211045550242824
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0037075692792270026,
+          "fidelity_loss_protocol_b": 0.000979542415587411,
+          "correction_magnitude": 0.004779176235748871,
+          "netgain": -0.001190142798710052
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0037075692792270026,
+          "fidelity_loss_protocol_b": 0.0016325706926456848,
+          "correction_magnitude": 0.00796529372624812,
+          "netgain": -0.004455284184001421
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 2.624041956379719e-05,
+          "fidelity_loss_protocol_b": 0.0002418025974943774,
+          "correction_magnitude": 0.0002418025974943774,
+          "netgain": -0.0012352534070356842
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.00015770550775007913,
+          "fidelity_loss_protocol_b": 0.0007719867084499349,
+          "correction_magnitude": 0.0007719867084499349,
+          "netgain": -0.004017639049999753
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.000638799021132912,
+          "fidelity_loss_protocol_b": 0.0016969268971350775,
+          "correction_magnitude": 0.0016969268971350775,
+          "netgain": -0.009123433506808299
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_018",
+      "g2_prompt": "Create a dance that symbolizes a person bends down to pick something up with the",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.04221032784505371,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.04221032784505371,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.001836781618583008
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00038543668630716037,
+          "correction_magnitude": 0.0028265356995858426,
+          "netgain": -0.0019271834315358017
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0007708733726143207,
+          "correction_magnitude": 0.005653071399171684,
+          "netgain": -0.0038543668630716035
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0012847889543572012,
+          "correction_magnitude": 0.00942178566528614,
+          "netgain": -0.006423944771786006
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003673563237166016,
+          "correction_magnitude": 0.0016018297133628834,
+          "netgain": -0.001836781618583008
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0007347126474332036,
+          "correction_magnitude": 0.0032036594267257643,
+          "netgain": -0.003673563237166018
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0012245210790553394,
+          "correction_magnitude": 0.0053394323778762735,
+          "netgain": -0.006122605395276697
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -7.862289276225343e-08,
+          "fidelity_loss_protocol_b": 0.000518611910155641,
+          "correction_magnitude": 0.000518611910155641,
+          "netgain": -0.002592980927885443
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 5.186006219828204e-05,
+          "fidelity_loss_protocol_b": 0.0017432327837427594,
+          "correction_magnitude": 0.0017432327837427594,
+          "netgain": -0.008768023980912079
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.0005832417149070901,
+          "fidelity_loss_protocol_b": 0.004607550092646143,
+          "correction_magnitude": 0.004607550092646143,
+          "netgain": -0.023620992178137803
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_019",
+      "g2_prompt": "I want a motion that represents the power of a man gets up from the ground pushi",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.05102040816326531,
+          "BoneLengthEvaluator": 0.06136362621538559,
+          "VelocityJitterEvaluator": 0.016473700133910602
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.05102040816326531,
+          0.06136362621538559,
+          0.016473700133910602
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.004095874478957485
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.014082701140230358,
+          "fidelity_loss_protocol_b": 0.00596866819332397,
+          "correction_magnitude": 0.04377023341770911,
+          "netgain": -0.04392604210685021
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.05199257555385093,
+          "fidelity_loss_protocol_b": 0.01193733638664794,
+          "correction_magnitude": 0.08754046683541822,
+          "netgain": -0.11167925748709062
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.1952057134331127,
+          "fidelity_loss_protocol_b": 0.01989556064441323,
+          "correction_magnitude": 0.14590077805903037,
+          "netgain": -0.29468351665517883
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008191748957914971,
+          "correction_magnitude": 0.0030301609728448043,
+          "netgain": -0.004095874478957485
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0016383497915829959,
+          "correction_magnitude": 0.006060321945689609,
+          "netgain": -0.008191748957914979
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0027305829859716603,
+          "correction_magnitude": 0.01010053657614935,
+          "netgain": -0.013652914929858302
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0004988244521824392,
+          "fidelity_loss_protocol_b": 0.0013558408496375574,
+          "correction_magnitude": 0.0013558408496375574,
+          "netgain": -0.006280379796005348
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.0010684662335394973,
+          "fidelity_loss_protocol_b": 0.004927755507921179,
+          "correction_magnitude": 0.004927755507921179,
+          "netgain": -0.025707243773145393
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.011231147802787188,
+          "fidelity_loss_protocol_b": 0.013994433911547007,
+          "correction_magnitude": 0.013994433911547007,
+          "netgain": -0.08120331736052222
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_020",
+      "g2_prompt": "Develop a movement that represents  Input: the person is in a sitting position w",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.030497461856084488,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.030497461856084488,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "small",
+        "best_target_part": "full_body",
+        "best_netgain": -0.000933300856586631
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003231119377109829,
+          "correction_magnitude": 0.002369487543213875,
+          "netgain": -0.0016155596885549146
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006462238754219658,
+          "correction_magnitude": 0.00473897508642775,
+          "netgain": -0.0032311193771098292
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001077039792369943,
+          "correction_magnitude": 0.007898291810712915,
+          "netgain": -0.005385198961849715
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00042195770612067716,
+          "correction_magnitude": 0.002148829955671321,
+          "netgain": -0.002109788530603386
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008439154122413551,
+          "correction_magnitude": 0.004297659911342643,
+          "netgain": -0.004219577061206775
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0014065256870689252,
+          "correction_magnitude": 0.007162766518904408,
+          "netgain": -0.007032628435344626
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -1.1862628142851606e-05,
+          "fidelity_loss_protocol_b": 0.00018903269694589653,
+          "correction_magnitude": 0.00018903269694589653,
+          "netgain": -0.000933300856586631
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -3.963107704011218e-05,
+          "fidelity_loss_protocol_b": 0.0005922036225426557,
+          "correction_magnitude": 0.0005922036225426557,
+          "netgain": -0.0029213870356731664
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00010876872119077244,
+          "fidelity_loss_protocol_b": 0.0012995013286755137,
+          "correction_magnitude": 0.0012995013286755137,
+          "netgain": -0.006388737922186796
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_021",
+      "g2_prompt": "Please create a motion that represents the power of someone put their arms on th",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.03703395311360497,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.03703395311360497,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": -0.0014101895218601032
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00028203790437202064,
+          "correction_magnitude": 0.002068277965394818,
+          "netgain": -0.0014101895218601032
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005640758087440413,
+          "correction_magnitude": 0.004136555930789636,
+          "netgain": -0.0028203790437202063
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009401263479067354,
+          "correction_magnitude": 0.0068942598846493935,
+          "netgain": -0.004700631739533678
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005329564678344984,
+          "correction_magnitude": 0.002506962896884212,
+          "netgain": -0.002664782339172492
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0010659129356689965,
+          "correction_magnitude": 0.0050139257937684215,
+          "netgain": -0.005329564678344983
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0017765215594483278,
+          "correction_magnitude": 0.008356542989614038,
+          "netgain": -0.00888260779724164
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -3.268529242128268e-05,
+          "fidelity_loss_protocol_b": 0.0003408548968462586,
+          "correction_magnitude": 0.0003408548968462586,
+          "netgain": -0.0016715891918100102
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.00014584752003727816,
+          "fidelity_loss_protocol_b": 0.0011240282929456614,
+          "correction_magnitude": 0.0011240282929456614,
+          "netgain": -0.005474293944691029
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0004744109914629254,
+          "fidelity_loss_protocol_b": 0.002686306321536062,
+          "correction_magnitude": 0.002686306321536062,
+          "netgain": -0.012957120616217383
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_022",
+      "g2_prompt": "Describe the movements of a person doing a handstand press in the person throws ",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.03166516329047213,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.03166516329047213,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.0006979504403850766
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005951534658692705,
+          "correction_magnitude": 0.004364458749707983,
+          "netgain": -0.0029757673293463525
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001190306931738541,
+          "correction_magnitude": 0.008728917499415966,
+          "netgain": -0.005951534658692705
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001983844886230902,
+          "correction_magnitude": 0.014548195832359948,
+          "netgain": -0.009919224431154509
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.003166516329047221,
+          "fidelity_loss_protocol_b": 0.0004937131777324289,
+          "correction_magnitude": 0.002206036743657612,
+          "netgain": 0.0006979504403850766
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.003421912069408205,
+          "fidelity_loss_protocol_b": 0.0009874263554648533,
+          "correction_magnitude": 0.00441207348731522,
+          "netgain": -0.0015152197079160616
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.003421912069408205,
+          "fidelity_loss_protocol_b": 0.0016457105924414246,
+          "correction_magnitude": 0.007353455812192038,
+          "netgain": -0.004806640892798918
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -5.665387877671138e-06,
+          "fidelity_loss_protocol_b": 0.0007248280349354917,
+          "correction_magnitude": 0.0007248280349354917,
+          "netgain": -0.0036184747867997876
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.00010391302924972479,
+          "fidelity_loss_protocol_b": 0.0026491056073957198,
+          "correction_magnitude": 0.0026491056073957198,
+          "netgain": -0.013349441066228323
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.001299889643639621,
+          "fidelity_loss_protocol_b": 0.00746654126957127,
+          "correction_magnitude": 0.00746654126957127,
+          "netgain": -0.03863259599149597
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_023",
+      "g2_prompt": "Create a motion that depicts  Input: a person rotates their head, then rotates t",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0234375,
+          "BoneLengthEvaluator": 0.021785561820997328,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.0234375,
+          0.021785561820997328,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0012244063421247356
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.01832833413938159,
+          "fidelity_loss_protocol_b": 0.017541234067407045,
+          "correction_magnitude": 0.12863571649431832,
+          "netgain": -0.10603450447641681
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0665252416230003,
+          "fidelity_loss_protocol_b": 0.03508246813481409,
+          "correction_magnitude": 0.25727143298863664,
+          "netgain": -0.24193758229707074
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.05430528546889702,
+          "fidelity_loss_protocol_b": 0.05847078022469015,
+          "correction_magnitude": 0.42878572164772777,
+          "netgain": -0.34665918659234773
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0004146254386306267,
+          "fidelity_loss_protocol_b": 0.00032780635615107243,
+          "correction_magnitude": 0.001520788384617841,
+          "netgain": -0.0012244063421247356
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0004146254386306267,
+          "fidelity_loss_protocol_b": 0.0006556127123021439,
+          "correction_magnitude": 0.003041576769235682,
+          "netgain": -0.0028634381228800927
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0004146254386306267,
+          "fidelity_loss_protocol_b": 0.001092687853836909,
+          "correction_magnitude": 0.0050692946153928055,
+          "netgain": -0.005048813830553918
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -5.133926651009445e-05,
+          "fidelity_loss_protocol_b": 0.0011166539315669599,
+          "correction_magnitude": 0.0011166539315669599,
+          "netgain": -0.005531930391324704
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.005115926537975678,
+          "fidelity_loss_protocol_b": 0.004291255041955499,
+          "correction_magnitude": 0.004291255041955499,
+          "netgain": -0.026572201747753172
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.007892617350142631,
+          "fidelity_loss_protocol_b": 0.012597354102974,
+          "correction_magnitude": 0.012597354102974,
+          "netgain": -0.07087938786501263
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_024",
+      "g2_prompt": "Develop a motion that symbolizes a person lifts up their arm at a 120 degree ang",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.03333333333333333,
+          "BoneLengthEvaluator": 0.01402601450396419,
+          "VelocityJitterEvaluator": 0.02255584590321057
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.03333333333333333,
+          0.01402601450396419,
+          0.02255584590321057
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.0012957321087942349
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.010771514788569117,
+          "fidelity_loss_protocol_b": 0.0018951565359549766,
+          "correction_magnitude": 0.01389781459700316,
+          "netgain": 0.0012957321087942349
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.009348908747344105,
+          "fidelity_loss_protocol_b": 0.0037903130719099533,
+          "correction_magnitude": 0.02779562919400632,
+          "netgain": -0.00960265661220566
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0071671069514937305,
+          "fidelity_loss_protocol_b": 0.006317188453183255,
+          "correction_magnitude": 0.04632604865667721,
+          "netgain": -0.024418835314422543
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00016651076826539445,
+          "correction_magnitude": 0.0008054530451435585,
+          "netgain": -0.0008325538413269723
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003330215365307868,
+          "correction_magnitude": 0.0016109060902871196,
+          "netgain": -0.001665107682653934
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005550358942179801,
+          "correction_magnitude": 0.002684843483811862,
+          "netgain": -0.0027751794710899006
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.006341890306526744,
+          "fidelity_loss_protocol_b": 0.0017191944930939412,
+          "correction_magnitude": 0.0017191944930939412,
+          "netgain": -0.0022540821589429622
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0072030741872860515,
+          "fidelity_loss_protocol_b": 0.00682974246936014,
+          "correction_magnitude": 0.00682974246936014,
+          "netgain": -0.026945638159514645
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.01126578769031157,
+          "fidelity_loss_protocol_b": 0.02055450894047482,
+          "correction_magnitude": 0.02055450894047482,
+          "netgain": -0.09150675701206253
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_025",
+      "g2_prompt": "Describe the movements of a person walking down a flight of stairs in a person w",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.01,
+          "BoneLengthEvaluator": 0.022897486419864423,
+          "VelocityJitterEvaluator": 0.021443186423149328
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.01,
+          0.022897486419864423,
+          0.021443186423149328
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0016548825454507352
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0033333333333333322,
+          "fidelity_loss_protocol_b": 0.0010408834259618411,
+          "correction_magnitude": 0.007633145123720169,
+          "netgain": -0.001871083796475874
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0033333333333333322,
+          "fidelity_loss_protocol_b": 0.0020817668519236823,
+          "correction_magnitude": 0.015266290247440337,
+          "netgain": -0.00707550092628508
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0033333333333333322,
+          "fidelity_loss_protocol_b": 0.003469611419872804,
+          "correction_magnitude": 0.025443817079067232,
+          "netgain": -0.014014723766030688
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -6.908387204034028e-05,
+          "fidelity_loss_protocol_b": 0.0003447932834982151,
+          "correction_magnitude": 0.0014453070154535224,
+          "netgain": -0.0016548825454507352
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.00011643808282114573,
+          "fidelity_loss_protocol_b": 0.0006895865669964294,
+          "correction_magnitude": 0.002890614030907045,
+          "netgain": -0.003331494752161001
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.00014201978489535028,
+          "fidelity_loss_protocol_b": 0.0011493109449940478,
+          "correction_magnitude": 0.004817690051511741,
+          "netgain": -0.005604534940074889
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0008987322882676556,
+          "fidelity_loss_protocol_b": 0.002059505066329754,
+          "correction_magnitude": 0.002059505066329754,
+          "netgain": -0.009398793043381114
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.006019875896644935,
+          "fidelity_loss_protocol_b": 0.008461580134546922,
+          "correction_magnitude": 0.008461580134546922,
+          "netgain": -0.03628802477608968
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.010702874222983945,
+          "fidelity_loss_protocol_b": 0.02580916601860177,
+          "correction_magnitude": 0.02580916601860177,
+          "netgain": -0.11834295587002491
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_026",
+      "g2_prompt": "Please create a motion that represents the magic of the person steps a little wi",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.00510204081632653,
+          "BoneLengthEvaluator": 0.03773503280776594,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.00510204081632653,
+          0.03773503280776594,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "medium",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.001490001384807242
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0005952727605531714,
+          "correction_magnitude": 0.004365333577389924,
+          "netgain": -0.0012756835306570137
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0011905455211063429,
+          "correction_magnitude": 0.008730667154779848,
+          "netgain": -0.004252047333422871
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0019842425351772382,
+          "correction_magnitude": 0.01455111192463308,
+          "netgain": -0.008220532403777348
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.003773503280776594,
+          "fidelity_loss_protocol_b": 0.0006057005176745946,
+          "correction_magnitude": 0.002794923670590737,
+          "netgain": 0.0007450006924036206
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.007547006561553191,
+          "fidelity_loss_protocol_b": 0.00121140103534919,
+          "correction_magnitude": 0.005589847341181474,
+          "netgain": 0.001490001384807242
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.007816846790341014,
+          "fidelity_loss_protocol_b": 0.0020190017255819824,
+          "correction_magnitude": 0.009316412235302454,
+          "netgain": -0.0022781618375688987
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -1.6803084529984705e-05,
+          "fidelity_loss_protocol_b": 0.0004121739885625216,
+          "correction_magnitude": 0.0004121739885625216,
+          "netgain": -0.0020440668582826236
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.0016796947000528653,
+          "fidelity_loss_protocol_b": 0.0014091509779424248,
+          "correction_magnitude": 0.0014091509779424248,
+          "netgain": -0.00872544958976499
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.00509864848928971,
+          "fidelity_loss_protocol_b": 0.003565263389467556,
+          "correction_magnitude": 0.003565263389467556,
+          "netgain": -0.02292496543662749
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_027",
+      "g2_prompt": "Please create a motion that represents the uniqueness of a man is mixing somethi",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.028953679371306967,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.028953679371306967,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": -0.001289610160905211
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00025792203218104223,
+          "correction_magnitude": 0.0018914282359943097,
+          "netgain": -0.001289610160905211
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005158440643620845,
+          "correction_magnitude": 0.0037828564719886194,
+          "netgain": -0.002579220321810422
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008597401072701408,
+          "correction_magnitude": 0.0063047607866477,
+          "netgain": -0.004298700536350704
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00034535689913025056,
+          "correction_magnitude": 0.001420769642392635,
+          "netgain": -0.0017267844956512528
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006907137982605022,
+          "correction_magnitude": 0.0028415392847852706,
+          "netgain": -0.003453568991302511
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001151189663767502,
+          "correction_magnitude": 0.004735898807975451,
+          "netgain": -0.0057559483188375105
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -1.8568392047647875e-05,
+          "fidelity_loss_protocol_b": 0.0003124475598631823,
+          "correction_magnitude": 0.0003124475598631823,
+          "netgain": -0.0015436694072682635
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -8.659491316450642e-05,
+          "fidelity_loss_protocol_b": 0.0009916035368380386,
+          "correction_magnitude": 0.0009916035368380386,
+          "netgain": -0.004871422771025686
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00027002554811724616,
+          "fidelity_loss_protocol_b": 0.0022731972761009336,
+          "correction_magnitude": 0.0022731972761009336,
+          "netgain": -0.011095960832387421
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_028",
+      "g2_prompt": "Create a motion for the caption: a person takes a step forward, squats down, pla",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.3385416666666667,
+          "BoneLengthEvaluator": 0.03421867556181535,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.3385416666666667,
+          0.03421867556181535,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.09245722306771503
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.026606051265089553,
+          "fidelity_loss_protocol_b": 0.0015333453330888666,
+          "correction_magnitude": 0.011244532442651688,
+          "netgain": -0.03427277793053388
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.1077906763986037,
+          "fidelity_loss_protocol_b": 0.003066690666177733,
+          "correction_magnitude": 0.022489064885303375,
+          "netgain": 0.09245722306771503
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.10444323937778512,
+          "fidelity_loss_protocol_b": 0.005111151110296222,
+          "correction_magnitude": 0.037481774808838964,
+          "netgain": 0.078887483826304
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.0006534032680148603,
+          "correction_magnitude": 0.002492821779149095,
+          "netgain": -0.002651093365617906
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.0013068065360297221,
+          "correction_magnitude": 0.00498564355829819,
+          "netgain": -0.005918109705692215
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.002178010893382869,
+          "correction_magnitude": 0.008309405930496986,
+          "netgain": -0.01027413149245795
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.0017279425965217032,
+          "fidelity_loss_protocol_b": 0.00034822041966060054,
+          "correction_magnitude": 0.00034822041966060054,
+          "netgain": -0.0034690446948247057
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.005190383205186916,
+          "fidelity_loss_protocol_b": 0.0011724560669458906,
+          "correction_magnitude": 0.0011724560669458906,
+          "netgain": -0.01105266353991637
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.012149734430436182,
+          "fidelity_loss_protocol_b": 0.003129647904313594,
+          "correction_magnitude": 0.003129647904313594,
+          "netgain": -0.027797973952004153
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_029",
+      "g2_prompt": "Create a choreography for the caption: a person makes an underhanded throw with ",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.08974358974358974,
+          "BoneLengthEvaluator": 0.03849793329028061,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.08974358974358974,
+          0.03849793329028061,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.0076518665739387925
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.008547008547008544,
+          "fidelity_loss_protocol_b": 0.0015852406930334708,
+          "correction_magnitude": 0.011625098415578789,
+          "netgain": 0.0006208050818411904
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0235042735042735,
+          "fidelity_loss_protocol_b": 0.0031704813860669416,
+          "correction_magnitude": 0.023250196831157574,
+          "netgain": 0.0076518665739387925
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.027405185200507352,
+          "fidelity_loss_protocol_b": 0.005284135643444903,
+          "correction_magnitude": 0.038750328051929295,
+          "netgain": 0.0009845069832828367
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0005097522254796927,
+          "fidelity_loss_protocol_b": 0.0006306015969610438,
+          "correction_magnitude": 0.0025468196184745143,
+          "netgain": -0.0026432557593255262
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0005097522254796927,
+          "fidelity_loss_protocol_b": 0.0012612031939220865,
+          "correction_magnitude": 0.005093639236949032,
+          "netgain": -0.00579626374413074
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0005097522254796927,
+          "fidelity_loss_protocol_b": 0.0021020053232034775,
+          "correction_magnitude": 0.008489398728248389,
+          "netgain": -0.010000274390537696
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -7.384129055933164e-05,
+          "fidelity_loss_protocol_b": 0.0005930209800027177,
+          "correction_magnitude": 0.0005930209800027177,
+          "netgain": -0.002891263609454257
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.004015953506549569,
+          "fidelity_loss_protocol_b": 0.002041806678913111,
+          "correction_magnitude": 0.002041806678913111,
+          "netgain": -0.014224986901115122
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.007950030906599029,
+          "fidelity_loss_protocol_b": 0.005446755919647647,
+          "correction_magnitude": 0.005446755919647647,
+          "netgain": -0.035183810504837265
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_030",
+      "g2_prompt": "Generate a motion that conveys a person does a single knee down with left leg wi",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.01020408163265306,
+          "BoneLengthEvaluator": 0.032075693281582746,
+          "VelocityJitterEvaluator": 0.01649704370896223
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.01020408163265306,
+          0.032075693281582746,
+          0.01649704370896223
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "small",
+        "best_target_part": "full_body",
+        "best_netgain": -0.0007455674234744551
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0015712922792513184,
+          "fidelity_loss_protocol_b": 0.0013177186086322896,
+          "correction_magnitude": 0.00966326979663679,
+          "netgain": -0.005017300763910129
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.002622165166211138,
+          "fidelity_loss_protocol_b": 0.002635437217264579,
+          "correction_magnitude": 0.01932653959327358,
+          "netgain": -0.010555020920111758
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0014132392438057258,
+          "fidelity_loss_protocol_b": 0.004392395362107632,
+          "correction_magnitude": 0.032210899322122635,
+          "netgain": -0.020548737566732436
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00042430546987545895,
+          "correction_magnitude": 0.0015942212912718392,
+          "netgain": -0.0021215273493772947
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008486109397509174,
+          "correction_magnitude": 0.0031884425825436727,
+          "netgain": -0.004243054698754587
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0014143515662515301,
+          "correction_magnitude": 0.005314070970906131,
+          "netgain": -0.007071757831257651
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.005676546218117183,
+          "fidelity_loss_protocol_b": 0.0012844227283183276,
+          "correction_magnitude": 0.0012844227283183276,
+          "netgain": -0.0007455674234744551
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0076441755323485745,
+          "fidelity_loss_protocol_b": 0.005002737210251317,
+          "correction_magnitude": 0.005002737210251317,
+          "netgain": -0.01736951051890801
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00739279141469869,
+          "fidelity_loss_protocol_b": 0.015141137745351385,
+          "correction_magnitude": 0.015141137745351385,
+          "netgain": -0.06831289731205824
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_031",
+      "g2_prompt": "I need a human motion that conveys the feeling of a person is holding his arms s",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.01020408163265306,
+          "BoneLengthEvaluator": 0.023908968865276714,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.01020408163265306,
+          0.023908968865276714,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": -0.0006526930423049705
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0017006802721088437,
+          "fidelity_loss_protocol_b": 0.0004706746628827628,
+          "correction_magnitude": 0.003451614194473594,
+          "netgain": -0.0006526930423049705
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0034013605442176856,
+          "fidelity_loss_protocol_b": 0.0009413493257655254,
+          "correction_magnitude": 0.006903228388947188,
+          "netgain": -0.001305386084609941
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0034013605442176856,
+          "fidelity_loss_protocol_b": 0.0015689155429425426,
+          "correction_magnitude": 0.011505380648245314,
+          "netgain": -0.004443217170495027
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.000289169748313814,
+          "correction_magnitude": 0.0011558514420571737,
+          "netgain": -0.00144584874156907
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005783394966276255,
+          "correction_magnitude": 0.0023117028841143483,
+          "netgain": -0.0028916974831381275
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009638991610460436,
+          "correction_magnitude": 0.0038528381401905804,
+          "netgain": -0.0048194958052302185
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -4.382214768366109e-05,
+          "fidelity_loss_protocol_b": 0.0005645743318763584,
+          "correction_magnitude": 0.0005645743318763584,
+          "netgain": -0.002779049511698131
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.00013572933805740955,
+          "fidelity_loss_protocol_b": 0.0020830883385904143,
+          "correction_magnitude": 0.0020830883385904143,
+          "netgain": -0.010279712354894662
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.003538578119275602,
+          "fidelity_loss_protocol_b": 0.006016876517122459,
+          "correction_magnitude": 0.006016876517122459,
+          "netgain": -0.026545804466336698
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_032",
+      "g2_prompt": "Please create a motion that represents the chaos of subject is sitting flat on t",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.02040816326530612,
+          "BoneLengthEvaluator": 0.03090723539785543,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.02040816326530612,
+          0.03090723539785543,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0022418932478766515
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0034013605442176856,
+          "fidelity_loss_protocol_b": 0.0013149503599256206,
+          "correction_magnitude": 0.009642969306121218,
+          "netgain": -0.003173391255410418
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.006486121947074494,
+          "fidelity_loss_protocol_b": 0.0026299007198512412,
+          "correction_magnitude": 0.019285938612242436,
+          "netgain": -0.006663381652181713
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.004822351242710356,
+          "fidelity_loss_protocol_b": 0.004383167866418736,
+          "correction_magnitude": 0.03214323102040406,
+          "netgain": -0.017093488089383324
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0002137140763433104,
+          "fidelity_loss_protocol_b": 0.0004911214648439924,
+          "correction_magnitude": 0.0019778207619512295,
+          "netgain": -0.0022418932478766515
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0002137140763433104,
+          "fidelity_loss_protocol_b": 0.000982242929687986,
+          "correction_magnitude": 0.003955641523902461,
+          "netgain": -0.0046975005720966195
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0002137140763433104,
+          "fidelity_loss_protocol_b": 0.001637071549479976,
+          "correction_magnitude": 0.006592735873170764,
+          "netgain": -0.00797164367105657
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0017833556229252898,
+          "fidelity_loss_protocol_b": 0.0009771419059559502,
+          "correction_magnitude": 0.0009771419059559502,
+          "netgain": -0.003102353906854461
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0019767493839951463,
+          "fidelity_loss_protocol_b": 0.003665679697618816,
+          "correction_magnitude": 0.003665679697618816,
+          "netgain": -0.016351649104098934
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.005852984655414839,
+          "fidelity_loss_protocol_b": 0.011016204815156149,
+          "correction_magnitude": 0.011016204815156149,
+          "netgain": -0.04922803942036591
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_033",
+      "g2_prompt": "Show me a sequence of movements that evokes with hips swaying like a woman walki",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.027777777777777776,
+          "BoneLengthEvaluator": 0.016434678871025267,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.027777777777777776,
+          0.016434678871025267,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.0038174032481670343
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.009025871389561109,
+          "fidelity_loss_protocol_b": 0.0010416936282788148,
+          "correction_magnitude": 0.007639086607377974,
+          "netgain": 0.0038174032481670343
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.00816628567359762,
+          "fidelity_loss_protocol_b": 0.0020833872565576297,
+          "correction_magnitude": 0.015278173214755952,
+          "netgain": -0.0022506506091905295
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.006232764607401775,
+          "fidelity_loss_protocol_b": 0.0034723120942627165,
+          "correction_magnitude": 0.025463622024593256,
+          "netgain": -0.011128795863911809
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00015000754978185192,
+          "correction_magnitude": 0.000647067650557327,
+          "netgain": -0.0007500377489092596
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00030001509956370184,
+          "correction_magnitude": 0.001294135301114653,
+          "netgain": -0.001500075497818509
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005000251659395004,
+          "correction_magnitude": 0.0021568921685244293,
+          "netgain": -0.002500125829697502
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.004707795911676124,
+          "fidelity_loss_protocol_b": 0.0009704950440724721,
+          "correction_magnitude": 0.0009704950440724721,
+          "netgain": -0.00014467930868623628
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.004711296367332446,
+          "fidelity_loss_protocol_b": 0.003887482798452187,
+          "correction_magnitude": 0.003887482798452187,
+          "netgain": -0.014726117624928488
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.008940675589186107,
+          "fidelity_loss_protocol_b": 0.012284950919355428,
+          "correction_magnitude": 0.012284950919355428,
+          "netgain": -0.052484079007591035
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_034",
+      "g2_prompt": "Develop a motion that captures the idea of a person who is standing with his arm",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.021759445541732512,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.021759445541732512,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "VelocitySmoothingTool",
+        "best_strength": "small",
+        "best_target_part": "full_body",
+        "best_netgain": -0.0009953548937247222
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -3.080779741338607e-05,
+          "fidelity_loss_protocol_b": 0.00034330741630639045,
+          "correction_magnitude": 0.0025175877195801966,
+          "netgain": -0.0016857292841185663
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -5.756303711202705e-05,
+          "fidelity_loss_protocol_b": 0.0006866148326127809,
+          "correction_magnitude": 0.005035175439160393,
+          "netgain": -0.0033755111259518777
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -5.666746598085009e-05,
+          "fidelity_loss_protocol_b": 0.0011443580543546348,
+          "correction_magnitude": 0.008391959065267322,
+          "netgain": -0.005665122805792324
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0002257345818944213,
+          "correction_magnitude": 0.00104466062548372,
+          "netgain": -0.0011286729094721064
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00045146916378884145,
+          "correction_magnitude": 0.002089321250967441,
+          "netgain": -0.002257345818944207
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0007524486063147358,
+          "correction_magnitude": 0.0034822020849457334,
+          "netgain": -0.0037622430315736788
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -9.92103779954949e-06,
+          "fidelity_loss_protocol_b": 0.00020105518630485433,
+          "correction_magnitude": 0.00020105518630485433,
+          "netgain": -0.0009953548937247222
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -3.235413784144058e-05,
+          "fidelity_loss_protocol_b": 0.0006377016701538962,
+          "correction_magnitude": 0.0006377016701538962,
+          "netgain": -0.00315615421292804
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -8.126064043310205e-05,
+          "fidelity_loss_protocol_b": 0.0014165927279349278,
+          "correction_magnitude": 0.0014165927279349278,
+          "netgain": -0.007001702999241537
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_035",
+      "g2_prompt": "Generate a dance that interprets  Input: a man walks forward and picks up an obj",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.007142857142857143,
+          "BoneLengthEvaluator": 0.016649642443089578,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.007142857142857143,
+          0.016649642443089578,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0008364903974155029
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0023809523809523803,
+          "fidelity_loss_protocol_b": 0.0006780458939588302,
+          "correction_magnitude": 0.004972336555698087,
+          "netgain": -0.0010092770888417706
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0023809523809523803,
+          "fidelity_loss_protocol_b": 0.0013560917879176604,
+          "correction_magnitude": 0.009944673111396176,
+          "netgain": -0.0043995065586359215
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0023809523809523803,
+          "fidelity_loss_protocol_b": 0.0022601529798627674,
+          "correction_magnitude": 0.016574455185660295,
+          "netgain": -0.008919812518361457
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0004770855439250885,
+          "fidelity_loss_protocol_b": 0.0002627151882681183,
+          "correction_magnitude": 0.0011058756794403001,
+          "netgain": -0.0008364903974155029
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0004770855439250885,
+          "fidelity_loss_protocol_b": 0.0005254303765362373,
+          "correction_magnitude": 0.0022117513588805976,
+          "netgain": -0.002150066338756098
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0004770855439250885,
+          "fidelity_loss_protocol_b": 0.000875717294227063,
+          "correction_magnitude": 0.003686252264800997,
+          "netgain": -0.0039015009272102266
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -5.926765819209631e-05,
+          "fidelity_loss_protocol_b": 0.0006396047857609097,
+          "correction_magnitude": 0.0006396047857609097,
+          "netgain": -0.003138756270612452
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.002593756926778849,
+          "fidelity_loss_protocol_b": 0.0023309277932023202,
+          "correction_magnitude": 0.0023309277932023202,
+          "netgain": -0.009060882039232752
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.002870394374585046,
+          "fidelity_loss_protocol_b": 0.006454003075087742,
+          "correction_magnitude": 0.006454003075087742,
+          "netgain": -0.02939962100085367
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_036",
+      "g2_prompt": "Create a person squats down to the ground, picks up a box, then stands back up, ",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.06914893617021277,
+          "BoneLengthEvaluator": 0.03560284871046619,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.06914893617021277,
+          0.03560284871046619,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.013381652018433011
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0053191489361702135,
+          "fidelity_loss_protocol_b": 0.0009667993371637909,
+          "correction_magnitude": 0.007089861805867799,
+          "netgain": -0.010153145621989167
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.02304964539007092,
+          "fidelity_loss_protocol_b": 0.0019335986743275818,
+          "correction_magnitude": 0.014179723611735598,
+          "netgain": 0.013381652018433011
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.02304964539007092,
+          "fidelity_loss_protocol_b": 0.0032226644572126363,
+          "correction_magnitude": 0.023632872686226,
+          "netgain": 0.006936323104007738
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005281800664136803,
+          "correction_magnitude": 0.0022983593965112607,
+          "netgain": -0.0026409003320684013
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0010563601328273619,
+          "correction_magnitude": 0.004596718793022526,
+          "netgain": -0.0052818006641368095
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0017606002213789366,
+          "correction_magnitude": 0.0076611979883708745,
+          "netgain": -0.008803001106894684
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.007011988323163826,
+          "fidelity_loss_protocol_b": 0.0006269182822329858,
+          "correction_magnitude": 0.0006269182822329858,
+          "netgain": -0.010146579734328755
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.0068448156494637855,
+          "fidelity_loss_protocol_b": 0.002228144191226079,
+          "correction_magnitude": 0.002228144191226079,
+          "netgain": -0.01798553660559418
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.008256552894596696,
+          "fidelity_loss_protocol_b": 0.006393629286123773,
+          "correction_magnitude": 0.006393629286123773,
+          "netgain": -0.04022469932521556
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_037",
+      "g2_prompt": "Generate Motion: a person walks up to shake with their right hand, turns slightl",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.030837111224729784,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.030837111224729784,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.00047708521851126543
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00029063604295630424,
+          "correction_magnitude": 0.0021313309816795648,
+          "netgain": -0.0014531802147815212
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005812720859126085,
+          "correction_magnitude": 0.0042626619633591295,
+          "netgain": -0.0029063604295630424
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009687868098543477,
+          "correction_magnitude": 0.007104436605598549,
+          "netgain": -0.004843934049271738
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0030837111224729817,
+          "fidelity_loss_protocol_b": 0.0005213251807923432,
+          "correction_magnitude": 0.0021374092464973935,
+          "netgain": 0.00047708521851126543
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.003975016639361328,
+          "fidelity_loss_protocol_b": 0.0010426503615846882,
+          "correction_magnitude": 0.004274818492994789,
+          "netgain": -0.001238235168562113
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.003975016639361328,
+          "fidelity_loss_protocol_b": 0.0017377506026411463,
+          "correction_magnitude": 0.007124697488324646,
+          "netgain": -0.004713736373844404
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -2.2392616799522466e-05,
+          "fidelity_loss_protocol_b": 0.0004114624469099442,
+          "correction_magnitude": 0.0004114624469099442,
+          "netgain": -0.0020349196177501987
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -9.450605886815976e-05,
+          "fidelity_loss_protocol_b": 0.0014024998393365662,
+          "correction_magnitude": 0.0014024998393365662,
+          "netgain": -0.006917993137814671
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00026513433981076653,
+          "fidelity_loss_protocol_b": 0.0036317779141586716,
+          "correction_magnitude": 0.0036317779141586716,
+          "netgain": -0.01789375523098259
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_038",
+      "g2_prompt": "Can you generate a motion that portrays a person steps forward with their left f",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.019230769230769232,
+          "BoneLengthEvaluator": 0.01754540290498678,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.019230769230769232,
+          0.01754540290498678,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0012532729879816337
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.002633054716540186,
+          "fidelity_loss_protocol_b": 0.0010686747702913215,
+          "correction_magnitude": 0.007836948315469692,
+          "netgain": -0.002710319134916422
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.00420802845038157,
+          "fidelity_loss_protocol_b": 0.002137349540582643,
+          "correction_magnitude": 0.015673896630939384,
+          "netgain": -0.006478719252531646
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.0017983178020057906,
+          "fidelity_loss_protocol_b": 0.0035622492343044053,
+          "correction_magnitude": 0.026123161051565636,
+          "netgain": -0.016012928369516233
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00025065459759632676,
+          "correction_magnitude": 0.0010414532692993436,
+          "netgain": -0.0012532729879816337
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005013091951926498,
+          "correction_magnitude": 0.0020829065385986837,
+          "netgain": -0.0025065459759632492
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008355153253210838,
+          "correction_magnitude": 0.0034715108976644733,
+          "netgain": -0.004177576626605419
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.00012391905145838975,
+          "fidelity_loss_protocol_b": 0.0008252507149866344,
+          "correction_magnitude": 0.0008252507149866344,
+          "netgain": -0.004002334523474782
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0002650753313789989,
+          "fidelity_loss_protocol_b": 0.0032267252105879127,
+          "correction_magnitude": 0.0032267252105879127,
+          "netgain": -0.015868550721560563
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0027327179441990687,
+          "fidelity_loss_protocol_b": 0.010177500878465244,
+          "correction_magnitude": 0.010177500878465244,
+          "netgain": -0.04815478644812715
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_039",
+      "g2_prompt": "Show me a motion that represents man stands holding both arms up at his sides at",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.03709553527579754,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.03709553527579754,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0018269875422238682
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0013227873359779186,
+          "correction_magnitude": 0.009700440463838072,
+          "netgain": -0.006613936679889593
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0026455746719558373,
+          "correction_magnitude": 0.019400880927676143,
+          "netgain": -0.013227873359779187
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.004409291119926396,
+          "correction_magnitude": 0.03233480154612691,
+          "netgain": -0.022046455599631982
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00036539750844477364,
+          "correction_magnitude": 0.0014333316355663764,
+          "netgain": -0.0018269875422238682
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0007307950168895466,
+          "correction_magnitude": 0.0028666632711327545,
+          "netgain": -0.003653975084447733
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0012179916948159113,
+          "correction_magnitude": 0.004777772118554592,
+          "netgain": -0.006089958474079556
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -2.3926364423483212e-05,
+          "fidelity_loss_protocol_b": 0.00043732919280483197,
+          "correction_magnitude": 0.00043732919280483197,
+          "netgain": -0.002162719599600677
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -7.023309918314548e-05,
+          "fidelity_loss_protocol_b": 0.0014558755895791018,
+          "correction_magnitude": 0.0014558755895791018,
+          "netgain": -0.007209144848712363
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -8.178421551891489e-05,
+          "fidelity_loss_protocol_b": 0.003691903423843301,
+          "correction_magnitude": 0.003691903423843301,
+          "netgain": -0.01837773290369759
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_040",
+      "g2_prompt": "Show me a gesture that conveys a person is standing and moves their arms up to t",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.018796034479502996,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.018796034479502996,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.0001700565686696574
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00018154270259070808,
+          "correction_magnitude": 0.001331313152331859,
+          "netgain": -0.0009077135129535404
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003630854051814161,
+          "correction_magnitude": 0.002662626304663718,
+          "netgain": -0.0018154270259070806
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006051423419690268,
+          "correction_magnitude": 0.004437710507772863,
+          "netgain": -0.003025711709845134
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0018796034479502946,
+          "fidelity_loss_protocol_b": 0.0003419093758561274,
+          "correction_magnitude": 0.0013791568318880154,
+          "netgain": 0.0001700565686696574
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.00280548943543972,
+          "fidelity_loss_protocol_b": 0.0006838187517122568,
+          "correction_magnitude": 0.0027583136637760273,
+          "netgain": -0.000613604323121564
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.00280548943543972,
+          "fidelity_loss_protocol_b": 0.0011396979195204256,
+          "correction_magnitude": 0.0045971894396267116,
+          "netgain": -0.002893000162162408
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -9.614800263161444e-05,
+          "fidelity_loss_protocol_b": 0.00026143299902887517,
+          "correction_magnitude": 0.00026143299902887517,
+          "netgain": -0.0012110169925127613
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.00028844486973978855,
+          "fidelity_loss_protocol_b": 0.0008501649915970851,
+          "correction_magnitude": 0.0008501649915970851,
+          "netgain": -0.003962380088245637
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00045608374870562823,
+          "fidelity_loss_protocol_b": 0.0019802468133518158,
+          "correction_magnitude": 0.0019802468133518158,
+          "netgain": -0.009445150318053451
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_041",
+      "g2_prompt": "I want a motion that represents the power of the person is in a sitting position",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.02039004349014844,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.02039004349014844,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0010034532500685833
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0001406641614463749,
+          "fidelity_loss_protocol_b": 0.000402356946310173,
+          "correction_magnitude": 0.0029506176062746017,
+          "netgain": -0.00187112057010449
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.0001808164694714542,
+          "fidelity_loss_protocol_b": 0.000804713892620346,
+          "correction_magnitude": 0.005901235212549204,
+          "netgain": -0.0038427529936302758
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.00015699615597297364,
+          "fidelity_loss_protocol_b": 0.00134118982103391,
+          "correction_magnitude": 0.009835392020915339,
+          "netgain": -0.006548952949196576
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00020069065001371666,
+          "correction_magnitude": 0.0008743469033229812,
+          "netgain": -0.0010034532500685833
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00040138130002743413,
+          "correction_magnitude": 0.0017486938066459624,
+          "netgain": -0.0020069065001371705
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006689688333790567,
+          "correction_magnitude": 0.0029144896777432722,
+          "netgain": -0.003344844166895283
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -2.2531456921764427e-05,
+          "fidelity_loss_protocol_b": 0.00024039392242377372,
+          "correction_magnitude": 0.00024039392242377372,
+          "netgain": -0.0011794381551971042
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -6.8979969729723e-05,
+          "fidelity_loss_protocol_b": 0.0007520825255009973,
+          "correction_magnitude": 0.0007520825255009973,
+          "netgain": -0.003691432657775263
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0001552109358404566,
+          "fidelity_loss_protocol_b": 0.0016399239993075511,
+          "correction_magnitude": 0.0016399239993075511,
+          "netgain": -0.008044409060697299
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_042",
+      "g2_prompt": "I want to see a motion that represents the pain of a person is appears to be hol",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.03364940318061144,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.03364940318061144,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0014235701954173614
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0004035083518289237,
+          "correction_magnitude": 0.0029590612467454403,
+          "netgain": -0.0020175417591446186
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0008070167036578474,
+          "correction_magnitude": 0.005918122493490881,
+          "netgain": -0.004035083518289237
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0013450278394297457,
+          "correction_magnitude": 0.009863537489151468,
+          "netgain": -0.0067251391971487285
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0002847140390834723,
+          "correction_magnitude": 0.0012710752561924782,
+          "netgain": -0.0014235701954173614
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005694280781669435,
+          "correction_magnitude": 0.0025421505123849556,
+          "netgain": -0.0028471403908347176
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0009490467969449074,
+          "correction_magnitude": 0.004236917520641592,
+          "netgain": -0.004745233984724537
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -2.640628229038343e-05,
+          "fidelity_loss_protocol_b": 0.00037608822878128337,
+          "correction_magnitude": 0.00037608822878128337,
+          "netgain": -0.0018540348616160334
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -9.46838357204563e-05,
+          "fidelity_loss_protocol_b": 0.0012723999392873818,
+          "correction_magnitude": 0.0012723999392873818,
+          "netgain": -0.006267315860716453
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0001651155564511217,
+          "fidelity_loss_protocol_b": 0.0032863802118689328,
+          "correction_magnitude": 0.0032863802118689328,
+          "netgain": -0.01626678550289354
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_043",
+      "g2_prompt": "Generate a person steps forward and shakes both hands together in a begging mann",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.04411764705882353,
+          "BoneLengthEvaluator": 0.03437379103339058,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.04411764705882353,
+          0.03437379103339058,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "medium",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.0031838625856864516
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.0024509803921568644,
+          "fidelity_loss_protocol_b": 0.001152201976725473,
+          "correction_magnitude": 0.008449481162653469,
+          "netgain": -0.0033100294914705005
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.014705882352941181,
+          "fidelity_loss_protocol_b": 0.002304403953450946,
+          "correction_magnitude": 0.016898962325306938,
+          "netgain": 0.0031838625856864516
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.014705882352941181,
+          "fidelity_loss_protocol_b": 0.0038406732557515768,
+          "correction_magnitude": 0.028164937208844897,
+          "netgain": -0.004497483925816703
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0013862935561080002,
+          "fidelity_loss_protocol_b": 0.0005167830229780303,
+          "correction_magnitude": 0.002148696656416103,
+          "netgain": -0.0011976215587821515
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0013862935561080002,
+          "fidelity_loss_protocol_b": 0.0010335660459560622,
+          "correction_magnitude": 0.004297393312832206,
+          "netgain": -0.003781536673672311
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0013862935561080002,
+          "fidelity_loss_protocol_b": 0.001722610076593441,
+          "correction_magnitude": 0.0071623221880536825,
+          "netgain": -0.007226756826859205
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.00010428673184529821,
+          "fidelity_loss_protocol_b": 0.0010104271973684978,
+          "correction_magnitude": 0.0010104271973684978,
+          "netgain": -0.004947849254997191
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0004110927163692539,
+          "fidelity_loss_protocol_b": 0.0035660200634277093,
+          "correction_magnitude": 0.0035660200634277093,
+          "netgain": -0.017419007600769292
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.006071236392267462,
+          "fidelity_loss_protocol_b": 0.009438748027266687,
+          "correction_magnitude": 0.009438748027266687,
+          "netgain": -0.04112250374406597
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_044",
+      "g2_prompt": "I want a motion that represents the power of a person standing on one foot holds",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.02040816326530612,
+          "BoneLengthEvaluator": 0.06500290964702954,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.02040816326530612,
+          0.06500290964702954,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.00172082936182686
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.008567950721588124,
+          "fidelity_loss_protocol_b": 0.005254403470928136,
+          "correction_magnitude": 0.038532292120139665,
+          "netgain": -0.0348399680762288
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.05470334920895996,
+          "fidelity_loss_protocol_b": 0.01050880694185627,
+          "correction_magnitude": 0.07706458424027933,
+          "netgain": -0.10724738391824132
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.001999138044930914,
+          "fidelity_loss_protocol_b": 0.01751467823642712,
+          "correction_magnitude": 0.12844097373379887,
+          "netgain": -0.08557425313720468
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.000344165872365372,
+          "correction_magnitude": 0.0013780319674207616,
+          "netgain": -0.00172082936182686
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006883317447307433,
+          "correction_magnitude": 0.0027560639348415215,
+          "netgain": -0.003441658723653716
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001147219574551241,
+          "correction_magnitude": 0.004593439891402539,
+          "netgain": -0.005736097872756206
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.005048067728381258,
+          "fidelity_loss_protocol_b": 0.0007597263786198565,
+          "correction_magnitude": 0.0007597263786198565,
+          "netgain": -0.00884669962148054
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.003366891496990789,
+          "fidelity_loss_protocol_b": 0.0025406829096143507,
+          "correction_magnitude": 0.0025406829096143507,
+          "netgain": -0.016070306045062543
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.00585790995684202,
+          "fidelity_loss_protocol_b": 0.006009354353884594,
+          "correction_magnitude": 0.006009354353884594,
+          "netgain": -0.035904681726264986
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_045",
+      "g2_prompt": "I want a motion that represents the power of starting from their left foot in th",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.03333333333333333,
+          "BoneLengthEvaluator": 0.037000786904259106,
+          "VelocityJitterEvaluator": 0.02206697261381919
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.03333333333333333,
+          0.037000786904259106,
+          0.02206697261381919
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.00537512210035953
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.011024868934151996,
+          "fidelity_loss_protocol_b": 0.001129949366758493,
+          "correction_magnitude": 0.008286295356228948,
+          "netgain": 0.00537512210035953
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.010754258900857835,
+          "fidelity_loss_protocol_b": 0.0022598987335169856,
+          "correction_magnitude": 0.016572590712457896,
+          "netgain": -0.0005452347667270936
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.010038287818526306,
+          "fidelity_loss_protocol_b": 0.003766497889194976,
+          "correction_magnitude": 0.027620984520763156,
+          "netgain": -0.008794201627448574
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.00045588802711431876,
+          "correction_magnitude": 0.001814076639648506,
+          "netgain": -0.0022794401355715936
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.000911776054228638,
+          "correction_magnitude": 0.003628153279297013,
+          "netgain": -0.00455888027114319
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0015196267570477284,
+          "correction_magnitude": 0.006046922132161684,
+          "netgain": -0.0075981337852386414
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0010835863983509227,
+          "fidelity_loss_protocol_b": 0.0020047188175409303,
+          "correction_magnitude": 0.0020047188175409303,
+          "netgain": -0.008940007689353728
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.002879872268910729,
+          "fidelity_loss_protocol_b": 0.008031627107847068,
+          "correction_magnitude": 0.008031627107847068,
+          "netgain": -0.0372782632703246
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.010852032060873935,
+          "fidelity_loss_protocol_b": 0.023380681372544246,
+          "correction_magnitude": 0.023380681372544246,
+          "netgain": -0.10605137480184729
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_046",
+      "g2_prompt": "Create a sequence of movements that embodies the meaning of man reaches down to ",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.012396640040595364,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.012396640040595364,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": 0.0032341582527981973
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005326000219528479,
+          "correction_magnitude": 0.0039057334943208843,
+          "netgain": -0.0026630001097642394
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0010652000439056958,
+          "correction_magnitude": 0.007811466988641769,
+          "netgain": -0.005326000219528479
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001775333406509493,
+          "correction_magnitude": 0.013019111647736281,
+          "netgain": -0.008876667032547464
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.004132213346865122,
+          "fidelity_loss_protocol_b": 0.00017961101881338492,
+          "correction_magnitude": 0.0007866476618963714,
+          "netgain": 0.0032341582527981973
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.004132213346865122,
+          "fidelity_loss_protocol_b": 0.0003592220376267699,
+          "correction_magnitude": 0.0015732953237927382,
+          "netgain": 0.002336103158731272
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.004132213346865122,
+          "fidelity_loss_protocol_b": 0.0005987033960446167,
+          "correction_magnitude": 0.0026221588729878954,
+          "netgain": 0.0011386963666420381
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -3.901116289077404e-05,
+          "fidelity_loss_protocol_b": 0.00035723376638330397,
+          "correction_magnitude": 0.00035723376638330397,
+          "netgain": -0.0017471576690257459
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.00013434083107887775,
+          "fidelity_loss_protocol_b": 0.0011741245799394794,
+          "correction_magnitude": 0.0011741245799394794,
+          "netgain": -0.005736282068618519
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.0003684995318640116,
+          "fidelity_loss_protocol_b": 0.0029737229065148457,
+          "correction_magnitude": 0.0029737229065148457,
+          "netgain": -0.014500115000710218
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_047",
+      "g2_prompt": "Create person turns around from front to rear and whilst holding his hand and ar",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.035255947028806925,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.0,
+          0.035255947028806925,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": -0.001679981058266477
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0003359962116532954,
+          "correction_magnitude": 0.0024639722187908327,
+          "netgain": -0.001679981058266477
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0006719924233065908,
+          "correction_magnitude": 0.004927944437581665,
+          "netgain": -0.003359962116532954
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0011199873721776514,
+          "correction_magnitude": 0.008213240729302776,
+          "netgain": -0.005599936860888256
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0007249693170907172,
+          "fidelity_loss_protocol_b": 0.0005266563516251808,
+          "correction_magnitude": 0.0025173167171201427,
+          "netgain": -0.0019083124410351868
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0007249693170907172,
+          "fidelity_loss_protocol_b": 0.0010533127032503603,
+          "correction_magnitude": 0.005034633434240286,
+          "netgain": -0.004541594199161085
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0007249693170907172,
+          "fidelity_loss_protocol_b": 0.0017555211720839334,
+          "correction_magnitude": 0.008391055723733809,
+          "netgain": -0.00805263654332895
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -3.4114200393960126e-05,
+          "fidelity_loss_protocol_b": 0.0005681896911131657,
+          "correction_magnitude": 0.0005681896911131657,
+          "netgain": -0.0028068342551718682
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0001148774238233681,
+          "fidelity_loss_protocol_b": 0.0020215658246905254,
+          "correction_magnitude": 0.0020215658246905254,
+          "netgain": -0.009992951699629259
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.00019447901947126575,
+          "fidelity_loss_protocol_b": 0.005455450687673264,
+          "correction_magnitude": 0.005455450687673264,
+          "netgain": -0.027082774418895058
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_048",
+      "g2_prompt": "Show me a motion that exemplifies the sentiment of  Input: a person is running o",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.22826086956521738,
+          "BoneLengthEvaluator": 0.045485541613672645,
+          "VelocityJitterEvaluator": 0.026719865370237763
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.22826086956521738,
+          0.045485541613672645,
+          0.026719865370237763
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.00024042026130333474
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.025646042815764075,
+          "fidelity_loss_protocol_b": 0.005081124510892148,
+          "correction_magnitude": 0.037261579746542414,
+          "netgain": 0.00024042026130333474
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.04154821432632404,
+          "fidelity_loss_protocol_b": 0.010162249021784297,
+          "correction_magnitude": 0.07452315949308483,
+          "netgain": -0.009263030782597444
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.07068126582460835,
+          "fidelity_loss_protocol_b": 0.016937081702973825,
+          "correction_magnitude": 0.12420526582180805,
+          "netgain": -0.014004142690260776
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0024142285998017543,
+          "fidelity_loss_protocol_b": 0.0006879556140166017,
+          "correction_magnitude": 0.003477917248294606,
+          "netgain": -0.0010255494702812546
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0024142285998017543,
+          "fidelity_loss_protocol_b": 0.0013759112280332022,
+          "correction_magnitude": 0.006955834496589211,
+          "netgain": -0.004465327540364257
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.0024142285998017543,
+          "fidelity_loss_protocol_b": 0.0022931853800553363,
+          "correction_magnitude": 0.011593057494315353,
+          "netgain": -0.009051698300474927
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": 0.005727675908180019,
+          "fidelity_loss_protocol_b": 0.002653339664604791,
+          "correction_magnitude": 0.002653339664604791,
+          "netgain": -0.018994374231203974
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": 0.003289481310735004,
+          "fidelity_loss_protocol_b": 0.010421094774940201,
+          "correction_magnitude": 0.010421094774940201,
+          "netgain": -0.05539495518543601
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.007533495147476213,
+          "fidelity_loss_protocol_b": 0.028093316750351448,
+          "correction_magnitude": 0.028093316750351448,
+          "netgain": -0.13293308860428105
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_049",
+      "g2_prompt": "Demonstrate a dance that conveys  Input: a person who is standing with his arms ",
+      "artifact_kind": "foot_floating",
+      "state": {
+        "artifact_onehot": [
+          1,
+          0,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.08333333333333333,
+          "BoneLengthEvaluator": 0.035704978433958805,
+          "VelocityJitterEvaluator": 0.027498949301560095
+        },
+        "feature_vector": [
+          1,
+          0,
+          0,
+          0.08333333333333333,
+          0.035704978433958805,
+          0.027498949301560095
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "FootLockTool",
+        "best_strength": "small",
+        "best_target_part": "both_feet",
+        "best_netgain": 0.005460708504401602
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.01666666666666667,
+          "fidelity_loss_protocol_b": 0.0022411916324530136,
+          "correction_magnitude": 0.016435405304655433,
+          "netgain": 0.005460708504401602
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": 0.0064706730948071375,
+          "fidelity_loss_protocol_b": 0.004482383264906027,
+          "correction_magnitude": 0.032870810609310866,
+          "netgain": -0.028882589419337273
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.021341731216872165,
+          "fidelity_loss_protocol_b": 0.007470638774843379,
+          "correction_magnitude": 0.05478468434885144,
+          "netgain": -0.016011462657344728
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": -0.0025929340908379464,
+          "fidelity_loss_protocol_b": 0.0005553901018963594,
+          "correction_magnitude": 0.002491847010115577,
+          "netgain": -0.00018401641864385088
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": -0.0026138713481043754,
+          "fidelity_loss_protocol_b": 0.0011107802037927193,
+          "correction_magnitude": 0.00498369402023115,
+          "netgain": -0.002940029670859221
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": -0.00262137090455819,
+          "fidelity_loss_protocol_b": 0.0018513003396545317,
+          "correction_magnitude": 0.008306156700385254,
+          "netgain": -0.006635130793714469
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -0.0007976947289678529,
+          "fidelity_loss_protocol_b": 0.0022870073570666638,
+          "correction_magnitude": 0.0022870073570666638,
+          "netgain": -0.010637342056365465
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0021204213188252066,
+          "fidelity_loss_protocol_b": 0.009502399577330966,
+          "correction_magnitude": 0.009502399577330966,
+          "netgain": -0.045391576567829627
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": 0.005884642690934132,
+          "fidelity_loss_protocol_b": 0.02980837017119771,
+          "correction_magnitude": 0.02980837017119771,
+          "netgain": -0.15492649354692267
+        }
+      ]
+    },
+    {
+      "trial_id": "motion_050",
+      "g2_prompt": "I need a motion that represents the power of a man is locking his hands behind h",
+      "artifact_kind": "bone_stretch_right_arm",
+      "state": {
+        "artifact_onehot": [
+          0,
+          1,
+          0
+        ],
+        "evaluator_scores": {
+          "FootFloatingEvaluator": 0.030612244897959183,
+          "BoneLengthEvaluator": 0.03606868855848226,
+          "VelocityJitterEvaluator": 0.0
+        },
+        "feature_vector": [
+          0,
+          1,
+          0,
+          0.030612244897959183,
+          0.03606868855848226,
+          0.0
+        ],
+        "feature_names": [
+          "is_foot_floating",
+          "is_bone_stretch_right_arm",
+          "is_global_jitter",
+          "score_FootFloatingEvaluator",
+          "score_BoneLengthEvaluator",
+          "score_VelocityJitterEvaluator"
+        ]
+      },
+      "label": {
+        "best_tool": "BoneProjectionTool",
+        "best_strength": "small",
+        "best_target_part": "right_arm",
+        "best_netgain": -0.0025524023679767446
+      },
+      "candidates": [
+        {
+          "tool_name": "FootLockTool",
+          "strength": "small",
+          "target_delta": -0.006802721088435373,
+          "fidelity_loss_protocol_b": 0.002314165045687814,
+          "correction_magnitude": 0.016970543668377306,
+          "netgain": -0.004768104140003698
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "medium",
+          "target_delta": -0.008522827851108588,
+          "fidelity_loss_protocol_b": 0.004628330091375629,
+          "correction_magnitude": 0.03394108733675461,
+          "netgain": -0.014618822605769558
+        },
+        {
+          "tool_name": "FootLockTool",
+          "strength": "large",
+          "target_delta": -0.003410718445214584,
+          "fidelity_loss_protocol_b": 0.007713883485626049,
+          "correction_magnitude": 0.05656847889459103,
+          "netgain": -0.03515869898291567
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "small",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0005104804735953489,
+          "correction_magnitude": 0.0023662782535406215,
+          "netgain": -0.0025524023679767446
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "medium",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.001020960947190697,
+          "correction_magnitude": 0.0047325565070812405,
+          "netgain": -0.005104804735953485
+        },
+        {
+          "tool_name": "BoneProjectionTool",
+          "strength": "large",
+          "target_delta": 0.0,
+          "fidelity_loss_protocol_b": 0.0017016015786511624,
+          "correction_magnitude": 0.00788759417846874,
+          "netgain": -0.008508007893255813
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "small",
+          "target_delta": -5.39522778110757e-05,
+          "fidelity_loss_protocol_b": 0.0007967999264217257,
+          "correction_magnitude": 0.0007967999264217257,
+          "netgain": -0.003930047354297553
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "medium",
+          "target_delta": -0.0018738736829138868,
+          "fidelity_loss_protocol_b": 0.002828138325588985,
+          "correction_magnitude": 0.002828138325588985,
+          "netgain": -0.012266817945031039
+        },
+        {
+          "tool_name": "VelocitySmoothingTool",
+          "strength": "large",
+          "target_delta": -0.007123044127822829,
+          "fidelity_loss_protocol_b": 0.007832233546634355,
+          "correction_magnitude": 0.007832233546634355,
+          "netgain": -0.032038123605348946
+        }
+      ]
+    }
+  ]
+}
