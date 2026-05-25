@@ -30,8 +30,11 @@ from typing import Any, Optional
 
 import numpy as np
 
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import HistGradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
 ALL_EVALUATORS = ("FootFloatingEvaluator", "BoneLengthEvaluator", "VelocityJitterEvaluator")
 TOOL_NAMES_WITH_NONE = ["NONE", "FootLockTool", "BoneProjectionTool", "VelocitySmoothingTool"]
@@ -108,14 +111,38 @@ class SequenceImitationSelector:
                 n_estimators=self.n_estimators, random_state=self.random_state,
             )
         elif self.model_type == "logistic_regression":
-            self.model = LogisticRegression(
-                random_state=self.random_state, max_iter=1000, multi_class="multinomial",
+            # Standardize features (one-hot 은 0/1, scores 는 작은 양수, step/budget 은 0-5).
+            self.model = Pipeline([
+                ("scaler", StandardScaler()),
+                ("clf", LogisticRegression(
+                    random_state=self.random_state, max_iter=2000, multi_class="multinomial",
+                    C=1.0,
+                )),
+            ])
+        elif self.model_type == "hist_gradient_boosting":
+            self.model = HistGradientBoostingClassifier(
+                random_state=self.random_state, max_iter=200, learning_rate=0.1,
+                max_depth=None, l2_regularization=0.0,
             )
+        elif self.model_type == "mlp":
+            self.model = Pipeline([
+                ("scaler", StandardScaler()),
+                ("clf", MLPClassifier(
+                    hidden_layer_sizes=(64, 32), random_state=self.random_state,
+                    max_iter=500, alpha=0.01,  # regularization (data 작음).
+                    early_stopping=False, learning_rate="adaptive",
+                )),
+            ])
         else:
             raise ValueError(self.model_type)
         self.model.fit(X, y_action_id)
         self._is_trained = True
-        self._trained_classes = [int(c) for c in self.model.classes_]
+        # Pipeline 의 경우 final estimator 의 classes_ 사용.
+        clf_or_pipe = self.model
+        if hasattr(clf_or_pipe, "named_steps") and "clf" in clf_or_pipe.named_steps:
+            self._trained_classes = [int(c) for c in clf_or_pipe.named_steps["clf"].classes_]
+        else:
+            self._trained_classes = [int(c) for c in clf_or_pipe.classes_]
         train_acc = float(self.model.score(X, y_action_id))
         return {
             "model_type": self.model_type,
