@@ -346,6 +346,47 @@ raw record 생성 도구 (`baseline_smoke`, 향후 `eval-collect` 등) 는 본 m
 
 두 oracle 의 성능은 다르므로 (sequence ≥ single-step), 가설 평가 시 어느 baseline 을 썼는지 raw record 와 5단계 리포트에 **`oracle_type` field** 로 명시한다. 두 type 의 결과를 동일 baseline 으로 묶어 인용 금지 (AGENTS.md §6-5 metadata 우회와 동질).
 
+### 3-17. Synthetic vs Real Generator Evaluation 의 분리 의무
+
+사용자 directive (2026-05-25) 박제: **"Synthetic corruption experiments are controlled diagnostics, not the sole evidence of real generator performance."**
+
+본 프로젝트의 모든 평가 결과는 다음 **evidence 계층** 으로 분류·인용한다:
+
+| 계층 | 적절한 용도 | 적절치 못한 용도 (금지) |
+|---|---|---|
+| **Synthetic corruption (controlled diagnostic)** | (a) tool 작동 검증, (b) evaluator artifact 잡기 검증, (c) sequence oracle headroom 측정, (d) policy 의 known artifact 학습 능력 검증, (e) ablation, (f) regression test. | **최종 성능 주장의 sole evidence**. synthetic NetGain 우위만으로 "ArtifactRouter 가 우월" 단정 금지. |
+| **Real generator natural output (G1 / G2)** | 가설의 최종 성능 evidence. transfer / generalization 평가. | (real generator 가 한 종류만 측정된 결과로 generator-agnostic 주장 금지 — [§6-10](#6-10-generator-transfer-결과-임의-일반화) 일관) |
+| **Perceptual / visual / motion quality** | NetGain proxy 의 perceptual validity. fidelity 손상의 user-facing 평가. | 시각화 단일 sample 결론 ([§3-9](#3-9-단일-sample--단일-trial-결론-금지) 일관) |
+
+**Synthetic 만의 위험 (이미 관찰됨)**:
+- (a) 실제 generator artifact 와 다를 수 있음.
+- (b) 주입 강도가 임의적 (lift_height=0.08, noise_std=0.05 등은 사람이 임의 결정).
+- (c) artifact 조합이 비현실 (foot_floating + global_jitter chained 가 실제 generator 에서 자연스럽게 일어나는 분포 아닐 수 있음).
+- (d) evaluator 가 synthetic pattern 에 과적합 가능 (severity threshold 가 synthetic-driven).
+- (e) NetGain 이 실제 visual quality 와 다를 수 있음.
+
+**본 프로젝트의 이미 관찰된 evidence (synthetic 일반화 위험)**:
+- B2 (fixed smoothing) 의 NetGain: synthetic 에서 mean +0.179 (강함), G2 natural 에서 mean -0.017 (약함, over-modification).
+- Best strength: synthetic 에서 large 76%, G2 에서 small 86% (oracle data v2).
+- Synthetic-trained B7 bandit 이 G2 zero-shot 에서 fail (Step 5 transfer diagnostic).
+- → **"synthetic 우수 → G2 우수" 의 자동 추론 금지**.
+
+**최종 성능 주장 (논문·발표·README) 의무 evidence**:
+1. **G2 natural** (active scope) — paired test, multi-seed, n ≥ 30.
+2. **G1 natural** (active scope — Week 3+ MVP plan) — paired test, multi-seed, n ≥ 30.
+3. **Multi-prompt category coverage** — generator output 의 prompt 다양성 (walking, running, jumping 등).
+4. **시각화 sanity check** — NetGain 의 visual validity 정성 확인.
+5. **Perceptual rating / motion quality metric** — NetGain proxy 의 perceptual validity (명세 §9.3 Protocol C / user study).
+
+본 5 항목 의 evidence 가 동반되지 않은 결과는 **외부 공개 (논문·발표·README) 인용 금지** ([§3-12 재현성 체크리스트](#3-12-외부-공개-시-재현성-체크리스트) 일관).
+
+본 프로젝트의 5단계 리포트 ([eval-compare SKILL §6](.claude/skills/eval-compare/SKILL.md)) 의 결론 절에 어느 계층의 evidence 를 사용했는지 명시한다. 다음 keyword 사용:
+- **"controlled diagnostic finding"** (synthetic-only evidence).
+- **"real-distribution evidence"** (G1 / G2 natural).
+- **"quality-validated evidence"** (perceptual / visual 동반).
+
+위반 시 silent invalidation ([§6-5](#6-5-metadata-우회로-산출물-동질화) 의 동질) 으로 취급.
+
 ---
 
 ## 4. 경로별 조건 분기
