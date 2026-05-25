@@ -387,6 +387,48 @@ raw record 생성 도구 (`baseline_smoke`, 향후 `eval-collect` 등) 는 본 m
 
 위반 시 silent invalidation ([§6-5](#6-5-metadata-우회로-산출물-동질화) 의 동질) 으로 취급.
 
+### 3-18. Baseline Family Protocol — Fixed Smoothing Diagnostic 의 정의
+
+사용자 directive (2026-05-25) 박제: **"B2 를 '대표 baseline' 으로 두지 말고 'fixed smoothing diagnostic baseline' 으로 격하. baseline family 로 잡아야 baseline 선택 하나에 연구 결론이 휘둘리지 않는다."**
+
+본 프로젝트의 모든 평가 결과는 baseline 을 다음 **family 구조** 로 분리·인용한다 ([H-2026-204](evals/hypotheses/H-2026-204.md) 의 "fixed smoothing" family-level 임계와 일관).
+
+#### Fixed Smoothing Family (B2-family)
+
+| Variant | 정의 | 적절한 인용 |
+|---|---|---|
+| **B2-small** | VelocitySmoothingTool(full_body, **small**) 1회. | family member. |
+| **B2-medium** | VelocitySmoothingTool(full_body, **medium**) 1회. | family member, 기존 default. |
+| **B2-large** | VelocitySmoothingTool(full_body, **large**) 1회. | family member. |
+| **B2-val-best** | 각 sample 의 NetGain 이 가장 높은 strength (sample-level oracle within fixed smoothing). | family upper bound — fixed smoothing 의 진짜 ceiling. |
+
+#### 의무 사항
+
+1. **"B2" 단독 표기 금지**: "B2-medium" 또는 "B2-family" 로 명시.
+2. **"main / strong / 대표 baseline" 으로 인용 금지**. **"diagnostic baseline" / "fixed smoothing family"** 로 격하.
+3. **성공 기준의 family-level 정식화**: "B2-medium 초과" → **"fixed smoothing family 대비 우월"**. proposed policy 의 NetGain 이 **B2-family 의 어느 variant 도 surpass 못하면** fixed smoothing 가설이 partial valid.
+4. **5단계 리포트의 baseline column 표기**: 비교 표는 B2-small / B2-medium / B2-large / B2-val-best 의 4 column 분리 (또는 적어도 B2-medium + B2-val-best 의 2 column).
+5. **H-2026-204 임계 (§51-52) 의 "fixed smoothing" 해석**: family-best 의 NetGain 을 reference (sample-level oracle 의 fixed smoothing 부분).
+
+#### 본 framing 정정의 정량 motivation
+
+본 프로젝트의 직접 관찰 (2026-05-25):
+- B2-medium 의 synthetic NetGain mean +0.187 — 임의 선택된 strength.
+- Synthetic 에서 oracle 의 best first action 중 일부가 VS/large (부록 M, K=10 subset). VS strength 의 sample-별 best 가 different.
+- → **"B2-medium 초과" 의 기준은 baseline 선택 (medium 우연) 에 종속**. family-level 임계가 robust.
+
+#### Rule-based / Learned baseline 도 family 정식화 (지속 의무)
+
+- **B5-family**: rule-based 의 ablation (full state vs target evaluator hint).
+- **B6-family**: supervised single-step / closed-loop / oracle-imitation.
+- **B7-family**: contextual-bandit (single-step RL-style).
+
+본 family 정의는 [reproducibility-checklist SKILL §3](.claude/skills/reproducibility-checklist/SKILL.md) 의 지표 정의 사전 의 일부. 외부 공개 결과 의 baseline column 은 본 family 의 모든 representative variant 를 포함한다 ([§3-12 재현성 체크리스트](#3-12-외부-공개-시-재현성-체크리스트) 일관).
+
+#### 위반 시 effect
+
+본 §3-18 위반 (B2-medium 만 인용, baseline 선택의 robustness 확인 안 함) 은 [§6-3 임계값 완화로 회귀 회피](#6-3-임계값-완화로-회귀-회피) 와 동질의 silent invalidation 으로 취급. 회귀 판정 무효.
+
 ---
 
 ## 4. 경로별 조건 분기
