@@ -1,0 +1,7725 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl1_imitation_training_data",
+  "k_max": 5,
+  "state_dim": 16,
+  "state_feature_names": [
+    "score_FootFloatingEvaluator",
+    "score_BoneLengthEvaluator",
+    "score_VelocityJitterEvaluator",
+    "delta_score_FootFloatingEvaluator",
+    "delta_score_BoneLengthEvaluator",
+    "delta_score_VelocityJitterEvaluator",
+    "step_index",
+    "prev_tool_is_NONE",
+    "prev_tool_is_FootLockTool",
+    "prev_tool_is_BoneProjectionTool",
+    "prev_tool_is_VelocitySmoothingTool",
+    "prev_strength_is_NONE",
+    "prev_strength_is_small",
+    "prev_strength_is_medium",
+    "prev_strength_is_large",
+    "remaining_budget"
+  ],
+  "action_count": 10,
+  "action_names": [
+    "STOP/NONE",
+    "FootLockTool/small",
+    "FootLockTool/medium",
+    "FootLockTool/large",
+    "BoneProjectionTool/small",
+    "BoneProjectionTool/medium",
+    "BoneProjectionTool/large",
+    "VelocitySmoothingTool/small",
+    "VelocitySmoothingTool/medium",
+    "VelocitySmoothingTool/large"
+  ],
+  "synthetic_stats": {
+    "n_samples_processed": 30,
+    "n_pairs_total": 157,
+    "sequence_length_distribution": {
+      "3": 9,
+      "5": 16,
+      "4": 5
+    }
+  },
+  "g2_stats": {
+    "n_samples_processed": 50,
+    "n_pairs_total": 75,
+    "sequence_length_distribution": {
+      "0": 27,
+      "1": 21,
+      "2": 2
+    }
+  },
+  "total_pairs": 232,
+  "action_distribution": {
+    "FootLockTool/large": 16,
+    "VelocitySmoothingTool/large": 22,
+    "BoneProjectionTool/small": 35,
+    "STOP/NONE": 80,
+    "FootLockTool/medium": 16,
+    "VelocitySmoothingTool/medium": 24,
+    "VelocitySmoothingTool/small": 15,
+    "FootLockTool/small": 23,
+    "BoneProjectionTool/medium": 1
+  },
+  "pairs": [
+    {
+      "state": [
+        0.010050251256281407,
+        0.2966431369919323,
+        0.1987711082520045,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.2966431369919323,
+        "VelocityJitterEvaluator": 0.1987711082520045
+      },
+      "trial_id": "M004244",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2966431369919323,
+        0.1987711082520045,
+        -0.010050251256281407,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2966431369919323,
+        "VelocityJitterEvaluator": 0.1987711082520045
+      },
+      "trial_id": "M004244",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.167777563191925,
+        0.0,
+        0.0,
+        -0.1288655738000073,
+        -0.1987711082520045,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.167777563191925,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M004244",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.167777563191925,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.167777563191925,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M004244",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005649717514124294,
+        0.28934779715390674,
+        0.19870258428086934,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005649717514124294,
+        "BoneLengthEvaluator": 0.28934779715390674,
+        "VelocityJitterEvaluator": 0.19870258428086934
+      },
+      "trial_id": "M000758",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.022598870056497175,
+        0.28934779715390674,
+        0.19870258428086934,
+        0.01694915254237288,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.022598870056497175,
+        "BoneLengthEvaluator": 0.28934779715390674,
+        "VelocityJitterEvaluator": 0.19870258428086934
+      },
+      "trial_id": "M000758",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005649717514124294,
+        0.16113618475368105,
+        0.0,
+        -0.01694915254237288,
+        -0.1282116124002257,
+        -0.19870258428086934,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005649717514124294,
+        "BoneLengthEvaluator": 0.16113618475368105,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000758",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005649717514124294,
+        0.15538578271620962,
+        0.0,
+        0.0,
+        -0.00575040203747143,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005649717514124294,
+        "BoneLengthEvaluator": 0.15538578271620962,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000758",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15447291735864363,
+        0.0,
+        -0.005649717514124294,
+        -0.0009128653575659895,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15447291735864363,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000758",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15447291735864363,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15447291735864363,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000758",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28886275810076084,
+        0.20009339917111996,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28886275810076084,
+        "VelocityJitterEvaluator": 0.20009339917111996
+      },
+      "trial_id": "012644",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28886275810076084,
+        0.20009339917111996,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28886275810076084,
+        "VelocityJitterEvaluator": 0.20009339917111996
+      },
+      "trial_id": "012644",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.14754098360655737,
+        0.23423557361208233,
+        0.03054583577393693,
+        0.14754098360655737,
+        -0.05462718448867851,
+        -0.16954756339718302,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.14754098360655737,
+        "BoneLengthEvaluator": 0.23423557361208233,
+        "VelocityJitterEvaluator": 0.03054583577393693
+      },
+      "trial_id": "012644",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.14754098360655737,
+        0.23423557361208233,
+        0.030760760136121855,
+        0.0,
+        0.0,
+        0.00021492436218492617,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.14754098360655737,
+        "BoneLengthEvaluator": 0.23423557361208233,
+        "VelocityJitterEvaluator": 0.030760760136121855
+      },
+      "trial_id": "012644",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.006134969325153374,
+        0.29071651085616806,
+        0.2024211685417768,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.006134969325153374,
+        "BoneLengthEvaluator": 0.29071651085616806,
+        "VelocityJitterEvaluator": 0.2024211685417768
+      },
+      "trial_id": "M010479",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.006134969325153374,
+        0.29071651085616806,
+        0.2024211685417768,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.006134969325153374,
+        "BoneLengthEvaluator": 0.29071651085616806,
+        "VelocityJitterEvaluator": 0.2024211685417768
+      },
+      "trial_id": "M010479",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.006134969325153374,
+        0.29071651085616806,
+        0.2024211685417768,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.006134969325153374,
+        "BoneLengthEvaluator": 0.29071651085616806,
+        "VelocityJitterEvaluator": 0.2024211685417768
+      },
+      "trial_id": "M010479",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17673602079947798,
+        0.015169920899782915,
+        -0.006134969325153374,
+        -0.11398049005669009,
+        -0.18725124764199388,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17673602079947798,
+        "VelocityJitterEvaluator": 0.015169920899782915
+      },
+      "trial_id": "M010479",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17527258549635608,
+        0.0,
+        0.0,
+        -0.0014634353031219016,
+        -0.015169920899782915,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17527258549635608,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M010479",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17527258549635608,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17527258549635608,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M010479",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005405405405405406,
+        0.2938485073092849,
+        0.19729126326365581,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005405405405405406,
+        "BoneLengthEvaluator": 0.2938485073092849,
+        "VelocityJitterEvaluator": 0.19729126326365581
+      },
+      "trial_id": "002652",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2938485073092849,
+        0.19729126326365581,
+        -0.005405405405405406,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2938485073092849,
+        "VelocityJitterEvaluator": 0.19729126326365581
+      },
+      "trial_id": "002652",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16897523079274454,
+        0.0,
+        0.0,
+        -0.12487327651654037,
+        -0.19729126326365581,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16897523079274454,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002652",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16897523079274454,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16897523079274454,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002652",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16249927973340936,
+        0.0,
+        0.0,
+        -0.006475951059335183,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16249927973340936,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002652",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1615953653764167,
+        0.0,
+        0.0,
+        -0.0009039143569926633,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1615953653764167,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002652",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2791139372534843,
+        0.19591010263644146,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2791139372534843,
+        "VelocityJitterEvaluator": 0.19591010263644146
+      },
+      "trial_id": "002806",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2791139372534843,
+        0.19591010263644146,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2791139372534843,
+        "VelocityJitterEvaluator": 0.19591010263644146
+      },
+      "trial_id": "002806",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2791139372534843,
+        0.19591010263644146,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2791139372534843,
+        "VelocityJitterEvaluator": 0.19591010263644146
+      },
+      "trial_id": "002806",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16101472810322978,
+        0.0,
+        0.0,
+        -0.11809920915025454,
+        -0.19591010263644146,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16101472810322978,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002806",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15688916251148705,
+        0.0,
+        0.0,
+        -0.004125565591742736,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15688916251148705,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002806",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1561832370194991,
+        0.0,
+        0.0,
+        -0.0007059254919879465,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1561832370194991,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002806",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005025125628140704,
+        0.2857102932097687,
+        0.19765730658018804,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.2857102932097687,
+        "VelocityJitterEvaluator": 0.19765730658018804
+      },
+      "trial_id": "005366",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2857102932097687,
+        0.19765730658018804,
+        -0.005025125628140704,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2857102932097687,
+        "VelocityJitterEvaluator": 0.19765730658018804
+      },
+      "trial_id": "005366",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.21926874857852002,
+        0.031098294681194936,
+        0.0,
+        -0.06644154463124868,
+        -0.1665590118989931,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.21926874857852002,
+        "VelocityJitterEvaluator": 0.031098294681194936
+      },
+      "trial_id": "005366",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.21926874857852002,
+        0.030980612647043163,
+        0.0,
+        0.0,
+        -0.00011768203415177259,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.21926874857852002,
+        "VelocityJitterEvaluator": 0.030980612647043163
+      },
+      "trial_id": "005366",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010752688172043012,
+        0.27580556356263347,
+        0.19762052688516374,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010752688172043012,
+        "BoneLengthEvaluator": 0.27580556356263347,
+        "VelocityJitterEvaluator": 0.19762052688516374
+      },
+      "trial_id": "M009465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.27580556356263347,
+        0.19762052688516374,
+        -0.010752688172043012,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.27580556356263347,
+        "VelocityJitterEvaluator": 0.19762052688516374
+      },
+      "trial_id": "M009465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16465065788466654,
+        0.0,
+        0.0,
+        -0.11115490567796693,
+        -0.19762052688516374,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16465065788466654,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M009465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16465065788466654,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16465065788466654,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M009465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28574526091172703,
+        0.19778273615019126,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28574526091172703,
+        "VelocityJitterEvaluator": 0.19778273615019126
+      },
+      "trial_id": "M008383",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28574526091172703,
+        0.19778273615019126,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28574526091172703,
+        "VelocityJitterEvaluator": 0.19778273615019126
+      },
+      "trial_id": "M008383",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16425886201654022,
+        0.0,
+        0.0,
+        -0.12148639889518681,
+        -0.19778273615019126,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16425886201654022,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008383",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16425886201654022,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16425886201654022,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008383",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15527326448827927,
+        0.0,
+        0.0,
+        -0.008985597528260947,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15527326448827927,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008383",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15365304005676297,
+        0.0,
+        0.0,
+        -0.0016202244315162984,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15365304005676297,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008383",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005025125628140704,
+        0.2975903049678415,
+        0.19793683175961851,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.2975903049678415,
+        "VelocityJitterEvaluator": 0.19793683175961851
+      },
+      "trial_id": "M005780",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2975903049678415,
+        0.19793683175961851,
+        -0.005025125628140704,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2975903049678415,
+        "VelocityJitterEvaluator": 0.19793683175961851
+      },
+      "trial_id": "M005780",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17562298055544429,
+        0.0,
+        0.0,
+        -0.12196732441239722,
+        -0.19793683175961851,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17562298055544429,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M005780",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17400893431441572,
+        0.0,
+        0.0,
+        -0.001614046241028566,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17400893431441572,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M005780",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17400893431441572,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17400893431441572,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M005780",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2972167110445401,
+        0.19766214445070723,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2972167110445401,
+        "VelocityJitterEvaluator": 0.19766214445070723
+      },
+      "trial_id": "003787",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2972167110445401,
+        0.19766214445070723,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2972167110445401,
+        "VelocityJitterEvaluator": 0.19766214445070723
+      },
+      "trial_id": "003787",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.1306532663316583,
+        0.2153402153864555,
+        0.031198146091990203,
+        0.1306532663316583,
+        -0.08187649565808461,
+        -0.16646399835871703,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.1306532663316583,
+        "BoneLengthEvaluator": 0.2153402153864555,
+        "VelocityJitterEvaluator": 0.031198146091990203
+      },
+      "trial_id": "003787",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.1306532663316583,
+        0.2153402153864555,
+        0.030921658267031134,
+        0.0,
+        0.0,
+        -0.0002764878249590687,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.1306532663316583,
+        "BoneLengthEvaluator": 0.2153402153864555,
+        "VelocityJitterEvaluator": 0.030921658267031134
+      },
+      "trial_id": "003787",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.007633587786259542,
+        0.2820885826748084,
+        0.20063467547580344,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.007633587786259542,
+        "BoneLengthEvaluator": 0.2820885826748084,
+        "VelocityJitterEvaluator": 0.20063467547580344
+      },
+      "trial_id": "005915",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2820885826748084,
+        0.20063467547580344,
+        -0.007633587786259542,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2820885826748084,
+        "VelocityJitterEvaluator": 0.20063467547580344
+      },
+      "trial_id": "005915",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.05343511450381679,
+        0.2232106350301239,
+        0.03173716226727696,
+        0.05343511450381679,
+        -0.058877947644684514,
+        -0.16889751320852647,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.05343511450381679,
+        "BoneLengthEvaluator": 0.2232106350301239,
+        "VelocityJitterEvaluator": 0.03173716226727696
+      },
+      "trial_id": "005915",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.05343511450381679,
+        0.2232106350301239,
+        0.031812624287925625,
+        0.0,
+        0.0,
+        7.546202064866864e-05,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.05343511450381679,
+        "BoneLengthEvaluator": 0.2232106350301239,
+        "VelocityJitterEvaluator": 0.031812624287925625
+      },
+      "trial_id": "005915",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010050251256281407,
+        0.29846835009318473,
+        0.19774302229385846,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.29846835009318473,
+        "VelocityJitterEvaluator": 0.19774302229385846
+      },
+      "trial_id": "M013874",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.29846835009318473,
+        0.19774302229385846,
+        -0.010050251256281407,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29846835009318473,
+        "VelocityJitterEvaluator": 0.19774302229385846
+      },
+      "trial_id": "M013874",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.18090452261306533,
+        0.2154526745890252,
+        0.031238225649321865,
+        0.18090452261306533,
+        -0.08301567550415953,
+        -0.1665047966445366,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.18090452261306533,
+        "BoneLengthEvaluator": 0.2154526745890252,
+        "VelocityJitterEvaluator": 0.031238225649321865
+      },
+      "trial_id": "M013874",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.18090452261306533,
+        0.2154526745890252,
+        0.031198619863069186,
+        0.0,
+        0.0,
+        -3.960578625267913e-05,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.18090452261306533,
+        "BoneLengthEvaluator": 0.2154526745890252,
+        "VelocityJitterEvaluator": 0.031198619863069186
+      },
+      "trial_id": "M013874",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.006329113924050633,
+        0.2886880910323634,
+        0.19945207508149304,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.006329113924050633,
+        "BoneLengthEvaluator": 0.2886880910323634,
+        "VelocityJitterEvaluator": 0.19945207508149304
+      },
+      "trial_id": "M000374",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2886880910323634,
+        0.19945207508149304,
+        -0.006329113924050633,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2886880910323634,
+        "VelocityJitterEvaluator": 0.19945207508149304
+      },
+      "trial_id": "M000374",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1788947892659069,
+        0.0,
+        0.0,
+        -0.10979330176645652,
+        -0.19945207508149304,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1788947892659069,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000374",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17378771817824723,
+        0.0,
+        0.0,
+        -0.005107071087659676,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17378771817824723,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000374",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17295916571247028,
+        0.0,
+        0.0,
+        -0.000828552465776955,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17295916571247028,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000374",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17295916571247028,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17295916571247028,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000374",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.29263855861356575,
+        0.1977762745962024,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29263855861356575,
+        "VelocityJitterEvaluator": 0.1977762745962024
+      },
+      "trial_id": "M009955",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.29263855861356575,
+        0.1977762745962024,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29263855861356575,
+        "VelocityJitterEvaluator": 0.1977762745962024
+      },
+      "trial_id": "M009955",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1719510729573927,
+        0.0,
+        0.0,
+        -0.12068748565617304,
+        -0.1977762745962024,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1719510729573927,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M009955",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1651110685204199,
+        0.0,
+        0.0,
+        -0.006840004436972802,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1651110685204199,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M009955",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1651110685204199,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1651110685204199,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M009955",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28921689033806397,
+        0.1987550786499749,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28921689033806397,
+        "VelocityJitterEvaluator": 0.1987550786499749
+      },
+      "trial_id": "M008256",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28921689033806397,
+        0.1987550786499749,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28921689033806397,
+        "VelocityJitterEvaluator": 0.1987550786499749
+      },
+      "trial_id": "M008256",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28921689033806397,
+        0.1987550786499749,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28921689033806397,
+        "VelocityJitterEvaluator": 0.1987550786499749
+      },
+      "trial_id": "M008256",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.21466420351589316,
+        0.030985237409258612,
+        0.0,
+        -0.07455268682217081,
+        -0.1677698412407163,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.21466420351589316,
+        "VelocityJitterEvaluator": 0.030985237409258612
+      },
+      "trial_id": "M008256",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.21466420351589316,
+        0.030920585316928064,
+        0.0,
+        0.0,
+        -6.465209233054783e-05,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.21466420351589316,
+        "VelocityJitterEvaluator": 0.030920585316928064
+      },
+      "trial_id": "M008256",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.20791837509263492,
+        0.025331294641998455,
+        0.0,
+        -0.006745828423258243,
+        -0.005589290674929609,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.20791837509263492,
+        "VelocityJitterEvaluator": 0.025331294641998455
+      },
+      "trial_id": "M008256",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.009615384615384616,
+        0.2809979707916331,
+        0.20117315662401525,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.009615384615384616,
+        "BoneLengthEvaluator": 0.2809979707916331,
+        "VelocityJitterEvaluator": 0.20117315662401525
+      },
+      "trial_id": "010854",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2809979707916331,
+        0.20117315662401525,
+        -0.009615384615384616,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2809979707916331,
+        "VelocityJitterEvaluator": 0.20117315662401525
+      },
+      "trial_id": "010854",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2809979707916331,
+        0.20117315662401525,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2809979707916331,
+        "VelocityJitterEvaluator": 0.20117315662401525
+      },
+      "trial_id": "010854",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15797579712542237,
+        0.0,
+        0.0,
+        -0.12302217366621071,
+        -0.20117315662401525,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15797579712542237,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "010854",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.15797579712542237,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.15797579712542237,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "010854",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010050251256281407,
+        0.3012865254247191,
+        0.1983992597722228,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.3012865254247191,
+        "VelocityJitterEvaluator": 0.1983992597722228
+      },
+      "trial_id": "M006908",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.3012865254247191,
+        0.1983992597722228,
+        -0.010050251256281407,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.3012865254247191,
+        "VelocityJitterEvaluator": 0.1983992597722228
+      },
+      "trial_id": "M006908",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.3012865254247191,
+        0.1983992597722228,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.3012865254247191,
+        "VelocityJitterEvaluator": 0.1983992597722228
+      },
+      "trial_id": "M006908",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010050251256281407,
+        0.1669455134991849,
+        0.0,
+        0.010050251256281407,
+        -0.13434101192553421,
+        -0.1983992597722228,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.1669455134991849,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006908",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010050251256281407,
+        0.1669455134991849,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.1669455134991849,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006908",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005025125628140704,
+        0.1601994128393383,
+        0.0,
+        -0.005025125628140704,
+        -0.006746100659846599,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.1601994128393383,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006908",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0078125,
+        0.29479984723159625,
+        0.20396085422194743,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0078125,
+        "BoneLengthEvaluator": 0.29479984723159625,
+        "VelocityJitterEvaluator": 0.20396085422194743
+      },
+      "trial_id": "011768",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0078125,
+        0.29479984723159625,
+        0.20396085422194743,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0078125,
+        "BoneLengthEvaluator": 0.29479984723159625,
+        "VelocityJitterEvaluator": 0.20396085422194743
+      },
+      "trial_id": "011768",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.29479984723159625,
+        0.20396085422194743,
+        -0.0078125,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29479984723159625,
+        "VelocityJitterEvaluator": 0.20396085422194743
+      },
+      "trial_id": "011768",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0390625,
+        0.22966526524972358,
+        0.03823511085943816,
+        0.0390625,
+        -0.06513458198187266,
+        -0.16572574336250928,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0390625,
+        "BoneLengthEvaluator": 0.22966526524972358,
+        "VelocityJitterEvaluator": 0.03823511085943816
+      },
+      "trial_id": "011768",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0390625,
+        0.22966526524972358,
+        0.038151694204408976,
+        0.0,
+        0.0,
+        -8.341665502918649e-05,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0390625,
+        "BoneLengthEvaluator": 0.22966526524972358,
+        "VelocityJitterEvaluator": 0.038151694204408976
+      },
+      "trial_id": "011768",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.03125,
+        0.22202090710407227,
+        0.0333957383122787,
+        -0.0078125,
+        -0.007644358145651314,
+        -0.004755955892130279,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.03125,
+        "BoneLengthEvaluator": 0.22202090710407227,
+        "VelocityJitterEvaluator": 0.0333957383122787
+      },
+      "trial_id": "011768",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010050251256281407,
+        0.29713688092768065,
+        0.19769291138967449,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.29713688092768065,
+        "VelocityJitterEvaluator": 0.19769291138967449
+      },
+      "trial_id": "012814",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.29713688092768065,
+        0.19769291138967449,
+        -0.010050251256281407,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.29713688092768065,
+        "VelocityJitterEvaluator": 0.19769291138967449
+      },
+      "trial_id": "012814",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.18102052879360428,
+        0.0,
+        0.0,
+        -0.11611635213407637,
+        -0.19769291138967449,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.18102052879360428,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "012814",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1746313619539373,
+        0.0,
+        0.0,
+        -0.0063891668396669765,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1746313619539373,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "012814",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1746313619539373,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1746313619539373,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "012814",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17296533478270656,
+        0.0,
+        0.0,
+        -0.0016660271712307384,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17296533478270656,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "012814",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010050251256281407,
+        0.30231904755931616,
+        0.1990846833886664,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010050251256281407,
+        "BoneLengthEvaluator": 0.30231904755931616,
+        "VelocityJitterEvaluator": 0.1990846833886664
+      },
+      "trial_id": "012957",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.30231904755931616,
+        0.1990846833886664,
+        -0.010050251256281407,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.30231904755931616,
+        "VelocityJitterEvaluator": 0.1990846833886664
+      },
+      "trial_id": "012957",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1795532921927281,
+        0.0,
+        0.0,
+        -0.12276575536658807,
+        -0.1990846833886664,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1795532921927281,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "012957",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1795532921927281,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1795532921927281,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "012957",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.006024096385542169,
+        0.2891741953760841,
+        0.2012418938671699,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.006024096385542169,
+        "BoneLengthEvaluator": 0.2891741953760841,
+        "VelocityJitterEvaluator": 0.2012418938671699
+      },
+      "trial_id": "M001324",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2891741953760841,
+        0.2012418938671699,
+        -0.006024096385542169,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2891741953760841,
+        "VelocityJitterEvaluator": 0.2012418938671699
+      },
+      "trial_id": "M001324",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17128735699743383,
+        0.0,
+        0.0,
+        -0.11788683837865024,
+        -0.2012418938671699,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17128735699743383,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M001324",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17128735699743383,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17128735699743383,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M001324",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1659158902710055,
+        0.0,
+        0.0,
+        -0.005371466726428326,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1659158902710055,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M001324",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16465954297375654,
+        0.0,
+        0.0,
+        -0.0012563472972489664,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16465954297375654,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M001324",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005025125628140704,
+        0.2952441693245296,
+        0.19775437593900058,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.2952441693245296,
+        "VelocityJitterEvaluator": 0.19775437593900058
+      },
+      "trial_id": "013152",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2952441693245296,
+        0.19775437593900058,
+        -0.005025125628140704,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2952441693245296,
+        "VelocityJitterEvaluator": 0.19775437593900058
+      },
+      "trial_id": "013152",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.04522613065326633,
+        0.2182840268325661,
+        0.03178156256120641,
+        0.04522613065326633,
+        -0.07696014249196353,
+        -0.16597281337779418,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.04522613065326633,
+        "BoneLengthEvaluator": 0.2182840268325661,
+        "VelocityJitterEvaluator": 0.03178156256120641
+      },
+      "trial_id": "013152",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.04522613065326633,
+        0.2182840268325661,
+        0.03178156256120641,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.04522613065326633,
+        "BoneLengthEvaluator": 0.2182840268325661,
+        "VelocityJitterEvaluator": 0.03178156256120641
+      },
+      "trial_id": "013152",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.30128116991585313,
+        0.19843257660466398,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.30128116991585313,
+        "VelocityJitterEvaluator": 0.19843257660466398
+      },
+      "trial_id": "M000004",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.30128116991585313,
+        0.19843257660466398,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.30128116991585313,
+        "VelocityJitterEvaluator": 0.19843257660466398
+      },
+      "trial_id": "M000004",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.18585712781415442,
+        0.0,
+        0.0,
+        -0.11542404210169871,
+        -0.19843257660466398,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.18585712781415442,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000004",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.18585712781415442,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.18585712781415442,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000004",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.18124625582647907,
+        0.0,
+        0.0,
+        -0.004610871987675347,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.18124625582647907,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000004",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17975837407859002,
+        0.0,
+        0.0,
+        -0.0014878817478890527,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17975837407859002,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M000004",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.005025125628140704,
+        0.2941400810354747,
+        0.19773168990909348,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.005025125628140704,
+        "BoneLengthEvaluator": 0.2941400810354747,
+        "VelocityJitterEvaluator": 0.19773168990909348
+      },
+      "trial_id": "M008021",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2941400810354747,
+        0.19773168990909348,
+        -0.005025125628140704,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2941400810354747,
+        "VelocityJitterEvaluator": 0.19773168990909348
+      },
+      "trial_id": "M008021",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2941400810354747,
+        0.19773168990909348,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2941400810354747,
+        "VelocityJitterEvaluator": 0.19773168990909348
+      },
+      "trial_id": "M008021",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.02512562814070352,
+        0.18017141387045665,
+        0.0,
+        0.02512562814070352,
+        -0.11396866716501802,
+        -0.19773168990909348,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.02512562814070352,
+        "BoneLengthEvaluator": 0.18017141387045665,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008021",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.02512562814070352,
+        0.17243209936899087,
+        0.0,
+        0.0,
+        -0.007739314501465783,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.02512562814070352,
+        "BoneLengthEvaluator": 0.17243209936899087,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008021",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.02512562814070352,
+        0.17065179922365567,
+        0.0,
+        0.0,
+        -0.0017803001453352008,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.02512562814070352,
+        "BoneLengthEvaluator": 0.17065179922365567,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M008021",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.07142857142857142,
+        0.29815577983528685,
+        0.1968326464506937,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.07142857142857142,
+        "BoneLengthEvaluator": 0.29815577983528685,
+        "VelocityJitterEvaluator": 0.1968326464506937
+      },
+      "trial_id": "M012465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.07142857142857142,
+        0.29815577983528685,
+        0.1968326464506937,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.07142857142857142,
+        "BoneLengthEvaluator": 0.29815577983528685,
+        "VelocityJitterEvaluator": 0.1968326464506937
+      },
+      "trial_id": "M012465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.07142857142857142,
+        0.29815577983528685,
+        0.1968326464506937,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.07142857142857142,
+        "BoneLengthEvaluator": 0.29815577983528685,
+        "VelocityJitterEvaluator": 0.1968326464506937
+      },
+      "trial_id": "M012465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.20746587335533354,
+        0.0,
+        -0.07142857142857142,
+        -0.09068990647995331,
+        -0.1968326464506937,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.20746587335533354,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M012465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.19611503425193538,
+        0.0,
+        0.0,
+        -0.011350839103398153,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.19611503425193538,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M012465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.19611503425193538,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.19611503425193538,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M012465",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28224103762475644,
+        0.1988307634721738,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28224103762475644,
+        "VelocityJitterEvaluator": 0.1988307634721738
+      },
+      "trial_id": "M006376",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28224103762475644,
+        0.1988307634721738,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28224103762475644,
+        "VelocityJitterEvaluator": 0.1988307634721738
+      },
+      "trial_id": "M006376",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.177643572673268,
+        0.0,
+        0.0,
+        -0.10459746495148844,
+        -0.1988307634721738,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.177643572673268,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006376",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1731214348625839,
+        0.0,
+        0.0,
+        -0.004522137810684085,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1731214348625839,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006376",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17244921125289175,
+        0.0,
+        0.0,
+        -0.0006722236096921574,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17244921125289175,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006376",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.17244921125289175,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.17244921125289175,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M006376",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2895262613356645,
+        0.19844994920372533,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2895262613356645,
+        "VelocityJitterEvaluator": 0.19844994920372533
+      },
+      "trial_id": "M004533",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.2895262613356645,
+        0.19844994920372533,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.2895262613356645,
+        "VelocityJitterEvaluator": 0.19844994920372533
+      },
+      "trial_id": "M004533",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16848669283193257,
+        0.0,
+        0.0,
+        -0.12103956850373193,
+        -0.19844994920372533,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16848669283193257,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M004533",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16848669283193257,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16848669283193257,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M004533",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1615589648434187,
+        0.0,
+        0.0,
+        -0.0069277279885138765,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 7,
+      "action": [
+        "VelocitySmoothingTool",
+        "small"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1615589648434187,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M004533",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.1602818631715243,
+        0.0,
+        0.0,
+        -0.001277101671894404,
+        0.0,
+        5.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 5,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.1602818631715243,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M004533",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.28903061671914715,
+        0.20116912497516107,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.28903061671914715,
+        "VelocityJitterEvaluator": 0.20116912497516107
+      },
+      "trial_id": "002554",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.6641221374045801,
+        0.19273677431822053,
+        0.0,
+        0.6641221374045801,
+        -0.09629384240092662,
+        -0.20116912497516107,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        4.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.6641221374045801,
+        "BoneLengthEvaluator": 0.19273677431822053,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002554",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.19273677431822053,
+        0.0,
+        -0.6641221374045801,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.19273677431822053,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002554",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.18496696816199013,
+        0.0,
+        0.0,
+        -0.007769806156230408,
+        0.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.18496696816199013,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002554",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.18496696816199013,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.18496696816199013,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "002554",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.010309278350515464,
+        0.27858691635830723,
+        0.19905021533668246,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010309278350515464,
+        "BoneLengthEvaluator": 0.27858691635830723,
+        "VelocityJitterEvaluator": 0.19905021533668246
+      },
+      "trial_id": "M007659",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.27858691635830723,
+        0.19905021533668246,
+        -0.010309278350515464,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.27858691635830723,
+        "VelocityJitterEvaluator": 0.19905021533668246
+      },
+      "trial_id": "M007659",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.27858691635830723,
+        0.19905021533668246,
+        0.0,
+        0.0,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 9,
+      "action": [
+        "VelocitySmoothingTool",
+        "large"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.27858691635830723,
+        "VelocityJitterEvaluator": 0.19905021533668246
+      },
+      "trial_id": "M007659",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16207508260766929,
+        0.0,
+        0.0,
+        -0.11651183375063795,
+        -0.19905021533668246,
+        3.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 3,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16207508260766929,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M007659",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.0,
+        0.16207508260766929,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        4.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 4,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.16207508260766929,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "M007659",
+      "distribution": "synthetic_multi"
+    },
+    {
+      "state": [
+        0.075,
+        0.023382684062249637,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.075,
+        "BoneLengthEvaluator": 0.023382684062249637,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_001",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.011363636363636364,
+        0.01973598872317177,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.011363636363636364,
+        "BoneLengthEvaluator": 0.01973598872317177,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_002",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.01973598872317177,
+        0.0,
+        -0.011363636363636364,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.01973598872317177,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_002",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.025,
+        0.03148808754138756,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.025,
+        "BoneLengthEvaluator": 0.03148808754138756,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_003",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.00510204081632653,
+        0.025817642748700027,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.025817642748700027,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_004",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.00510204081632653,
+        0.01807234992409002,
+        0.0,
+        0.0,
+        -0.007745292824610006,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.01807234992409002,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_004",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.019230769230769232,
+        0.01893371974706214,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.019230769230769232,
+        "BoneLengthEvaluator": 0.01893371974706214,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_005",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.01863052133832762,
+        0.0,
+        -0.019230769230769232,
+        -0.0003031984087345195,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.01863052133832762,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_005",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.5833333333333334,
+        0.043001429605237076,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.5833333333333334,
+        "BoneLengthEvaluator": 0.043001429605237076,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_006",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.043001429605237076,
+        0.0,
+        -0.5833333333333334,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.043001429605237076,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_006",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.527027027027027,
+        0.06323601322252898,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 8,
+      "action": [
+        "VelocitySmoothingTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.527027027027027,
+        "BoneLengthEvaluator": 0.06323601322252898,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_007",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.5608108108108109,
+        0.06261202705481005,
+        0.0,
+        0.03378378378378388,
+        -0.000623986167718929,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 3,
+      "action": [
+        "FootLockTool",
+        "large"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.5608108108108109,
+        "BoneLengthEvaluator": 0.06261202705481005,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_007",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.07703098695759508,
+        0.0,
+        -0.5608108108108109,
+        0.014418959902785036,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        3.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.07703098695759508,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_007",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.3177083333333333,
+        0.044422439806141724,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.3177083333333333,
+        "BoneLengthEvaluator": 0.044422439806141724,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_008",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.04119386082159913,
+        0.0,
+        -0.3177083333333333,
+        -0.003228578984542596,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04119386082159913,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_008",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.013858355457656724,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.013858355457656724,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_009",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.011111111111111112,
+        0.02421588161108526,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.011111111111111112,
+        "BoneLengthEvaluator": 0.02421588161108526,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_010",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.010416666666666666,
+        0.02501208459860859,
+        0.021822838583681024,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.010416666666666666,
+        "BoneLengthEvaluator": 0.02501208459860859,
+        "VelocityJitterEvaluator": 0.021822838583681024
+      },
+      "trial_id": "motion_011",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.03571428571428571,
+        0.036842494258090094,
+        0.03320614807736378,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.03571428571428571,
+        "BoneLengthEvaluator": 0.036842494258090094,
+        "VelocityJitterEvaluator": 0.03320614807736378
+      },
+      "trial_id": "motion_012",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.08064516129032258,
+        0.04400661864315991,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.08064516129032258,
+        "BoneLengthEvaluator": 0.04400661864315991,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_013",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.008064516129032258,
+        0.04400661864315991,
+        0.0,
+        -0.07258064516129031,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.008064516129032258,
+        "BoneLengthEvaluator": 0.04400661864315991,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_013",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.023993623352102658,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.023993623352102658,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_014",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.016795536346471865,
+        0.0,
+        0.0,
+        -0.007198087005630793,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.016795536346471865,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_014",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.02011970288362963,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02011970288362963,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_015",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.020833333333333332,
+        0.032068651105687934,
+        0.018281083313995736,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.020833333333333332,
+        "BoneLengthEvaluator": 0.032068651105687934,
+        "VelocityJitterEvaluator": 0.018281083313995736
+      },
+      "trial_id": "motion_016",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03169960593992807,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03169960593992807,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_017",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.02218972415794964,
+        0.0,
+        0.0,
+        -0.009509881781978431,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02218972415794964,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_017",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.04221032784505371,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.04221032784505371,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_018",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.05102040816326531,
+        0.06136362621538559,
+        0.016473700133910602,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.05102040816326531,
+        "BoneLengthEvaluator": 0.06136362621538559,
+        "VelocityJitterEvaluator": 0.016473700133910602
+      },
+      "trial_id": "motion_019",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.030497461856084488,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.030497461856084488,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_020",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03703395311360497,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03703395311360497,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_021",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03166516329047213,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03166516329047213,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_022",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.022165614303330465,
+        0.0,
+        0.0,
+        -0.009499548987141664,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.022165614303330465,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_022",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0234375,
+        0.021785561820997328,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0234375,
+        "BoneLengthEvaluator": 0.021785561820997328,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_023",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.03333333333333333,
+        0.01402601450396419,
+        0.02255584590321057,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.03333333333333333,
+        "BoneLengthEvaluator": 0.01402601450396419,
+        "VelocityJitterEvaluator": 0.02255584590321057
+      },
+      "trial_id": "motion_024",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.015550863740445404,
+        0.022049785634355328,
+        -0.03333333333333333,
+        0.0015248492364812148,
+        -0.0005060602688552428,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.015550863740445404,
+        "VelocityJitterEvaluator": 0.022049785634355328
+      },
+      "trial_id": "motion_024",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.01,
+        0.022897486419864423,
+        0.021443186423149328,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.01,
+        "BoneLengthEvaluator": 0.022897486419864423,
+        "VelocityJitterEvaluator": 0.021443186423149328
+      },
+      "trial_id": "motion_025",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.00510204081632653,
+        0.03773503280776594,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 5,
+      "action": [
+        "BoneProjectionTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.03773503280776594,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_026",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.00510204081632653,
+        0.015094013123106365,
+        0.0,
+        0.0,
+        -0.022641019684659574,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.00510204081632653,
+        "BoneLengthEvaluator": 0.015094013123106365,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_026",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.028953679371306967,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.028953679371306967,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_027",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.3385416666666667,
+        0.03421867556181535,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.3385416666666667,
+        "BoneLengthEvaluator": 0.03421867556181535,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_028",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.049388313032670966,
+        0.0,
+        -0.3385416666666667,
+        0.015169637470855618,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.049388313032670966,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_028",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.08974358974358974,
+        0.03849793329028061,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.08974358974358974,
+        "BoneLengthEvaluator": 0.03849793329028061,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_029",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.019230769230769232,
+        0.03849793329028061,
+        0.0,
+        -0.07051282051282051,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.019230769230769232,
+        "BoneLengthEvaluator": 0.03849793329028061,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_029",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.0392671243751969,
+        0.0,
+        -0.019230769230769232,
+        0.0007691910849162917,
+        0.0,
+        2.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        3.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 2,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0392671243751969,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_029",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.01020408163265306,
+        0.032075693281582746,
+        0.01649704370896223,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.01020408163265306,
+        "BoneLengthEvaluator": 0.032075693281582746,
+        "VelocityJitterEvaluator": 0.01649704370896223
+      },
+      "trial_id": "motion_030",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.01020408163265306,
+        0.023908968865276714,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.01020408163265306,
+        "BoneLengthEvaluator": 0.023908968865276714,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_031",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.02040816326530612,
+        0.03090723539785543,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.02040816326530612,
+        "BoneLengthEvaluator": 0.03090723539785543,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_032",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.027777777777777776,
+        0.016434678871025267,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.027777777777777776,
+        "BoneLengthEvaluator": 0.016434678871025267,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_033",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.017134842480119716,
+        0.0,
+        -0.027777777777777776,
+        0.0007001636090944487,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.017134842480119716,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_033",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.021759445541732512,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.021759445541732512,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_034",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.007142857142857143,
+        0.016649642443089578,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.007142857142857143,
+        "BoneLengthEvaluator": 0.016649642443089578,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_035",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.06914893617021277,
+        0.03560284871046619,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.06914893617021277,
+        "BoneLengthEvaluator": 0.03560284871046619,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_036",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03560284871046619,
+        0.0,
+        -0.06914893617021277,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03560284871046619,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_036",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.030837111224729784,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.030837111224729784,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_037",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.02158597785731084,
+        0.0,
+        0.0,
+        -0.009251133367418944,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02158597785731084,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_037",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.019230769230769232,
+        0.01754540290498678,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.019230769230769232,
+        "BoneLengthEvaluator": 0.01754540290498678,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_038",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03709553527579754,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03709553527579754,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_039",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.018796034479502996,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.018796034479502996,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_040",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.013157224135652113,
+        0.0,
+        0.0,
+        -0.005638810343850883,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.013157224135652113,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_040",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.02039004349014844,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.02039004349014844,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_041",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03364940318061144,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03364940318061144,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_042",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.04411764705882353,
+        0.03437379103339058,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 2,
+      "action": [
+        "FootLockTool",
+        "medium"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.04411764705882353,
+        "BoneLengthEvaluator": 0.03437379103339058,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_043",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.03437379103339058,
+        0.0,
+        -0.04411764705882353,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.03437379103339058,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_043",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.02040816326530612,
+        0.06500290964702954,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.02040816326530612,
+        "BoneLengthEvaluator": 0.06500290964702954,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_044",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.03333333333333333,
+        0.037000786904259106,
+        0.02206697261381919,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.03333333333333333,
+        "BoneLengthEvaluator": 0.037000786904259106,
+        "VelocityJitterEvaluator": 0.02206697261381919
+      },
+      "trial_id": "motion_045",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.0375212308160824,
+        0.02180525523287326,
+        -0.03333333333333333,
+        0.0005204439118232929,
+        -0.00026171738094592917,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0375212308160824,
+        "VelocityJitterEvaluator": 0.02180525523287326
+      },
+      "trial_id": "motion_045",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.012396640040595364,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 4,
+      "action": [
+        "BoneProjectionTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.012396640040595364,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_046",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.012396640040595364,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.0,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_046",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.0,
+        0.035255947028806925,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.0,
+        "BoneLengthEvaluator": 0.035255947028806925,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_047",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.22826086956521738,
+        0.045485541613672645,
+        0.026719865370237763,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.22826086956521738,
+        "BoneLengthEvaluator": 0.045485541613672645,
+        "VelocityJitterEvaluator": 0.026719865370237763
+      },
+      "trial_id": "motion_048",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.15217391304347827,
+        0.045485541613672645,
+        0.02586869344468466,
+        -0.07608695652173911,
+        0.0,
+        -0.0008511719255531042,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.15217391304347827,
+        "BoneLengthEvaluator": 0.045485541613672645,
+        "VelocityJitterEvaluator": 0.02586869344468466
+      },
+      "trial_id": "motion_048",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.08333333333333333,
+        0.035704978433958805,
+        0.027498949301560095,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 1,
+      "action": [
+        "FootLockTool",
+        "small"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.08333333333333333,
+        "BoneLengthEvaluator": 0.035704978433958805,
+        "VelocityJitterEvaluator": 0.027498949301560095
+      },
+      "trial_id": "motion_049",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.03333333333333333,
+        0.035704978433958805,
+        0.027498949301560095,
+        -0.049999999999999996,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        4.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 1,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.03333333333333333,
+        "BoneLengthEvaluator": 0.035704978433958805,
+        "VelocityJitterEvaluator": 0.027498949301560095
+      },
+      "trial_id": "motion_049",
+      "distribution": "g2_natural"
+    },
+    {
+      "state": [
+        0.030612244897959183,
+        0.03606868855848226,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        5.0
+      ],
+      "action_id": 0,
+      "action": [
+        "STOP",
+        "NONE"
+      ],
+      "step_index": 0,
+      "current_scores": {
+        "FootFloatingEvaluator": 0.030612244897959183,
+        "BoneLengthEvaluator": 0.03606868855848226,
+        "VelocityJitterEvaluator": 0.0
+      },
+      "trial_id": "motion_050",
+      "distribution": "g2_natural"
+    }
+  ]
+}
