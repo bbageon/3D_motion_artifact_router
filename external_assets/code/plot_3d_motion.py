@@ -110,14 +110,20 @@ def _render_frame(index: int, T_obs: int, T_pred: int,
                  pelvis_xy, xlim, ylim, zlim,
                  title: str, figsize=(7, 7),
                  elev: float = 15.0, azim: float = -70.0) -> Image.Image:
-    """프레임 1개를 PIL Image로 반환."""
+    """프레임 1개를 PIL Image로 반환.
+
+    Note: HumanML3D / SMPL motion 은 Y-up 좌표계 (HEAD_y > PELVIS_y > FOOT_y).
+    matplotlib 의 default view (Z-up) 에 맞추려면 view_init 의 vertical_axis="y"
+    필수 (2026-05-25 bug fix — 이전 default 로 그리면 사람이 옆으로 누운 듯
+    보임).
+    """
     fig = plt.figure(figsize=figsize)
     ax = p3.Axes3D(fig)
     fig.add_axes(ax)
     ax.set_xlim3d(*xlim)
     ax.set_ylim3d(*ylim)
     ax.set_zlim3d(*zlim)
-    ax.view_init(elev=elev, azim=azim)
+    ax.view_init(elev=elev, azim=azim, vertical_axis="y")
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_zticks([])
