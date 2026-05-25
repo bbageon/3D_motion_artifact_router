@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_sequence_multi_5level_sample",
+  "timestamp": "20260525T142539461422Z",
+  "task_id": "oracle_sequence_multi_5level_v1",
+  "split_id": "multi_artifact_5level_v1",
+  "trial_id": "M000354",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M000354.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "motion_shape": [
+    179,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "oracle_type": "sequence",
+  "action_space_grid": "5level_xsmall_small5_medium5_large5_xlarge",
+  "strength_factors_used": [
+    "xsmall",
+    "small5",
+    "medium5",
+    "large5",
+    "xlarge"
+  ],
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "max_depth": 5,
+  "multi_artifact_recipe": [
+    "foot_floating",
+    "global_jitter"
+  ],
+  "target_evaluators_A": [
+    "FootFloatingEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "best_A": {
+    "sequence": [
+      [
+        "VelocitySmoothingTool",
+        "full_body",
+        "small5"
+      ],
+      [
+        "BoneProjectionTool",
+        "right_arm",
+        "xsmall"
+      ]
+    ],
+    "length": 2,
+    "target_score_initial_A": 0.10342880705529836,
+    "target_score_final_A": 0.06504764376414054,
+    "target_delta_A": -0.038381163291157816,
+    "target_score_initial_full": 0.16632843580884848,
+    "target_score_final_full": 0.12152704754728727,
+    "target_delta_full": -0.044801388261561215,
+    "fidelity_loss_protocol_a": -0.028711692645456206,
+    "cumulative_correction_magnitude": 0.05680218965782872,
+    "cross_evaluator_delta": {
+      "FootFloatingEvaluator": 0.061452513966480445,
+      "BoneLengthEvaluator": -0.05764183820236801,
+      "VelocityJitterEvaluator": -0.13821484054879607
+    },
+    "netgain_A": 0.18193962651843884,
+    "netgain_full": 0.18835985148884224
+  },
+  "best_full": {
+    "sequence": [
+      [
+        "VelocitySmoothingTool",
+        "full_body",
+        "small5"
+      ],
+      [
+        "VelocitySmoothingTool",
+        "full_body",
+        "xsmall"
+      ],
+      [
+        "BoneProjectionTool",
+        "right_arm",
+        "xsmall"
+      ]
+    ],
+    "length": 3,
+    "target_score_initial_A": 0.10342880705529836,
+    "target_score_final_A": 0.06871867999138073,
+    "target_delta_A": -0.03471012706391763,
+    "target_score_initial_full": 0.16632843580884848,
+    "target_score_final_full": 0.1223695789490573,
+    "target_delta_full": -0.04395885685979119,
+    "fidelity_loss_protocol_a": -0.029288171150117254,
+    "cumulative_correction_magnitude": 0.059236874875018365,
+    "cross_evaluator_delta": {
+      "FootFloatingEvaluator": 0.07262569832402235,
+      "BoneLengthEvaluator": -0.06245631645153829,
+      "VelocityJitterEvaluator": -0.14204595245185764
+    },
+    "netgain_A": 0.1811509828145039,
+    "netgain_full": 0.19039971261037747
+  },
+  "counters": {
+    "explored": 33774,
+    "pruned_score": 3869,
+    "pruned_strength": 59648,
+    "pruned_apply_error": 0
+  },
+  "metadata": {
+    "mpjpe_corrupted_clean": 0.08214920603527374,
+    "target_initial_A": 0.10342880705529836,
+    "target_initial_full": 0.16632843580884848,
+    "total_initial": 2.0228283559611087,
+    "n_candidates_total": 33774
+  },
+  "negative_result": false
+}

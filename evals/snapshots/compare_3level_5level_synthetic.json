@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "compare_3level_5level_oracle",
+  "domain": "synthetic",
+  "three_level_source": "evals\\snapshots\\oracle_sequence_multi_v2_n60.json",
+  "five_level_source": "evals\\snapshots\\oracle_sequence_multi_5level_v1.json",
+  "b2_family_source": "evals\\snapshots\\baseline_b2_family_sweep_v1.json",
+  "n_common": 60,
+  "netgain_paired_5_vs_3": {
+    "n": 60,
+    "a_median": 0.32546777711632857,
+    "a_mean": 0.31077940375289426,
+    "b_median": 0.30568393750824163,
+    "b_mean": 0.2945059827135611,
+    "diff_median": 0.010075031913770627,
+    "diff_mean": 0.0162734210393333,
+    "n_strict_a": 55,
+    "n_tie": 0,
+    "n_loss_a": 5,
+    "wilcoxon_p_greater": 3.2792987742053203e-10,
+    "wilcoxon_p_two_sided": 6.558597548410641e-10,
+    "cohen_d_paired": 0.666972791830495,
+    "boot_ci_median": [
+      0.006210355171484716,
+      0.012431173183760138
+    ],
+    "boot_ci_mean": [
+      0.01082262573723254,
+      0.02319784055434213
+    ]
+  },
+  "fidelity_loss_paired_5_minus_3": {
+    "n": 60,
+    "a_median": -0.045127089764065424,
+    "a_mean": -0.04426490818507542,
+    "b_median": -0.04435632381752607,
+    "b_mean": -0.04304812367928819,
+    "diff_median": -0.0008699053500760834,
+    "diff_mean": -0.0012167845057872383,
+    "n_strict_a": 18,
+    "n_tie": 0,
+    "n_loss_a": 42,
+    "wilcoxon_p_greater": 0.9995732056084279,
+    "wilcoxon_p_two_sided": 0.000853588783144218,
+    "cohen_d_paired": -0.46168606672627016,
+    "boot_ci_median": [
+      -0.0017465430381817942,
+      -0.0003473928662275673
+    ],
+    "boot_ci_mean": [
+      -0.001881266258611509,
+      -0.0006144118573073099
+    ]
+  },
+  "correction_magnitude_paired_5_minus_3": {
+    "n": 60,
+    "a_median": 0.15233476217625747,
+    "a_mean": 0.15449310991735749,
+    "b_median": 0.1629497940927892,
+    "b_mean": 0.14828389291212354,
+    "diff_median": -0.003889458959574668,
+    "diff_mean": 0.006209217005233897,
+    "n_strict_a": 25,
+    "n_tie": 0,
+    "n_loss_a": 35,
+    "wilcoxon_p_greater": 0.7070402297563139,
+    "wilcoxon_p_two_sided": 0.5859195404873724,
+    "cohen_d_paired": 0.1395195893470717,
+    "boot_ci_median": [
+      -0.010056304264654592,
+      0.0017480255883760287
+    ],
+    "boot_ci_mean": [
+      -0.00396371008447476,
+      0.017612679683979202
+    ]
+  },
+  "best_length": {
+    "five_level_dist": {
+      "2": 3,
+      "3": 6,
+      "4": 7,
+      "5": 44
+    },
+    "five_level_mean": 4.533333333333333,
+    "three_level_dist": {
+      "2": 10,
+      "3": 11,
+      "4": 8,
+      "5": 31
+    },
+    "three_level_mean": 4.0
+  },
+  "stop_rate": {
+    "five_level": {
+      "count": 0,
+      "ratio": 0.0
+    },
+    "three_level": {
+      "count": 0,
+      "ratio": 0.0
+    }
+  },
+  "first_action_dist": {
+    "five_level": {
+      "FootLockTool": 53,
+      "VelocitySmoothingTool": 7
+    },
+    "three_level": {
+      "FootLockTool": 43,
+      "VelocitySmoothingTool": 16,
+      "BoneProjectionTool": 1
+    }
+  },
+  "first_strength_dist": {
+    "five_level": {
+      "large5": 25,
+      "xsmall": 4,
+      "medium5": 14,
+      "small5": 5,
+      "xlarge": 12
+    },
+    "three_level": {
+      "large": 29,
+      "small": 7,
+      "medium": 24
+    }
+  },
+  "oracle_gap_vs_b2_val_best_mean": {
+    "five_level": 0.12031499960604507,
+    "three_level": 0.10404157856671176,
+    "delta_5_minus_3": 0.01627342103933331,
+    "n_b2_common": 60
+  },
+  "rl2_action_space_branch": "A: 5-level 의미 있게 우월 → RL-2 = 5-level",
+  "rl2_branch_reasoning": "Wilcoxon p (5>3) = 3.2793e-10 < 0.05, Cohen's d = +0.667 > 0.2"
+}
