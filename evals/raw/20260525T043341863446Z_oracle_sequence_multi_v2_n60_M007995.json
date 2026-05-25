@@ -1,0 +1,767 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "oracle_sequence_multi_sample",
+  "timestamp": "20260525T043341863446Z",
+  "task_id": "oracle_sequence_multi_v2_n60",
+  "split_id": "multi_artifact_v2_n60",
+  "trial_id": "M007995",
+  "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\HumanML3D\\new_joints\\M007995.npy",
+  "generator_id": "humanml3d_gt",
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "tool_class_hashes": {
+    "FootLockTool": "7290402f4f10370e40001d1f916d180682ec74d3c068f1bbd826b7a5bbf7a63d",
+    "BoneProjectionTool": "c96d7f0c1579b78d8e039ba8933a18048ae337a09a224156628aa726d713a854",
+    "VelocitySmoothingTool": "2b4d969f968acd58d585700bf2427407ddba7e4dec65a25e0f39e2aab33b395a"
+  },
+  "motion_shape": [
+    124,
+    22,
+    3
+  ],
+  "fps": 20,
+  "seed": 42,
+  "oracle_type": "sequence",
+  "netgain_weight_status": "calibrated_protocol_a_v1",
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "max_depth": 5,
+  "score_increase_tolerance": 0.01,
+  "multi_artifact_recipe": [
+    "foot_floating",
+    "global_jitter"
+  ],
+  "target_evaluators_A": [
+    "FootFloatingEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "target_evaluators_full": [
+    "FootFloatingEvaluator",
+    "BoneLengthEvaluator",
+    "VelocityJitterEvaluator"
+  ],
+  "best_A": {
+    "sequence": [
+      [
+        "VelocitySmoothingTool",
+        "full_body",
+        "medium"
+      ],
+      [
+        "BoneProjectionTool",
+        "right_arm",
+        "small"
+      ]
+    ],
+    "length": 2,
+    "target_score_initial_A": 0.10408737376303646,
+    "target_score_final_A": 0.09992806730870162,
+    "target_delta_A": -0.004159306454334849,
+    "target_score_initial_full": 0.1648521546162285,
+    "target_score_final_full": 0.14311740792162048,
+    "target_delta_full": -0.021734746694608037,
+    "fidelity_loss_protocol_a": -0.03626755977655636,
+    "cumulative_correction_magnitude": 0.06279767644156356,
+    "cross_evaluator_delta": {
+      "FootFloatingEvaluator": 0.16129032258064516,
+      "BoneLengthEvaluator": -0.05688562717515444,
+      "VelocityJitterEvaluator": -0.16960893548931485
+    },
+    "netgain_A": 0.18549710533711664,
+    "netgain_full": 0.20307254557738982
+  },
+  "best_full": {
+    "sequence": [
+      [
+        "VelocitySmoothingTool",
+        "full_body",
+        "medium"
+      ],
+      [
+        "BoneProjectionTool",
+        "right_arm",
+        "small"
+      ]
+    ],
+    "length": 2,
+    "target_score_initial_A": 0.10408737376303646,
+    "target_score_final_A": 0.09992806730870162,
+    "target_delta_A": -0.004159306454334849,
+    "target_score_initial_full": 0.1648521546162285,
+    "target_score_final_full": 0.14311740792162048,
+    "target_delta_full": -0.021734746694608037,
+    "fidelity_loss_protocol_a": -0.03626755977655636,
+    "cumulative_correction_magnitude": 0.06279767644156356,
+    "cross_evaluator_delta": {
+      "FootFloatingEvaluator": 0.16129032258064516,
+      "BoneLengthEvaluator": -0.05688562717515444,
+      "VelocityJitterEvaluator": -0.16960893548931485
+    },
+    "netgain_A": 0.18549710533711664,
+    "netgain_full": 0.20307254557738982
+  },
+  "top_k_A": [
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.09992806730870162,
+      "target_delta_A": -0.004159306454334849,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14311740792162048,
+      "target_delta_full": -0.021734746694608037,
+      "fidelity_loss_protocol_a": -0.03626755977655636,
+      "cumulative_correction_magnitude": 0.06279767644156356,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16960893548931485
+      },
+      "netgain_A": 0.18549710533711664,
+      "netgain_full": 0.20307254557738982
+    },
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 1,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.09989481162022708,
+      "target_delta_A": -0.004192562142809386,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14309523746263744,
+      "target_delta_full": -0.02175691715359107,
+      "fidelity_loss_protocol_a": -0.036164367075232504,
+      "cumulative_correction_magnitude": 0.05520664113297696,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16967544686626393
+      },
+      "netgain_A": 0.18501439751897192,
+      "netgain_full": 0.2025787525297536
+    },
+    {
+      "sequence": [
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.09989436421013756,
+      "target_delta_A": -0.004193009552898905,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14309493918924443,
+      "target_delta_full": -0.021757215426984083,
+      "fidelity_loss_protocol_a": -0.03599385817499345,
+      "cumulative_correction_magnitude": 0.069432817538818,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16967634168644297
+      },
+      "netgain_A": 0.18416230042786613,
+      "netgain_full": 0.20172650630195132
+    },
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.101035529034541,
+      "target_delta_A": -0.0030518447284954703,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14385571573884673,
+      "target_delta_full": -0.020996438877381784,
+      "fidelity_loss_protocol_a": -0.035691403290445727,
+      "cumulative_correction_magnitude": 0.07038871175015016,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1673940120376361
+      },
+      "netgain_A": 0.18150886118072412,
+      "netgain_full": 0.19945345532961042
+    },
+    {
+      "sequence": [
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "medium"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.10034203431981059,
+      "target_delta_A": -0.003745339443225873,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14339338592902648,
+      "target_delta_full": -0.021458768687202034,
+      "fidelity_loss_protocol_a": -0.0351027288960155,
+      "cumulative_correction_magnitude": 0.08456900426647253,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1687810014670969
+      },
+      "netgain_A": 0.17925898392330336,
+      "netgain_full": 0.19697241316727954
+    },
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.10169346021250272,
+      "target_delta_A": -0.002393913550533741,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14429433652415455,
+      "target_delta_full": -0.020557818092073965,
+      "fidelity_loss_protocol_a": -0.035298443868501575,
+      "cumulative_correction_magnitude": 0.0734251258735848,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16607814968171264
+      },
+      "netgain_A": 0.17888613289304162,
+      "netgain_full": 0.19705003743458183
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11605709956676613,
+      "target_delta_A": 0.011969725803729667,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.1538700960936635,
+      "target_delta_full": -0.010982058522565008,
+      "fidelity_loss_protocol_a": -0.038159032145917524,
+      "cumulative_correction_magnitude": 0.08847624452110937,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16960893548931485
+      },
+      "netgain_A": 0.17882543492585795,
+      "netgain_full": 0.20177721925215264
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.1160238438782916,
+      "target_delta_A": 0.01193647011525513,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15384792563468047,
+      "target_delta_full": -0.011004228981548042,
+      "fidelity_loss_protocol_a": -0.03805583944459367,
+      "cumulative_correction_magnitude": 0.08088520921252278,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16967544686626393
+      },
+      "netgain_A": 0.1783427271077132,
+      "netgain_full": 0.2012834262045164
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11589573145714135,
+      "target_delta_A": 0.01180835769410489,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15376251735391364,
+      "target_delta_full": -0.011089637262314878,
+      "fidelity_loss_protocol_a": -0.03788533054435461,
+      "cumulative_correction_magnitude": 0.09511138561836381,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1699316717085644
+      },
+      "netgain_A": 0.17761829502766818,
+      "netgain_full": 0.20051628998408794
+    },
+    {
+      "sequence": [
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ],
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11589573145714135,
+      "target_delta_A": 0.01180835769410489,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15376251735391364,
+      "target_delta_full": -0.011089637262314878,
+      "fidelity_loss_protocol_a": -0.03788533054435461,
+      "cumulative_correction_magnitude": 0.09511138561836381,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1699316717085644
+      },
+      "netgain_A": 0.17761829502766818,
+      "netgain_full": 0.20051628998408794
+    }
+  ],
+  "top_k_full": [
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.09992806730870162,
+      "target_delta_A": -0.004159306454334849,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14311740792162048,
+      "target_delta_full": -0.021734746694608037,
+      "fidelity_loss_protocol_a": -0.03626755977655636,
+      "cumulative_correction_magnitude": 0.06279767644156356,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16960893548931485
+      },
+      "netgain_A": 0.18549710533711664,
+      "netgain_full": 0.20307254557738982
+    },
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 1,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.09989481162022708,
+      "target_delta_A": -0.004192562142809386,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14309523746263744,
+      "target_delta_full": -0.02175691715359107,
+      "fidelity_loss_protocol_a": -0.036164367075232504,
+      "cumulative_correction_magnitude": 0.05520664113297696,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16967544686626393
+      },
+      "netgain_A": 0.18501439751897192,
+      "netgain_full": 0.2025787525297536
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11605709956676613,
+      "target_delta_A": 0.011969725803729667,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.1538700960936635,
+      "target_delta_full": -0.010982058522565008,
+      "fidelity_loss_protocol_a": -0.038159032145917524,
+      "cumulative_correction_magnitude": 0.08847624452110937,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16960893548931485
+      },
+      "netgain_A": 0.17882543492585795,
+      "netgain_full": 0.20177721925215264
+    },
+    {
+      "sequence": [
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.09989436421013756,
+      "target_delta_A": -0.004193009552898905,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14309493918924443,
+      "target_delta_full": -0.021757215426984083,
+      "fidelity_loss_protocol_a": -0.03599385817499345,
+      "cumulative_correction_magnitude": 0.069432817538818,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16967634168644297
+      },
+      "netgain_A": 0.18416230042786613,
+      "netgain_full": 0.20172650630195132
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.1160238438782916,
+      "target_delta_A": 0.01193647011525513,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15384792563468047,
+      "target_delta_full": -0.011004228981548042,
+      "fidelity_loss_protocol_a": -0.03805583944459367,
+      "cumulative_correction_magnitude": 0.08088520921252278,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16967544686626393
+      },
+      "netgain_A": 0.1783427271077132,
+      "netgain_full": 0.2012834262045164
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11589573145714135,
+      "target_delta_A": 0.01180835769410489,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15376251735391364,
+      "target_delta_full": -0.011089637262314878,
+      "fidelity_loss_protocol_a": -0.03788533054435461,
+      "cumulative_correction_magnitude": 0.09511138561836381,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1699316717085644
+      },
+      "netgain_A": 0.17761829502766818,
+      "netgain_full": 0.20051628998408794
+    },
+    {
+      "sequence": [
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ],
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11589573145714135,
+      "target_delta_A": 0.01180835769410489,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15376251735391364,
+      "target_delta_full": -0.011089637262314878,
+      "fidelity_loss_protocol_a": -0.03788533054435461,
+      "cumulative_correction_magnitude": 0.09511138561836381,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1699316717085644
+      },
+      "netgain_A": 0.17761829502766818,
+      "netgain_full": 0.20051628998408794
+    },
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "medium"
+        ]
+      ],
+      "length": 2,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.101035529034541,
+      "target_delta_A": -0.0030518447284954703,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14385571573884673,
+      "target_delta_full": -0.020996438877381784,
+      "fidelity_loss_protocol_a": -0.035691403290445727,
+      "cumulative_correction_magnitude": 0.07038871175015016,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1673940120376361
+      },
+      "netgain_A": 0.18150886118072412,
+      "netgain_full": 0.19945345532961042
+    },
+    {
+      "sequence": [
+        [
+          "FootLockTool",
+          "both_feet",
+          "small"
+        ],
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "medium"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.11716456129260551,
+      "target_delta_A": 0.013077187529569045,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.15460840391088976,
+      "target_delta_full": -0.010243750705338756,
+      "fidelity_loss_protocol_a": -0.03758287565980689,
+      "cumulative_correction_magnitude": 0.09606727982969597,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.1935483870967742,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.1673940120376361
+      },
+      "netgain_A": 0.1748371907694654,
+      "netgain_full": 0.1981581290043732
+    },
+    {
+      "sequence": [
+        [
+          "VelocitySmoothingTool",
+          "full_body",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "medium"
+        ],
+        [
+          "BoneProjectionTool",
+          "right_arm",
+          "small"
+        ]
+      ],
+      "length": 3,
+      "target_score_initial_A": 0.10408737376303646,
+      "target_score_final_A": 0.10169346021250272,
+      "target_delta_A": -0.002393913550533741,
+      "target_score_initial_full": 0.1648521546162285,
+      "target_score_final_full": 0.14429433652415455,
+      "target_delta_full": -0.020557818092073965,
+      "fidelity_loss_protocol_a": -0.035298443868501575,
+      "cumulative_correction_magnitude": 0.0734251258735848,
+      "cross_evaluator_delta": {
+        "FootFloatingEvaluator": 0.16129032258064516,
+        "BoneLengthEvaluator": -0.05688562717515444,
+        "VelocityJitterEvaluator": -0.16607814968171264
+      },
+      "netgain_A": 0.17888613289304162,
+      "netgain_full": 0.19705003743458183
+    }
+  ],
+  "counters": {
+    "explored": 1321,
+    "pruned_score": 425,
+    "pruned_strength": 4069,
+    "pruned_apply_error": 0
+  },
+  "metadata": {
+    "mpjpe_corrupted_clean": 0.08206238631838494,
+    "target_initial_A": 0.10408737376303646,
+    "target_initial_full": 0.1648521546162285,
+    "total_initial": 1.9512370395156613,
+    "n_candidates_total": 1321
+  },
+  "negative_result": false
+}

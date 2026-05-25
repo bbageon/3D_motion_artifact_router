@@ -1,0 +1,1402 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl1_diagnose",
+  "split_seed": 42,
+  "train_ratio": 0.7,
+  "n_train_pairs": 256,
+  "n_eval_pairs": 119,
+  "multi_seed": {
+    "n_seeds": 5,
+    "seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "eval_accuracy_mean": 0.626890756302521,
+    "eval_accuracy_std": 0.015265463970239436,
+    "eval_accuracy_min": 0.6134453781512605,
+    "eval_accuracy_max": 0.6470588235294118,
+    "per_seed": [
+      {
+        "train_accuracy": 1.0,
+        "eval_accuracy": 0.6134453781512605,
+        "model_random_state": 1,
+        "n_train": 256,
+        "n_eval": 119,
+        "classes_seen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "train_accuracy": 1.0,
+        "eval_accuracy": 0.6134453781512605,
+        "model_random_state": 2,
+        "n_train": 256,
+        "n_eval": 119,
+        "classes_seen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "train_accuracy": 1.0,
+        "eval_accuracy": 0.6386554621848739,
+        "model_random_state": 3,
+        "n_train": 256,
+        "n_eval": 119,
+        "classes_seen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "train_accuracy": 1.0,
+        "eval_accuracy": 0.6218487394957983,
+        "model_random_state": 4,
+        "n_train": 256,
+        "n_eval": 119,
+        "classes_seen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      },
+      {
+        "train_accuracy": 1.0,
+        "eval_accuracy": 0.6470588235294118,
+        "model_random_state": 5,
+        "n_train": 256,
+        "n_eval": 119,
+        "classes_seen": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          8,
+          9
+        ]
+      }
+    ]
+  },
+  "state_ablation": [
+    {
+      "ablation": "full16",
+      "state_dim": 16,
+      "feature_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "train_accuracy": 1.0,
+      "eval_accuracy": 0.6134453781512605
+    },
+    {
+      "ablation": "no_delta",
+      "state_dim": 13,
+      "feature_indices": [
+        0,
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "train_accuracy": 1.0,
+      "eval_accuracy": 0.6134453781512605
+    },
+    {
+      "ablation": "no_prev",
+      "state_dim": 8,
+      "feature_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        15
+      ],
+      "train_accuracy": 1.0,
+      "eval_accuracy": 0.6218487394957983
+    },
+    {
+      "ablation": "scores_only",
+      "state_dim": 3,
+      "feature_indices": [
+        0,
+        1,
+        2
+      ],
+      "train_accuracy": 0.828125,
+      "eval_accuracy": 0.4369747899159664
+    }
+  ],
+  "confusion_matrix": {
+    "matrix": [
+      [
+        30,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        4,
+        3,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        2,
+        1,
+        5,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        4,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        2,
+        5,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        10,
+        0,
+        0
+      ],
+      [
+        3,
+        2,
+        0,
+        2,
+        1,
+        0,
+        0,
+        1,
+        6,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        10
+      ]
+    ],
+    "per_class": [
+      {
+        "action_id": 0,
+        "action": "STOP/NONE",
+        "support": 33,
+        "tp": 30,
+        "fp": 14,
+        "fn": 3,
+        "precision": 0.6818181818181818,
+        "recall": 0.9090909090909091
+      },
+      {
+        "action_id": 1,
+        "action": "FootLockTool/small",
+        "support": 8,
+        "tp": 3,
+        "fp": 4,
+        "fn": 5,
+        "precision": 0.42857142857142855,
+        "recall": 0.375
+      },
+      {
+        "action_id": 2,
+        "action": "FootLockTool/medium",
+        "support": 8,
+        "tp": 2,
+        "fp": 2,
+        "fn": 6,
+        "precision": 0.5,
+        "recall": 0.25
+      },
+      {
+        "action_id": 3,
+        "action": "FootLockTool/large",
+        "support": 11,
+        "tp": 5,
+        "fp": 5,
+        "fn": 6,
+        "precision": 0.5,
+        "recall": 0.45454545454545453
+      },
+      {
+        "action_id": 4,
+        "action": "BoneProjectionTool/small",
+        "support": 18,
+        "tp": 7,
+        "fp": 6,
+        "fn": 11,
+        "precision": 0.5384615384615384,
+        "recall": 0.3888888888888889
+      },
+      {
+        "action_id": 5,
+        "action": "BoneProjectionTool/medium",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "action_id": 6,
+        "action": "BoneProjectionTool/large",
+        "support": 0,
+        "tp": 0,
+        "fp": 0,
+        "fn": 0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      {
+        "action_id": 7,
+        "action": "VelocitySmoothingTool/small",
+        "support": 12,
+        "tp": 10,
+        "fp": 4,
+        "fn": 2,
+        "precision": 0.7142857142857143,
+        "recall": 0.8333333333333334
+      },
+      {
+        "action_id": 8,
+        "action": "VelocitySmoothingTool/medium",
+        "support": 16,
+        "tp": 6,
+        "fp": 9,
+        "fn": 10,
+        "precision": 0.4,
+        "recall": 0.375
+      },
+      {
+        "action_id": 9,
+        "action": "VelocitySmoothingTool/large",
+        "support": 13,
+        "tp": 10,
+        "fp": 2,
+        "fn": 3,
+        "precision": 0.8333333333333334,
+        "recall": 0.7692307692307693
+      }
+    ]
+  },
+  "failure_trace_synthetic_rollback": {
+    "001885": [
+      {
+        "step_index": 0,
+        "true_action": "FootLockTool/small",
+        "true_action_id": 1,
+        "predicted_action": "FootLockTool/large",
+        "predicted_action_id": 3,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/large",
+            0.7
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.23
+          ],
+          [
+            "VelocitySmoothingTool/large",
+            0.05
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2842280780115395,
+          "VelocityJitterEvaluator": 0.19953830275868878
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "VelocitySmoothingTool/large",
+        "true_action_id": 9,
+        "predicted_action": "VelocitySmoothingTool/medium",
+        "predicted_action_id": 8,
+        "match": false,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/medium",
+            0.65
+          ],
+          [
+            "VelocitySmoothingTool/large",
+            0.3
+          ],
+          [
+            "FootLockTool/small",
+            0.03
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.008849557522123894,
+          "BoneLengthEvaluator": 0.2842280780115395,
+          "VelocityJitterEvaluator": 0.19953830275868878
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "BoneProjectionTool/small",
+        "true_action_id": 4,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": true,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.65
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.3
+          ],
+          [
+            "FootLockTool/medium",
+            0.05
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.09734513274336283,
+          "BoneLengthEvaluator": 0.16618769731168226,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 3,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": false,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.52
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.41
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.06
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.09734513274336283,
+          "BoneLengthEvaluator": 0.16618769731168226,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 4,
+        "true_action": "VelocitySmoothingTool/small",
+        "true_action_id": 7,
+        "predicted_action": "VelocitySmoothingTool/small",
+        "predicted_action_id": 7,
+        "match": true,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/small",
+            0.78
+          ],
+          [
+            "STOP/NONE",
+            0.15
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.04
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.05309734513274336,
+          "BoneLengthEvaluator": 0.1597574985744412,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 5,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": true,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.96
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.04
+          ],
+          [
+            "FootLockTool/small",
+            0.0
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.05309734513274336,
+          "BoneLengthEvaluator": 0.15884709716298762,
+          "VelocityJitterEvaluator": 0.0
+        }
+      }
+    ],
+    "004546": [
+      {
+        "step_index": 0,
+        "true_action": "VelocitySmoothingTool/large",
+        "true_action_id": 9,
+        "predicted_action": "FootLockTool/large",
+        "predicted_action_id": 3,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/large",
+            0.44
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.19
+          ],
+          [
+            "VelocitySmoothingTool/large",
+            0.18
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2853357687545421,
+          "VelocityJitterEvaluator": 0.19922294291750034
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": false,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.55
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.23
+          ],
+          [
+            "FootLockTool/medium",
+            0.2
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.5886524822695035,
+          "BoneLengthEvaluator": 0.1730742525747379,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "FootLockTool/large",
+        "true_action_id": 3,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": false,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.31
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.22
+          ],
+          [
+            "FootLockTool/large",
+            0.2
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.5957446808510638,
+          "BoneLengthEvaluator": 0.16696004821752924,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 3,
+        "true_action": "BoneProjectionTool/small",
+        "true_action_id": 4,
+        "predicted_action": "VelocitySmoothingTool/small",
+        "predicted_action_id": 7,
+        "match": false,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/small",
+            0.47
+          ],
+          [
+            "STOP/NONE",
+            0.35
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.07
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.16696004821752924,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 4,
+        "true_action": "VelocitySmoothingTool/small",
+        "true_action_id": 7,
+        "predicted_action": "VelocitySmoothingTool/small",
+        "predicted_action_id": 7,
+        "match": true,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/small",
+            0.96
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.03
+          ],
+          [
+            "STOP/NONE",
+            0.01
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.16696004821752924,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 5,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": true,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            1.0
+          ],
+          [
+            "FootLockTool/small",
+            0.0
+          ],
+          [
+            "FootLockTool/medium",
+            0.0
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.16556898481822654,
+          "VelocityJitterEvaluator": 0.0
+        }
+      }
+    ],
+    "012631": [
+      {
+        "step_index": 0,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "FootLockTool/large",
+        "predicted_action_id": 3,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/large",
+            0.49
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.41
+          ],
+          [
+            "FootLockTool/medium",
+            0.1
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.010050251256281407,
+          "BoneLengthEvaluator": 0.2944486594455766,
+          "VelocityJitterEvaluator": 0.1976927734121049
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "BoneProjectionTool/small",
+        "true_action_id": 4,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": true,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            1.0
+          ],
+          [
+            "STOP/NONE",
+            0.0
+          ],
+          [
+            "FootLockTool/small",
+            0.0
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.1507537688442211,
+          "BoneLengthEvaluator": 0.2169584647801396,
+          "VelocityJitterEvaluator": 0.0310512031375807
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": true,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.85
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.15
+          ],
+          [
+            "FootLockTool/small",
+            0.0
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.1507537688442211,
+          "BoneLengthEvaluator": 0.2169584647801396,
+          "VelocityJitterEvaluator": 0.030946924434945688
+        }
+      }
+    ],
+    "M004512": [
+      {
+        "step_index": 0,
+        "true_action": "FootLockTool/medium",
+        "true_action_id": 2,
+        "predicted_action": "FootLockTool/medium",
+        "predicted_action_id": 2,
+        "match": true,
+        "top3_proba": [
+          [
+            "FootLockTool/medium",
+            0.31
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.24
+          ],
+          [
+            "FootLockTool/small",
+            0.22
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2947570206075736,
+          "VelocityJitterEvaluator": 0.19777440681397562
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "FootLockTool/small",
+        "predicted_action_id": 1,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/small",
+            0.59
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.37
+          ],
+          [
+            "VelocitySmoothingTool/large",
+            0.04
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.2947570206075736,
+          "VelocityJitterEvaluator": 0.19777440681397562
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "BoneProjectionTool/small",
+        "true_action_id": 4,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": true,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.83
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.09
+          ],
+          [
+            "STOP/NONE",
+            0.04
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.02512562814070352,
+          "BoneLengthEvaluator": 0.2200722292285513,
+          "VelocityJitterEvaluator": 0.0311873568474333
+        }
+      },
+      {
+        "step_index": 3,
+        "true_action": "VelocitySmoothingTool/small",
+        "true_action_id": 7,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": false,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.57
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.34
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.09
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.02512562814070352,
+          "BoneLengthEvaluator": 0.2200722292285513,
+          "VelocityJitterEvaluator": 0.03142863689692338
+        }
+      },
+      {
+        "step_index": 4,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": true,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.7
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.19
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.09
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.035175879396984924,
+          "BoneLengthEvaluator": 0.2122750360329916,
+          "VelocityJitterEvaluator": 0.025815594117750557
+        }
+      }
+    ],
+    "M005226": [
+      {
+        "step_index": 0,
+        "true_action": "FootLockTool/large",
+        "true_action_id": 3,
+        "predicted_action": "FootLockTool/small",
+        "predicted_action_id": 1,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/small",
+            0.39
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.34
+          ],
+          [
+            "FootLockTool/large",
+            0.21
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.29258317520193533,
+          "VelocityJitterEvaluator": 0.20160572596625054
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "VelocitySmoothingTool/large",
+        "true_action_id": 9,
+        "predicted_action": "VelocitySmoothingTool/large",
+        "predicted_action_id": 9,
+        "match": true,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/large",
+            0.84
+          ],
+          [
+            "FootLockTool/small",
+            0.07
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.07
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.019736842105263157,
+          "BoneLengthEvaluator": 0.29258317520193533,
+          "VelocityJitterEvaluator": 0.20160572596625054
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "VelocitySmoothingTool/medium",
+        "predicted_action_id": 8,
+        "match": true,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/medium",
+            0.86
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.09
+          ],
+          [
+            "STOP/NONE",
+            0.03
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.18866840494368775,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 3,
+        "true_action": "VelocitySmoothingTool/small",
+        "true_action_id": 7,
+        "predicted_action": "VelocitySmoothingTool/small",
+        "predicted_action_id": 7,
+        "match": true,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/small",
+            0.67
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.32
+          ],
+          [
+            "STOP/NONE",
+            0.01
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.1820401173906001,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 4,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": false,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.96
+          ],
+          [
+            "STOP/NONE",
+            0.03
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.01
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.1803132319360857,
+          "VelocityJitterEvaluator": 0.0
+        }
+      }
+    ],
+    "M006878": [
+      {
+        "step_index": 0,
+        "true_action": "VelocitySmoothingTool/large",
+        "true_action_id": 9,
+        "predicted_action": "FootLockTool/medium",
+        "predicted_action_id": 2,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/medium",
+            0.86
+          ],
+          [
+            "FootLockTool/large",
+            0.08
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.04
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.041666666666666664,
+          "BoneLengthEvaluator": 0.32930870538858853,
+          "VelocityJitterEvaluator": 0.1979504780928038
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "FootLockTool/medium",
+        "true_action_id": 2,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": false,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.64
+          ],
+          [
+            "FootLockTool/medium",
+            0.23
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.12
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.5625,
+          "BoneLengthEvaluator": 0.20327435327431836,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "FootLockTool/small",
+        "true_action_id": 1,
+        "predicted_action": "FootLockTool/small",
+        "predicted_action_id": 1,
+        "match": true,
+        "top3_proba": [
+          [
+            "FootLockTool/small",
+            0.35
+          ],
+          [
+            "STOP/NONE",
+            0.32
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.24
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.20327435327431836,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 3,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "VelocitySmoothingTool/small",
+        "predicted_action_id": 7,
+        "match": false,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/small",
+            0.37
+          ],
+          [
+            "STOP/NONE",
+            0.32
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.23
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.20327435327431836,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 4,
+        "true_action": "VelocitySmoothingTool/small",
+        "true_action_id": 7,
+        "predicted_action": "VelocitySmoothingTool/small",
+        "predicted_action_id": 7,
+        "match": true,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/small",
+            0.91
+          ],
+          [
+            "STOP/NONE",
+            0.08
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.01
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.19132429200103274,
+          "VelocityJitterEvaluator": 0.0
+        }
+      },
+      {
+        "step_index": 5,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": true,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.93
+          ],
+          [
+            "BoneProjectionTool/small",
+            0.07
+          ],
+          [
+            "FootLockTool/small",
+            0.0
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.18876157232049512,
+          "VelocityJitterEvaluator": 0.0
+        }
+      }
+    ],
+    "M013736": [
+      {
+        "step_index": 0,
+        "true_action": "FootLockTool/medium",
+        "true_action_id": 2,
+        "predicted_action": "FootLockTool/large",
+        "predicted_action_id": 3,
+        "match": false,
+        "top3_proba": [
+          [
+            "FootLockTool/large",
+            0.39
+          ],
+          [
+            "FootLockTool/small",
+            0.23
+          ],
+          [
+            "FootLockTool/medium",
+            0.22
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.29726576000192184,
+          "VelocityJitterEvaluator": 0.1978509501204407
+        }
+      },
+      {
+        "step_index": 1,
+        "true_action": "FootLockTool/small",
+        "true_action_id": 1,
+        "predicted_action": "FootLockTool/small",
+        "predicted_action_id": 1,
+        "match": true,
+        "top3_proba": [
+          [
+            "FootLockTool/small",
+            0.48
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.46
+          ],
+          [
+            "VelocitySmoothingTool/large",
+            0.06
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.29726576000192184,
+          "VelocityJitterEvaluator": 0.1978509501204407
+        }
+      },
+      {
+        "step_index": 2,
+        "true_action": "VelocitySmoothingTool/medium",
+        "true_action_id": 8,
+        "predicted_action": "VelocitySmoothingTool/large",
+        "predicted_action_id": 9,
+        "match": false,
+        "top3_proba": [
+          [
+            "VelocitySmoothingTool/large",
+            0.92
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.08
+          ],
+          [
+            "STOP/NONE",
+            0.0
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.0,
+          "BoneLengthEvaluator": 0.29726576000192184,
+          "VelocityJitterEvaluator": 0.1978509501204407
+        }
+      },
+      {
+        "step_index": 3,
+        "true_action": "BoneProjectionTool/small",
+        "true_action_id": 4,
+        "predicted_action": "BoneProjectionTool/small",
+        "predicted_action_id": 4,
+        "match": true,
+        "top3_proba": [
+          [
+            "BoneProjectionTool/small",
+            0.97
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.02
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.01
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.08542713567839195,
+          "BoneLengthEvaluator": 0.22165341018116563,
+          "VelocityJitterEvaluator": 0.03165300315814175
+        }
+      },
+      {
+        "step_index": 4,
+        "true_action": "STOP/NONE",
+        "true_action_id": 0,
+        "predicted_action": "STOP/NONE",
+        "predicted_action_id": 0,
+        "match": true,
+        "top3_proba": [
+          [
+            "STOP/NONE",
+            0.54
+          ],
+          [
+            "VelocitySmoothingTool/small",
+            0.29
+          ],
+          [
+            "VelocitySmoothingTool/medium",
+            0.15
+          ]
+        ],
+        "current_scores": {
+          "FootFloatingEvaluator": 0.08542713567839195,
+          "BoneLengthEvaluator": 0.22165341018116563,
+          "VelocityJitterEvaluator": 0.03158695328055735
+        }
+      }
+    ]
+  }
+}

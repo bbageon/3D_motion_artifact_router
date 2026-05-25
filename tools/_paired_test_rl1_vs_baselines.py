@@ -92,9 +92,16 @@ def main():
     print(f"  RL-1 eval synthetic: {len(rl1_syn)} trials")
     print(f"  RL-1 eval G2: {len(rl1_g2)} trials\n")
 
-    # Synthetic comparisons.
-    b2_syn = _extract_b2_multi("evals/snapshots/baseline_b2_fixed_smoothing_multi_v1.json")
-    oracle_syn = _extract_oracle_synthetic("evals/snapshots/oracle_sequence_multi_v1.json")
+    # Synthetic comparisons — try v2 first (n=60), fall back to v1 (n=30).
+    import os
+    b2_v2_path = "evals/snapshots/baseline_b2_fixed_smoothing_multi_v2_n60.json"
+    oracle_v2_path = "evals/snapshots/oracle_sequence_multi_v2_n60.json"
+    b2_syn_path = b2_v2_path if os.path.exists(b2_v2_path) else "evals/snapshots/baseline_b2_fixed_smoothing_multi_v1.json"
+    oracle_syn_path = oracle_v2_path if os.path.exists(oracle_v2_path) else "evals/snapshots/oracle_sequence_multi_v1.json"
+    print(f"  synthetic B2: {b2_syn_path}")
+    print(f"  synthetic oracle: {oracle_syn_path}")
+    b2_syn = _extract_b2_multi(b2_syn_path)
+    oracle_syn = _extract_oracle_synthetic(oracle_syn_path)
 
     common_syn_b2 = sorted(rl1_syn.keys() & b2_syn.keys())
     common_syn_oracle = sorted(rl1_syn.keys() & oracle_syn.keys())
