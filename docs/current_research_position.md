@@ -10,29 +10,38 @@
 
 ArtifactRouter 는 **canonicalized motion artifact state 위에서 cost · risk 를 고려해 correction intervention 또는 STOP 을 선택하는 generator-agnostic, tool-extensible decision system** 이다. 새 motion generator 도, 새 단일 correction algorithm 도 개발하지 않는다.
 
-## 2. Evaluator 의 위치 — **Diagnostic Proxy Metric**
+## 2. Evaluator 의 위치 — **Category C Proxy Metric (AGENTS.md §3-20)**
 
 ### 2-1. 현재 evaluator 의 정의
 
-- **FootFloatingEvaluator**: simple Y-threshold (tau_float=0.05).
-- **BoneLengthEvaluator**: per-bone normalized variation.
-- **VelocityJitterEvaluator**: per-joint mean acceleration norm.
+- **FootFloatingEvaluator**: simple Y-threshold (tau_float=0.05) — **Category C proxy**.
+- **BoneLengthEvaluator**: per-bone normalized variation — **Category C proxy** (Category B 의 ACTOR skeleton constraint spirit 와 close, 단 정확한 formula 변형).
+- **VelocityJitterEvaluator**: per-joint mean acceleration norm — **Category C proxy** (Category B 의 jerk metric 와 close, 단 normalization 차이).
 
-(상세 — [reproducibility-checklist SKILL §3](../.claude/skills/reproducibility-checklist/SKILL.md))
+(상세 — [`docs/metric_provenance.md`](metric_provenance.md), [reproducibility-checklist SKILL §3](../.claude/skills/reproducibility-checklist/SKILL.md))
 
-### 2-2. 현재 evaluator 의 위치
+### 2-2. 현재 evaluator 의 위치 (AGENTS.md §3-20)
 
-- **Diagnostic proxy metric — 최종 motion quality 의 ground truth 아님**.
+- **Category C — Diagnostic proxy metric**. 최종 motion quality 의 ground truth 아님.
 - 본 프로젝트 의 routing policy / RL agent 의 reward signal 로 사용 가능 (proxy).
-- 단 외부 공개 (논문·발표) 에서 본 evaluator 의 결과를 **"motion quality" 로 인용 금지**.
-- 본 evaluator score 의 변화가 시각/사람 평가 와 일치하는지는 별도 검증 (Step 5 perceptual pilot).
+- **외부 공개 (논문·발표) 에서 본 evaluator 의 결과를 "motion quality" 또는 "최종 성능 근거" 로 인용 금지**.
+- 본 evaluator score 의 변화가 시각/사람 평가 와 일치하는지는 별도 검증 (Step 6 perceptual pilot).
 
 ### 2-3. 발견된 limitation (2026-05-25)
 
 - **FootFloatingEvaluator 의 corruption robustness 부족** (부록 Z): synthetic `inject_foot_floating(0.08)` 이 max score 를 거의 안 올림 (synthetic median 0.005 < clean median 0.021). 글로벌 Y shift 가 evaluator metric 과 mismatch. **Item 6 (contact estimator) 의 정량 motivation**.
 - 본 limitation 후 외부 공개 시 FootFloating 결과 의 caveat 동반 의무.
 
-## 3. NetGain 의 위치 — **Proxy Reward for RL/Routing Policy**
+### 2-4. 향후 보강 (AGENTS.md §3-20 + metric_provenance.md §5-1)
+
+본 evaluator 의 Category C 위치 정정 후, 외부 공개 prerequisite:
+- **Category A / B 의 standard metric 도입**:
+  - Foot skating / sliding / contact error (PP-Motion ACM MM 2025, MDM) — FootFloating 보완 / 대체.
+  - Bone length consistency 의 ACTOR / SMPL 의 standard formulation.
+  - Jerk metric 의 정확한 formulation (Flash & Hogan 1985).
+- 본 도입 후 외부 공개 의 최종 성능 evidence 가능.
+
+## 3. NetGain 의 위치 — **Category C Internal Routing Reward (AGENTS.md §3-20)**
 
 ### 3-1. NetGain 의 정의 (calibrated_protocol_a_v1)
 
@@ -41,18 +50,29 @@ NetGain = ArtifactReduction - α·FidelityLoss - β·CorrectionMag - γ·ToolCos
 α = 5.0, β = 0.0, γ = 0.0 (synthetic Protocol A grid search, 부록 D)
 ```
 
-### 3-2. NetGain 의 위치
+### 3-2. NetGain 의 위치 (AGENTS.md §3-20 박제)
 
-- **Proxy reward** — RL/routing policy 가 argmax 하는 objective.
-- **최종 motion quality 의 정의 아님**. NetGain median 비교 만으로 "ArtifactRouter 가 우월" 단정 금지.
+- **Category C — Internal Routing Reward** (외부 공개 최종 성능 근거 금지).
+- **RL-1 / RL-2 policy 가 argmax 하는 objective** (policy optimization reward).
+- **NOT 최종 motion quality metric**. NetGain median 비교 만으로 "ArtifactRouter 가 우월" 단정 금지.
 - α=5.0 의 threshold sensitivity 는 robust (부록 AA, α=1-20 range).
-- **NetGain proxy 의 perceptual validity 는 별도 검증 의무** (Step 5 perceptual pilot).
 
-### 3-3. NetGain 의 originality (부록 BB)
+### 3-3. NetGain 의 외부 공개 인용 시 의무
+
+- **인용 표기**: "NetGain is a proxy reward, not a standard motion quality metric. Final quality is validated by standard metrics (FID, R-Precision, MM-Dist) + visual/perceptual rating + Category B variants (foot skating, jerk)."
+- **단독 성능 근거 인용 금지** — Category A / B / quality-validated evidence 동반 의무.
+
+### 3-4. NetGain 의 originality (부록 BB)
 
 - **본 프로젝트 자체 정의** — direct standard reference 없음.
 - Related framework (spirit, not direct): Holden et al. 2020 (Learned Motion Matching), Ng et al. 1999 (reward shaping).
 - 본 프로젝트의 unique contribution.
+
+### 3-5. RL-2 진입 전 prerequisite (사용자 directive 2026-05-25)
+
+- **NetGain = reward only**. RL-2 의 policy optimization 의 objective.
+- **최종 성능 (RL-2 vs baseline) 의 evidence**: **Category A + visual/perceptual rating + Category B variants**.
+- 본 prerequisite 충족 전 RL-2 결과 의 외부 공개 인용 금지.
 
 ## 4. Synthetic Corruption 의 위치 — **Controlled Diagnostic Only**
 

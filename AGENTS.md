@@ -463,6 +463,57 @@ print("HEAD_y > PELVIS_y > FOOT_y?",
 
 본 규칙 추가 (2026-05-25) 이전 의 GIF 들 ([부록 W, DD](evals/reports/2026-05-19_h_2026_205_stage0.md)) 은 axis bug 영향. **fix 후 재생성된 정정 산출물** (`*_yup_fix/` 디렉토리) 만 정식 visual evidence 로 인용.
 
+### 3-20. Metric Citation Gate — 평가지표 의 출처 검증 의무
+
+사용자 directive (2026-05-25): "앞으로 reward 나 평가에 들어가는 모든 metric 은 (A) top-tier 논문 / (B) 변형 / (C) proxy 중 하나로 분류. C 는 논문 단독 성능 근거 금지."
+
+본 프로젝트 의 모든 평가 / reward metric 은 [`docs/metric_provenance.md`](docs/metric_provenance.md) 의 Metric Provenance Table 에 등록 의무. **외부 공개 (논문·발표·README) 의 metric 인용 시 본 문서 reference**.
+
+#### 3 Category 분류
+
+| Category | 정의 | 외부 공개 적절성 |
+|---|---|---|
+| **A. Standard metric** | top-tier 논문 (CVPR, NeurIPS, ICCV, ECCV, ACM MM 등) 의 standard metric. 본 프로젝트 가 동일 정의 사용. | **외부 공개 최종 성능 근거 가능** (논문 인용). |
+| **B. Variant metric** | top-tier 논문 의 metric 을 명확히 변형. 변형 의도 + 차이점 명시. | 외부 공개 가능, 단 **variant 임을 명시 의무**. |
+| **C. Proxy metric** | 본 프로젝트 자체 정의 — internal routing reward / diagnostic 용. standard reference 없음 또는 매우 약함. | **외부 공개 최종 성능 근거 금지**. 내부 reward / diagnostic only. |
+
+#### 의무 사항
+
+1. **새 metric 추가 / 변경 시**: [`docs/metric_provenance.md`](docs/metric_provenance.md) 의 entry 추가 + Category 분류 의무.
+2. **Category 분류 의 entry**: metric name, 사용 목적, source (top-tier paper), 원 논문 formula, 본 프로젝트 구현 formula, 동일 / 변형 / 신규 표기, 최종 평가 / reward proxy 표기, caveat.
+3. **외부 공개 결과 인용 시**:
+   - **Category A**: standard reference 인용 의무.
+   - **Category B**: "variant of <original metric>" 명시 의무.
+   - **Category C**: "internal routing reward" / "diagnostic proxy" 명시 의무. **최종 성능 근거 로 인용 금지**.
+4. **5단계 리포트 결론 절**: 인용 metric 의 Category 명시 의무.
+
+#### 현재 의 분류 (2026-05-25)
+
+- **Category A (standard, 본 프로젝트 미구현)**: FID_motion, R-Precision, Matching Score, MM-Dist, Diversity, Multimodality (HumanML3D / MDM / MotionGPT 의 standard).
+- **Category A (standard, 본 프로젝트 구현)**: MPJPE (Ionescu 2014).
+- **Category B (variant)**: Foot skating / sliding (PP-Motion ACM MM 2025, partial), FidelityLoss Protocol B simplified (MPJPE vs original generator), Bone length variation (ACTOR spirit), Acceleration / Jerk (Flash & Hogan 1985, MotionDiffuse).
+- **Category C (proxy)**:
+  - **NetGain**: 본 프로젝트 자체 정의. **internal routing reward**. 최종 성능 근거 금지.
+  - **FootFloatingEvaluator (current)**: simple Y-threshold proxy. 부록 Z 의 evaluator limitation — **Item 6 contact estimator 도입 후 Category B 의 foot skating 으로 대체 / 보강 의무**.
+  - **BoneLengthEvaluator (current)**: per-bone std variation proxy (ACTOR spirit, 단 정확한 formula 변형).
+  - **VelocityJitterEvaluator (current)**: per-joint mean acceleration norm (Category B 의 jerk metric 와 close, 단 normalization 차이).
+  - **Total Artifact Score**: sum of evaluator scores, Score 비감소 monotonicity 용.
+
+#### RL-2 진입 전 prerequisite
+
+본 §3-20 의 의무:
+- **NetGain = reward only (Category C)**. RL-2 의 policy optimization 의 objective.
+- **최종 성능 (RL-2 vs baseline) 의 evidence**: **Category A (FID, R-Precision, MM-Dist) + visual/perceptual rating + Category B variants (foot skating, jerk)**.
+- Category C metric 의 결과 만으로 "ArtifactRouter 우월" **단정 금지**.
+
+#### 위반 시 effect
+
+본 §3-20 위반 (Category C metric 의 결과 를 외부 공개 의 최종 성능 근거 로 인용, 또는 Category B variant 를 standard 으로 misrepresent) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 와 동질 의 silent invalidation 으로 취급. 회귀 판정 무효.
+
+#### 향후 evidence 보강 plan (Step 9)
+
+[`docs/metric_provenance.md §5-1`](docs/metric_provenance.md) 의 standard metric 도입 의무 — FID_motion / R-Precision / Matching / Diversity / Multimodality / foot skating 의 official implementation 도입 (HumanML3D official + PP-Motion). 본 도입 전 외부 공개 (논문) 인용 보류.
+
 ---
 
 ## 4. 경로별 조건 분기
