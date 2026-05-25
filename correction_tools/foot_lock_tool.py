@@ -31,7 +31,14 @@ PROPAGATION_WEIGHTS: dict[str, float] = {
 }
 
 #: strength → lock interpolation factor (1.0 = ground 로 강제, 0.0 = 변화 없음).
-STRENGTH_FACTOR: dict[str, float] = {"small": 0.3, "medium": 0.6, "large": 1.0}
+#: 3-level prototype (small/medium/large) + 5-level RL-2 candidate (xsmall/small5/
+#: medium5/large5/xlarge) — AGENTS.md §3-21, docs/action_space_provenance.md.
+STRENGTH_FACTOR: dict[str, float] = {
+    # 3-level (기존, factor 변경 없음).
+    "small": 0.3, "medium": 0.6, "large": 1.0,
+    # 5-level (2026-05-25, factor 0.2 / 0.4 / 0.6 / 0.8 / 1.0).
+    "xsmall": 0.2, "small5": 0.4, "medium5": 0.6, "large5": 0.8, "xlarge": 1.0,
+}
 
 
 class FootLockTool(CorrectionTool):

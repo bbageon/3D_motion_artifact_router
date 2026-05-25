@@ -22,7 +22,15 @@ from scipy.ndimage import gaussian_filter1d
 from correction_tools.base import CorrectionTool, CorrectionReport, Strength
 from skeleton_normalizer.canonical_smpl_22 import NAME_TO_IDX, SMPL_22
 
-STRENGTH_SIGMA: dict[str, float] = {"small": 0.5, "medium": 1.0, "large": 2.0}
+#: strength → Gaussian smoothing sigma. AGENTS.md §3-21,
+#: docs/action_space_provenance.md. 3-level prototype + 5-level RL-2 candidate.
+#: 3-level small (0.5) 와 5-level xsmall (0.4) 약간 다름 — 5-level grid 의 균등 spacing.
+STRENGTH_SIGMA: dict[str, float] = {
+    # 3-level (기존, sigma 변경 없음).
+    "small": 0.5, "medium": 1.0, "large": 2.0,
+    # 5-level (2026-05-25, sigma 0.4 / 0.8 / 1.2 / 1.6 / 2.0 — 균등 grid).
+    "xsmall": 0.4, "small5": 0.8, "medium5": 1.2, "large5": 1.6, "xlarge": 2.0,
+}
 
 #: target_part → joint name list (VelocityJitterEvaluator 의 PART_JOINTS 와 동기).
 PART_TO_JOINTS: dict[str, list[str]] = {

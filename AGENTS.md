@@ -514,6 +514,53 @@ print("HEAD_y > PELVIS_y > FOOT_y?",
 
 [`docs/metric_provenance.md §5-1`](docs/metric_provenance.md) 의 standard metric 도입 의무 — FID_motion / R-Precision / Matching / Diversity / Multimodality / foot skating 의 official implementation 도입 (HumanML3D official + PP-Motion). 본 도입 전 외부 공개 (논문) 인용 보류.
 
+### 3-21. Action Space Provenance Gate — Action space 의 grid + 출처 검증 의무
+
+사용자 directive (2026-05-25): "5-level strength 의 연구적 위치 문서화. strength 는 motion quality score 가 아니라 correction intensity parameter. 3-level 은 prototype, 5-level 은 RL-2 candidate. 근거: parameterized action / hybrid action / continuous discretization 연구."
+
+본 프로젝트 의 모든 RL stage (RL-0 oracle / RL-1 imitation / RL-2 Q-learning) 의 action space 는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 에 등록 의무. **5단계 리포트 + 외부 공개 시 grid + RL stage 명시 의무**.
+
+#### Action 의 두 차원
+
+- **Tool selection**: discrete action (FootLock / BoneProjection / VelocitySmoothing / STOP).
+- **Strength**: ordinal / continuous action parameter (correction intensity, **NOT quality score**).
+
+본 분리 는 Parameterized Action / Hybrid Action 의 framework (Masson 2016 AAAI, Hausknecht & Stone 2016 ICLR).
+
+#### Strength Grid
+
+| Grid | Tokens | Factor mapping | RL stage |
+|---|---|---|---|
+| **3-level (prototype)** | small / medium / large | FootLock + BoneProjection: 0.3 / 0.6 / 1.0; VelocitySmoothing: 0.5 / 1.0 / 2.0 sigma | RL-0 oracle (부록 M, N), RL-1 imitation (부록 O), RL-1 alt models (부록 T) |
+| **5-level (RL-2 candidate)** | xsmall / small5 / medium5 / large5 / xlarge | 0.2 / 0.4 / 0.6 / 0.8 / 1.0 (factor); 0.4 / 0.8 / 1.2 / 1.6 / 2.0 (sigma) | RL-0 ablation (사용자 directive 2026-05-25), RL-2 candidate (TBD) |
+
+#### Backward Compatibility 의무
+
+- 기존 3-level token (`small`/`medium`/`large`) **유지**. 부록 A-HH 의 모든 결과 의 reproducibility 보존.
+- 새 5-level token (`xsmall`/`small5`/`medium5`/`large5`/`xlarge`) **추가**. 5-level oracle 결과 는 별도 snapshot (`*_5level*.json`) 로 분리 보고.
+
+#### 의무 사항
+
+1. **새 RL stage / action space 추가 시**: [`docs/action_space_provenance.md`](docs/action_space_provenance.md) entry 의무.
+2. **5단계 리포트 + 외부 공개 시 grid 명시**:
+   - "10 actions (STOP + 3 tool × 3 strength, 3-level prototype)" 또는
+   - "16 actions (STOP + 3 tool × 5 strength, 5-level)" 명시.
+3. **3-level 결과 와 5-level 결과 의 직접 비교 시**: 같은 sample set + 같은 reference 의무.
+
+#### RL-2 의 action space 결정 분기 (사용자 directive)
+
+5-level oracle ablation (synthetic n=60 + G2 general n=10 + G2 natural n=50) 의 결과 따라:
+
+| Case | 조건 | RL-2 |
+|---|---|---|
+| **A** | 5-level oracle > 3-level oracle 의미 있게 우월 | **5-level (16 actions)** |
+| **B** | NetGain 비슷, fidelity / correction magnitude 감소 | 5-level (over-modification 감소용) |
+| **C** | 차이 거의 없음 | **3-level 유지** (10 actions), 5-level appendix/future |
+
+#### 위반 시 effect
+
+본 §3-21 위반 (action space 의 grid 미명시, 3/5-level 결과 의 잘못된 직접 비교) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 와 동질 의 silent invalidation 으로 취급.
+
 ---
 
 ## 4. 경로별 조건 분기

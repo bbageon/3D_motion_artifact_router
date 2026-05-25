@@ -28,7 +28,14 @@ from skeleton_normalizer.canonical_smpl_22 import (
     T2M_KINEMATIC_CHAIN,
 )
 
-STRENGTH_FACTOR: dict[str, float] = {"small": 0.3, "medium": 0.6, "large": 1.0}
+#: strength → projection interpolation factor. AGENTS.md §3-21,
+#: docs/action_space_provenance.md. 3-level prototype + 5-level RL-2 candidate.
+STRENGTH_FACTOR: dict[str, float] = {
+    # 3-level (기존, factor 변경 없음).
+    "small": 0.3, "medium": 0.6, "large": 1.0,
+    # 5-level (2026-05-25).
+    "xsmall": 0.2, "small5": 0.4, "medium5": 0.6, "large5": 0.8, "xlarge": 1.0,
+}
 
 
 class BoneProjectionTool(CorrectionTool):

@@ -13,7 +13,15 @@ from typing import Any, Literal, Optional
 
 import numpy as np
 
-Strength = Literal["small", "medium", "large"]
+#: Strength token enum — 3-level (prototype) + 5-level (RL-2 candidate, 2026-05-25
+#: directive). 자세한 grid mapping 은 docs/action_space_provenance.md.
+#: Backward compatibility: 3-level token (small/medium/large) 의 factor 는 변경 없음.
+Strength = Literal[
+    # 3-level prototype (기존).
+    "small", "medium", "large",
+    # 5-level RL-2 candidate (2026-05-25 신규).
+    "xsmall", "small5", "medium5", "large5", "xlarge",
+]
 
 
 @dataclass
