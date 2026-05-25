@@ -429,6 +429,40 @@ raw record 생성 도구 (`baseline_smoke`, 향후 `eval-collect` 등) 는 본 m
 
 본 §3-18 위반 (B2-medium 만 인용, baseline 선택의 robustness 확인 안 함) 은 [§6-3 임계값 완화로 회귀 회피](#6-3-임계값-완화로-회귀-회피) 와 동질의 silent invalidation 으로 취급. 회귀 판정 무효.
 
+### 3-19. Skeleton GIF/MP4 시각화 의 Axis Convention 검증 의무
+
+사용자 directive (2026-05-25, **bug 발견 후 정식 규칙**): "이번 건 재발 가능성이 있다. 하네스에 규칙을 넣자."
+
+본 프로젝트 의 모든 motion 데이터 (HumanML3D / G2 / synthetic) 는 **Y-up convention** (HEAD_y > PELVIS_y > FOOT_y, vertical span at axis 1). matplotlib 의 default 3D view 는 **Z-up** (`Axes3D.view_init` 의 `vertical_axis='z'`) — convention mismatch 시 skeleton 이 옆으로 누운 듯 그려짐 (2026-05-25 [부록 EE](evals/reports/2026-05-19_h_2026_205_stage0.md) 발견).
+
+#### 의무 사항
+
+skeleton GIF / MP4 / 3D PNG 생성 도구 의 작성 / 수정 시 다음을 의무로 확인:
+
+1. **Motion axis convention 확인**: motion 의 `HEAD_y > PELVIS_y > FOOT_y` 또는 largest joint span 이 어느 axis 인지 확인. Y-axis 가 vertical 인지 검증.
+2. **Floor plane 위치 확인**: 시각화 도구 의 floor 가 `y=ymin` (Y-up) 평면 에 놓이는지 확인.
+3. **matplotlib view_init 의 vertical_axis 명시**: `ax.view_init(elev=elev, azim=azim, vertical_axis="y")` — Y-up convention 명시 (matplotlib 3.4+ 의 표준 API).
+4. **새 GIF 생성 후 첫 frame visual inspection**: HEAD 가 위쪽, FOOT 가 ground 근처, motion direction 이 자연스럽게 forward 인지 확인. 옆으로 누운 듯 보이면 bug.
+
+#### 자가 검증 절차 (도구 작성 / 수정 시)
+
+```python
+# axis convention sanity check (작은 ad-hoc):
+import numpy as np
+motion = np.load("<path>")
+print("HEAD_y > PELVIS_y > FOOT_y?",
+      motion[0, 15, 1] > motion[0, 0, 1] > motion[0, 10, 1])
+# True 면 Y-up convention 정상.
+```
+
+#### 위반 시 effect
+
+본 §3-19 위반 (axis convention 미확인 → 사람이 옆으로 누운 GIF) 은 [§3-17](#3-17-synthetic-vs-real-generator-evaluation-의-분리-의무) 의 **visual sanity sub-tier evidence 의 silent invalidation** 으로 취급. 본 bug 가 발견 된 GIF 의 **semantic interpretation 인용 금지** (overlay diff 로 만 판단 가능 — 단 의무 보고서 시 axis bug caveat 동반).
+
+#### 재인용 정식 prevention
+
+본 규칙 추가 (2026-05-25) 이전 의 GIF 들 ([부록 W, DD](evals/reports/2026-05-19_h_2026_205_stage0.md)) 은 axis bug 영향. **fix 후 재생성된 정정 산출물** (`*_yup_fix/` 디렉토리) 만 정식 visual evidence 로 인용.
+
 ---
 
 ## 4. 경로별 조건 분기
