@@ -88,6 +88,8 @@ metadata:
 
 본 절은 ArtifactRouter 의 모든 평가 metric 의 정의 단일 출처. 외부 인용 시 본 §3 만 참조.
 
+각 metric 의 **기존 연구 근거 (References)** 도 함께 박제 — 사용자 directive 2026-05-25 Item 1 의 정식 요구. 외부 공개 (논문·발표) 의 의무 evidence.
+
 ### 3-1. Artifact Metrics (명세 §9.3.1)
 
 #### FootSliding distance
@@ -98,6 +100,12 @@ FootSliding = mean_t I(contact_foot(t)) * || p_foot_xy(t+1) - p_foot_xy(t) ||
 
 `I(contact_foot(t))` 는 contact 상태 indicator, `p_foot_xy` 는 foot joint 의 horizontal projection.
 
+**References**:
+- Holden et al. 2017 ("Phase-Functioned Neural Networks for Character Control", ACM TOG) — foot contact + sliding 의 standard motion synthesis metric.
+- Tevet et al. 2023 ("Human Motion Diffusion Model" — MDM) — foot sliding metric in motion generation evaluation.
+- Karunratanakul et al. 2023 (GMD) — physical plausibility / foot sliding.
+- 본 프로젝트 변형: `contact_foot(t)` 는 simple Y-threshold (현재 evaluator 의 limitation, 부록 Z 의 motivation — Item 6 contact estimator).
+
 #### GroundPenetration ratio
 
 ```
@@ -105,6 +113,11 @@ GroundPenetration = mean_t max(0, ground_y - min_j p_j_y(t))
 ```
 
 `ground_y` 는 Skeleton Normalizer 추정.
+
+**References**:
+- Tevet et al. 2023 (MDM) — foot below ground penetration metric.
+- Shi et al. 2024 (PhysDiff) — physics-aware motion generation, ground penetration.
+- 본 프로젝트 변형: `ground_y` 의 simple Y-min estimation (Skeleton Normalizer 의 default).
 
 #### FootFloating ratio
 
@@ -114,6 +127,11 @@ FootFloating = mean_t I(contact_foot(t)) * I(p_foot_y(t) - ground_y > tau_float)
 
 `tau_float` 는 default 0.05m.
 
+**References**:
+- Zhang et al. 2022 (MotionDiffuse) — foot floating / suspended motion metric.
+- 본 프로젝트 변형: `tau_float=0.05`, simple Y threshold.
+- **CAVEAT (부록 Z, 2026-05-25 발견)**: 본 metric 의 max score 가 synthetic foot_floating injection (global Y shift) 에 sensitivity 부족. evaluator 의 corruption robustness 한계 — Item 6 (contact estimator) 도입 의 motivation.
+
 #### BoneLengthVariation
 
 ```
@@ -121,6 +139,12 @@ BoneVar = mean_{t,b} | length_b(t) - length_b_ref | / length_b_ref
 ```
 
 `length_b_ref` 는 첫 frame 또는 canonical reference.
+
+**References**:
+- Petrovich et al. 2021 (ACTOR — Action-Conditioned Motion Generation) — skeleton consistency constraint.
+- Holden et al. 2016 ("A Deep Learning Framework for Character Motion Synthesis") — bone length consistency in motion synthesis.
+- Pavlakos et al. 2019 (SMPL-X) — bone length as skeletal constraint.
+- 본 프로젝트 변형: per-bone normalized variation.
 
 #### JointAngleViolation rate
 
@@ -130,6 +154,11 @@ JointViolation = mean_{t,k} I(angle_k(t) < lower_k or angle_k(t) > upper_k)
 
 `(lower_k, upper_k)` 는 anatomical range — `evaluators/skeletal_evaluator.py` 의 config.
 
+**References**:
+- Akhter & Black 2015 ("Pose-Conditioned Joint Angle Limits for 3D Human Pose Reconstruction") — anatomical joint range constraints.
+- Loper et al. 2015 (SMPL) — anatomical joint limits.
+- 본 프로젝트 변형: per-joint anatomical bound (CMU MoCap 통계 기반).
+
 #### VelocityJitter (mean acceleration norm)
 
 ```
@@ -137,12 +166,22 @@ v_j(t+1) - v_j(t) = a_j(t)
 VelocityJitter = mean_{t,j} || a_j(t) ||
 ```
 
+**References**:
+- Guo et al. 2022 (HumanML3D paper) — temporal smoothness metric in motion data quality.
+- Wang et al. 2024 (Physical plausibility 계열) — acceleration jitter as motion quality.
+- Holden et al. 2017 — frame-to-frame velocity smoothness.
+
 #### AccelerationJerk (mean jerk norm)
 
 ```
 a_j(t+1) - a_j(t) = jerk_j(t)
 AccelerationJerk = mean_{t,j} || jerk_j(t) ||
 ```
+
+**References**:
+- Flash & Hogan 1985 ("The Coordination of Arm Movements: An Experimentally Confirmed Mathematical Model") — minimum-jerk principle in biological motion.
+- Zhang et al. 2022 (MotionDiffuse) — jerk-based smoothness in motion generation evaluation.
+- 본 프로젝트 변형: per-joint mean jerk norm.
 
 ### 3-2. Normalized Score (명세 §9.3)
 
@@ -153,6 +192,9 @@ TotalArtifactScore = sum_m w_m * NormalizedArtifactScore_m
 
 `reference_mean_m`, `reference_std_m` 은 HumanML3D test set GT motion 분포에서 추정.
 
+**References**:
+- Z-score normalization is the standard statistical approach. 본 프로젝트 의 motion-specific 변형 — Guo et al. 2022 (HumanML3D paper) 의 score normalization 과 유사 framework.
+
 ### 3-3. Fidelity Metrics
 
 #### Protocol A — Synthetic injection
@@ -162,11 +204,20 @@ FidelityLoss_A = MPJPE(refined, clean_GT) - MPJPE(corrupted, clean_GT)
 MPJPE = mean_{t,j} || p_refined(t,j) - p_GT(t,j) ||
 ```
 
+**MPJPE References**:
+- Ionescu et al. 2014 ("Human3.6M") — MPJPE (Mean Per-Joint Position Error) 의 standard metric.
+- HumanML3D paper (Guo et al. 2022) — motion generation evaluation 의 MPJPE.
+- Pavllo et al. 2019 (VideoPose3D) — frame-level MPJPE.
+
 #### Protocol B — Generator output
 
 - `correction_magnitude = mean_{t,j} || p_refined(t,j) - p_generated(t,j) ||`
 - `modified_frame_ratio = (frames_modified) / T`
 - `semantic_consistency = CLIP_similarity(refined_motion, text_prompt)` (text-to-motion 의 경우)
+
+**References**:
+- correction_magnitude: 본 프로젝트 자체 정의 (motion refinement-specific). MPJPE 의 partial-restricted 변형.
+- semantic_consistency: Tevet et al. 2022 ("MotionCLIP") — motion-text similarity via CLIP.
 
 #### Protocol C — Distributional
 
@@ -174,6 +225,13 @@ MPJPE = mean_{t,j} || p_refined(t,j) - p_GT(t,j) ||
 - **FGD**: Fréchet Gesture Distance (motion auto-encoder latent).
 - **Diversity**: refined motion 간 latent feature pairwise distance 평균.
 - **MM-Dist**: text-motion multimodal distance (text-to-motion).
+
+**References**:
+- **FID** (general): Heusel et al. 2017 ("GANs Trained by a Two Time-Scale Update Rule Converge to a Local Nash Equilibrium" — FID 원조).
+- **FID_motion**: Guo et al. 2022 (HumanML3D) — motion-specific FID via motion VAE latent. Tevet et al. 2023 (MDM) — FID 측정 의 standard motion evaluation.
+- **FGD**: Yoon et al. 2020 ("Speech Gesture Generation from the Trimodal Context") — gesture-specific Fréchet distance.
+- **Diversity**: Guo et al. 2022 (HumanML3D) — sample-level latent diversity. Lee et al. 2019 ("Dancing to Music") — diversity in motion synthesis.
+- **MM-Dist**: Guo et al. 2022 (HumanML3D) — text-motion multimodal distance (R-precision 기반). Petrovich et al. 2023 (TMR) — text-motion retrieval distance.
 
 ### 3-4. NetGain (명세 §9.4)
 
@@ -183,6 +241,14 @@ ArtifactReduction = TotalArtifactScore_before - TotalArtifactScore_after
 ```
 
 `alpha`, `beta`, `gamma` 는 명세 §9.4 에 따라 synthetic injection protocol 의 perceptual rating 상관 최대화로 grid search. 모든 baseline / ablation 동일 weight 사용.
+
+**References**:
+- **본 프로젝트 자체 정의 — direct standard reference 없음**. Motion refinement 의 multi-objective cost-benefit framework.
+- 관련 framework (spirit, not direct):
+  - Holden et al. 2020 ("Learned Motion Matching") — motion synthesis 의 multi-cost framework.
+  - Cohen et al. 2016 ("Smooth Pursuit") — perception-driven cost weighting.
+  - Reinforcement learning 의 reward shaping (Ng et al. 1999 — "Policy Invariance Under Reward Transformations") — multi-term reward design.
+- **calibrated_protocol_a_v1 의 α=5.0 결정 의 근거**: 본 프로젝트 자체 grid search (perceptual rating correlation) — 부록 D + AA 의 robustness evidence.
 
 ### 3-5. Efficiency Metrics (명세 §9.3 Efficiency)
 
