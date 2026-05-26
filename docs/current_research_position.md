@@ -1,8 +1,53 @@
-# Current Research Position — ArtifactRouter (2026-05-25)
+# Current Research Position — ArtifactRouter (2026-05-25, revised 2026-05-26)
 
 > 본 문서는 사용자 directive (2026-05-25, "NetGain validity 검증 plan") 의 Step 1: 현재 연구 의 위치 를 단일 문서로 고정. 외부 공개 (논문·발표·README) 의 evidence 인용 시 본 문서를 reference.
 >
 > AGENTS.md §3-17 (evidence 계층) + §3-18 (baseline family protocol) + 부록 P/U/Y/Z/AA/BB 의 통합 reference.
+>
+> **2026-05-26 revision (사용자 directive — "safe orchestration framing"):**
+> - 본 프로젝트 의 정식 framing 은 **"NetGain-only"** 가 아니라 **"safe orchestration"**.
+> - **NetGain = internal routing reward only**, 최종 quality 지표 아님 — §0 신설 (최상위 framing).
+> - **RL-2 objective = `maximize artifact_improvement subject to physical_validity + no_harm`**, NOT `maximize NetGain`.
+> - **Physical constraint gate** (BoneLengthViolation / GroundPenetration / ContactConsistency / JerkSpike) 의 의무 — §3-6 신설.
+> - Step 7 (다음 우선순위) 의 분기 변경 — Step A-F (사용자 6-step priority).
+
+---
+
+## 0. 정식 Framing — **Safe Orchestration (NOT NetGain-only)** (사용자 directive 2026-05-26)
+
+### 0-1. 본 framing 의 정식 정의
+
+**ArtifactRouter 의 정식 framing** (2026-05-26 박제):
+
+> Generator-agnostic motion refinement 의 **safe orchestration** —
+> artifact reduction 을 추구하되, **physical validity + no-harm** 의 hard safety constraint 를 만족하는 조건 하에서.
+
+**핵심 변경**:
+1. NetGain (Category C internal routing reward) 만으로는 motion 의 **physical validity 또는 perceptual quality 를 보장하지 않음**.
+2. NetGain reward hacking 가능 — artifact score 만 줄이고 motion 을 왜곡하는 over-modification 경로.
+3. 따라서 RL-2 objective 는 **constrained optimization**:
+   ```
+   maximize    artifact_improvement      (proxy via NetGain or similar)
+   subject to  physical_validity_gate    (hard, NOT in reward weight)
+               no_harm_gate              (semantic / perceptual)
+   ```
+4. Physical gate 결정: `accept` / `repair` / `rollback` / `STOP`.
+
+### 0-2. 본 framing 의 evidence motivation (사용자 directive)
+
+> "G2에서 artifact profile은 관찰되었다. NetGain 기준으로 artifact reduction은 가능하다. 하지만 NetGain-only correction은 정성적으로 왜곡/과보정/physical inconsistency를 만들 수 있다."
+
+본 우려 의 검증 의무 (사용자 directive Step B, 우선순위 최상):
+- G2 top correction case (motion_006, _007, _008, _028 — G2 natural n=50 의 oracle non-STOP top 4) 의 **side-by-side 시각화** (overlay 아닌 좌우).
+- NetGain 높은 G2 보정이 실제로 좋아 보이는지 vs 다리 길이/자세/리듬 왜곡 가시 확인.
+
+### 0-3. 본 framing 의 외부 공개 의무 (AGENTS.md §3-17 일관)
+
+- **"NetGain-only" 표현 금지** — 모든 5단계 리포트 / 논문 의 결론 절은 "safe orchestration" framing 으로 진술.
+- **NetGain 비교 결과 단독 인용 금지** — physical validity gate 의 evidence 또는 perceptual rating 의 evidence 동반 의무.
+- Physical gate 미도입 상태 의 RL-2 결과 = "preliminary diagnostic" only — 외부 공개 인용 보류.
+
+---
 
 ---
 
@@ -41,7 +86,7 @@ ArtifactRouter 는 **canonicalized motion artifact state 위에서 cost · risk 
   - Jerk metric 의 정확한 formulation (Flash & Hogan 1985).
 - 본 도입 후 외부 공개 의 최종 성능 evidence 가능.
 
-## 3. NetGain 의 위치 — **Category C Internal Routing Reward (AGENTS.md §3-20)**
+## 3. NetGain 의 위치 — **Category C Internal Routing Reward (AGENTS.md §3-20)** + **NOT 최종 quality** (§0 일관)
 
 ### 3-1. NetGain 의 정의 (calibrated_protocol_a_v1)
 
@@ -68,11 +113,56 @@ NetGain = ArtifactReduction - α·FidelityLoss - β·CorrectionMag - γ·ToolCos
 - Related framework (spirit, not direct): Holden et al. 2020 (Learned Motion Matching), Ng et al. 1999 (reward shaping).
 - 본 프로젝트의 unique contribution.
 
-### 3-5. RL-2 진입 전 prerequisite (사용자 directive 2026-05-25)
+### 3-5. RL-2 진입 전 prerequisite (사용자 directive 2026-05-25, revised 2026-05-26)
 
-- **NetGain = reward only**. RL-2 의 policy optimization 의 objective.
-- **최종 성능 (RL-2 vs baseline) 의 evidence**: **Category A + visual/perceptual rating + Category B variants**.
+- **NetGain = reward only** (Category C internal routing reward).
+- **RL-2 objective = constrained optimization** (§0-1):
+  - `maximize artifact_improvement` (NetGain or revised proxy).
+  - `subject to physical_validity_gate + no_harm_gate` (hard constraints, NOT reward weight).
+- **최종 성능 (RL-2 vs baseline) 의 evidence**: **Category A + visual/perceptual rating + Category B variants + physical validity gate output**.
 - 본 prerequisite 충족 전 RL-2 결과 의 외부 공개 인용 금지.
+
+### 3-6. Physical Constraint Gate — **별도 평가, NetGain weight 에 넣지 말 것** (사용자 directive 2026-05-26 신설)
+
+본 §0 의 framing 의 의무 mechanism. **NetGain 의 추가 negative weight 로 처리하면 reward hacking 잔존** — 따라서 hard gate 로 분리.
+
+#### 3-6-1. Gate 의 최소 구성
+
+| Evaluator (proposed) | 측정 | Category | 비고 |
+|---|---|---|---|
+| **BoneLengthViolation** | per-bone length 의 stride 별 상대 변화 (clean 대비) | B (ACTOR spirit) | 기존 BoneLengthEvaluator 의 strict 버전 |
+| **GroundPenetration** | foot Y < ground threshold 의 ratio | B (PP-Motion partial) | 신규 또는 FootFloating 의 strict 버전 |
+| **ContactConsistency** | contact label 의 frame-to-frame 일관성 | B (HumanML3D contact spirit) | Item 6 의 contact estimator 결합 |
+| **JerkSpike** | acceleration 의 95-th percentile | B (Flash & Hogan 1985) | 기존 VelocityJitter 의 spike 버전 |
+
+#### 3-6-2. Gate 의 decision
+
+| Decision | 조건 | 정책 |
+|---|---|---|
+| **accept** | 모든 gate evaluator < threshold | tool output 채택 |
+| **repair** | 일부 gate violation, strength 감소 가능 | strength `large5` → `medium5` 또는 같은 tool 다른 strength 재시도 |
+| **rollback** | gate violation 심함 + 직전 step 의 score 가 더 나음 | 직전 step 으로 복귀 |
+| **STOP** | tool 적용 reset 후에도 gate violation 또는 budget 소진 | 종료 |
+
+#### 3-6-3. NetGain reward weight 가 아닌 hard gate 의 이유
+
+- (a) Weight 로 넣으면 — reward maximizer 가 weight 와 reward 의 trade-off 학습, weight 조정 시 결과 robust 하지 않음.
+- (b) Hard gate 로 분리 — policy 의 action space 가 `{accept, repair, rollback, STOP}` 또는 그 subset 으로 명확.
+- (c) 외부 공개 시 "physical safety 가 정량 보장됨" 의 직접 evidence.
+
+#### 3-6-4. Gate 의 비교 의무 (사용자 Step D)
+
+같은 sample 에 대해:
+- **A. NetGain-only oracle / policy** (현재).
+- **B. NetGain + physical gate oracle / policy** (신규).
+
+비교 측정:
+- ArtifactReduction 의 감소량.
+- BoneLengthViolation / GroundPenetration / ContactConsistency / JerkSpike 의 감소.
+- over-modification 의 정량 (correction magnitude 의 분포 shift).
+- STOP rate 의 증가.
+
+→ Physical gate 가 distortion 을 줄이면 본 framing 의 직접 evidence.
 
 ## 4. Synthetic Corruption 의 위치 — **Controlled Diagnostic Only**
 
@@ -172,24 +262,36 @@ RL-2 평가 시 비교 baseline:
 | Contact estimator | Item 6 (큰 작업) | evaluator 정밀화 |
 | FootFloating limitation 해소 | Item 6 결합 | contact estimator 도입 |
 
-## 8. 핵심 분기점 (사용자 Step 6)
+## 8. 핵심 분기점 (사용자 Step 6, revised 2026-05-26 — Safe Orchestration framing)
 
-본 프로젝트 의 다음 분기:
+본 프로젝트 의 다음 분기 — 사용자 directive 2026-05-26 의 6-step priority 로 정정.
 
-**Branch A (NetGain validity 통과)**:
-- NetGain rank ≈ visual/perceptual rank (Step 5 pilot 통과).
-- → **RL-2 (trajectory-level value learning) 진입**.
-- RL-2 의 reward = NetGain (proxy). 결과 = visual/perceptual 로 검증.
+### 8-1. **새 우선순위 — 사용자 directive 2026-05-26**
 
-**Branch B (NetGain validity 부족)**:
-- NetGain 과 사람 판단 자주 어긋남.
-- → **Reward 수정 우선**:
-  - FootFloating weight 낮추기 (부록 Z limitation 결합).
-  - jerk / foot sliding 추가.
-  - fidelity penalty 재조정.
-  - contact estimator 개선 (Item 6).
-  - correction magnitude penalty 복원.
-- → **RL-2 진입 보류**.
+| Step | 작업 | 의미 |
+|---|---|---|
+| **A** | current_research_position.md 정정 (본 §0 박제) | "safe orchestration" framing 의 단일 출처 |
+| **B** | **G2 top correction (motion_006/007/008/028) side-by-side 시각화** | NetGain 높은 G2 보정 의 distortion 검증 — **최우선** |
+| **C** | Physical constraint evaluator/gate 설계 (§3-6) | 본 framing 의 mechanism |
+| **D** | NetGain-only vs NetGain+physical-gated oracle 비교 | gate 의 effect 정량 evidence |
+| **E** | Standard metric integration (FID/R-Prec/MM-Dist/Diversity) | 외부 공개 prerequisite |
+| **F** | RL-2 constrained policy (Step C-E 후) | 본 framing 의 정식 RL implementation |
+
+### 8-2. Step B 의 정식 motivation
+
+> "G2 top correction sample 4개를 side-by-side로 보고, NetGain이 높은 보정이 실제로 왜곡을 만드는지 확인한다."
+
+본 검증 의 결과가 분기:
+- **B 의 결과 = NetGain 높은 보정이 visually 좋음** → physical gate 의 priority 낮춤, RL-2 의 NetGain proxy reward 가 OK.
+- **B 의 결과 = NetGain 높은 보정이 왜곡** → physical gate 의 필수 mechanism, Step C-D 의 high priority.
+
+### 8-3. 이전 Branch A/B 의 위치 정정 (2026-05-26)
+
+이전 (2026-05-25) 의 Branch A/B (NetGain validity 통과/부족) 는 **본 §0 의 framing 하에서 의 sub-decision** 으로 격하:
+- **이전 Branch A (NetGain validity 통과)** = "NetGain proxy 가 perceptual 과 reasonably 일치" — 본 framing 의 Step F (RL-2) 진입 조건 의 일부.
+- **이전 Branch B (NetGain validity 부족)** = "NetGain proxy 가 perceptual 과 미일치" — Step C (physical gate) 의 motivation 의 일부.
+
+본 분기 는 **Step C-D 완료 후 의 RL-2 의 reward design 의 분기**.
 
 ## 9. 분포별 RL-1 의 역할 정식 박제 (부록 X)
 
