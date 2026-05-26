@@ -140,6 +140,50 @@ ArtifactRouter 의 모든 metric 을 다음 **3 Category** 로 분류:
 | **용도** | temporal smoothness diagnostic |
 | **Caveat** | mean acceleration norm 의 normalization 차이 (per-joint 평균 vs total) — 외부 공개 시 정확한 formula 인용 의무. |
 
+### 3-5. Physical Constraint Gate Evaluator Candidates (Step C, 2026-05-26 신설)
+
+본 절 의 evaluator 는 [`current_research_position.md §3-6`](current_research_position.md) 의 Physical Constraint Gate 의 의무 mechanism. **NetGain 의 weight term 이 아닌 hard gate 의 decision (accept / repair / rollback / STOP)** 로 사용.
+
+#### 3-5-1. BoneLengthViolation (gate)
+
+| Item | Value |
+|---|---|
+| **Source (related, 2020+)** | **MDM** (Tevet et al. 2023, **ICLR**) — geometric loss 의 별도 축 처리. **ACTOR** (Petrovich et al. 2021, **ICCV**) — skeleton consistency. |
+| **본 프로젝트 변형** | per-bone length 의 frame-to-frame 상대 변화 (clean reference 또는 first frame 대비). 기존 BoneLengthEvaluator 의 strict 변형 — gate threshold 적용. |
+| **분류** | **B. variant** (gate-form) |
+| **용도** | Step C/D 의 physical gate decision 의무. |
+| **Caveat** | gate threshold (예: 5% 변화 이상이면 violation) 의 결정은 Step D 의 ablation 의무. |
+
+#### 3-5-2. GroundPenetration (gate)
+
+| Item | Value |
+|---|---|
+| **Source (recent SOTA, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — "Physics-Guided Human Motion Diffusion Model". ground penetration 의 physics-guided projection. |
+| **본 프로젝트 변형** | foot joint 의 Y < ground threshold 의 ratio (per-frame, per-foot). 기존 FootFloatingEvaluator (Y > threshold) 의 반대 axis. |
+| **분류** | **B. variant** |
+| **용도** | Step C/D 의 physical gate decision 의무. |
+| **Caveat** | ground threshold (예: -0.02m) + minimum frame count 의 ablation 의무. |
+
+#### 3-5-3. ContactConsistency (gate)
+
+| Item | Value |
+|---|---|
+| **Source (recent, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — foot contact + sliding 의 unified handling. **HumanML3D** (Guo et al. 2022, **CVPR**) — contact label 추정. |
+| **본 프로젝트 변형** | foot joint 의 velocity ≈ 0 when in contact (estimator 의무). Item 6 의 contact estimator 결합 의무. |
+| **분류** | **B. variant** |
+| **용도** | Step C/D 의 physical gate decision 의무. |
+| **Caveat** | contact estimator 도입 prerequisite — 현재 FootFloating proxy 의 한계 (부록 Z) 의 정식 해소. |
+
+#### 3-5-4. JerkSpike (gate)
+
+| Item | Value |
+|---|---|
+| **Source (recent, 2020+)** | **MDM** (Tevet et al. 2023, **ICLR**) — acceleration / velocity smoothness loss spirit. Flash & Hogan 1985 (classical) — minimum-jerk principle (배경). |
+| **본 프로젝트 변형** | acceleration 의 95-th percentile (per-joint, normalized). 기존 VelocityJitter (mean) 의 spike-only 변형. |
+| **분류** | **B. variant** |
+| **용도** | Step C/D 의 physical gate decision 의무. spike 가 mean 보다 over-modification 식별에 적합. |
+| **Caveat** | percentile threshold 의 결정 ablation 의무. |
+
 ---
 
 ## 4. Category C — Proxy Metric (본 프로젝트 자체 정의)
@@ -251,7 +295,8 @@ ArtifactRouter 의 모든 metric 을 다음 **3 Category** 로 분류:
 - **Loper et al. 2015**, "SMPL: A Skinned Multi-Person Linear Model", **ACM TOG 2015** — anatomical joint limits.
 - **Flash & Hogan 1985**, "The Coordination of Arm Movements: An Experimentally Confirmed Mathematical Model", **Journal of Neuroscience 1985** — minimum-jerk principle.
 - **Lee et al. 2019**, "Dancing to Music", **NeurIPS 2019** — Diversity in motion synthesis.
-- **Shi et al. 2024**, "PhysDiff: Physics-Guided Human Motion Diffusion Model", **ICCV 2023** — ground penetration / physical plausibility.
+- **Yuan et al. 2023**, "PhysDiff: Physics-Guided Human Motion Diffusion Model", **ICCV 2023** — ground penetration / floating / foot sliding 의 physics-guided projection. Step C physical gate motivation (`current_research_position.md §3-6`, `§3-5-2/3-5-3`).
+- **Guo et al. 2024**, "MoMask: Generative Masked Modeling of 3D Human Motions", **CVPR 2024** — HumanML3D standard metric (FID/R-Prec/MM-Dist/Diversity) 의 최신 application. Step E (Standard Metric Integration) reference.
 - **Zhang et al. 2022**, "MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model" — jerk / foot artifact.
 - **PP-Motion 2025**, "PP-Motion: Physical-Perceptual Fidelity Evaluation for Human Motion Generation", **ACM MM 2025** — foot artifact unified evaluation.
 - **Ng et al. 1999**, "Policy Invariance Under Reward Transformations", **ICML 1999** — reward shaping (NetGain related spirit).

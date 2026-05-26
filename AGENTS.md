@@ -561,6 +561,51 @@ print("HEAD_y > PELVIS_y > FOOT_y?",
 
 본 §3-21 위반 (action space 의 grid 미명시, 3/5-level 결과 의 잘못된 직접 비교) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 와 동질 의 silent invalidation 으로 취급.
 
+### 3-22. Research Grounding Gate — 연구 피드백·평가의 top-tier 근거 의무
+
+사용자 directive (2026-05-26): "하네스 흐름에 피드백을 하고 평가를 할 때에는 연구적 근거가 동반되어야 한다. 단 근거는 탑티어 논문에 2020년 이후 논문, 게재되거나 컨퍼런스 논문이어야 한다."
+
+본 프로젝트에서 Agent 가 **연구 설계 피드백**, **평가 결과 해석**, **metric / reward / baseline / action space / RL algorithm 선택**, **외부 공개 가능성 판단**을 수행할 때는 아래 조건을 만족하는 연구 근거를 함께 제시해야 한다. 단순 구현 버그, 파일 경로, 테스트 실패, 문서 오탈자, repo-local bookkeeping 은 본 규칙의 대상이 아니다.
+
+#### 허용 근거
+
+1. **2020년 이후** 출판 또는 공식 accept 된 논문.
+2. **peer-reviewed top-tier conference / journal** 또는 그에 준하는 분야별 주요 venue:
+   - Vision / graphics / motion: CVPR, ICCV, ECCV, SIGGRAPH / TOG, ACM MM, TPAMI, IJCV.
+   - ML / AI: NeurIPS, ICML, ICLR, AAAI, IJCAI, TMLR.
+   - Robotics / embodied motion: ICRA, IROS, RSS, CoRL.
+3. arXiv-only preprint 는 단독 근거로 사용 금지. 단, 동일 내용의 accepted venue version 이 확인되는 경우 그 venue/version 을 근거로 인용 가능.
+4. 2020년 이전 고전 논문은 배경 설명으로는 허용하되, **새 평가 기준 또는 최종 연구 판단의 주 근거로 단독 사용 금지**. 최신 top-tier 근거와 함께 보조 인용으로만 사용.
+
+#### 피드백 / 평가 응답 형식 의무
+
+연구 판단을 포함하는 답변은 다음 네 항목을 명시한다.
+
+1. **판단 / 권고** — 무엇을 유지, 수정, 보류, 폐기할지.
+2. **근거 논문** — 저자, 연도, venue, 해당 논문에서 빌려온 개념 또는 metric.
+3. **ArtifactRouter 적용 범위** — 본 프로젝트의 어떤 부분에 적용되는지.
+4. **남는 불확실성** — 내부 proxy, pilot evidence, synthetic-only evidence, sample-size limitation 등을 구분.
+
+#### 문서화 의무
+
+- metric / reward / evaluator 근거는 [`docs/metric_provenance.md`](docs/metric_provenance.md) 에 반영한다.
+- action space / strength grid / RL action 설계 근거는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 에 반영한다.
+- 새 baseline 이나 evaluation protocol 을 도입할 때도 동일 기준으로 provenance 를 기록한다.
+
+#### 근거 부족 시 표기
+
+조건을 만족하는 근거를 즉시 제시할 수 없으면 해당 판단을 다음 중 하나로 명시한다.
+
+- **engineering heuristic** — 구현상 임시 판단.
+- **internal proxy assumption** — 내부 reward / evaluator 를 위한 가정.
+- **pilot-only finding** — 본 프로젝트 내부 pilot 결과.
+
+위 표기가 붙은 내용은 외부 공개, 논문 claim, hypothesis status 전환의 단독 근거로 사용 금지.
+
+#### 위반 시 effect
+
+본 §3-22 위반 (근거 없는 연구 판단, 2020년 이전 또는 arXiv-only 근거를 최신 top-tier 근거처럼 인용, 내부 proxy 를 논문급 평가 기준처럼 표현) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 과 동급의 연구 invalidation 으로 취급한다. 해당 피드백·평가 결론은 외부 공개 근거로 무효.
+
 ---
 
 ## 4. 경로별 조건 분기

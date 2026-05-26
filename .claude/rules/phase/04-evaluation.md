@@ -158,6 +158,17 @@ NetGain = ArtifactReduction - alpha * FidelityLoss - beta * CorrectionMagnitude 
 
 Compare 단계는 4 판정 (`stable`/`improvement`/`regression`/`inconclusive`) 을 가설 평가의 입력으로 받아 5단계로 출력. 형식 의무는 [`eval-compare SKILL §6`](../../skills/eval-compare/SKILL.md).
 
+### 7-0. 연구 근거 동반 의무
+
+본 phase 에서 Agent 가 연구 피드백·평가 해석·다음 실험 우선순위·metric/reward/baseline/RL algorithm 선택을 제안할 때는 AGENTS.md §3-22 를 따른다.
+
+- 연구 판단에는 **2020년 이후 peer-reviewed top-tier conference/journal 논문 근거**를 함께 제시한다.
+- 근거가 없는 판단은 `engineering heuristic`, `internal proxy assumption`, `pilot-only finding` 중 하나로 명시한다.
+- NetGain, 현재 artifact evaluator, synthetic-only result 는 근거 논문과 perceptual/standard metric validation 없이는 최종 성능 claim 으로 사용하지 않는다.
+- 새 metric/reward/action-space/baseline 을 제안하거나 평가 기준으로 삼으면 `docs/metric_provenance.md` 또는 `docs/action_space_provenance.md` 를 갱신한다.
+
+본 항목은 연구 피드백의 신뢰성 gate 이며, 위반한 피드백·평가 결론은 외부 공개 근거로 인용 금지.
+
 ### 7-1. 5단계 사이클
 
 1. **제시한 가설** — H-2026-200~203 중 활성 h_id 인용.

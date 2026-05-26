@@ -41,6 +41,25 @@
 - G2 top correction case (motion_006, _007, _008, _028 — G2 natural n=50 의 oracle non-STOP top 4) 의 **side-by-side 시각화** (overlay 아닌 좌우).
 - NetGain 높은 G2 보정이 실제로 좋아 보이는지 vs 다리 길이/자세/리듬 왜곡 가시 확인.
 
+**중요 caveat — diagnostic vs representative** (사용자 directive 2026-05-26 박제):
+- 본 4 sample 은 **NetGain top 4 의 의도적 enriched subset** — diagnostic, NOT representative.
+- 적절한 인용: "NetGain-top G2 correction case 의 visual distortion sanity check (n=4 diagnostic)".
+- 부적절한 인용 (금지): "G2 에서 보정이 잘 된다" (representative claim 금지).
+- 전부 good 이어도 Step E (Standard Metric Integration) 의 의무 유지.
+
+### 0-3. 본 framing 의 reference papers (2020+ peer-reviewed top-tier, AGENTS.md §3-22 의무)
+
+본 safe orchestration framing 의 정식 정량 motivation:
+
+| Ref | 빌려온 개념 | 본 프로젝트 적용 |
+|---|---|---|
+| **MDM** (Tevet et al. 2023, **ICLR**) — [openreview](https://openreview.net/forum?id=SJ1kSyO2jwu) | motion generation 에서 geometric loss / velocity / foot contact 의 **별도 축** 처리 | NetGain 의 ArtifactReduction / FidelityLoss 분리 (Protocol A/B) 의 spirit 일관. Physical gate evaluator (BoneLength / JerkSpike) 가 fidelity-orthogonal 차원. |
+| **PhysDiff** (Yuan et al. 2023, **ICCV**) — [CVF](https://openaccess.thecvf.com/content/ICCV2023/html/Yuan_PhysDiff_Physics-Guided_Human_Motion_Diffusion_Model_ICCV_2023_paper.html) | floating / foot sliding / ground penetration 의 **physics-guided projection**. Physical plausibility 는 scalar reward 안 넣고 **별도 constraint / guidance** 로 처리. | §3-6 Physical Constraint Gate 의 4 evaluator (BoneLengthViolation / GroundPenetration / ContactConsistency / JerkSpike) 의 직접 motivation. NetGain reward weight 가 아닌 **hard gate** 로 분리하는 결정 의 근거. |
+| **HumanML3D** (Guo et al. 2022, **CVPR**) — [CVF](https://openaccess.thecvf.com/content/CVPR2022/html/Guo_Generating_Diverse_and_Natural_3D_Human_Motions_From_Text_CVPR_2022_paper.html) | **FID, R-Precision, MM-Dist, Diversity, Multimodality** standard metrics 의 motion quality 평가. Artifact score 만으로 최종 품질 단정 안 함. | Step E (Standard Metric Integration) 의 직접 의무 — 외부 공개 prerequisite. NetGain (Category C) ≠ 최종 quality 의 정식 근거. |
+| **MoMask** (Guo et al. 2024, **CVPR**) — [CVF PDF](https://openaccess.thecvf.com/content/CVPR2024/papers/Guo_MoMask_Generative_Masked_Modeling_of_3D_Human_Motions_CVPR_2024_paper.pdf) | HumanML3D standard metric 의 최신 application — generative motion SOTA pipeline. FID / R-Prec / MM-Dist / Diversity 의 의무 column. | Step E 의 reference implementation (HumanML3D official evaluator 재사용 가능성). |
+
+**4 papers 의 통합 message**: motion quality 의 정식 평가 = (a) standard metric (FID/R-Prec/MM-Dist/Diversity) + (b) physical plausibility (foot contact/ground penetration/bone length) + (c) generation diversity. NetGain (Category C internal routing reward) 단독 인용 = misalignment with field-standard evaluation framework.
+
 ### 0-3. 본 framing 의 외부 공개 의무 (AGENTS.md §3-17 일관)
 
 - **"NetGain-only" 표현 금지** — 모든 5단계 리포트 / 논문 의 결론 절은 "safe orchestration" framing 으로 진술.
@@ -122,18 +141,22 @@ NetGain = ArtifactReduction - α·FidelityLoss - β·CorrectionMag - γ·ToolCos
 - **최종 성능 (RL-2 vs baseline) 의 evidence**: **Category A + visual/perceptual rating + Category B variants + physical validity gate output**.
 - 본 prerequisite 충족 전 RL-2 결과 의 외부 공개 인용 금지.
 
-### 3-6. Physical Constraint Gate — **별도 평가, NetGain weight 에 넣지 말 것** (사용자 directive 2026-05-26 신설)
+### 3-6. Physical Constraint Gate — **별도 평가, NetGain weight 에 넣지 말 것** (사용자 directive 2026-05-26 신설, **PhysDiff ICCV 2023 + MDM ICLR 2023 motivation**)
 
 본 §0 의 framing 의 의무 mechanism. **NetGain 의 추가 negative weight 로 처리하면 reward hacking 잔존** — 따라서 hard gate 로 분리.
 
+**근거 논문** (AGENTS.md §3-22):
+- **PhysDiff** (Yuan et al. 2023, ICCV) — physical artifact (foot sliding / ground penetration / floating) 를 physics-guided projection 으로 다루는 SOTA 의 framework. **scalar reward 안 넣고 별도 constraint** 의 핵심 motivation.
+- **MDM** (Tevet et al. 2023, ICLR) — motion generation 에서 geometric loss / velocity / foot contact 를 **별도 축** 으로 처리하는 design. fidelity 와 physical plausibility 의 dimensional separation.
+
 #### 3-6-1. Gate 의 최소 구성
 
-| Evaluator (proposed) | 측정 | Category | 비고 |
+| Evaluator (proposed) | 측정 | Category | 정량 근거 (2020+ peer-reviewed) |
 |---|---|---|---|
-| **BoneLengthViolation** | per-bone length 의 stride 별 상대 변화 (clean 대비) | B (ACTOR spirit) | 기존 BoneLengthEvaluator 의 strict 버전 |
-| **GroundPenetration** | foot Y < ground threshold 의 ratio | B (PP-Motion partial) | 신규 또는 FootFloating 의 strict 버전 |
-| **ContactConsistency** | contact label 의 frame-to-frame 일관성 | B (HumanML3D contact spirit) | Item 6 의 contact estimator 결합 |
-| **JerkSpike** | acceleration 의 95-th percentile | B (Flash & Hogan 1985) | 기존 VelocityJitter 의 spike 버전 |
+| **BoneLengthViolation** | per-bone length 의 frame-to-frame 상대 변화 (clean reference 대비) | B (variant) | ACTOR (Petrovich et al. 2021, ICCV) skeleton constraint spirit. 본 프로젝트 의 strict variant. |
+| **GroundPenetration** | foot Y < ground threshold 의 ratio | B (variant) | **PhysDiff (Yuan et al. 2023, ICCV)** 의 ground penetration metric. 신규 또는 기존 FootFloating 의 strict 버전. |
+| **ContactConsistency** | contact label 의 frame-to-frame 일관성 (foot velocity ≈ 0 when in contact) | B (variant) | **PhysDiff (Yuan 2023)** + **HumanML3D (Guo et al. 2022, CVPR)** 의 contact 추정 spirit. Item 6 의 contact estimator 결합. |
+| **JerkSpike** | acceleration 의 95-th percentile (per-joint normalized) | B (variant) | **MDM (Tevet et al. 2023, ICLR)** 의 acceleration / velocity smoothness loss spirit. 기존 VelocityJitter 의 spike-only 버전. |
 
 #### 3-6-2. Gate 의 decision
 
@@ -277,13 +300,39 @@ RL-2 평가 시 비교 baseline:
 | **E** | Standard metric integration (FID/R-Prec/MM-Dist/Diversity) | 외부 공개 prerequisite |
 | **F** | RL-2 constrained policy (Step C-E 후) | 본 framing 의 정식 RL implementation |
 
-### 8-2. Step B 의 정식 motivation
+### 8-2. Step B 의 정식 motivation + 3-way classification (사용자 directive 2026-05-26)
 
 > "G2 top correction sample 4개를 side-by-side로 보고, NetGain이 높은 보정이 실제로 왜곡을 만드는지 확인한다."
 
-본 검증 의 결과가 분기:
-- **B 의 결과 = NetGain 높은 보정이 visually 좋음** → physical gate 의 priority 낮춤, RL-2 의 NetGain proxy reward 가 OK.
-- **B 의 결과 = NetGain 높은 보정이 왜곡** → physical gate 의 필수 mechanism, Step C-D 의 high priority.
+#### 8-2-1. Diagnostic caveat (representative 아님)
+
+본 4 sample 은 **NetGain top 4 의 의도적 enriched subset** (motion_006/007/008/028, NetGain 범위 +0.092 ~ +0.173). G2 distribution 의 representative 가 아니라 **NetGain-high case 의 visual distortion sanity check**.
+
+#### 8-2-2. Visual inspection checklist (사용자 directive)
+
+panel 1 (Original) vs panel 3 (5-level oracle) 의 차이 의 5 항목 점검:
+
+1. 다리/팔 길이가 늘어나 보이는가?
+2. 발이 바닥에 말이 되게 붙는가?
+3. ground penetration 이 보이는가?
+4. 움직임 리듬이 죽었는가?
+5. prompt 의미와 상체/하체 동작이 유지되는가?
+
+#### 8-2-3. 3-way classification + 분기
+
+| 결과 | 정의 | 분기 |
+|---|---|---|
+| **good** | panel 3 이 original 보다 명확히 나음 | Step E (standard metric) + Step F (RL-2) 우선. Step C 의 priority 낮춤. |
+| **distorted** | artifact 줄었지만 physical/posture 왜곡 (다리 길이 / 발 위치 / 리듬 / 상체 의미) | **Step C (Physical Constraint Gate) 의 high priority**. RL-2 reward 재설계 의 직접 motivation. |
+| **ambiguous** | 차이 작음 또는 판단 어려움 | Step C 의 evaluator 별 threshold ablation 우선. |
+
+**중요 결정 rule** (사용자 directive):
+- **distorted 1개라도 있으면 Step C 우선**.
+- **전부 good 이어도 Step E 의 의무 보존** (diagnostic subset 의 generalization 불가).
+
+#### 8-2-4. motion_007 의 special case
+
+motion_007 의 oracle sequence = `VelocitySmoothing-medium5 → FootLock-xlarge` — 두 강한 strength 의 연속, NetGain 높지만 **distortion 위험 후보**. 본 sample 의 panel 3 vs panel 1 비교 가 framework 의 핵심 검증 case.
 
 ### 8-3. 이전 Branch A/B 의 위치 정정 (2026-05-26)
 
