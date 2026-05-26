@@ -1,0 +1,3420 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "safe_sequence_oracle_summary",
+  "task_id": "safe_sequence_oracle_g2_top4_v1",
+  "timestamp": "20260526T135513111289Z",
+  "calibration_source": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\evals\\snapshots\\physical_gate_clean_calibration_v1.json",
+  "gate_thresholds_p99": {
+    "PenetrateEvaluator": 0.0,
+    "FloatEvaluator": 0.7983539458952797,
+    "SkateEvaluator": 0.0,
+    "JerkSpikeEvaluator": 0.10556407202395618,
+    "BoneLengthCVEvaluator": 5.506674955074729e-06
+  },
+  "max_depth": 3,
+  "netgain_weights": {
+    "alpha": 5.0,
+    "beta": 0.0,
+    "gamma": 0.0
+  },
+  "n_samples": 4,
+  "comparison_table": [
+    {
+      "trial_id": "motion_006",
+      "unsafe_netgain": 0.17329517493748833,
+      "unsafe_hard_viol": 0,
+      "unsafe_sequence": "FootLock/small5 → FootLock/xsmall",
+      "safe_netgain": 0.17329517493748833,
+      "safe_hard_viol": 0,
+      "safe_sequence": "FootLock/small5 → FootLock/xsmall",
+      "decision_shift": "unchanged",
+      "netgain_drop": 0.0
+    },
+    {
+      "trial_id": "motion_007",
+      "unsafe_netgain": 0.11133077031689503,
+      "unsafe_hard_viol": 1,
+      "unsafe_sequence": "VelocitySmoothing/large5 → FootLock/xlarge",
+      "safe_netgain": -0.0,
+      "safe_hard_viol": 0,
+      "safe_sequence": "STOP",
+      "decision_shift": "shifted",
+      "netgain_drop": 0.11133077031689503
+    },
+    {
+      "trial_id": "motion_008",
+      "unsafe_netgain": 0.09794246986269574,
+      "unsafe_hard_viol": 0,
+      "unsafe_sequence": "FootLock/small5",
+      "safe_netgain": 0.09794246986269574,
+      "safe_hard_viol": 0,
+      "safe_sequence": "FootLock/small5",
+      "decision_shift": "unchanged",
+      "netgain_drop": 0.0
+    },
+    {
+      "trial_id": "motion_028",
+      "unsafe_netgain": 0.09245722306771503,
+      "unsafe_hard_viol": 1,
+      "unsafe_sequence": "FootLock/medium5",
+      "safe_netgain": -0.0,
+      "safe_hard_viol": 0,
+      "safe_sequence": "STOP",
+      "decision_shift": "shifted",
+      "netgain_drop": 0.09245722306771503
+    }
+  ],
+  "comparison_summary": {
+    "n_total": 4,
+    "n_decision_shifted": 2,
+    "n_decision_unchanged": 2
+  },
+  "per_sample": [
+    {
+      "trial_id": "motion_006",
+      "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_006.npy",
+      "g2_prompt": "Give me a gesture that visualizes a person walks forward one foot in front of the other until he loses his balance and tilts far to the left then stumbles to his left.",
+      "safe_best": {
+        "sequence": [
+          [
+            "FootLockTool",
+            "both_feet",
+            "small5"
+          ],
+          [
+            "FootLockTool",
+            "both_feet",
+            "xsmall"
+          ]
+        ],
+        "length": 2,
+        "target_delta_full": -0.19444444444444448,
+        "fidelity_loss_protocol_b": 0.004229853901391228,
+        "cumulative_correction_magnitude": 0.03101892861020234,
+        "netgain": 0.17329517493748833,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.0,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.02597695647287167,
+          "BoneLengthCVEvaluator": 0.1320705949466077
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "skip",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "pass"
+        },
+        "n_hard_violations": 0,
+        "n_soft_violations": 0,
+        "any_hard_violation": false
+      },
+      "unsafe_best": {
+        "sequence": [
+          [
+            "FootLockTool",
+            "both_feet",
+            "small5"
+          ],
+          [
+            "FootLockTool",
+            "both_feet",
+            "xsmall"
+          ]
+        ],
+        "length": 2,
+        "target_delta_full": -0.19444444444444448,
+        "fidelity_loss_protocol_b": 0.004229853901391228,
+        "cumulative_correction_magnitude": 0.03101892861020234,
+        "netgain": 0.17329517493748833,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.0,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.02597695647287167,
+          "BoneLengthCVEvaluator": 0.1320705949466077
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "skip",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "pass"
+        },
+        "n_hard_violations": 0,
+        "n_soft_violations": 0,
+        "any_hard_violation": false
+      },
+      "safe_top_k": [
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.19444444444444448,
+          "fidelity_loss_protocol_b": 0.004229853901391228,
+          "cumulative_correction_magnitude": 0.03101892861020234,
+          "netgain": 0.17329517493748833,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02597695647287167,
+            "BoneLengthCVEvaluator": 0.1320705949466077
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.004707321375631156,
+          "cumulative_correction_magnitude": 0.03292001204232663,
+          "netgain": 0.172451597975984,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.004707321375631156,
+          "cumulative_correction_magnitude": 0.03292001204232663,
+          "netgain": 0.172451597975984,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.004707321375631156,
+          "cumulative_correction_magnitude": 0.03292001204232663,
+          "netgain": 0.172451597975984,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19449571878186625,
+          "fidelity_loss_protocol_b": 0.004482643632548526,
+          "cumulative_correction_magnitude": 0.031354982221462525,
+          "netgain": 0.1720825006191236,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02440416368443092,
+            "BoneLengthCVEvaluator": 0.13190785813788244
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005184788849871082,
+          "cumulative_correction_magnitude": 0.034821095474450905,
+          "netgain": 0.17006426060478438,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.025434180896103165,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005184788849871082,
+          "cumulative_correction_magnitude": 0.034821095474450905,
+          "netgain": 0.17006426060478438,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.025434180896103165,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005184788849871082,
+          "cumulative_correction_magnitude": 0.034821095474450905,
+          "netgain": 0.17006426060478438,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.025434180896103165,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.19444444444444448,
+          "fidelity_loss_protocol_b": 0.004880600655451417,
+          "cumulative_correction_magnitude": 0.035791071473310385,
+          "netgain": 0.1700414411671874,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02597695647287167,
+            "BoneLengthCVEvaluator": 0.1320705949466077
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005358068129691345,
+          "cumulative_correction_magnitude": 0.03769215490543467,
+          "netgain": 0.16919786420568306,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        }
+      ],
+      "unsafe_top_k": [
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.19444444444444448,
+          "fidelity_loss_protocol_b": 0.004229853901391228,
+          "cumulative_correction_magnitude": 0.03101892861020234,
+          "netgain": 0.17329517493748833,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02597695647287167,
+            "BoneLengthCVEvaluator": 0.1320705949466077
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.004707321375631156,
+          "cumulative_correction_magnitude": 0.03292001204232663,
+          "netgain": 0.172451597975984,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.004707321375631156,
+          "cumulative_correction_magnitude": 0.03292001204232663,
+          "netgain": 0.172451597975984,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.004707321375631156,
+          "cumulative_correction_magnitude": 0.03292001204232663,
+          "netgain": 0.172451597975984,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19449571878186625,
+          "fidelity_loss_protocol_b": 0.004482643632548526,
+          "cumulative_correction_magnitude": 0.031354982221462525,
+          "netgain": 0.1720825006191236,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02440416368443092,
+            "BoneLengthCVEvaluator": 0.13190785813788244
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005184788849871082,
+          "cumulative_correction_magnitude": 0.034821095474450905,
+          "netgain": 0.17006426060478438,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.025434180896103165,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005184788849871082,
+          "cumulative_correction_magnitude": 0.034821095474450905,
+          "netgain": 0.17006426060478438,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.025434180896103165,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005184788849871082,
+          "cumulative_correction_magnitude": 0.034821095474450905,
+          "netgain": 0.17006426060478438,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.025434180896103165,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.19444444444444448,
+          "fidelity_loss_protocol_b": 0.004880600655451417,
+          "cumulative_correction_magnitude": 0.035791071473310385,
+          "netgain": 0.1700414411671874,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02597695647287167,
+            "BoneLengthCVEvaluator": 0.1320705949466077
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.19598820485413979,
+          "fidelity_loss_protocol_b": 0.005358068129691345,
+          "cumulative_correction_magnitude": 0.03769215490543467,
+          "netgain": 0.16919786420568306,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.02590216533853826,
+            "BoneLengthCVEvaluator": 0.1181152329292526
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        }
+      ],
+      "counters": {
+        "explored": 787,
+        "pruned_strength": 490,
+        "pruned_score": 179,
+        "pruned_apply_error": 0,
+        "pruned_gate_violation": 0
+      },
+      "metadata": {
+        "target_initial_full": 0.20877825431285682,
+        "gate_scores_initial": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.5833333333333334,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.026084354816059786,
+          "BoneLengthCVEvaluator": 0.1320705949466077
+        },
+        "n_candidates_total": 787,
+        "n_safe_candidates": 787
+      }
+    },
+    {
+      "trial_id": "motion_007",
+      "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_007.npy",
+      "g2_prompt": "Produce a movement that visualizes  Input: a person's right hand moves towards the ground, the left hand, left leg, and right leg touch the ground in order.  the person turns and starts the same movement beginning with the person's left hand.",
+      "safe_best": {
+        "sequence": [],
+        "length": 0,
+        "target_delta_full": 0.0,
+        "fidelity_loss_protocol_b": 0.0,
+        "cumulative_correction_magnitude": 0.0,
+        "netgain": -0.0,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.527027027027027,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.022448131360236854,
+          "BoneLengthCVEvaluator": 0.1499890060103029
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "pass",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "pass"
+        },
+        "n_hard_violations": 0,
+        "n_soft_violations": 0,
+        "any_hard_violation": false
+      },
+      "unsafe_best": {
+        "sequence": [
+          [
+            "VelocitySmoothingTool",
+            "full_body",
+            "large5"
+          ],
+          [
+            "FootLockTool",
+            "both_feet",
+            "xlarge"
+          ]
+        ],
+        "length": 2,
+        "target_delta_full": -0.17129770173516176,
+        "fidelity_loss_protocol_b": 0.011993386283653347,
+        "cumulative_correction_magnitude": 0.0544801252135203,
+        "netgain": 0.11133077031689503,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.0,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.010422633180989066,
+          "BoneLengthCVEvaluator": 0.2217266042635739
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "skip",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "hard_violation"
+        },
+        "n_hard_violations": 1,
+        "n_soft_violations": 0,
+        "any_hard_violation": true
+      },
+      "safe_top_k": [
+        {
+          "sequence": [],
+          "length": 0,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.0,
+          "cumulative_correction_magnitude": 0.0,
+          "netgain": -0.0,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022448131360236854,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "pass",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.0003618921867546731,
+          "cumulative_correction_magnitude": 0.0014157194206620735,
+          "netgain": -0.0018094609337733654,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022372960898581363,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.0007237843735093453,
+          "cumulative_correction_magnitude": 0.0028314388413241453,
+          "netgain": -0.0036189218675467265,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022372960898581363,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": 0.002220037624170723,
+          "fidelity_loss_protocol_b": 0.0003645430446173157,
+          "cumulative_correction_magnitude": 0.0003645430446173157,
+          "netgain": -0.004042752847257302,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.5337837837837838,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.020545055728199837,
+            "BoneLengthCVEvaluator": 0.14986229172771198
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.0009409196855621488,
+          "cumulative_correction_magnitude": 0.003680870493721389,
+          "netgain": -0.004704598427810744,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022372960898581363,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.001085676560264019,
+          "cumulative_correction_magnitude": 0.00424715826198622,
+          "netgain": -0.005428382801320095,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022293780624851888,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.002220037624170723,
+          "fidelity_loss_protocol_b": 0.0006683661614088968,
+          "cumulative_correction_magnitude": 0.0017788842566550927,
+          "netgain": -0.005561868431215207,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.5337837837837838,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.020372797599402734,
+            "BoneLengthCVEvaluator": 0.14986229172771198
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.002220037624170723,
+          "fidelity_loss_protocol_b": 0.000668880025775973,
+          "cumulative_correction_magnitude": 0.0017785720250139093,
+          "netgain": -0.005564437753050588,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.5337837837837838,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.020374729702120852,
+            "BoneLengthCVEvaluator": 0.14986229172771198
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.0012304334349658894,
+          "cumulative_correction_magnitude": 0.00481344603025105,
+          "netgain": -0.006152167174829447,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022323692141734536,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.001375190309667758,
+          "cumulative_correction_magnitude": 0.005379733798515879,
+          "netgain": -0.006875951548338789,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.527027027027027,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.022406185551631073,
+            "BoneLengthCVEvaluator": 0.1499890060103029
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        }
+      ],
+      "unsafe_top_k": [
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.011993386283653347,
+          "cumulative_correction_magnitude": 0.0544801252135203,
+          "netgain": 0.11133077031689503,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010422633180989066,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012072656147118402,
+          "cumulative_correction_magnitude": 0.055885015479405414,
+          "netgain": 0.11093442099956975,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010414648139515405,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012077454823917807,
+          "cumulative_correction_magnitude": 0.05588427651417969,
+          "netgain": 0.11091042761557272,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010422633180989066,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.1713080915093966,
+          "fidelity_loss_protocol_b": 0.012128656570881885,
+          "cumulative_correction_magnitude": 0.05464395041459084,
+          "netgain": 0.11066480865498718,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010330611363649265,
+            "BoneLengthCVEvaluator": 0.2216787251124488
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012253341647365605,
+          "cumulative_correction_magnitude": 0.05729239150944479,
+          "netgain": 0.11003099349833373,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010422633180989066,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012273306339104251,
+          "cumulative_correction_magnitude": 0.057288427814839074,
+          "netgain": 0.10993117003964051,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010422633180989066,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012487954528258745,
+          "cumulative_correction_magnitude": 0.058702304056014246,
+          "netgain": 0.10885792909386804,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010414648139515405,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012528148245974815,
+          "cumulative_correction_magnitude": 0.05869257911549847,
+          "netgain": 0.10865696050528768,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010422633180989066,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "large5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012753757753592604,
+          "cumulative_correction_magnitude": 0.06011475930920319,
+          "netgain": 0.10752891296719874,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010408917853082225,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "large5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "large5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "xlarge"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.17129770173516176,
+          "fidelity_loss_protocol_b": 0.012816394116684672,
+          "cumulative_correction_magnitude": 0.06009673041615785,
+          "netgain": 0.1072157311517384,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010414648139515405,
+            "BoneLengthCVEvaluator": 0.2217266042635739
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        }
+      ],
+      "counters": {
+        "explored": 343,
+        "pruned_strength": 259,
+        "pruned_score": 239,
+        "pruned_apply_error": 0,
+        "pruned_gate_violation": 73
+      },
+      "metadata": {
+        "target_initial_full": 0.19675434674985195,
+        "gate_scores_initial": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.527027027027027,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.022448131360236854,
+          "BoneLengthCVEvaluator": 0.1499890060103029
+        },
+        "n_candidates_total": 343,
+        "n_safe_candidates": 270
+      }
+    },
+    {
+      "trial_id": "motion_008",
+      "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_008.npy",
+      "g2_prompt": "I need a motion that represents the power of a person's squats down using mainly their right leg, their left leg crosses their right leg, and then they stand back up to create a better world for future generations. Can you generate it for me?",
+      "safe_best": {
+        "sequence": [
+          [
+            "FootLockTool",
+            "both_feet",
+            "small5"
+          ]
+        ],
+        "length": 1,
+        "target_delta_full": -0.10698543463600126,
+        "fidelity_loss_protocol_b": 0.0018085929546611047,
+        "cumulative_correction_magnitude": 0.013263015000848099,
+        "netgain": 0.09794246986269574,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.0,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.011666473896109893,
+          "BoneLengthCVEvaluator": 0.06287236687974934
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "skip",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "pass"
+        },
+        "n_hard_violations": 0,
+        "n_soft_violations": 0,
+        "any_hard_violation": false
+      },
+      "unsafe_best": {
+        "sequence": [
+          [
+            "FootLockTool",
+            "both_feet",
+            "small5"
+          ]
+        ],
+        "length": 1,
+        "target_delta_full": -0.10698543463600126,
+        "fidelity_loss_protocol_b": 0.0018085929546611047,
+        "cumulative_correction_magnitude": 0.013263015000848099,
+        "netgain": 0.09794246986269574,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.0,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.011666473896109893,
+          "BoneLengthCVEvaluator": 0.06287236687974934
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "skip",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "pass"
+        },
+        "n_hard_violations": 0,
+        "n_soft_violations": 0,
+        "any_hard_violation": false
+      },
+      "safe_top_k": [
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.10698543463600126,
+          "fidelity_loss_protocol_b": 0.0018085929546611047,
+          "cumulative_correction_magnitude": 0.013263015000848099,
+          "netgain": 0.09794246986269574,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.011666473896109893,
+            "BoneLengthCVEvaluator": 0.06287236687974934
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0019620799601522266,
+          "cumulative_correction_magnitude": 0.013466929496180585,
+          "netgain": 0.09719342474014586,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010549044628786102,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0019620799601522266,
+          "cumulative_correction_magnitude": 0.013467985681838431,
+          "netgain": 0.09719342474014586,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010549044628786102,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.10698543463600126,
+          "fidelity_loss_protocol_b": 0.0020398235618382327,
+          "cumulative_correction_magnitude": 0.01427231262927176,
+          "netgain": 0.09678631682681009,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.011629813041303685,
+            "BoneLengthCVEvaluator": 0.06287236687974934
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.10698543463600126,
+          "fidelity_loss_protocol_b": 0.0020398235618382327,
+          "cumulative_correction_magnitude": 0.01427231262927176,
+          "netgain": 0.09678631682681009,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.011629813041303685,
+            "BoneLengthCVEvaluator": 0.06287236687974934
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0021612160613747695,
+          "cumulative_correction_magnitude": 0.014475554856423984,
+          "netgain": 0.09619774423403316,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0021612160613747695,
+          "cumulative_correction_magnitude": 0.014475554856423984,
+          "netgain": 0.09619774423403316,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0021612160613747695,
+          "cumulative_correction_magnitude": 0.014476611042081828,
+          "netgain": 0.09619774423403316,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.002161275490183,
+          "cumulative_correction_magnitude": 0.01447392433921725,
+          "netgain": 0.096197447089992,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.002161275490183,
+          "cumulative_correction_magnitude": 0.014474980524875097,
+          "netgain": 0.096197447089992,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        }
+      ],
+      "unsafe_top_k": [
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.10698543463600126,
+          "fidelity_loss_protocol_b": 0.0018085929546611047,
+          "cumulative_correction_magnitude": 0.013263015000848099,
+          "netgain": 0.09794246986269574,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.011666473896109893,
+            "BoneLengthCVEvaluator": 0.06287236687974934
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0019620799601522266,
+          "cumulative_correction_magnitude": 0.013466929496180585,
+          "netgain": 0.09719342474014586,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010549044628786102,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0019620799601522266,
+          "cumulative_correction_magnitude": 0.013467985681838431,
+          "netgain": 0.09719342474014586,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010549044628786102,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.10698543463600126,
+          "fidelity_loss_protocol_b": 0.0020398235618382327,
+          "cumulative_correction_magnitude": 0.01427231262927176,
+          "netgain": 0.09678631682681009,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.011629813041303685,
+            "BoneLengthCVEvaluator": 0.06287236687974934
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.10698543463600126,
+          "fidelity_loss_protocol_b": 0.0020398235618382327,
+          "cumulative_correction_magnitude": 0.01427231262927176,
+          "netgain": 0.09678631682681009,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.011629813041303685,
+            "BoneLengthCVEvaluator": 0.06287236687974934
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0021612160613747695,
+          "cumulative_correction_magnitude": 0.014475554856423984,
+          "netgain": 0.09619774423403316,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0021612160613747695,
+          "cumulative_correction_magnitude": 0.014475554856423984,
+          "netgain": 0.09619774423403316,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.0021612160613747695,
+          "cumulative_correction_magnitude": 0.014476611042081828,
+          "netgain": 0.09619774423403316,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.002161275490183,
+          "cumulative_correction_magnitude": 0.01447392433921725,
+          "netgain": 0.096197447089992,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.107003824540907,
+          "fidelity_loss_protocol_b": 0.002161275490183,
+          "cumulative_correction_magnitude": 0.014474980524875097,
+          "netgain": 0.096197447089992,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.010524092454032496,
+            "BoneLengthCVEvaluator": 0.06272185063909735
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        }
+      ],
+      "counters": {
+        "explored": 1876,
+        "pruned_strength": 1065,
+        "pruned_score": 0,
+        "pruned_apply_error": 0,
+        "pruned_gate_violation": 0
+      },
+      "metadata": {
+        "target_initial_full": 0.12071025771315835,
+        "gate_scores_initial": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.3177083333333333,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.011718039390142107,
+          "BoneLengthCVEvaluator": 0.07379582290711201
+        },
+        "n_candidates_total": 1876,
+        "n_safe_candidates": 1876
+      }
+    },
+    {
+      "trial_id": "motion_028",
+      "sample_path": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\external_assets\\g2_generated_v1\\motion_028.npy",
+      "g2_prompt": "Create a motion for the caption: a person takes a step forward, squats down, places their left hand on the ground in front of them, moves their hand slightly counter counterclockwise then stands up.",
+      "safe_best": {
+        "sequence": [],
+        "length": 0,
+        "target_delta_full": 0.0,
+        "fidelity_loss_protocol_b": 0.0,
+        "cumulative_correction_magnitude": 0.0,
+        "netgain": -0.0,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.3385416666666667,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.009525288253688964,
+          "BoneLengthCVEvaluator": 0.06583356238627906
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "pass",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "pass"
+        },
+        "n_hard_violations": 0,
+        "n_soft_violations": 0,
+        "any_hard_violation": false
+      },
+      "unsafe_best": {
+        "sequence": [
+          [
+            "FootLockTool",
+            "both_feet",
+            "medium5"
+          ]
+        ],
+        "length": 1,
+        "target_delta_full": -0.1077906763986037,
+        "fidelity_loss_protocol_b": 0.003066690666177733,
+        "cumulative_correction_magnitude": 0.022489064885303375,
+        "netgain": 0.09245722306771503,
+        "gate_scores": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.0,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.009478105438061638,
+          "BoneLengthCVEvaluator": 0.12391881515073824
+        },
+        "gate_decisions": {
+          "PenetrateEvaluator": "pass",
+          "FloatEvaluator": "skip",
+          "SkateEvaluator": "pass",
+          "JerkSpikeEvaluator": "pass",
+          "BoneLengthCVEvaluator": "hard_violation"
+        },
+        "n_hard_violations": 1,
+        "n_soft_violations": 0,
+        "any_hard_violation": true
+      },
+      "safe_top_k": [
+        {
+          "sequence": [],
+          "length": 0,
+          "target_delta_full": 0.0,
+          "fidelity_loss_protocol_b": 0.0,
+          "cumulative_correction_magnitude": 0.0,
+          "netgain": -0.0,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.3385416666666667,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009525288253688964,
+            "BoneLengthCVEvaluator": 0.06583356238627906
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "pass",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.0004356021786765736,
+          "cumulative_correction_magnitude": 0.0016618811860993968,
+          "netgain": -0.0015620879189264724,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.3385416666666667,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009480043122900742,
+            "BoneLengthCVEvaluator": 0.06427133110316306
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": 0.0017335281396177182,
+          "fidelity_loss_protocol_b": 0.00013157901938520017,
+          "cumulative_correction_magnitude": 0.00013157901938520017,
+          "netgain": -0.0023914232365437192,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.34375,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.008577394670577625,
+            "BoneLengthCVEvaluator": 0.06582703603883515
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.0008712043573531475,
+          "cumulative_correction_magnitude": 0.003323762372198793,
+          "netgain": -0.003740098812309342,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.3385416666666667,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009478333243271,
+            "BoneLengthCVEvaluator": 0.06427133110316306
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.001118214724369182,
+          "fidelity_loss_protocol_b": 0.0005430342931432086,
+          "cumulative_correction_magnitude": 0.0017930871002765103,
+          "netgain": -0.0038333861900852247,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.34375,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.008562287379771062,
+            "BoneLengthCVEvaluator": 0.06426184827572157
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.001118214724369182,
+          "fidelity_loss_protocol_b": 0.0005431480655681566,
+          "cumulative_correction_magnitude": 0.0017928724520843687,
+          "netgain": -0.003833955052209965,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.34375,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.008562287379771062,
+            "BoneLengthCVEvaluator": 0.06426184827572157
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.0011325656645590917,
+          "cumulative_correction_magnitude": 0.004320891083858432,
+          "netgain": -0.005046905348339063,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.3385416666666667,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009480043122900742,
+            "BoneLengthCVEvaluator": 0.06427133110316306
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.0006159229744563954,
+          "fidelity_loss_protocol_b": 0.0013068065360297221,
+          "cumulative_correction_magnitude": 0.00498564355829819,
+          "netgain": -0.005918109705692215,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.3385416666666667,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009502168625900751,
+            "BoneLengthCVEvaluator": 0.06427133110316306
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.001118214724369182,
+          "fidelity_loss_protocol_b": 0.000977470523614063,
+          "cumulative_correction_magnitude": 0.003454700289630887,
+          "netgain": -0.006005567342439497,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.34375,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.00856215045509498,
+            "BoneLengthCVEvaluator": 0.06426184827572157
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": 0.001118214724369182,
+          "fidelity_loss_protocol_b": 0.00097765663628362,
+          "cumulative_correction_magnitude": 0.003454165884783539,
+          "netgain": -0.0060064979057872815,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.34375,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.008562149578371023,
+            "BoneLengthCVEvaluator": 0.06426184827572157
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "pass"
+          },
+          "n_hard_violations": 0,
+          "n_soft_violations": 0,
+          "any_hard_violation": false
+        }
+      ],
+      "unsafe_top_k": [
+        {
+          "sequence": [
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 1,
+          "target_delta_full": -0.1077906763986037,
+          "fidelity_loss_protocol_b": 0.003066690666177733,
+          "cumulative_correction_magnitude": 0.022489064885303375,
+          "netgain": 0.09245722306771503,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009478105438061638,
+            "BoneLengthCVEvaluator": 0.12391881515073824
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.10779221612230581,
+          "fidelity_loss_protocol_b": 0.0031618306775532596,
+          "cumulative_correction_magnitude": 0.022620312381789808,
+          "netgain": 0.09198306273453952,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.008523311887161806,
+            "BoneLengthCVEvaluator": 0.12392432751522504
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.1077906763986037,
+          "fidelity_loss_protocol_b": 0.003502292844854307,
+          "cumulative_correction_magnitude": 0.024150946071402772,
+          "netgain": 0.09027921217433216,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009462611235436024,
+            "BoneLengthCVEvaluator": 0.12391881515073824
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.10779221612230581,
+          "fidelity_loss_protocol_b": 0.0035732859513112683,
+          "cumulative_correction_magnitude": 0.024281820462681118,
+          "netgain": 0.08992578636574947,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.00849284512210532,
+            "BoneLengthCVEvaluator": 0.12392432751522504
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.10779221612230581,
+          "fidelity_loss_protocol_b": 0.0035733997237362156,
+          "cumulative_correction_magnitude": 0.024281605814488974,
+          "netgain": 0.08992521750362474,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.00849284512210532,
+            "BoneLengthCVEvaluator": 0.12392432751522504
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.1077906763986037,
+          "fidelity_loss_protocol_b": 0.003937895023530882,
+          "cumulative_correction_magnitude": 0.02581282725750217,
+          "netgain": 0.08810120128094928,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009457962247573675,
+            "BoneLengthCVEvaluator": 0.12391881515073824
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.10779221612230581,
+          "fidelity_loss_protocol_b": 0.004007722181782122,
+          "cumulative_correction_magnitude": 0.025943433652035493,
+          "netgain": 0.0877536052133952,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.00849505483434173,
+            "BoneLengthCVEvaluator": 0.12392432751522504
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "VelocitySmoothingTool",
+              "full_body",
+              "xsmall"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.10779221612230581,
+          "fidelity_loss_protocol_b": 0.0040079082944516784,
+          "cumulative_correction_magnitude": 0.025942899247188147,
+          "netgain": 0.08775267465004742,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.008493938254746808,
+            "BoneLengthCVEvaluator": 0.12392432751522504
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "small5"
+            ],
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "xsmall"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 3,
+          "target_delta_full": -0.1077906763986037,
+          "fidelity_loss_protocol_b": 0.004199256330736825,
+          "cumulative_correction_magnitude": 0.026809955969161806,
+          "netgain": 0.08679439474491957,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009457969240166527,
+            "BoneLengthCVEvaluator": 0.12391881515073824
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        },
+        {
+          "sequence": [
+            [
+              "BoneProjectionTool",
+              "right_arm",
+              "medium5"
+            ],
+            [
+              "FootLockTool",
+              "both_feet",
+              "medium5"
+            ]
+          ],
+          "length": 2,
+          "target_delta_full": -0.1077906763986037,
+          "fidelity_loss_protocol_b": 0.004373497202207455,
+          "cumulative_correction_magnitude": 0.027474708443601566,
+          "netgain": 0.08592319038756642,
+          "gate_scores": {
+            "PenetrateEvaluator": 0.0,
+            "FloatEvaluator": 0.0,
+            "SkateEvaluator": 0.0,
+            "JerkSpikeEvaluator": 0.009460495354056938,
+            "BoneLengthCVEvaluator": 0.12391881515073824
+          },
+          "gate_decisions": {
+            "PenetrateEvaluator": "pass",
+            "FloatEvaluator": "skip",
+            "SkateEvaluator": "pass",
+            "JerkSpikeEvaluator": "pass",
+            "BoneLengthCVEvaluator": "hard_violation"
+          },
+          "n_hard_violations": 1,
+          "n_soft_violations": 0,
+          "any_hard_violation": true
+        }
+      ],
+      "counters": {
+        "explored": 148,
+        "pruned_strength": 140,
+        "pruned_score": 118,
+        "pruned_apply_error": 0,
+        "pruned_gate_violation": 81
+      },
+      "metadata": {
+        "target_initial_full": 0.12425344740949401,
+        "gate_scores_initial": {
+          "PenetrateEvaluator": 0.0,
+          "FloatEvaluator": 0.3385416666666667,
+          "SkateEvaluator": 0.0,
+          "JerkSpikeEvaluator": 0.009525288253688964,
+          "BoneLengthCVEvaluator": 0.06583356238627906
+        },
+        "n_candidates_total": 148,
+        "n_safe_candidates": 67
+      }
+    }
+  ]
+}
