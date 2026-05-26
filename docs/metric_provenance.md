@@ -140,49 +140,71 @@ ArtifactRouter 의 모든 metric 을 다음 **3 Category** 로 분류:
 | **용도** | temporal smoothness diagnostic |
 | **Caveat** | mean acceleration norm 의 normalization 차이 (per-joint 평균 vs total) — 외부 공개 시 정확한 formula 인용 의무. |
 
-### 3-5. Physical Constraint Gate Evaluator Candidates (Step C, 2026-05-26 신설)
+### 3-5. PhysicalGateV0 — 5 Evaluator (Safe Orchestration Layer B, 2026-05-26 revised)
 
-본 절 의 evaluator 는 [`current_research_position.md §3-6`](current_research_position.md) 의 Physical Constraint Gate 의 의무 mechanism. **NetGain 의 weight term 이 아닌 hard gate 의 decision (accept / repair / rollback / STOP)** 로 사용.
+본 절 의 evaluator 는 [`current_research_position.md §0-4`](current_research_position.md) 의 Safe Orchestration architecture 의 **Evaluator Layer B (Physical Constraint Gate)**. **NetGain 의 weight term 이 아닌 hard gate 의 decision (accept / repair / rollback / STOP)** 로 사용.
 
-#### 3-5-1. BoneLengthViolation (gate)
+**Calibration approach** (사용자 directive): HumanML3D clean N=500~1000 sample 의 distribution → p50/p90/p95/p99 추출 → unsafe threshold = p99 (또는 p95 보수적).
+
+**Gate decision rule** (예):
+```python
+if Penetrate_after > max(Penetrate_before + eps, CleanP99_Penetrate):
+    rollback
+if BoneLengthCV_after > max(BoneLengthCV_before + eps, CleanP99_BoneCV):
+    rollback
+if JerkSpike_after > max(JerkSpike_before * 1.05, CleanP99_Jerk):
+    rollback
+```
+
+#### 3-5-1. PenetrateEvaluator (gate)
 
 | Item | Value |
 |---|---|
-| **Source (related, 2020+)** | **MDM** (Tevet et al. 2023, **ICLR**) — geometric loss 의 별도 축 처리. **ACTOR** (Petrovich et al. 2021, **ICCV**) — skeleton consistency. |
-| **본 프로젝트 변형** | per-bone length 의 frame-to-frame 상대 변화 (clean reference 또는 first frame 대비). 기존 BoneLengthEvaluator 의 strict 변형 — gate threshold 적용. |
-| **분류** | **B. variant** (gate-form) |
-| **용도** | Step C/D 의 physical gate decision 의무. |
-| **Caveat** | gate threshold (예: 5% 변화 이상이면 violation) 의 결정은 Step D 의 ablation 의무. |
-
-#### 3-5-2. GroundPenetration (gate)
-
-| Item | Value |
-|---|---|
-| **Source (recent SOTA, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — "Physics-Guided Human Motion Diffusion Model". ground penetration 의 physics-guided projection. |
-| **본 프로젝트 변형** | foot joint 의 Y < ground threshold 의 ratio (per-frame, per-foot). 기존 FootFloatingEvaluator (Y > threshold) 의 반대 axis. |
+| **Source (recent SOTA, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — "Physics-Guided Human Motion Diffusion Model". ground penetration 의 physics-guided projection. **HuMoR** (Rempe et al. 2021, **ICCV**) — ground-aware fitting. |
+| **본 프로젝트 정의** | foot/ankle joint Y < ground_y - penetrate_eps 의 ratio (per-frame, per-foot). |
 | **분류** | **B. variant** |
-| **용도** | Step C/D 의 physical gate decision 의무. |
-| **Caveat** | ground threshold (예: -0.02m) + minimum frame count 의 ablation 의무. |
+| **용도** | Layer B gate decision. accept/rollback boundary 의 정량 기준. |
+| **Caveat** | ground_y estimator (Skeleton Normalizer 또는 motion 의 minimum Y 의 heuristic) 의 정확성 의존. |
 
-#### 3-5-3. ContactConsistency (gate)
-
-| Item | Value |
-|---|---|
-| **Source (recent, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — foot contact + sliding 의 unified handling. **HumanML3D** (Guo et al. 2022, **CVPR**) — contact label 추정. |
-| **본 프로젝트 변형** | foot joint 의 velocity ≈ 0 when in contact (estimator 의무). Item 6 의 contact estimator 결합 의무. |
-| **분류** | **B. variant** |
-| **용도** | Step C/D 의 physical gate decision 의무. |
-| **Caveat** | contact estimator 도입 prerequisite — 현재 FootFloating proxy 의 한계 (부록 Z) 의 정식 해소. |
-
-#### 3-5-4. JerkSpike (gate)
+#### 3-5-2. FloatEvaluator (gate)
 
 | Item | Value |
 |---|---|
-| **Source (recent, 2020+)** | **MDM** (Tevet et al. 2023, **ICLR**) — acceleration / velocity smoothness loss spirit. Flash & Hogan 1985 (classical) — minimum-jerk principle (배경). |
-| **본 프로젝트 변형** | acceleration 의 95-th percentile (per-joint, normalized). 기존 VelocityJitter (mean) 의 spike-only 변형. |
+| **Source (recent, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — foot floating. **MDM** (Tevet et al. 2023, **ICLR**) — foot contact loss. |
+| **본 프로젝트 정의** | contact 추정 frame 중 foot height > float_threshold 의 ratio. 기존 FootFloatingEvaluator 의 gate-form (threshold 의 의미 정정 + clean calibration 의무). |
+| **분류** | **B. variant (gate-form)** |
+| **용도** | Layer B gate decision. |
+| **Caveat** | contact heuristic 의 robust 함이 prerequisite (현재 velocity_based v1.2.0). Item 6 contact estimator 도입 후 정식 보강. |
+
+#### 3-5-3. SkateEvaluator (gate)
+
+| Item | Value |
+|---|---|
+| **Source (recent SOTA, 2020+)** | **PhysDiff** (Yuan et al. 2023, **ICCV**) — foot sliding metric. **MDM** (Tevet et al. 2023, **ICLR**) — foot skating evaluation. |
+| **본 프로젝트 정의** | contact 추정 frame 중 foot horizontal velocity > skate_threshold (예: 0.05 m/frame) 의 ratio. |
 | **분류** | **B. variant** |
-| **용도** | Step C/D 의 physical gate decision 의무. spike 가 mean 보다 over-modification 식별에 적합. |
-| **Caveat** | percentile threshold 의 결정 ablation 의무. |
+| **용도** | Layer B gate decision. foot sliding artifact 의 정량 (foot floating 과 orthogonal 차원). |
+| **Caveat** | skate threshold 의 walking 의 stance phase 와 swing phase 의 boundary 의존 — clean calibration 의무. |
+
+#### 3-5-4. JerkSpikeEvaluator (gate)
+
+| Item | Value |
+|---|---|
+| **Source (recent, 2020+)** | **MDM** (Tevet et al. 2023, **ICLR**) — velocity smoothness loss. **VIBE** (Kocabas et al. 2020, **CVPR**) — temporal smoothness baseline. **TCMR** (Choi et al. 2021, **CVPR**) — acceleration/jerk metric 의 정식 formulation. |
+| **본 프로젝트 정의** | per-joint acceleration norm 의 p95 (motion-wide, normalized). 기존 VelocityJitterEvaluator (mean) 의 spike-only (p95) 변형. |
+| **분류** | **B. variant** |
+| **용도** | Layer B gate decision. spike 가 mean 보다 over-modification 식별 적합. |
+| **Caveat** | normalization (per-joint vs total) 의 정확한 formula — 외부 공개 시 명시. |
+
+#### 3-5-5. BoneLengthCVEvaluator (gate)
+
+| Item | Value |
+|---|---|
+| **Source (recent, 2020+)** | **HuMoR** (Rempe et al. 2021, **ICCV**) — bone length consistency. **MDM** (Tevet et al. 2023, **ICLR**) — geometric loss. **ACTOR** (Petrovich et al. 2021, **ICCV**) — skeleton constraint spirit. |
+| **본 프로젝트 정의** | per-bone length 의 coefficient of variation (std/mean) across frames, max over bones. 기존 BoneLengthEvaluator (mean variation) 의 gate-form (CV-based + max-bone). |
+| **분류** | **B. variant (gate-form)** |
+| **용도** | Layer B gate decision. bone stretch/shrink 의 정량. |
+| **Caveat** | CV (std/mean) 의 robust 함이 mean=0 의 case 에서 한계 (실제로는 bone length 가 0 인 case 없음). |
 
 ---
 
@@ -295,7 +317,10 @@ ArtifactRouter 의 모든 metric 을 다음 **3 Category** 로 분류:
 - **Loper et al. 2015**, "SMPL: A Skinned Multi-Person Linear Model", **ACM TOG 2015** — anatomical joint limits.
 - **Flash & Hogan 1985**, "The Coordination of Arm Movements: An Experimentally Confirmed Mathematical Model", **Journal of Neuroscience 1985** — minimum-jerk principle.
 - **Lee et al. 2019**, "Dancing to Music", **NeurIPS 2019** — Diversity in motion synthesis.
-- **Yuan et al. 2023**, "PhysDiff: Physics-Guided Human Motion Diffusion Model", **ICCV 2023** — ground penetration / floating / foot sliding 의 physics-guided projection. Step C physical gate motivation (`current_research_position.md §3-6`, `§3-5-2/3-5-3`).
+- **Yuan et al. 2023**, "PhysDiff: Physics-Guided Human Motion Diffusion Model", **ICCV 2023** — ground penetration / floating / foot sliding 의 physics-guided projection. PhysicalGateV0 의 Penetrate / Float / Skate 의 직접 motivation.
+- **Rempe et al. 2021**, "HuMoR: 3D Human Motion Model for Robust Pose Estimation", **ICCV 2021** — ground-/contact-aware fitting + bone length consistency. PhysicalGateV0 의 BoneLengthCV + contact-aware Penetrate/Float 의 motivation.
+- **Kocabas et al. 2020**, "VIBE: Video Inference for Human Body Pose and Shape Estimation", **CVPR 2020** — temporal smoothness 평가 baseline. PhysicalGateV0 의 JerkSpike 의 motivation.
+- **Choi et al. 2021**, "Beyond Static Features for Temporally Consistent 3D Human Pose" (TCMR), **CVPR 2021** — acceleration/jerk metric 의 정식 formulation. PhysicalGateV0 의 JerkSpike 의 보조 reference.
 - **Guo et al. 2024**, "MoMask: Generative Masked Modeling of 3D Human Motions", **CVPR 2024** — HumanML3D standard metric (FID/R-Prec/MM-Dist/Diversity) 의 최신 application. Step E (Standard Metric Integration) reference.
 - **Zhang et al. 2022**, "MotionDiffuse: Text-Driven Human Motion Generation with Diffusion Model" — jerk / foot artifact.
 - **PP-Motion 2025**, "PP-Motion: Physical-Perceptual Fidelity Evaluation for Human Motion Generation", **ACM MM 2025** — foot artifact unified evaluation.

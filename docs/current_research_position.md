@@ -49,16 +49,91 @@
 
 ### 0-3. 본 framing 의 reference papers (2020+ peer-reviewed top-tier, AGENTS.md §3-22 의무)
 
-본 safe orchestration framing 의 정식 정량 motivation:
+본 safe orchestration framing 의 정식 정량 motivation — **7 papers** (revised 2026-05-26):
 
 | Ref | 빌려온 개념 | 본 프로젝트 적용 |
 |---|---|---|
-| **MDM** (Tevet et al. 2023, **ICLR**) — [openreview](https://openreview.net/forum?id=SJ1kSyO2jwu) | motion generation 에서 geometric loss / velocity / foot contact 의 **별도 축** 처리 | NetGain 의 ArtifactReduction / FidelityLoss 분리 (Protocol A/B) 의 spirit 일관. Physical gate evaluator (BoneLength / JerkSpike) 가 fidelity-orthogonal 차원. |
-| **PhysDiff** (Yuan et al. 2023, **ICCV**) — [CVF](https://openaccess.thecvf.com/content/ICCV2023/html/Yuan_PhysDiff_Physics-Guided_Human_Motion_Diffusion_Model_ICCV_2023_paper.html) | floating / foot sliding / ground penetration 의 **physics-guided projection**. Physical plausibility 는 scalar reward 안 넣고 **별도 constraint / guidance** 로 처리. | §3-6 Physical Constraint Gate 의 4 evaluator (BoneLengthViolation / GroundPenetration / ContactConsistency / JerkSpike) 의 직접 motivation. NetGain reward weight 가 아닌 **hard gate** 로 분리하는 결정 의 근거. |
+| **MDM** (Tevet et al. 2023, **ICLR**) — [openreview](https://openreview.net/forum?id=SJ1kSyO2jwu) | motion generation 에서 geometric loss / velocity / foot contact 의 **별도 축** 처리 | NetGain 의 ArtifactReduction / FidelityLoss 분리 (Protocol A/B) 의 spirit 일관. Physical gate evaluator (BoneLengthCV / JerkSpike) 가 fidelity-orthogonal 차원. |
+| **PhysDiff** (Yuan et al. 2023, **ICCV**) — [CVF](https://openaccess.thecvf.com/content/ICCV2023/html/Yuan_PhysDiff_Physics-Guided_Human_Motion_Diffusion_Model_ICCV_2023_paper.html) | floating / foot sliding / ground penetration 의 **physics-guided projection**. Physical plausibility 는 scalar reward 안 넣고 **별도 constraint / guidance** 로 처리. | §3-6 PhysicalGateV0 의 PenetrateEvaluator / FloatEvaluator / SkateEvaluator 의 직접 motivation. NetGain reward weight 가 아닌 **hard gate** 로 분리하는 결정 의 근거. |
+| **HuMoR** (Rempe et al. 2021, **ICCV**) — [project](https://geometry.stanford.edu/projects/humor/) | ground-/contact-aware fitting + bone length consistency | §3-6 의 BoneLengthCVEvaluator 의 직접 motivation + Penetrate / Float 의 contact-aware spirit. |
+| **VIBE** (Kocabas et al. 2020, **CVPR**) — [CVF](https://openaccess.thecvf.com/content_CVPR_2020/html/Kocabas_VIBE_Video_Inference_for_Human_Body_Pose_and_Shape_Estimation_CVPR_2020_paper.html) | temporal smoothness 평가 의 baseline (jerk-based) | §3-6 의 JerkSpikeEvaluator 의 직접 motivation. |
+| **TCMR** (Choi et al. 2021, **CVPR**) — [CVF PDF](https://openaccess.thecvf.com/content/CVPR2021/papers/Choi_Beyond_Static_Features_for_Temporally_Consistent_3D_Human_Pose_and_CVPR_2021_paper.pdf) | acceleration / jerk metric 의 정식 formulation (temporal consistency) | §3-6 의 JerkSpikeEvaluator 의 보조 정량 reference. |
 | **HumanML3D** (Guo et al. 2022, **CVPR**) — [CVF](https://openaccess.thecvf.com/content/CVPR2022/html/Guo_Generating_Diverse_and_Natural_3D_Human_Motions_From_Text_CVPR_2022_paper.html) | **FID, R-Precision, MM-Dist, Diversity, Multimodality** standard metrics 의 motion quality 평가. Artifact score 만으로 최종 품질 단정 안 함. | Step E (Standard Metric Integration) 의 직접 의무 — 외부 공개 prerequisite. NetGain (Category C) ≠ 최종 quality 의 정식 근거. |
 | **MoMask** (Guo et al. 2024, **CVPR**) — [CVF PDF](https://openaccess.thecvf.com/content/CVPR2024/papers/Guo_MoMask_Generative_Masked_Modeling_of_3D_Human_Motions_CVPR_2024_paper.pdf) | HumanML3D standard metric 의 최신 application — generative motion SOTA pipeline. FID / R-Prec / MM-Dist / Diversity 의 의무 column. | Step E 의 reference implementation (HumanML3D official evaluator 재사용 가능성). |
 
-**4 papers 의 통합 message**: motion quality 의 정식 평가 = (a) standard metric (FID/R-Prec/MM-Dist/Diversity) + (b) physical plausibility (foot contact/ground penetration/bone length) + (c) generation diversity. NetGain (Category C internal routing reward) 단독 인용 = misalignment with field-standard evaluation framework.
+**7 papers 의 통합 message**: motion quality 의 정식 평가 = (a) standard metric (FID/R-Prec/MM-Dist/Diversity) + (b) physical plausibility (penetrate/float/skate/jerk/bone consistency) + (c) generation diversity. NetGain (Category C internal routing reward) 단독 인용 = misalignment with field-standard evaluation framework.
+
+### 0-4. Safe Orchestration Architecture — 정식 정의 (2026-05-26 신설)
+
+본 §0 의 framing 이 **architecture diagram** 으로 명시되며, 외부 공개 (논문·발표·README) 의 architecture figure reference 의무.
+
+```
+[Generator Output]
+    G1 (diffusion, future) / G2 (MotionGPT, current)
+            ↓
+[Canonical Motion Normalizer]
+    SMPL-22, root-relative, fps=20  (AGENTS.md §3-1)
+            ↓
+[Evaluator Layer]
+    A. Artifact Evaluators        (current: FootFloating / BoneLength / VelocityJitter)
+    B. Physical Constraint Gate   (new: Penetrate / Float / Skate / JerkSpike / BoneLengthCV)
+    C. Final Quality Metrics      (future: FID / R-Precision / MM-Dist / Diversity / Multimodality + perceptual)
+            ↓
+[Artifact Router / Policy]
+    state  = artifact_scores + physical_scores + prev_action + remaining_budget
+    action = STOP or correction_tool × strength  (16 actions, AGENTS.md §3-21)
+            ↓
+[Correction Candidate]
+    FootLock / BoneProjection / VelocitySmoothing / future repair tools
+            ↓
+[Physical Gate Decision]
+    if safe       → accept
+    elif repair   → physical refinement agent (strength↓ or alt-tool)
+    else          → rollback or STOP
+            ↓
+[Closed-loop Re-evaluation]
+    repeat until STOP / budget / no improvement  (AGENTS.md §3-4)
+```
+
+**Role separation table** (사용자 directive 박제):
+
+| 구성 | 역할 | 연구적 의미 |
+|---|---|---|
+| Artifact Evaluator | 국소 artifact 감지 | "어디가 문제인가?" |
+| NetGain | internal routing reward (Category C) | "개입할 가치가 있는가?" |
+| Physical Gate | 안전성 필터 (post-correction) | "고쳤지만 망가지지 않았는가?" |
+| Orchestrator / RL Policy | action sequence 선택 | "무엇을, 얼마나, 몇 번?" |
+| Standard Metrics | 최종 품질 평가 (Category A) | "전체 motion quality 가 유지/개선됐는가?" |
+| Perceptual Rating | 사람 판단 검증 | "눈으로 봐도 납득 가능한가?" |
+
+### 0-5. RL-2 의 새 Objective — Constrained Optimization (2026-05-26 신설)
+
+기존: `maximize NetGain` → **수정**: **Constrained Optimization**:
+
+```
+maximize    ArtifactReduction - cost
+subject to  Penetrate     <= CleanP99_Penetrate     + eps
+            Float         <= CleanP99_Float         + eps
+            Skate         <= CleanP99_Skate         + eps
+            JerkSpike     <= CleanP99_JerkSpike     * 1.05
+            BoneLengthCV  <= CleanP99_BoneLengthCV  + eps
+            FidelityLoss  <= max_fidelity_loss
+```
+
+**Penalty reward form (alternative formulation)**:
+
+```
+R = + ArtifactReduction
+    - λ₁ FidelityLoss
+    - λ₂ CorrectionMagnitude
+    - λ₃ ToolCallCost
+    - λ₄ PhysicalViolation       (gate violation count or magnitude)
+    - λ₅ RollbackPenalty         (gate-triggered rollback count)
+```
+
+**논문 표현 권장** (사용자 directive): **constrained optimization 쪽이 더 안전**.
+- "NetGain 을 올렸다" → claim weak.
+- **"unsafe correction 을 배제하면서 artifact intervention 을 선택했다"** → claim strong.
 
 ### 0-3. 본 framing 의 외부 공개 의무 (AGENTS.md §3-17 일관)
 
