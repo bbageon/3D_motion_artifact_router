@@ -19,78 +19,25 @@
 
 ## 1. 시스템 컨텍스트
 
-본 프로젝트는 **ArtifactRouter** — 기존/미래 motion generator (MotionGPT·T2M-GPT·MDM·MLD 등) 의 출력 skeleton motion을 입력으로 받아, artifact 종류·body part·frame range 에 따라 적절한 evaluator 와 correction tool 을 선택·조합·재평가 하는 generator-agnostic, tool-extensible orchestration harness 다.
+본 프로젝트는 **ArtifactRouter** — 외부 motion generator (MotionGPT·T2M-GPT·MDM·MLD 등) 의 output skeleton motion 위 에서 **canonicalized artifact state → correction action 매핑** 을 routing 문제로 정식화 한 **generator-agnostic, tool-extensible decision system**. 새 generator / 새 단일 correction algorithm 개발 안 함. cost·risk (NetGain 의 FidelityLoss/CorrectionMagnitude/ToolCallCost) 고려 + STOP (abstain) action 포함.
 
-본 연구는 새로운 motion generator를 개발하지 않는다. 새로운 단일 correction algorithm 도 개발하지 않는다. **artifact 상태 → correction action 매핑을 학습 가능한 routing 문제로 정식화**해 fixed post-processing 또는 monolithic refinement 대비 net gain 우위를 정량 입증하는 것이 본 연구의 핵심 contribution.
+연구 우선순위: (1) 연구 정직성 (가설 사전 등록·HARKing 차단·negative result 보존·우회 ledger), (2) 재현성 (시드·환경·산출물 버전·tool call trace), (3) 비교 가능성 (G1/G2 quality-tier 분리), (4) 효율성, (5) 편의성.
 
-정확히는, ArtifactRouter 는 **generator 를 개선하는 모델이 아니라 canonicalized motion artifact state 위에서 cost · risk 를 고려해 correction intervention 또는 STOP (abstain) 을 선택하는 tool-extensible decision system** 이다. 본 연구의 가설들은 본 decision system 이 다음 4 차원을 단계적으로 검증한다:
+**핵심 가설** (상세 [`evals/hypotheses/`](evals/hypotheses/) 사전 등록, 본 §1 의 list 는 등록 가설 과 동기화):
 
-1. **fixed intervention 보다 나은가** — [H-2026-204](evals/hypotheses/H-2026-204.md) (RQ1+RQ2).
-2. **학습 가능한가** — [H-2026-205](evals/hypotheses/H-2026-205.md) (RQ3, contextual-bandit / RL-style).
-3. **generator shift 하에서도 유지되는가** — [H-2026-206](evals/hypotheses/H-2026-206.md) (RQ4, G1↔G2).
-4. **high-quality input 에서 abstain / no-harm 을 만족하는가** — [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary).
+- [H-2026-204](evals/hypotheses/H-2026-204.md) (RQ1+RQ2, fixed post-processing 대비 효과 + closed-loop trade-off 관리).
+- [H-2026-205](evals/hypotheses/H-2026-205.md) (RQ3, supervised / contextual-bandit selector vs rule-based net gain).
+- [H-2026-206](evals/hypotheses/H-2026-206.md) (RQ4, generator-agnostic G1↔G2 transfer).
+- [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary, high-quality input no-harm).
+- 종결 가설 (참고): H-2026-200/201/202 — 2026-05-15 supersede (G3 scope 제외 정정).
 
-`cost` 와 `risk` 는 NetGain (명세 §9.4) 의 negative term (FidelityLoss · CorrectionMagnitude · ToolCallCost) 으로, **STOP** 은 closed-loop refinement 의 종료 action 으로 측정된다. tool registry 가 확장될 때 (`correction_tools/` 신규 추가) 본 decision system 의 action space 가 자동 확장되는 것이 **tool-extensible** 의 의미이다.
+가설 본문 수정·status 전환 = [§3-11](#3-11-가설-사전-등록과-보수적-수정) 의 사용자 승인 게이트.
 
-연구의 우선순위는 (1) 연구 정직성 (가설 사전 등록·HARKing 차단·negative result 보존·우회 ledger 의무), (2) 재현성 (시드·환경·산출물 버전·tool call trace 추적), (3) 비교 가능성 (G1/G2 generator quality-tier 분리·동일 metric 사전), (4) 효율성 (refinement stage FLOPs·tool call count·wall-clock), (5) 편의성 순이다.
+**기술 스택**: Python 3.10 (conda env `motion-router` 메인 + `mgpt` G2 inference). torch≥2.4 / transformers≥5.7 / numpy / matplotlib / scipy / einops / scikit-learn — 상세 [`requirements.txt`](requirements.txt). 외부 generator: **G1** (MDM/MLD, diffusion, Week 3+ 도입) + **G2** (공식 [MotionGPT](https://github.com/OpenMotionLab/MotionGPT), clone + pretrained, 설치 [`docs/setup.md`](docs/setup.md)). pyproject.toml + pip, pytest runner.
 
-핵심 가설은 다음과 같다 (상세는 [`evals/hypotheses/`](evals/hypotheses/) 에 사전 등록). 본 프로젝트의 1차 contribution 은 **강화학습 기반 refinement** 의 효과 입증이며, generation 단계는 검증된 외부 generator (G1 diffusion · G2 MotionGPT) 의 output 만 사용한다.
+**소스 디렉토리** (상세 [§7](#7-디렉토리별-상세-규칙)): [`generators/`](generators/), [`skeleton_normalizer/`](skeleton_normalizer/), [`evaluators/`](evaluators/), [`correction_tools/`](correction_tools/), [`orchestrator/`](orchestrator/), [`refinement_loop/`](refinement_loop/), [`tools/`](tools/), [`evals/`](evals/) ([`hypotheses/`](evals/hypotheses/) + [`raw/`](evals/raw/) + [`workarounds/`](evals/workarounds/)), [`reports/`](reports/), [`experiments/`](experiments/), [`docs/`](docs/), [`.claude/`](.claude/), [`external_assets/`](external_assets/) (public HumanML3D + 시각화 utility + vestigial archive, 2026-05-15 마이그레이션 완료).
 
-- [H-2026-204](evals/hypotheses/H-2026-204.md) (H-2026-200 supersede) — Artifact-conditioned tool selection 이 fixed post-processing 보다 효과적이며 closed-loop refinement 가 single-step 보다 artifact reduction 과 motion fidelity 의 trade-off 를 더 잘 관리한다.
-- [H-2026-205](evals/hypotheses/H-2026-205.md) (H-2026-201 supersede) — Artifact state → correction action 매핑은 학습 가능한 routing 문제. supervised / contextual-bandit (RL-style) selector 가 rule-based baseline 대비 net gain 을 의미 있게 개선한다.
-- [H-2026-206](evals/hypotheses/H-2026-206.md) (H-2026-202 supersede) — 학습된 selector 는 새로운 generator output 에 대해서도 generator-agnostic 일반화 가능 (G1↔G2 bidirectional, zero-shot + small-calibration transfer).
-- [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary) — High-quality motion (SOTA generator output) 에 대해 No-harm 운영 특성 — 분포 (FID_motion / FGD) · semantic · fidelity 훼손 없음.
-
-종결 가설 (참고): [H-2026-200](evals/hypotheses/H-2026-200.md), [H-2026-201](evals/hypotheses/H-2026-201.md), [H-2026-202](evals/hypotheses/H-2026-202.md) — 2026-05-15 supersede. 초기 등록 시 generator scope 를 `[G1, G2, G3]` 로 기재했으나 G3 는 본 프로젝트 scope 가 아니므로 이를 정정한 새 H-id 로 promote 한 결과.
-
-가설 본문 수정·status 전환은 §3-11 에 따라 [`.claude/skills/hypothesis-registry/SKILL.md §4`](.claude/skills/hypothesis-registry/SKILL.md) 사용자 승인 게이트를 거친다. AGENTS.md §1 핵심 가설은 본 등록 가설과 동기화되어야 한다.
-
-기술 스택은 다음과 같다:
-
-- 언어/런타임은 Python 3.10 (메인 환경 `motion-router`, conda) 이다.
-- 핵심 라이브러리는 `torch>=2.4.0`, `transformers>=5.7.0`, `numpy`, `matplotlib`, `Pillow`, `scipy`, `einops`, `networkx`, `scikit-learn` 이다 ([requirements.txt](requirements.txt)). MotionGPT (G2) 의 inference 환경 의존성은 별도 (§2-1 참조).
-- 사용 generator (외부 의존, [`generators/`](generators/) 에 wrapper):
-  - **G1** — high-quality SOTA generator (예: MDM, MLD — diffusion-based).
-  - **G2** — token-based generator (**공식 MotionGPT** — <https://github.com/OpenMotionLab/MotionGPT> — 외부 repo clone + pretrained checkpoint).
-- 빌드 도구: `pyproject.toml` + pip. 별도 빌드 단계 없음.
-- 정형 테스트 러너: **pytest**. round-trip + integration smoke + end-to-end refinement loop 검증.
-
-본 저장소는 **motion refinement framework (ArtifactRouter) 의 독립 프로젝트** 이다. 이전 저장소 [`3D-Motion-Trajectory-prediction`](../3D-Motion-Trajectory-prediction/) 의 LLM-based motion generation 실험 (H-2026-101·102) 의 **후속 연구가 아니다**. 이전 저장소에서 import 하는 자산은 **public 데이터셋 + 시각화 utility 수준** 에 한정한다:
-
-- `external_assets/processed_noaug/` — HumanML3D root-relative + sliding window JSON (본 저장소 내부 복사본, 본 프로젝트 active 사용).
-- `external_assets/HumanML3D/` — 원본 HumanML3D 데이터셋 (GT 분포, public).
-- `external_assets/code/plot_3d_motion.py` — 시각화 utility (본 프로젝트 active 사용).
-- `external_assets/code/` 의 기타 파일 (`stage1_mpjpe_and_gif.py`, `stage1_autoregressive_chain.py`, `make_prompt_3d.py`, `convert_3d_delta.py`) — 이전 저장소의 LLM motion experiment 전용. **본 프로젝트 active 사용 없음**, 보존만.
-- `external_assets/local_lora_g3/` — 이전 저장소의 학습된 LoRA adapter (vestigial archive, 본 저장소 내부 복사본). **본 프로젝트 scope 외**, 보존만 (후일 별도 연구 시 참조 가능).
-
-본 프로젝트에서 새로 도입하는 외부 자산:
-
-- **MotionGPT (G2)** — 공식 repo clone + pretrained checkpoint, 별도 경로 (junction 아님). 설치 절차는 §2-1.
-- **G1 generator (MDM 또는 MLD)** — 공식 repo clone + pretrained checkpoint. 본격 도입은 Week 3+ (명세 §12).
-
-소스 디렉토리 구조는 다음과 같다:
-
-- [`generators/`](generators/) — Base Motion Generator wrapper (§6.1).
-- [`skeleton_normalizer/`](skeleton_normalizer/) — Skeleton Normalizer (§6.1).
-- [`evaluators/`](evaluators/) — Evaluator Tool Registry (§6.2).
-- [`correction_tools/`](correction_tools/) — Correction Tool Registry (§6.3).
-- [`orchestrator/`](orchestrator/) — Orchestrator + KDG + Scoring + rule-based / supervised / contextual-bandit (§6.4).
-- [`refinement_loop/`](refinement_loop/) — Closed-loop refinement (§6.5).
-- [`tools/`](tools/) — 시각화·실험 도구 (artifact injection, before/after GIF, tool effect matrix 등).
-- [`evals/hypotheses/`](evals/hypotheses/) — 사전 등록 가설 (append-only).
-- [`evals/raw/`](evals/raw/) — Collect 산출물.
-- [`evals/workarounds/`](evals/workarounds/) — 우회 ledger.
-- [`reports/`](reports/) — 사람-가독 연구일지.
-- [`experiments/`](experiments/) — MVP feasibility study (Week 1-4, 명세 §12).
-- [`docs/harness-research-template/`](docs/harness-research-template/) — 4계층 하네스 원본 (이전 저장소에서 복사).
-- [`docs/motion_research_strategy_summary.md`](docs/motion_research_strategy_summary.md) — 연구 명세 (단일 출처).
-- [`.claude/`](.claude/) — Claude Code 운영 자산 (phase + skill 적용본).
-- [`external_assets/`](external_assets/) — public dataset (HumanML3D) · 시각화 utility · vestigial archive. 본 저장소 내부 실제 복사본 (2026-05-15 마이그레이션 완료, 이전 저장소 의존 제거).
-
-프로파일/환경 구성:
-
-- `motion-router` — 메인 환경 (conda, Python 3.10). 모든 컴포넌트 실행 + 평가.
-- (필요 시) `torch_render` — HumanML3D 전처리용 (이전 저장소에서 상속). 본 저장소에서는 보통 미사용.
+본 저장소 는 **독립 프로젝트** — 이전 저장소 [`3D-Motion-Trajectory-prediction`](../3D-Motion-Trajectory-prediction/) 의 H-2026-101/102 의 후속 아님. import 자산 = public dataset + 시각화 utility 한정 (상세 [`docs/setup.md §2`](docs/setup.md)).
 
 ---
 
@@ -98,101 +45,18 @@
 
 ### 2-1. 환경 준비
 
+본 프로젝트 는 **두 conda env** — `motion-router` (메인) + `mgpt` (MotionGPT G2 inference, dependency 충돌 회피).
+
 ```
+# Main env (motion-router): evaluator / correction tool / orchestrator / refinement / 시각화
 conda create -n motion-router python=3.10 -y
 conda activate motion-router
 pip install -r requirements.txt
 ```
 
-데이터 자산 준비 — **본 저장소 내부의 실제 복사본** 으로 보유 (2026-05-15 마이그레이션 완료, 이전 저장소 의존 제거):
+**상세 install 절차** (MotionGPT clone / chumpy build pinning / transformers downgrade W-2026-001 / T5 LFS / SMPL model / t2m evaluators / checkpoint / HumanML3D junction / known issues): [`docs/setup.md`](docs/setup.md).
 
-- `external_assets/HumanML3D/` — 4.7 GB, public HumanML3D 데이터셋 (79,867 files).
-- `external_assets/processed_noaug/` — 3.0 GB, sliding window 전처리 JSON.
-- `external_assets/local_lora_g3/` — 275 MB, **vestigial archive** (이전 저장소 LoRA 자산, 본 프로젝트 scope 외, 보존만).
-- `external_assets/code/` — 시각화 utility + 이전 저장소 LLM motion experiment 보존 코드.
-
-본 자산들은 `.gitignore` 에 의해 git 추적에서 제외된다. **fresh clone 시점에는 자동으로 따라오지 않으므로** 아래 방법 중 하나로 확보:
-
-```
-# 옵션 A: HumanML3D 를 공식 repo 에서 새로 다운로드 + 전처리
-#   https://github.com/EricGuo5513/HumanML3D 의 절차 따라 data/HumanML3D 생성
-#   processed_noaug 는 본 저장소의 전처리 스크립트로 생성 (TBD)
-#
-# 옵션 B: 이미 보유한 사본에서 복사
-#   robocopy <source> external_assets\HumanML3D /E /MT:8
-#   robocopy <source> external_assets\processed_noaug /E /MT:8
-```
-
-이전 저장소 (`3D-Motion-Trajectory-prediction`) 의 디렉토리에 대한 junction 은 더 이상 생성·필요하지 않다. 본 저장소는 이전 저장소 파일시스템에 의존하지 않는다.
-
-MotionGPT (G2) 공식 설치 — 별도 conda env (`mgpt`):
-
-```
-# 1. clone (이미 본 저장소에 있다면 skip — external_assets/MotionGPT/ 는 .gitignore 제외)
-git clone https://github.com/OpenMotionLab/MotionGPT.git external_assets/MotionGPT
-
-# 2. 별도 conda env 생성 (motion-router 와 dependency 충돌 회피)
-conda create -n mgpt python=3.10 -y
-conda activate mgpt
-
-# 3. setuptools pinning (chumpy 빌드 호환)
-pip install --upgrade "setuptools<58" wheel
-
-# 4. MotionGPT requirements 설치 (chumpy 가 build_meta error 내면 --no-build-isolation 사용)
-cd external_assets/MotionGPT
-pip install -r requirements.txt
-# 위가 chumpy 에서 실패하면:
-#   pip install chumpy==0.70 --no-build-isolation
-#   pip install -r requirements.txt
-# MotionGPT 의 requirements.txt 에 누락된 항목 (m2t metric 의 transitive import) 추가 설치:
-pip install bert_score gdown
-python -m spacy download en_core_web_sm
-
-# 4-1. transformers / tokenizers 버전 pinning — W-2026-001 (RESOLVED) 의 정공법.
-# requirements.txt 가 transformers 버전을 명시하지 않아 최신 (예: 5.x) 가 설치되는데,
-# 최신 transformers 의 T5ForConditionalGeneration 이 MotionGPT (2023) 학습 시점의
-# weight tying 처리와 incompatible — shared.weight 자리에 lm_head.weight 값을 잘못
-# load 하여 LM input embedding 이 broken, prompt-independent 4-frame collapse 발생.
-# transformers 4.30.2 + tokenizers 0.13.3 로 명시 downgrade 필수.
-pip install "transformers==4.30.2" "tokenizers==0.13.3"
-
-# 5. 보조 자산 (T5 LM + SMPL body + t2m mean/std + glove)
-# 5-1. T5 (flan-t5-base, 7.8GB) — HuggingFace LFS
-cd deps
-git lfs install
-git clone https://huggingface.co/google/flan-t5-base
-
-# 5-2. SMPL model + t2m evaluators (Google Drive, gdown 으로)
-cd deps
-gdown "https://drive.google.com/uc?id=1qrFkPZyRwRGd0Q3EY76K8oJaIgs_WK9i" -O smpl.tar.gz
-tar xfz smpl.tar.gz                    # → deps/smpl_models/
-gdown "https://drive.google.com/uc?id=1AYsmEG8I3fAAoraT4vau0GnesWBWyeT8" -O t2m.tar.gz
-tar xfz t2m.tar.gz                     # → deps/t2m/{glove, t2m/{kit, t2m/*/meta/mean.npy,std.npy}}
-# 추출 구조에 t2m 레벨이 한 번 더 들어가 있으면 평탄화 필요:
-#   mv t2m/glove glove ; mv t2m/t2m _inner ; rm -rf t2m ; mv _inner t2m
-
-# 6. Pretrained checkpoint (HuggingFace LFS, 1.24GB)
-git lfs install
-mkdir -p checkpoints && cd checkpoints
-git clone https://huggingface.co/OpenMotionLab/MotionGPT-base
-# → checkpoints/MotionGPT-base/motiongpt_s3_h3d.tar
-
-# 7. HumanML3D dataset junction (config 의 datasets/humanml3d 경로 위해)
-cd external_assets/MotionGPT
-mkdir -p datasets
-cmd /c "mklink /J datasets\humanml3d ..\HumanML3D"
-
-# 7-1. HumanML3D 의 texts/ 가 nested 구조 (texts/texts/*.txt) 라면 평탄화:
-#   cd external_assets/HumanML3D
-#   mv texts texts_outer && mv texts_outer/texts texts && rm -rf texts_outer
-```
-
-본 저장소의 wrapper ([`generators/motiongpt_wrapper.py`](generators/motiongpt_wrapper.py)) 는 `conda run -n mgpt python -m generators._motiongpt_inference ...` 로 환경을 격리해 호출하므로 motion-router env 에서 호출해도 무방. checkpoint 자동 탐색 (`external_assets/MotionGPT/checkpoints/MotionGPT-base/*.tar` 또는 `*.ckpt`).
-
-#### MotionGPT 의 known issues
-
-- **transformers 버전 incompatibility (W-2026-001 — RESOLVED)**: transformers 5.x 의 T5ForConditionalGeneration 이 MotionGPT 학습 시점 (transformers 4.x, 2023) 의 weight tying 처리와 incompatible. `shared.weight` 자리에 `lm_head.weight` 값을 잘못 load → LM input embedding broken → prompt-independent 4-frame collapse (`(1, 4, 22, 3)` 만 출력, prompt 무시). **transformers==4.30.2 + tokenizers==0.13.3 명시 downgrade 필수** (Step 4-1).
-- **Length 제어 (residual issue)**: transformers 4.30.2 downgrade 후에도 `batch['length']` 자체는 capture only — generation 길이는 LM 의 `do_sample` 결과에 의존. 단 prompt 에 따라 92/176 frames 등 정상 길이 동적 생성됨이 확인됨. wrapper 는 metadata 의 `length_generated` 로 실제 길이 기록.
+**데이터 자산** (`external_assets/HumanML3D/` 4.7 GB, `processed_noaug/` 3.0 GB 등) 은 본 저장소 내부 의 실제 복사본 (2026-05-15 마이그레이션 완료) — `.gitignore` 제외, fresh clone 시 [`docs/setup.md §2`](docs/setup.md) 의 옵션 A/B 로 확보.
 
 ### 2-2. 핵심 실행 명령어
 
