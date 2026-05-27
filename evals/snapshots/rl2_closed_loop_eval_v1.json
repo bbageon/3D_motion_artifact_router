@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_closed_loop_eval",
+  "task_id": "rl2_closed_loop_eval_v1",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "max_depth": 3,
+  "models": [
+    "RF",
+    "HGB"
+  ],
+  "note": "closed-loop policy + physical gate (accept/rollback/STOP). NetGain: G2=Protocol B, synthetic=Protocol A.",
+  "g2": {
+    "noop": {
+      "mean_netgain": 0.0
+    },
+    "b2_best": {
+      "mean_netgain": 8.165777451492609e-05,
+      "violation_rate": 0.011111111111111112
+    },
+    "safe_oracle": {
+      "mean_netgain": 0.0024890588141340216
+    },
+    "unsafe_oracle": {
+      "mean_netgain": 0.003995213985163284
+    },
+    "rl2_RF": {
+      "mean_netgain": 0.00021670534083826774,
+      "violation_rate": 0.0,
+      "stop_rate": 0.6777777777777778,
+      "oracle_gap_closure_aggregate": 0.08706316604803192
+    },
+    "rl2_HGB": {
+      "mean_netgain": 0.00014857126384057567,
+      "violation_rate": 0.0,
+      "stop_rate": 0.7333333333333333,
+      "oracle_gap_closure_aggregate": 0.0596897361351687
+    }
+  },
+  "synthetic": {
+    "noop": {
+      "mean_netgain": 0.0
+    },
+    "b2_best": {
+      "mean_netgain": 0.195701457109563,
+      "violation_rate": 0.3888888888888889
+    },
+    "safe_oracle": {
+      "mean_netgain": 0.2458764752334034
+    },
+    "unsafe_oracle": {
+      "mean_netgain": 0.2845718717029055
+    },
+    "rl2_RF": {
+      "mean_netgain": 0.1338504397666136,
+      "violation_rate": 0.0,
+      "stop_rate": 0.0,
+      "oracle_gap_closure_aggregate": 0.5443808304131302
+    },
+    "rl2_HGB": {
+      "mean_netgain": 0.12013725987189522,
+      "violation_rate": 0.0,
+      "stop_rate": 0.0,
+      "oracle_gap_closure_aggregate": 0.48860819140120015
+    }
+  },
+  "n_g2_eval_total": 180,
+  "n_synthetic_eval_total": 54
+}
