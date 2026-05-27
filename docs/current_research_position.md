@@ -248,6 +248,17 @@ NetGain = ArtifactReduction - α·FidelityLoss - β·CorrectionMag - γ·ToolCos
 - (b) Hard gate 로 분리 — policy 의 action space 가 `{accept, repair, rollback, STOP}` 또는 그 subset 으로 명확.
 - (c) 외부 공개 시 "physical safety 가 정량 보장됨" 의 직접 evidence.
 
+#### 3-6-3-1. Gate threshold 는 **regression-based (before+eps) 의무, absolute clean_p99 금지** (Step E-2.6, 2026-05-27 신설)
+
+Step E-2.6 (BoneLengthCV threshold sensitivity, n=300) 의 정량 발견:
+
+- **Absolute clean_p99 thresholding (after > clean_p99) = 46% violation rate, 109 false positive** — 자연적으로 bone CV 높은 G2 motion (generation artifact) 이 correction 으로 worsen 안 됐는데도 flag.
+- **Regression-based (after > before + eps) = 9.7%, real violations only** — correction 이 실제로 metric 증가시킨 경우만 flag.
+
+**의무**: gate decision 의 unsafe threshold 는 `max(before + eps, clean_p99)` (regression-dominant) 사용. **pure absolute clean_p99 단독 사용 금지** (FP-heavy). 본 logic 은 [`tools/safe_sequence_oracle_run.py`](../tools/safe_sequence_oracle_run.py) 의 `_gate_violation` 에 구현됨.
+
+**Robustness** (Step E-2.6): regression-based threshold (before+eps → relative 10%) 의 violation rate 는 4.3~9.7% stable band + FootLock dominance 86~100% 유지 — threshold 완화 에 robust. 상세: [`reports/2026-05-27.md §7`](../reports/2026-05-27.md).
+
 #### 3-6-4. Gate 의 비교 의무 (사용자 Step D)
 
 같은 sample 에 대해:
