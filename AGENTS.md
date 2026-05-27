@@ -350,261 +350,76 @@ raw record 생성 도구 (`baseline_smoke`, 향후 `eval-collect` 등) 는 본 m
 
 사용자 directive (2026-05-25) 박제: **"Synthetic corruption experiments are controlled diagnostics, not the sole evidence of real generator performance."**
 
-본 프로젝트의 모든 평가 결과는 다음 **evidence 계층** 으로 분류·인용한다:
+본 프로젝트 의 모든 평가 결과 는 3-tier evidence 계층 으로 분류 / 인용 의무:
 
-| 계층 | 적절한 용도 | 적절치 못한 용도 (금지) |
-|---|---|---|
-| **Synthetic corruption (controlled diagnostic)** | (a) tool 작동 검증, (b) evaluator artifact 잡기 검증, (c) sequence oracle headroom 측정, (d) policy 의 known artifact 학습 능력 검증, (e) ablation, (f) regression test. | **최종 성능 주장의 sole evidence**. synthetic NetGain 우위만으로 "ArtifactRouter 가 우월" 단정 금지. |
-| **Real generator natural output (G1 / G2)** | 가설의 최종 성능 evidence. transfer / generalization 평가. | (real generator 가 한 종류만 측정된 결과로 generator-agnostic 주장 금지 — [§6-10](#6-10-generator-transfer-결과-임의-일반화) 일관) |
-| **Perceptual / visual / motion quality** | NetGain proxy 의 perceptual validity. fidelity 손상의 user-facing 평가. **sub-tier: (a) visual sanity check** (n=수개 sample 의 GIF/PNG, "rank 일치" 확인 — preliminary supports), **(b) perceptual rating** — 다음 evaluator scale 분리: **(b1) 1명 internal sanity (pilot, internal go/no-go decision)**, **(b2) 3명 minimum (inter-rater agreement)**, **(b3) 10-20명 final (논문급 정식 evidence)**. | 시각화 단일 sample 결론 ([§3-9](#3-9-단일-sample--단일-trial-결론-금지) 일관). **(a) sub-tier 결과를 "사람 평가로 입증" 으로 인용 금지** — "visual sanity check supports (preliminary, n=X)" 로만 표기 (사용자 directive 2026-05-25 박제). **(b1) sub-tier 도 "internal sanity check" / "pilot evidence" 표기 의무** — 논문급 인용 금지. **(b3) final 만 "quality-validated evidence (정식)"** 표기 가능. |
+1. **Synthetic corruption** — controlled diagnostic only (tool 작동 / evaluator / oracle headroom / ablation / regression). **최종 성능 sole evidence 금지**.
+2. **Real generator natural** (G1 / G2) — 가설 최종 성능 evidence. 단일 generator 만 으로 generator-agnostic 단정 금지 ([§6-10](#6-10-generator-transfer-결과-임의-일반화) 일관).
+3. **Perceptual / visual** — NetGain proxy 의 perceptual validity. sub-tier: (a) visual sanity (preliminary), (b1) 1명 internal pilot, (b2) 3명+ inter-rater, (b3) 10-20명+ final (논문급).
 
-**Synthetic 만의 위험 (이미 관찰됨)**:
-- (a) 실제 generator artifact 와 다를 수 있음.
-- (b) 주입 강도가 임의적 (lift_height=0.08, noise_std=0.05 등은 사람이 임의 결정).
-- (c) artifact 조합이 비현실 (foot_floating + global_jitter chained 가 실제 generator 에서 자연스럽게 일어나는 분포 아닐 수 있음).
-- (d) evaluator 가 synthetic pattern 에 과적합 가능 (severity threshold 가 synthetic-driven).
-- (e) NetGain 이 실제 visual quality 와 다를 수 있음.
+5단계 리포트 / 외부 공개 의 결론 절 은 다음 keyword 명시 의무: `controlled diagnostic finding` (synthetic) / `real-distribution evidence` (G1/G2) / `quality-validated evidence` (perceptual+visual).
 
-**본 프로젝트의 이미 관찰된 evidence (synthetic 일반화 위험)**:
-- B2 (fixed smoothing) 의 NetGain: synthetic 에서 mean +0.179 (강함), G2 natural 에서 mean -0.017 (약함, over-modification).
-- Best strength: synthetic 에서 large 76%, G2 에서 small 86% (oracle data v2).
-- Synthetic-trained B7 bandit 이 G2 zero-shot 에서 fail (Step 5 transfer diagnostic).
-- → **"synthetic 우수 → G2 우수" 의 자동 추론 금지**.
+상세 (5 의무 evidence 항목 / sub-tier scale 정의 / synthetic 일반화 위험 정량 evidence / 본 프로젝트 관찰된 misalignment): [`docs/current_research_position.md §0-1, §0-2`](docs/current_research_position.md) + [`docs/current_research_position.md §4-5`](docs/current_research_position.md).
 
-**최종 성능 주장 (논문·발표·README) 의무 evidence**:
-1. **G2 natural** (active scope) — paired test, multi-seed, n ≥ 30.
-2. **G1 natural** (active scope — Week 3+ MVP plan) — paired test, multi-seed, n ≥ 30.
-3. **Multi-prompt category coverage** — generator output 의 prompt 다양성 (walking, running, jumping 등).
-4. **시각화 sanity check** — NetGain 의 visual validity 정성 확인.
-5. **Perceptual rating / motion quality metric** — NetGain proxy 의 perceptual validity (명세 §9.3 Protocol C / user study).
+**위반 시 effect**: keyword 누락 또는 synthetic-only 결과 의 외부 공개 sole evidence 인용 시 [§6-5 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 동질 취급.
 
-본 5 항목 의 evidence 가 동반되지 않은 결과는 **외부 공개 (논문·발표·README) 인용 금지** ([§3-12 재현성 체크리스트](#3-12-외부-공개-시-재현성-체크리스트) 일관).
+### 3-18. Baseline Family Protocol
 
-본 프로젝트의 5단계 리포트 ([eval-compare SKILL §6](.claude/skills/eval-compare/SKILL.md)) 의 결론 절에 어느 계층의 evidence 를 사용했는지 명시한다. 다음 keyword 사용:
-- **"controlled diagnostic finding"** (synthetic-only evidence).
-- **"real-distribution evidence"** (G1 / G2 natural).
-- **"quality-validated evidence"** (perceptual / visual 동반).
+사용자 directive (2026-05-25) 박제. **"B2" 단독 표기 금지** — "B2-medium" 또는 "B2-family" 로 명시. B2 = **fixed smoothing diagnostic baseline family** (NOT 대표 baseline). 성공 기준 의 family-level 정식화: "B2-medium 초과" → **"fixed smoothing family 대비 우월"**. 5단계 리포트 비교 표 는 B2-small/medium/large/val-best 의 4 column 분리 (또는 최소 B2-medium + B2-val-best 의 2 column).
 
-위반 시 silent invalidation ([§6-5](#6-5-metadata-우회로-산출물-동질화) 의 동질) 으로 취급.
+B5/B6/B7 baseline 도 family 형태 (rule-based / supervised / contextual-bandit) 로 정식화.
 
-### 3-18. Baseline Family Protocol — Fixed Smoothing Diagnostic 의 정의
+상세 (B2-family variant 정의 / 본 framing motivation / 5 의무 항목): [`.claude/skills/reproducibility-checklist/SKILL.md §3`](.claude/skills/reproducibility-checklist/SKILL.md) 지표 정의 사전.
 
-사용자 directive (2026-05-25) 박제: **"B2 를 '대표 baseline' 으로 두지 말고 'fixed smoothing diagnostic baseline' 으로 격하. baseline family 로 잡아야 baseline 선택 하나에 연구 결론이 휘둘리지 않는다."**
+**위반 시 effect**: B2-medium 만 단독 인용 / baseline 선택 robustness 확인 안 함 시 [§6-3 임계값 완화](#6-3-임계값-완화로-회귀-회피) 동질 의 silent invalidation 취급. 회귀 판정 무효.
 
-본 프로젝트의 모든 평가 결과는 baseline 을 다음 **family 구조** 로 분리·인용한다 ([H-2026-204](evals/hypotheses/H-2026-204.md) 의 "fixed smoothing" family-level 임계와 일관).
+### 3-19. Skeleton GIF/MP4 Axis Convention 검증 의무
 
-#### Fixed Smoothing Family (B2-family)
+사용자 directive (2026-05-25, bug 발견 후 정식 규칙) 박제. 본 프로젝트 motion 데이터 = **Y-up convention** (HEAD_y > PELVIS_y > FOOT_y). matplotlib default = Z-up — mismatch 시 skeleton 옆으로 누운 듯 그려짐 (부록 EE bug). skeleton GIF / MP4 / 3D PNG 도구 작성 / 수정 시 `ax.view_init(vertical_axis="y")` 명시 + 첫 frame visual inspection 의무.
 
-| Variant | 정의 | 적절한 인용 |
-|---|---|---|
-| **B2-small** | VelocitySmoothingTool(full_body, **small**) 1회. | family member. |
-| **B2-medium** | VelocitySmoothingTool(full_body, **medium**) 1회. | family member, 기존 default. |
-| **B2-large** | VelocitySmoothingTool(full_body, **large**) 1회. | family member. |
-| **B2-val-best** | 각 sample 의 NetGain 이 가장 높은 strength (sample-level oracle within fixed smoothing). | family upper bound — fixed smoothing 의 진짜 ceiling. |
+상세 (의무 4 항목 / 자가 검증 절차 / `*_yup_fix/` 재인용 prevention): [`.claude/rules/phase/02-sensor.md §1-2`](.claude/rules/phase/02-sensor.md).
 
-#### 의무 사항
+**위반 시 effect**: [§3-17](#3-17-synthetic-vs-real-generator-evaluation-의-분리-의무) 의 visual sanity sub-tier evidence 의 silent invalidation 취급. 2026-05-25 이전 GIF 는 axis bug 영향 — `*_yup_fix/` 디렉토리 만 정식 visual evidence.
 
-1. **"B2" 단독 표기 금지**: "B2-medium" 또는 "B2-family" 로 명시.
-2. **"main / strong / 대표 baseline" 으로 인용 금지**. **"diagnostic baseline" / "fixed smoothing family"** 로 격하.
-3. **성공 기준의 family-level 정식화**: "B2-medium 초과" → **"fixed smoothing family 대비 우월"**. proposed policy 의 NetGain 이 **B2-family 의 어느 variant 도 surpass 못하면** fixed smoothing 가설이 partial valid.
-4. **5단계 리포트의 baseline column 표기**: 비교 표는 B2-small / B2-medium / B2-large / B2-val-best 의 4 column 분리 (또는 적어도 B2-medium + B2-val-best 의 2 column).
-5. **H-2026-204 임계 (§51-52) 의 "fixed smoothing" 해석**: family-best 의 NetGain 을 reference (sample-level oracle 의 fixed smoothing 부분).
+### 3-20. Metric Citation Gate
 
-#### 본 framing 정정의 정량 motivation
+사용자 directive (2026-05-25) 박제. 모든 평가/reward metric 은 [`docs/metric_provenance.md`](docs/metric_provenance.md) 의 Provenance Table 에 등록 + 3 Category 중 하나로 분류:
+- **A. Standard** (top-tier 논문 의 동일 정의) — 외부 공개 최종 성능 근거 가능.
+- **B. Variant** (top-tier 변형) — variant 명시 의무.
+- **C. Proxy** (본 프로젝트 자체 정의) — **외부 공개 최종 성능 근거 금지** (internal routing reward / diagnostic only).
 
-본 프로젝트의 직접 관찰 (2026-05-25):
-- B2-medium 의 synthetic NetGain mean +0.187 — 임의 선택된 strength.
-- Synthetic 에서 oracle 의 best first action 중 일부가 VS/large (부록 M, K=10 subset). VS strength 의 sample-별 best 가 different.
-- → **"B2-medium 초과" 의 기준은 baseline 선택 (medium 우연) 에 종속**. family-level 임계가 robust.
+NetGain = Category C (internal routing reward). 외부 공개 결과 의 최종 성능 근거 는 Category A (FID/R-Prec/MM-Dist) + visual/perceptual + Category B variants 동반 의무.
 
-#### Rule-based / Learned baseline 도 family 정식화 (지속 의무)
+상세 (현재 metric 분류, RL-2 prerequisite, evidence 보강 plan): [`docs/metric_provenance.md`](docs/metric_provenance.md).
 
-- **B5-family**: rule-based 의 ablation (full state vs target evaluator hint).
-- **B6-family**: supervised single-step / closed-loop / oracle-imitation.
-- **B7-family**: contextual-bandit (single-step RL-style).
+**위반 시 effect**: Category C 결과 의 외부 공개 단독 인용 또는 Category B 를 standard 처럼 misrepresent 시 [§6-5 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 동급 — 회귀 판정 무효.
 
-본 family 정의는 [reproducibility-checklist SKILL §3](.claude/skills/reproducibility-checklist/SKILL.md) 의 지표 정의 사전 의 일부. 외부 공개 결과 의 baseline column 은 본 family 의 모든 representative variant 를 포함한다 ([§3-12 재현성 체크리스트](#3-12-외부-공개-시-재현성-체크리스트) 일관).
+### 3-21. Action Space Provenance Gate
 
-#### 위반 시 effect
+사용자 directive (2026-05-25) 박제. 모든 RL stage (RL-0/-1/-2) 의 action space (tool × strength × STOP) 는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 등록 의무. **5단계 리포트 + 외부 공개 시 grid (예: "10 actions / 3-level prototype" 또는 "16 actions / 5-level") + RL stage 명시 의무**. 3-level vs 5-level 직접 비교 시 같은 sample set + 같은 reference. 본 RL-2 결정 (2026-05-26, **5-level Case A** confirmed): [`reports/2026-05-26.md`](reports/2026-05-26.md).
 
-본 §3-18 위반 (B2-medium 만 인용, baseline 선택의 robustness 확인 안 함) 은 [§6-3 임계값 완화로 회귀 회피](#6-3-임계값-완화로-회귀-회피) 와 동질의 silent invalidation 으로 취급. 회귀 판정 무효.
+상세 (Action 두 차원 / Strength Grid factor mapping / Backward Compat / Case A-B-C 분기): [`docs/action_space_provenance.md`](docs/action_space_provenance.md).
 
-### 3-19. Skeleton GIF/MP4 시각화 의 Axis Convention 검증 의무
-
-사용자 directive (2026-05-25, **bug 발견 후 정식 규칙**): "이번 건 재발 가능성이 있다. 하네스에 규칙을 넣자."
-
-본 프로젝트 의 모든 motion 데이터 (HumanML3D / G2 / synthetic) 는 **Y-up convention** (HEAD_y > PELVIS_y > FOOT_y, vertical span at axis 1). matplotlib 의 default 3D view 는 **Z-up** (`Axes3D.view_init` 의 `vertical_axis='z'`) — convention mismatch 시 skeleton 이 옆으로 누운 듯 그려짐 (2026-05-25 [부록 EE](evals/reports/2026-05-19_h_2026_205_stage0.md) 발견).
-
-#### 의무 사항
-
-skeleton GIF / MP4 / 3D PNG 생성 도구 의 작성 / 수정 시 다음을 의무로 확인:
-
-1. **Motion axis convention 확인**: motion 의 `HEAD_y > PELVIS_y > FOOT_y` 또는 largest joint span 이 어느 axis 인지 확인. Y-axis 가 vertical 인지 검증.
-2. **Floor plane 위치 확인**: 시각화 도구 의 floor 가 `y=ymin` (Y-up) 평면 에 놓이는지 확인.
-3. **matplotlib view_init 의 vertical_axis 명시**: `ax.view_init(elev=elev, azim=azim, vertical_axis="y")` — Y-up convention 명시 (matplotlib 3.4+ 의 표준 API).
-4. **새 GIF 생성 후 첫 frame visual inspection**: HEAD 가 위쪽, FOOT 가 ground 근처, motion direction 이 자연스럽게 forward 인지 확인. 옆으로 누운 듯 보이면 bug.
-
-#### 자가 검증 절차 (도구 작성 / 수정 시)
-
-```python
-# axis convention sanity check (작은 ad-hoc):
-import numpy as np
-motion = np.load("<path>")
-print("HEAD_y > PELVIS_y > FOOT_y?",
-      motion[0, 15, 1] > motion[0, 0, 1] > motion[0, 10, 1])
-# True 면 Y-up convention 정상.
-```
-
-#### 위반 시 effect
-
-본 §3-19 위반 (axis convention 미확인 → 사람이 옆으로 누운 GIF) 은 [§3-17](#3-17-synthetic-vs-real-generator-evaluation-의-분리-의무) 의 **visual sanity sub-tier evidence 의 silent invalidation** 으로 취급. 본 bug 가 발견 된 GIF 의 **semantic interpretation 인용 금지** (overlay diff 로 만 판단 가능 — 단 의무 보고서 시 axis bug caveat 동반).
-
-#### 재인용 정식 prevention
-
-본 규칙 추가 (2026-05-25) 이전 의 GIF 들 ([부록 W, DD](evals/reports/2026-05-19_h_2026_205_stage0.md)) 은 axis bug 영향. **fix 후 재생성된 정정 산출물** (`*_yup_fix/` 디렉토리) 만 정식 visual evidence 로 인용.
-
-### 3-20. Metric Citation Gate — 평가지표 의 출처 검증 의무
-
-사용자 directive (2026-05-25): "앞으로 reward 나 평가에 들어가는 모든 metric 은 (A) top-tier 논문 / (B) 변형 / (C) proxy 중 하나로 분류. C 는 논문 단독 성능 근거 금지."
-
-본 프로젝트 의 모든 평가 / reward metric 은 [`docs/metric_provenance.md`](docs/metric_provenance.md) 의 Metric Provenance Table 에 등록 의무. **외부 공개 (논문·발표·README) 의 metric 인용 시 본 문서 reference**.
-
-#### 3 Category 분류
-
-| Category | 정의 | 외부 공개 적절성 |
-|---|---|---|
-| **A. Standard metric** | top-tier 논문 (CVPR, NeurIPS, ICCV, ECCV, ACM MM 등) 의 standard metric. 본 프로젝트 가 동일 정의 사용. | **외부 공개 최종 성능 근거 가능** (논문 인용). |
-| **B. Variant metric** | top-tier 논문 의 metric 을 명확히 변형. 변형 의도 + 차이점 명시. | 외부 공개 가능, 단 **variant 임을 명시 의무**. |
-| **C. Proxy metric** | 본 프로젝트 자체 정의 — internal routing reward / diagnostic 용. standard reference 없음 또는 매우 약함. | **외부 공개 최종 성능 근거 금지**. 내부 reward / diagnostic only. |
-
-#### 의무 사항
-
-1. **새 metric 추가 / 변경 시**: [`docs/metric_provenance.md`](docs/metric_provenance.md) 의 entry 추가 + Category 분류 의무.
-2. **Category 분류 의 entry**: metric name, 사용 목적, source (top-tier paper), 원 논문 formula, 본 프로젝트 구현 formula, 동일 / 변형 / 신규 표기, 최종 평가 / reward proxy 표기, caveat.
-3. **외부 공개 결과 인용 시**:
-   - **Category A**: standard reference 인용 의무.
-   - **Category B**: "variant of <original metric>" 명시 의무.
-   - **Category C**: "internal routing reward" / "diagnostic proxy" 명시 의무. **최종 성능 근거 로 인용 금지**.
-4. **5단계 리포트 결론 절**: 인용 metric 의 Category 명시 의무.
-
-#### 현재 의 분류 (2026-05-25)
-
-- **Category A (standard, 본 프로젝트 미구현)**: FID_motion, R-Precision, Matching Score, MM-Dist, Diversity, Multimodality (HumanML3D / MDM / MotionGPT 의 standard).
-- **Category A (standard, 본 프로젝트 구현)**: MPJPE (Ionescu 2014).
-- **Category B (variant)**: Foot skating / sliding (PP-Motion ACM MM 2025, partial), FidelityLoss Protocol B simplified (MPJPE vs original generator), Bone length variation (ACTOR spirit), Acceleration / Jerk (Flash & Hogan 1985, MotionDiffuse).
-- **Category C (proxy)**:
-  - **NetGain**: 본 프로젝트 자체 정의. **internal routing reward**. 최종 성능 근거 금지.
-  - **FootFloatingEvaluator (current)**: simple Y-threshold proxy. 부록 Z 의 evaluator limitation — **Item 6 contact estimator 도입 후 Category B 의 foot skating 으로 대체 / 보강 의무**.
-  - **BoneLengthEvaluator (current)**: per-bone std variation proxy (ACTOR spirit, 단 정확한 formula 변형).
-  - **VelocityJitterEvaluator (current)**: per-joint mean acceleration norm (Category B 의 jerk metric 와 close, 단 normalization 차이).
-  - **Total Artifact Score**: sum of evaluator scores, Score 비감소 monotonicity 용.
-
-#### RL-2 진입 전 prerequisite
-
-본 §3-20 의 의무:
-- **NetGain = reward only (Category C)**. RL-2 의 policy optimization 의 objective.
-- **최종 성능 (RL-2 vs baseline) 의 evidence**: **Category A (FID, R-Precision, MM-Dist) + visual/perceptual rating + Category B variants (foot skating, jerk)**.
-- Category C metric 의 결과 만으로 "ArtifactRouter 우월" **단정 금지**.
-
-#### 위반 시 effect
-
-본 §3-20 위반 (Category C metric 의 결과 를 외부 공개 의 최종 성능 근거 로 인용, 또는 Category B variant 를 standard 으로 misrepresent) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 와 동질 의 silent invalidation 으로 취급. 회귀 판정 무효.
-
-#### 향후 evidence 보강 plan (Step 9)
-
-[`docs/metric_provenance.md §5-1`](docs/metric_provenance.md) 의 standard metric 도입 의무 — FID_motion / R-Precision / Matching / Diversity / Multimodality / foot skating 의 official implementation 도입 (HumanML3D official + PP-Motion). 본 도입 전 외부 공개 (논문) 인용 보류.
-
-### 3-21. Action Space Provenance Gate — Action space 의 grid + 출처 검증 의무
-
-사용자 directive (2026-05-25): "5-level strength 의 연구적 위치 문서화. strength 는 motion quality score 가 아니라 correction intensity parameter. 3-level 은 prototype, 5-level 은 RL-2 candidate. 근거: parameterized action / hybrid action / continuous discretization 연구."
-
-본 프로젝트 의 모든 RL stage (RL-0 oracle / RL-1 imitation / RL-2 Q-learning) 의 action space 는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 에 등록 의무. **5단계 리포트 + 외부 공개 시 grid + RL stage 명시 의무**.
-
-#### Action 의 두 차원
-
-- **Tool selection**: discrete action (FootLock / BoneProjection / VelocitySmoothing / STOP).
-- **Strength**: ordinal / continuous action parameter (correction intensity, **NOT quality score**).
-
-본 분리 는 Parameterized Action / Hybrid Action 의 framework (Masson 2016 AAAI, Hausknecht & Stone 2016 ICLR).
-
-#### Strength Grid
-
-| Grid | Tokens | Factor mapping | RL stage |
-|---|---|---|---|
-| **3-level (prototype)** | small / medium / large | FootLock + BoneProjection: 0.3 / 0.6 / 1.0; VelocitySmoothing: 0.5 / 1.0 / 2.0 sigma | RL-0 oracle (부록 M, N), RL-1 imitation (부록 O), RL-1 alt models (부록 T) |
-| **5-level (RL-2 candidate)** | xsmall / small5 / medium5 / large5 / xlarge | 0.2 / 0.4 / 0.6 / 0.8 / 1.0 (factor); 0.4 / 0.8 / 1.2 / 1.6 / 2.0 (sigma) | RL-0 ablation (사용자 directive 2026-05-25), RL-2 candidate (TBD) |
-
-#### Backward Compatibility 의무
-
-- 기존 3-level token (`small`/`medium`/`large`) **유지**. 부록 A-HH 의 모든 결과 의 reproducibility 보존.
-- 새 5-level token (`xsmall`/`small5`/`medium5`/`large5`/`xlarge`) **추가**. 5-level oracle 결과 는 별도 snapshot (`*_5level*.json`) 로 분리 보고.
-
-#### 의무 사항
-
-1. **새 RL stage / action space 추가 시**: [`docs/action_space_provenance.md`](docs/action_space_provenance.md) entry 의무.
-2. **5단계 리포트 + 외부 공개 시 grid 명시**:
-   - "10 actions (STOP + 3 tool × 3 strength, 3-level prototype)" 또는
-   - "16 actions (STOP + 3 tool × 5 strength, 5-level)" 명시.
-3. **3-level 결과 와 5-level 결과 의 직접 비교 시**: 같은 sample set + 같은 reference 의무.
-
-#### RL-2 의 action space 결정 분기 (사용자 directive)
-
-5-level oracle ablation (synthetic n=60 + G2 general n=10 + G2 natural n=50) 의 결과 따라:
-
-| Case | 조건 | RL-2 |
-|---|---|---|
-| **A** | 5-level oracle > 3-level oracle 의미 있게 우월 | **5-level (16 actions)** |
-| **B** | NetGain 비슷, fidelity / correction magnitude 감소 | 5-level (over-modification 감소용) |
-| **C** | 차이 거의 없음 | **3-level 유지** (10 actions), 5-level appendix/future |
-
-#### 위반 시 effect
-
-본 §3-21 위반 (action space 의 grid 미명시, 3/5-level 결과 의 잘못된 직접 비교) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 와 동질 의 silent invalidation 으로 취급.
+**위반 시 effect**: action space grid 미명시 또는 3/5-level 의 잘못된 직접 비교 시 [§6-5 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 동급 취급.
 
 ### 3-22. Research Grounding Gate — 연구 피드백·평가의 top-tier 근거 의무
 
-사용자 directive (2026-05-26): "하네스 흐름에 피드백을 하고 평가를 할 때에는 연구적 근거가 동반되어야 한다. 단 근거는 탑티어 논문에 2020년 이후 논문, 게재되거나 컨퍼런스 논문이어야 한다."
+사용자 directive (2026-05-26) 박제. Agent 의 **연구 설계 피드백 / 평가 해석 / metric·reward·baseline·action space·RL algorithm 선택 / 외부 공개 판단** 시 **2020+ peer-reviewed top-tier 논문 근거** 동반 의무. arXiv-only 단독 근거 금지. 단순 구현 버그·파일 경로·테스트 실패·repo-local bookkeeping 은 대상 아님.
 
-본 프로젝트에서 Agent 가 **연구 설계 피드백**, **평가 결과 해석**, **metric / reward / baseline / action space / RL algorithm 선택**, **외부 공개 가능성 판단**을 수행할 때는 아래 조건을 만족하는 연구 근거를 함께 제시해야 한다. 단순 구현 버그, 파일 경로, 테스트 실패, 문서 오탈자, repo-local bookkeeping 은 본 규칙의 대상이 아니다.
+응답 형식 의무 4 항목: (1) 판단/권고, (2) 근거 논문, (3) ArtifactRouter 적용 범위, (4) 남는 불확실성. 근거 부족 시 `engineering heuristic` / `internal proxy assumption` / `pilot-only finding` 중 하나로 명시 — 본 표기 붙은 내용 의 외부 공개 단독 근거 사용 금지.
 
-#### 허용 근거
+상세 spec (허용 venue list, 응답 형식, 문서화 의무, 근거 부족 표기): [`.claude/rules/phase/04-evaluation.md §7-0`](.claude/rules/phase/04-evaluation.md).
 
-1. **2020년 이후** 출판 또는 공식 accept 된 논문.
-2. **peer-reviewed top-tier conference / journal** 또는 그에 준하는 분야별 주요 venue:
-   - Vision / graphics / motion: CVPR, ICCV, ECCV, SIGGRAPH / TOG, ACM MM, TPAMI, IJCV.
-   - ML / AI: NeurIPS, ICML, ICLR, AAAI, IJCAI, TMLR.
-   - Robotics / embodied motion: ICRA, IROS, RSS, CoRL.
-3. arXiv-only preprint 는 단독 근거로 사용 금지. 단, 동일 내용의 accepted venue version 이 확인되는 경우 그 venue/version 을 근거로 인용 가능.
-4. 2020년 이전 고전 논문은 배경 설명으로는 허용하되, **새 평가 기준 또는 최종 연구 판단의 주 근거로 단독 사용 금지**. 최신 top-tier 근거와 함께 보조 인용으로만 사용.
+**위반 시 effect**: [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 동급 — 외부 공개 근거로 무효.
 
-#### 피드백 / 평가 응답 형식 의무
+### 3-23. Intent-Reconciliation Loop — 산출물 의 원래 의도 부합 검증 의무
 
-연구 판단을 포함하는 답변은 다음 네 항목을 명시한다.
+사용자 directive (2026-05-27) 박제. 새 evaluator / tool / oracle / baseline / policy / snapshot / framework doc 을 만든 후 commit 직전, **5-step Intent-Reconciliation agentic loop** 의무 수행 — 산출물 이 원래 의도 와 부합 하는지 정량/정성 self-check.
 
-1. **판단 / 권고** — 무엇을 유지, 수정, 보류, 폐기할지.
-2. **근거 논문** — 저자, 연도, venue, 해당 논문에서 빌려온 개념 또는 metric.
-3. **ArtifactRouter 적용 범위** — 본 프로젝트의 어떤 부분에 적용되는지.
-4. **남는 불확실성** — 내부 proxy, pilot evidence, synthetic-only evidence, sample-size limitation 등을 구분.
+**5 verdict**: `aligned` / `partial` / `misaligned` / `scope_creep` / `unintended_side_effect`. `misaligned` / `scope_creep` / `unintended_side_effect` 는 사용자 보고 의무 (commit 보류 또는 confirm).
 
-#### 문서화 의무
+상세 5-step 절차, 트리거 list, 박제 format, 적용 예: [`.claude/skills/intent-reconciliation/SKILL.md`](.claude/skills/intent-reconciliation/SKILL.md). phase 적용: [`.claude/rules/phase/04-evaluation.md §7-0-1`](.claude/rules/phase/04-evaluation.md).
 
-- metric / reward / evaluator 근거는 [`docs/metric_provenance.md`](docs/metric_provenance.md) 에 반영한다.
-- action space / strength grid / RL action 설계 근거는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 에 반영한다.
-- 새 baseline 이나 evaluation protocol 을 도입할 때도 동일 기준으로 provenance 를 기록한다.
-
-#### 근거 부족 시 표기
-
-조건을 만족하는 근거를 즉시 제시할 수 없으면 해당 판단을 다음 중 하나로 명시한다.
-
-- **engineering heuristic** — 구현상 임시 판단.
-- **internal proxy assumption** — 내부 reward / evaluator 를 위한 가정.
-- **pilot-only finding** — 본 프로젝트 내부 pilot 결과.
-
-위 표기가 붙은 내용은 외부 공개, 논문 claim, hypothesis status 전환의 단독 근거로 사용 금지.
-
-#### 위반 시 effect
-
-본 §3-22 위반 (근거 없는 연구 판단, 2020년 이전 또는 arXiv-only 근거를 최신 top-tier 근거처럼 인용, 내부 proxy 를 논문급 평가 기준처럼 표현) 은 [§6-5 metadata 우회 silent invalidation](#6-5-metadata-우회로-산출물-동질화) 과 동급의 연구 invalidation 으로 취급한다. 해당 피드백·평가 결론은 외부 공개 근거로 무효.
+**위반 시 effect**: 본 박제 missing 시 일지 의무 ([§3-6-1](#3-6-1-연구일지-작성-의무)) 미충족 + [§3-7 자가 수정 메타 규칙](#3-7-자가-수정-메타-규칙) 부족 으로 취급. 다음 commit 의 retrospective reconciliation 으로 만회.
 
 ---
 

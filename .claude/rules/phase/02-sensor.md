@@ -22,6 +22,32 @@
 - **결정성 이탈 (flaky)** — 같은 generator output·같은 evaluator 입력·같은 seed인데 결과가 달라지는 상태. 본 프로젝트는 외부 generator (NF4 양자화 모델 등) 의 inter-session noise 가능성을 고려해야 함.
 - **실험 정합성** — generator output·tool registry config·LoRA adapter의 metadata와 현재 코드 정의 일치 (silent invalidation 차단). 검증 절차는 [`data-versioning SKILL §3`](../../skills/data-versioning/SKILL.md).
 
+### 1-2. Skeleton GIF / MP4 Axis Convention 검증 (AGENTS.md §3-19)
+
+본 프로젝트 의 motion 데이터 (HumanML3D / G2 / synthetic) 는 **Y-up convention** (HEAD_y > PELVIS_y > FOOT_y, vertical span axis=1). matplotlib 의 default 3D view 는 Z-up — convention mismatch 시 skeleton 이 옆으로 누운 듯 그려짐 (2026-05-25 부록 EE 의 bug 발견).
+
+#### 1-2-A. 의무 사항 (skeleton GIF / MP4 / 3D PNG 도구 작성 / 수정 시)
+
+1. **Motion axis convention 확인**: `HEAD_y > PELVIS_y > FOOT_y` 또는 largest joint span 의 axis 확인.
+2. **Floor plane 위치**: 시각화 도구 의 floor 가 `y=ymin` (Y-up) 평면.
+3. **matplotlib view_init 의 vertical_axis 명시**: `ax.view_init(elev=elev, azim=azim, vertical_axis="y")` (matplotlib 3.4+ 표준 API).
+4. **새 GIF 생성 후 첫 frame visual inspection**: HEAD 위쪽, FOOT ground 근처, motion direction natural forward.
+
+#### 1-2-B. 자가 검증 절차 (도구 작성 / 수정 시)
+
+```python
+# axis convention sanity check (ad-hoc):
+import numpy as np
+motion = np.load("<path>")
+print("HEAD_y > PELVIS_y > FOOT_y?",
+      motion[0, 15, 1] > motion[0, 0, 1] > motion[0, 10, 1])
+# True 면 Y-up convention 정상.
+```
+
+#### 1-2-C. 위반 시 + 재인용 prevention
+
+본 §1-2 위반 (axis convention 미확인 → 옆으로 누운 GIF) 은 [AGENTS.md §3-17](../../../AGENTS.md) 의 **visual sanity sub-tier evidence 의 silent invalidation** 취급. **fix 후 재생성된 `*_yup_fix/` 디렉토리** 만 정식 visual evidence 로 인용 — 2026-05-25 이전 GIF (부록 W, DD) 는 axis bug 영향 caveat 동반 의무.
+
 ---
 
 ## 2. 핵심 경로 정의

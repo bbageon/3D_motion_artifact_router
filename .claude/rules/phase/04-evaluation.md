@@ -158,16 +158,58 @@ NetGain = ArtifactReduction - alpha * FidelityLoss - beta * CorrectionMagnitude 
 
 Compare 단계는 4 판정 (`stable`/`improvement`/`regression`/`inconclusive`) 을 가설 평가의 입력으로 받아 5단계로 출력. 형식 의무는 [`eval-compare SKILL §6`](../../skills/eval-compare/SKILL.md).
 
-### 7-0. 연구 근거 동반 의무
+### 7-0. 연구 근거 동반 의무 (AGENTS.md §3-22 의 구체 spec)
 
-본 phase 에서 Agent 가 연구 피드백·평가 해석·다음 실험 우선순위·metric/reward/baseline/RL algorithm 선택을 제안할 때는 AGENTS.md §3-22 를 따른다.
+본 phase 에서 Agent 가 연구 피드백·평가 해석·다음 실험 우선순위·metric/reward/baseline/RL algorithm 선택·외부 공개 가능성 판단을 수행할 때는 본 절 의 spec 을 따른다. 단순 구현 버그, 파일 경로, 테스트 실패, 문서 오탈자, repo-local bookkeeping 은 본 규칙 대상 아님.
 
-- 연구 판단에는 **2020년 이후 peer-reviewed top-tier conference/journal 논문 근거**를 함께 제시한다.
-- 근거가 없는 판단은 `engineering heuristic`, `internal proxy assumption`, `pilot-only finding` 중 하나로 명시한다.
-- NetGain, 현재 artifact evaluator, synthetic-only result 는 근거 논문과 perceptual/standard metric validation 없이는 최종 성능 claim 으로 사용하지 않는다.
-- 새 metric/reward/action-space/baseline 을 제안하거나 평가 기준으로 삼으면 `docs/metric_provenance.md` 또는 `docs/action_space_provenance.md` 를 갱신한다.
+#### 7-0-A. 허용 근거
 
-본 항목은 연구 피드백의 신뢰성 gate 이며, 위반한 피드백·평가 결론은 외부 공개 근거로 인용 금지.
+1. **2020년 이후** 출판 또는 공식 accept 된 논문.
+2. **peer-reviewed top-tier conference / journal** 또는 그에 준하는 분야별 주요 venue:
+   - Vision / graphics / motion: CVPR, ICCV, ECCV, SIGGRAPH / TOG, ACM MM, TPAMI, IJCV.
+   - ML / AI: NeurIPS, ICML, ICLR, AAAI, IJCAI, TMLR.
+   - Robotics / embodied motion: ICRA, IROS, RSS, CoRL.
+3. arXiv-only preprint 는 단독 근거로 사용 금지. 동일 내용의 accepted venue version 확인 시 그 venue/version 인용.
+4. 2020년 이전 고전 논문은 배경 설명 으로만 허용 — 새 평가 기준 또는 최종 연구 판단 의 주 근거 로 단독 사용 금지.
+
+#### 7-0-B. 피드백 / 평가 응답 형식 의무
+
+연구 판단을 포함하는 답변은 다음 네 항목 명시:
+
+1. **판단 / 권고** — 무엇을 유지, 수정, 보류, 폐기할지.
+2. **근거 논문** — 저자, 연도, venue, 빌려온 개념 또는 metric.
+3. **ArtifactRouter 적용 범위** — 본 프로젝트 의 어떤 부분에 적용 되는지.
+4. **남는 불확실성** — 내부 proxy, pilot evidence, synthetic-only evidence, sample-size limitation 등 구분.
+
+#### 7-0-C. 문서화 의무
+
+- metric / reward / evaluator 근거 → [`docs/metric_provenance.md`](../../../docs/metric_provenance.md).
+- action space / strength grid / RL action 설계 근거 → [`docs/action_space_provenance.md`](../../../docs/action_space_provenance.md).
+- 새 baseline / evaluation protocol 도입 시 동일 provenance 기록.
+
+#### 7-0-D. 근거 부족 시 표기
+
+조건 만족 근거 즉시 제시 불가 시 다음 중 하나로 명시:
+
+- **engineering heuristic** — 구현상 임시 판단.
+- **internal proxy assumption** — 내부 reward / evaluator 가정.
+- **pilot-only finding** — 본 프로젝트 내부 pilot 결과.
+
+위 표기 붙은 내용 은 **외부 공개 / 논문 claim / hypothesis status 전환의 단독 근거 사용 금지**. NetGain / 현재 artifact evaluator / synthetic-only result 는 근거 논문 + perceptual/standard metric validation 없이는 최종 성능 claim 으로 사용 금지.
+
+본 항목 위반 (근거 없는 연구 판단, 2020년 이전 또는 arXiv-only 근거 misrepresent, 내부 proxy 를 논문급 평가 기준 처럼 표현) 은 [AGENTS.md §6-5 metadata 우회 silent invalidation](../../../AGENTS.md) 과 동급 의 연구 invalidation. 해당 피드백 / 평가 결론 은 외부 공개 근거로 무효.
+
+### 7-0-1. Intent-Reconciliation Loop 의무 (AGENTS.md §3-23)
+
+본 phase 에서 새 **evaluator / correction tool / generator wrapper / oracle / baseline / RL policy / evaluation snapshot / framework doc** 의 commit (또는 사용자 보고) 직전 [AGENTS.md §3-23](../../../AGENTS.md) 의 5-step Intent-Reconciliation Loop 의무 적용 — [`intent-reconciliation SKILL`](../../skills/intent-reconciliation/SKILL.md) 의 절차:
+
+- **Step 1**: Intent 식별 (사용자 directive verbatim / H-id / 외부 2020+ 논문 / 자가 메타 규칙).
+- **Step 2**: Acceptance criteria 식별 (정량 + 정성, 사전 정의 — HARKing 차단).
+- **Step 3**: Actual outcome 측정 (snapshot metric + 정성 관찰).
+- **Step 4**: 5 카테고리 분류 (`aligned` / `partial` / `misaligned` / `scope_creep` / `unintended_side_effect`).
+- **Step 5**: 일지 (`reports/<YYYY-MM-DD>.md`) 박제 (4-line format) + (필요 시) 사용자 보고.
+
+`misaligned` / `scope_creep` / `unintended_side_effect` 의 경우 — **사용자 보고 의무**, commit 보류 또는 confirm 요청. 본 의무 missing 시 일지 의무 (§3-6-1) + AGENTS.md §3-23 위반 으로 취급.
 
 ### 7-1. 5단계 사이클
 
