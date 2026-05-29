@@ -176,7 +176,18 @@ def main() -> None:
     gt_files = sorted(args.gt_dir.glob("*.npy"))
     gt_chosen = [gt_files[i] for i in rng.choice(len(gt_files), args.n_gt, replace=False)]
 
-    methods = {"GT_ref": [], "noop": [], "B2-best": [], "safe_oracle_3level": [], "safe_oracle_5level": []}
+    methods = {"GT_ref": [], "noop": [], "b2_netgain_best": [], "b2_artifact_best": [],
+               "safe_oracle_3level": [], "safe_oracle_5level": []}
+    # NetGain (Protocol B, vs original): -target_delta - alpha*mpjpe. alpha=5.0.
+    from evaluators import DEFAULT_EVALUATORS as _DE
+    _ALPHA = 5.0
+    def _target_g2(mot):
+        return float(np.mean([max((r.score for r in ev.evaluate(mot)), default=0.0)
+                              for ev in _DE if ev.name in ("FootFloatingEvaluator","BoneLengthEvaluator","VelocityJitterEvaluator")]))
+    def _netgain_b2(corrected, original):
+        return -(_target_g2(corrected) - _target_g2(original)) - _ALPHA * float(np.mean(np.linalg.norm(corrected-original, axis=-1)))
+    def _artifact_b2(mot):
+        return sum(max((r.score for r in ev.evaluate(mot)), default=0.0) for ev in _DE)
 
     print("[INFO] converting GT reference...")
     for p in gt_chosen:
@@ -191,16 +202,20 @@ def main() -> None:
         # noop
         f = _to_features(m)
         if f is not None: methods["noop"].append(f)
-        # B2-best (best of small/medium/large by artifact — use large as proxy strong)
-        best_m, best_art = m, None
-        from evaluators import DEFAULT_EVALUATORS
+        # 두 B2 variant: b2_netgain_best (Protocol B NetGain, F-3 일관) + b2_artifact_best (artifact-min, F-5 일관).
+        ng_best_m, ng_best = m, 0.0  # noop NetGain = 0
+        art_best_m, art_best = m, None
         for st in ("small", "medium", "large"):
             out, _ = tools["VelocitySmoothingTool"].apply(m, target_part="full_body", target_joints=[], frame_range=(0, m.shape[0]-1), strength=st)
-            art = sum(max((r.score for r in ev.evaluate(out)), default=0.0) for ev in DEFAULT_EVALUATORS)
-            if best_art is None or art < best_art:
-                best_art, best_m = art, out
-        f = _to_features(best_m)
-        if f is not None: methods["B2-best"].append(f)
+            ng = _netgain_b2(out, m)
+            if ng > ng_best:
+                ng_best, ng_best_m = ng, out
+            art = _artifact_b2(out)
+            if art_best is None or art < art_best:
+                art_best, art_best_m = art, out
+        fng = _to_features(ng_best_m); fart = _to_features(art_best_m)
+        if fng is not None: methods["b2_netgain_best"].append(fng)
+        if fart is not None: methods["b2_artifact_best"].append(fart)
         # safe oracle 3-level / 5-level
         for okey, od in (("safe_oracle_3level", o3), ("safe_oracle_5level", o5)):
             sb = od.get(tid, {}).get("safe_best")

@@ -176,36 +176,42 @@ def main() -> None:
     o5 = {p["trial_id"]: p for p in json.load(open(args.oracle_5level, encoding="utf-8"))["per_sample"]}
 
     g2_files = sorted(args.g2_batch_dir.glob("motion_*.npy"))
-    captions, feats = {"noop": [], "B2-best": [], "safe_oracle_3level": [], "safe_oracle_5level": []}, \
-                      {"noop": [], "B2-best": [], "safe_oracle_3level": [], "safe_oracle_5level": []}
+    method_keys = ["noop", "b2_netgain_best", "b2_artifact_best", "safe_oracle_3level", "safe_oracle_5level"]
+    feats = {k: [] for k in method_keys}
     cap_common = []
+    _ALPHA = 5.0
+    def _target_g2(mot):
+        return float(np.mean([max((r.score for r in ev.evaluate(mot)), default=0.0)
+                              for ev in DEFAULT_EVALUATORS if ev.name in ("FootFloatingEvaluator","BoneLengthEvaluator","VelocityJitterEvaluator")]))
+    def _netgain_b2(corr, orig):
+        return -(_target_g2(corr) - _target_g2(orig)) - _ALPHA * float(np.mean(np.linalg.norm(corr-orig, axis=-1)))
     print(f"[INFO] processing {len(g2_files)} G2 samples...")
     for i, p in enumerate(g2_files, 1):
         tid = p.stem
         meta = json.load(open(p.with_suffix(".json"), encoding="utf-8"))
         cap = meta.get("prompt", "")
         m = np.load(str(p)).astype(np.float64)
-        # noop
         fn = G._to_features(m)
         if fn is None:
             continue
-        # B2-best (artifact-min)
-        best_m, best_art = m, None
+        # 두 B2 variant: netgain-best (F-3) + artifact-best (F-5).
+        ng_best_m, ng_best = m, 0.0
+        art_best_m, art_best = m, None
         for st in ("small", "medium", "large"):
             out, _ = tools["VelocitySmoothingTool"].apply(m, target_part="full_body", target_joints=[], frame_range=(0, m.shape[0]-1), strength=st)
+            ng = _netgain_b2(out, m)
+            if ng > ng_best: ng_best, ng_best_m = ng, out
             art = sum(max((r.score for r in ev.evaluate(out)), default=0.0) for ev in DEFAULT_EVALUATORS)
-            if best_art is None or art < best_art:
-                best_art, best_m = art, out
-        f_noop = fn
-        f_b2 = G._to_features(best_m)
+            if art_best is None or art < art_best: art_best, art_best_m = art, out
+        f_ng = G._to_features(ng_best_m); f_art = G._to_features(art_best_m)
         sb3 = o3.get(tid, {}).get("safe_best"); sb5 = o5.get(tid, {}).get("safe_best")
         m3 = _apply_seq(m, sb3["sequence"]) if (sb3 and sb3["length"] > 0) else m
         m5 = _apply_seq(m, sb5["sequence"]) if (sb5 and sb5["length"] > 0) else m
         f3 = G._to_features(m3); f5 = G._to_features(m5)
-        if f_b2 is None or f3 is None or f5 is None:
+        if f_ng is None or f_art is None or f3 is None or f5 is None:
             continue
         cap_common.append(cap)
-        feats["noop"].append(f_noop); feats["B2-best"].append(f_b2)
+        feats["noop"].append(fn); feats["b2_netgain_best"].append(f_ng); feats["b2_artifact_best"].append(f_art)
         feats["safe_oracle_3level"].append(f3); feats["safe_oracle_5level"].append(f5)
         if i % 50 == 0:
             print(f"   {i}/{len(g2_files)}")
