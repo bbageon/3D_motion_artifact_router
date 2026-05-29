@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "standard_metric_rprec",
+  "task_id": "standard_metric_rprec_v1",
+  "evaluator": "HumanML3D tm2t (text+motion co-embedding, finest.tar)",
+  "metric_category": "A (standard, HumanML3D/Guo 2022 CVPR)",
+  "tokenization": "spacy en_core_web_sm (HumanML3D recipe, NOUN/VERB lemmatized)",
+  "note": "text 동일 per sample (method 무관), motion 만 method별. method 간 비교 valid.",
+  "results": {
+    "noop": {
+      "n": 300,
+      "R_precision_top1": 0.4248263888888889,
+      "R_precision_top2": 0.5998263888888888,
+      "R_precision_top3": 0.6821180555555556,
+      "MM_Dist": 3.971954107284546
+    },
+    "B2-best": {
+      "n": 300,
+      "R_precision_top1": 0.42083333333333334,
+      "R_precision_top2": 0.5965277777777778,
+      "R_precision_top3": 0.6835069444444445,
+      "MM_Dist": 4.004037857055664
+    },
+    "safe_oracle_3level": {
+      "n": 300,
+      "R_precision_top1": 0.42465277777777777,
+      "R_precision_top2": 0.6,
+      "R_precision_top3": 0.68125,
+      "MM_Dist": 3.971972703933716
+    },
+    "safe_oracle_5level": {
+      "n": 300,
+      "R_precision_top1": 0.42465277777777777,
+      "R_precision_top2": 0.6015625,
+      "R_precision_top3": 0.6814236111111112,
+      "MM_Dist": 3.971534490585327
+    }
+  }
+}
