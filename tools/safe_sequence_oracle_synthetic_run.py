@@ -40,6 +40,7 @@ from orchestrator.oracle_single_step import CALIBRATED_PROTOCOL_A_NETGAIN_WEIGHT
 from tools.synthetic_injection import inject_foot_floating, inject_jitter
 # Reuse gate functions from the G2 safe oracle.
 from tools.safe_sequence_oracle_run import _gate_scores, _gate_violation
+from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, common_snapshot_metadata
 
 ALL_EVALUATORS = ("FootFloatingEvaluator", "BoneLengthEvaluator", "VelocityJitterEvaluator")
 TARGET_EVALUATORS_A = ("FootFloatingEvaluator", "VelocityJitterEvaluator")
@@ -184,6 +185,7 @@ def main() -> None:
     parser.add_argument("--max-depth", type=int, default=3)
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--calibration", type=Path, default=DEFAULT_CALIBRATION)
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "safe_sequence_oracle_synthetic_severe_v1.json")
     args = parser.parse_args()
@@ -264,7 +266,17 @@ def main() -> None:
 
     out = {
         "schema_version": "1.0.0", "record_type": "safe_sequence_oracle_synthetic_summary",
-        "task_id": "safe_sequence_oracle_synthetic_severe_v1", "timestamp": _utcnow(),
+        "task_id": "safe_sequence_oracle_synthetic_severe_v1",
+        **common_snapshot_metadata(
+            split_id=args.split_id or "safe_sequence_oracle_synthetic_severe_v1",
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-0-safe-oracle",
+            evidence_tier=CONTROLLED_DIAGNOSTIC,
+            evaluators=evaluators,
+            gate_evaluators=gate_evaluators,
+        ),
+        "timestamp": _utcnow(),
         "corruption": "foot_floating(0.08) + jitter(0.05)", "netgain_protocol": "A (clean GT reference)",
         "gate_thresholds_p99": gate_thresholds, "max_depth": args.max_depth,
         "n_samples": len(per_sample),

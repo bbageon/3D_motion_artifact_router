@@ -50,6 +50,7 @@ from evaluators import (
     DEFAULT_EVALUATORS, DEFAULT_PHYSICAL_GATE_EVALUATORS, EvaluatorReport,
 )
 from orchestrator.oracle_single_step import CALIBRATED_PROTOCOL_A_NETGAIN_WEIGHTS_V1
+from tools.harness_metadata import REAL_DISTRIBUTION, common_snapshot_metadata
 
 SCHEMA_VERSION = "1.0.0"
 RECORD_TYPE = "safe_sequence_oracle_sample"
@@ -294,6 +295,7 @@ def main() -> None:
                         help="Comma-separated trial_ids (e.g., motion_006,motion_007).")
     parser.add_argument("--calibration", type=Path, default=DEFAULT_CALIBRATION_PATH)
     parser.add_argument("--task-id", type=str, required=True)
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--max-depth", type=int, default=3)
     parser.add_argument("--top-k", type=int, default=10)
@@ -401,6 +403,15 @@ def main() -> None:
         "schema_version": SCHEMA_VERSION,
         "record_type": SUMMARY_TYPE,
         "task_id": args.task_id,
+        **common_snapshot_metadata(
+            split_id=args.split_id or args.task_id,
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-0-safe-oracle",
+            evidence_tier=REAL_DISTRIBUTION,
+            evaluators=evaluators,
+            gate_evaluators=gate_evaluators,
+        ),
         "timestamp": _utcnow_stamp(),
         "calibration_source": str(args.calibration),
         "gate_thresholds_p99": gate_thresholds,

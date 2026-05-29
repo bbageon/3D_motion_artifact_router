@@ -29,6 +29,10 @@ from pathlib import Path
 import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT))
+
+from evaluators import DEFAULT_EVALUATORS, DEFAULT_PHYSICAL_GATE_EVALUATORS
+from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
 
 
 def _flatten_state(state: dict, include_dist_tag: bool) -> list[float]:
@@ -122,6 +126,7 @@ def main() -> None:
     parser.add_argument("--dataset", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_imitation_dataset_v1.json")
     parser.add_argument("--seeds", type=str, default="0,1,2")
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_imitation_accuracy_v1.json")
     args = parser.parse_args()
@@ -173,9 +178,21 @@ def main() -> None:
                 "synthetic_action_acc": {"mean": float(np.mean(syn_acc)), "std": float(np.std(syn_acc))},
             }
 
+    evaluators = list(DEFAULT_EVALUATORS)
+    gate_evaluators = list(DEFAULT_PHYSICAL_GATE_EVALUATORS)
     out = {
         "schema_version": "1.0.0", "record_type": "rl2_imitation_accuracy",
-        "task_id": "rl2_imitation_accuracy_v1", "dataset_source": str(args.dataset),
+        "task_id": "rl2_imitation_accuracy_v1",
+        **common_snapshot_metadata(
+            split_id=args.split_id or "rl2_imitation_accuracy_v1",
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-2-imitation",
+            evidence_tier=[REAL_DISTRIBUTION, CONTROLLED_DIAGNOSTIC],
+            evaluators=evaluators,
+            gate_evaluators=gate_evaluators,
+        ),
+        "dataset_source": str(args.dataset),
         "seeds": seeds, "n_feature_dims": {"no_dist_tag": 34, "with_dist_tag": 35},
         "note": "OFFLINE imitation accuracy (teacher action 재현). closed-loop = Step F-3 별도.",
         "results": results,

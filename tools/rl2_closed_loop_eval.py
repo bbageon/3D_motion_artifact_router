@@ -8,7 +8,7 @@
 본 도구는 학습된 RF/HGB policy 를 closed-loop 실행:
   state → action → correction → physical gate → accept/rollback/STOP → next state
 
-비교 baseline: no-op / B2-best / safe oracle / unsafe oracle / RL-2 RF / RL-2 HGB.
+비교 baseline: no-op / B2-netgain-best / safe oracle / unsafe oracle / RL-2 RF / RL-2 HGB.
 보고: G2 / synthetic 분리 NetGain / violation rate / STOP rate / oracle gap closure
 + failure 유형 (STOP miss / wrong tool / right tool wrong strength / unsafe action).
 
@@ -34,6 +34,7 @@ from evaluators import DEFAULT_EVALUATORS, DEFAULT_PHYSICAL_GATE_EVALUATORS, Eva
 from orchestrator.oracle_single_step import CALIBRATED_PROTOCOL_A_NETGAIN_WEIGHTS_V1
 from tools.synthetic_injection import inject_foot_floating, inject_jitter
 from tools.safe_sequence_oracle_run import _gate_scores, _gate_violation
+from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
 from tools.rl2_build_training_data import (
     ACTION_LIST, ARTIFACT_EVALUATORS, PHYSICAL_EVALUATORS, STRENGTHS_5LEVEL,
     TOOLS_ORDER, TOOL_TARGET, _artifact_scores, _physical_scores, _build_state,
@@ -170,6 +171,7 @@ def main() -> None:
     parser.add_argument("--seeds", type=str, default="0,1,2")
     parser.add_argument("--max-depth", type=int, default=3)
     parser.add_argument("--models", type=str, default="RF,HGB")
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_closed_loop_eval_v1.json")
     args = parser.parse_args()
@@ -219,18 +221,19 @@ def main() -> None:
             noop_ng = _netgain_g2(original, original, evaluators, w)  # = 0
             safe_ng = g2_oracle[tid]["safe_best"]["netgain"] if g2_oracle[tid].get("safe_best") else noop_ng
             unsafe_ng = g2_oracle[tid]["unsafe_best"]["netgain"] if g2_oracle[tid].get("unsafe_best") else noop_ng
-            # B2-best (small/medium/large), pick best NetGain + record its violation.
-            b2_best = noop_ng
-            b2_best_motion = original
+            # B2-netgain-best: pick best NetGain over B2-small/medium/large.
+            b2_netgain_best = noop_ng
+            b2_netgain_best_motion = original
             for st in ("small", "medium", "large"):
                 out, _ = TOOL_BY_NAME["VelocitySmoothingTool"].apply(
                     original, target_part="full_body", target_joints=[], frame_range=(0, original.shape[0]-1), strength=st)
                 ng_st = _netgain_g2(out, original, evaluators, w)
-                if ng_st > b2_best:
-                    b2_best, b2_best_motion = ng_st, out
-            b2_viol = _has_violation(b2_best_motion, original, gate_evaluators, gate_thresholds)
+                if ng_st > b2_netgain_best:
+                    b2_netgain_best, b2_netgain_best_motion = ng_st, out
+            b2_netgain_best_viol = _has_violation(b2_netgain_best_motion, original, gate_evaluators, gate_thresholds)
             row = {"trial_id": tid, "noop": noop_ng, "safe_oracle": safe_ng,
-                   "unsafe_oracle": unsafe_ng, "b2_best": b2_best, "b2_viol": b2_viol}
+                   "unsafe_oracle": unsafe_ng, "b2_netgain_best": b2_netgain_best,
+                   "b2_netgain_best_viol": b2_netgain_best_viol}
             for mn, clf in trained.items():
                 final, trace = _run_policy_closed_loop(original, clf, evaluators, gate_evaluators,
                                                        gate_thresholds, dist_tag=0, max_depth=args.max_depth)
@@ -253,17 +256,18 @@ def main() -> None:
             noop_ng = _netgain_synthetic(corrupted, clean, corrupted, evaluators, w)  # = 0
             safe_ng = syn_oracle[tid]["safe_best"]["netgain"] if syn_oracle[tid].get("safe_best") else noop_ng
             unsafe_ng = syn_oracle[tid]["unsafe_best"]["netgain"] if syn_oracle[tid].get("unsafe_best") else noop_ng
-            b2_best = noop_ng
-            b2_best_motion = corrupted
+            b2_netgain_best = noop_ng
+            b2_netgain_best_motion = corrupted
             for st in ("small", "medium", "large"):
                 out, _ = TOOL_BY_NAME["VelocitySmoothingTool"].apply(
                     corrupted, target_part="full_body", target_joints=[], frame_range=(0, corrupted.shape[0]-1), strength=st)
                 ng_st = _netgain_synthetic(out, clean, corrupted, evaluators, w)
-                if ng_st > b2_best:
-                    b2_best, b2_best_motion = ng_st, out
-            b2_viol = _has_violation(b2_best_motion, corrupted, gate_evaluators, gate_thresholds)
+                if ng_st > b2_netgain_best:
+                    b2_netgain_best, b2_netgain_best_motion = ng_st, out
+            b2_netgain_best_viol = _has_violation(b2_netgain_best_motion, corrupted, gate_evaluators, gate_thresholds)
             row = {"trial_id": tid, "noop": noop_ng, "safe_oracle": safe_ng,
-                   "unsafe_oracle": unsafe_ng, "b2_best": b2_best, "b2_viol": b2_viol}
+                   "unsafe_oracle": unsafe_ng, "b2_netgain_best": b2_netgain_best,
+                   "b2_netgain_best_viol": b2_netgain_best_viol}
             for mn, clf in trained.items():
                 final, trace = _run_policy_closed_loop(corrupted, clf, evaluators, gate_evaluators,
                                                        gate_thresholds, dist_tag=1, max_depth=args.max_depth)
@@ -278,7 +282,7 @@ def main() -> None:
 
     # === Aggregate ===
     def _agg_dist(dist_rows):
-        methods = ["noop", "b2_best", "safe_oracle", "unsafe_oracle"]
+        methods = ["noop", "b2_netgain_best", "safe_oracle", "unsafe_oracle"]
         out = {}
         mean_noop = float(np.mean([r["noop"] for r in dist_rows])) if dist_rows else 0.0
         mean_safe = float(np.mean([r["safe_oracle"] for r in dist_rows])) if dist_rows else 0.0
@@ -287,9 +291,9 @@ def main() -> None:
             vals = [r[m] for r in dist_rows if m in r]
             out[m] = {"mean_netgain": float(np.mean(vals)) if vals else 0.0}
         # B2 violation rate (thesis: B2 의 NetGain 이 physical cost 동반하는가).
-        b2_viols = [r["b2_viol"] for r in dist_rows if "b2_viol" in r]
+        b2_viols = [r["b2_netgain_best_viol"] for r in dist_rows if "b2_netgain_best_viol" in r]
         if b2_viols:
-            out["b2_best"]["violation_rate"] = float(np.mean(b2_viols))
+            out["b2_netgain_best"]["violation_rate"] = float(np.mean(b2_viols))
         for mn in model_names:
             ng = [r[f"rl2_{mn}_ng"] for r in dist_rows if f"rl2_{mn}_ng" in r]
             viol = [r[f"rl2_{mn}_viol"] for r in dist_rows if f"rl2_{mn}_viol" in r]
@@ -307,7 +311,20 @@ def main() -> None:
 
     final_out = {
         "schema_version": "1.0.0", "record_type": "rl2_closed_loop_eval",
-        "task_id": "rl2_closed_loop_eval_v1", "seeds": seeds, "max_depth": args.max_depth,
+        "task_id": "rl2_closed_loop_eval_v1",
+        **common_snapshot_metadata(
+            split_id=args.split_id or "rl2_closed_loop_eval_v1",
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-2-closed-loop",
+            evidence_tier=[REAL_DISTRIBUTION, CONTROLLED_DIAGNOSTIC],
+            evaluators=evaluators,
+            gate_evaluators=gate_evaluators,
+        ),
+        "b2_selection_rules": {
+            "b2_netgain_best": "B2-netgain-best: max NetGain over B2-small/medium/large.",
+        },
+        "seeds": seeds, "max_depth": args.max_depth,
         "models": model_names,
         "note": "closed-loop policy + physical gate (accept/rollback/STOP). NetGain: G2=Protocol B, synthetic=Protocol A.",
         "g2": _agg_dist(seed_results["g2"]["_rows"]),
@@ -323,7 +340,8 @@ def main() -> None:
         print(f"\n[{dist}] (n_eval_total across seeds = {final_out[f'n_{dist}_eval_total']})")
         agg = final_out[dist]
         print(f"  {'method':<16} {'mean_NetGain':<14} {'violation':<12} {'STOP':<10} {'oracle_gap'}")
-        for m in ["noop", "b2_best", "unsafe_oracle", "safe_oracle"] + [f"rl2_{mn}" for mn in model_names]:
+        display_names = {"b2_netgain_best": "B2-netgain-best"}
+        for m in ["noop", "b2_netgain_best", "unsafe_oracle", "safe_oracle"] + [f"rl2_{mn}" for mn in model_names]:
             d = agg.get(m, {})
             ng = d.get("mean_netgain", 0)
             vr = d.get("violation_rate")
@@ -332,7 +350,8 @@ def main() -> None:
             vr_s = f"{vr*100:<11.0f}%" if vr is not None else " " * 12
             sr_s = f"{sr*100:<9.0f}%" if sr is not None else " " * 10
             gc_s = f"{gc*100:.0f}%" if gc is not None else ""
-            print(f"  {m:<16} {ng:<+14.4f} {vr_s} {sr_s} {gc_s}")
+            label = display_names.get(m, m)
+            print(f"  {label:<16} {ng:<+14.4f} {vr_s} {sr_s} {gc_s}")
     print(f"\n[OK] wrote {args.output}")
 
 

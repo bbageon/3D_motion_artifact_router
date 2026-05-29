@@ -8,7 +8,7 @@
 본 도구는 각 method 의 final motion 의 physical violation 을 **evaluator별 분해** +
 B2 의 strength별 + tool별 violation 원인 분석.
 
-Methods: no-op / B2-small/medium/large / B2-best / RL-2 RF / RL-2 HGB / safe oracle /
+Methods: no-op / B2-small/medium/large / B2-artifact-best / RL-2 RF / RL-2 HGB / safe oracle /
 unsafe oracle. 각각의 per-evaluator hard_violation rate.
 
 CLI:
@@ -32,6 +32,7 @@ from correction_tools import BoneProjectionTool, CorrectionTool, FootLockTool, V
 from evaluators import DEFAULT_EVALUATORS, DEFAULT_PHYSICAL_GATE_EVALUATORS
 from tools.synthetic_injection import inject_foot_floating, inject_jitter
 from tools.safe_sequence_oracle_run import _gate_scores, _gate_violation
+from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
 from tools.rl2_build_training_data import PHYSICAL_EVALUATORS
 from tools.rl2_train_imitation import _flatten_state, _sample_level_split, _build_models
 from tools.rl2_closed_loop_eval import _run_policy_closed_loop, _idx_to_action
@@ -82,6 +83,7 @@ def main() -> None:
                         default=REPO_ROOT / "evals" / "snapshots" / "physical_gate_clean_calibration_v1.json")
     parser.add_argument("--seeds", type=str, default="0,1,2")
     parser.add_argument("--max-depth", type=int, default=3)
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_violation_decomposition_v1.json")
     args = parser.parse_args()
@@ -132,7 +134,7 @@ def main() -> None:
 
                 dtag = 1 if dist == "synthetic" else 0
 
-                # B2-best (track per-strength) + B2-best overall.
+                # B2-artifact-best: pick strongest artifact reduction over B2 variants.
                 best_ng, best_motion, best_strength = None, ref, "noop"
                 for st in ("small", "medium", "large"):
                     out, _ = TOOL_BY_NAME["VelocitySmoothingTool"].apply(
@@ -147,7 +149,7 @@ def main() -> None:
                     ng = -art  # higher = less artifact.
                     if best_ng is None or ng > best_ng:
                         best_ng, best_motion, best_strength = ng, out, st
-                method_breakdowns[f"{dist}|B2-best"].append(_violation_breakdown(best_motion, ref, gate_thresholds))
+                method_breakdowns[f"{dist}|B2-artifact-best"].append(_violation_breakdown(best_motion, ref, gate_thresholds))
 
                 # RL-2 RF / HGB.
                 for mn in ("RF", "HGB"):
@@ -181,7 +183,20 @@ def main() -> None:
 
     out = {
         "schema_version": "1.0.0", "record_type": "rl2_violation_decomposition",
-        "task_id": "rl2_violation_decomposition_v1", "seeds": seeds,
+        "task_id": "rl2_violation_decomposition_v1",
+        **common_snapshot_metadata(
+            split_id=args.split_id or "rl2_violation_decomposition_v1",
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-2-analysis",
+            evidence_tier=[REAL_DISTRIBUTION, CONTROLLED_DIAGNOSTIC],
+            evaluators=evaluators,
+            gate_evaluators=GATE_EVALUATORS,
+        ),
+        "b2_selection_rules": {
+            "B2-artifact-best": "B2-artifact-best: max artifact reduction over B2-small/medium/large.",
+        },
+        "seeds": seeds,
         "physical_evaluators": list(PHYSICAL_EVALUATORS),
         "decomposition": decomposition,
         "b2_strength_violation": b2_strength_summary,
@@ -193,7 +208,7 @@ def main() -> None:
     for dist in ("synthetic", "g2"):
         print(f"\n[{dist}]")
         print(f"  {'method':<18} {'AnyViol':<10} {'BoneCV':<9} {'Jerk':<9} {'Penetr':<9} {'Skate':<9} {'Float'}")
-        for m in ["B2-best", "RL-2 RF", "RL-2 HGB", "safe oracle", "unsafe oracle"]:
+        for m in ["B2-artifact-best", "RL-2 RF", "RL-2 HGB", "safe oracle", "unsafe oracle"]:
             key = f"{dist}|{m}"
             d = decomposition.get(key, {})
             if not d:

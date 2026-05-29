@@ -46,6 +46,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from correction_tools import BoneProjectionTool, CorrectionTool, FootLockTool, VelocitySmoothingTool
 from evaluators import DEFAULT_EVALUATORS, DEFAULT_PHYSICAL_GATE_EVALUATORS, EvaluatorReport
 from tools.synthetic_injection import inject_foot_floating, inject_jitter
+from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
 
 ARTIFACT_EVALUATORS = ("FootFloatingEvaluator", "BoneLengthEvaluator", "VelocityJitterEvaluator")
 PHYSICAL_EVALUATORS = ("PenetrateEvaluator", "FloatEvaluator", "SkateEvaluator",
@@ -162,6 +163,7 @@ def main() -> None:
                         default=REPO_ROOT / "external_assets" / "HumanML3D" / "new_joints")
     parser.add_argument("--synthetic-seed", type=int, default=42)
     parser.add_argument("--max-depth", type=int, default=3)
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_imitation_dataset_v1.json")
     args = parser.parse_args()
@@ -223,6 +225,15 @@ def main() -> None:
         "schema_version": "1.0.0",
         "record_type": "rl2_imitation_dataset",
         "task_id": "rl2_imitation_dataset_v1",
+        **common_snapshot_metadata(
+            split_id=args.split_id or "rl2_imitation_dataset_v1",
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-2-imitation",
+            evidence_tier=[REAL_DISTRIBUTION, CONTROLLED_DIAGNOSTIC],
+            evaluators=evaluators,
+            gate_evaluators=gate_evaluators,
+        ),
         "action_list": ACTION_LIST,
         "state_spec": {
             "artifact_scores": ARTIFACT_EVALUATORS, "physical_scores": PHYSICAL_EVALUATORS,

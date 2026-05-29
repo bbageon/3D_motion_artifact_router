@@ -30,6 +30,7 @@ from evaluators import DEFAULT_EVALUATORS, DEFAULT_PHYSICAL_GATE_EVALUATORS
 from skeleton_normalizer.canonical_smpl_22 import T2M_KINEMATIC_CHAIN
 from tools.synthetic_injection import inject_foot_floating, inject_jitter
 from tools.safe_sequence_oracle_run import _gate_scores, _gate_violation
+from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
 from tools.rl2_build_training_data import ACTION_LIST, STRENGTHS_5LEVEL, TOOLS_ORDER
 from tools.rl2_train_imitation import _flatten_state, _sample_level_split, _build_models
 from tools.rl2_closed_loop_eval import _run_policy_closed_loop, _idx_to_action
@@ -90,6 +91,7 @@ def main() -> None:
                         default=REPO_ROOT / "evals" / "snapshots" / "physical_gate_clean_calibration_v1.json")
     parser.add_argument("--seeds", type=str, default="0,1,2")
     parser.add_argument("--max-depth", type=int, default=3)
+    parser.add_argument("--split-id", type=str, default=None)
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_distribution_behavior_v1.json")
     args = parser.parse_args()
@@ -272,7 +274,17 @@ def main() -> None:
 
     out = {
         "schema_version": "1.0.0", "record_type": "rl2_distribution_behavior",
-        "task_id": "rl2_distribution_behavior_v1", "seeds": seeds,
+        "task_id": "rl2_distribution_behavior_v1",
+        **common_snapshot_metadata(
+            split_id=args.split_id or "rl2_distribution_behavior_v1",
+            oracle_type="sequence",
+            action_grid="5-level",
+            stage="RL-2-analysis",
+            evidence_tier=[REAL_DISTRIBUTION, CONTROLLED_DIAGNOSTIC],
+            evaluators=evaluators,
+            gate_evaluators=gate_evaluators,
+        ),
+        "seeds": seeds,
         "g2_behavior": g2_agg,
         "synthetic_behavior": syn_agg,
         "b2_bone_cv_appendix": appendix_summary,
