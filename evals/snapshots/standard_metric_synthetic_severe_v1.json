@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "standard_metric_synthetic_severe",
+  "task_id": "standard_metric_synthetic_severe_v1",
+  "evaluator": "HumanML3D tm2t (movement+motion+text encoder, finest.tar)",
+  "metric_category": "A (standard, HumanML3D/Guo 2022 CVPR)",
+  "evidence_tier": "controlled diagnostic (synthetic, AGENTS.md §3-17 — appendix only)",
+  "corruption": "foot_floating(0.08) + jitter(0.05) on clean HumanML3D",
+  "netgain_protocol": "A (clean GT reference, alpha=5.0)",
+  "gt_reference": "HumanML3D clean new_joints (n=300)",
+  "n_samples_per_method": 60,
+  "caveat": "n per corrected method is small (~60) → FID 추정 noisy. primary evidence = G-1/G-2 (G2 real-distribution).",
+  "fid_diversity": {
+    "GT_ref": {
+      "n": 300,
+      "diversity": 8.844770431518555
+    },
+    "noop": {
+      "n": 60,
+      "FID_vs_GT": 57.24750609312968,
+      "diversity": 2.0228970050811768
+    },
+    "b2_netgain_best": {
+      "n": 60,
+      "FID_vs_GT": 24.27557979828658,
+      "diversity": 4.483315467834473
+    },
+    "b2_artifact_best": {
+      "n": 60,
+      "FID_vs_GT": 30.675921064020358,
+      "diversity": 3.8015835285186768
+    },
+    "safe_oracle_3level": {
+      "n": 60,
+      "FID_vs_GT": 13.468121298283435,
+      "diversity": 6.294088363647461
+    },
+    "safe_oracle_5level": {
+      "n": 60,
+      "FID_vs_GT": 9.861480719155637,
+      "diversity": 6.760748386383057
+    }
+  },
+  "rprecision_mmdist": {
+    "noop": {
+      "n": 60,
+      "R_precision_top1": 0.103125,
+      "R_precision_top2": 0.2,
+      "R_precision_top3": 0.2703125,
+      "MM_Dist": 7.715672969818115
+    },
+    "b2_netgain_best": {
+      "n": 60,
+      "R_precision_top1": 0.2421875,
+      "R_precision_top2": 0.3671875,
+      "R_precision_top3": 0.4703125,
+      "MM_Dist": 5.7376322746276855
+    },
+    "b2_artifact_best": {
+      "n": 60,
+      "R_precision_top1": 0.2015625,
+      "R_precision_top2": 0.2984375,
+      "R_precision_top3": 0.3703125,
+      "MM_Dist": 6.370944976806641
+    },
+    "safe_oracle_3level": {
+      "n": 60,
+      "R_precision_top1": 0.253125,
+      "R_precision_top2": 0.38125,
+      "R_precision_top3": 0.45625,
+      "MM_Dist": 5.217188835144043
+    },
+    "safe_oracle_5level": {
+      "n": 60,
+      "R_precision_top1": 0.3140625,
+      "R_precision_top2": 0.4328125,
+      "R_precision_top3": 0.521875,
+      "MM_Dist": 4.622738838195801
+    }
+  }
+}
