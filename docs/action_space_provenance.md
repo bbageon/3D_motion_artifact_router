@@ -108,16 +108,30 @@ ArtifactRouter 의 action space 의 정식 분류 + 근거 + grid 박제. RL-1 /
 | RL-0 (sequence oracle, 부록 M, N) | 9 + STOP = **10 actions** | 10 |
 | **RL-0 (5-level oracle, 본 directive)** | tool × 5-level + STOP = **3 × 5 + 1 = 16 actions** | 16 |
 | RL-1 (imitation policy, 부록 O) | 10 actions (3-level) | 10 |
-| **RL-2 (Q-learning / value iteration)** | **TBD — 5-level oracle 결과 후 결정** | 10 or 16 |
+| **RL-2 learned (safe imitation) — PRIMARY** | **3-level (10 actions, STOP + 3 tool × 3 strength)** | **10** |
+| RL-2 oracle ceiling / future constrained RL | 5-level (16 actions) | 16 |
 | (future) Continuous action | tool × strength_value (float ∈ [0, 1+]) | discrete tool + continuous param (hybrid) |
 
-### 5-1. RL-2 의 action space 결정 분기 (사용자 directive)
+### 5-1. RL-2 의 action space 결정 — oracle ceiling vs learned policy 의 분리 (사용자 승인 2026-05-28)
 
-| Case | 조건 | RL-2 action space |
+**정식 결정** (사용자 승인 게이트 통과, 2026-05-28):
+
+| 측면 | grid | 근거 |
 |---|---|---|
-| **A** | 5-level oracle > 3-level oracle 의미 있게 우월 | **5-level (16 actions)** |
-| **B** | NetGain 비슷, fidelity / correction magnitude 감소 | 5-level (over-modification 감소용) |
-| **C** | 차이 거의 없음 | **3-level 유지** (10 actions), 5-level 은 appendix / future |
+| **RL-2 learned policy (PRIMARY)** | **3-level (10 actions)** | learned closed-loop NetGain +0.171 > 5-level +0.134, oracle gap closure 83% > 54%, strength_match 62% > 27% ([`reports/2026-05-28.md`](../reports/2026-05-28.md)) |
+| **RL-2 oracle ceiling / future RL** | 5-level (16 actions) | oracle ceiling +0.246 > 3-level +0.207 (synthetic Case A, [`reports/2026-05-26.md`](../reports/2026-05-26.md)). 단 imitation 으로 회수 못 함 (bottleneck) |
+
+#### 5-1-1. 2026-05-26 의 "RL-2 = 5-level (Case A)" 결정 의 reframe
+
+- **2026-05-26 의 Case A 결정** = **oracle 기준** (synthetic 5-level oracle > 3-level oracle, p=3.28e-10). 본 결정 은 **oracle ceiling 의 우월** 을 의미 — 유효.
+- **2026-05-28 의 learned policy 비교** = 5-level 의 oracle advantage 가 learned policy 로 transfer 안 됨 (strength fine-grained matching 이 imitation bottleneck, strength_match 27% vs 62%).
+- **정정**: RL-2 의 **현재 learned policy primary = 3-level**. 5-level 은 **oracle upper-bound + future constrained RL (Q-learning/value iteration) 의 ceiling 회수 target** 으로 유지.
+
+#### 5-1-2. 핵심 message (외부 공개)
+
+> "Finer action grids increase oracle headroom, but may reduce learned policy performance under limited imitation data." / "Although the 5-level grid provides a higher oracle ceiling, the 3-level grid yields better learned closed-loop performance by reducing strength-selection errors."
+
+근거: behavioral cloning 의 action space 가 클수록 label coverage 더 필요 + fine-grained discretization 의 optimization 난이도 (Masson et al. AAAI 2016 ; Tang & Agrawal AAAI 2020 ; PhysDiff Yuan et al. ICCV 2023 의 parameterized/physical action separation spirit).
 
 ---
 

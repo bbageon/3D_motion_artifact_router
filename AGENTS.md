@@ -259,7 +259,7 @@ NetGain = Category C (internal routing reward). 외부 공개 결과 의 최종 
 
 ### 3-21. Action Space Provenance Gate
 
-사용자 directive (2026-05-25) 박제. 모든 RL stage (RL-0/-1/-2) 의 action space (tool × strength × STOP) 는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 등록 의무. **5단계 리포트 + 외부 공개 시 grid (예: "10 actions / 3-level prototype" 또는 "16 actions / 5-level") + RL stage 명시 의무**. 3-level vs 5-level 직접 비교 시 같은 sample set + 같은 reference. 본 RL-2 결정 (2026-05-26, **5-level Case A** confirmed): [`reports/2026-05-26.md`](reports/2026-05-26.md).
+사용자 directive (2026-05-25) 박제. 모든 RL stage (RL-0/-1/-2) 의 action space (tool × strength × STOP) 는 [`docs/action_space_provenance.md`](docs/action_space_provenance.md) 등록 의무. **5단계 리포트 + 외부 공개 시 grid (예: "10 actions / 3-level" 또는 "16 actions / 5-level") + RL stage 명시 의무**. 3-level vs 5-level 직접 비교 시 같은 sample set + 같은 reference. **RL-2 정식 결정 (사용자 승인 2026-05-28): learned policy primary = 3-level (10 actions); 5-level = oracle ceiling + future constrained RL**. oracle 기준 (2026-05-26 5-level Case A, [`reports/2026-05-26.md`](reports/2026-05-26.md)) 과 learned policy 기준 (2026-05-28 3-level 우월, [`reports/2026-05-28.md`](reports/2026-05-28.md)) 의 분리 의무.
 
 상세 (Action 두 차원 / Strength Grid factor mapping / Backward Compat / Case A-B-C 분기): [`docs/action_space_provenance.md`](docs/action_space_provenance.md).
 
