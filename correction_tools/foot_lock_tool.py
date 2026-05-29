@@ -75,7 +75,12 @@ class FootLockTool(CorrectionTool):
 
         meta = metadata or {}
         ground_y: float = float(meta.get("ground_y", self.default_ground_y))
-        factor: float = STRENGTH_FACTOR.get(strength, STRENGTH_FACTOR["medium"])
+        # Continuous intensity override (RL-2 Q_safe, u∈[0,1] → factor; docs/action_space_provenance.md §5-2-2).
+        # 없으면 기존 strength token mapping (backward compatible).
+        if "continuous_factor" in meta:
+            factor = float(meta["continuous_factor"])
+        else:
+            factor = STRENGTH_FACTOR.get(strength, STRENGTH_FACTOR["medium"])
 
         # target joints 결정
         if target_joints:

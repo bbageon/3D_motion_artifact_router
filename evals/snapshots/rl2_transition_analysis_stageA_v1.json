@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_transition_analysis",
+  "task_id": "rl2_transition_analysis_stageA_v1",
+  "dataset_source": "C:\\Users\\geonu\\Desktop\\3Dmotion\\motion-artifact-router\\evals\\snapshots\\rl2_transition_dataset_stageA_v1.json",
+  "n_transitions": 16830,
+  "n_states": {
+    "g2_natural": 300,
+    "synthetic_severe": 60,
+    "clean": 100,
+    "near_boundary": 50
+  },
+  "u_grid": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "figure": "reports\\figures\\2026-05-29\\transition_stageA_curves.png",
+  "note": "Stage A 진단 (사용자): utility smoothness / gate boundary / u sensitivity / B2 failure 재현.",
+  "smoothness": {
+    "clean": {
+      "FootLockTool": 0.010872,
+      "BoneProjectionTool": 0.0,
+      "VelocitySmoothingTool": 0.004663
+    },
+    "near_boundary": {
+      "FootLockTool": 0.005872,
+      "BoneProjectionTool": 0.000673,
+      "VelocitySmoothingTool": 0.025002
+    },
+    "g2_natural": {
+      "FootLockTool": 0.009349,
+      "BoneProjectionTool": 0.000151,
+      "VelocitySmoothingTool": 0.003137
+    },
+    "synthetic_severe": {
+      "FootLockTool": 0.001821,
+      "BoneProjectionTool": 0.001397,
+      "VelocitySmoothingTool": 0.077199
+    }
+  },
+  "gate_boundary_u": {
+    "clean": {
+      "FootLockTool": 0.1,
+      "BoneProjectionTool": null,
+      "VelocitySmoothingTool": 0.2
+    },
+    "near_boundary": {
+      "FootLockTool": null,
+      "BoneProjectionTool": 0.9,
+      "VelocitySmoothingTool": null
+    },
+    "g2_natural": {
+      "FootLockTool": null,
+      "BoneProjectionTool": null,
+      "VelocitySmoothingTool": null
+    },
+    "synthetic_severe": {
+      "FootLockTool": null,
+      "BoneProjectionTool": 0.9,
+      "VelocitySmoothingTool": 0.2
+    }
+  },
+  "u_sensitivity": {
+    "clean": {
+      "FootLockTool": 0.019221,
+      "BoneProjectionTool": 0.0,
+      "VelocitySmoothingTool": 0.05239
+    },
+    "near_boundary": {
+      "FootLockTool": 0.022273,
+      "BoneProjectionTool": 0.016718,
+      "VelocitySmoothingTool": 0.099847
+    },
+    "g2_natural": {
+      "FootLockTool": 0.036067,
+      "BoneProjectionTool": 0.006754,
+      "VelocitySmoothingTool": 0.042199
+    },
+    "synthetic_severe": {
+      "FootLockTool": 0.015744,
+      "BoneProjectionTool": 0.037235,
+      "VelocitySmoothingTool": 0.195379
+    }
+  },
+  "b2_failure_velsmooth": {
+    "clean": {
+      "u": 1.0,
+      "per_evaluator_violation_rate": {
+        "PenetrateEvaluator": 0.0,
+        "FloatEvaluator": 0.0,
+        "SkateEvaluator": 0.0,
+        "JerkSpikeEvaluator": 0.0,
+        "BoneLengthCVEvaluator": 1.0
+      },
+      "dominant": "BoneLengthCVEvaluator",
+      "dominant_rate": 1.0
+    },
+    "near_boundary": {
+      "u": 1.0,
+      "per_evaluator_violation_rate": {
+        "PenetrateEvaluator": 0.0,
+        "FloatEvaluator": 0.0,
+        "SkateEvaluator": 0.0,
+        "JerkSpikeEvaluator": 0.0,
+        "BoneLengthCVEvaluator": 0.0
+      },
+      "dominant": "PenetrateEvaluator",
+      "dominant_rate": 0.0
+    },
+    "g2_natural": {
+      "u": 1.0,
+      "per_evaluator_violation_rate": {
+        "PenetrateEvaluator": 0.0,
+        "FloatEvaluator": 0.0,
+        "SkateEvaluator": 0.0,
+        "JerkSpikeEvaluator": 0.0,
+        "BoneLengthCVEvaluator": 0.4
+      },
+      "dominant": "BoneLengthCVEvaluator",
+      "dominant_rate": 0.4
+    },
+    "synthetic_severe": {
+      "u": 1.0,
+      "per_evaluator_violation_rate": {
+        "PenetrateEvaluator": 0.0,
+        "FloatEvaluator": 0.0,
+        "SkateEvaluator": 0.0,
+        "JerkSpikeEvaluator": 0.0,
+        "BoneLengthCVEvaluator": 0.0333
+      },
+      "dominant": "BoneLengthCVEvaluator",
+      "dominant_rate": 0.0333
+    }
+  }
+}

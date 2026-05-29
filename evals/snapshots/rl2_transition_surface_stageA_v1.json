@@ -1,0 +1,1012 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_transition_dataset",
+  "task_id": "rl2_transition_dataset_stageA_v1",
+  "split_id": "rl2_transition_dataset_stageA_v1",
+  "oracle_type": "action_effect_transition",
+  "action_space_grid": {
+    "grid": "continuous-u-11grid",
+    "stage": "RL-2-Q-surface-stageA",
+    "include_stop": true,
+    "action_type": "discrete_tool_x_continuous_intensity",
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u"
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "formulation": "action-effect transition (state, tool, u, after_state, gate_result, utility) for Q_safe",
+  "u_grid": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "u_to_tool_params": {
+    "FootLockTool": "continuous_factor=u",
+    "BoneProjectionTool": "continuous_factor=u",
+    "VelocitySmoothingTool": "continuous_sigma=2.0*u"
+  },
+  "alpha": 5.0,
+  "horizon": 1,
+  "distributions": {
+    "g2_natural": "G2 generated (Protocol B, real-distribution)",
+    "synthetic_severe": "foot_floating(0.08)+jitter(0.05) (Protocol A, controlled diagnostic)",
+    "clean": "clean HumanML3D no corruption (Protocol A, STOP/no-harm boundary)",
+    "near_boundary": "clean + jitter(0.025) (Protocol A, gate boundary — Stage A operational def)"
+  },
+  "safe_utility_metric": "Category C internal routing reward (metric_provenance §4-1-1)",
+  "n_states": {
+    "g2_natural": 300,
+    "synthetic_severe": 60,
+    "clean": 100,
+    "near_boundary": 50
+  },
+  "n_states_total": 510,
+  "n_transitions": 16830,
+  "surface_summary_g2_natural": {
+    "BoneProjectionTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.1": {
+      "mean_utility": -0.000394,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000366,
+      "mean_fidelity_loss": 0.000152,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.2": {
+      "mean_utility": -0.000913,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000607,
+      "mean_fidelity_loss": 0.000304,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.3": {
+      "mean_utility": -0.001516,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000764,
+      "mean_fidelity_loss": 0.000456,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.4": {
+      "mean_utility": -0.00227,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.00077,
+      "mean_fidelity_loss": 0.000608,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.5": {
+      "mean_utility": -0.002981,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000819,
+      "mean_fidelity_loss": 0.00076,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.6": {
+      "mean_utility": -0.003722,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000838,
+      "mean_fidelity_loss": 0.000912,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.7": {
+      "mean_utility": -0.004473,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000847,
+      "mean_fidelity_loss": 0.001064,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.8": {
+      "mean_utility": -0.005233,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000847,
+      "mean_fidelity_loss": 0.001216,
+      "n": 300
+    },
+    "BoneProjectionTool|u=0.9": {
+      "mean_utility": -0.005993,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000847,
+      "mean_fidelity_loss": 0.001368,
+      "n": 300
+    },
+    "BoneProjectionTool|u=1.0": {
+      "mean_utility": -0.006754,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000846,
+      "mean_fidelity_loss": 0.00152,
+      "n": 300
+    },
+    "FootLockTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 300
+    },
+    "FootLockTool|u=0.1": {
+      "mean_utility": -0.002791,
+      "violation_rate": 0.16,
+      "mean_artifact_reduction": 0.001114,
+      "mean_fidelity_loss": 0.000781,
+      "n": 300
+    },
+    "FootLockTool|u=0.2": {
+      "mean_utility": -0.005895,
+      "violation_rate": 0.2367,
+      "mean_artifact_reduction": 0.001915,
+      "mean_fidelity_loss": 0.001562,
+      "n": 300
+    },
+    "FootLockTool|u=0.3": {
+      "mean_utility": -0.009617,
+      "violation_rate": 0.2967,
+      "mean_artifact_reduction": 0.002097,
+      "mean_fidelity_loss": 0.002343,
+      "n": 300
+    },
+    "FootLockTool|u=0.4": {
+      "mean_utility": -0.013365,
+      "violation_rate": 0.34,
+      "mean_artifact_reduction": 0.002255,
+      "mean_fidelity_loss": 0.003124,
+      "n": 300
+    },
+    "FootLockTool|u=0.5": {
+      "mean_utility": -0.016975,
+      "violation_rate": 0.38,
+      "mean_artifact_reduction": 0.002549,
+      "mean_fidelity_loss": 0.003905,
+      "n": 300
+    },
+    "FootLockTool|u=0.6": {
+      "mean_utility": -0.020321,
+      "violation_rate": 0.4267,
+      "mean_artifact_reduction": 0.003108,
+      "mean_fidelity_loss": 0.004686,
+      "n": 300
+    },
+    "FootLockTool|u=0.7": {
+      "mean_utility": -0.024189,
+      "violation_rate": 0.4467,
+      "mean_artifact_reduction": 0.003145,
+      "mean_fidelity_loss": 0.005467,
+      "n": 300
+    },
+    "FootLockTool|u=0.8": {
+      "mean_utility": -0.029296,
+      "violation_rate": 0.4567,
+      "mean_artifact_reduction": 0.001942,
+      "mean_fidelity_loss": 0.006248,
+      "n": 300
+    },
+    "FootLockTool|u=0.9": {
+      "mean_utility": -0.036067,
+      "violation_rate": 0.48,
+      "mean_artifact_reduction": -0.000924,
+      "mean_fidelity_loss": 0.007029,
+      "n": 300
+    },
+    "FootLockTool|u=1.0": {
+      "mean_utility": -0.033489,
+      "violation_rate": 0.49,
+      "mean_artifact_reduction": 0.00556,
+      "mean_fidelity_loss": 0.00781,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.1": {
+      "mean_utility": -0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.2": {
+      "mean_utility": -0.001466,
+      "violation_rate": 0.1833,
+      "mean_artifact_reduction": 0.000124,
+      "mean_fidelity_loss": 0.000318,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.3": {
+      "mean_utility": -0.006069,
+      "violation_rate": 0.2,
+      "mean_artifact_reduction": 0.000685,
+      "mean_fidelity_loss": 0.001351,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.4": {
+      "mean_utility": -0.010252,
+      "violation_rate": 0.2433,
+      "mean_artifact_reduction": 0.000914,
+      "mean_fidelity_loss": 0.002233,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.5": {
+      "mean_utility": -0.014436,
+      "violation_rate": 0.2667,
+      "mean_artifact_reduction": 0.001239,
+      "mean_fidelity_loss": 0.003135,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.6": {
+      "mean_utility": -0.018904,
+      "violation_rate": 0.2967,
+      "mean_artifact_reduction": 0.001732,
+      "mean_fidelity_loss": 0.004127,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.7": {
+      "mean_utility": -0.024094,
+      "violation_rate": 0.3333,
+      "mean_artifact_reduction": 0.001967,
+      "mean_fidelity_loss": 0.005212,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.8": {
+      "mean_utility": -0.029693,
+      "violation_rate": 0.3567,
+      "mean_artifact_reduction": 0.002195,
+      "mean_fidelity_loss": 0.006378,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=0.9": {
+      "mean_utility": -0.03576,
+      "violation_rate": 0.38,
+      "mean_artifact_reduction": 0.002312,
+      "mean_fidelity_loss": 0.007614,
+      "n": 300
+    },
+    "VelocitySmoothingTool|u=1.0": {
+      "mean_utility": -0.042199,
+      "violation_rate": 0.4,
+      "mean_artifact_reduction": 0.002346,
+      "mean_fidelity_loss": 0.008909,
+      "n": 300
+    }
+  },
+  "surface_summary_synthetic_severe": {
+    "BoneProjectionTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.1": {
+      "mean_utility": 0.0021,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000936,
+      "mean_fidelity_loss": -0.000233,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.2": {
+      "mean_utility": 0.002803,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.001298,
+      "mean_fidelity_loss": -0.000301,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.3": {
+      "mean_utility": 0.002146,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.001132,
+      "mean_fidelity_loss": -0.000203,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.4": {
+      "mean_utility": 0.000169,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000447,
+      "mean_fidelity_loss": 5.6e-05,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.5": {
+      "mean_utility": -0.003083,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.000763,
+      "mean_fidelity_loss": 0.000464,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.6": {
+      "mean_utility": -0.007497,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.002452,
+      "mean_fidelity_loss": 0.001009,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.7": {
+      "mean_utility": -0.012961,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.004582,
+      "mean_fidelity_loss": 0.001676,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.8": {
+      "mean_utility": -0.019362,
+      "violation_rate": 0.1167,
+      "mean_artifact_reduction": -0.007103,
+      "mean_fidelity_loss": 0.002452,
+      "n": 60
+    },
+    "BoneProjectionTool|u=0.9": {
+      "mean_utility": -0.026562,
+      "violation_rate": 0.5833,
+      "mean_artifact_reduction": -0.009954,
+      "mean_fidelity_loss": 0.003322,
+      "n": 60
+    },
+    "BoneProjectionTool|u=1.0": {
+      "mean_utility": -0.034432,
+      "violation_rate": 0.9,
+      "mean_artifact_reduction": -0.013077,
+      "mean_fidelity_loss": 0.004271,
+      "n": 60
+    },
+    "FootLockTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 60
+    },
+    "FootLockTool|u=0.1": {
+      "mean_utility": 0.004341,
+      "violation_rate": 0.0333,
+      "mean_artifact_reduction": 0.000247,
+      "mean_fidelity_loss": -0.000819,
+      "n": 60
+    },
+    "FootLockTool|u=0.2": {
+      "mean_utility": 0.007071,
+      "violation_rate": 0.0333,
+      "mean_artifact_reduction": 0.000478,
+      "mean_fidelity_loss": -0.001318,
+      "n": 60
+    },
+    "FootLockTool|u=0.3": {
+      "mean_utility": 0.008326,
+      "violation_rate": 0.0333,
+      "mean_artifact_reduction": 0.000416,
+      "mean_fidelity_loss": -0.001582,
+      "n": 60
+    },
+    "FootLockTool|u=0.4": {
+      "mean_utility": 0.009354,
+      "violation_rate": 0.0667,
+      "mean_artifact_reduction": 0.000965,
+      "mean_fidelity_loss": -0.001678,
+      "n": 60
+    },
+    "FootLockTool|u=0.5": {
+      "mean_utility": 0.010024,
+      "violation_rate": 0.0833,
+      "mean_artifact_reduction": 0.00193,
+      "mean_fidelity_loss": -0.001619,
+      "n": 60
+    },
+    "FootLockTool|u=0.6": {
+      "mean_utility": 0.008873,
+      "violation_rate": 0.0833,
+      "mean_artifact_reduction": 0.001892,
+      "mean_fidelity_loss": -0.001396,
+      "n": 60
+    },
+    "FootLockTool|u=0.7": {
+      "mean_utility": 0.006686,
+      "violation_rate": 0.0833,
+      "mean_artifact_reduction": 0.001708,
+      "mean_fidelity_loss": -0.000996,
+      "n": 60
+    },
+    "FootLockTool|u=0.8": {
+      "mean_utility": 0.004022,
+      "violation_rate": 0.0833,
+      "mean_artifact_reduction": 0.002002,
+      "mean_fidelity_loss": -0.000404,
+      "n": 60
+    },
+    "FootLockTool|u=0.9": {
+      "mean_utility": -2e-05,
+      "violation_rate": 0.1167,
+      "mean_artifact_reduction": 0.001925,
+      "mean_fidelity_loss": 0.000389,
+      "n": 60
+    },
+    "FootLockTool|u=1.0": {
+      "mean_utility": -0.00572,
+      "violation_rate": 0.1333,
+      "mean_artifact_reduction": 0.001211,
+      "mean_fidelity_loss": 0.001386,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.1": {
+      "mean_utility": 4e-06,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 1e-06,
+      "mean_fidelity_loss": -1e-06,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.2": {
+      "mean_utility": 0.042768,
+      "violation_rate": 0.7333,
+      "mean_artifact_reduction": 0.012563,
+      "mean_fidelity_loss": -0.006041,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.3": {
+      "mean_utility": 0.157673,
+      "violation_rate": 0.7667,
+      "mean_artifact_reduction": 0.044778,
+      "mean_fidelity_loss": -0.022579,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.4": {
+      "mean_utility": 0.195379,
+      "violation_rate": 0.5667,
+      "mean_artifact_reduction": 0.041452,
+      "mean_fidelity_loss": -0.030785,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.5": {
+      "mean_utility": 0.1868,
+      "violation_rate": 0.4167,
+      "mean_artifact_reduction": 0.009942,
+      "mean_fidelity_loss": -0.035372,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.6": {
+      "mean_utility": 0.158749,
+      "violation_rate": 0.2667,
+      "mean_artifact_reduction": -0.033346,
+      "mean_fidelity_loss": -0.038419,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.7": {
+      "mean_utility": 0.123122,
+      "violation_rate": 0.1167,
+      "mean_artifact_reduction": -0.079369,
+      "mean_fidelity_loss": -0.040498,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.8": {
+      "mean_utility": 0.092273,
+      "violation_rate": 0.05,
+      "mean_artifact_reduction": -0.11717,
+      "mean_fidelity_loss": -0.041889,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=0.9": {
+      "mean_utility": 0.068789,
+      "violation_rate": 0.0333,
+      "mean_artifact_reduction": -0.145056,
+      "mean_fidelity_loss": -0.042769,
+      "n": 60
+    },
+    "VelocitySmoothingTool|u=1.0": {
+      "mean_utility": 0.059158,
+      "violation_rate": 0.0333,
+      "mean_artifact_reduction": -0.15713,
+      "mean_fidelity_loss": -0.043257,
+      "n": 60
+    }
+  },
+  "surface_summary_clean": {
+    "BoneProjectionTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.1": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.2": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.3": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.4": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.5": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.6": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.7": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.8": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=0.9": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "BoneProjectionTool|u=1.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "FootLockTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "FootLockTool|u=0.1": {
+      "mean_utility": -4.1e-05,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.003071,
+      "mean_fidelity_loss": 0.000622,
+      "n": 100
+    },
+    "FootLockTool|u=0.2": {
+      "mean_utility": 0.000412,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.006635,
+      "mean_fidelity_loss": 0.001245,
+      "n": 100
+    },
+    "FootLockTool|u=0.3": {
+      "mean_utility": 0.00194,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.011274,
+      "mean_fidelity_loss": 0.001867,
+      "n": 100
+    },
+    "FootLockTool|u=0.4": {
+      "mean_utility": 0.00802,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.020465,
+      "mean_fidelity_loss": 0.002489,
+      "n": 100
+    },
+    "FootLockTool|u=0.5": {
+      "mean_utility": 0.019036,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.034594,
+      "mean_fidelity_loss": 0.003111,
+      "n": 100
+    },
+    "FootLockTool|u=0.6": {
+      "mean_utility": 0.01918,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.037848,
+      "mean_fidelity_loss": 0.003734,
+      "n": 100
+    },
+    "FootLockTool|u=0.7": {
+      "mean_utility": 0.017228,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.039008,
+      "mean_fidelity_loss": 0.004356,
+      "n": 100
+    },
+    "FootLockTool|u=0.8": {
+      "mean_utility": 0.013754,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.038646,
+      "mean_fidelity_loss": 0.004978,
+      "n": 100
+    },
+    "FootLockTool|u=0.9": {
+      "mean_utility": 0.014597,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.0426,
+      "mean_fidelity_loss": 0.005601,
+      "n": 100
+    },
+    "FootLockTool|u=1.0": {
+      "mean_utility": 0.014091,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.045205,
+      "mean_fidelity_loss": 0.006223,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.1": {
+      "mean_utility": -0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.2": {
+      "mean_utility": -0.001114,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.000742,
+      "mean_fidelity_loss": 0.000371,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.3": {
+      "mean_utility": -0.006891,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.001074,
+      "mean_fidelity_loss": 0.001593,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.4": {
+      "mean_utility": -0.010997,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.002715,
+      "mean_fidelity_loss": 0.002742,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.5": {
+      "mean_utility": -0.016519,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.003543,
+      "mean_fidelity_loss": 0.004013,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.6": {
+      "mean_utility": -0.022601,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.004542,
+      "mean_fidelity_loss": 0.005428,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.7": {
+      "mean_utility": -0.029437,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.005392,
+      "mean_fidelity_loss": 0.006966,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.8": {
+      "mean_utility": -0.036962,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.006024,
+      "mean_fidelity_loss": 0.008597,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=0.9": {
+      "mean_utility": -0.044632,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.006894,
+      "mean_fidelity_loss": 0.010305,
+      "n": 100
+    },
+    "VelocitySmoothingTool|u=1.0": {
+      "mean_utility": -0.05239,
+      "violation_rate": 1.0,
+      "mean_artifact_reduction": 0.007951,
+      "mean_fidelity_loss": 0.012068,
+      "n": 100
+    }
+  },
+  "surface_summary_near_boundary": {
+    "BoneProjectionTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.1": {
+      "mean_utility": 0.001339,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000451,
+      "mean_fidelity_loss": -0.000178,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.2": {
+      "mean_utility": 0.002013,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000657,
+      "mean_fidelity_loss": -0.000271,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.3": {
+      "mean_utility": 0.002014,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000628,
+      "mean_fidelity_loss": -0.000277,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.4": {
+      "mean_utility": 0.001349,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.000375,
+      "mean_fidelity_loss": -0.000195,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.5": {
+      "mean_utility": 3.6e-05,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.000102,
+      "mean_fidelity_loss": -2.8e-05,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.6": {
+      "mean_utility": -0.001915,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.000833,
+      "mean_fidelity_loss": 0.000217,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.7": {
+      "mean_utility": -0.004458,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.001823,
+      "mean_fidelity_loss": 0.000527,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.8": {
+      "mean_utility": -0.00748,
+      "violation_rate": 0.24,
+      "mean_artifact_reduction": -0.003015,
+      "mean_fidelity_loss": 0.000893,
+      "n": 50
+    },
+    "BoneProjectionTool|u=0.9": {
+      "mean_utility": -0.01092,
+      "violation_rate": 0.62,
+      "mean_artifact_reduction": -0.004388,
+      "mean_fidelity_loss": 0.001306,
+      "n": 50
+    },
+    "BoneProjectionTool|u=1.0": {
+      "mean_utility": -0.014704,
+      "violation_rate": 0.94,
+      "mean_artifact_reduction": -0.005902,
+      "mean_fidelity_loss": 0.00176,
+      "n": 50
+    },
+    "FootLockTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 50
+    },
+    "FootLockTool|u=0.1": {
+      "mean_utility": -0.0023,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.002075,
+      "mean_fidelity_loss": 4.5e-05,
+      "n": 50
+    },
+    "FootLockTool|u=0.2": {
+      "mean_utility": -0.001833,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.00034,
+      "mean_fidelity_loss": 0.000299,
+      "n": 50
+    },
+    "FootLockTool|u=0.3": {
+      "mean_utility": -0.000292,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.003002,
+      "mean_fidelity_loss": 0.000659,
+      "n": 50
+    },
+    "FootLockTool|u=0.4": {
+      "mean_utility": 0.007121,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.012573,
+      "mean_fidelity_loss": 0.00109,
+      "n": 50
+    },
+    "FootLockTool|u=0.5": {
+      "mean_utility": 0.013685,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.021569,
+      "mean_fidelity_loss": 0.001577,
+      "n": 50
+    },
+    "FootLockTool|u=0.6": {
+      "mean_utility": 0.018982,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.029518,
+      "mean_fidelity_loss": 0.002107,
+      "n": 50
+    },
+    "FootLockTool|u=0.7": {
+      "mean_utility": 0.019973,
+      "violation_rate": 0.02,
+      "mean_artifact_reduction": 0.033352,
+      "mean_fidelity_loss": 0.002676,
+      "n": 50
+    },
+    "FootLockTool|u=0.8": {
+      "mean_utility": 0.018313,
+      "violation_rate": 0.04,
+      "mean_artifact_reduction": 0.034695,
+      "mean_fidelity_loss": 0.003276,
+      "n": 50
+    },
+    "FootLockTool|u=0.9": {
+      "mean_utility": 0.016417,
+      "violation_rate": 0.06,
+      "mean_artifact_reduction": 0.035943,
+      "mean_fidelity_loss": 0.003905,
+      "n": 50
+    },
+    "FootLockTool|u=1.0": {
+      "mean_utility": 0.014346,
+      "violation_rate": 0.06,
+      "mean_artifact_reduction": 0.037136,
+      "mean_fidelity_loss": 0.004558,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.0": {
+      "mean_utility": 0.0,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.0,
+      "mean_fidelity_loss": 0.0,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.1": {
+      "mean_utility": 2e-06,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 1e-06,
+      "mean_fidelity_loss": 0.0,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.2": {
+      "mean_utility": 0.012732,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.002686,
+      "mean_fidelity_loss": -0.003084,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.3": {
+      "mean_utility": 0.015918,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.041009,
+      "mean_fidelity_loss": -0.011385,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.4": {
+      "mean_utility": 0.003785,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.072612,
+      "mean_fidelity_loss": -0.015279,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.5": {
+      "mean_utility": 0.016654,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.069431,
+      "mean_fidelity_loss": -0.017217,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.6": {
+      "mean_utility": 0.046062,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.045212,
+      "mean_fidelity_loss": -0.018255,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.7": {
+      "mean_utility": 0.075442,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.017935,
+      "mean_fidelity_loss": -0.018675,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.8": {
+      "mean_utility": 0.091101,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": -0.002109,
+      "mean_fidelity_loss": -0.018642,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=0.9": {
+      "mean_utility": 0.096106,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.004791,
+      "mean_fidelity_loss": -0.018263,
+      "n": 50
+    },
+    "VelocitySmoothingTool|u=1.0": {
+      "mean_utility": 0.099847,
+      "violation_rate": 0.0,
+      "mean_artifact_reduction": 0.01176,
+      "mean_fidelity_loss": -0.017617,
+      "n": 50
+    }
+  },
+  "note_compact": "rows (16830 transitions, 28MB) gitignored — reproducible via tools/rl2_transition_build.py (deterministic seeds). 본 파일 = surface summary + metadata only."
+}

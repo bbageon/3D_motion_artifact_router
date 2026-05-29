@@ -74,7 +74,11 @@ class BoneProjectionTool(CorrectionTool):
         end = min(T, end + 1) if end < T else T
 
         meta = metadata or {}
-        factor: float = STRENGTH_FACTOR.get(strength, STRENGTH_FACTOR["medium"])
+        # Continuous intensity override (RL-2 Q_safe, u∈[0,1] → factor; docs/action_space_provenance.md §5-2-2).
+        if "continuous_factor" in meta:
+            factor = float(meta["continuous_factor"])
+        else:
+            factor = STRENGTH_FACTOR.get(strength, STRENGTH_FACTOR["medium"])
         explicit_refs: dict[str, float] = meta.get("reference_lengths", {})
 
         chain = T2M_KINEMATIC_CHAIN[CHAIN_LABELS.index(target_part)]

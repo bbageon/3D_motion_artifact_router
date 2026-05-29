@@ -86,7 +86,18 @@ class VelocitySmoothingTool(CorrectionTool):
         start = max(0, start)
         end = min(T, end + 1) if end < T else T
 
-        sigma: float = STRENGTH_SIGMA.get(strength, STRENGTH_SIGMA["medium"])
+        meta = metadata or {}
+        # Continuous intensity override (RL-2 Q_safe, u∈[0,1] → sigma=2.0·u; docs/action_space_provenance.md §5-2-2).
+        if "continuous_sigma" in meta:
+            sigma = float(meta["continuous_sigma"])
+        else:
+            sigma = STRENGTH_SIGMA.get(strength, STRENGTH_SIGMA["medium"])
+        if sigma <= 0.0:  # u=0 → no-op identity (STOP anchor).
+            return motion.copy(), CorrectionReport(
+                tool=self.name, target_part=target_part, frame_range=(int(start), int(end - 1)),
+                strength=strength, modified_joints=[], correction_magnitude=0.0,
+                metadata={"reason": "sigma <= 0 — identity (u=0)", "sigma_frames": sigma},
+            )
 
         # target joints 결정
         if target_joints:

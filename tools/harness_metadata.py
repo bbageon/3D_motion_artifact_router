@@ -52,6 +52,17 @@ def action_space_grid(
         strengths = STRENGTHS_5LEVEL
     elif grid == "3-level":
         strengths = STRENGTHS_3LEVEL
+    elif grid.startswith("continuous"):
+        # Bounded continuous intervention intensity u∈[0,1] (RL-2 Q_safe, action_space_provenance §5-2).
+        # discrete strength token 이 아니라 continuous/grid-sampled u — n_actions 는 정의 안 됨.
+        return {
+            "grid": grid,
+            "stage": stage,
+            "include_stop": include_stop,
+            "action_type": "discrete_tool_x_continuous_intensity",
+            "tools": list(TOOLS_ORDER),
+            "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u",
+        }
     else:
         raise ValueError(f"Unknown action-space grid: {grid}")
     n_actions = len(TOOLS_ORDER) * len(strengths) + (1 if include_stop else 0)

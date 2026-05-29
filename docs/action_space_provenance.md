@@ -162,6 +162,16 @@ ArtifactRouter 의 action space 의 정식 분류 + 근거 + grid 박제. RL-1 /
 
 각 tool 의 small/medium/large 의 실제 factor 는 tool-specific (§3-1 FootLock blend, §3-3 VelocitySmoothing sigma {0.5, 1.0, 2.0} 등) — u 는 그 위의 normalized index.
 
+**연속 u 매핑 (Stage A+, dense/continuous grid)**: discrete token 대신 continuous u 를 직접 tool factor 로 변환 (correction tool 의 `metadata={"continuous_factor": ...}` / `{"continuous_sigma": ...}` override, backward compatible):
+
+| tool | u → tool intensity | u=0 | u=1 |
+|---|---|---|---|
+| FootLockTool | `continuous_factor = u` | identity (no-op) | factor 1.0 (= xlarge) |
+| BoneProjectionTool | `continuous_factor = u` | identity | factor 1.0 (= xlarge) |
+| VelocitySmoothingTool | `continuous_sigma = 2.0·u` | identity (sigma≤0 short-circuit) | sigma 2.0 (= xlarge) |
+
+연속 매핑은 u=0 → 모든 tool identity (STOP anchor), u=1 → xlarge factor 와 일치. Stage 1 의 3-point token 매핑 (u=0.3→small 등) 과 u=1.0 에서 동일, 중간값은 linear (token sigma 와 약간 차이, 예 u=0.3 continuous sigma 0.6 vs token small 0.5). 연속 매핑이 Stage A+ 의 canonical formulation.
+
 #### 5-2-3. Staged 학습 계획 (grid-sampled action effects → continuous)
 
 | Stage | u_grid | 방법 | 목적 |
