@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_continuous_argmax_confirmation",
+  "task_id": "rl2_continuous_argmax_stageAplus_v1",
+  "split_id": "rl2_continuous_argmax_stageAplus_v1",
+  "oracle_type": "action_effect_transition",
+  "action_space_grid": {
+    "grid": "continuous-u",
+    "stage": "RL-2-Q-surface-stageA+",
+    "include_stop": true,
+    "action_type": "discrete_tool_x_continuous_intensity",
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u"
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "question": "coarse-u 학습 Q 의 continuous argmax 가 dense oracle 에 근접 + unsafe 회피 하는가?",
+  "coarse_train_u": [
+    0.0,
+    0.5,
+    1.0
+  ],
+  "fine_eval_u_step": 0.05,
+  "n_fine_u": 21,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "stop_epsilon": 0.0,
+  "holdout_u_R2": {
+    "mean": 0.4153790832313425,
+    "std": 0.02925164555424706
+  },
+  "safe_utility_metric": "Category C internal routing reward (metric_provenance §4-1-1)",
+  "per_distribution": {
+    "clean": {
+      "argmax_regret": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "mean_oracle_util": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "mean_policy_util": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "utility_recovery": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "unsafe_as_safe_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "boundary_error_u": {
+        "mean": 0.1362962962962963,
+        "std": 0.0034644975803462394
+      },
+      "safe_top1_match": {
+        "mean": 0.2888888888888889,
+        "std": 0.05665577237325315
+      },
+      "act_rate": {
+        "mean": 0.9,
+        "std": 0.09428090415820632
+      },
+      "n_eval": {
+        "mean": 30.0,
+        "std": 0.0
+      }
+    },
+    "g2_natural": {
+      "argmax_regret": {
+        "mean": 0.004380888888888889,
+        "std": 0.0008742952354699365
+      },
+      "mean_oracle_util": {
+        "mean": 0.0038939611111111112,
+        "std": 0.0007124548173241552
+      },
+      "mean_policy_util": {
+        "mean": -0.0004869277777777778,
+        "std": 0.0014566890191733603
+      },
+      "utility_recovery": {
+        "mean": -0.20289244298921283,
+        "std": 0.46795321713195676
+      },
+      "unsafe_as_safe_rate": {
+        "mean": 0.016666666666666666,
+        "std": 0.013608276348795434
+      },
+      "boundary_error_u": {
+        "mean": 0.15814814814814812,
+        "std": 0.011032903774911083
+      },
+      "safe_top1_match": {
+        "mean": 0.2333333333333333,
+        "std": 0.04906533814626581
+      },
+      "act_rate": {
+        "mean": 0.8666666666666667,
+        "std": 0.03600411499115475
+      },
+      "n_eval": {
+        "mean": 60.0,
+        "std": 0.0
+      }
+    },
+    "near_boundary": {
+      "argmax_regret": {
+        "mean": 0.04187077777777778,
+        "std": 0.012228483789038009
+      },
+      "mean_oracle_util": {
+        "mean": 0.11960582222222223,
+        "std": 0.0112441580109763
+      },
+      "mean_policy_util": {
+        "mean": 0.07773504444444446,
+        "std": 0.02064108531975206
+      },
+      "utility_recovery": {
+        "mean": 0.6407536204771818,
+        "std": 0.1279682333137942
+      },
+      "unsafe_as_safe_rate": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "boundary_error_u": {
+        "mean": 0.04185185185185183,
+        "std": 0.004996569467863708
+      },
+      "safe_top1_match": {
+        "mean": 0.022222222222222223,
+        "std": 0.03142696805273544
+      },
+      "act_rate": {
+        "mean": 0.9777777777777779,
+        "std": 0.03142696805273544
+      },
+      "n_eval": {
+        "mean": 15.0,
+        "std": 0.0
+      }
+    },
+    "synthetic_severe": {
+      "argmax_regret": {
+        "mean": 0.055146351851851856,
+        "std": 0.009784124757179895
+      },
+      "mean_oracle_util": {
+        "mean": 0.18323853703703705,
+        "std": 0.007028635332590966
+      },
+      "mean_policy_util": {
+        "mean": 0.1280921851851852,
+        "std": 0.016778613133627253
+      },
+      "utility_recovery": {
+        "mean": 0.6965805406109365,
+        "std": 0.06448472729462558
+      },
+      "unsafe_as_safe_rate": {
+        "mean": 0.46296296296296297,
+        "std": 0.14581496062984833
+      },
+      "boundary_error_u": {
+        "mean": 0.22006172839506175,
+        "std": 0.04058143188615703
+      },
+      "safe_top1_match": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "act_rate": {
+        "mean": 1.0,
+        "std": 0.0
+      },
+      "n_eval": {
+        "mean": 18.0,
+        "std": 0.0
+      }
+    }
+  }
+}
