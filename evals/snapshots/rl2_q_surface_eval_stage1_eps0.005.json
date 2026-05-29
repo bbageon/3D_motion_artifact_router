@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_q_surface_eval",
+  "task_id": "rl2_q_surface_eval_stage1_v1",
+  "split_id": "rl2_q_surface_eval_stage1_v1",
+  "oracle_type": "sequence",
+  "action_space_grid": {
+    "grid": "3-level",
+    "stage": "RL-2-Q-surface-stage1",
+    "include_stop": true,
+    "n_actions": 10,
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "strengths": [
+      "small",
+      "medium",
+      "large"
+    ]
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "formulation": "Q_safe(s, tool, u) reranking (Stage 1, u_grid 3-level)",
+  "u_grid": [
+    0.3,
+    0.6,
+    1.0
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "max_depth": 3,
+  "risk_threshold": 0.5,
+  "stop_epsilon": 0.005,
+  "safe_utility_metric": "Category C internal routing reward (metric_provenance §4-1-1)",
+  "head_metrics": {
+    "util_r2": {
+      "mean": 0.4851954328038435,
+      "std": 0.11133042175876941
+    },
+    "util_mae": {
+      "mean": 0.020492421958688358,
+      "std": 0.0018089188645083157
+    },
+    "risk_auc": {
+      "mean": 0.913321973809199,
+      "std": 0.022947245941359773
+    },
+    "risk_acc": {
+      "mean": 0.8799818104415805,
+      "std": 0.006260958196729447
+    }
+  },
+  "g2": {
+    "noop": {
+      "mean_netgain": 0.0
+    },
+    "safe_oracle": {
+      "mean_netgain": 0.0021447291827258385
+    },
+    "q_rerank": {
+      "mean_netgain": -0.0017744255365419398,
+      "violation_rate": 0.0,
+      "stop_rate": 0.7555555555555555,
+      "oracle_gap_closure_aggregate": -0.8273424686126282,
+      "mean_steps": 0.4722222222222222
+    },
+    "imitation": {
+      "mean_netgain": 0.0004414297415339395,
+      "violation_rate": 0.0,
+      "stop_rate": 0.8055555555555556,
+      "oracle_gap_closure_aggregate": 0.20582073722375774
+    }
+  },
+  "synthetic": {
+    "noop": {
+      "mean_netgain": 0.0
+    },
+    "safe_oracle": {
+      "mean_netgain": 0.20669336834673077
+    },
+    "q_rerank": {
+      "mean_netgain": 0.10526387865719303,
+      "violation_rate": 0.0,
+      "stop_rate": 0.0,
+      "oracle_gap_closure_aggregate": 0.509275549085888,
+      "mean_steps": 1.7777777777777777
+    },
+    "imitation": {
+      "mean_netgain": 0.1257949811425411,
+      "violation_rate": 0.0,
+      "stop_rate": 0.0,
+      "oracle_gap_closure_aggregate": 0.6086067596107796
+    }
+  },
+  "n_g2_eval_total": 180,
+  "n_synthetic_eval_total": 54,
+  "note": "Q-rerank vs imitation HGB (same 3-level samples). NetGain: G2=Protocol B, synthetic=Protocol A. REAL physical gate re-check at inference (action_space_provenance §5-2-6)."
+}

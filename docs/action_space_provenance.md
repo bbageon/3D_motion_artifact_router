@@ -133,6 +133,67 @@ ArtifactRouter 의 action space 의 정식 분류 + 근거 + grid 박제. RL-1 /
 
 근거: behavioral cloning 의 action space 가 클수록 label coverage 더 필요 + fine-grained discretization 의 optimization 난이도 (Masson et al. AAAI 2016 ; Tang & Agrawal AAAI 2020 ; PhysDiff Yuan et al. ICCV 2023 의 parameterized/physical action separation spirit).
 
+### 5-2. RL-2 reframe — Bounded Continuous Action-Effect Surface `Q_safe(s, tool, u)` (사용자 directive 2026-05-29)
+
+**정식 reframe** (사용자 directive 2026-05-29 박제): RL-2 의 main formulation 을 discrete action **classification** (`policy(s) → action class`) 에서 **bounded continuous action-effect surface learning** 으로 전환.
+
+> "바로 continuous policy 를 학습하는 게 아니라, bounded continuous action-effect surface 를 학습하는 방향이 맞다. 목표는 `policy(s) → action class` 가 아니라 `Q_safe(s, tool, u)` 학습."
+
+#### 5-2-1. Formulation
+
+- **u ∈ [0, 1]**: bounded continuous **intervention intensity** (normalized correction strength). tool 별 factor 와 별개의 정규화 축 — tool mapper 가 u → tool-specific factor 로 변환.
+- **`Q_safe(s, tool, u)`**: state s 에서 tool 을 intensity u 로 적용했을 때의 **predicted safe utility** (action-effect surface). discrete label 하나를 맞추는 것이 아니라, 여러 u 의 실제 effect 를 보고 utility surface 를 학습.
+- **추론**: physical gate constraint 아래에서 predicted safe utility 가 최대인 tool-intensity pair 선택.
+
+논문 문장 (단일 출처):
+
+> "We learn a safe action-effect surface `Q_safe(s, tool, u)` over bounded continuous intervention intensity u ∈ [0,1]. At inference time, the policy selects the tool-intensity pair that maximizes predicted safe utility under physical gate constraints."
+
+#### 5-2-2. u → strength factor mapping (normalized intensity 의무, 사용자 risk 대응)
+
+사용자 risk 박제: "u 의 의미가 tool 별로 다름 → normalized u + tool mapper 명시". u 는 정규화 축이고, 각 tool 의 physical factor 는 §3 의 tool-specific mapping 으로 결정.
+
+| u | 3-level token (Stage 1) | 의미 |
+|---|---|---|
+| 0.0 | (STOP / no-op) | 개입 없음, utility 0, 항상 safe |
+| 0.3 | small | 약한 개입 |
+| 0.6 | medium | 중간 개입 |
+| 1.0 | large | 강한 개입 |
+
+각 tool 의 small/medium/large 의 실제 factor 는 tool-specific (§3-1 FootLock blend, §3-3 VelocitySmoothing sigma {0.5, 1.0, 2.0} 등) — u 는 그 위의 normalized index.
+
+#### 5-2-3. Staged 학습 계획 (grid-sampled action effects → continuous)
+
+| Stage | u_grid | 방법 | 목적 |
+|---|---|---|---|
+| **Stage 1 (현재)** | {0.3, 0.6, 1.0} | grid Q surface + reranking | 기존 3-level 결과를 Q/reranking formulation 으로 재현, imitation 대비 설명력, STOP threshold calibration |
+| Stage 2 | {0.0, 0.1, …, 1.0} | dense grid | tool 별 utility curve / safe-unsafe boundary / surface smoothness |
+| Stage 3 | continuous | line search / Bayesian opt / golden-section | dense surface 가 smooth 확인 후 continuous argmax |
+| Stage 4 | continuous | constrained offline RL (CQL/IQL) | 최종 policy optimization (OOD value overestimation 대응 conservative) |
+
+핵심 원리: **continuous 를 목표로 하되, 데이터는 grid-sampled action effects 로 만든다** — continuous formulation 의 연구 가치를 살리면서 데이터 부족 + unsafe exploration 회피.
+
+#### 5-2-4. 기존 3/5-level 결과의 재해석 (중심 → motivation)
+
+| 기존 결과 | 새 해석 |
+|---|---|
+| 5-level oracle > 3-level oracle | fine intensity headroom 존재 |
+| 5-level learned < 3-level learned | discrete fine-class imitation 은 어려움 (strength matching bottleneck) |
+| 3-level learned 안정적 | coarse grid baseline |
+| `Q_safe(s, tool, u)` | discrete class 대신 action-effect surface 학습 |
+
+#### 5-2-5. 근거 (AGENTS.md §3-22)
+
+- Parameterized action RL (discrete tool + continuous parameter): Masson et al. **AAAI 2016**, Hausknecht & Stone **ICLR 2016** (§7-1).
+- Offline RL 의 OOD action value overestimation → conservative/reranking 우선 (CQL/IQL 는 Stage 4): Kumar et al. CQL **NeurIPS 2020**, Kostrikov et al. IQL **ICLR 2022**.
+- **남는 불확실성** (`internal proxy assumption`): Q surface 가 실제로 smooth 한지, dense grid 가 standard metric preservation 과 일치하는지, continuous argmax 가 gate boundary 근처에서 안정적인지는 실험으로 확인. safe_utility 는 **Category C** (internal routing reward, [`metric_provenance.md`](metric_provenance.md)) — 외부 공개 최종 성능 근거 금지.
+
+#### 5-2-6. 추론 시 physical gate 재검증 의무 (사용자 risk 박제)
+
+> "Q 가 높다고 바로 믿으면 안 된다. 추론 시에도 physical gate 를 실제로 한 번 더 돌려야 한다."
+
+reranking 으로 max-utility tool-intensity 를 고른 뒤, 실제 tool 적용 → **real physical gate** 재검증 → hard violation 이면 rollback + STOP. predicted risk head 는 후보 filtering 용이고, 최종 accept 는 real gate 가 결정.
+
 ---
 
 ## 6. 외부 공개 인용 의 의무 (AGENTS.md §3-21)

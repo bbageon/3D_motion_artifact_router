@@ -224,6 +224,17 @@ if JerkSpike_after > max(JerkSpike_before * 1.05, CleanP99_Jerk):
 | **용도** | **policy optimization reward** for RL-1 / RL-2. **NOT final motion quality metric**. |
 | **CAVEAT** | NetGain 의 결과 의 외부 공개 인용 시 의무 동반: "NetGain is a proxy reward, not a standard motion quality metric. Final quality is validated by standard metrics (FID, R-Precision, MM-Dist) + visual/perceptual rating." |
 
+### 4-1-1. safe_utility (Q_safe action-effect surface, RL-2 Stage 1+, 2026-05-29)
+
+| Item | Value |
+|---|---|
+| **Source** | **본 프로젝트 자체 정의** — NetGain 의 single-step local form. no direct standard reference. |
+| **Formula** | `safe_utility(s, tool, u) = artifact_reduction - α·fidelity_loss - β·correction_magnitude - γ·tool_cost` (α=5.0, β=γ=0, NetGain weight 상속). single-step local: artifact_reduction = target(s) − target(s'), fidelity_loss = G2 Protocol B MPJPE(s', s) / synthetic Protocol A ΔMPJPE-to-clean. **physical_violation 시 hard constraint** (selection 에서 −∞, 학습 label 은 별도 risk head). |
+| **Q surface** | `Q_safe(s, tool, u)` = 위 utility 를 (state, tool, normalized intensity u∈[0,1]) 의 함수로 회귀 학습 ([action_space_provenance §5-2](action_space_provenance.md)). |
+| **분류** | **C. proxy — internal routing reward only** (NetGain 과 동일 계층). |
+| **용도** | RL-2 reranking / continuous argmax 의 utility surface. **NOT final motion quality metric.** |
+| **CAVEAT** | NetGain 과 동일 — 외부 공개 시 standard metric (FID/R-Prec) + perceptual validation 동반 의무. physical gate 는 reward term 이 아니라 **hard gate** (추론 시 real gate 재검증, §5-2-6). |
+
 ### 4-2. FootFloatingEvaluator (current)
 
 | Item | Value |
