@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_imitation_accuracy",
+  "task_id": "rl2_imitation_accuracy_v1",
+  "split_id": "rl2_imitation_accuracy_v1",
+  "oracle_type": "sequence",
+  "action_space_grid": {
+    "grid": "5-level",
+    "stage": "RL-2-imitation",
+    "include_stop": true,
+    "n_actions": 16,
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "strengths": [
+      "xsmall",
+      "small5",
+      "medium5",
+      "large5",
+      "xlarge"
+    ]
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "dataset_source": "evals\\snapshots\\rl2_imitation_dataset_3level_v1.json",
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "n_feature_dims": {
+    "no_dist_tag": 34,
+    "with_dist_tag": 35
+  },
+  "note": "OFFLINE imitation accuracy (teacher action 재현). closed-loop = Step F-3 별도.",
+  "results": {
+    "no_dist_tag": {
+      "HGB": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.6509752699407872,
+          "std": 0.042424592735274824
+        },
+        "tool_accuracy": {
+          "mean": 0.7318530128874956,
+          "std": 0.05140287618358821
+        },
+        "stop_precision": {
+          "mean": 0.8303146994657222,
+          "std": 0.033618529404288305
+        },
+        "stop_recall": {
+          "mean": 0.8760683760683761,
+          "std": 0.04358136336404089
+        },
+        "g2_action_acc": {
+          "mean": 0.7251256074458446,
+          "std": 0.0450581747923428
+        },
+        "synthetic_action_acc": {
+          "mean": 0.5642509602439217,
+          "std": 0.05427091255229089
+        }
+      },
+      "MLP": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.5725879484500174,
+          "std": 0.03540478395535022
+        },
+        "tool_accuracy": {
+          "mean": 0.5725879484500174,
+          "std": 0.03540478395535022
+        },
+        "stop_precision": {
+          "mean": 0.5703118293542506,
+          "std": 0.03507695791242209
+        },
+        "stop_recall": {
+          "mean": 0.9957264957264957,
+          "std": 0.0060436477024491024
+        },
+        "g2_action_acc": {
+          "mean": 0.791761615828826,
+          "std": 0.04262312830026582
+        },
+        "synthetic_action_acc": {
+          "mean": 0.31655010097410313,
+          "std": 0.04155160462623468
+        }
+      },
+      "RF": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.680372692441658,
+          "std": 0.023409912193625645
+        },
+        "tool_accuracy": {
+          "mean": 0.7633228840125392,
+          "std": 0.028929714106388987
+        },
+        "stop_precision": {
+          "mean": 0.8360698681785438,
+          "std": 0.01803534833653115
+        },
+        "stop_recall": {
+          "mean": 0.888888888888889,
+          "std": 0.024174590809796514
+        },
+        "g2_action_acc": {
+          "mean": 0.7510143163507795,
+          "std": 0.018896253546451157
+        },
+        "synthetic_action_acc": {
+          "mean": 0.5964042824899026,
+          "std": 0.04321397713704322
+        }
+      },
+      "LR": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.30654824103099965,
+          "std": 0.04130961883766562
+        },
+        "tool_accuracy": {
+          "mean": 0.46050156739811915,
+          "std": 0.04775671134418528
+        },
+        "stop_precision": {
+          "mean": 0.9253220611916264,
+          "std": 0.03592304407724386
+        },
+        "stop_recall": {
+          "mean": 0.2564102564102564,
+          "std": 0.027695473070119058
+        },
+        "g2_action_acc": {
+          "mean": 0.11263944943213537,
+          "std": 0.026499746508300857
+        },
+        "synthetic_action_acc": {
+          "mean": 0.5322325176209709,
+          "std": 0.07641760724075425
+        }
+      }
+    },
+    "with_dist_tag": {
+      "HGB": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.6509752699407872,
+          "std": 0.042424592735274824
+        },
+        "tool_accuracy": {
+          "mean": 0.7318530128874956,
+          "std": 0.05140287618358821
+        },
+        "stop_precision": {
+          "mean": 0.8303146994657222,
+          "std": 0.033618529404288305
+        },
+        "stop_recall": {
+          "mean": 0.8760683760683761,
+          "std": 0.04358136336404089
+        },
+        "g2_action_acc": {
+          "mean": 0.7251256074458446,
+          "std": 0.0450581747923428
+        },
+        "synthetic_action_acc": {
+          "mean": 0.5642509602439217,
+          "std": 0.05427091255229089
+        }
+      },
+      "MLP": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.5532915360501568,
+          "std": 0.026748220272192834
+        },
+        "tool_accuracy": {
+          "mean": 0.5532915360501568,
+          "std": 0.026748220272192834
+        },
+        "stop_precision": {
+          "mean": 0.554520782538024,
+          "std": 0.025763745310180122
+        },
+        "stop_recall": {
+          "mean": 0.9957264957264957,
+          "std": 0.0060436477024491024
+        },
+        "g2_action_acc": {
+          "mean": 0.791761615828826,
+          "std": 0.04262312830026582
+        },
+        "synthetic_action_acc": {
+          "mean": 0.2742362596024392,
+          "std": 0.020492965650663105
+        }
+      },
+      "RF": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.6778474399164054,
+          "std": 0.017124775902986878
+        },
+        "tool_accuracy": {
+          "mean": 0.758498780912574,
+          "std": 0.025772508282219508
+        },
+        "stop_precision": {
+          "mean": 0.8361604927869988,
+          "std": 0.017000826534908215
+        },
+        "stop_recall": {
+          "mean": 0.888888888888889,
+          "std": 0.02634364958533755
+        },
+        "g2_action_acc": {
+          "mean": 0.7463194806700284,
+          "std": 0.013388050556131204
+        },
+        "synthetic_action_acc": {
+          "mean": 0.5967816979488397,
+          "std": 0.031047251928586216
+        }
+      },
+      "LR": {
+        "n_seeds": 3,
+        "action_accuracy": {
+          "mean": 0.32746429815395334,
+          "std": 0.049485088697310754
+        },
+        "tool_accuracy": {
+          "mean": 0.4857889237199582,
+          "std": 0.06110646298672026
+        },
+        "stop_precision": {
+          "mean": 0.9702380952380952,
+          "std": 0.021184679071490704
+        },
+        "stop_recall": {
+          "mean": 0.2948717948717949,
+          "std": 0.03140371465106639
+        },
+        "g2_action_acc": {
+          "mean": 0.12610621493744792,
+          "std": 0.020598175042942278
+        },
+        "synthetic_action_acc": {
+          "mean": 0.5627276867030965,
+          "std": 0.0847730219406743
+        }
+      }
+    }
+  }
+}

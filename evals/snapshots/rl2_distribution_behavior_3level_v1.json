@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_distribution_behavior",
+  "task_id": "rl2_distribution_behavior_v1",
+  "split_id": "rl2_distribution_behavior_v1",
+  "oracle_type": "sequence",
+  "action_space_grid": {
+    "grid": "5-level",
+    "stage": "RL-2-analysis",
+    "include_stop": true,
+    "n_actions": 16,
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "strengths": [
+      "xsmall",
+      "small5",
+      "medium5",
+      "large5",
+      "xlarge"
+    ]
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "g2_behavior": {
+    "RF": {
+      "n": 180,
+      "oracle_stop_rate": 0.7555555555555555,
+      "policy_stop_rate": 0.8777777777777778,
+      "stop_correctness_recall": 0.9338235294117647,
+      "stop_correctness_precision": 0.8037974683544303,
+      "unnecessary_correction_rate": 0.0661764705882353,
+      "missed_correction_rate": 0.7045454545454546,
+      "weak_correction_rate_of_corrections": 1.0
+    },
+    "HGB": {
+      "n": 180,
+      "oracle_stop_rate": 0.7555555555555555,
+      "policy_stop_rate": 0.8666666666666667,
+      "stop_correctness_recall": 0.9117647058823529,
+      "stop_correctness_precision": 0.7948717948717948,
+      "unnecessary_correction_rate": 0.08823529411764706,
+      "missed_correction_rate": 0.7272727272727273,
+      "weak_correction_rate_of_corrections": 1.0
+    }
+  },
+  "synthetic_behavior": {
+    "RF": {
+      "n": 54,
+      "oracle_multistep_rate": 0.9259259259259259,
+      "policy_multistep_rate": 0.8333333333333334,
+      "tool_match_step0": 0.5925925925925926,
+      "tool_match_step1_of_multistep": 0.38,
+      "strength_match_step0_given_tool": 0.625,
+      "mean_strength_distance_given_tool_match": 0.328125
+    },
+    "HGB": {
+      "n": 54,
+      "oracle_multistep_rate": 0.9259259259259259,
+      "policy_multistep_rate": 0.9074074074074074,
+      "tool_match_step0": 0.5185185185185185,
+      "tool_match_step1_of_multistep": 0.28,
+      "strength_match_step0_given_tool": 0.5,
+      "mean_strength_distance_given_tool_match": 0.38
+    }
+  },
+  "b2_bone_cv_appendix": {
+    "corrupted": {
+      "mean_bone_cv": 0.29678068906153926,
+      "max_bone_cv": 0.41492639666973413,
+      "p95_bone_cv": 0.39386397352471864,
+      "n_samples": 10
+    },
+    "B2-small": {
+      "mean_bone_cv": 0.26564805587180296,
+      "max_bone_cv": 0.43330850782609937,
+      "p95_bone_cv": 0.37137524497186614,
+      "n_samples": 10
+    },
+    "B2-medium": {
+      "mean_bone_cv": 0.20420780294895396,
+      "max_bone_cv": 0.4286184049035783,
+      "p95_bone_cv": 0.3142868879739179,
+      "n_samples": 10
+    },
+    "B2-large": {
+      "mean_bone_cv": 0.15586503351892345,
+      "max_bone_cv": 0.34990420702678876,
+      "p95_bone_cv": 0.2549842554452813,
+      "n_samples": 10
+    }
+  }
+}

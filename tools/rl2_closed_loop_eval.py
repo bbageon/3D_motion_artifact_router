@@ -36,7 +36,7 @@ from tools.synthetic_injection import inject_foot_floating, inject_jitter
 from tools.safe_sequence_oracle_run import _gate_scores, _gate_violation
 from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
 from tools.rl2_build_training_data import (
-    ACTION_LIST, ARTIFACT_EVALUATORS, PHYSICAL_EVALUATORS, STRENGTHS_5LEVEL,
+    ACTION_LIST, ARTIFACT_EVALUATORS, PHYSICAL_EVALUATORS, STRENGTHS_5LEVEL, STRENGTHS_3LEVEL,
     TOOLS_ORDER, TOOL_TARGET, _artifact_scores, _physical_scores, _build_state,
 )
 from tools.rl2_train_imitation import _flatten_state, _sample_level_split, _build_models
@@ -48,12 +48,14 @@ TOOL_BY_NAME: dict[str, CorrectionTool] = {
 }
 
 
-def _idx_to_action(idx: int):
+def _idx_to_action(idx: int, strengths: tuple = STRENGTHS_5LEVEL):
+    """Grid-aware action index → (tool, target, strength). idx 0 = STOP."""
     if idx == 0:
         return None  # STOP
     idx -= 1
-    tool = TOOLS_ORDER[idx // 5]
-    return (tool, TOOL_TARGET[tool], STRENGTHS_5LEVEL[idx % 5])
+    n = len(strengths)
+    tool = TOOLS_ORDER[idx // n]
+    return (tool, TOOL_TARGET[tool], strengths[idx % n])
 
 
 def _max_score(reports: list[EvaluatorReport]) -> float:
@@ -75,11 +77,14 @@ def _target_A(motion, evaluators) -> float:
 
 
 def _run_policy_closed_loop(motion0, clf, evaluators, gate_evaluators, gate_thresholds,
-                            dist_tag, max_depth=3, include_dist_tag=False):
+                            dist_tag, max_depth=3, include_dist_tag=False,
+                            strengths: tuple = STRENGTHS_5LEVEL, action_list: list = ACTION_LIST):
     """Execute policy closed-loop with gate (accept/rollback/STOP).
 
     Returns final motion + trace (actions taken, gate decisions, n_steps, stopped_reason).
+    Grid-aware: strengths + action_list (default 5-level).
     """
+    n_actions = len(action_list)
     motion = motion0.copy()
     T = motion.shape[0]
     artifact = _artifact_scores(motion, evaluators)
@@ -93,13 +98,14 @@ def _run_policy_closed_loop(motion0, clf, evaluators, gate_evaluators, gate_thre
     for t in range(max_depth):
         delta = [a - pa for a, pa in zip(artifact, prev_artifact)] + \
                 [p - pp for p, pp in zip(physical, prev_physical)]
-        state = _build_state(artifact, physical, delta, prev_action_idx, max_depth - t, t, dist_tag)
+        state = _build_state(artifact, physical, delta, prev_action_idx, max_depth - t, t, dist_tag,
+                             n_actions=n_actions)
         feats = np.array([_flatten_state(state, include_dist_tag)])
         action_idx = int(clf.predict(feats)[0])
         if action_idx == 0:
             stopped_reason = "policy_stop"
             break
-        act = _idx_to_action(action_idx)
+        act = _idx_to_action(action_idx, strengths)
         tool = TOOL_BY_NAME[act[0]]
         try:
             new_motion, _ = tool.apply(motion, target_part=act[1], target_joints=[],
@@ -113,10 +119,10 @@ def _run_policy_closed_loop(motion0, clf, evaluators, gate_evaluators, gate_thre
         if any(d == "hard_violation" for d in decisions.values()):
             # Rollback: do not accept this step, STOP (conservative).
             stopped_reason = "gate_rollback"
-            actions_taken.append({"action": ACTION_LIST[action_idx], "gate": "rollback"})
+            actions_taken.append({"action": action_list[action_idx], "gate": "rollback"})
             break
         # Accept.
-        actions_taken.append({"action": ACTION_LIST[action_idx], "gate": "accept"})
+        actions_taken.append({"action": action_list[action_idx], "gate": "accept"})
         motion = new_motion
         prev_artifact, prev_physical = list(artifact), list(physical)
         artifact = _artifact_scores(motion, evaluators)
@@ -178,6 +184,10 @@ def main() -> None:
 
     data = json.load(open(args.dataset, encoding="utf-8"))
     rows = data["rows"]
+    # Grid-aware: derive action_list + strengths from dataset (3-level=10, 5-level=16).
+    ds_action_list = data.get("action_list", ACTION_LIST)
+    ds_strengths = STRENGTHS_3LEVEL if len(ds_action_list) == 10 else STRENGTHS_5LEVEL
+    print(f"[INFO] dataset action_list: {len(ds_action_list)} actions, strengths={ds_strengths}")
     calib = json.load(open(args.calibration, encoding="utf-8"))
     gate_thresholds = {n: calib["summary"][n]["p99"] for n in calib["summary"]
                        if calib["summary"][n].get("n", 0) > 0}
@@ -236,7 +246,8 @@ def main() -> None:
                    "b2_netgain_best_viol": b2_netgain_best_viol}
             for mn, clf in trained.items():
                 final, trace = _run_policy_closed_loop(original, clf, evaluators, gate_evaluators,
-                                                       gate_thresholds, dist_tag=0, max_depth=args.max_depth)
+                                                       gate_thresholds, dist_tag=0, max_depth=args.max_depth,
+                                                       strengths=ds_strengths, action_list=ds_action_list)
                 ng = _netgain_g2(final, original, evaluators, w)
                 viol = _has_violation(final, original, gate_evaluators, gate_thresholds)
                 row[f"rl2_{mn}_ng"] = ng
@@ -270,7 +281,8 @@ def main() -> None:
                    "b2_netgain_best_viol": b2_netgain_best_viol}
             for mn, clf in trained.items():
                 final, trace = _run_policy_closed_loop(corrupted, clf, evaluators, gate_evaluators,
-                                                       gate_thresholds, dist_tag=1, max_depth=args.max_depth)
+                                                       gate_thresholds, dist_tag=1, max_depth=args.max_depth,
+                                                       strengths=ds_strengths, action_list=ds_action_list)
                 ng = _netgain_synthetic(final, clean, corrupted, evaluators, w)
                 viol = _has_violation(final, corrupted, gate_evaluators, gate_thresholds)
                 row[f"rl2_{mn}_ng"] = ng

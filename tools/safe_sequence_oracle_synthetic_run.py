@@ -51,6 +51,10 @@ TOOLS_WITH_TARGET_PARTS = [
 ]
 STRENGTHS_5LEVEL = ("xsmall", "small5", "medium5", "large5", "xlarge")
 STRENGTH_RANK_5 = {"xsmall": 0, "small5": 1, "medium5": 2, "large5": 3, "xlarge": 4}
+STRENGTHS_3LEVEL = ("small", "medium", "large")
+STRENGTH_RANK_3 = {"small": 0, "medium": 1, "large": 2}
+_GRID = {"5level": (STRENGTHS_5LEVEL, STRENGTH_RANK_5),
+         "3level": (STRENGTHS_3LEVEL, STRENGTH_RANK_3)}
 DEFAULT_CALIBRATION = REPO_ROOT / "evals" / "snapshots" / "physical_gate_clean_calibration_v1.json"
 
 
@@ -79,16 +83,17 @@ def _target_score_A(reports) -> float:
     return float(np.mean([_max_score(reports.get(n, [])) for n in TARGET_EVALUATORS_A]))
 
 
-def _strength_allowed(used, tn, tp, st) -> bool:
+def _strength_allowed(used, tn, tp, st, strength_rank=STRENGTH_RANK_5) -> bool:
     prev = used.get((tn, tp), [])
     if not prev:
         return True
-    return STRENGTH_RANK_5[st] < min(STRENGTH_RANK_5[s] for s in prev)
+    return strength_rank[st] < min(strength_rank[s] for s in prev)
 
 
 def select_safe_sequence_synthetic(
     *, clean_motion, corrupted_motion, tools_by_name, evaluators, gate_evaluators,
     gate_thresholds, netgain_weights, max_depth=3, top_k=10, score_tol=0.01,
+    strengths=STRENGTHS_5LEVEL, strength_rank=STRENGTH_RANK_5,
 ):
     T = corrupted_motion.shape[0]
     frame_range = (0, T - 1)
@@ -97,7 +102,7 @@ def select_safe_sequence_synthetic(
     total_init = sum(_max_score(r) for r in reports_init.values())
     mpjpe_corr_clean = _mpjpe(corrupted_motion, clean_motion)
     gate_init = _gate_scores(corrupted_motion, gate_evaluators)
-    actions = [(tn, tp, st) for tn, tp in TOOLS_WITH_TARGET_PARTS for st in STRENGTHS_5LEVEL]
+    actions = [(tn, tp, st) for tn, tp in TOOLS_WITH_TARGET_PARTS for st in strengths]
 
     alpha = float(netgain_weights["alpha"])
     beta = float(netgain_weights["beta"])
@@ -132,7 +137,7 @@ def select_safe_sequence_synthetic(
         if len(sequence) >= max_depth:
             return
         for tn, tp, st in actions:
-            if not _strength_allowed(used, tn, tp, st):
+            if not _strength_allowed(used, tn, tp, st, strength_rank):
                 counters["pruned_strength"] += 1
                 continue
             tool = tools_by_name[tn]
@@ -186,9 +191,12 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--calibration", type=Path, default=DEFAULT_CALIBRATION)
     parser.add_argument("--split-id", type=str, default=None)
+    parser.add_argument("--strength-grid", type=str, default="5level", choices=["5level", "3level"])
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "safe_sequence_oracle_synthetic_severe_v1.json")
     args = parser.parse_args()
+    strengths, strength_rank = _GRID[args.strength_grid]
+    print(f"[INFO] strength grid: {args.strength_grid} -> {strengths}")
 
     calib = json.load(open(args.calibration, encoding="utf-8"))
     gate_thresholds = {n: calib["summary"][n]["p99"] for n in calib["summary"]
@@ -226,6 +234,7 @@ def main() -> None:
             evaluators=evaluators, gate_evaluators=gate_evaluators,
             gate_thresholds=gate_thresholds, netgain_weights=netgain_weights,
             max_depth=args.max_depth, top_k=args.top_k,
+            strengths=strengths, strength_rank=strength_rank,
         )
         sb, ub = result["safe_best"], result["unsafe_best"]
         def _seqsum(c):

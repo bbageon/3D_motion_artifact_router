@@ -1,0 +1,119 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_closed_loop_eval",
+  "task_id": "rl2_closed_loop_eval_v1",
+  "split_id": "rl2_closed_loop_eval_v1",
+  "oracle_type": "sequence",
+  "action_space_grid": {
+    "grid": "5-level",
+    "stage": "RL-2-closed-loop",
+    "include_stop": true,
+    "n_actions": 16,
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "strengths": [
+      "xsmall",
+      "small5",
+      "medium5",
+      "large5",
+      "xlarge"
+    ]
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "b2_selection_rules": {
+    "b2_netgain_best": "B2-netgain-best: max NetGain over B2-small/medium/large."
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "max_depth": 3,
+  "models": [
+    "RF",
+    "HGB"
+  ],
+  "note": "closed-loop policy + physical gate (accept/rollback/STOP). NetGain: G2=Protocol B, synthetic=Protocol A.",
+  "g2": {
+    "noop": {
+      "mean_netgain": 0.0
+    },
+    "b2_netgain_best": {
+      "mean_netgain": 8.165777451492609e-05,
+      "violation_rate": 0.011111111111111112
+    },
+    "safe_oracle": {
+      "mean_netgain": 0.0021447291827258385
+    },
+    "unsafe_oracle": {
+      "mean_netgain": 0.003407408879040727
+    },
+    "rl2_RF": {
+      "mean_netgain": 0.00022024086059341624,
+      "violation_rate": 0.0,
+      "stop_rate": 0.8222222222222222,
+      "oracle_gap_closure_aggregate": 0.10268935694412552
+    },
+    "rl2_HGB": {
+      "mean_netgain": 0.0004414297415339395,
+      "violation_rate": 0.0,
+      "stop_rate": 0.8055555555555556,
+      "oracle_gap_closure_aggregate": 0.20582073722375774
+    }
+  },
+  "synthetic": {
+    "noop": {
+      "mean_netgain": 0.0
+    },
+    "b2_netgain_best": {
+      "mean_netgain": 0.195701457109563,
+      "violation_rate": 0.3888888888888889
+    },
+    "safe_oracle": {
+      "mean_netgain": 0.20669336834673077
+    },
+    "unsafe_oracle": {
+      "mean_netgain": 0.26577458985208713
+    },
+    "rl2_RF": {
+      "mean_netgain": 0.17100205049593983,
+      "violation_rate": 0.0,
+      "stop_rate": 0.0,
+      "oracle_gap_closure_aggregate": 0.8273223851530723
+    },
+    "rl2_HGB": {
+      "mean_netgain": 0.1257949811425411,
+      "violation_rate": 0.0,
+      "stop_rate": 0.0,
+      "oracle_gap_closure_aggregate": 0.6086067596107796
+    }
+  },
+  "n_g2_eval_total": 180,
+  "n_synthetic_eval_total": 54
+}

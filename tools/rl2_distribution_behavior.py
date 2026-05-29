@@ -31,10 +31,11 @@ from skeleton_normalizer.canonical_smpl_22 import T2M_KINEMATIC_CHAIN
 from tools.synthetic_injection import inject_foot_floating, inject_jitter
 from tools.safe_sequence_oracle_run import _gate_scores, _gate_violation
 from tools.harness_metadata import CONTROLLED_DIAGNOSTIC, REAL_DISTRIBUTION, common_snapshot_metadata
-from tools.rl2_build_training_data import ACTION_LIST, STRENGTHS_5LEVEL, TOOLS_ORDER
+from tools.rl2_build_training_data import ACTION_LIST, STRENGTHS_5LEVEL, STRENGTHS_3LEVEL, TOOLS_ORDER
 from tools.rl2_train_imitation import _flatten_state, _sample_level_split, _build_models
 from tools.rl2_closed_loop_eval import _run_policy_closed_loop, _idx_to_action
 
+# STRENGTH_RANK is grid-set in main() (default 5-level for import-time compatibility).
 STRENGTH_RANK = {s: i for i, s in enumerate(STRENGTHS_5LEVEL)}
 TOOL_BY_NAME = {
     "FootLockTool": FootLockTool(default_ground_y=0.0),
@@ -98,6 +99,12 @@ def main() -> None:
 
     data = json.load(open(args.dataset, encoding="utf-8"))
     rows = data["rows"]
+    # Grid-aware: derive action_list / strengths / rank from dataset.
+    global STRENGTH_RANK
+    ds_action_list = data.get("action_list", ACTION_LIST)
+    ds_strengths = STRENGTHS_3LEVEL if len(ds_action_list) == 10 else STRENGTHS_5LEVEL
+    STRENGTH_RANK = {s: i for i, s in enumerate(ds_strengths)}
+    print(f"[INFO] grid: {len(ds_action_list)} actions, strengths={ds_strengths}")
     calib = json.load(open(args.calibration, encoding="utf-8"))
     gate_thresholds = {n: calib["summary"][n]["p99"] for n in calib["summary"]
                        if calib["summary"][n].get("n", 0) > 0}
@@ -130,7 +137,8 @@ def main() -> None:
             oracle_actions = _seq_to_actions(sb["sequence"]) if sb and sb["length"] > 0 else []
             for mn in ("RF", "HGB"):
                 _, trace = _run_policy_closed_loop(ref, trained[mn], evaluators, gate_evaluators,
-                                                    gate_thresholds, dist_tag=0, max_depth=args.max_depth)
+                                                    gate_thresholds, dist_tag=0, max_depth=args.max_depth,
+                                                    strengths=ds_strengths, action_list=ds_action_list)
                 policy_acts = _policy_actions(trace["actions"])
                 rows_g2[mn].append({
                     "trial_id": tid,
@@ -151,7 +159,8 @@ def main() -> None:
             oracle_actions = _seq_to_actions(sb["sequence"]) if sb and sb["length"] > 0 else []
             for mn in ("RF", "HGB"):
                 _, trace = _run_policy_closed_loop(corrupted, trained[mn], evaluators, gate_evaluators,
-                                                    gate_thresholds, dist_tag=1, max_depth=args.max_depth)
+                                                    gate_thresholds, dist_tag=1, max_depth=args.max_depth,
+                                                    strengths=ds_strengths, action_list=ds_action_list)
                 policy_acts = _policy_actions(trace["actions"])
                 rows_syn[mn].append({
                     "trial_id": tid,

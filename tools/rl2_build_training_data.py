@@ -52,15 +52,23 @@ ARTIFACT_EVALUATORS = ("FootFloatingEvaluator", "BoneLengthEvaluator", "Velocity
 PHYSICAL_EVALUATORS = ("PenetrateEvaluator", "FloatEvaluator", "SkateEvaluator",
                        "JerkSpikeEvaluator", "BoneLengthCVEvaluator")
 STRENGTHS_5LEVEL = ("xsmall", "small5", "medium5", "large5", "xlarge")
+STRENGTHS_3LEVEL = ("small", "medium", "large")
 TOOLS_ORDER = ("FootLockTool", "BoneProjectionTool", "VelocitySmoothingTool")
 TOOL_TARGET = {"FootLockTool": "both_feet", "BoneProjectionTool": "right_arm",
                "VelocitySmoothingTool": "full_body"}
 
-# Action index mapping (16-class).
-ACTION_LIST = ["STOP"]
-for _tool in TOOLS_ORDER:
-    for _st in STRENGTHS_5LEVEL:
-        ACTION_LIST.append(f"{_tool}|{_st}")
+
+def build_action_list(strengths: tuple = STRENGTHS_5LEVEL) -> list[str]:
+    """Grid-aware action list: STOP + 3 tool × N strength."""
+    al = ["STOP"]
+    for _tool in TOOLS_ORDER:
+        for _st in strengths:
+            al.append(f"{_tool}|{_st}")
+    return al
+
+
+# Default action index mapping (16-class, 5-level). main() rebuilds globals for 3-level.
+ACTION_LIST = build_action_list(STRENGTHS_5LEVEL)
 ACTION_TO_IDX = {a: i for i, a in enumerate(ACTION_LIST)}
 
 TOOL_BY_NAME: dict[str, CorrectionTool] = {
@@ -98,14 +106,16 @@ def _action_to_idx(step: list) -> int:
 
 def _build_state(artifact: list[float], physical: list[float], delta: list[float],
                  prev_action_idx: int, remaining_budget: int, step_index: int,
-                 dist_tag: int) -> dict:
-    prev_onehot = [0] * 16
+                 dist_tag: int, n_actions: int = None) -> dict:
+    if n_actions is None:
+        n_actions = len(ACTION_LIST)
+    prev_onehot = [0] * n_actions
     prev_onehot[prev_action_idx] = 1
     return {
         "artifact_scores": artifact,        # 3
         "physical_scores": physical,        # 5
         "score_delta": delta,               # 8
-        "prev_action_onehot": prev_onehot,  # 16
+        "prev_action_onehot": prev_onehot,  # n_actions (16 for 5-level, 10 for 3-level)
         "remaining_budget": remaining_budget,
         "step_index": step_index,
         "distribution_tag": dist_tag,
@@ -164,9 +174,17 @@ def main() -> None:
     parser.add_argument("--synthetic-seed", type=int, default=42)
     parser.add_argument("--max-depth", type=int, default=3)
     parser.add_argument("--split-id", type=str, default=None)
+    parser.add_argument("--strength-grid", type=str, default="5level", choices=["5level", "3level"])
     parser.add_argument("--output", type=Path,
                         default=REPO_ROOT / "evals" / "snapshots" / "rl2_imitation_dataset_v1.json")
     args = parser.parse_args()
+
+    # Grid-aware action list (rebuild module globals for 3-level).
+    global ACTION_LIST, ACTION_TO_IDX
+    _strengths = STRENGTHS_3LEVEL if args.strength_grid == "3level" else STRENGTHS_5LEVEL
+    ACTION_LIST = build_action_list(_strengths)
+    ACTION_TO_IDX = {a: i for i, a in enumerate(ACTION_LIST)}
+    print(f"[INFO] strength grid: {args.strength_grid} -> {len(ACTION_LIST)} actions")
 
     evaluators = list(DEFAULT_EVALUATORS)
     gate_evaluators = list(DEFAULT_PHYSICAL_GATE_EVALUATORS)

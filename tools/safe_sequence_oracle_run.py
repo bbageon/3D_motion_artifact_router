@@ -64,6 +64,10 @@ TOOLS_WITH_TARGET_PARTS: list[tuple[str, str]] = [
 ]
 STRENGTHS_5LEVEL = ("xsmall", "small5", "medium5", "large5", "xlarge")
 STRENGTH_RANK_5 = {"xsmall": 0, "small5": 1, "medium5": 2, "large5": 3, "xlarge": 4}
+STRENGTHS_3LEVEL = ("small", "medium", "large")
+STRENGTH_RANK_3 = {"small": 0, "medium": 1, "large": 2}
+_GRID = {"5level": (STRENGTHS_5LEVEL, STRENGTH_RANK_5),
+         "3level": (STRENGTHS_3LEVEL, STRENGTH_RANK_3)}
 
 DEFAULT_CALIBRATION_PATH = REPO_ROOT / "evals" / "snapshots" / "physical_gate_clean_calibration_v1.json"
 
@@ -127,11 +131,11 @@ def _gate_violation(
     return decisions
 
 
-def _strength_allowed(used: dict, tn: str, tp: str, st: str) -> bool:
+def _strength_allowed(used: dict, tn: str, tp: str, st: str, strength_rank: dict = STRENGTH_RANK_5) -> bool:
     prev = used.get((tn, tp), [])
     if not prev:
         return True
-    return STRENGTH_RANK_5[st] < min(STRENGTH_RANK_5[s] for s in prev)
+    return strength_rank[st] < min(strength_rank[s] for s in prev)
 
 
 def _eval_candidate(
@@ -170,7 +174,8 @@ def select_safe_sequence(
     *, original_motion: np.ndarray, tools_by_name: dict[str, CorrectionTool],
     evaluators: list, gate_evaluators: list, gate_thresholds: dict[str, float],
     netgain_weights: dict[str, float], max_depth: int = 3, top_k: int = 10,
-    score_tol: float = 0.01,
+    score_tol: float = 0.01, strengths: tuple = STRENGTHS_5LEVEL,
+    strength_rank: dict = STRENGTH_RANK_5,
 ) -> dict[str, Any]:
     """DFS — record all candidates (safe + unsafe) for comparison."""
     T = original_motion.shape[0]
@@ -179,7 +184,7 @@ def select_safe_sequence(
     target_initial_full = _target_score_full(reports_initial)
     gate_initial = _gate_scores(original_motion, gate_evaluators)
     total_initial = sum(_max_score(r) for r in reports_initial.values())
-    actions = [(tn, tp, st) for tn, tp in TOOLS_WITH_TARGET_PARTS for st in STRENGTHS_5LEVEL]
+    actions = [(tn, tp, st) for tn, tp in TOOLS_WITH_TARGET_PARTS for st in strengths]
 
     all_candidates: list[dict[str, Any]] = []
     counters = {"explored": 0, "pruned_strength": 0, "pruned_score": 0,
@@ -208,7 +213,7 @@ def select_safe_sequence(
         if len(sequence) >= max_depth:
             return
         for tn, tp, st in actions:
-            if not _strength_allowed(used, tn, tp, st):
+            if not _strength_allowed(used, tn, tp, st, strength_rank):
                 counters["pruned_strength"] += 1
                 continue
             tool = tools_by_name[tn]
@@ -300,7 +305,10 @@ def main() -> None:
     parser.add_argument("--max-depth", type=int, default=3)
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--strength-grid", type=str, default="5level", choices=["5level", "3level"])
     args = parser.parse_args()
+    strengths, strength_rank = _GRID[args.strength_grid]
+    print(f"[INFO] strength grid: {args.strength_grid} -> {strengths}")
 
     # Load gate thresholds (p99 of clean calibration).
     with open(args.calibration, encoding="utf-8") as f:
@@ -332,6 +340,7 @@ def main() -> None:
             evaluators=evaluators, gate_evaluators=gate_evaluators,
             gate_thresholds=gate_thresholds, netgain_weights=netgain_weights,
             max_depth=args.max_depth, top_k=args.top_k,
+            strengths=strengths, strength_rank=strength_rank,
         )
         # Compact summary print.
         sb = result["safe_best"]; ub = result["unsafe_best"]
