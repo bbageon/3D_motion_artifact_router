@@ -1,0 +1,453 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_psafe_bias_audit",
+  "task_id": "rl2_psafe_bias_audit_stageB0_v1",
+  "split_id": "rl2_psafe_bias_audit_stageB0_v1",
+  "oracle_type": "action_effect_transition",
+  "action_space_grid": {
+    "grid": "continuous-u",
+    "stage": "RL-2-stageB0-psafe-audit",
+    "include_stop": true,
+    "action_type": "discrete_tool_x_continuous_intensity",
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u"
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "directive": "unsafe = positive class. safety: false-safe (unsafe_as_safe) 가 가장 위험. recall(unsafe) > acc.",
+  "coarse_train_u": [
+    0.0,
+    0.5,
+    1.0
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "eval_frac": 0.3,
+  "thresholds": [
+    0.5,
+    0.7,
+    0.8,
+    0.9,
+    0.95,
+    0.99
+  ],
+  "aggregate": {
+    "pr_auc_unsafe": {
+      "mean": 0.825335609725644,
+      "std": 0.007717539046845707
+    },
+    "roc_auc_unsafe": {
+      "mean": 0.8955300487555228,
+      "std": 0.0035481545223223676
+    },
+    "confusion_unsafe_pos": {
+      "TP": 846.6666666666666,
+      "FP": 233.33333333333334,
+      "FN_unsafe_as_safe": 420.3333333333333,
+      "TN": 3548.6666666666665,
+      "precision_unsafe": {
+        "mean": 0.7842043433498708,
+        "std": 0.030183631064577002
+      },
+      "recall_unsafe": {
+        "mean": 0.6683799571641466,
+        "std": 0.020914293953893704
+      },
+      "f1_unsafe": {
+        "mean": 0.7215813156367563,
+        "std": 0.023649717252817937
+      }
+    },
+    "per_tool_unsafe_as_safe": {
+      "FootLockTool": {
+        "mean": 0.17279060928073497,
+        "std": 0.009198745715075982
+      },
+      "BoneProjectionTool": {
+        "mean": 0.0014663208139383387,
+        "std": 0.000592125921807897
+      },
+      "VelocitySmoothingTool": {
+        "mean": 0.17839816427430652,
+        "std": 0.017532554602179097
+      }
+    },
+    "per_u_unsafe_as_safe": {
+      "0.0": {
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "0.1": {
+        "mean": 0.09368191721132897,
+        "std": 0.003081075299287784
+      },
+      "0.2": {
+        "mean": 0.23892519970951343,
+        "std": 0.0037029916583825625
+      },
+      "0.3": {
+        "mean": 0.08308098844943752,
+        "std": 0.009001401767034952
+      },
+      "0.4": {
+        "mean": 0.08988962601573525,
+        "std": 0.011951124407565848
+      },
+      "0.5": {
+        "mean": 0.09087580219712225,
+        "std": 0.014357670978018076
+      },
+      "0.6": {
+        "mean": 0.10067427602172103,
+        "std": 0.01763691575632803
+      },
+      "0.7": {
+        "mean": 0.11436573463164507,
+        "std": 0.0149581273316047
+      },
+      "0.8": {
+        "mean": 0.10711098833041728,
+        "std": 0.013137651855153677
+      },
+      "0.9": {
+        "mean": 0.11951777108674584,
+        "std": 0.016304992283329368
+      },
+      "1.0": {
+        "mean": 0.12626714963845473,
+        "std": 0.016903199991649662
+      }
+    },
+    "per_dist_unsafe_as_safe": {
+      "clean": {
+        "mean": 0.17647058823529413,
+        "std": 0.0
+      },
+      "near_boundary": {
+        "mean": 0.009531970101855079,
+        "std": 0.004492055239846751
+      },
+      "g2_natural": {
+        "mean": 0.11548047606765179,
+        "std": 0.009781116763771223
+      },
+      "synthetic_severe": {
+        "mean": 0.07358218141214866,
+        "std": 0.01342863435101167
+      }
+    },
+    "per_dist_label_ratio_train_safe": {
+      "clean": {
+        "mean": 0.5555555555555556,
+        "std": 0.0
+      },
+      "near_boundary": {
+        "mean": 0.8878306878306877,
+        "std": 0.003959425806110016
+      },
+      "g2_natural": {
+        "mean": 0.8303350970017637,
+        "std": 0.0017985959483572127
+      },
+      "synthetic_severe": {
+        "mean": 0.8209876543209876,
+        "std": 0.004496489870893119
+      }
+    },
+    "selected_vs_all": {
+      "clean": {
+        "all_cand_unsafe_rate": {
+          "mean": 0.5757575757575758,
+          "std": 0.0
+        },
+        "top1_unsafe_rate": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "lift": {
+          "mean": -0.5757575757575758,
+          "std": 0.0
+        }
+      },
+      "near_boundary": {
+        "all_cand_unsafe_rate": {
+          "mean": 0.06195286195286195,
+          "std": 0.010982832612996693
+        },
+        "top1_unsafe_rate": {
+          "mean": 0.0,
+          "std": 0.0
+        },
+        "lift": {
+          "mean": -0.06195286195286195,
+          "std": 0.010982832612996693
+        }
+      },
+      "g2_natural": {
+        "all_cand_unsafe_rate": {
+          "mean": 0.19528619528619529,
+          "std": 0.005491416306498347
+        },
+        "top1_unsafe_rate": {
+          "mean": 0.025925925925925925,
+          "std": 0.020951312035156964
+        },
+        "lift": {
+          "mean": -0.16936026936026938,
+          "std": 0.015799822500538813
+        }
+      },
+      "synthetic_severe": {
+        "all_cand_unsafe_rate": {
+          "mean": 0.14534231200897868,
+          "std": 0.005204050783106453
+        },
+        "top1_unsafe_rate": {
+          "mean": 0.3333333333333333,
+          "std": 0.09072184232530289
+        },
+        "lift": {
+          "mean": 0.18799102132435463,
+          "std": 0.09489867117033546
+        }
+      }
+    },
+    "threshold_sweep": [
+      {
+        "p_safe_threshold": 0.5,
+        "act_rate_overall": {
+          "mean": 0.786096256684492,
+          "std": 0.0018007766154335134
+        },
+        "unsafe_as_safe_overall": {
+          "mean": 0.10591495753013326,
+          "std": 0.007671461483603216
+        },
+        "act_rate_synthetic": {
+          "mean": 0.8451178451178452,
+          "std": 0.010910337876107476
+        },
+        "unsafe_as_safe_synthetic": {
+          "mean": 0.07358218141214866,
+          "std": 0.01342863435101167
+        }
+      },
+      {
+        "p_safe_threshold": 0.7,
+        "act_rate_overall": {
+          "mean": 0.7572456592064435,
+          "std": 0.003678190605977189
+        },
+        "unsafe_as_safe_overall": {
+          "mean": 0.09058378199675819,
+          "std": 0.0030615488241715525
+        },
+        "act_rate_synthetic": {
+          "mean": 0.8260381593714928,
+          "std": 0.018763471938608885
+        },
+        "unsafe_as_safe_synthetic": {
+          "mean": 0.06636633838116418,
+          "std": 0.012678606747642512
+        }
+      },
+      {
+        "p_safe_threshold": 0.8,
+        "act_rate_overall": {
+          "mean": 0.7331484782465175,
+          "std": 0.004367290000274983
+        },
+        "unsafe_as_safe_overall": {
+          "mean": 0.07951664463855962,
+          "std": 0.001014920079689383
+        },
+        "act_rate_synthetic": {
+          "mean": 0.8120089786756454,
+          "std": 0.029169902173663345
+        },
+        "unsafe_as_safe_synthetic": {
+          "mean": 0.06106803303102839,
+          "std": 0.016818033461087328
+        }
+      },
+      {
+        "p_safe_threshold": 0.9,
+        "act_rate_overall": {
+          "mean": 0.6950551264276754,
+          "std": 0.003408815116769181
+        },
+        "unsafe_as_safe_overall": {
+          "mean": 0.07067021058388723,
+          "std": 0.0016518953504871818
+        },
+        "act_rate_synthetic": {
+          "mean": 0.7682379349046017,
+          "std": 0.033255964960783514
+        },
+        "unsafe_as_safe_synthetic": {
+          "mean": 0.05067427573369848,
+          "std": 0.015730566380203568
+        }
+      },
+      {
+        "p_safe_threshold": 0.95,
+        "act_rate_overall": {
+          "mean": 0.664488017429194,
+          "std": 0.005324313766067469
+        },
+        "unsafe_as_safe_overall": {
+          "mean": 0.0655724121782522,
+          "std": 0.002067135788037627
+        },
+        "act_rate_synthetic": {
+          "mean": 0.7384960718294051,
+          "std": 0.040059637031593154
+        },
+        "unsafe_as_safe_synthetic": {
+          "mean": 0.05017928670945912,
+          "std": 0.019013005737625224
+        }
+      },
+      {
+        "p_safe_threshold": 0.99,
+        "act_rate_overall": {
+          "mean": 0.6020334059549746,
+          "std": 0.010455732322770528
+        },
+        "unsafe_as_safe_overall": {
+          "mean": 0.05632844689558832,
+          "std": 0.002479667162154209
+        },
+        "act_rate_synthetic": {
+          "mean": 0.6470258136924804,
+          "std": 0.06406652357581404
+        },
+        "unsafe_as_safe_synthetic": {
+          "mean": 0.044307793401477884,
+          "std": 0.008154259093287715
+        }
+      }
+    ],
+    "calibration_curve": [
+      {
+        "bin": [
+          0.0,
+          0.1
+        ],
+        "n_mean": 761.0,
+        "mean_predicted": 0.010502887124859618,
+        "actual_safe_rate": 0.1015382313286256
+      },
+      {
+        "bin": [
+          0.1,
+          0.2
+        ],
+        "n_mean": 97.33333333333333,
+        "mean_predicted": 0.14671044820242754,
+        "actual_safe_rate": 0.47195525572277
+      },
+      {
+        "bin": [
+          0.2,
+          0.30000000000000004
+        ],
+        "n_mean": 75.66666666666667,
+        "mean_predicted": 0.2501620146799201,
+        "actual_safe_rate": 0.3839182545256814
+      },
+      {
+        "bin": [
+          0.30000000000000004,
+          0.4
+        ],
+        "n_mean": 68.66666666666667,
+        "mean_predicted": 0.35002373884895494,
+        "actual_safe_rate": 0.5083000548116827
+      },
+      {
+        "bin": [
+          0.4,
+          0.5
+        ],
+        "n_mean": 77.33333333333333,
+        "mean_predicted": 0.45092099233583066,
+        "actual_safe_rate": 0.5436212814645309
+      },
+      {
+        "bin": [
+          0.5,
+          0.6000000000000001
+        ],
+        "n_mean": 64.33333333333333,
+        "mean_predicted": 0.5478433853863396,
+        "actual_safe_rate": 0.4786719035440263
+      },
+      {
+        "bin": [
+          0.6000000000000001,
+          0.7000000000000001
+        ],
+        "n_mean": 81.33333333333333,
+        "mean_predicted": 0.6485093919338922,
+        "actual_safe_rate": 0.5121535247960071
+      },
+      {
+        "bin": [
+          0.7000000000000001,
+          0.8
+        ],
+        "n_mean": 121.66666666666667,
+        "mean_predicted": 0.7515083220678912,
+        "actual_safe_rate": 0.575317573272636
+      },
+      {
+        "bin": [
+          0.8,
+          0.9
+        ],
+        "n_mean": 192.33333333333334,
+        "mean_predicted": 0.858143049698035,
+        "actual_safe_rate": 0.7591395630244498
+      },
+      {
+        "bin": [
+          0.9,
+          1.0
+        ],
+        "n_mean": 3509.3333333333335,
+        "mean_predicted": 0.9938221171568151,
+        "actual_safe_rate": 0.9293297894161127
+      }
+    ]
+  }
+}
