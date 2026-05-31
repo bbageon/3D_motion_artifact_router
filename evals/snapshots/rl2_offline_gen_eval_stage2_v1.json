@@ -1,0 +1,849 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_offline_gen_eval",
+  "task_id": "rl2_offline_gen_eval_stage2_v1",
+  "split_id": "rl2_offline_gen_eval_stage2_v1",
+  "oracle_type": "action_effect_transition",
+  "action_space_grid": {
+    "grid": "continuous-dense-u11",
+    "stage": "Stage-2G-step5-offline-gen-eval",
+    "include_stop": true,
+    "action_type": "discrete_tool_x_continuous_intensity",
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u"
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "directive": "M0/M1/M2/M3 의 4 holdout offline generalization. closed-loop 전 단계 — 사용자 명시.",
+  "stop_epsilon": 0.0,
+  "p_safe_threshold": 0.5,
+  "topk": 3,
+  "results": {
+    "M0": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_oracle_util": 0.024934492307692305,
+        "mean_policy_util": 0.008931353846153846,
+        "mean_regret": 0.016003138461538464,
+        "mean_recovery": -0.16091209828255926,
+        "mean_topk_safe_recall": 0.2512820512820513,
+        "mean_unsafe_topk_rate": 0.10256410256410256,
+        "act_rate": 0.7846153846153846,
+        "policy_pick_unsafe_rate": 0.09230769230769231,
+        "over_stop_rate": 0.09230769230769231,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 5,
+            "mean_regret": 0.008210600000000002,
+            "mean_recovery": 0.15509359649751814,
+            "mean_unsafe_topk_rate": 0.06666666666666667,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.2
+          },
+          "run_jog": {
+            "n_states": 6,
+            "mean_regret": 0.019030500000000002,
+            "mean_recovery": 0.3844582563087388,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.5,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 5,
+            "mean_regret": -0.004784999999999999,
+            "mean_recovery": 1.6302416070943806,
+            "mean_unsafe_topk_rate": 0.5333333333333333,
+            "act_rate": 0.8,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "kick_squat_lunge": {
+            "n_states": 8,
+            "mean_regret": 0.019542624999999997,
+            "mean_recovery": 0.5882792178361109,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "turn_path": {
+            "n_states": 6,
+            "mean_regret": 0.021907333333333334,
+            "mean_recovery": -7.209540453869368,
+            "mean_unsafe_topk_rate": 0.05555555555555555,
+            "act_rate": 0.6666666666666666,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n_states": 5,
+            "mean_regret": 0.061935399999999995,
+            "mean_recovery": 0.32191888318365586,
+            "mean_unsafe_topk_rate": 0.13333333333333333,
+            "act_rate": 0.8,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n_states": 14,
+            "mean_regret": 0.002751285714285714,
+            "mean_recovery": 0.47953345313891305,
+            "mean_unsafe_topk_rate": 0.07142857142857142,
+            "act_rate": 0.6428571428571429,
+            "policy_pick_unsafe_rate": 0.07142857142857142
+          },
+          "upper_body_low_loco": {
+            "n_states": 6,
+            "mean_regret": 0.03763383333333333,
+            "mean_recovery": 0.48658129218931495,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 0.8333333333333334,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "other": {
+            "n_states": 10,
+            "mean_regret": 0.004711,
+            "mean_recovery": 0.561574652335009,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.9,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_oracle_util": 0.001575969696969697,
+        "mean_policy_util": 6.434343434343434e-06,
+        "mean_regret": 0.0015695353535353533,
+        "mean_recovery": -0.3259876349712494,
+        "mean_topk_safe_recall": 0.42424242424242414,
+        "mean_unsafe_topk_rate": 0.016835016835016835,
+        "act_rate": 0.8686868686868687,
+        "policy_pick_unsafe_rate": 0.0,
+        "over_stop_rate": 0.08080808080808081,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 8,
+            "mean_regret": 0.002296,
+            "mean_recovery": 0.375,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 0.5,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "run_jog": {
+            "n_states": 8,
+            "mean_regret": 0.0017031249999999998,
+            "mean_recovery": 0.375,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.75,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 8,
+            "mean_regret": 0.0021783749999999998,
+            "mean_recovery": -5.358379796053114,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.75,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n_states": 12,
+            "mean_regret": 0.0024073333333333334,
+            "mean_recovery": -0.17808551992225471,
+            "mean_unsafe_topk_rate": 0.05555555555555555,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "turn_path": {
+            "n_states": 9,
+            "mean_regret": 0.001022,
+            "mean_recovery": 0.5382335083395835,
+            "mean_unsafe_topk_rate": 0.037037037037037035,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n_states": 8,
+            "mean_regret": 0.0014158750000000005,
+            "mean_recovery": 0.7191236113560219,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n_states": 22,
+            "mean_regret": 0.001960590909090909,
+            "mean_recovery": 0.09507508639428619,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.8636363636363636,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "upper_body_low_loco": {
+            "n_states": 8,
+            "mean_regret": 0.00038987500000000003,
+            "mean_recovery": 0.6312277580071175,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 0.75,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 16,
+            "mean_regret": 0.0006436874999999999,
+            "mean_recovery": -0.6879547303310862,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_oracle_util": 0.0,
+        "mean_policy_util": 0.0,
+        "mean_regret": 0.0,
+        "mean_recovery": 1.0,
+        "mean_topk_safe_recall": 0.3766666666666666,
+        "mean_unsafe_topk_rate": 0.0,
+        "act_rate": 0.87,
+        "policy_pick_unsafe_rate": 0.0,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_oracle_util": 0.16634354166666665,
+        "mean_policy_util": 0.16128604166666669,
+        "mean_regret": 0.005057499999999999,
+        "mean_recovery": 1.0059818603360295,
+        "mean_topk_safe_recall": 0.673611111111111,
+        "mean_unsafe_topk_rate": 0.125,
+        "act_rate": 1.0,
+        "policy_pick_unsafe_rate": 0.22916666666666666,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      }
+    },
+    "M1": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_oracle_util": 0.024934492307692305,
+        "mean_policy_util": 0.0007740923076923081,
+        "mean_regret": 0.0241604,
+        "mean_recovery": -4.137920237246195,
+        "mean_topk_safe_recall": 0.26666666666666666,
+        "mean_unsafe_topk_rate": 0.18974358974358974,
+        "act_rate": 0.8769230769230769,
+        "policy_pick_unsafe_rate": 0.15384615384615385,
+        "over_stop_rate": 0.06153846153846154,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 5,
+            "mean_regret": 0.0066638,
+            "mean_recovery": 0.578355091694534,
+            "mean_unsafe_topk_rate": 0.06666666666666667,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "run_jog": {
+            "n_states": 6,
+            "mean_regret": 0.022671833333333332,
+            "mean_recovery": 0.26371257220880956,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 5,
+            "mean_regret": 0.023860600000000003,
+            "mean_recovery": -0.8231368292047391,
+            "mean_unsafe_topk_rate": 0.6666666666666667,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "kick_squat_lunge": {
+            "n_states": 8,
+            "mean_regret": 0.003402375000000001,
+            "mean_recovery": 0.5909655824273882,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "turn_path": {
+            "n_states": 6,
+            "mean_regret": 0.022580000000000003,
+            "mean_recovery": -7.642883376978442,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 0.5,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n_states": 5,
+            "mean_regret": 0.06370899999999999,
+            "mean_recovery": -50.42530153625087,
+            "mean_unsafe_topk_rate": 0.4,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "walk_locomotion": {
+            "n_states": 14,
+            "mean_regret": -0.0023964285714285715,
+            "mean_recovery": 1.3488359726745085,
+            "mean_unsafe_topk_rate": 0.2619047619047619,
+            "act_rate": 0.7857142857142857,
+            "policy_pick_unsafe_rate": 0.2857142857142857
+          },
+          "upper_body_low_loco": {
+            "n_states": 6,
+            "mean_regret": 0.007310333333333335,
+            "mean_recovery": 0.6548407462490519,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 10,
+            "mean_regret": 0.0790217,
+            "mean_recovery": 0.11201530220639619,
+            "mean_unsafe_topk_rate": 0.13333333333333333,
+            "act_rate": 0.9,
+            "policy_pick_unsafe_rate": 0.1
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_oracle_util": 0.001575969696969697,
+        "mean_policy_util": 0.00014419191919191922,
+        "mean_regret": 0.001431777777777778,
+        "mean_recovery": 0.12228807495299103,
+        "mean_topk_safe_recall": 0.3973063973063973,
+        "mean_unsafe_topk_rate": 0.06397306397306397,
+        "act_rate": 0.8787878787878788,
+        "policy_pick_unsafe_rate": 0.030303030303030304,
+        "over_stop_rate": 0.06060606060606061,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 8,
+            "mean_regret": 0.001297375,
+            "mean_recovery": 0.4375,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.125
+          },
+          "run_jog": {
+            "n_states": 8,
+            "mean_regret": 0.001647125,
+            "mean_recovery": 0.5,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 8,
+            "mean_regret": 0.0024255,
+            "mean_recovery": -1.9041806020066887,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n_states": 12,
+            "mean_regret": 0.0019892499999999997,
+            "mean_recovery": 1.1581997562135207,
+            "mean_unsafe_topk_rate": 0.19444444444444445,
+            "act_rate": 0.9166666666666666,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "turn_path": {
+            "n_states": 9,
+            "mean_regret": 0.0009986666666666666,
+            "mean_recovery": 0.5382335083395835,
+            "mean_unsafe_topk_rate": 0.037037037037037035,
+            "act_rate": 0.7777777777777778,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n_states": 8,
+            "mean_regret": 0.0008801250000000003,
+            "mean_recovery": 0.738017986245812,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n_states": 22,
+            "mean_regret": 0.002003045454545455,
+            "mean_recovery": -0.11937396251662837,
+            "mean_unsafe_topk_rate": 0.07575757575757575,
+            "act_rate": 0.8181818181818182,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "upper_body_low_loco": {
+            "n_states": 8,
+            "mean_regret": 0.000393375,
+            "mean_recovery": 0.625,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 16,
+            "mean_regret": 0.0007295,
+            "mean_recovery": -0.4487781954887218,
+            "mean_unsafe_topk_rate": 0.020833333333333332,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_oracle_util": 0.0,
+        "mean_policy_util": 0.02565095,
+        "mean_regret": -0.02565095,
+        "mean_recovery": 0.44,
+        "mean_topk_safe_recall": 0.30333333333333334,
+        "mean_unsafe_topk_rate": 0.46333333333333326,
+        "act_rate": 0.91,
+        "policy_pick_unsafe_rate": 0.56,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_oracle_util": 0.16634354166666665,
+        "mean_policy_util": 0.0,
+        "mean_regret": 0.16634354166666665,
+        "mean_recovery": 0.0,
+        "mean_topk_safe_recall": 0.0,
+        "mean_unsafe_topk_rate": 0.0,
+        "act_rate": 0.0,
+        "policy_pick_unsafe_rate": 0.0,
+        "over_stop_rate": 1.0,
+        "group_breakdown": {}
+      }
+    },
+    "M2": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_oracle_util": 0.024934492307692305,
+        "mean_policy_util": 0.008724138461538463,
+        "mean_regret": 0.01621035384615385,
+        "mean_recovery": -4.336833774041823,
+        "mean_topk_safe_recall": 0.2769230769230769,
+        "mean_unsafe_topk_rate": 0.14358974358974358,
+        "act_rate": 0.9076923076923077,
+        "policy_pick_unsafe_rate": 0.13846153846153847,
+        "over_stop_rate": 0.06153846153846154,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 5,
+            "mean_regret": 0.023687999999999997,
+            "mean_recovery": 0.0,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.8,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "run_jog": {
+            "n_states": 6,
+            "mean_regret": 0.0157015,
+            "mean_recovery": 0.48711566546823676,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 5,
+            "mean_regret": 0.015500799999999999,
+            "mean_recovery": 1.1688456335036,
+            "mean_unsafe_topk_rate": 0.5333333333333333,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "kick_squat_lunge": {
+            "n_states": 8,
+            "mean_regret": 0.00968275,
+            "mean_recovery": 0.5663574745543538,
+            "mean_unsafe_topk_rate": 0.125,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.125
+          },
+          "turn_path": {
+            "n_states": 6,
+            "mean_regret": 0.03358766666666666,
+            "mean_recovery": -8.105306726892968,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n_states": 5,
+            "mean_regret": 0.0624046,
+            "mean_recovery": -51.481524776474146,
+            "mean_unsafe_topk_rate": 0.4666666666666666,
+            "act_rate": 0.8,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "walk_locomotion": {
+            "n_states": 14,
+            "mean_regret": -3.14285714285756e-06,
+            "mean_recovery": 0.48458075086926095,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 0.8571428571428571,
+            "policy_pick_unsafe_rate": 0.21428571428571427
+          },
+          "upper_body_low_loco": {
+            "n_states": 6,
+            "mean_regret": 0.009474666666666671,
+            "mean_recovery": 0.4709456362854061,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 10,
+            "mean_regret": 0.011570500000000001,
+            "mean_recovery": 0.12376826443656545,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.9,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_oracle_util": 0.001575969696969697,
+        "mean_policy_util": -0.0010332626262626262,
+        "mean_regret": 0.0026092323232323224,
+        "mean_recovery": -0.39317446804195183,
+        "mean_topk_safe_recall": 0.404040404040404,
+        "mean_unsafe_topk_rate": 0.06734006734006734,
+        "act_rate": 0.8585858585858586,
+        "policy_pick_unsafe_rate": 0.04040404040404041,
+        "over_stop_rate": 0.050505050505050504,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 8,
+            "mean_regret": 0.004130125,
+            "mean_recovery": 0.25,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.125
+          },
+          "run_jog": {
+            "n_states": 8,
+            "mean_regret": 0.001647125,
+            "mean_recovery": 0.5,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 0.625,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 8,
+            "mean_regret": 0.002576625,
+            "mean_recovery": -6.14984359009527,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n_states": 12,
+            "mean_regret": 0.0026761666666666665,
+            "mean_recovery": -0.26141885325558806,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "turn_path": {
+            "n_states": 9,
+            "mean_regret": 0.0008833333333333332,
+            "mean_recovery": 0.6666666666666666,
+            "mean_unsafe_topk_rate": 0.037037037037037035,
+            "act_rate": 0.7777777777777778,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n_states": 8,
+            "mean_regret": 0.008922499999999998,
+            "mean_recovery": 0.18949970770263924,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n_states": 22,
+            "mean_regret": 0.003148090909090909,
+            "mean_recovery": -0.595658865361142,
+            "mean_unsafe_topk_rate": 0.0909090909090909,
+            "act_rate": 0.9090909090909091,
+            "policy_pick_unsafe_rate": 0.045454545454545456
+          },
+          "upper_body_low_loco": {
+            "n_states": 8,
+            "mean_regret": 0.000393375,
+            "mean_recovery": 0.625,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 16,
+            "mean_regret": 0.000477125,
+            "mean_recovery": 0.5,
+            "mean_unsafe_topk_rate": 0.020833333333333332,
+            "act_rate": 0.6875,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_oracle_util": 0.0,
+        "mean_policy_util": 0.02290759,
+        "mean_regret": -0.02290759,
+        "mean_recovery": 0.88,
+        "mean_topk_safe_recall": 0.43666666666666665,
+        "mean_unsafe_topk_rate": 0.2733333333333333,
+        "act_rate": 0.9,
+        "policy_pick_unsafe_rate": 0.12,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_oracle_util": 0.16634354166666665,
+        "mean_policy_util": 0.17570470833333332,
+        "mean_regret": -0.009361166666666665,
+        "mean_recovery": 1.2156915036594047,
+        "mean_topk_safe_recall": 0.5625,
+        "mean_unsafe_topk_rate": 0.2638888888888889,
+        "act_rate": 1.0,
+        "policy_pick_unsafe_rate": 0.3958333333333333,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      }
+    },
+    "M3": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_oracle_util": 0.024934492307692305,
+        "mean_policy_util": 0.008724138461538463,
+        "mean_regret": 0.01621035384615385,
+        "mean_recovery": -4.336833774041823,
+        "mean_topk_safe_recall": 0.2769230769230769,
+        "mean_unsafe_topk_rate": 0.14358974358974358,
+        "act_rate": 0.9076923076923077,
+        "policy_pick_unsafe_rate": 0.13846153846153847,
+        "over_stop_rate": 0.06153846153846154,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 5,
+            "mean_regret": 0.023687999999999997,
+            "mean_recovery": 0.0,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.8,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "run_jog": {
+            "n_states": 6,
+            "mean_regret": 0.0157015,
+            "mean_recovery": 0.48711566546823676,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 5,
+            "mean_regret": 0.015500799999999999,
+            "mean_recovery": 1.1688456335036,
+            "mean_unsafe_topk_rate": 0.5333333333333333,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "kick_squat_lunge": {
+            "n_states": 8,
+            "mean_regret": 0.00968275,
+            "mean_recovery": 0.5663574745543538,
+            "mean_unsafe_topk_rate": 0.125,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.125
+          },
+          "turn_path": {
+            "n_states": 6,
+            "mean_regret": 0.03358766666666666,
+            "mean_recovery": -8.105306726892968,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n_states": 5,
+            "mean_regret": 0.0624046,
+            "mean_recovery": -51.481524776474146,
+            "mean_unsafe_topk_rate": 0.4666666666666666,
+            "act_rate": 0.8,
+            "policy_pick_unsafe_rate": 0.4
+          },
+          "walk_locomotion": {
+            "n_states": 14,
+            "mean_regret": -3.14285714285756e-06,
+            "mean_recovery": 0.48458075086926095,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 0.8571428571428571,
+            "policy_pick_unsafe_rate": 0.21428571428571427
+          },
+          "upper_body_low_loco": {
+            "n_states": 6,
+            "mean_regret": 0.009474666666666671,
+            "mean_recovery": 0.4709456362854061,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 10,
+            "mean_regret": 0.011570500000000001,
+            "mean_recovery": 0.12376826443656545,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 0.9,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_oracle_util": 0.001575969696969697,
+        "mean_policy_util": -0.0010332626262626262,
+        "mean_regret": 0.0026092323232323224,
+        "mean_recovery": -0.39317446804195183,
+        "mean_topk_safe_recall": 0.404040404040404,
+        "mean_unsafe_topk_rate": 0.06734006734006734,
+        "act_rate": 0.8585858585858586,
+        "policy_pick_unsafe_rate": 0.04040404040404041,
+        "over_stop_rate": 0.050505050505050504,
+        "group_breakdown": {
+          "jump_hop": {
+            "n_states": 8,
+            "mean_regret": 0.004130125,
+            "mean_recovery": 0.25,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.125
+          },
+          "run_jog": {
+            "n_states": 8,
+            "mean_regret": 0.001647125,
+            "mean_recovery": 0.5,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 0.625,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n_states": 8,
+            "mean_regret": 0.002576625,
+            "mean_recovery": -6.14984359009527,
+            "mean_unsafe_topk_rate": 0.0,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n_states": 12,
+            "mean_regret": 0.0026761666666666665,
+            "mean_recovery": -0.26141885325558806,
+            "mean_unsafe_topk_rate": 0.16666666666666666,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.16666666666666666
+          },
+          "turn_path": {
+            "n_states": 9,
+            "mean_regret": 0.0008833333333333332,
+            "mean_recovery": 0.6666666666666666,
+            "mean_unsafe_topk_rate": 0.037037037037037035,
+            "act_rate": 0.7777777777777778,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n_states": 8,
+            "mean_regret": 0.008922499999999998,
+            "mean_recovery": 0.18949970770263924,
+            "mean_unsafe_topk_rate": 0.08333333333333333,
+            "act_rate": 0.875,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n_states": 22,
+            "mean_regret": 0.003148090909090909,
+            "mean_recovery": -0.595658865361142,
+            "mean_unsafe_topk_rate": 0.0909090909090909,
+            "act_rate": 0.9090909090909091,
+            "policy_pick_unsafe_rate": 0.045454545454545456
+          },
+          "upper_body_low_loco": {
+            "n_states": 8,
+            "mean_regret": 0.000393375,
+            "mean_recovery": 0.625,
+            "mean_unsafe_topk_rate": 0.041666666666666664,
+            "act_rate": 1.0,
+            "policy_pick_unsafe_rate": 0.0
+          },
+          "other": {
+            "n_states": 16,
+            "mean_regret": 0.000477125,
+            "mean_recovery": 0.5,
+            "mean_unsafe_topk_rate": 0.020833333333333332,
+            "act_rate": 0.6875,
+            "policy_pick_unsafe_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_oracle_util": 0.0,
+        "mean_policy_util": 0.02290759,
+        "mean_regret": -0.02290759,
+        "mean_recovery": 0.88,
+        "mean_topk_safe_recall": 0.43666666666666665,
+        "mean_unsafe_topk_rate": 0.2733333333333333,
+        "act_rate": 0.9,
+        "policy_pick_unsafe_rate": 0.12,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_oracle_util": 0.16634354166666665,
+        "mean_policy_util": 0.17570470833333332,
+        "mean_regret": -0.009361166666666665,
+        "mean_recovery": 1.2156915036594047,
+        "mean_topk_safe_recall": 0.5625,
+        "mean_unsafe_topk_rate": 0.2638888888888889,
+        "act_rate": 1.0,
+        "policy_pick_unsafe_rate": 0.3958333333333333,
+        "over_stop_rate": 0.0,
+        "group_breakdown": {}
+      }
+    }
+  }
+}
