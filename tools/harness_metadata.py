@@ -48,13 +48,18 @@ def action_space_grid(
     stage: str = "RL-2",
     include_stop: bool = True,
 ) -> dict[str, Any]:
-    if grid == "5-level":
+    # Action space grid 의 분류 (AGENTS.md §3-21 의 4 category):
+    #   - discrete: 3-level / 5-level / discrete_Nlevel
+    #   - bounded_continuous_u: u∈[0,1] normalized intensity (action_space_provenance §5-2)
+    #   - dense_grid_proxy: dense sampled u-grid (continuous 의 진단 proxy)
+    #   - N/A: profile / split / non-action context (helper 비활성, descriptor 만 반환)
+    grid_l = grid.lower()
+    if grid in ("5-level", "discrete_5level", "discrete-5level"):
         strengths = STRENGTHS_5LEVEL
-    elif grid == "3-level":
+    elif grid in ("3-level", "discrete_3level", "discrete-3level"):
         strengths = STRENGTHS_3LEVEL
-    elif grid.startswith("continuous"):
-        # Bounded continuous intervention intensity u∈[0,1] (RL-2 Q_safe, action_space_provenance §5-2).
-        # discrete strength token 이 아니라 continuous/grid-sampled u — n_actions 는 정의 안 됨.
+    elif grid_l.startswith("continuous") or grid_l.startswith("bounded_continuous") or grid_l.startswith("bounded-continuous") or grid_l.startswith("dense_grid_proxy") or grid_l.startswith("dense-grid-proxy"):
+        # Bounded continuous / dense-grid-proxy intensity (action_space_provenance §5-2).
         return {
             "grid": grid,
             "stage": stage,
@@ -63,8 +68,19 @@ def action_space_grid(
             "tools": list(TOOLS_ORDER),
             "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u",
         }
+    elif grid_l.startswith("n/a") or grid_l == "none" or grid_l == "":
+        # Profile / split / non-action context — descriptor only, action space irrelevant.
+        return {
+            "grid": grid, "stage": stage, "include_stop": include_stop,
+            "action_type": "not_applicable",
+        }
     else:
-        raise ValueError(f"Unknown action-space grid: {grid}")
+        # Permissive fallback: 새 descriptor 도 raise 하지 않고 generic record (helper = mutable, AGENTS §3-24).
+        return {
+            "grid": grid, "stage": stage, "include_stop": include_stop,
+            "action_type": "custom",
+            "tools": list(TOOLS_ORDER),
+        }
     n_actions = len(TOOLS_ORDER) * len(strengths) + (1 if include_stop else 0)
     return {
         "grid": grid,
