@@ -1,7 +1,8 @@
 # 5단계 비교 리포트 — G2 real holdout: learned policy (M0) vs baselines
 
-> 생성: 2026-06-01. 트랙: machine Compare (eval-compare 5단계). raw: [evals/snapshots/rl2_g2_paired_stats_v1.json](../snapshots/rl2_g2_paired_stats_v1.json).
-> **주의**: 본 리포트는 **단일 snapshot** 의 paired test evidence. 가설 status 전환은 AGENTS.md §3-11 사용자 승인 게이트 + snapshot ≥ 2 요건 (현재 1) 미충족 → **evidence 축적 단계, status 전환 아님**.
+> 생성: 2026-06-01 (snapshot 2 추가 갱신). 트랙: machine Compare (eval-compare 5단계).
+> raw: snapshot1 [rl2_g2_paired_stats_v1.json](../snapshots/rl2_g2_paired_stats_v1.json) (split v2, seed 20260531) + snapshot2 [rl2_g2_paired_stats_v3.json](../snapshots/rl2_g2_paired_stats_v3.json) (split v3, seed 20260615, 독립 partition).
+> **snapshot ≥ 2 충족** (v2 + v3, holdout overlap stress 46% / natural 21%). **12/12 비교 방향+유의성 재현 (§3-5)**. 단 가설 status 전환은 여전히 AGENTS.md §3-11 사용자 승인 게이트 — 본 리포트는 evidence 제시이며 status 전환 아님.
 
 ## 1. 제시한 가설
 
@@ -62,8 +63,30 @@
 - **dense_oracle > M0: 모든 holdout 유의** — learned policy 와 ceiling 사이 **headroom 명확** (g2_stress d=0.45, synthetic d=0.79). M0 는 안전·효율적이나 최적 아님.
 - **M1/M2 vs M0: g2 에선 미세차 (M1 g2_stress 약간 우위)** 이나 M1 은 clean/synthetic 에서 catastrophic (Step 5). → broad-support (M0) 의 우월성은 OOD holdout 전반 일관.
 
+## 4-bis. 재현성 — snapshot 1 (v2) vs snapshot 2 (v3, 독립 split)
+
+12 핵심 비교 (4 holdout × {random / heuristic / dense_oracle}) 의 방향 + 유의성 일치:
+
+| holdout / vs | snap1 Δ (p, d) | snap2 Δ (p, d) | 일치 |
+|---|---|---|---|
+| g2_stress / random | +0.022 (1.2e-6, 0.47) | +0.028 (1.2e-7, 0.50) | ✓ |
+| g2_stress / heuristic | −0.006 (0.62, ns) | −0.000 (0.061, ns) | ✓ (both ns) |
+| g2_stress / oracle | −0.017 (1.4e-14) | −0.017 (5.7e-14) | ✓ (oracle ↑) |
+| g2_natural / random | +0.017 (1.6e-17, 0.87) | +0.019 (3.2e-15, 0.72) | ✓ |
+| g2_natural / heuristic | +0.006 (2.3e-13, 0.59) | +0.007 (2.2e-12, 0.30) | ✓ |
+| g2_natural / oracle | −0.002 (1.6e-12) | −0.002 (5.2e-13) | ✓ |
+| clean / random | +0.000 (2e-3) | +0.000 (8e-5) | ✓ (~0) |
+| clean / heuristic·oracle | ~0 (4.7e-10) | ~0 (4.7e-10) | ✓ |
+| synthetic / random | +0.003 (0.99, ns) | +0.003 (0.57, ns) | ✓ (both ns) |
+| synthetic / heuristic | +0.101 (8e-11, 0.99) | +0.064 (2e-5, 0.71) | ✓ |
+| synthetic / oracle | −0.089 (4e-6) | −0.124 (8e-10) | ✓ (oracle ↑) |
+
+→ **12/12 일치**. M0 > random (전 real holdout), M0 vs heuristic (natural/synthetic 유의, stress ns), oracle headroom (전 holdout) — **두 독립 split 에서 robust**. effect size 도 같은 크기대 (random d 0.47↔0.50 stress, 0.87↔0.72 natural).
+
+synthetic 의 M0 절대 NetGain 은 v2 +0.078 → v3 +0.041 로 변동 (holdout state 다름) — 단 **상대 비교 (M0 > heuristic/STOP, M0 ≈ random) 는 불변**.
+
 ## 5. 다음 스텝
 
-- **snapshot ≥ 2 미충족** → 본 evidence 로 H-2026-205 status 전환 금지. 재현 snapshot (다른 seed / split) 1회 추가 후 5단계 재평가 → 사용자 승인 게이트.
-- **g2_stress 의 oracle headroom (d=0.45)** → M0 의 stress 보수성 개선 (Stage 3 continuous argmax) 의 정량 동기.
-- **claim 범위** (현재 방어 가능): "broad-support learned policy + real gate 가 real G2 holdout 에서 random 대비 유의하게, rule-based 대비 동작별로 우위 (natural/synthetic 유의, stress 는 NetGain 동률+FID 우위), physical 0% violation, standard quality 보존/개선." generator-agnostic (G1) 은 미검증.
+- **snapshot ≥ 2 충족 + 12/12 재현** → H-2026-205 (learnable routing > rule-based) 의 supports 방향 evidence 가 **2 독립 snapshot 에서 확인**. status 전환 (`active` → `supported`) 은 **사용자 승인 게이트** (AGENTS.md §3-11) — Agent 단독 금지. 사용자 검토 권고.
+- **g2_stress 의 oracle headroom (d 0.45↔0.41)** → M0 의 stress 보수성 개선 (Stage 3 continuous argmax) 의 정량 동기 (재현됨).
+- **claim 범위** (현재 방어 가능, 2 snapshot): "broad-support learned policy + real gate 가 real G2 holdout 에서 random 대비 유의하게 (재현), rule-based 대비 동작별로 우위 (natural/synthetic 유의, stress NetGain 동률+FID 우위), physical 0% violation, standard quality 보존/개선." generator-agnostic (G1) 은 미검증.

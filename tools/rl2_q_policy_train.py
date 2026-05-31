@@ -226,7 +226,7 @@ def main() -> None:
         "directive": "M0 (Stage A baseline) / M1 (G2 real only) / M2 (G2+synthetic) / M3 (M2+isotonic calibrated).",
         "training_sizes": {"M0": int(len(X_sa)), "M1": int(len(X1)), "M2": int(len(X2)),
                            "M3_calib_n": int(len(Xc))},
-        "models_saved_path": str(args.output_models.relative_to(REPO_ROOT)) if models_saved else None,
+        "models_saved_path": str(args.output_models.resolve()) if models_saved else None,
         "model_eval_metrics": model_metrics,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
