@@ -1,0 +1,1482 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "rl2_closed_loop_ablation",
+  "task_id": "rl2_closed_loop_ablation_stage2_v1",
+  "split_id": "rl2_closed_loop_ablation_stage2_v1",
+  "oracle_type": "closed_loop_single_step_dense",
+  "action_space_grid": {
+    "grid": "continuous-dense-u11",
+    "stage": "Stage-2G-step6-closed-loop-ablation",
+    "include_stop": true,
+    "action_type": "discrete_tool_x_continuous_intensity",
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u"
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "directive": "M0 primary, M1/M2/M3 ablation, random+gate / heuristic+gate / dense_oracle_step1 비교. real-gate-ON closed-loop.",
+  "max_depth": 3,
+  "random_retries": 3,
+  "p_safe_threshold": 0.5,
+  "stop_epsilon": 0.0,
+  "u_grid": [
+    0.0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0
+  ],
+  "alpha": 5.0,
+  "policies": [
+    "M0",
+    "M1",
+    "M2",
+    "M3",
+    "STOP_only",
+    "random_gate",
+    "heuristic_gate",
+    "dense_oracle_step1"
+  ],
+  "results": {
+    "M0": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.008433558105525167,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.6923076923076923,
+        "over_stop_rate": 0.15384615384615385,
+        "mean_candidate_evals": 2.169230769230769,
+        "mean_gate_rejections": 0.09230769230769231,
+        "gate_rejection_rate_per_eval": 0.0425531914893617,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": 0.015369599063953104,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.0
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": -0.010304895182961484,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": 0.0028683031165547173,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.4,
+            "over_stop_rate": 0.4
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.02166996329194252,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": 0.0017891912250413697,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.5
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.03425379083048538,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.2
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.001692555918619024,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5714285714285714,
+            "over_stop_rate": 0.14285714285714285
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.009286554651201224,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6666666666666666,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": 0.008404221844827675,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.9,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": -0.0002318298315950204,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.8686868686868687,
+        "over_stop_rate": 0.08080808080808081,
+        "mean_candidate_evals": 2.595959595959596,
+        "mean_gate_rejections": 0.010101010101010102,
+        "gate_rejection_rate_per_eval": 0.0038910505836575876,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.25
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": -0.0001517649857814194,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.125
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": -0.0017034701195362764,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.25
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": -0.001499063019023781,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": -0.0003757852287912753,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": 0.004501531147905448,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": -0.0007314393907878321,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8636363636363636,
+            "over_stop_rate": 0.09090909090909091
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": -0.0004432279877728671,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.125
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": -0.00019457549260543404,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": -4.2620868089389186e-08,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.87,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 2.61,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.07748968451246897,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.7708333333333334,
+        "over_stop_rate": 0.22916666666666666,
+        "mean_candidate_evals": 2.5416666666666665,
+        "mean_gate_rejections": 0.22916666666666666,
+        "gate_rejection_rate_per_eval": 0.09016393442622951,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "M1": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.014079718114841919,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.7230769230769231,
+        "over_stop_rate": 0.15384615384615385,
+        "mean_candidate_evals": 2.230769230769231,
+        "mean_gate_rejections": 0.15384615384615385,
+        "gate_rejection_rate_per_eval": 0.06896551724137931,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": 0.01518000782386832,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": 0.001231855783875973,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": 0.002159351072728975,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6,
+            "over_stop_rate": 0.2
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.038789683936656744,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.125
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": -0.0016940511280305783,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.3333333333333333,
+            "over_stop_rate": 0.5
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.03725510860357252,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6,
+            "over_stop_rate": 0.4
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.003967463096935857,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.21428571428571427
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.03581840678697989,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": 0.006421011645656787,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": 7.910097515952085e-05,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.8484848484848485,
+        "over_stop_rate": 0.08080808080808081,
+        "mean_candidate_evals": 2.5555555555555554,
+        "mean_gate_rejections": 0.030303030303030304,
+        "gate_rejection_rate_per_eval": 0.011857707509881422,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": 0.0014942173885424525,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.0
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.125
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": -0.002469739485592144,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.125
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": -0.00024252044698082573,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": -0.0003126247443947463,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.7777777777777778,
+            "over_stop_rate": 0.1111111111111111
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": 0.0050373123017598675,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": -0.0007153970750110244,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8181818181818182,
+            "over_stop_rate": 0.09090909090909091
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": -1.930323087029503e-07,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": -0.0001999485703033787,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.0625
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": -1.6688610451417437e-08,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.35,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 1.61,
+        "mean_gate_rejections": 0.56,
+        "gate_rejection_rate_per_eval": 0.34782608695652173,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 1.0,
+        "mean_candidate_evals": 0.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "M2": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.01146266258752448,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.7692307692307693,
+        "over_stop_rate": 0.13846153846153847,
+        "mean_candidate_evals": 2.3846153846153846,
+        "mean_gate_rejections": 0.16923076923076924,
+        "gate_rejection_rate_per_eval": 0.07096774193548387,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": -0.0018441111705297692,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.2
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": -0.0008851896422175876,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": -0.00043406814988727096,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6,
+            "over_stop_rate": 0.2
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.039796493702898644,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.125
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": -0.005205939974623745,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8333333333333334,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.03918748638093732,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.4,
+            "over_stop_rate": 0.6
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.0018525684534605469,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6428571428571429,
+            "over_stop_rate": 0.07142857142857142
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.03333508769306849,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": 0.0052754876457490035,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.9,
+            "over_stop_rate": 0.1
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": -0.000488000166516312,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.8181818181818182,
+        "over_stop_rate": 0.06060606060606061,
+        "mean_candidate_evals": 2.484848484848485,
+        "mean_gate_rejections": 0.050505050505050504,
+        "gate_rejection_rate_per_eval": 0.02032520325203252,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.125
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.625,
+            "over_stop_rate": 0.125
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": -0.0025491455854610807,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": -0.0003232428183707978,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8333333333333334,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.7777777777777778,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": -0.003004992247622084,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8636363636363636,
+            "over_stop_rate": 0.045454545454545456
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6875,
+            "over_stop_rate": 0.1875
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": -1.2793891523681033e-08,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.78,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 2.46,
+        "mean_gate_rejections": 0.12,
+        "gate_rejection_rate_per_eval": 0.04878048780487805,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.06919449130174636,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.6041666666666666,
+        "over_stop_rate": 0.3958333333333333,
+        "mean_candidate_evals": 2.2083333333333335,
+        "mean_gate_rejections": 0.3958333333333333,
+        "gate_rejection_rate_per_eval": 0.1792452830188679,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "M3": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.01146266258752448,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.7692307692307693,
+        "over_stop_rate": 0.13846153846153847,
+        "mean_candidate_evals": 2.3846153846153846,
+        "mean_gate_rejections": 0.16923076923076924,
+        "gate_rejection_rate_per_eval": 0.07096774193548387,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": -0.0018441111705297692,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.2
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": -0.0008851896422175876,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": -0.00043406814988727096,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6,
+            "over_stop_rate": 0.2
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.039796493702898644,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.125
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": -0.005205939974623745,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8333333333333334,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.03918748638093732,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.4,
+            "over_stop_rate": 0.6
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.0018525684534605469,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6428571428571429,
+            "over_stop_rate": 0.07142857142857142
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.03333508769306849,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": 0.0052754876457490035,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.9,
+            "over_stop_rate": 0.1
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": -0.000488000166516312,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.8181818181818182,
+        "over_stop_rate": 0.06060606060606061,
+        "mean_candidate_evals": 2.484848484848485,
+        "mean_gate_rejections": 0.050505050505050504,
+        "gate_rejection_rate_per_eval": 0.02032520325203252,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.125
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.625,
+            "over_stop_rate": 0.125
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": -0.0025491455854610807,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": -0.0003232428183707978,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8333333333333334,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.7777777777777778,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": -0.003004992247622084,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8636363636363636,
+            "over_stop_rate": 0.045454545454545456
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6875,
+            "over_stop_rate": 0.1875
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": -1.2793891523681033e-08,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.78,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 2.46,
+        "mean_gate_rejections": 0.12,
+        "gate_rejection_rate_per_eval": 0.04878048780487805,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.06919449130174636,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.6041666666666666,
+        "over_stop_rate": 0.3958333333333333,
+        "mean_candidate_evals": 2.2083333333333335,
+        "mean_gate_rejections": 0.3958333333333333,
+        "gate_rejection_rate_per_eval": 0.1792452830188679,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "STOP_only": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 0.6307692307692307,
+        "mean_candidate_evals": 0.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.8
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.5
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.6
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.75
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.6666666666666666
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 1.0
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.5
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.6666666666666666
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.5
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 0.5353535353535354,
+        "mean_candidate_evals": 0.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.625
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.5
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.875
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.4166666666666667
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.3333333333333333
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.5
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.6363636363636364
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.375
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": 0.0,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.0,
+            "over_stop_rate": 0.5
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 0.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 1.0,
+        "mean_candidate_evals": 0.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "random_gate": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": -0.012605987516942791,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.9692307692307692,
+        "over_stop_rate": 0.03076923076923077,
+        "mean_candidate_evals": 3.6769230769230767,
+        "mean_gate_rejections": 0.8461538461538461,
+        "gate_rejection_rate_per_eval": 0.2301255230125523,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": 0.0035757451789657515,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.2
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": -0.032707062455626525,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8333333333333334,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": -0.012569319300486752,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": -0.00025567463912892427,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": -0.027449496179314584,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.02847178040902846,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": -0.019032624209072806,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": -0.024548203712681155,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": -0.014004950991303453,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": -0.01865399665210873,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.98989898989899,
+        "over_stop_rate": 0.010101010101010102,
+        "mean_candidate_evals": 3.757575757575758,
+        "mean_gate_rejections": 0.8787878787878788,
+        "gate_rejection_rate_per_eval": 0.23387096774193547,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": -0.039962995555146374,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": -0.02319796978582065,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.125
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": -0.016298401358084583,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": -0.023202957117488727,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": -0.011430113183074166,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": -0.00999897887923506,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": -0.018744641078328635,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": -0.01545895334851677,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": -0.013357416835223401,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": -8.308922343551035e-08,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.81,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 4.8,
+        "mean_gate_rejections": 2.78,
+        "gate_rejection_rate_per_eval": 0.5791666666666667,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.05462263345215595,
+        "physical_violation_rate": 0.041666666666666664,
+        "act_rate": 1.0,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 3.2708333333333335,
+        "mean_gate_rejections": 0.3125,
+        "gate_rejection_rate_per_eval": 0.09554140127388536,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "heuristic_gate": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.013943629198842036,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.6307692307692307,
+        "over_stop_rate": 0.13846153846153847,
+        "mean_candidate_evals": 2.2,
+        "mean_gate_rejections": 0.4153846153846154,
+        "gate_rejection_rate_per_eval": 0.1888111888111888,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": 0.013741268819763902,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6,
+            "over_stop_rate": 0.2
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": -0.005530397276099191,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": -6.832192285591773e-05,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.4,
+            "over_stop_rate": 0.2
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.0361461175765042,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.625,
+            "over_stop_rate": 0.125
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": -0.00957982188675051,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6666666666666666,
+            "over_stop_rate": 0.16666666666666666
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.08962923823758961,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.2
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.0057986769983952805,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.35714285714285715,
+            "over_stop_rate": 0.21428571428571427
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.019502397962219597,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": -0.0006878519133542551,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.9,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": -0.005727893908106884,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.797979797979798,
+        "over_stop_rate": 0.1111111111111111,
+        "mean_candidate_evals": 2.3838383838383836,
+        "mean_gate_rejections": 0.1919191919191919,
+        "gate_rejection_rate_per_eval": 0.08050847457627118,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": -0.009265447745345328,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.25
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": -0.013159094544551353,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": -0.007314043113915642,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": -0.0059562377959035545,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8333333333333334,
+            "over_stop_rate": 0.08333333333333333
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": -0.003186419076807473,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6666666666666666,
+            "over_stop_rate": 0.1111111111111111
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": 0.0004393485286632256,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.125
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": -0.0038298617720783066,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5909090909090909,
+            "over_stop_rate": 0.22727272727272727
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": -0.0074782516764229905,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.125
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": -0.005527000266385765,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 0.49,
+        "mean_gate_rejections": 0.49,
+        "gate_rejection_rate_per_eval": 1.0,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": -0.023896924867938863,
+        "physical_violation_rate": 0.3958333333333333,
+        "act_rate": 1.0,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 3.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    },
+    "dense_oracle_step1": {
+      "g2_stress_holdout": {
+        "n_states": 65,
+        "mean_netgain": 0.024934452752852686,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.6307692307692307,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 0.6307692307692307,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.024934492307692305,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 5,
+            "mean_netgain": 0.02184378930055429,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.8,
+            "over_stop_rate": 0.0
+          },
+          "run_jog": {
+            "n": 6,
+            "mean_netgain": 0.014816348208377371,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n": 5,
+            "mean_netgain": 0.005460235318761317,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 8,
+            "mean_netgain": 0.04227635070386843,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.75,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 6,
+            "mean_netgain": 0.006557003878837426,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6666666666666666,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 5,
+            "mean_netgain": 0.09618914054130837,
+            "physical_violation_rate": 0.0,
+            "act_rate": 1.0,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 14,
+            "mean_netgain": 0.010053154962182828,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.0
+          },
+          "upper_body_low_loco": {
+            "n": 6,
+            "mean_netgain": 0.04312862352319761,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6666666666666666,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 10,
+            "mean_netgain": 0.013730677436832326,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "g2_natural_holdout": {
+        "n_states": 99,
+        "mean_netgain": 0.001575951404846626,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.5353535353535354,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 0.5353535353535354,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.001575969696969697,
+        "group_breakdown": {
+          "jump_hop": {
+            "n": 8,
+            "mean_netgain": 0.002296016074810677,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.625,
+            "over_stop_rate": 0.0
+          },
+          "run_jog": {
+            "n": 8,
+            "mean_netgain": 0.0016471895250816555,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.0
+          },
+          "dance_rhythmic": {
+            "n": 8,
+            "mean_netgain": 0.0006362663988014037,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.875,
+            "over_stop_rate": 0.0
+          },
+          "kick_squat_lunge": {
+            "n": 12,
+            "mean_netgain": 0.0016839823575035048,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.4166666666666667,
+            "over_stop_rate": 0.0
+          },
+          "turn_path": {
+            "n": 9,
+            "mean_netgain": 0.000883266853443254,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.3333333333333333,
+            "over_stop_rate": 0.0
+          },
+          "sit_stand_transition": {
+            "n": 8,
+            "mean_netgain": 0.005917445485537934,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.0
+          },
+          "walk_locomotion": {
+            "n": 22,
+            "mean_netgain": 0.0015047879820770536,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.6363636363636364,
+            "over_stop_rate": 0.0
+          },
+          "upper_body_low_loco": {
+            "n": 8,
+            "mean_netgain": 0.00039342808445347354,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.375,
+            "over_stop_rate": 0.0
+          },
+          "other": {
+            "n": 16,
+            "mean_netgain": 0.0004771186846005184,
+            "physical_violation_rate": 0.0,
+            "act_rate": 0.5,
+            "over_stop_rate": 0.0
+          }
+        }
+      },
+      "clean_noharm_holdout": {
+        "n_states": 100,
+        "mean_netgain": 0.0,
+        "physical_violation_rate": 0.0,
+        "act_rate": 0.0,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 0.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.0
+      },
+      "synthetic_diag_holdout": {
+        "n_states": 48,
+        "mean_netgain": 0.1663435139253902,
+        "physical_violation_rate": 0.0,
+        "act_rate": 1.0,
+        "over_stop_rate": 0.0,
+        "mean_candidate_evals": 1.0,
+        "mean_gate_rejections": 0.0,
+        "gate_rejection_rate_per_eval": 0.0,
+        "mean_oracle_step1_util": 0.16634354166666665
+      }
+    }
+  }
+}
