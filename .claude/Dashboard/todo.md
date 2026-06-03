@@ -1,6 +1,6 @@
 # 📋 Todo (선택됨, ready)
 
-> 착수 준비된 작업 (사용자 신호 대기). [board index](PROJECT_BOARD.md) · 인접 상태: [backlog](backlog.md) → 여기 → [in-progress](in-progress.md).
+> 착수 준비된 작업 (사용자 신호 대기). [index](README.md) · 인접 상태: [backlog](backlog.md) → 여기 → [in-progress](in-progress.md).
 
 | ID | Epic | Title | Priority | Blocked by / Note |
 |---|---|---|---|---|

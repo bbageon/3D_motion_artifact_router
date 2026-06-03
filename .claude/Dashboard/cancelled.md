@@ -1,6 +1,6 @@
 # 🚫 Cancelled (폐기)
 
-> 폐기·중단된 작업 (사유 박제 — negative result 보존, AGENTS.md §3-13 정신). [board index](PROJECT_BOARD.md).
+> 폐기·중단된 작업 (사유 박제 — negative result 보존, AGENTS.md §3-13 정신). [index](README.md).
 
 | ID | Epic | Title | 폐기 | 사유 |
 |---|---|---|---|---|

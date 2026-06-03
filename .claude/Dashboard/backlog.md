@@ -1,6 +1,6 @@
 # 🗂️ Backlog (미래)
 
-> 미착수·미래 작업. **연구방향이 자주 바뀌므로** 방향 변경 시 재정렬. [board index](PROJECT_BOARD.md) · 다음 상태: [todo](todo.md).
+> 미착수·미래 작업. **연구방향이 자주 바뀌므로** 방향 변경 시 재정렬. [index](README.md) · 다음 상태: [todo](todo.md).
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|

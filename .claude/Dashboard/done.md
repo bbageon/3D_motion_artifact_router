@@ -1,9 +1,10 @@
 # ✅ Done
 
-> 완료 작업 (commit 링크 박제). 20+ 누적 시 하단 `## Archive` 로 압축 이동. [board index](PROJECT_BOARD.md).
+> 완료 작업 (commit 링크 박제). 20+ 누적 시 하단 `## Archive` 로 압축 이동. [index](README.md).
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
+| AR-036 | Harness | PROJECT_BOARD.md 삭제 → README.md 가 단일 index (상태별 파일과 중복 제거) + 참조 7곳 수정 | 06-03 | (본 commit) |
 | AR-035 | Harness | Dashboard 상태별 파일 분리 (backlog/todo/in-progress/done/cancelled + index) + 훅 갱신 | 06-03 | a569556 |
 | AR-034 | Harness | AGENTS.md 619→146줄 + .claude/{docs,Dashboard} 분리 (skills/docs/Dashboard) | 06-03 | a1a9b6c |
 | AR-033 | Harness | 보드 자동화 훅 (SessionStart=시작 / PostToolUse git commit=종료 reminder) | 06-03 | [.claude/settings.json](../settings.json) · 774be46 |

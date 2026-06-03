@@ -15,7 +15,7 @@
 |---|---|---|
 | `.claude/skills/` | **Agent 가 실행** 하는 구체적 절차·checklist·명세 | eval-compare, hypothesis-registry, intent-reconciliation |
 | `.claude/docs/` | **Agent 가 참조** 하는 문서 (용어·요약·배경) | glossary, hypotheses-summary |
-| `.claude/Dashboard/` | **작업 흐름·상태** 추적 (board) | PROJECT_BOARD.md |
+| `.claude/Dashboard/` | **작업 흐름·상태** 추적 (board, 상태별 파일) | backlog/todo/in-progress/done/cancelled.md (index=README) |
 | `docs/` (repo root) | 연구 provenance·framing 단일 출처 (metric/action_space/research position) | metric_provenance.md, action_space_provenance.md |
 
 본 분리 기준은 [AGENTS.md §3-24](../../AGENTS.md) (Harness Rule vs Skill 분리) 와 일관.

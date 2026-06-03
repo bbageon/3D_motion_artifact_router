@@ -1,6 +1,6 @@
 # 🟢 In Progress
 
-> 현재 진행 중인 작업. **한 번에 1개** 권장. [board index](PROJECT_BOARD.md) · 인접 상태: [todo](todo.md) → 여기 → [done](done.md).
+> 현재 진행 중인 작업. **한 번에 1개** 권장. [index](README.md) · 인접 상태: [todo](todo.md) → 여기 → [done](done.md).
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|

@@ -92,7 +92,7 @@
 |---|---|
 | **H-id** (예: H-2026-205) | 사전 등록 가설. append-only. status 전환은 사용자 승인 게이트. [evals/hypotheses/](../../evals/hypotheses/) + [hypotheses-summary.md](hypotheses-summary.md). |
 | **W-id** (예: W-2026-001) | 우회·간접 해결 ledger. append-only. [evals/workarounds/](../../evals/workarounds/). |
-| **AR-id** (예: AR-020) | 작업 board issue. [.claude/Dashboard/PROJECT_BOARD.md](../Dashboard/PROJECT_BOARD.md). |
+| **AR-id** (예: AR-020) | 작업 board issue. [.claude/Dashboard/](../Dashboard/README.md) (상태별 파일: backlog/todo/in-progress/done). |
 
 ## 10. 통계
 

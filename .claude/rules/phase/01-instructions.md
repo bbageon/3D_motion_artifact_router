@@ -230,7 +230,7 @@ phase 02·03·04와 skill 문서에서 AGENTS.md를 인용할 때:
 | **rules** (지침) | 위반 시 invalidation 되는 **절대 규칙·게이트** (invariant) | [`AGENTS.md`](../../../AGENTS.md) (원본) + `.claude/rules/phase/` | §3 절대 규칙, 사용자 승인 게이트 |
 | **skills** (실행) | Agent 가 **실행**하는 구체적 절차·checklist·명세 | [`.claude/skills/`](../../skills/) | eval-compare, hypothesis-registry, intent-reconciliation |
 | **docs** (참조) | Agent 가 **참조**하는 문서 (용어·요약·배경) | [`.claude/docs/`](../docs/) (harness 참조) + [`docs/`](../../../docs/) (연구 provenance) | glossary, hypotheses-summary, metric_provenance |
-| **Dashboard** (상태) | 작업 흐름·상태 board | [`.claude/Dashboard/`](../Dashboard/) | PROJECT_BOARD.md |
+| **Dashboard** (상태) | 작업 흐름·상태 board (상태별 파일) | [`.claude/Dashboard/`](../Dashboard/) | backlog/todo/in-progress/done/cancelled.md (index=README) |
 
 판단: 위반 시 비교가능성·재현성·claim validity 가 깨지면 **rules**, 단계별 수행 절차면 **skills**, 인용·배경이면 **docs**, 진행 추적이면 **Dashboard**. `engineering heuristic`/`internal proxy`/`pilot-only` 근거는 절대 규칙(rules)으로 바로 승격하지 않고 skills/docs 에 먼저 둔다 (AGENTS.md §3-24).
 

@@ -141,6 +141,6 @@
 ## 8. 참조 전용
 
 - **구현 레시피** (evaluator/tool/generator/가설/우회 추가, 네이밍·포맷): [.claude/docs/implementation-recipes.md](.claude/docs/implementation-recipes.md).
-- **용어 사전**: [.claude/docs/glossary.md](.claude/docs/glossary.md). **가설 요약**: [.claude/docs/hypotheses-summary.md](.claude/docs/hypotheses-summary.md). **작업 board**: [.claude/Dashboard/PROJECT_BOARD.md](.claude/Dashboard/PROJECT_BOARD.md).
+- **용어 사전**: [.claude/docs/glossary.md](.claude/docs/glossary.md). **가설 요약**: [.claude/docs/hypotheses-summary.md](.claude/docs/hypotheses-summary.md). **작업 board**: [.claude/Dashboard/](.claude/Dashboard/README.md) (상태별 파일).
 - **연구 provenance** (단일 출처): [metric_provenance](docs/metric_provenance.md) · [action_space_provenance](docs/action_space_provenance.md) · [current_research_position](docs/current_research_position.md) · [motion_research_strategy_summary](docs/motion_research_strategy_summary.md).
 - **phase 지침**: [`.claude/rules/phase/`](.claude/rules/phase/) 01~04.
