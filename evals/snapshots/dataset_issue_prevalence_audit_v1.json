@@ -1,0 +1,4244 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "dataset_issue_prevalence_audit",
+  "task_id": "AR-043-dataset-issue-prevalence-audit",
+  "split_id": "dataset_issue_prevalence_audit_v1",
+  "oracle_type": "N/A (dataset audit)",
+  "action_space_grid": {
+    "grid": "N/A",
+    "stage": "AR-043-dataset-audit",
+    "include_stop": true,
+    "action_type": "not_applicable"
+  },
+  "evidence_tier": [
+    "real-distribution evidence",
+    "controlled diagnostic finding"
+  ],
+  "source_snapshots": {
+    "transition": "evals\\snapshots\\rl2_transition_g2_real_stage2_v1.json",
+    "g2_profile": "evals\\snapshots\\g2_real_stress_profile_v2.json",
+    "physical_calibration": "evals\\snapshots\\physical_gate_clean_calibration_v1.json"
+  },
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "artifact_thresholds": {
+    "FootFloatingEvaluator": 0.05,
+    "BoneLengthEvaluator": 0.02,
+    "VelocityJitterEvaluator": 0.03
+  },
+  "physical_thresholds_clean_p99": {
+    "PenetrateEvaluator": 0.0,
+    "FloatEvaluator": 0.7983539458952797,
+    "SkateEvaluator": 0.0,
+    "JerkSpikeEvaluator": 0.10556407202395618,
+    "BoneLengthCVEvaluator": 5.506674955074729e-06
+  },
+  "threshold_policy": {
+    "artifact": "score >= evaluator SEV_LOW",
+    "physical": "score > clean calibration p99",
+    "nonzero_rates": "reported as diagnostic, not sole issue criterion"
+  },
+  "state_counts_per_split": {
+    "calib_g2_real": 71,
+    "clean_noharm_holdout": 100,
+    "g2_full_pool": 600,
+    "g2_natural_holdout": 99,
+    "g2_stress_holdout": 65,
+    "reserve": 27,
+    "synthetic_aux_train": 112,
+    "synthetic_diag_holdout": 48,
+    "train_g2_real": 338
+  },
+  "split_summary": {
+    "calib_g2_real": {
+      "n": 71,
+      "artifact_total": {
+        "n": 71,
+        "mean": 0.037723,
+        "p50": 0.021906,
+        "p90": 0.094843,
+        "p95": 0.132138,
+        "max": 0.182099
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 71,
+          "mean": 0.070117,
+          "p50": 0.020833,
+          "p90": 0.215909,
+          "p95": 0.354924,
+          "max": 0.509259,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.760563,
+          "low_or_above_rate": 0.338028
+        },
+        "BoneLengthEvaluator": {
+          "n": 71,
+          "mean": 0.036308,
+          "p50": 0.033474,
+          "p90": 0.061238,
+          "p95": 0.072972,
+          "max": 0.08698,
+          "threshold_low": 0.02,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 0.84507
+        },
+        "VelocityJitterEvaluator": {
+          "n": 71,
+          "mean": 0.006744,
+          "p50": 0.0,
+          "p90": 0.024148,
+          "p95": 0.027176,
+          "max": 0.049505,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.295775,
+          "low_or_above_rate": 0.042254
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 71,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 71,
+          "mean": 0.070117,
+          "p50": 0.020833,
+          "p90": 0.215909,
+          "p95": 0.354924,
+          "max": 0.509259,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.760563,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 71,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 71,
+          "mean": 0.027539,
+          "p50": 0.024538,
+          "p90": 0.046074,
+          "p95": 0.059144,
+          "max": 0.092487,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 71,
+          "mean": 0.092305,
+          "p50": 0.080791,
+          "p90": 0.157285,
+          "p95": 0.169021,
+          "max": 0.26186,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 71
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          71
+        ]
+      ]
+    },
+    "clean_noharm_holdout": {
+      "n": 100,
+      "artifact_total": {
+        "n": 100,
+        "mean": 0.0324,
+        "p50": 0.006148,
+        "p90": 0.111165,
+        "p95": 0.192525,
+        "max": 0.252525
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 100,
+          "mean": 0.090156,
+          "p50": 0.011066,
+          "p90": 0.296512,
+          "p95": 0.532739,
+          "max": 0.757576,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.65,
+          "low_or_above_rate": 0.26
+        },
+        "BoneLengthEvaluator": {
+          "n": 100,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "threshold_low": 0.02,
+          "nonzero_rate": 0.0,
+          "low_or_above_rate": 0.0
+        },
+        "VelocityJitterEvaluator": {
+          "n": 100,
+          "mean": 0.007043,
+          "p50": 0.0,
+          "p90": 0.028674,
+          "p95": 0.03383,
+          "max": 0.074615,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.24,
+          "low_or_above_rate": 0.08
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 100,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 100,
+          "mean": 0.090156,
+          "p50": 0.011066,
+          "p90": 0.296512,
+          "p95": 0.532739,
+          "max": 0.757576,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.65,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 100,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 100,
+          "mean": 0.027396,
+          "p50": 0.020433,
+          "p90": 0.064343,
+          "p95": 0.077803,
+          "max": 0.143437,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.02
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 100,
+          "mean": 3e-06,
+          "p50": 3e-06,
+          "p90": 5e-06,
+          "p95": 5e-06,
+          "max": 7e-06,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.02
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 56,
+        "FootFloatingEvaluator": 33,
+        "VelocityJitterEvaluator": 10,
+        "JerkSpikeEvaluator": 1
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          56
+        ],
+        [
+          "FootFloatingEvaluator",
+          33
+        ],
+        [
+          "VelocityJitterEvaluator",
+          10
+        ]
+      ]
+    },
+    "g2_full_pool": {
+      "n": 600,
+      "artifact_total": {
+        "n": 600,
+        "mean": 0.028919,
+        "p50": 0.01676,
+        "p90": 0.063939,
+        "p95": 0.104011,
+        "max": 0.319832
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 600,
+          "mean": 0.048722,
+          "p50": 0.01087,
+          "p90": 0.13798,
+          "p95": 0.272893,
+          "max": 0.890625,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.61,
+          "low_or_above_rate": 0.226667
+        },
+        "BoneLengthEvaluator": {
+          "n": 600,
+          "mean": 0.033011,
+          "p50": 0.02832,
+          "p90": 0.056059,
+          "p95": 0.067459,
+          "max": 0.146943,
+          "threshold_low": 0.02,
+          "nonzero_rate": 0.985,
+          "low_or_above_rate": 0.763333
+        },
+        "VelocityJitterEvaluator": {
+          "n": 600,
+          "mean": 0.005025,
+          "p50": 0.0,
+          "p90": 0.020547,
+          "p95": 0.025322,
+          "max": 0.057241,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.226667,
+          "low_or_above_rate": 0.028333
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 600,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 600,
+          "mean": 0.048722,
+          "p50": 0.01087,
+          "p90": 0.13798,
+          "p95": 0.272893,
+          "max": 0.890625,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.61,
+          "above_clean_p99_rate": 0.001667
+        },
+        "SkateEvaluator": {
+          "n": 600,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 600,
+          "mean": 0.024646,
+          "p50": 0.021436,
+          "p90": 0.045687,
+          "p95": 0.056597,
+          "max": 0.114859,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.001667
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 600,
+          "mean": 0.082119,
+          "p50": 0.070529,
+          "p90": 0.145061,
+          "p95": 0.163231,
+          "max": 0.297354,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 600
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          600
+        ]
+      ]
+    },
+    "g2_natural_holdout": {
+      "n": 99,
+      "artifact_total": {
+        "n": 99,
+        "mean": 0.018924,
+        "p50": 0.01702,
+        "p90": 0.027387,
+        "p95": 0.037853,
+        "max": 0.050063
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 99,
+          "mean": 0.017454,
+          "p50": 0.01087,
+          "p90": 0.047838,
+          "p95": 0.055451,
+          "max": 0.119048,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.666667,
+          "low_or_above_rate": 0.10101
+        },
+        "BoneLengthEvaluator": {
+          "n": 99,
+          "mean": 0.033769,
+          "p50": 0.030652,
+          "p90": 0.053744,
+          "p95": 0.063236,
+          "max": 0.073624,
+          "threshold_low": 0.02,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 0.838384
+        },
+        "VelocityJitterEvaluator": {
+          "n": 99,
+          "mean": 0.005549,
+          "p50": 0.0,
+          "p90": 0.019521,
+          "p95": 0.023535,
+          "max": 0.043541,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.262626,
+          "low_or_above_rate": 0.040404
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 99,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 99,
+          "mean": 0.017454,
+          "p50": 0.01087,
+          "p90": 0.047838,
+          "p95": 0.055451,
+          "max": 0.119048,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.666667,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 99,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 99,
+          "mean": 0.026791,
+          "p50": 0.024608,
+          "p90": 0.045025,
+          "p95": 0.056391,
+          "max": 0.093728,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 99,
+          "mean": 0.086673,
+          "p50": 0.072644,
+          "p90": 0.148529,
+          "p95": 0.157625,
+          "max": 0.246012,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 99
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          99
+        ]
+      ]
+    },
+    "g2_stress_holdout": {
+      "n": 65,
+      "artifact_total": {
+        "n": 65,
+        "mean": 0.077536,
+        "p50": 0.057803,
+        "p90": 0.150455,
+        "p95": 0.190148,
+        "max": 0.319832
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 65,
+          "mean": 0.178821,
+          "p50": 0.122449,
+          "p90": 0.387057,
+          "p95": 0.511061,
+          "max": 0.890625,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.984615,
+          "low_or_above_rate": 0.8
+        },
+        "BoneLengthEvaluator": {
+          "n": 65,
+          "mean": 0.04552,
+          "p50": 0.042455,
+          "p90": 0.073891,
+          "p95": 0.085801,
+          "max": 0.146943,
+          "threshold_low": 0.02,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 0.907692
+        },
+        "VelocityJitterEvaluator": {
+          "n": 65,
+          "mean": 0.008267,
+          "p50": 0.0,
+          "p90": 0.024008,
+          "p95": 0.02861,
+          "max": 0.046633,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.353846,
+          "low_or_above_rate": 0.046154
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 65,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 65,
+          "mean": 0.178821,
+          "p50": 0.122449,
+          "p90": 0.387057,
+          "p95": 0.511061,
+          "max": 0.890625,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.984615,
+          "above_clean_p99_rate": 0.015385
+        },
+        "SkateEvaluator": {
+          "n": 65,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 65,
+          "mean": 0.030311,
+          "p50": 0.024015,
+          "p90": 0.051894,
+          "p95": 0.059792,
+          "max": 0.08545,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 65,
+          "mean": 0.106077,
+          "p50": 0.097575,
+          "p90": 0.177174,
+          "p95": 0.186208,
+          "max": 0.297354,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 65
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          65
+        ]
+      ]
+    },
+    "reserve": {
+      "n": 27,
+      "artifact_total": {
+        "n": 27,
+        "mean": 0.019765,
+        "p50": 0.015767,
+        "p90": 0.033359,
+        "p95": 0.043697,
+        "max": 0.054299
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 27,
+          "mean": 0.020915,
+          "p50": 0.010417,
+          "p90": 0.053125,
+          "p95": 0.065017,
+          "max": 0.109375,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.666667,
+          "low_or_above_rate": 0.148148
+        },
+        "BoneLengthEvaluator": {
+          "n": 27,
+          "mean": 0.033618,
+          "p50": 0.030963,
+          "p90": 0.048984,
+          "p95": 0.052207,
+          "max": 0.091884,
+          "threshold_low": 0.02,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 0.962963
+        },
+        "VelocityJitterEvaluator": {
+          "n": 27,
+          "mean": 0.004762,
+          "p50": 0.0,
+          "p90": 0.021991,
+          "p95": 0.025745,
+          "max": 0.041737,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.185185,
+          "low_or_above_rate": 0.037037
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 27,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 27,
+          "mean": 0.020915,
+          "p50": 0.010417,
+          "p90": 0.053125,
+          "p95": 0.065017,
+          "max": 0.109375,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.666667,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 27,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 27,
+          "mean": 0.028023,
+          "p50": 0.02765,
+          "p90": 0.051411,
+          "p95": 0.060084,
+          "max": 0.066418,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 27,
+          "mean": 0.081646,
+          "p50": 0.068442,
+          "p90": 0.113169,
+          "p95": 0.119583,
+          "max": 0.178,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 27
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          27
+        ]
+      ]
+    },
+    "synthetic_aux_train": {
+      "n": 112,
+      "artifact_total": {
+        "n": 112,
+        "mean": 0.16469,
+        "p50": 0.164658,
+        "p90": 0.16874,
+        "p95": 0.169525,
+        "max": 0.196487
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 112,
+          "mean": 0.005834,
+          "p50": 0.005025,
+          "p90": 0.01005,
+          "p95": 0.012233,
+          "max": 0.090909,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.544643,
+          "low_or_above_rate": 0.008929
+        },
+        "BoneLengthEvaluator": {
+          "n": 112,
+          "mean": 0.289234,
+          "p50": 0.290258,
+          "p90": 0.298661,
+          "p95": 0.301344,
+          "max": 0.306653,
+          "threshold_low": 0.02,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 1.0
+        },
+        "VelocityJitterEvaluator": {
+          "n": 112,
+          "mean": 0.199002,
+          "p50": 0.198757,
+          "p90": 0.200752,
+          "p95": 0.202012,
+          "max": 0.206858,
+          "threshold_low": 0.03,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 1.0
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 112,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 112,
+          "mean": 0.005834,
+          "p50": 0.005025,
+          "p90": 0.01005,
+          "p95": 0.012233,
+          "max": 0.090909,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.544643,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 112,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 112,
+          "mean": 0.34249,
+          "p50": 0.34181,
+          "p90": 0.345494,
+          "p95": 0.347521,
+          "max": 0.357599,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 112,
+          "mean": 0.408395,
+          "p50": 0.405434,
+          "p90": 0.42447,
+          "p95": 0.441732,
+          "max": 0.500584,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 112
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          112
+        ]
+      ]
+    },
+    "synthetic_diag_holdout": {
+      "n": 48,
+      "artifact_total": {
+        "n": 48,
+        "mean": 0.168322,
+        "p50": 0.165206,
+        "p90": 0.184193,
+        "p95": 0.188682,
+        "max": 0.196589
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 48,
+          "mean": 0.012041,
+          "p50": 0.005025,
+          "p90": 0.037062,
+          "p95": 0.055309,
+          "max": 0.096774,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.604167,
+          "low_or_above_rate": 0.0625
+        },
+        "BoneLengthEvaluator": {
+          "n": 48,
+          "mean": 0.294826,
+          "p50": 0.294917,
+          "p90": 0.308037,
+          "p95": 0.314646,
+          "max": 0.329309,
+          "threshold_low": 0.02,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 1.0
+        },
+        "VelocityJitterEvaluator": {
+          "n": 48,
+          "mean": 0.198099,
+          "p50": 0.197848,
+          "p90": 0.199985,
+          "p95": 0.20042,
+          "max": 0.20088,
+          "threshold_low": 0.03,
+          "nonzero_rate": 1.0,
+          "low_or_above_rate": 1.0
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 48,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 48,
+          "mean": 0.012041,
+          "p50": 0.005025,
+          "p90": 0.037062,
+          "p95": 0.055309,
+          "max": 0.096774,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.604167,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 48,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 48,
+          "mean": 0.341246,
+          "p50": 0.341738,
+          "p90": 0.344732,
+          "p95": 0.345174,
+          "max": 0.346796,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 48,
+          "mean": 0.415292,
+          "p50": 0.409208,
+          "p90": 0.444751,
+          "p95": 0.451682,
+          "max": 0.473214,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 48
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          48
+        ]
+      ]
+    },
+    "train_g2_real": {
+      "n": 338,
+      "artifact_total": {
+        "n": 338,
+        "mean": 0.02138,
+        "p50": 0.012932,
+        "p90": 0.043736,
+        "p95": 0.070311,
+        "max": 0.185899
+      },
+      "artifact_prevalence": {
+        "FootFloatingEvaluator": {
+          "n": 338,
+          "mean": 0.030589,
+          "p50": 0.0,
+          "p90": 0.079587,
+          "p95": 0.180462,
+          "max": 0.5,
+          "threshold_low": 0.05,
+          "nonzero_rate": 0.485207,
+          "low_or_above_rate": 0.136095
+        },
+        "BoneLengthEvaluator": {
+          "n": 338,
+          "mean": 0.029642,
+          "p50": 0.025274,
+          "p90": 0.051282,
+          "p95": 0.063408,
+          "max": 0.103966,
+          "threshold_low": 0.02,
+          "nonzero_rate": 0.973373,
+          "low_or_above_rate": 0.680473
+        },
+        "VelocityJitterEvaluator": {
+          "n": 338,
+          "mean": 0.003908,
+          "p50": 0.0,
+          "p90": 0.018358,
+          "p95": 0.023479,
+          "max": 0.057241,
+          "threshold_low": 0.03,
+          "nonzero_rate": 0.180473,
+          "low_or_above_rate": 0.017751
+        }
+      },
+      "physical_prevalence": {
+        "PenetrateEvaluator": {
+          "n": 338,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "FloatEvaluator": {
+          "n": 338,
+          "mean": 0.030589,
+          "p50": 0.0,
+          "p90": 0.079587,
+          "p95": 0.180462,
+          "max": 0.5,
+          "clean_p99_threshold": 0.7983539458952797,
+          "nonzero_rate": 0.485207,
+          "above_clean_p99_rate": 0.0
+        },
+        "SkateEvaluator": {
+          "n": 338,
+          "mean": 0.0,
+          "p50": 0.0,
+          "p90": 0.0,
+          "p95": 0.0,
+          "max": 0.0,
+          "clean_p99_threshold": 0.0,
+          "nonzero_rate": 0.0,
+          "above_clean_p99_rate": 0.0
+        },
+        "JerkSpikeEvaluator": {
+          "n": 338,
+          "mean": 0.02205,
+          "p50": 0.018537,
+          "p90": 0.042864,
+          "p95": 0.05088,
+          "max": 0.114859,
+          "clean_p99_threshold": 0.10556407202395618,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 0.002959
+        },
+        "BoneLengthCVEvaluator": {
+          "n": 338,
+          "mean": 0.074076,
+          "p50": 0.062897,
+          "p90": 0.132678,
+          "p95": 0.155957,
+          "max": 0.22736,
+          "clean_p99_threshold": 5.506674955074729e-06,
+          "nonzero_rate": 1.0,
+          "above_clean_p99_rate": 1.0
+        }
+      },
+      "dominant_issue_counts": {
+        "BoneLengthCVEvaluator": 338
+      },
+      "dominant_issue_top3": [
+        [
+          "BoneLengthCVEvaluator",
+          338
+        ]
+      ]
+    }
+  },
+  "group_summary": {
+    "g2_full_pool": {
+      "dance_rhythmic": {
+        "n": 47,
+        "artifact_total": {
+          "n": 47,
+          "mean": 0.021549,
+          "p50": 0.014997,
+          "p90": 0.03449,
+          "p95": 0.054455,
+          "max": 0.129084
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 47,
+            "mean": 0.025037,
+            "p50": 0.0,
+            "p90": 0.072449,
+            "p95": 0.104592,
+            "max": 0.302083,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.361702,
+            "low_or_above_rate": 0.12766
+          },
+          "BoneLengthEvaluator": {
+            "n": 47,
+            "mean": 0.036919,
+            "p50": 0.033923,
+            "p90": 0.065505,
+            "p95": 0.071323,
+            "max": 0.08698,
+            "threshold_low": 0.02,
+            "nonzero_rate": 0.957447,
+            "low_or_above_rate": 0.808511
+          },
+          "VelocityJitterEvaluator": {
+            "n": 47,
+            "mean": 0.002692,
+            "p50": 0.0,
+            "p90": 0.015417,
+            "p95": 0.017949,
+            "max": 0.024106,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.148936,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 47,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 47,
+            "mean": 0.025037,
+            "p50": 0.0,
+            "p90": 0.072449,
+            "p95": 0.104592,
+            "max": 0.302083,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.361702,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 47,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 47,
+            "mean": 0.017572,
+            "p50": 0.012113,
+            "p90": 0.033912,
+            "p95": 0.037995,
+            "max": 0.060037,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 47,
+            "mean": 0.094402,
+            "p50": 0.091393,
+            "p90": 0.15658,
+            "p95": 0.18765,
+            "max": 0.200426,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 47
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            47
+          ]
+        ]
+      },
+      "jump_hop": {
+        "n": 49,
+        "artifact_total": {
+          "n": 49,
+          "mean": 0.024122,
+          "p50": 0.019599,
+          "p90": 0.042634,
+          "p95": 0.053143,
+          "max": 0.11741
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 49,
+            "mean": 0.03211,
+            "p50": 0.020408,
+            "p90": 0.070179,
+            "p95": 0.101786,
+            "max": 0.288462,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.755102,
+            "low_or_above_rate": 0.183673
+          },
+          "BoneLengthEvaluator": {
+            "n": 49,
+            "mean": 0.028721,
+            "p50": 0.026639,
+            "p90": 0.044264,
+            "p95": 0.050439,
+            "max": 0.065457,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.714286
+          },
+          "VelocityJitterEvaluator": {
+            "n": 49,
+            "mean": 0.011534,
+            "p50": 0.0,
+            "p90": 0.030293,
+            "p95": 0.038179,
+            "max": 0.046633,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.44898,
+            "low_or_above_rate": 0.102041
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 49,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 49,
+            "mean": 0.03211,
+            "p50": 0.020408,
+            "p90": 0.070179,
+            "p95": 0.101786,
+            "max": 0.288462,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.755102,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 49,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 49,
+            "mean": 0.039924,
+            "p50": 0.038114,
+            "p90": 0.073482,
+            "p95": 0.080514,
+            "max": 0.08545,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 49,
+            "mean": 0.072043,
+            "p50": 0.062439,
+            "p90": 0.122854,
+            "p95": 0.143333,
+            "max": 0.171381,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 49
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            49
+          ]
+        ]
+      },
+      "kick_squat_lunge": {
+        "n": 74,
+        "artifact_total": {
+          "n": 74,
+          "mean": 0.038465,
+          "p50": 0.024332,
+          "p90": 0.085621,
+          "p95": 0.108417,
+          "max": 0.196763
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 74,
+            "mean": 0.068958,
+            "p50": 0.015466,
+            "p90": 0.224164,
+            "p95": 0.282837,
+            "max": 0.52381,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.662162,
+            "low_or_above_rate": 0.351351
+          },
+          "BoneLengthEvaluator": {
+            "n": 74,
+            "mean": 0.040856,
+            "p50": 0.037258,
+            "p90": 0.06339,
+            "p95": 0.077122,
+            "max": 0.103966,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.891892
+          },
+          "VelocityJitterEvaluator": {
+            "n": 74,
+            "mean": 0.005583,
+            "p50": 0.0,
+            "p90": 0.020657,
+            "p95": 0.02463,
+            "max": 0.032651,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.27027,
+            "low_or_above_rate": 0.013514
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 74,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 74,
+            "mean": 0.068958,
+            "p50": 0.015466,
+            "p90": 0.224164,
+            "p95": 0.282837,
+            "max": 0.52381,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.662162,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 74,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 74,
+            "mean": 0.024199,
+            "p50": 0.021116,
+            "p90": 0.046611,
+            "p95": 0.055687,
+            "max": 0.060598,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 74,
+            "mean": 0.101727,
+            "p50": 0.090349,
+            "p90": 0.165566,
+            "p95": 0.202545,
+            "max": 0.246012,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 74
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            74
+          ]
+        ]
+      },
+      "other": {
+        "n": 94,
+        "artifact_total": {
+          "n": 94,
+          "mean": 0.024369,
+          "p50": 0.013685,
+          "p90": 0.04583,
+          "p95": 0.073032,
+          "max": 0.319832
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 94,
+            "mean": 0.034138,
+            "p50": 0.0,
+            "p90": 0.093719,
+            "p95": 0.170833,
+            "max": 0.890625,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.457447,
+            "low_or_above_rate": 0.170213
+          },
+          "BoneLengthEvaluator": {
+            "n": 94,
+            "mean": 0.036766,
+            "p50": 0.031797,
+            "p90": 0.06841,
+            "p95": 0.075337,
+            "max": 0.100836,
+            "threshold_low": 0.02,
+            "nonzero_rate": 0.978723,
+            "low_or_above_rate": 0.808511
+          },
+          "VelocityJitterEvaluator": {
+            "n": 94,
+            "mean": 0.002203,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.023731,
+            "max": 0.030579,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.095745,
+            "low_or_above_rate": 0.010638
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 94,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 94,
+            "mean": 0.034138,
+            "p50": 0.0,
+            "p90": 0.093719,
+            "p95": 0.170833,
+            "max": 0.890625,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.457447,
+            "above_clean_p99_rate": 0.010638
+          },
+          "SkateEvaluator": {
+            "n": 94,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 94,
+            "mean": 0.018417,
+            "p50": 0.0152,
+            "p90": 0.031014,
+            "p95": 0.047042,
+            "max": 0.062317,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 94,
+            "mean": 0.089382,
+            "p50": 0.077527,
+            "p90": 0.156544,
+            "p95": 0.179748,
+            "max": 0.26186,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 94
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            94
+          ]
+        ]
+      },
+      "run_jog": {
+        "n": 49,
+        "artifact_total": {
+          "n": 49,
+          "mean": 0.034479,
+          "p50": 0.024418,
+          "p90": 0.078255,
+          "p95": 0.096355,
+          "max": 0.170715
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 49,
+            "mean": 0.057331,
+            "p50": 0.022222,
+            "p90": 0.165909,
+            "p95": 0.234909,
+            "max": 0.411765,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.755102,
+            "low_or_above_rate": 0.326531
+          },
+          "BoneLengthEvaluator": {
+            "n": 49,
+            "mean": 0.028401,
+            "p50": 0.025271,
+            "p90": 0.046384,
+            "p95": 0.051038,
+            "max": 0.067416,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.734694
+          },
+          "VelocityJitterEvaluator": {
+            "n": 49,
+            "mean": 0.017705,
+            "p50": 0.018169,
+            "p90": 0.039455,
+            "p95": 0.044053,
+            "max": 0.057241,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.693878,
+            "low_or_above_rate": 0.183673
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 49,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 49,
+            "mean": 0.057331,
+            "p50": 0.022222,
+            "p90": 0.165909,
+            "p95": 0.234909,
+            "max": 0.411765,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.755102,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 49,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 49,
+            "mean": 0.045802,
+            "p50": 0.045112,
+            "p90": 0.083521,
+            "p95": 0.093232,
+            "max": 0.114859,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.020408
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 49,
+            "mean": 0.071453,
+            "p50": 0.064528,
+            "p90": 0.107996,
+            "p95": 0.115695,
+            "max": 0.134348,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 49
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            49
+          ]
+        ]
+      },
+      "sit_stand_transition": {
+        "n": 50,
+        "artifact_total": {
+          "n": 50,
+          "mean": 0.044478,
+          "p50": 0.017094,
+          "p90": 0.126663,
+          "p95": 0.178434,
+          "max": 0.213174
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 50,
+            "mean": 0.094633,
+            "p50": 0.0,
+            "p90": 0.337299,
+            "p95": 0.475383,
+            "max": 0.587838,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.46,
+            "low_or_above_rate": 0.34
+          },
+          "BoneLengthEvaluator": {
+            "n": 50,
+            "mean": 0.038147,
+            "p50": 0.034515,
+            "p90": 0.063386,
+            "p95": 0.073794,
+            "max": 0.091884,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.88
+          },
+          "VelocityJitterEvaluator": {
+            "n": 50,
+            "mean": 0.000654,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.016645,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.04,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 50,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 50,
+            "mean": 0.094633,
+            "p50": 0.0,
+            "p90": 0.337299,
+            "p95": 0.475383,
+            "max": 0.587838,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.46,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 50,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 50,
+            "mean": 0.015504,
+            "p50": 0.013769,
+            "p90": 0.027745,
+            "p95": 0.02892,
+            "max": 0.035536,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 50,
+            "mean": 0.089444,
+            "p50": 0.08708,
+            "p90": 0.137119,
+            "p95": 0.150796,
+            "max": 0.192607,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 50
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            50
+          ]
+        ]
+      },
+      "turn_path": {
+        "n": 54,
+        "artifact_total": {
+          "n": 54,
+          "mean": 0.021293,
+          "p50": 0.01593,
+          "p90": 0.035,
+          "p95": 0.046218,
+          "max": 0.125953
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 54,
+            "mean": 0.027929,
+            "p50": 0.014232,
+            "p90": 0.064232,
+            "p95": 0.098725,
+            "max": 0.316327,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.777778,
+            "low_or_above_rate": 0.12963
+          },
+          "BoneLengthEvaluator": {
+            "n": 54,
+            "mean": 0.030445,
+            "p50": 0.025145,
+            "p90": 0.044455,
+            "p95": 0.051498,
+            "max": 0.146943,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.833333
+          },
+          "VelocityJitterEvaluator": {
+            "n": 54,
+            "mean": 0.005504,
+            "p50": 0.0,
+            "p90": 0.018377,
+            "p95": 0.022318,
+            "max": 0.029049,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.296296,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 54,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 54,
+            "mean": 0.027929,
+            "p50": 0.014232,
+            "p90": 0.064232,
+            "p95": 0.098725,
+            "max": 0.316327,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.777778,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 54,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 54,
+            "mean": 0.026214,
+            "p50": 0.02535,
+            "p90": 0.037871,
+            "p95": 0.051072,
+            "max": 0.058811,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 54,
+            "mean": 0.075647,
+            "p50": 0.063168,
+            "p90": 0.132773,
+            "p95": 0.145809,
+            "max": 0.297354,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 54
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            54
+          ]
+        ]
+      },
+      "upper_body_low_loco": {
+        "n": 51,
+        "artifact_total": {
+          "n": 51,
+          "mean": 0.032736,
+          "p50": 0.012969,
+          "p90": 0.103837,
+          "p95": 0.170339,
+          "max": 0.192653
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 51,
+            "mean": 0.056946,
+            "p50": 0.0,
+            "p90": 0.265306,
+            "p95": 0.456101,
+            "max": 0.516667,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.313725,
+            "low_or_above_rate": 0.176471
+          },
+          "BoneLengthEvaluator": {
+            "n": 51,
+            "mean": 0.039873,
+            "p50": 0.036662,
+            "p90": 0.066138,
+            "p95": 0.079142,
+            "max": 0.08667,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.843137
+          },
+          "VelocityJitterEvaluator": {
+            "n": 51,
+            "mean": 0.00139,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.007657,
+            "max": 0.032905,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.058824,
+            "low_or_above_rate": 0.019608
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 51,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 51,
+            "mean": 0.056946,
+            "p50": 0.0,
+            "p90": 0.265306,
+            "p95": 0.456101,
+            "max": 0.516667,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.313725,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 51,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 51,
+            "mean": 0.01807,
+            "p50": 0.016567,
+            "p90": 0.030064,
+            "p95": 0.032254,
+            "max": 0.083423,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 51,
+            "mean": 0.09988,
+            "p50": 0.098889,
+            "p90": 0.161551,
+            "p95": 0.169175,
+            "max": 0.174791,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 51
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            51
+          ]
+        ]
+      },
+      "walk_locomotion": {
+        "n": 132,
+        "artifact_total": {
+          "n": 132,
+          "mean": 0.024902,
+          "p50": 0.016142,
+          "p90": 0.053946,
+          "p95": 0.080518,
+          "max": 0.142276
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 132,
+            "mean": 0.047106,
+            "p50": 0.020408,
+            "p90": 0.135691,
+            "p95": 0.209866,
+            "max": 0.407895,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.772727,
+            "low_or_above_rate": 0.227273
+          },
+          "BoneLengthEvaluator": {
+            "n": 132,
+            "mean": 0.024304,
+            "p50": 0.020898,
+            "p90": 0.042492,
+            "p95": 0.048553,
+            "max": 0.071832,
+            "threshold_low": 0.02,
+            "nonzero_rate": 0.962121,
+            "low_or_above_rate": 0.568182
+          },
+          "VelocityJitterEvaluator": {
+            "n": 132,
+            "mean": 0.003295,
+            "p50": 0.0,
+            "p90": 0.017846,
+            "p95": 0.019913,
+            "max": 0.02744,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.174242,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 132,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 132,
+            "mean": 0.047106,
+            "p50": 0.020408,
+            "p90": 0.135691,
+            "p95": 0.209866,
+            "max": 0.407895,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.772727,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 132,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 132,
+            "mean": 0.023687,
+            "p50": 0.022535,
+            "p90": 0.036616,
+            "p95": 0.041534,
+            "max": 0.053661,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 132,
+            "mean": 0.062292,
+            "p50": 0.054358,
+            "p90": 0.1094,
+            "p95": 0.129254,
+            "max": 0.173556,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 132
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            132
+          ]
+        ]
+      }
+    },
+    "g2_stress_holdout": {
+      "dance_rhythmic": {
+        "n": 5,
+        "artifact_total": {
+          "n": 5,
+          "mean": 0.056947,
+          "p50": 0.035099,
+          "p90": 0.099711,
+          "p95": 0.114397,
+          "max": 0.129084
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 5,
+            "mean": 0.11858,
+            "p50": 0.081633,
+            "p90": 0.226148,
+            "p95": 0.264115,
+            "max": 0.302083,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.8
+          },
+          "BoneLengthEvaluator": {
+            "n": 5,
+            "mean": 0.048547,
+            "p50": 0.054707,
+            "p90": 0.066478,
+            "p95": 0.066536,
+            "max": 0.066594,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 5,
+            "mean": 0.003715,
+            "p50": 0.0,
+            "p90": 0.011145,
+            "p95": 0.01486,
+            "max": 0.018575,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.2,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 5,
+            "mean": 0.11858,
+            "p50": 0.081633,
+            "p90": 0.226148,
+            "p95": 0.264115,
+            "max": 0.302083,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 5,
+            "mean": 0.026092,
+            "p50": 0.019728,
+            "p90": 0.046215,
+            "p95": 0.053126,
+            "max": 0.060037,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 5,
+            "mean": 0.128974,
+            "p50": 0.140699,
+            "p90": 0.18327,
+            "p95": 0.191848,
+            "max": 0.200426,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 5
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            5
+          ]
+        ]
+      },
+      "jump_hop": {
+        "n": 5,
+        "artifact_total": {
+          "n": 5,
+          "mean": 0.06126,
+          "p50": 0.048147,
+          "p90": 0.095021,
+          "p95": 0.106215,
+          "max": 0.11741
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 5,
+            "mean": 0.115409,
+            "p50": 0.09375,
+            "p90": 0.215934,
+            "p95": 0.252198,
+            "max": 0.288462,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.6
+          },
+          "BoneLengthEvaluator": {
+            "n": 5,
+            "mean": 0.039262,
+            "p50": 0.038794,
+            "p90": 0.049093,
+            "p95": 0.05136,
+            "max": 0.053627,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 5,
+            "mean": 0.029108,
+            "p50": 0.022349,
+            "p90": 0.04333,
+            "p95": 0.044981,
+            "max": 0.046633,
+            "threshold_low": 0.03,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.4
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 5,
+            "mean": 0.115409,
+            "p50": 0.09375,
+            "p90": 0.215934,
+            "p95": 0.252198,
+            "max": 0.288462,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 5,
+            "mean": 0.057014,
+            "p50": 0.049956,
+            "p90": 0.081618,
+            "p95": 0.083534,
+            "max": 0.08545,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 5,
+            "mean": 0.089812,
+            "p50": 0.087219,
+            "p90": 0.114893,
+            "p95": 0.118668,
+            "max": 0.122443,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 5
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            5
+          ]
+        ]
+      },
+      "kick_squat_lunge": {
+        "n": 8,
+        "artifact_total": {
+          "n": 8,
+          "mean": 0.093695,
+          "p50": 0.084402,
+          "p90": 0.136364,
+          "p95": 0.166563,
+          "max": 0.196763
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 8,
+            "mean": 0.238339,
+            "p50": 0.223947,
+            "p90": 0.363961,
+            "p95": 0.443886,
+            "max": 0.52381,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 8,
+            "mean": 0.040135,
+            "p50": 0.035818,
+            "p90": 0.071232,
+            "p95": 0.076778,
+            "max": 0.082324,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 8,
+            "mean": 0.002612,
+            "p50": 0.0,
+            "p90": 0.006269,
+            "p95": 0.013584,
+            "max": 0.020898,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.125,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 8,
+            "mean": 0.238339,
+            "p50": 0.223947,
+            "p90": 0.363961,
+            "p95": 0.443886,
+            "max": 0.52381,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 8,
+            "mean": 0.021005,
+            "p50": 0.020873,
+            "p90": 0.03159,
+            "p95": 0.036339,
+            "max": 0.041087,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 8,
+            "mean": 0.097696,
+            "p50": 0.079363,
+            "p90": 0.175464,
+            "p95": 0.185755,
+            "max": 0.196045,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 8
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            8
+          ]
+        ]
+      },
+      "other": {
+        "n": 10,
+        "artifact_total": {
+          "n": 10,
+          "mean": 0.072798,
+          "p50": 0.04006,
+          "p90": 0.09998,
+          "p95": 0.209906,
+          "max": 0.319832
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 10,
+            "mean": 0.15468,
+            "p50": 0.070543,
+            "p90": 0.249776,
+            "p95": 0.570201,
+            "max": 0.890625,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.9,
+            "low_or_above_rate": 0.6
+          },
+          "BoneLengthEvaluator": {
+            "n": 10,
+            "mean": 0.059724,
+            "p50": 0.057845,
+            "p90": 0.08957,
+            "p95": 0.095203,
+            "max": 0.100836,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 10,
+            "mean": 0.003989,
+            "p50": 0.0,
+            "p90": 0.01627,
+            "p95": 0.020404,
+            "max": 0.024537,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.2,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 10,
+            "mean": 0.15468,
+            "p50": 0.070543,
+            "p90": 0.249776,
+            "p95": 0.570201,
+            "max": 0.890625,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.9,
+            "above_clean_p99_rate": 0.1
+          },
+          "SkateEvaluator": {
+            "n": 10,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 10,
+            "mean": 0.024109,
+            "p50": 0.023617,
+            "p90": 0.033328,
+            "p95": 0.042033,
+            "max": 0.050738,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 10,
+            "mean": 0.132306,
+            "p50": 0.137527,
+            "p90": 0.185652,
+            "p95": 0.18601,
+            "max": 0.186367,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 10
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            10
+          ]
+        ]
+      },
+      "run_jog": {
+        "n": 6,
+        "artifact_total": {
+          "n": 6,
+          "mean": 0.077746,
+          "p50": 0.082783,
+          "p90": 0.10037,
+          "p95": 0.101874,
+          "max": 0.103378
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 6,
+            "mean": 0.177956,
+            "p50": 0.190341,
+            "p90": 0.256363,
+            "p95": 0.264545,
+            "max": 0.272727,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 6,
+            "mean": 0.034112,
+            "p50": 0.024944,
+            "p90": 0.057012,
+            "p95": 0.062214,
+            "max": 0.067416,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 6,
+            "mean": 0.021171,
+            "p50": 0.019648,
+            "p90": 0.026273,
+            "p95": 0.026564,
+            "max": 0.026854,
+            "threshold_low": 0.03,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 6,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 6,
+            "mean": 0.177956,
+            "p50": 0.190341,
+            "p90": 0.256363,
+            "p95": 0.264545,
+            "max": 0.272727,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 6,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 6,
+            "mean": 0.040273,
+            "p50": 0.042676,
+            "p90": 0.046094,
+            "p95": 0.046297,
+            "max": 0.046501,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 6,
+            "mean": 0.085927,
+            "p50": 0.070471,
+            "p90": 0.133835,
+            "p95": 0.134092,
+            "max": 0.134348,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 6
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            6
+          ]
+        ]
+      },
+      "sit_stand_transition": {
+        "n": 5,
+        "artifact_total": {
+          "n": 5,
+          "mean": 0.169016,
+          "p50": 0.176361,
+          "p90": 0.199956,
+          "p95": 0.206565,
+          "max": 0.213174
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 5,
+            "mean": 0.453651,
+            "p50": 0.459184,
+            "p90": 0.548157,
+            "p95": 0.567998,
+            "max": 0.587838,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 5,
+            "mean": 0.053398,
+            "p50": 0.051683,
+            "p90": 0.072681,
+            "p95": 0.076942,
+            "max": 0.081203,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.0,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 5,
+            "mean": 0.453651,
+            "p50": 0.459184,
+            "p90": 0.548157,
+            "p95": 0.567998,
+            "max": 0.587838,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 5,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 5,
+            "mean": 0.020024,
+            "p50": 0.019983,
+            "p90": 0.025504,
+            "p95": 0.026478,
+            "max": 0.027452,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 5,
+            "mean": 0.111348,
+            "p50": 0.106053,
+            "p90": 0.128395,
+            "p95": 0.129277,
+            "max": 0.130159,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 5
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            5
+          ]
+        ]
+      },
+      "turn_path": {
+        "n": 6,
+        "artifact_total": {
+          "n": 6,
+          "mean": 0.06148,
+          "p50": 0.042911,
+          "p90": 0.111606,
+          "p95": 0.118779,
+          "max": 0.125953
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 6,
+            "mean": 0.106293,
+            "p50": 0.079081,
+            "p90": 0.219388,
+            "p95": 0.267858,
+            "max": 0.316327,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.666667
+          },
+          "BoneLengthEvaluator": {
+            "n": 6,
+            "mean": 0.059446,
+            "p50": 0.045697,
+            "p90": 0.101238,
+            "p95": 0.12409,
+            "max": 0.146943,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 6,
+            "mean": 0.018702,
+            "p50": 0.022333,
+            "p90": 0.026132,
+            "p95": 0.02759,
+            "max": 0.029049,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.833333,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 6,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 6,
+            "mean": 0.106293,
+            "p50": 0.079081,
+            "p90": 0.219388,
+            "p95": 0.267858,
+            "max": 0.316327,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 6,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 6,
+            "mean": 0.046037,
+            "p50": 0.051439,
+            "p90": 0.057001,
+            "p95": 0.057906,
+            "max": 0.058811,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 6,
+            "mean": 0.141781,
+            "p50": 0.122482,
+            "p90": 0.221167,
+            "p95": 0.259261,
+            "max": 0.297354,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 6
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            6
+          ]
+        ]
+      },
+      "upper_body_low_loco": {
+        "n": 6,
+        "artifact_total": {
+          "n": 6,
+          "mean": 0.077365,
+          "p50": 0.052662,
+          "p90": 0.148245,
+          "p95": 0.170449,
+          "max": 0.192653
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 6,
+            "mean": 0.174052,
+            "p50": 0.092731,
+            "p90": 0.390987,
+            "p95": 0.453827,
+            "max": 0.516667,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.666667
+          },
+          "BoneLengthEvaluator": {
+            "n": 6,
+            "mean": 0.052559,
+            "p50": 0.053748,
+            "p90": 0.074484,
+            "p95": 0.080577,
+            "max": 0.08667,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.833333
+          },
+          "VelocityJitterEvaluator": {
+            "n": 6,
+            "mean": 0.005484,
+            "p50": 0.0,
+            "p90": 0.016452,
+            "p95": 0.024679,
+            "max": 0.032905,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.166667,
+            "low_or_above_rate": 0.166667
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 6,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 6,
+            "mean": 0.174052,
+            "p50": 0.092731,
+            "p90": 0.390987,
+            "p95": 0.453827,
+            "max": 0.516667,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 6,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 6,
+            "mean": 0.032049,
+            "p50": 0.020421,
+            "p90": 0.056915,
+            "p95": 0.070169,
+            "max": 0.083423,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 6,
+            "mean": 0.121016,
+            "p50": 0.128456,
+            "p90": 0.161324,
+            "p95": 0.167972,
+            "max": 0.174621,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 6
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            6
+          ]
+        ]
+      },
+      "walk_locomotion": {
+        "n": 14,
+        "artifact_total": {
+          "n": 14,
+          "mean": 0.059046,
+          "p50": 0.053683,
+          "p90": 0.096586,
+          "p95": 0.104869,
+          "max": 0.107402
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 14,
+            "mean": 0.141559,
+            "p50": 0.132997,
+            "p90": 0.247078,
+            "p95": 0.27837,
+            "max": 0.302632,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.857143
+          },
+          "BoneLengthEvaluator": {
+            "n": 14,
+            "mean": 0.032696,
+            "p50": 0.024834,
+            "p90": 0.051705,
+            "p95": 0.059297,
+            "max": 0.071832,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.642857
+          },
+          "VelocityJitterEvaluator": {
+            "n": 14,
+            "mean": 0.002882,
+            "p50": 0.0,
+            "p90": 0.012736,
+            "p95": 0.019579,
+            "max": 0.022152,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.142857,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 14,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 14,
+            "mean": 0.141559,
+            "p50": 0.132997,
+            "p90": 0.247078,
+            "p95": 0.27837,
+            "max": 0.302632,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 14,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 14,
+            "mean": 0.023949,
+            "p50": 0.020129,
+            "p90": 0.038603,
+            "p95": 0.042203,
+            "max": 0.04516,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 14,
+            "mean": 0.074811,
+            "p50": 0.06511,
+            "p90": 0.118906,
+            "p95": 0.125701,
+            "max": 0.138295,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 14
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            14
+          ]
+        ]
+      }
+    },
+    "g2_natural_holdout": {
+      "dance_rhythmic": {
+        "n": 8,
+        "artifact_total": {
+          "n": 8,
+          "mean": 0.014799,
+          "p50": 0.014081,
+          "p90": 0.020118,
+          "p95": 0.021123,
+          "max": 0.022128
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 8,
+            "mean": 0.001986,
+            "p50": 0.0,
+            "p90": 0.007039,
+            "p95": 0.008621,
+            "max": 0.010204,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.25,
+            "low_or_above_rate": 0.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 8,
+            "mean": 0.040489,
+            "p50": 0.041313,
+            "p90": 0.050542,
+            "p95": 0.054157,
+            "max": 0.057772,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 8,
+            "mean": 0.001921,
+            "p50": 0.0,
+            "p90": 0.004611,
+            "p95": 0.00999,
+            "max": 0.015369,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.125,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 8,
+            "mean": 0.001986,
+            "p50": 0.0,
+            "p90": 0.007039,
+            "p95": 0.008621,
+            "max": 0.010204,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.25,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 8,
+            "mean": 0.016124,
+            "p50": 0.010552,
+            "p90": 0.027488,
+            "p95": 0.030407,
+            "max": 0.033325,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 8,
+            "mean": 0.10038,
+            "p50": 0.098087,
+            "p90": 0.129617,
+            "p95": 0.140956,
+            "max": 0.152295,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 8
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            8
+          ]
+        ]
+      },
+      "jump_hop": {
+        "n": 8,
+        "artifact_total": {
+          "n": 8,
+          "mean": 0.02255,
+          "p50": 0.019876,
+          "p90": 0.029773,
+          "p95": 0.033716,
+          "max": 0.03766
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 8,
+            "mean": 0.023079,
+            "p50": 0.022109,
+            "p90": 0.035588,
+            "p95": 0.042794,
+            "max": 0.05,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.875,
+            "low_or_above_rate": 0.125
+          },
+          "BoneLengthEvaluator": {
+            "n": 8,
+            "mean": 0.028082,
+            "p50": 0.0288,
+            "p90": 0.040011,
+            "p95": 0.042051,
+            "max": 0.04409,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.625
+          },
+          "VelocityJitterEvaluator": {
+            "n": 8,
+            "mean": 0.016489,
+            "p50": 0.017435,
+            "p90": 0.035473,
+            "p95": 0.036679,
+            "max": 0.037885,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.625,
+            "low_or_above_rate": 0.25
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 8,
+            "mean": 0.023079,
+            "p50": 0.022109,
+            "p90": 0.035588,
+            "p95": 0.042794,
+            "max": 0.05,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.875,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 8,
+            "mean": 0.045322,
+            "p50": 0.03952,
+            "p90": 0.076103,
+            "p95": 0.079856,
+            "max": 0.08361,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 8,
+            "mean": 0.06205,
+            "p50": 0.071001,
+            "p90": 0.084754,
+            "p95": 0.085,
+            "max": 0.085245,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 8
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            8
+          ]
+        ]
+      },
+      "kick_squat_lunge": {
+        "n": 12,
+        "artifact_total": {
+          "n": 12,
+          "mean": 0.023865,
+          "p50": 0.020294,
+          "p90": 0.040629,
+          "p95": 0.043418,
+          "max": 0.046268
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 12,
+            "mean": 0.022183,
+            "p50": 0.010754,
+            "p90": 0.061458,
+            "p95": 0.066518,
+            "max": 0.071429,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.666667,
+            "low_or_above_rate": 0.25
+          },
+          "BoneLengthEvaluator": {
+            "n": 12,
+            "mean": 0.043447,
+            "p50": 0.043437,
+            "p90": 0.058249,
+            "p95": 0.064352,
+            "max": 0.071124,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.916667
+          },
+          "VelocityJitterEvaluator": {
+            "n": 12,
+            "mean": 0.005965,
+            "p50": 0.0,
+            "p90": 0.017883,
+            "p95": 0.019643,
+            "max": 0.021663,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.333333,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 12,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 12,
+            "mean": 0.022183,
+            "p50": 0.010754,
+            "p90": 0.061458,
+            "p95": 0.066518,
+            "max": 0.071429,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.666667,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 12,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 12,
+            "mean": 0.026485,
+            "p50": 0.025559,
+            "p90": 0.043981,
+            "p95": 0.045779,
+            "max": 0.047438,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 12,
+            "mean": 0.132846,
+            "p50": 0.123425,
+            "p90": 0.223289,
+            "p95": 0.237206,
+            "max": 0.246012,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 12
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            12
+          ]
+        ]
+      },
+      "other": {
+        "n": 16,
+        "artifact_total": {
+          "n": 16,
+          "mean": 0.013485,
+          "p50": 0.011599,
+          "p90": 0.019809,
+          "p95": 0.022461,
+          "max": 0.026757
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 16,
+            "mean": 0.004949,
+            "p50": 0.002551,
+            "p90": 0.013088,
+            "p95": 0.015555,
+            "max": 0.016304,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.5,
+            "low_or_above_rate": 0.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 16,
+            "mean": 0.035506,
+            "p50": 0.031096,
+            "p90": 0.059426,
+            "p95": 0.064666,
+            "max": 0.069401,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 16,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.0,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 16,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 16,
+            "mean": 0.004949,
+            "p50": 0.002551,
+            "p90": 0.013088,
+            "p95": 0.015555,
+            "max": 0.016304,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.5,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 16,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 16,
+            "mean": 0.014563,
+            "p50": 0.012169,
+            "p90": 0.023097,
+            "p95": 0.024421,
+            "max": 0.028206,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 16,
+            "mean": 0.089098,
+            "p50": 0.079226,
+            "p90": 0.133221,
+            "p95": 0.144014,
+            "max": 0.157042,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 16
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            16
+          ]
+        ]
+      },
+      "run_jog": {
+        "n": 8,
+        "artifact_total": {
+          "n": 8,
+          "mean": 0.022576,
+          "p50": 0.022499,
+          "p90": 0.032414,
+          "p95": 0.036005,
+          "max": 0.039595
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 8,
+            "mean": 0.018183,
+            "p50": 0.012788,
+            "p90": 0.039511,
+            "p95": 0.042714,
+            "max": 0.045918,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.875,
+            "low_or_above_rate": 0.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 8,
+            "mean": 0.033059,
+            "p50": 0.029681,
+            "p90": 0.050485,
+            "p95": 0.05113,
+            "max": 0.051775,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 8,
+            "mean": 0.016487,
+            "p50": 0.017354,
+            "p90": 0.034235,
+            "p95": 0.038888,
+            "max": 0.043541,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.625,
+            "low_or_above_rate": 0.25
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 8,
+            "mean": 0.018183,
+            "p50": 0.012788,
+            "p90": 0.039511,
+            "p95": 0.042714,
+            "max": 0.045918,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.875,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 8,
+            "mean": 0.044547,
+            "p50": 0.045615,
+            "p90": 0.070636,
+            "p95": 0.082182,
+            "max": 0.093728,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 8,
+            "mean": 0.076961,
+            "p50": 0.066746,
+            "p90": 0.108657,
+            "p95": 0.113019,
+            "max": 0.117381,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 8
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            8
+          ]
+        ]
+      },
+      "sit_stand_transition": {
+        "n": 8,
+        "artifact_total": {
+          "n": 8,
+          "mean": 0.024676,
+          "p50": 0.023153,
+          "p90": 0.043752,
+          "p95": 0.046907,
+          "max": 0.050063
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 8,
+            "mean": 0.031488,
+            "p50": 0.005208,
+            "p90": 0.10083,
+            "p95": 0.109939,
+            "max": 0.119048,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.5,
+            "low_or_above_rate": 0.25
+          },
+          "BoneLengthEvaluator": {
+            "n": 8,
+            "mean": 0.038449,
+            "p50": 0.034911,
+            "p90": 0.056768,
+            "p95": 0.060666,
+            "max": 0.064565,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 1.0
+          },
+          "VelocityJitterEvaluator": {
+            "n": 8,
+            "mean": 0.00409,
+            "p50": 0.0,
+            "p90": 0.016247,
+            "p95": 0.016446,
+            "max": 0.016645,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.25,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 8,
+            "mean": 0.031488,
+            "p50": 0.005208,
+            "p90": 0.10083,
+            "p95": 0.109939,
+            "max": 0.119048,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.5,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 8,
+            "mean": 0.01923,
+            "p50": 0.013747,
+            "p90": 0.032159,
+            "p95": 0.033848,
+            "max": 0.035536,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 8,
+            "mean": 0.094416,
+            "p50": 0.091358,
+            "p90": 0.127134,
+            "p95": 0.132937,
+            "max": 0.138741,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 8
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            8
+          ]
+        ]
+      },
+      "turn_path": {
+        "n": 9,
+        "artifact_total": {
+          "n": 9,
+          "mean": 0.015463,
+          "p50": 0.015387,
+          "p90": 0.018772,
+          "p95": 0.019682,
+          "max": 0.020592
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 9,
+            "mean": 0.017394,
+            "p50": 0.017857,
+            "p90": 0.024304,
+            "p95": 0.027458,
+            "max": 0.030612,
+            "threshold_low": 0.05,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 9,
+            "mean": 0.025124,
+            "p50": 0.024338,
+            "p90": 0.033127,
+            "p95": 0.033374,
+            "max": 0.03362,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.777778
+          },
+          "VelocityJitterEvaluator": {
+            "n": 9,
+            "mean": 0.003871,
+            "p50": 0.0,
+            "p90": 0.016947,
+            "p95": 0.017574,
+            "max": 0.018201,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.222222,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 9,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 9,
+            "mean": 0.017394,
+            "p50": 0.017857,
+            "p90": 0.024304,
+            "p95": 0.027458,
+            "max": 0.030612,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 9,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 9,
+            "mean": 0.028591,
+            "p50": 0.030532,
+            "p90": 0.035169,
+            "p95": 0.036314,
+            "max": 0.037458,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 9,
+            "mean": 0.062786,
+            "p50": 0.06271,
+            "p90": 0.081852,
+            "p95": 0.090277,
+            "max": 0.098702,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 9
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            9
+          ]
+        ]
+      },
+      "upper_body_low_loco": {
+        "n": 8,
+        "artifact_total": {
+          "n": 8,
+          "mean": 0.018165,
+          "p50": 0.018507,
+          "p90": 0.022795,
+          "p95": 0.023668,
+          "max": 0.024541
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 8,
+            "mean": 0.00394,
+            "p50": 0.0,
+            "p90": 0.01154,
+            "p95": 0.018928,
+            "max": 0.026316,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.25,
+            "low_or_above_rate": 0.0
+          },
+          "BoneLengthEvaluator": {
+            "n": 8,
+            "mean": 0.047722,
+            "p50": 0.04888,
+            "p90": 0.068384,
+            "p95": 0.071004,
+            "max": 0.073624,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.875
+          },
+          "VelocityJitterEvaluator": {
+            "n": 8,
+            "mean": 0.002832,
+            "p50": 0.0,
+            "p90": 0.006798,
+            "p95": 0.014728,
+            "max": 0.022659,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.125,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 8,
+            "mean": 0.00394,
+            "p50": 0.0,
+            "p90": 0.01154,
+            "p95": 0.018928,
+            "max": 0.026316,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.25,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 8,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 8,
+            "mean": 0.028117,
+            "p50": 0.027194,
+            "p90": 0.040248,
+            "p95": 0.048158,
+            "max": 0.056067,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 8,
+            "mean": 0.118111,
+            "p50": 0.126658,
+            "p90": 0.170363,
+            "p95": 0.172577,
+            "max": 0.174791,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 8
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            8
+          ]
+        ]
+      },
+      "walk_locomotion": {
+        "n": 22,
+        "artifact_total": {
+          "n": 22,
+          "mean": 0.018639,
+          "p50": 0.018614,
+          "p90": 0.025866,
+          "p95": 0.027983,
+          "max": 0.028405
+        },
+        "artifact_prevalence": {
+          "FootFloatingEvaluator": {
+            "n": 22,
+            "mean": 0.02712,
+            "p50": 0.02062,
+            "p90": 0.050918,
+            "p95": 0.054685,
+            "max": 0.060606,
+            "threshold_low": 0.05,
+            "nonzero_rate": 0.863636,
+            "low_or_above_rate": 0.181818
+          },
+          "BoneLengthEvaluator": {
+            "n": 22,
+            "mean": 0.023869,
+            "p50": 0.021351,
+            "p90": 0.034603,
+            "p95": 0.038454,
+            "max": 0.04481,
+            "threshold_low": 0.02,
+            "nonzero_rate": 1.0,
+            "low_or_above_rate": 0.590909
+          },
+          "VelocityJitterEvaluator": {
+            "n": 22,
+            "mean": 0.004928,
+            "p50": 0.0,
+            "p90": 0.018816,
+            "p95": 0.021034,
+            "max": 0.021685,
+            "threshold_low": 0.03,
+            "nonzero_rate": 0.272727,
+            "low_or_above_rate": 0.0
+          }
+        },
+        "physical_prevalence": {
+          "PenetrateEvaluator": {
+            "n": 22,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "FloatEvaluator": {
+            "n": 22,
+            "mean": 0.02712,
+            "p50": 0.02062,
+            "p90": 0.050918,
+            "p95": 0.054685,
+            "max": 0.060606,
+            "clean_p99_threshold": 0.7983539458952797,
+            "nonzero_rate": 0.863636,
+            "above_clean_p99_rate": 0.0
+          },
+          "SkateEvaluator": {
+            "n": 22,
+            "mean": 0.0,
+            "p50": 0.0,
+            "p90": 0.0,
+            "p95": 0.0,
+            "max": 0.0,
+            "clean_p99_threshold": 0.0,
+            "nonzero_rate": 0.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "JerkSpikeEvaluator": {
+            "n": 22,
+            "mean": 0.028067,
+            "p50": 0.027449,
+            "p90": 0.039521,
+            "p95": 0.039833,
+            "max": 0.052115,
+            "clean_p99_threshold": 0.10556407202395618,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 0.0
+          },
+          "BoneLengthCVEvaluator": {
+            "n": 22,
+            "mean": 0.062748,
+            "p50": 0.056595,
+            "p90": 0.091832,
+            "p95": 0.143236,
+            "max": 0.151546,
+            "clean_p99_threshold": 5.506674955074729e-06,
+            "nonzero_rate": 1.0,
+            "above_clean_p99_rate": 1.0
+          }
+        },
+        "dominant_issue_counts": {
+          "BoneLengthCVEvaluator": 22
+        },
+        "dominant_issue_top3": [
+          [
+            "BoneLengthCVEvaluator",
+            22
+          ]
+        ]
+      }
+    }
+  },
+  "g2_profile_band_counts": {
+    "normal": 353,
+    "g2_clean_like": 123,
+    "stress": 124
+  },
+  "key_findings": {
+    "g2_stress_vs_natural_artifact_total_mean_ratio": 4.097231,
+    "g2_stress_artifact_total_mean": 0.077536,
+    "g2_natural_artifact_total_mean": 0.018924,
+    "clean_artifact_total_mean": 0.0324,
+    "synthetic_diag_artifact_total_mean": 0.168322,
+    "stress_split_has_predefined_issue": true,
+    "natural_split_has_predefined_issue": true,
+    "clean_noharm_has_predefined_issue": true
+  },
+  "evaluator_reliability": {
+    "artifact": {
+      "FootFloatingEvaluator": {
+        "stress_fire": 0.8,
+        "natural_fire": 0.101,
+        "clean_fire": 0.26,
+        "stress_minus_natural": 0.699,
+        "grade": "reliable"
+      },
+      "BoneLengthEvaluator": {
+        "stress_fire": 0.9077,
+        "natural_fire": 0.8384,
+        "clean_fire": 0.0,
+        "stress_minus_natural": 0.0693,
+        "grade": "moderate"
+      },
+      "VelocityJitterEvaluator": {
+        "stress_fire": 0.0462,
+        "natural_fire": 0.0404,
+        "clean_fire": 0.08,
+        "stress_minus_natural": 0.0057,
+        "grade": "weak_signal"
+      }
+    },
+    "physical": {
+      "PenetrateEvaluator": {
+        "stress_fire": 0.0,
+        "natural_fire": 0.0,
+        "clean_fire": 0.0,
+        "stress_minus_natural": 0.0,
+        "clean_p99_threshold": 0.0,
+        "p99_near_zero": true,
+        "grade": "weak_signal"
+      },
+      "FloatEvaluator": {
+        "stress_fire": 0.0154,
+        "natural_fire": 0.0,
+        "clean_fire": 0.0,
+        "stress_minus_natural": 0.0154,
+        "clean_p99_threshold": 0.7983539458952797,
+        "p99_near_zero": false,
+        "grade": "weak_signal"
+      },
+      "SkateEvaluator": {
+        "stress_fire": 0.0,
+        "natural_fire": 0.0,
+        "clean_fire": 0.0,
+        "stress_minus_natural": 0.0,
+        "clean_p99_threshold": 0.0,
+        "p99_near_zero": true,
+        "grade": "weak_signal"
+      },
+      "JerkSpikeEvaluator": {
+        "stress_fire": 0.0,
+        "natural_fire": 0.0,
+        "clean_fire": 0.02,
+        "stress_minus_natural": 0.0,
+        "clean_p99_threshold": 0.10556407202395618,
+        "p99_near_zero": false,
+        "grade": "weak_signal"
+      },
+      "BoneLengthCVEvaluator": {
+        "stress_fire": 1.0,
+        "natural_fire": 1.0,
+        "clean_fire": 0.02,
+        "stress_minus_natural": 0.0,
+        "clean_p99_threshold": 5.506674955074729e-06,
+        "p99_near_zero": false,
+        "grade": "moderate"
+      }
+    },
+    "grade_counts": {
+      "reliable": 1,
+      "moderate": 2,
+      "weak_signal": 5
+    },
+    "reliable_evaluators": [
+      "ART/FootFloatingEvaluator"
+    ],
+    "weak_evaluators": [
+      "ART/VelocityJitterEvaluator",
+      "PHY/PenetrateEvaluator",
+      "PHY/FloatEvaluator",
+      "PHY/SkateEvaluator",
+      "PHY/JerkSpikeEvaluator"
+    ]
+  },
+  "ar040_decision": {
+    "decision": "GO",
+    "premise_holds": true,
+    "rationale": "g2_stress 가 predefined issue 보유(=True), stress/natural artifact_total ratio=4.10x (>=2.0), synthetic_diag 강한 issue(=True). → AR-040 의 q_proxy/oracle 학습이 헛돌지 않을 데이터 전제 성립.",
+    "conditions_for_ar040": [
+      "q_proxy 가 no_discrimination evaluator (BoneLengthCV 등 전 split 100% fire) 에 지배되지 않게 weight 설계 — 아무 smoothing 보상 함정(이전 B2 100% BoneLengthCV violation) 회피.",
+      "weak_specificity evaluator (clean 에서 과다 fire) 의 reward 기여 축소 — clean false-positive 를 '고쳐서' 보상 금지.",
+      "clean_noharm 은 artifact-free 가 아니라 no-harm reference split — q_proxy 는 clean 에서 개입을 보상하지 않음.",
+      "q_proxy ↔ standard metric(FID/R-Prec/MM-Dist) 정렬은 AR-040 이후 검증 (internal proxy validity, AR-037 §10-1)."
+    ],
+    "primary_headroom_target": "g2_stress_holdout (real-distribution, 4.1x artifact-rich)"
+  },
+  "claim_boundary": "Dataset issue presence audit only. Does not prove policy performance or final motion quality.",
+  "limitations": [
+    "Artifact evaluators are Category C proxies unless metric_provenance marks otherwise.",
+    "Physical threshold p99 can be zero for Penetrate/Skate, so above_clean_p99 means any positive score.",
+    "G2 stress/natural split is evaluator-defined; perceptual stress alignment is not proven here.",
+    "evaluator_reliability grade 는 stress/natural/clean fire rate 기반 진단 (sensitivity/specificity proxy); perceptual ground-truth 아님."
+  ]
+}
