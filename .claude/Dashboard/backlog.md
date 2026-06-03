@@ -4,6 +4,7 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
+| AR-040 | RL-Q | Effect-Aware state — semantic block(4) mgpt tm2t precompute + v2 data_support(7) kNN/ensemble 계산 | 🟡 | AR-037 후속. semantic=raw embedding 금지(scalar summary). spec [AR-037](../docs/dashboard-task-specs/AR-037-effect-aware-state-design.md) §다음작업 |
 | AR-025 | Evidence | H-2026-204 (artifact-conditioned + closed-loop > fixed post-proc) 5단계 평가 | 🟡 | B2-family vs M0+gate, snapshot≥2 |
 | AR-026 | Evidence | H-2026-203 (high-quality generator no-harm) — **진짜 G1 필요** (clean=GT 는 미충족) | ⚪ | AR-022 의존 |
 | AR-027 | RL-Q | Stage 4 constrained offline RL (CQL/IQL) — reranking 넘어 policy optimization | ⚪ | Stage 3 안정 후 |

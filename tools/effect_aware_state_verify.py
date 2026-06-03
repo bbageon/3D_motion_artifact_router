@@ -64,6 +64,7 @@ def main() -> None:
     print(f"\n[INFO] building v0/v1 on {len(files)} G2 motions ...")
     v0_names = feature_names("v0"); v1_names = feature_names("v1")
     nan_counts_v0 = {f: 0 for f in v0_names}
+    v1_nan_counts: dict[str, int] = {}
     n_built = 0
     sample_v0 = None
     for p in files:
@@ -75,8 +76,12 @@ def main() -> None:
         gid = GROUP_ID.get(grp, GROUP_ID["other"])
         v0 = build_v0(m, motion_group_id=gid, evaluators_by_name=eval_by_name, gate_thresholds=gate_thr)
         # v1: sample target = both feet, full frame range.
-        v1add = build_v1_add(m, target_joints=["LEFT_FOOT", "RIGHT_FOOT"], frame_range=(0, m.shape[0]-1),
+        v1add = build_v1_add(m, target_part="both_feet", target_joints=["LEFT_FOOT", "RIGHT_FOOT"],
+                             frame_range=(0, m.shape[0]-1),
                              evaluators_by_name=eval_by_name, gate_thresholds=gate_thr)
+        for f, val in v1add.items():
+            if isinstance(val, float) and np.isnan(val):
+                v1_nan_counts[f] = v1_nan_counts.get(f, 0) + 1
         # dim check.
         assert len(v0) == state_dim("v0"), f"v0 dim {len(v0)} != {state_dim('v0')}"
         assert len(v0) + len(v1add) == state_dim("v1"), "v1 dim mismatch"
@@ -142,7 +147,9 @@ def main() -> None:
             "v0_dim_assert": "passed" if n_built else "no data",
             "nonsemantic_nan_counts": nonsem_nan,  # should be empty (all computable)
             "semantic_nan_counts": sem_nan,         # expected nonzero (mgpt precompute 전)
+            "v1_add_nan_counts": v1_nan_counts,     # v1 placeholder NaN (이제 0 이어야 — local eval/relation 계산)
             "semantic_note": "semantic block = mgpt env tm2t precompute 필요 → 본 검증 NaN placeholder (schema 위치 고정). 다음 작업의 별도 pass.",
+            "target_encoding_note": "target_type_encoding = TARGET_TYPE_ID 고정 dict (hash 금지, 재현성).",
         },
         "sample_v0_state": sample_v0,
         "ablation_plan": {

@@ -37,6 +37,15 @@ LFOOT = NAME_TO_IDX["LEFT_FOOT"]; RFOOT = NAME_TO_IDX["RIGHT_FOOT"]
 FPS = 20.0
 CONTACT_Y_THRESH = 0.05  # foot 'contact' 판정 height (root-relative, Y-up).
 
+# target_part → 고정 정수 encoding (재현성: hash() 금지 — PYTHONHASHSEED 비결정성 회피, AGENTS §3 재현성).
+# 새 target_part 추가 시 본 dict 에만 append (append-only, 기존 id 변경 금지).
+TARGET_TYPE_ID: dict[str, int] = {
+    "none": -1,
+    "left_foot": 0, "right_foot": 1, "both_feet": 2, "root": 3,
+    "left_leg": 4, "right_leg": 5, "full_body": 6,
+    "legs": 7, "arms": 8, "left_arm": 9, "right_arm": 10, "spine_head": 11,
+}
+
 # === SCHEMA (단일 출처, 명세 §v0/v1/v2 그대로) ===
 SCHEMA: dict[str, dict[str, list[str]]] = {
     "v0": {
@@ -236,12 +245,16 @@ def build_v0(motion, *, motion_group_id, evaluators_by_name, gate_thresholds,
     return out
 
 
-def build_v1_add(motion, *, target_joints, frame_range, evaluators_by_name, gate_thresholds) -> dict:
-    """v1 추가 — local target + relation (target-aware). action 적용 전 관측."""
+def build_v1_add(motion, *, target_part, target_joints, frame_range, evaluators_by_name, gate_thresholds) -> dict:
+    """v1 추가 — local target + relation (target-aware). 모두 action 적용 **전** 관측.
+
+    target_part: 고정 정수 encoding (TARGET_TYPE_ID, hash 금지). target_joints: geometry 용.
+    local_artifact/physical/bone_cv 는 target frame segment 에 evaluator 적용 (적용 전 motion 의 국소 상태).
+    """
     T = motion.shape[0]
     s, e = frame_range
     s = max(0, s); e = min(T, e + 1) if e < T else T
-    seg = motion[s:e]  # (L,22,3)
+    seg = motion[s:e]  # (L,22,3) — 적용 전 motion 의 target segment.
     tj = [NAME_TO_IDX[j] for j in target_joints if j in NAME_TO_IDX] or [LFOOT, RFOOT]
     local = seg[:, tj, :]  # (L,k,3)
     lvel = np.linalg.norm(np.diff(local, axis=0), axis=-1) * FPS if local.shape[0] > 1 else np.zeros((1, len(tj)))
@@ -250,27 +263,56 @@ def build_v1_add(motion, *, target_joints, frame_range, evaluators_by_name, gate
     foot_in_target = [j for j in tj if j in (LFOOT, RFOOT)]
     foot_y = seg[:, foot_in_target, 1] if foot_in_target else np.zeros((seg.shape[0], 1))
     root_seg = seg[:, PELVIS, :]
+
+    # local evaluator scores — segment(적용 전) 에 evaluator 적용 (before-action observable).
+    def _seg_eval(name):
+        ev = evaluators_by_name.get(name)
+        if ev is None or seg.shape[0] < 2:
+            return 0.0
+        return _max_score(ev.evaluate(seg))
+    local_artifact = float(np.mean([_seg_eval(n) for n in ARTIFACT_EVALS]))
+    local_phys_loads = [_seg_eval(n) / max(gate_thresholds.get(n, 1e-9), 1e-9) for n in PHYSICAL_EVALS]
+    local_physical = float(np.mean(local_phys_loads)) if local_phys_loads else 0.0
+    local_bone_cv = _seg_eval("BoneLengthCVEvaluator")
+
     local_target = {
-        "target_type_encoding": float(hash(tuple(sorted(target_joints))) % 7),
+        "target_type_encoding": float(TARGET_TYPE_ID.get(target_part, -1)),  # 고정 dict (재현성)
         "target_joint_count": float(len(tj)),
         "target_frame_start_norm": s / max(T, 1), "target_frame_end_norm": e / max(T, 1),
         "target_frame_length_norm": (e - s) / max(T, 1),
-        "local_artifact_score": float(np.nan),   # local evaluator pass (다음 작업; schema 고정)
-        "local_physical_score": float(np.nan),
+        "local_artifact_score": local_artifact, "local_physical_score": local_physical,
         "local_velocity_p95": _percentile(lvel, 95), "local_acceleration_p95": _percentile(lacc, 95),
         "local_jerk_p95": _percentile(ljerk, 95),
         "local_foot_height_mean": float(foot_y.mean()), "local_foot_height_min": float(foot_y.min()),
         "local_foot_velocity_p95": _percentile(lvel, 95),
         "local_contact_ratio": float(np.mean(foot_y < CONTACT_Y_THRESH)) if foot_in_target else 0.0,
         "local_penetration_score": float(max(0.0, -foot_y.min())) if foot_in_target else 0.0,
-        "local_bone_cv_max": float(np.nan),
+        "local_bone_cv_max": local_bone_cv,
     }
+
+    # relation proxies — root vs target 의 속도/위치 관계 (적용 전 motion 에서 결정적 계산).
+    root_speed_seg = np.linalg.norm(np.diff(root_seg, axis=0), axis=-1) * FPS if seg.shape[0] > 1 else np.array([0.0])
+    target_speed_seg = lvel.mean(axis=1) if lvel.ndim == 2 and lvel.shape[0] else np.array([0.0])
+    vel_mismatch = float(abs(root_speed_seg.mean() - target_speed_seg.mean()))
+    # parent_chain bone margin: target joint 들 의 frame 간 pairwise 거리 std (bone 안정성 proxy, 낮을수록 안정).
+    if len(tj) >= 2 and seg.shape[0] >= 1:
+        pair_d = np.linalg.norm(local[:, 0, :] - local[:, -1, :], axis=-1)
+        bone_margin = float(np.std(pair_d))
+    else:
+        bone_margin = 0.0
+    # contact phase consistency: foot contact 패턴의 일관성 (1 - 2*std(contact indicator)).
+    if foot_in_target:
+        contact_ind = (foot_y < CONTACT_Y_THRESH).astype(float).mean(axis=1)
+        contact_consistency = float(1.0 - 2.0 * np.std(contact_ind))
+    else:
+        contact_consistency = 1.0  # non-foot target = contact 무관 (neutral).
     relation = {
         "affected_joint_ratio": len(tj) / 22.0, "affected_frame_ratio": (e - s) / max(T, 1),
         "root_target_distance_mean": float(np.mean(np.linalg.norm(local.mean(axis=1) - root_seg, axis=-1))),
-        "root_target_velocity_mismatch": float(np.nan), "parent_chain_bone_margin": float(np.nan),
-        "balance_proxy": float(np.std(local.reshape(-1, 3)[:, 0])),  # lateral spread proxy
-        "contact_phase_consistency": float(np.nan), "expected_fidelity_risk_proxy": float(len(tj) * (e - s) / (22.0 * max(T, 1))),
+        "root_target_velocity_mismatch": vel_mismatch, "parent_chain_bone_margin": bone_margin,
+        "balance_proxy": float(np.std(local.reshape(-1, 3)[:, 0])),  # lateral(x) spread proxy
+        "contact_phase_consistency": contact_consistency,
+        "expected_fidelity_risk_proxy": float(len(tj) * (e - s) / (22.0 * max(T, 1))),
     }
     return {**local_target, **relation}
 
