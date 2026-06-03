@@ -8,7 +8,7 @@
 - **Priority**: 🔴 Urgent / 🟠 High / 🟡 Medium / ⚪ Low.
 - **Issue ID**: `AR-NNN` (ArtifactRouter, append-only 증가). 닫혀도 ID 재사용 금지.
 - **Epic**: 큰 작업 묶음 (label). issue 는 한 epic 에 속함.
-- **갱신 시점**: 매 작업 turn 종료 시 해당 issue 의 state 갱신 + 새 작업은 Backlog 에 issue 추가. Done 으로 옮길 때 commit/report 링크 박제.
+- **갱신 시점**: 매 작업 turn 종료 시 해당 issue 의 state 갱신 + 새 작업은 Backlog 에 issue 추가. Done 으로 옮길 때 commit/report 링크 박제. (자동 reminder: [.claude/settings.json](.claude/settings.json) 의 SessionStart=작업 시작 / PostToolUse git commit=작업 종료 훅.)
 - **History**: Done 이 누적되면 본 문서 하단 `## History (archive)` 로 옮겨 압축 (board 상단은 최근 상태만).
 - 본 보드 ≠ 가설 레지스트리 ([`evals/hypotheses/`](evals/hypotheses/)) — 가설 status 전환은 사용자 승인 게이트 (AGENTS.md §3-11), 본 보드는 작업 추적용.
 
@@ -51,6 +51,7 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
+| AR-033 | Harness | 보드 자동화 훅 (SessionStart=시작 reminder / PostToolUse git commit=종료 reminder) | 06-03 | [.claude/settings.json](.claude/settings.json) |
 | AR-031 | Harness | 하네스 평가 + Plane 스타일 보드 신설 | 06-03 | 본 문서 |
 | AR-032 | Harness | 무참조 throwaway 3개 삭제 (`_axis_check`/`_mpl_check`/`_inspect_b6_closed_loop_trace`) — evidence 인용 `_*` 는 유지 | 06-03 | (본 commit) |
 | AR-019 | Evidence | 결과 섹션 초안 (4 result 통합 + claim 범위) | 06-01 | [docs/results_draft_g2_stage2.md](docs/results_draft_g2_stage2.md) · e055604 |
