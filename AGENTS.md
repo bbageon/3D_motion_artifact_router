@@ -36,7 +36,17 @@
 
 ## 3. 절대 규칙
 
-> **IMPORTANT:** 본 절 위반 = (a) 비교 가능성 파괴 (b) 재현 불가 (c) 가설 평가 오염 (d) loop 안정성 손상 중 하나. 예외 없이 준수. 각 규칙은 invariant(1줄) + 위반 effect + 상세 링크. 절대 규칙 추가는 메트릭 근거(반복 회귀) 또는 사용자 directive 시에만 (§3-24).
+> **IMPORTANT:** 본 절 위반 = (a) 비교 가능성 파괴 (b) 재현 불가 (c) 가설 평가 오염 (d) loop 안정성 손상 중 하나. 예외 없이 준수. 절대 규칙 추가는 메트릭 근거(반복 회귀) 또는 사용자 directive 시에만 (§3-24).
+>
+> **위반 effect 규약**: 각 규칙 = invariant(1줄) + 상세 링크. effect 는 — (i) `위반 = §6-5` 명시 규칙 = silent invalidation (결과 무효), (ii) 미명시 = 위 공통 (a)~(d) + [§6 위험 행동](#6-위험-행동)의 대응 prohibition. **§6 은 §3 obligation 의 금지형(prohibition) view — 둘은 같은 규칙의 양면**이며 §6 단독은 새 규칙이 아니다.
+>
+> **규칙 cluster** (방향 변경 시 주로 **C** 만 손봄; A/B 는 framework·정직성 invariant 로 안정):
+>
+> | cluster | 성격 | 규칙 |
+> |---|---|---|
+> | **A. Framework invariant** | 방향 무관 안정 (format·interface·loop) | §3-1 · §3-2 · §3-3 · §3-4 · §3-5 |
+> | **B. Research-integrity gate** | 연구 정직성·평가 무결성 | §3-7 · §3-8 · §3-9 · §3-11 · §3-12 · §3-13 · §3-14 · §3-16 · §3-17 · §3-18 · §3-22 · §3-23 |
+> | **C. Provenance & metadata/protocol** | 기록·provenance·실험 protocol (가변) | §3-6(+6-1) · §3-10 · §3-15 · §3-19 · §3-20 · §3-21 · §3-24 · §3-25 · §3-26 |
 
 - **§3-1 Canonical Motion Format**: 모든 motion = canonical SMPL 22-joint `[T,22,3]`, fps=20, root-relative (PELVIS=origin). joint 순서 단일 출처 [`canonical_smpl_22.py`](skeleton_normalizer/canonical_smpl_22.py).
 - **§3-2 Tool/Evaluator 인터페이스**: CorrectionTool `apply(motion,target_part,target_joints,frame_range,strength,metadata)` + Evaluator output schema (`agent·error_type·body_part·frames·score·severity·recommendation`) 준수. 변경 시 [`base.py`](correction_tools/base.py)+모든 구현체 동시 갱신.
@@ -62,7 +72,7 @@
 - **§3-21 Action Space Provenance**: 모든 RL/Q-surface stage 의 action space 는 [action_space_provenance.md](docs/action_space_provenance.md) 등록. 리포트·외부 공개 시 `action_space_type` (`discrete_3level`/`discrete_5level`/`dense_grid_proxy`/`bounded_continuous_u`) + stage + STOP 포함 + u-mapper version 명시. 다른 grid 직접 비교 시 같은 sample/reference/config. **RL-2 historical: learned primary=3-level; 5-level=oracle ceiling** ; continuous-u 는 별도 stage 로 기록. 위반 = §6-5.
 - **§3-22 Research Grounding Gate**: 연구 설계 피드백/평가 해석/metric·baseline·algorithm 선택/외부 공개 판단 시 **2020+ peer-reviewed top-tier 논문 근거** 동반 (arXiv-only 단독 금지). 응답 4항목 (판단/근거논문/적용범위/불확실성). 근거 부족 시 `engineering heuristic`/`internal proxy assumption`/`pilot-only finding` 명시 (외부 단독 근거 금지). 상세 [04-evaluation §7-0](.claude/rules/phase/04-evaluation.md). 단순 버그·경로·테스트는 대상 아님.
 - **§3-23 Intent-Reconciliation Loop**: 새 evaluator/tool/oracle/baseline/policy/snapshot/framework doc commit 직전 5-step self-check → verdict `aligned`/`partial`/`misaligned`/`scope_creep`/`unintended_side_effect`. 뒤 3개는 사용자 보고 (commit 보류/confirm). 상세 [intent-reconciliation SKILL](.claude/skills/intent-reconciliation/SKILL.md).
-- **§3-24 Harness Rule vs Skill/Doc 분리**: AGENTS=invariant·필수 metadata field·evidence tier·silent invalidation·승인 게이트. **skills**=실행 절차/checklist/예시. **docs**=참조(용어·요약·spec). **Dashboard**=board. AGENTS 는 아키텍처 역할을 과도하게 고정하지 않고 **configuration 과 claim 일치**를 강제. `heuristic`/`proxy`/`pilot` 근거는 절대 규칙 직접 승격 금지 → skills/docs 먼저 ([phase 01 §7-1](.claude/rules/phase/01-instructions.md)).
+- **§3-24 Harness Rule vs Skill/Doc 분리**: AGENTS=invariant·필수 metadata field·evidence tier·silent invalidation·승인 게이트. **skills**=실행 절차/checklist/예시. **docs**=참조(용어·요약·spec). **Dashboard**=board. Dashboard row 는 1줄 index 로 유지하고 상세 작업 명세는 `.claude/docs/dashboard-task-specs/AR-NNN-*.md` 로 분리한다. AGENTS 는 아키텍처 역할을 과도하게 고정하지 않고 **configuration 과 claim 일치**를 강제. `heuristic`/`proxy`/`pilot` 근거는 절대 규칙 직접 승격 금지 → skills/docs 먼저 ([phase 01 §7-1](.claude/rules/phase/01-instructions.md)).
 - **§3-25 Policy-Validation Traceability**: learned policy/Q/risk head/heuristic/oracle/gate 결과 인용 시 **무엇이 품질 향상에 기여했는지 분리 가능**해야 함. `selection_mode`·`candidate_trace`·`gate_recheck`·`policy_contribution_baseline` 기록 ; `gate_recheck=false`=diagnostic only ; baseline 비교 없으면 `policy contribution not isolated`. field·claim rule 상세 [policy-validation-traceability](.claude/docs/policy-validation-traceability.md). 위반 = §6-5.
 - **§3-26 Action-Effect Coverage / Hard-Example Provenance**: continuous-u/Q-surface 단위 = `(state,tool,u,after_state,gate_result,utility)` transition. transition/hard-mining dataset 은 `transition_dataset_id`·`u_grid`·`seed`·`mining_reason` 등 기록 + hard-mined 는 natural 과 분리 보고. 상세 [policy-validation-traceability §3](.claude/docs/policy-validation-traceability.md).
 
@@ -99,6 +109,8 @@
 ---
 
 ## 6. 위험 행동 (금지)
+
+> 본 절 = §3 절대 규칙의 **금지형(prohibition) view** (둘은 같은 규칙의 양면, §3 도입부 effect 규약). "근거" 열이 §3-N 인 항목은 그 §3 obligation 의 위반에 해당.
 
 | # | 금지 | 근거 |
 |---|---|---|
