@@ -4,6 +4,7 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
+| AR-035 | Harness | Dashboard 상태별 파일 분리 (backlog/todo/in-progress/done/cancelled + index) + 훅 갱신 | 06-03 | a569556 |
 | AR-034 | Harness | AGENTS.md 619→146줄 + .claude/{docs,Dashboard} 분리 (skills/docs/Dashboard) | 06-03 | a1a9b6c |
 | AR-033 | Harness | 보드 자동화 훅 (SessionStart=시작 / PostToolUse git commit=종료 reminder) | 06-03 | [.claude/settings.json](../settings.json) · 774be46 |
 | AR-031 | Harness | 하네스 평가 + Plane 스타일 보드 신설 | 06-03 | 1bb3e57 |
