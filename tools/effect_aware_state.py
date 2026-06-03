@@ -100,11 +100,13 @@ SCHEMA: dict[str, dict[str, list[str]]] = {
     },
 }
 
+# Action feature 는 모두 `action_` prefix — state feature 와 namespace 분리 (merge/vectorize 시
+# target_type_encoding 등 충돌 방지). state block 이름은 spec 그대로 (블록 내 unique).
 ACTION_SCHEMA: dict[str, list[str]] = {
-    "tool": ["tool_encoding", "tool_family", "tool_cost"],
-    "target": ["target_type_encoding", "target_side", "target_chain_id"],
-    "strength": ["u", "u_sq", "is_continuous_u"],
-    "stop": ["is_stop_action"],
+    "tool": ["action_tool_encoding", "action_tool_family", "action_tool_cost"],
+    "target": ["action_target_type_encoding", "action_target_side", "action_target_chain_id"],
+    "strength": ["action_u", "action_u_sq", "action_is_continuous_u"],
+    "stop": ["action_is_stop_action"],
 }
 
 # 명세 §금지 Feature — SCHEMA 에 절대 포함 금지 (verify 가 강제).
@@ -322,19 +324,24 @@ def encode_action(tool: str, target_side: str, u: float, is_stop: bool) -> dict:
     fam = {"FootLockTool": 0, "BoneProjectionTool": 1, "VelocitySmoothingTool": 0}  # 0=geometric,1=skeleton
     cost = {"FootLockTool": 1.0, "BoneProjectionTool": 1.0, "VelocitySmoothingTool": 1.2}
     side = {"left": 0, "right": 1, "both": 2, "full": 3, "none": -1}
+    # 모든 key 에 action_ prefix (state namespace 와 분리).
     return {
-        "tool_encoding": float(tools.index(tool)) if tool in tools else -1.0,
-        "tool_family": float(fam.get(tool, -1)), "tool_cost": float(cost.get(tool, 1.0)),
-        "target_type_encoding": float(side.get(target_side, -1)), "target_side": float(side.get(target_side, -1)),
-        "target_chain_id": float(side.get(target_side, -1)),
-        "u": float(u), "u_sq": float(u * u), "is_continuous_u": 1.0,
-        "is_stop_action": 1.0 if is_stop else 0.0,
+        "action_tool_encoding": float(tools.index(tool)) if tool in tools else -1.0,
+        "action_tool_family": float(fam.get(tool, -1)), "action_tool_cost": float(cost.get(tool, 1.0)),
+        "action_target_type_encoding": float(side.get(target_side, -1)),
+        "action_target_side": float(side.get(target_side, -1)),
+        "action_target_chain_id": float(side.get(target_side, -1)),
+        "action_u": float(u), "action_u_sq": float(u * u), "action_is_continuous_u": 1.0,
+        "action_is_stop_action": 1.0 if is_stop else 0.0,
     }
 
 
 def verify_schema() -> dict:
-    """금지 feature 배제 + before-action observable 자가 검증."""
-    all_feats = set(feature_names("v2", include_action=True))
+    """금지 feature 배제 + before-action observable + state/action namespace 충돌 자가 검증."""
+    state_feats = set(feature_names("v2", include_action=False))
+    action_feats = set(f for blk in ACTION_SCHEMA.values() for f in blk)
+    name_collisions = sorted(state_feats & action_feats)  # 비어야 함 (state/action 분리).
+    all_feats = state_feats | action_feats
     leaked = all_feats & FORBIDDEN_FEATURES
     # after-action 키워드 휴리스틱 audit. NOTE: `_gain` 단독은 제외 — history 의
     # previous_accepted_gain (직전 step 결과 = 현재 action 전 관측 가능) 과 uncertainty 의
@@ -353,7 +360,8 @@ def verify_schema() -> dict:
         "n_action": len([f for blk in ACTION_SCHEMA.values() for f in blk]),
         "forbidden_leaked": sorted(leaked), "after_action_suspicious": suspicious,
         "before_action_ambiguous_justified": before_action_ambiguous,
-        "passed": (not leaked) and (not suspicious),
+        "state_action_name_collisions": name_collisions,
+        "passed": (not leaked) and (not suspicious) and (not name_collisions),
     }
 
 
@@ -364,4 +372,5 @@ if __name__ == "__main__":
     print(f"  v1 dim: {v['n_v1']} / {v['n_v1_action']}")
     print(f"  v2 dim: {v['n_v2']} / {v['n_v2_action']}  (action={v['n_action']})")
     print(f"  forbidden leaked: {v['forbidden_leaked']}  after-action suspicious: {v['after_action_suspicious']}")
+    print(f"  state/action name collisions: {v['state_action_name_collisions']}")
     print(f"  verify passed: {v['passed']}")

@@ -140,6 +140,8 @@ def main() -> None:
             "forbidden_leaked": vcheck["forbidden_leaked"],
             "after_action_suspicious": vcheck["after_action_suspicious"],
             "before_action_ambiguous_justified": vcheck["before_action_ambiguous_justified"],
+            "state_action_name_collisions": vcheck["state_action_name_collisions"],
+            "namespace_note": "action feature = action_ prefix (state block 이름과 분리, merge/vectorize 충돌 방지).",
             "passed": vcheck["passed"],
         },
         "build_verification": {
