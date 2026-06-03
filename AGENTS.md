@@ -1,6 +1,8 @@
 # AGENTS.md — motion-artifact-router (ArtifactRouter)
 
-> 본 파일은 하네스 4계층의 **01. 지침(instruction) 레이어 원본**이다. 위반 시 결과 invalidation 되는 **절대 규칙·게이트(invariant)** 만 둔다 (~200줄 유지). 실행 절차는 `.claude/skills/`, 참조 문서는 `.claude/docs/` + `docs/`, 작업 board 는 `.claude/Dashboard/` (분배 기준 §3-24, [phase 01 §7-1](.claude/rules/phase/01-instructions.md)). 템플릿 상속: [`docs/harness-research-template/01-instructions.md §2`](docs/harness-research-template/01-instructions.md).
+> **본 파일 = 규칙 원본 (WHAT — 무엇이 규칙인가).** 위반 시 결과 invalidation 되는 **절대 규칙·게이트(invariant)** 만 둔다 (~200줄). Agent 의 **Role·페르소나·가치 우선순위·의사결정 권한·커뮤니케이션 스타일 (WHO/HOW — 누가 어떻게 적용하는가)** 는 본 문서가 아니라 [`.claude/rules/phase/01-instructions.md`](.claude/rules/phase/01-instructions.md) 가 owner (본 문서는 Role 을 정의하지 않는다; 둘이 합쳐 하네스 4계층의 "01 지침 레이어").
+>
+> 실행 절차 = `.claude/skills/`, 참조 문서 = `.claude/docs/` + `docs/`, 작업 board = `.claude/Dashboard/` (분배 기준 §3-24, [phase 01 §7-1](.claude/rules/phase/01-instructions.md)). 템플릿 상속: [`docs/harness-research-template/01-instructions.md §2`](docs/harness-research-template/01-instructions.md).
 
 ## 목차
 [1 컨텍스트](#1-시스템-컨텍스트) · [2 빌드&실행](#2-빌드--실행) · [3 절대 규칙](#3-절대-규칙) · [4 경로별 분기](#4-경로별-조건-분기) · [5 실패 대응](#5-실패-대응) · [6 위험 행동](#6-위험-행동) · [7 디렉토리](#7-디렉토리별-규칙) · [8 참조](#8-참조-전용)
@@ -11,7 +13,7 @@
 
 **ArtifactRouter** = 외부 motion generator (MotionGPT·MDM·MLD 등) output 위에서 **artifact state → correction action 매핑**을 routing 문제로 정식화한 generator-agnostic, tool-extensible decision system. 새 generator·새 단일 calibrator 개발 안 함. cost·risk (NetGain) 고려 + STOP(abstain) 포함. 정식 framing = **Safe Orchestration** (NOT NetGain-only): RL objective = `maximize artifact_improvement s.t. physical_validity + no_harm` ([docs/current_research_position.md §0](docs/current_research_position.md)).
 
-연구 우선순위: (1) 연구 정직성 (2) 재현성 (3) 비교 가능성 (G1/G2 tier 분리) (4) 효율성 (5) 편의성.
+가치 우선순위 (상충 시 좌선): 연구 정직성 > 재현성 > 비교 가능성 > 효율성 > 편의성. **Role·정의·근거 = [01-instructions §2-2](.claude/rules/phase/01-instructions.md) owner** (본 문서는 규칙만, 가치관 정의 안 함).
 
 **핵심 가설** (canonical [`evals/hypotheses/`](evals/hypotheses/) append-only, 요약 [.claude/docs/hypotheses-summary.md](.claude/docs/hypotheses-summary.md)): [H-2026-204](evals/hypotheses/H-2026-204.md) (RQ1+2 vs fixed post-proc) · [H-2026-205](evals/hypotheses/H-2026-205.md) (RQ3 learnable routing) · [H-2026-206](evals/hypotheses/H-2026-206.md) (RQ4 generator-agnostic) · [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary no-harm). 종결: H-200/201/202 (2026-05-15 supersede). **가설 본문 수정·status 전환 = §3-11 사용자 승인 게이트.**
 

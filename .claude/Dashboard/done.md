@@ -4,6 +4,7 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
+| AR-038 | Harness | AGENTS.md vs 01-instructions 경계 명확화 (WHAT=규칙 원본 / WHO·HOW=Role·적용) + 우선순위 중복 제거 | 06-03 | (본 commit) |
 | AR-036 | Harness | PROJECT_BOARD.md 삭제 → README.md 가 단일 index (상태별 파일과 중복 제거) + 참조 7곳 수정 | 06-03 | db1adcc |
 | AR-035 | Harness | Dashboard 상태별 파일 분리 (backlog/todo/in-progress/done/cancelled + index) + 훅 갱신 | 06-03 | a569556 |
 | AR-034 | Harness | AGENTS.md 619→146줄 + .claude/{docs,Dashboard} 분리 (skills/docs/Dashboard) | 06-03 | a1a9b6c |
