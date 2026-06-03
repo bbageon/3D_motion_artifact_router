@@ -8,9 +8,9 @@
 - **Priority**: 🔴 Urgent / 🟠 High / 🟡 Medium / ⚪ Low.
 - **Issue ID**: `AR-NNN` (ArtifactRouter, append-only 증가). 닫혀도 ID 재사용 금지.
 - **Epic**: 큰 작업 묶음 (label). issue 는 한 epic 에 속함.
-- **갱신 시점**: 매 작업 turn 종료 시 해당 issue 의 state 갱신 + 새 작업은 Backlog 에 issue 추가. Done 으로 옮길 때 commit/report 링크 박제. (자동 reminder: [.claude/settings.json](.claude/settings.json) 의 SessionStart=작업 시작 / PostToolUse git commit=작업 종료 훅.)
+- **갱신 시점**: 매 작업 turn 종료 시 해당 issue 의 state 갱신 + 새 작업은 Backlog 에 issue 추가. Done 으로 옮길 때 commit/report 링크 박제. (자동 reminder: [.claude/settings.json](../settings.json) 의 SessionStart=작업 시작 / PostToolUse git commit=작업 종료 훅.)
 - **History**: Done 이 누적되면 본 문서 하단 `## History (archive)` 로 옮겨 압축 (board 상단은 최근 상태만).
-- 본 보드 ≠ 가설 레지스트리 ([`evals/hypotheses/`](evals/hypotheses/)) — 가설 status 전환은 사용자 승인 게이트 (AGENTS.md §3-11), 본 보드는 작업 추적용.
+- 본 보드 ≠ 가설 레지스트리 ([`evals/hypotheses/`](../../evals/hypotheses/)) — 가설 status 전환은 사용자 승인 게이트 (AGENTS.md §3-11), 본 보드는 작업 추적용.
 
 ---
 
@@ -26,7 +26,7 @@
 
 | ID | Epic | Title | Priority | Blocked by / Note |
 |---|---|---|---|---|
-| AR-020 | Evidence | H-2026-205 status `active`→`supported` 검토 | 🟠 | **사용자 승인 게이트** (§3-11). snapshot≥2 + 12/12 재현 요건 충족 ([evals/reports/2026-06-01_g2_learned_vs_baseline.md](evals/reports/2026-06-01_g2_learned_vs_baseline.md)) |
+| AR-020 | Evidence | H-2026-205 status `active`→`supported` 검토 | 🟠 | **사용자 승인 게이트** (§3-11). snapshot≥2 + 12/12 재현 요건 충족 ([evals/reports/2026-06-01_g2_learned_vs_baseline.md](../../evals/reports/2026-06-01_g2_learned_vs_baseline.md)) |
 | AR-021 | RL-Q | g2_stress Stage 3 — continuous argmax 로 oracle headroom (d≈0.43) 회수 | 🟠 | FID 보존 조건. line search / Bayesian opt |
 | AR-022 | Generator | MDM/MLD (G1) 구축 → generator-agnostic transfer (H-2026-206) | 🟡 | heavy setup (clone+dep+ckpt+wrapper+pool). 사용자 결정: "G2 정리 후" |
 | AR-023 | Perceptual | perceptual b2/b3 (3명+ inter-rater) — quality-validated evidence | ⚪ | 현재 b1 (GIF) 만. 사용자 작업 |
@@ -51,19 +51,19 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
-| AR-033 | Harness | 보드 자동화 훅 (SessionStart=시작 reminder / PostToolUse git commit=종료 reminder) | 06-03 | [.claude/settings.json](.claude/settings.json) |
+| AR-033 | Harness | 보드 자동화 훅 (SessionStart=시작 reminder / PostToolUse git commit=종료 reminder) | 06-03 | [.claude/settings.json](../settings.json) |
 | AR-031 | Harness | 하네스 평가 + Plane 스타일 보드 신설 | 06-03 | 본 문서 |
 | AR-032 | Harness | 무참조 throwaway 3개 삭제 (`_axis_check`/`_mpl_check`/`_inspect_b6_closed_loop_trace`) — evidence 인용 `_*` 는 유지 | 06-03 | (본 commit) |
-| AR-019 | Evidence | 결과 섹션 초안 (4 result 통합 + claim 범위) | 06-01 | [docs/results_draft_g2_stage2.md](docs/results_draft_g2_stage2.md) · e055604 |
-| AR-018 | Evidence | 재현 snapshot 2 (split v3) — **12/12 방향+유의성 재현** | 06-01 | [evals/snapshots/rl2_g2_paired_stats_v3.json](evals/snapshots/rl2_g2_paired_stats_v3.json) · e1a9746 |
-| AR-017 | Evidence | G2 paired 통계 (M0 vs baselines, Wilcoxon+d+bootstrap) | 06-01 | [snapshot](evals/snapshots/rl2_g2_paired_stats_v1.json) · f2f8139 |
-| AR-016 | G2-stress | Step 6 part 2 — standard metric (FID/R-Prec, Δ vs original) | 06-01 | [snapshot](evals/snapshots/standard_metric_closed_loop_v1.json) · d1a443a |
-| AR-015 | G2-stress | Step 6 part 1 — closed-loop real-gate-ON ablation (M0 vs baselines) | 06-01 | [snapshot](evals/snapshots/rl2_closed_loop_ablation_stage2_v1.json) · 43fa24c |
-| AR-014 | G2-stress | Step 3-5 — G2 transitions + M0/M1/M2/M3 + offline gen eval | 05-31 | [snapshot](evals/snapshots/rl2_offline_gen_eval_stage2_v1.json) · 433578c |
-| AR-013 | G2-stress | Stage 2-G v2 — G2 pool 600 stratified + split v2 (stress in train) | 05-31 | [split](evals/splits/g2_real_stress_split_v2.json) · 7d49279 |
+| AR-019 | Evidence | 결과 섹션 초안 (4 result 통합 + claim 범위) | 06-01 | [docs/results_draft_g2_stage2.md](../../docs/results_draft_g2_stage2.md) · e055604 |
+| AR-018 | Evidence | 재현 snapshot 2 (split v3) — **12/12 방향+유의성 재현** | 06-01 | [evals/snapshots/rl2_g2_paired_stats_v3.json](../../evals/snapshots/rl2_g2_paired_stats_v3.json) · e1a9746 |
+| AR-017 | Evidence | G2 paired 통계 (M0 vs baselines, Wilcoxon+d+bootstrap) | 06-01 | [snapshot](../../evals/snapshots/rl2_g2_paired_stats_v1.json) · f2f8139 |
+| AR-016 | G2-stress | Step 6 part 2 — standard metric (FID/R-Prec, Δ vs original) | 06-01 | [snapshot](../../evals/snapshots/standard_metric_closed_loop_v1.json) · d1a443a |
+| AR-015 | G2-stress | Step 6 part 1 — closed-loop real-gate-ON ablation (M0 vs baselines) | 06-01 | [snapshot](../../evals/snapshots/rl2_closed_loop_ablation_stage2_v1.json) · 43fa24c |
+| AR-014 | G2-stress | Step 3-5 — G2 transitions + M0/M1/M2/M3 + offline gen eval | 05-31 | [snapshot](../../evals/snapshots/rl2_offline_gen_eval_stage2_v1.json) · 433578c |
+| AR-013 | G2-stress | Stage 2-G v2 — G2 pool 600 stratified + split v2 (stress in train) | 05-31 | [split](../../evals/splits/g2_real_stress_split_v2.json) · 7d49279 |
 | AR-012 | G2-stress | Stage 2-G v1 — G2 real stress profile + split freeze (pivot) | 05-31 | c7f6cbc |
 | AR-011 | RL-Q | Stage B-1 hard mining (synthetic boundary, 4160 transitions) | 05-31 | 720597e |
-| AR-010 | RL-Q | Stage B-0 P_safe Bias Audit (root cause = argmax+leaky P_safe) | 05-30 | [reports/2026-05-30.md](reports/2026-05-30.md) · bf47ade |
+| AR-010 | RL-Q | Stage B-0 P_safe Bias Audit (root cause = argmax+leaky P_safe) | 05-30 | [reports/2026-05-30.md](../../reports/2026-05-30.md) · bf47ade |
 | AR-009 | RL-Q | Stage A+ continuous argmax confirmation | 05-29 | 1bb3ce6 |
 | AR-008 | RL-Q | Stage A action-effect transition dataset (dense u-grid) | 05-29 | 2a072e1 |
 | AR-007 | RL-Q | RL-2 Stage 1 — bounded continuous Q_safe(s,tool,u) | 05-29 | 363a7cc |
@@ -72,7 +72,7 @@
 | AR-004 | RL-F | Step F-1~F-5 — RL-2 safe imitation (16-action) + violation decomp | 05-27/28 | d2671c3 외 |
 | AR-003 | Gate | Step E — Safe Sequence Oracle (gate-aware DFS) | 05-26/27 | d2f6163 외 |
 | AR-002 | Gate | PhysicalGateV0 (5 evaluator, regression-based threshold) | 05-26 | — |
-| AR-001 | Framing | Safe Orchestration framing 고정 (NOT NetGain-only) | 05-26 | [docs/current_research_position.md](docs/current_research_position.md) |
+| AR-001 | Framing | Safe Orchestration framing 고정 (NOT NetGain-only) | 05-26 | [docs/current_research_position.md](../../docs/current_research_position.md) |
 
 ---
 
@@ -97,7 +97,7 @@
 - **공식 status 전환된 가설: 0건** (203/204/205/206 모두 `active`). 200/201/202 = 행정적 supersede.
 - **Evidence 강함 (status 미전환)**: H-205 방향 (learnable routing > rule-based) — snapshot 2개 12/12 재현. closed-loop 0% violation + final quality 보존/개선.
 - **미검증**: generator-agnostic (G1 미구축, AR-022), high-quality no-harm (진짜 G1 필요, AR-026), perceptual b2/b3 (AR-023).
-- 상세: [docs/results_draft_g2_stage2.md](docs/results_draft_g2_stage2.md) §7 claim scope.
+- 상세: [docs/results_draft_g2_stage2.md](../../docs/results_draft_g2_stage2.md) §7 claim scope.
 
 ---
 
