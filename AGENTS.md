@@ -132,7 +132,7 @@
 | `tools/` | 시각화·실험 도구 (synthetic injection / tool effect matrix / perceptual) |
 | `evals/` | `raw/` (Collect) · `snapshots/` · `reports/<period>.md` (5단계) · `hypotheses/`·`workarounds/` (append-only) |
 | `reports/` | 일자별 일지 + `figures/<date>/` |
-| `.claude/` | `rules/phase/` (지침) · `skills/` (실행) · `docs/` (참조) · `Dashboard/` (board) — §3-24 |
+| `.claude/` | `rules/phase/` (지침) · `skills/` (실행) · `docs/` (참조) · `Dashboard/` (board, 상태별 파일 분리: backlog/todo/in-progress/done/cancelled) — §3-24 |
 | `external_assets/` | public dataset + vestigial archive. read-only, 직접 수정 금지 (§4) |
 | `experiments/` | MVP feasibility (Week 1-4) segregated workspace |
 

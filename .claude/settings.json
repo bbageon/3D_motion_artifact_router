@@ -7,7 +7,7 @@
           {
             "type": "command",
             "shell": "bash",
-            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"[Project Board] 작업 시작 전: .claude/Dashboard/PROJECT_BOARD.md 를 읽고, 착수할 항목을 Todo→In Progress 로 옮겨라 (없으면 Backlog/Todo 에서 pull). 작업 종료(commit) 시 Done 으로 이동 + commit 링크 박제.\"}}'",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"SessionStart\",\"additionalContext\":\"[Project Board] 작업 시작 전: .claude/Dashboard/ (상태별 파일 분리) 를 읽어라. todo.md 에서 착수 항목을 in-progress.md 로 이동(pull). 종료(commit) 시 in-progress.md→done.md + commit 링크 박제. index=PROJECT_BOARD.md.\"}}'",
             "statusMessage": "Project board reminder"
           }
         ]
@@ -20,7 +20,7 @@
           {
             "type": "command",
             "shell": "bash",
-            "command": "cat | grep -q 'git commit' && echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"[Project Board] commit 완료 = 작업 segment 종료. .claude/Dashboard/PROJECT_BOARD.md 에서 해당 항목을 In Progress→Done 으로 이동하고 방금 commit 해시/링크를 Evidence 열에 박제했는지 확인하라. 새로 생긴 후속 작업은 Backlog 에 추가.\"}}' || true",
+            "command": "cat | grep -q 'git commit' && echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"[Project Board] commit 완료 = 작업 segment 종료. .claude/Dashboard/in-progress.md 의 해당 항목을 done.md 로 이동하고 방금 commit 해시/링크를 Evidence 열에 박제했는지 확인하라. 새 후속 작업은 backlog.md 에 추가.\"}}' || true",
             "statusMessage": "Project board update reminder"
           }
         ]
