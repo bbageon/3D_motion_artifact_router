@@ -1,6 +1,6 @@
 # 🗂️ Backlog (미래)
 
-> 미착수·미래 작업. **연구방향이 자주 바뀌므로** 방향 변경 시 재정렬. [index](README.md) · 다음 상태: [todo](todo.md).
+> 미착수·미래 작업. **연구방향이 자주 바뀌므로** 방향 변경 시 재정렬. [index](README.md) · 다음 상태: [ready](ready.md).
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
@@ -13,4 +13,4 @@
 
 ---
 
-운영: 우선순위 오르면 [todo.md](todo.md) 로 승격. 폐기 시 [cancelled.md](cancelled.md).
+운영: 우선순위 오르면 [ready.md](ready.md) 로 승격. 폐기 시 [cancelled.md](cancelled.md).

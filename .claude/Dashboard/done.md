@@ -4,10 +4,11 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
+| AR-037 | RL-Q | Effect-Aware Ranker state ablation 설계 — v0/v1/v2 schema 고정 (40/64/71) + before-action observable 검증 (금지 0 leak, v0 NaN 0) + dim 보고 | 06-03 | (본 commit) |
 | AR-039 | Harness | §3 절대규칙 평가 → 저위험 정리 (effect 규약 명확화 #1 / §3↔§6 dual-view #2 / 3-cluster index A·B·C #4). 규칙 내용 불변 | 06-03 | 81e70a8 |
 | AR-038 | Harness | AGENTS.md vs 01-instructions 경계 명확화 (WHAT=규칙 원본 / WHO·HOW=Role·적용) + 우선순위 중복 제거 | 06-03 | 5488bd0 |
 | AR-036 | Harness | PROJECT_BOARD.md 삭제 → README.md 가 단일 index (상태별 파일과 중복 제거) + 참조 7곳 수정 | 06-03 | db1adcc |
-| AR-035 | Harness | Dashboard 상태별 파일 분리 (backlog/todo/in-progress/done/cancelled + index) + 훅 갱신 | 06-03 | a569556 |
+| AR-035 | Harness | Dashboard 상태별 파일 분리 (backlog/ready/in-progress/done/cancelled + index) + 훅 갱신 | 06-03 | a569556 |
 | AR-034 | Harness | AGENTS.md 619→146줄 + .claude/{docs,Dashboard} 분리 (skills/docs/Dashboard) | 06-03 | a1a9b6c |
 | AR-033 | Harness | 보드 자동화 훅 (SessionStart=시작 / PostToolUse git commit=종료 reminder) | 06-03 | [.claude/settings.json](../settings.json) · 774be46 |
 | AR-031 | Harness | 하네스 평가 + Plane 스타일 보드 신설 | 06-03 | 1bb3e57 |

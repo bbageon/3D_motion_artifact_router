@@ -1,0 +1,274 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "effect_aware_state_schema",
+  "task_id": "AR-037-effect-aware-state-design",
+  "split_id": "effect_aware_state_schema_v0",
+  "oracle_type": "N/A (state schema)",
+  "action_space_grid": {
+    "grid": "bounded_continuous_u",
+    "stage": "AR-037-state-design",
+    "include_stop": true,
+    "action_type": "discrete_tool_x_continuous_intensity",
+    "tools": [
+      "FootLockTool",
+      "BoneProjectionTool",
+      "VelocitySmoothingTool"
+    ],
+    "intensity": "u in [0,1] (normalized); FootLock/BoneProjection factor=u, VelocitySmoothing sigma=2.0*u"
+  },
+  "evidence_tier": [
+    "real-distribution evidence"
+  ],
+  "evaluator_config_hashes": {
+    "FootFloatingEvaluator": "fc58a7dfe285466012c81c86f49be940bddb3dc0c2329c7fb1bc0fde230457e4",
+    "BoneLengthEvaluator": "08866688ea67abe881e49bd7f8edc8df961b5d51d36b02131c82f93488fbca30",
+    "VelocityJitterEvaluator": "79e098dd98e6b0fd01d5de5a2d5e98dc02d4b27b86caefd95f8c22d38771680f",
+    "PenetrateEvaluator": "769ee9100048bbd347533a9d1890ce743bf0c74ef438769445f2ef2da73b3190",
+    "FloatEvaluator": "ea43c41a961b276769e388f265cba07fe9f6fda95fa944a33e5a68121656b0d1",
+    "SkateEvaluator": "9c8025837e827d71e04a0dbb65eb0d4caf92f537fbd04915c8602060a649827a",
+    "JerkSpikeEvaluator": "7bb7091312e32462ab1fcef31968a198f086e6c38b2a82df73946da576b104b6",
+    "BoneLengthCVEvaluator": "1808a9b9134ac5b2e3a4e5760e3fd263ed01a589155aec76098a5e110779b7f8"
+  },
+  "evaluator_severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18",
+    "PenetrateEvaluator": "0.1.0-2026-05-26",
+    "FloatEvaluator": "0.1.0-2026-05-26",
+    "SkateEvaluator": "0.1.0-2026-05-26",
+    "JerkSpikeEvaluator": "0.1.0-2026-05-26",
+    "BoneLengthCVEvaluator": "0.1.0-2026-05-26"
+  },
+  "spec": ".claude/docs/dashboard-task-specs/AR-037-effect-aware-state-design.md",
+  "claim_boundary": "state 설계 고정만 — 정책 성능 증명 아님. q_proxy/effect-label/oracle 은 다음 작업.",
+  "dimensions": {
+    "v0_state": 40,
+    "v0_state_action": 50,
+    "v1_state": 64,
+    "v1_state_action": 74,
+    "v2_state": 71,
+    "v2_state_action": 81,
+    "action": 10
+  },
+  "spec_target_ranges": {
+    "v0_state": "40-55",
+    "v0_state_action": "55-70",
+    "v1_state": "70-95",
+    "v1_state_action": "85-110",
+    "v2_state": "80-110",
+    "v2_state_action": "95-125",
+    "note": "actual v1/v2 가 stated 하한 약간 미만 — explicit feature list (명세 §v1/v2) 합이 authority. dim 목표가 아니라 schema 고정이 성공 조건."
+  },
+  "block_dims": {
+    "v0/global_motion_state": 14,
+    "v0/global_artifact_state": 7,
+    "v0/global_physical_state": 7,
+    "v0/semantic_motion_state": 4,
+    "v0/correction_history_state": 8,
+    "v1/local_target_state": 16,
+    "v1/relation_state": 8,
+    "v2/data_support_state": 7,
+    "action": 10
+  },
+  "schema": {
+    "v0": {
+      "global_motion_state": [
+        "T_norm",
+        "duration_sec",
+        "root_path_length",
+        "root_displacement",
+        "root_speed_mean",
+        "root_speed_std",
+        "root_speed_p95",
+        "joint_velocity_mean",
+        "joint_velocity_p95",
+        "joint_acceleration_p95",
+        "joint_jerk_p95",
+        "left_contact_ratio",
+        "right_contact_ratio",
+        "motion_group_id"
+      ],
+      "global_artifact_state": [
+        "foot_floating_score",
+        "foot_sliding_score",
+        "velocity_jitter_score",
+        "jerk_spike_score",
+        "artifact_total_score",
+        "dominant_artifact_type",
+        "artifact_severity_band"
+      ],
+      "global_physical_state": [
+        "bone_length_cv_mean",
+        "bone_length_cv_max",
+        "penetration_score",
+        "physical_load_mean",
+        "physical_load_max",
+        "gate_margin_min",
+        "dominant_physical_risk"
+      ],
+      "semantic_motion_state": [
+        "text_motion_similarity",
+        "text_motion_distance",
+        "semantic_confidence",
+        "prompt_motion_group_match"
+      ],
+      "correction_history_state": [
+        "step_index",
+        "last_tool_encoding",
+        "last_u",
+        "cumulative_joint_delta",
+        "cumulative_root_delta",
+        "cumulative_fidelity_loss",
+        "previous_accepted_gain",
+        "rejected_count"
+      ]
+    },
+    "v1_add": {
+      "local_target_state": [
+        "target_type_encoding",
+        "target_joint_count",
+        "target_frame_start_norm",
+        "target_frame_end_norm",
+        "target_frame_length_norm",
+        "local_artifact_score",
+        "local_physical_score",
+        "local_velocity_p95",
+        "local_acceleration_p95",
+        "local_jerk_p95",
+        "local_foot_height_mean",
+        "local_foot_height_min",
+        "local_foot_velocity_p95",
+        "local_contact_ratio",
+        "local_penetration_score",
+        "local_bone_cv_max"
+      ],
+      "relation_state": [
+        "affected_joint_ratio",
+        "affected_frame_ratio",
+        "root_target_distance_mean",
+        "root_target_velocity_mismatch",
+        "parent_chain_bone_margin",
+        "balance_proxy",
+        "contact_phase_consistency",
+        "expected_fidelity_risk_proxy"
+      ]
+    },
+    "v2_add": {
+      "data_support_state": [
+        "knn_state_distance",
+        "knn_state_action_distance",
+        "motion_group_support_count",
+        "tool_target_u_support_count",
+        "ensemble_gain_variance",
+        "ensemble_safe_variance",
+        "ood_flag"
+      ]
+    },
+    "action": {
+      "tool": [
+        "tool_encoding",
+        "tool_family",
+        "tool_cost"
+      ],
+      "target": [
+        "target_type_encoding",
+        "target_side",
+        "target_chain_id"
+      ],
+      "strength": [
+        "u",
+        "u_sq",
+        "is_continuous_u"
+      ],
+      "stop": [
+        "is_stop_action"
+      ]
+    }
+  },
+  "observability_audit": {
+    "forbidden_features_excluded": [
+      "after_state",
+      "dense_oracle_action",
+      "fid",
+      "final_standard_metric",
+      "gate_result",
+      "mm_dist",
+      "pool_dir",
+      "quality_after",
+      "quality_gain",
+      "r_precision",
+      "sample_id",
+      "split",
+      "split_id",
+      "split_name",
+      "trial_id"
+    ],
+    "forbidden_leaked": [],
+    "after_action_suspicious": [],
+    "before_action_ambiguous_justified": {
+      "previous_accepted_gain": "history — 직전 step accepted action 의 gain, 현재 action 결정 전 관측",
+      "ensemble_gain_variance": "uncertainty — ensemble 예측의 분산, 적용 후 실제 gain 아님 (v2 data_support)"
+    },
+    "passed": true
+  },
+  "build_verification": {
+    "n_motions_built": 30,
+    "v0_dim_assert": "passed",
+    "nonsemantic_nan_counts": {},
+    "semantic_nan_counts": {
+      "text_motion_similarity": 30,
+      "text_motion_distance": 30,
+      "semantic_confidence": 30,
+      "prompt_motion_group_match": 30
+    },
+    "semantic_note": "semantic block = mgpt env tm2t precompute 필요 → 본 검증 NaN placeholder (schema 위치 고정). 다음 작업의 별도 pass."
+  },
+  "sample_v0_state": {
+    "T_norm": 1.13333,
+    "duration_sec": 3.4,
+    "root_path_length": 0.46956,
+    "root_displacement": 0.07912,
+    "root_speed_mean": 0.14017,
+    "root_speed_std": 0.10853,
+    "root_speed_p95": 0.32748,
+    "joint_velocity_mean": 0.58928,
+    "joint_velocity_p95": 1.73266,
+    "joint_acceleration_p95": 16.37388,
+    "joint_jerk_p95": 312.37741,
+    "left_contact_ratio": 0.82353,
+    "right_contact_ratio": 0.83824,
+    "motion_group_id": 0.0,
+    "foot_floating_score": 0.02941,
+    "foot_sliding_score": 0.0,
+    "velocity_jitter_score": 0.0177,
+    "jerk_spike_score": 0.04093,
+    "artifact_total_score": 0.02015,
+    "dominant_artifact_type": 0.0,
+    "artifact_severity_band": 1.0,
+    "bone_length_cv_mean": 0.02978,
+    "bone_length_cv_max": 0.02978,
+    "penetration_score": 0.0,
+    "physical_load_mean": 1081.57793,
+    "physical_load_max": 5407.46503,
+    "gate_margin_min": -0.02977,
+    "dominant_physical_risk": 4.0,
+    "text_motion_similarity": null,
+    "text_motion_distance": null,
+    "semantic_confidence": null,
+    "prompt_motion_group_match": null,
+    "step_index": 0.0,
+    "last_tool_encoding": -1.0,
+    "last_u": 0.0,
+    "cumulative_joint_delta": 0.0,
+    "cumulative_root_delta": 0.0,
+    "cumulative_fidelity_loss": 0.0,
+    "previous_accepted_gain": 0.0,
+    "rejected_count": 0.0
+  },
+  "ablation_plan": {
+    "v0": "global quality-aware ranker (action=(tool,u))",
+    "v1": "target-aware quality-gain ranker (action=(tool,target,u)) — target-aware claim 은 여기부터",
+    "v2": "support-aware constrained ranker (action=(tool,target,u)) — OOD 과대평가 억제",
+    "comparable": "같은 split / 같은 candidate set / 같은 q_proxy 로 v0<v1<v2 비교 (q_proxy=다음 작업)"
+  }
+}
