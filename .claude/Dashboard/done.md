@@ -4,6 +4,10 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
+| AR-048 | Generator | Generation Protocol Correction — 3 generator trajectory/local 이중표현 통일 + full-motion/mirror/문장 dedup + GT길이 target + multi-seed + ground≠minY + semantic floor 0.8. 450 모션, 30 선별, **7/7 PASS** | 06-08 | 8e40db1 · [freeze](../../evals/snapshots/protocol_freeze_v1.json) · [일지](../../reports/2026-06-08.md) |
+| AR-047 | Infra | Generator GPU Docker 마이크로서비스화 (3 generator → FastAPI GPU 서비스 8001/8002/8003, cu128/sm120, checkpoint host read-only 마운트) | 06-07 | caf468b · 3 서비스 health ok ([check](../../tools/check_generator_availability.py)) |
+| AR-046 | Evidence | MotionGPT 시사점 정리(F0~F10) + docs/{findings,dataset} 신설 + 대표(prevalence-weighted) 재집계 (FID NEUTRAL + no-harm 확정) | 06-03 | 4a53c37 · [findings](../../docs/findings/motiongpt_implications.md) |
+| AR-029 | Quality | standard physical metric (foot_skate GMD/EDGE + accel MDM) 으로 real g2_stress 재측정 — accel 소폭개선(ground-indep) + float 개선 vs foot_skate 악화(trade-off) | 06-03 | 4a53c37 · [snapshot](../../evals/snapshots/physical_metric_g2_stress_v1.json) |
 | AR-043 | Evidence | Dataset predefined issue prevalence audit — stress/natural 4.1x + evaluator 신뢰도 등급(reliable=FootFloating 1) + ar040_decision=GO+조건4 (5조건 충족) | 06-03 | b835735 |
 | AR-037 | RL-Q | Effect-Aware Ranker state ablation 설계 — v0/v1/v2 schema 고정 (40/64/71) + before-action observable 검증 (금지 0 leak, v0 NaN 0) + dim 보고 | 06-03 | b715433 |
 | AR-039 | Harness | §3 절대규칙 평가 → 저위험 정리 (effect 규약 명확화 #1 / §3↔§6 dual-view #2 / 3-cluster index A·B·C #4). 규칙 내용 불변 | 06-03 | 81e70a8 |

@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| _(없음)_ | | [ready.md](ready.md) 에서 다음 항목 pull | | | |
+| AR-022 | Generator | MDM 확보 → diffusion generator stress pool 구축 (AR-048 protocol 로) | 🟠 | 06-03 | acquisition + n=50 smoke OK (prelim, **우열 미확정**). AR-048 freeze 완료 → 같은 protocol 로 큰 pool 확장 가능 |
 
 ---
 

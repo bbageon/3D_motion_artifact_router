@@ -8,4 +8,4 @@
 
 ---
 
-운영: [backlog.md](backlog.md)/[todo.md](todo.md) 항목 폐기 시 본 파일로 이동 + 사유 기록. ID 재사용 금지.
+운영: [backlog.md](backlog.md)/[ready.md](ready.md) 항목 폐기 시 본 파일로 이동 + 사유 기록. ID 재사용 금지.
