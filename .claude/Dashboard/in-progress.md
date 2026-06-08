@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| AR-022 | Generator | MDM 확보 → diffusion generator stress pool 구축 (AR-048 protocol 로) | 🟠 | 06-03 | acquisition + n=50 smoke OK (prelim, **우열 미확정**). AR-048 freeze 완료 → 같은 protocol 로 큰 pool 확장 가능 |
+| AR-022 | Generator | MDM 확보 → diffusion generator pool 구축 (AR-048 protocol 로) | 🟠 | 06-03 | acquisition + smoke OK (prelim, **우열 미확정**). AR-048 freeze 완료. 큰 pool 규모는 **AR-049 tiered**(soft 50 diagnostic / hard 300 primary, per-gen 동일·3seed) 기준 — hard-tier 확정 후 확장 |
 
 ---
 
