@@ -4,7 +4,6 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-049 | Generator | hard-tier prompt bank (n=300, primary) + tiered 표본 (soft 50 diagnostic) | 🟠 | 실사용 evidence는 hard-tier에서. **설계(A) 확정**: soft 50 = **per-sample(B/C) 전용·FID/R-Prec 인용 금지**, tier 비교는 per-sample 지표만. **hard 300=primary**(full Category-A, per-gen 동일·3seed·paired Δ+CI). in-distribution HumanML3D만(GT 유지). complexity 기준은 **추후 결정**. [spec](../docs/dashboard-task-specs/AR-049-hard-tier-prompt-bank.md) |
 | AR-040 | RL-Q | v0 global quality-aware ranker — `q_proxy` 정의 + v0 state vector + M1 dense effect oracle | 🟠 | **AR-044 이후 착수**. G2 real problem taxonomy/headroom 결과로 q_proxy 정의. action=`(tool,u)`, target-aware claim 없음 |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |
 | AR-042 | RL-Q | v2 support-aware ranker — data support/uncertainty state + OOD ablation | 🟡 | AR-037 후속. kNN/ensemble 기반 support, offline value overestimation 억제 |

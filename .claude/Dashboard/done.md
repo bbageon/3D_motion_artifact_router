@@ -4,8 +4,8 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
-| AR-022 | Generator | Representative-300 shared pool 생성·검증 (MDM) — 900 모션 fail 0, target-match 100%. freeze 8/8 PASS | 06-08 | [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) · 곧 commit |
-| AR-045 | Generator | Representative-300 shared pool 생성·검증 (MoMask) — 900 모션 fail 0, target-match 100% | 06-08 | [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) · 곧 commit |
+| AR-022 | Generator | Representative-300 shared pool 생성·검증 (MDM) — 900 모션 fail 0, target-match 100%. freeze 8/8 PASS | 06-08 | ee10ee9 · [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) |
+| AR-045 | Generator | Representative-300 shared pool 생성·검증 (MoMask) — 900 모션 fail 0, target-match 100% | 06-08 | ee10ee9 · [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) |
 | AR-049 | Generator | Representative-300 prompt bank + a-priori complexity annotation — hardness 선별(길이편향 82.7%) 대신 representative 무작위 300(원분포, 180-199frame 46%); 4축 complexity는 annotation(raw/z+quartile)·hard-300은 challenge candidate 보존 | 06-08 | fa54f1c · [bank](../../evals/prompts/protocol_rep_test_300_seed20260608.json) · [spec](../docs/dashboard-task-specs/AR-049-representative-prompt-bank.md) |
 | AR-048 | Generator | Generation Protocol Correction — 3 generator trajectory/local 이중표현 통일 + full-motion/mirror/문장 dedup + GT길이 target + multi-seed + ground≠minY + semantic floor 0.8. 450 모션, 30 선별, **7/7 PASS** | 06-08 | 8e40db1 · [freeze](../../evals/snapshots/protocol_freeze_v1.json) · [일지](../../reports/2026-06-08.md) |
 | AR-047 | Infra | Generator GPU Docker 마이크로서비스화 (3 generator → FastAPI GPU 서비스 8001/8002/8003, cu128/sm120, checkpoint host read-only 마운트) | 06-07 | caf468b · 3 서비스 health ok ([check](../../tools/check_generator_availability.py)) |
