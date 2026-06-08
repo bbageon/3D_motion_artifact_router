@@ -4,9 +4,7 @@
 
 | ID | Epic | Title | Priority | Blocked by / Note |
 |---|---|---|---|---|
-| AR-022 | Generator | MDM 확보 → diffusion generator pool 구축 | 🟠 | acquisition + smoke OK (prelim, 우열 미확정). **AR-049 representative-300 freeze 후** 동일 prompt·3 seed로 primary pool 생성. [spec](../docs/dashboard-task-specs/AR-022-mdm-generator-acquisition.md) |
 | AR-044 | Evidence | G2 real problem taxonomy + visual/tool headroom audit | 🟠 | AR-043 후속. RL/q_proxy 전 실제 MotionGPT 문제·시각 사례·tool headroom 확인. [spec](../docs/dashboard-task-specs/AR-044-g2-real-problem-taxonomy-headroom.md) |
-| AR-045 | Generator | MoMask 확보 → masked-token generator pool 구축 | 🟠 | acquisition + smoke OK (prelim, 우열 미확정). **AR-049 representative-300 freeze 후** 동일 prompt·3 seed로 primary pool 생성. CVPR 2024. [spec](../docs/dashboard-task-specs/AR-045-momask-generator-acquisition.md) |
 | AR-020 | Evidence | H-2026-205 status `active`→`supported` 검토 | 🟠 | **사용자 승인 게이트** (AGENTS.md §3-11). snapshot≥2 + 12/12 재현 요건 충족 ([evals/reports/2026-06-01_g2_learned_vs_baseline.md](../../evals/reports/2026-06-01_g2_learned_vs_baseline.md)) |
 | AR-021 | RL-Q | g2_stress Stage 3 — continuous argmax 로 oracle headroom (d≈0.43) 회수 | 🟠 | FID 보존 조건. line search / Bayesian opt |
 | AR-023 | Perceptual | perceptual b2/b3 (3명+ inter-rater) — quality-validated evidence | ⚪ | 현재 b1 (GIF) 만. 사용자 작업 |
