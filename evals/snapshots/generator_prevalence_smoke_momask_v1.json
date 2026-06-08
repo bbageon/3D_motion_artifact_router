@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "generator_prevalence_smoke",
+  "board_id": "AR-022/AR-045 (preliminary smoke, pre-AR-048 protocol)",
+  "generator_id": "MoMask",
+  "n": 50,
+  "pool": "external_assets\\momask_generated_hml3d_test50_seed20260603",
+  "evidence_tier": [
+    "real-distribution evidence",
+    "smoke (small-n)"
+  ],
+  "thresholds": {
+    "artifact_SEV_LOW": {
+      "FootFloatingEvaluator": 0.05,
+      "BoneLengthEvaluator": 0.02,
+      "VelocityJitterEvaluator": 0.03
+    },
+    "physical_clean_p99": {
+      "PenetrateEvaluator": 0.0,
+      "FloatEvaluator": 0.7983539458952797,
+      "SkateEvaluator": 0.0,
+      "JerkSpikeEvaluator": 0.10556407202395618,
+      "BoneLengthCVEvaluator": 5.506674955074729e-06
+    },
+    "source": "AR-043 dataset_issue_prevalence_audit_v1 (동일 threshold)"
+  },
+  "artifact_prevalence": {
+    "FootFloatingEvaluator": 0.48,
+    "BoneLengthEvaluator": 0.66,
+    "VelocityJitterEvaluator": 0.06
+  },
+  "physical_above_clean_p99": {
+    "PenetrateEvaluator": 0.0,
+    "FloatEvaluator": 0.0,
+    "SkateEvaluator": 0.0,
+    "JerkSpikeEvaluator": 0.0,
+    "BoneLengthCVEvaluator": 1.0
+  },
+  "physical_nonzero_rate": {
+    "PenetrateEvaluator": 0.0,
+    "FloatEvaluator": 0.62,
+    "SkateEvaluator": 0.0,
+    "JerkSpikeEvaluator": 1.0,
+    "BoneLengthCVEvaluator": 1.0
+  },
+  "physical_mean": {
+    "PenetrateEvaluator": 0.0,
+    "FloatEvaluator": 0.0635,
+    "SkateEvaluator": 0.0,
+    "JerkSpikeEvaluator": 0.029323766390645954,
+    "BoneLengthCVEvaluator": 0.08529115531371646
+  },
+  "magnitude": {
+    "foot_skate_mean": 0.006714829572823945,
+    "accel_mean": 0.009085815933721833,
+    "float_mag_mean": 0.034373588707433345
+  },
+  "baseline_g2_natural": {
+    "artifact_prev": {
+      "FootFloatingEvaluator": 0.1,
+      "BoneLengthEvaluator": 0.84,
+      "VelocityJitterEvaluator": 0.04
+    },
+    "phys_above_p99": {
+      "PenetrateEvaluator": 0.0,
+      "FloatEvaluator": 0.0,
+      "SkateEvaluator": 0.0,
+      "JerkSpikeEvaluator": 0.0,
+      "BoneLengthCVEvaluator": 1.0
+    },
+    "foot_skate_mean": 0.0051,
+    "accel_mean": null,
+    "float_mag_mean": 0.0168
+  },
+  "caveat": "smoke n=50, n_frames=40, root-relative canonical. 동일 threshold 로 MotionGPT 대조. 본격은 stratified pool 후."
+}
