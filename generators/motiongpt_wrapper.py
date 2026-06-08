@@ -55,6 +55,8 @@ class MotionGPT_G2(Generator):
         checkpoint_path: Optional[Path] = None,
         conda_env: str = "mgpt",
         conda_exe: Optional[Path] = None,
+        backend: Optional[str] = None,
+        service_url: Optional[str] = None,
     ) -> None:
         """
         Args:
@@ -63,7 +65,20 @@ class MotionGPT_G2(Generator):
             checkpoint_path: 학습된 ckpt/tar 파일. None 이면 checkpoints/MotionGPT-base/ 자동 탐색.
             conda_env: MotionGPT 의존성 설치된 conda env 이름 (기본 'mgpt').
             conda_exe: conda 실행 파일. None 이면 자동 탐색.
+            backend: "conda" (기존 conda run) | "http" (docker 마이크로서비스).
+            service_url: http backend 시 서비스 base URL (None 이면 기본 localhost:8003).
         """
+        self.backend = backend or os.environ.get("ARTIFACTROUTER_GEN_BACKEND", "conda")
+        self.service_url = service_url
+        self.cfg_path = cfg_path
+        self.conda_env = conda_env
+
+        if self.backend == "http":
+            self.motiongpt_root = Path(motiongpt_root)
+            self.checkpoint_path = Path(checkpoint_path) if checkpoint_path else Path("__http__")
+            self.conda_exe = None
+            return
+
         motiongpt_root = Path(motiongpt_root)
         if not motiongpt_root.exists():
             raise FileNotFoundError(
@@ -72,13 +87,11 @@ class MotionGPT_G2(Generator):
                 "AGENTS.md §2-1 의 MotionGPT 설치 절차 참조."
             )
         self.motiongpt_root = motiongpt_root.resolve()
-        self.cfg_path = cfg_path
         self.checkpoint_path = (
             Path(checkpoint_path).resolve()
             if checkpoint_path is not None
             else self._find_checkpoint()
         )
-        self.conda_env = conda_env
         self.conda_exe = Path(conda_exe).resolve() if conda_exe else self._find_conda()
 
     def _find_checkpoint(self) -> Path:
@@ -156,6 +169,20 @@ class MotionGPT_G2(Generator):
         """
         if prompt is None:
             raise ValueError("MotionGPT (G2) requires a text prompt.")
+
+        if self.backend == "http":
+            from generators._http_client import generate_via_http, service_url
+            base = service_url("motiongpt", self.service_url)
+            motion, meta = generate_via_http(base, prompt, n_frames, seed)
+            return GeneratorOutput(
+                motion=motion,
+                fps=DEFAULT_FPS,
+                prompt=prompt,
+                generator_id=meta.get("generator_id", "G2_motiongpt"),
+                generator_class_hash=self._generator_class_hash(),
+                seed=seed,
+                metadata={"wrapper": "MotionGPT_G2", "backend": "http", "service_url": base, **meta},
+            )
 
         with tempfile.TemporaryDirectory() as tmpdir:
             out_npy = Path(tmpdir) / "motion.npy"

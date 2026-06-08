@@ -1,0 +1,75 @@
+# ArtifactRouter generator 서비스 (내부망 전용, GPU). 로컬 빌드/실행만.
+#   build : docker compose -f docker/compose.yaml build <svc>
+#   up    : docker compose -f docker/compose.yaml up -d <svc>
+# 포트:  MDM 8001 / MoMask 8002 / MotionGPT 8003  (컨테이너 내부는 8000)
+# checkpoint/upstream repo 는 host external_assets/ 를 read-only 마운트 (이미지에 안 굽음).
+services:
+  mdm:
+    build:
+      context: ..
+      dockerfile: docker/mdm/Dockerfile
+    image: artifactrouter/mdm:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - ../external_assets/motion-diffusion-model:/assets:ro
+      # dataset/HumanML3D/{new_joint_vecs,new_joints,texts} 는 host symlink → ../HumanML3D 라
+      # 컨테이너에서 깨진다. 실제 디렉토리를 덮어 마운트 (Mean/Std/test.txt 는 repo 원본 유지).
+      - ../external_assets/HumanML3D/new_joint_vecs:/assets/dataset/HumanML3D/new_joint_vecs:ro
+      - ../external_assets/HumanML3D/new_joints:/assets/dataset/HumanML3D/new_joints:ro
+      - ../external_assets/HumanML3D/texts:/assets/dataset/HumanML3D/texts:ro
+    environment:
+      - MDM_ASSETS=/assets
+      - MDM_GPU_ID=0
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  momask:
+    build:
+      context: ..
+      dockerfile: docker/momask/Dockerfile
+    image: artifactrouter/momask:latest
+    ports:
+      - "8002:8000"
+    volumes:
+      - ../external_assets/momask-codes:/assets:ro
+    environment:
+      - MOMASK_ASSETS=/assets
+      - MOMASK_GPU_ID=0
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+  motiongpt:
+    build:
+      context: ..
+      dockerfile: docker/motiongpt/Dockerfile
+    image: artifactrouter/motiongpt:latest
+    ports:
+      - "8003:8000"
+    volumes:
+      - ../external_assets/MotionGPT:/assets:ro
+      # host junction datasets/humanml3d -> ../HumanML3D 는 컨테이너에서 깨지므로 직접 마운트
+      - ../external_assets/HumanML3D:/assets/datasets/humanml3d:ro
+    environment:
+      - MGPT_ASSETS=/assets
+      - MGPT_GPU_ID=0
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
