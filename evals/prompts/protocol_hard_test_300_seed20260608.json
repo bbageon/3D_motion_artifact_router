@@ -1,0 +1,6047 @@
+{
+  "status": "complexity_challenge_candidate",
+  "primary_use": false,
+  "generated_motions": false,
+  "superseded_by": "protocol_rep_test_300_seed20260608 (representative primary)",
+  "limitations": [
+    "길이 편향: 180-199 frame = 248/300 (82.7%) → HumanML3D test 대표성 상실",
+    "rare = mean inverse-df, 캡션 오타/희귀단어에 민감",
+    "hardness top-N 선별 = selection bias → primary evidence 금지"
+  ],
+  "created_at_utc": "2026-06-08T12:33:16Z",
+  "board_id": "AR-049",
+  "record_type": "hard_tier_prompt_bank",
+  "split": "test",
+  "seed": 20260608,
+  "n_prompts": 300,
+  "n_candidates": 1761,
+  "hardness_definition": {
+    "axes": [
+      "compositional = #VERB + 2*#seq_marker",
+      "fine_grained = #body_part + #laterality",
+      "long = GT_length",
+      "rare = mean inverse-df of content words (candidate corpus)"
+    ],
+    "combination": "equal-weight sum of per-axis z-scores; select top-N (a-priori, generator-independent)",
+    "seq_markers": [
+      "then",
+      "while",
+      "before",
+      "after",
+      "until",
+      "once"
+    ],
+    "n_body_part_terms": 37,
+    "pre_registration": "generator 결과 확인 전 고정 (HARKing 방지, AGENTS §3-11 정신)"
+  },
+  "ar048_filters": "test split · full-motion(0.0/0.0) · mirror dedup(non-M) · GT exists · sentence dedup · GT len [40,200) · target=min(4floor(L/4),196)",
+  "filter_stats": {
+    "total_base": 2192,
+    "no_gt": 303,
+    "len_filtered": 93,
+    "no_full_caption": 0,
+    "dup_sentence": 35
+  },
+  "rows": [
+    {
+      "sample_id": "011823",
+      "prompt": "person raises right arm as if throwing something light into the air. they then return to center and picks up an item with both hands, brings it up to the right war and then back down and across to the left side of the waist. arms then reset to center and hang by waist, then proceed to pick up an item on the right and turn to the left to put down",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011823.npy",
+      "hardness": 13.578,
+      "hardness_breakdown": {
+        "comp_raw": 20,
+        "fine_raw": 11,
+        "long_raw": 199,
+        "rare_raw": 4.286,
+        "z": [
+          6.71,
+          5.6,
+          0.94,
+          0.32
+        ]
+      }
+    },
+    {
+      "sample_id": "013476",
+      "prompt": "person is dancing moving arms in a circle while alternating kicking feet. then while circling the arms the step to the right a few times. they jump to the right and then kick the left leg behind them, jump to the left and kick the right leg behind them",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013476.npy",
+      "hardness": 11.536,
+      "hardness_breakdown": {
+        "comp_raw": 17,
+        "fine_raw": 10,
+        "long_raw": 199,
+        "rare_raw": 4.029,
+        "z": [
+          5.51,
+          5.02,
+          0.94,
+          0.06
+        ]
+      }
+    },
+    {
+      "sample_id": "013597",
+      "prompt": "a person who is standing with legs spread apart and his arms away from his sides, steps forward with his right leg, looks to his right, then takes a step back with his right foot, a step back with his left foot, a step back with is right foot and a step back with his left foot.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013597.npy",
+      "hardness": 10.906,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 17,
+        "long_raw": 199,
+        "rare_raw": 3.32,
+        "z": [
+          1.53,
+          9.1,
+          0.94,
+          -0.67
+        ]
+      }
+    },
+    {
+      "sample_id": "007384",
+      "prompt": "the subject took a step back leading with the right leg in a clockwise semi-motion. it then put its hand out as if to shake hands to give a handshake putting the alternate hand on top of the first so shaking with both hands. the subject then pivoted their body towards the right taking another step while doing so in order to shake another hand, this time with just the one.",
+      "gt_length": 151,
+      "target_length": 148,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007384.npy",
+      "hardness": 10.815,
+      "hardness_breakdown": {
+        "comp_raw": 17,
+        "fine_raw": 9,
+        "long_raw": 151,
+        "rare_raw": 4.803,
+        "z": [
+          5.51,
+          4.44,
+          0.01,
+          0.85
+        ]
+      }
+    },
+    {
+      "sample_id": "004268",
+      "prompt": "a man touches his upper right arm with his left hand, then reaches the left hand forward, then touches his left hand to his right sholder and reaches the left hand forward again before lowering it to his left side.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004268.npy",
+      "hardness": 9.931,
+      "hardness_breakdown": {
+        "comp_raw": 11,
+        "fine_raw": 12,
+        "long_raw": 199,
+        "rare_raw": 3.659,
+        "z": [
+          3.12,
+          6.19,
+          0.94,
+          -0.32
+        ]
+      }
+    },
+    {
+      "sample_id": "005540",
+      "prompt": "a person with their hands by their sides jumps twice on their left leg while bending their right knee and then jumps twice on their right leg, they then jump twice on their right leg while bending their left knee.  they repeat this pattern of jumps one more time before stopping.",
+      "gt_length": 82,
+      "target_length": 80,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005540.npy",
+      "hardness": 9.826,
+      "hardness_breakdown": {
+        "comp_raw": 17,
+        "fine_raw": 11,
+        "long_raw": 82,
+        "rare_raw": 4.001,
+        "z": [
+          5.51,
+          5.6,
+          -1.32,
+          0.03
+        ]
+      }
+    },
+    {
+      "sample_id": "001003",
+      "prompt": "the person is walking forward using both their left and right hand for balance. their left and right hand are pressing down on something to help them walk. they put their right foot directly in front of the left and then the left directly in front of the right they stop walking and stand",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001003.npy",
+      "hardness": 9.488,
+      "hardness_breakdown": {
+        "comp_raw": 11,
+        "fine_raw": 11,
+        "long_raw": 199,
+        "rare_raw": 3.797,
+        "z": [
+          3.12,
+          5.6,
+          0.94,
+          -0.18
+        ]
+      }
+    },
+    {
+      "sample_id": "005407",
+      "prompt": "a person standing with arms wide open while spinning his/her hand in a circular motion while waving it. he/she then moves his elbow in a circular motion and then moving his waist in a circular motion and then kicking with his/her left and right foot.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005407.npy",
+      "hardness": 9.267,
+      "hardness_breakdown": {
+        "comp_raw": 16,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.913,
+        "z": [
+          5.12,
+          3.27,
+          0.94,
+          -0.06
+        ]
+      }
+    },
+    {
+      "sample_id": "011073",
+      "prompt": "a person takes one step forward, jumps into the air giving their right leg out; after landing they take another step forward, make a swift counter clockwise turn before taking a last step forward stopping to pose with the right arm extended perpendicular to the right of the body and the left hand held near the front of the lower torso.",
+      "gt_length": 130,
+      "target_length": 128,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011073.npy",
+      "hardness": 8.675,
+      "hardness_breakdown": {
+        "comp_raw": 15,
+        "fine_raw": 8,
+        "long_raw": 130,
+        "rare_raw": 4.459,
+        "z": [
+          4.72,
+          3.85,
+          -0.39,
+          0.5
+        ]
+      }
+    },
+    {
+      "sample_id": "004240",
+      "prompt": "person moves left then raises right arm then raises left arm then rasies both arms forward then raises left arm",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004240.npy",
+      "hardness": 8.39,
+      "hardness_breakdown": {
+        "comp_raw": 15,
+        "fine_raw": 8,
+        "long_raw": 199,
+        "rare_raw": 2.875,
+        "z": [
+          4.72,
+          3.85,
+          0.94,
+          -1.12
+        ]
+      }
+    },
+    {
+      "sample_id": "014252",
+      "prompt": "a person begins walking forward first with their left foot, taking wide awkward steps as if they are stepping around or over something; begins walking towards the right and then slowly continues to walk to the left, then continues to walk towards the right coming to a stop off to the right side.",
+      "gt_length": 192,
+      "target_length": 192,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014252.npy",
+      "hardness": 8.015,
+      "hardness_breakdown": {
+        "comp_raw": 15,
+        "fine_raw": 6,
+        "long_raw": 192,
+        "rare_raw": 3.781,
+        "z": [
+          4.72,
+          2.69,
+          0.81,
+          -0.2
+        ]
+      }
+    },
+    {
+      "sample_id": "014088",
+      "prompt": "a person who is standing with his knees bent and his hands on his thighs reaches up with both of his arms, holds his right arm up while his left arm drops, drops his right arm, then lifts both arms out from his sides again.",
+      "gt_length": 166,
+      "target_length": 164,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014088.npy",
+      "hardness": 7.802,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 11,
+        "long_raw": 166,
+        "rare_raw": 3.552,
+        "z": [
+          2.32,
+          5.6,
+          0.3,
+          -0.43
+        ]
+      }
+    },
+    {
+      "sample_id": "002635",
+      "prompt": "person stands with arms extended to their side then lower them then walk forward then  swing arms side to side then go to side swinging arms still then punches in front",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002635.npy",
+      "hardness": 7.658,
+      "hardness_breakdown": {
+        "comp_raw": 18,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.841,
+        "z": [
+          5.91,
+          0.94,
+          0.94,
+          -0.13
+        ]
+      }
+    },
+    {
+      "sample_id": "010616",
+      "prompt": "person brings right elbow to left knee, then left elbow to right knee, stands straight then bends at the knees a few times.",
+      "gt_length": 188,
+      "target_length": 188,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010616.npy",
+      "hardness": 7.017,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 9,
+        "long_raw": 188,
+        "rare_raw": 3.51,
+        "z": [
+          2.32,
+          4.44,
+          0.73,
+          -0.47
+        ]
+      }
+    },
+    {
+      "sample_id": "002784",
+      "prompt": "a person crosses his arms in an x-shape out in front of him and then quickly swings them to the side, brushes off is left leg with his left hand, and then raises his left hand as if to wave.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002784.npy",
+      "hardness": 6.877,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.915,
+        "z": [
+          2.72,
+          3.27,
+          0.94,
+          -0.06
+        ]
+      }
+    },
+    {
+      "sample_id": "010142",
+      "prompt": "man turn right hand inward and outward the reach to the left with both hands bring both back to the center and then left hand flip back and forth to rest in center.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010142.npy",
+      "hardness": 6.828,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 8,
+        "long_raw": 199,
+        "rare_raw": 4.467,
+        "z": [
+          1.53,
+          3.85,
+          0.94,
+          0.51
+        ]
+      }
+    },
+    {
+      "sample_id": "008851",
+      "prompt": "person put their blue color hand up and moves slightly forward on the blue colored leg. the knee of the blue colored leg bends lightly. red colored leg moves backwards and bends that knee. both hands go above the head and the person leans forward and makes the hands into a circle",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008851.npy",
+      "hardness": 6.719,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 9,
+        "long_raw": 199,
+        "rare_raw": 4.18,
+        "z": [
+          1.13,
+          4.44,
+          0.94,
+          0.21
+        ]
+      }
+    },
+    {
+      "sample_id": "009996",
+      "prompt": "a man holds his fingers close together. he brings his right up to his head, as though taking a phone call, then brings his fingers back together and fiddles with them, bobbing his head.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009996.npy",
+      "hardness": 6.616,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 5.01,
+        "z": [
+          1.92,
+          2.69,
+          0.94,
+          1.06
+        ]
+      }
+    },
+    {
+      "sample_id": "012492",
+      "prompt": "a person stands with legs shoulder-width apart, slightly bent at the knees, arms outstretched at shoulder height, lowers left arm for several seconds, then brings with arm back to shoulder height.",
+      "gt_length": 160,
+      "target_length": 160,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012492.npy",
+      "hardness": 6.46,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 10,
+        "long_raw": 160,
+        "rare_raw": 4.095,
+        "z": [
+          1.13,
+          5.02,
+          0.19,
+          0.12
+        ]
+      }
+    },
+    {
+      "sample_id": "010167",
+      "prompt": "a man stands in a squatting position while facing the camera, arms out wide to his left and right, then brings his arms down to his sides, and returns them to their outright position after pausing.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010167.npy",
+      "hardness": 6.399,
+      "hardness_breakdown": {
+        "comp_raw": 12,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.379,
+        "z": [
+          3.52,
+          1.52,
+          0.94,
+          0.42
+        ]
+      }
+    },
+    {
+      "sample_id": "006979",
+      "prompt": "starting from their left foot in the air, person stands ready with fists up then takes two swings with their right hand downward then two more high and to their right and finally two lefts downward mirroring the rights from before.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006979.npy",
+      "hardness": 6.353,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.543,
+        "z": [
+          2.72,
+          2.1,
+          0.94,
+          0.58
+        ]
+      }
+    },
+    {
+      "sample_id": "010698",
+      "prompt": "a person raises both hands and pushes outward, then return hands to a downward starting position. the person the puts both hands on hips, and return them to sides one more time before slightly crossing both arms.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010698.npy",
+      "hardness": 6.124,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.32,
+        "z": [
+          2.72,
+          2.1,
+          0.94,
+          0.36
+        ]
+      }
+    },
+    {
+      "sample_id": "006494",
+      "prompt": "a person walks forwards, places their left hand on something to support them, then bends their right  knee back and using their right hand holds their shoe, to inspect the sole of it.",
+      "gt_length": 172,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006494.npy",
+      "hardness": 5.947,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 7,
+        "long_raw": 172,
+        "rare_raw": 3.907,
+        "z": [
+          2.32,
+          3.27,
+          0.42,
+          -0.07
+        ]
+      }
+    },
+    {
+      "sample_id": "004037",
+      "prompt": "takes a step forward while right hand goes above the left hand in a circle motion and vice versa , then the right hand goes towards the head, and back down.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004037.npy",
+      "hardness": 5.936,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 8,
+        "long_raw": 199,
+        "rare_raw": 3.595,
+        "z": [
+          1.53,
+          3.85,
+          0.94,
+          -0.39
+        ]
+      }
+    },
+    {
+      "sample_id": "006123",
+      "prompt": "a person uses their right hands to move their right foot to rest against the last leg in a yoga pose, then repeats the same motion with the left leg.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006123.npy",
+      "hardness": 5.819,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 4.44,
+        "z": [
+          1.13,
+          3.27,
+          0.94,
+          0.48
+        ]
+      }
+    },
+    {
+      "sample_id": "006756",
+      "prompt": "a person stands with elbows bent and leans to the right at the waist oh, then to the left. then the person swings from the right to the left with arms outstretched.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006756.npy",
+      "hardness": 5.802,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.645,
+        "z": [
+          1.92,
+          3.27,
+          0.94,
+          -0.34
+        ]
+      }
+    },
+    {
+      "sample_id": "005531",
+      "prompt": "a person holds their arms out in a horizontal fasion and then begins to \"knod\" his head forward as if he was overlooking a crowd. they then step forward a few steps and start to knod their head again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005531.npy",
+      "hardness": 5.792,
+      "hardness_breakdown": {
+        "comp_raw": 11,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.746,
+        "z": [
+          3.12,
+          0.94,
+          0.94,
+          0.79
+        ]
+      }
+    },
+    {
+      "sample_id": "004102",
+      "prompt": "from a standing position, the person raises both arms above their head, crouches low, slowly swings their body from right to left while tilting their head, and then stand up and takes a step to their right",
+      "gt_length": 177,
+      "target_length": 176,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004102.npy",
+      "hardness": 5.729,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 6,
+        "long_raw": 177,
+        "rare_raw": 3.78,
+        "z": [
+          2.72,
+          2.69,
+          0.52,
+          -0.2
+        ]
+      }
+    },
+    {
+      "sample_id": "002223",
+      "prompt": "a person rotates both wrists, wiggles their right foot, wiggles their left foot, bends their knees, then finally sticks their arms out to the side.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002223.npy",
+      "hardness": 5.713,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.947,
+        "z": [
+          1.53,
+          3.27,
+          0.94,
+          -0.03
+        ]
+      }
+    },
+    {
+      "sample_id": "009399",
+      "prompt": "the figure has bent knees with legs apart and arms up my their side, the left one falls to the left side, stays their and then goes back up for both arms to fall.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009399.npy",
+      "hardness": 5.701,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.936,
+        "z": [
+          1.53,
+          3.27,
+          0.94,
+          -0.04
+        ]
+      }
+    },
+    {
+      "sample_id": "008692",
+      "prompt": "a person standing in a t pose, then proceeds to spin the right arm clockwise and then anti-clock wise ; then switches arms",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008692.npy",
+      "hardness": 5.696,
+      "hardness_breakdown": {
+        "comp_raw": 11,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.653,
+        "z": [
+          3.12,
+          0.94,
+          0.94,
+          0.7
+        ]
+      }
+    },
+    {
+      "sample_id": "007679",
+      "prompt": "a person takes a step forward then shuffles to the left. they take a step back and shuffle to the right. they do both motions again, then turn to the right before taking a step forward.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007679.npy",
+      "hardness": 5.672,
+      "hardness_breakdown": {
+        "comp_raw": 12,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.669,
+        "z": [
+          3.52,
+          1.52,
+          0.94,
+          -0.31
+        ]
+      }
+    },
+    {
+      "sample_id": "004906",
+      "prompt": "a man stands with his feet shoulder width apart.  he then picks up something from near the ground with his right hand.  he holds the object for a few moments and then turns and walks away to his left.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004906.npy",
+      "hardness": 5.617,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.825,
+        "z": [
+          2.72,
+          2.1,
+          0.94,
+          -0.15
+        ]
+      }
+    },
+    {
+      "sample_id": "000921",
+      "prompt": "person clasps both hands together then waves arms to side then goes down on right knee bent over ties something on feet then gets up",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000921.npy",
+      "hardness": 5.608,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.816,
+        "z": [
+          2.72,
+          2.1,
+          0.94,
+          -0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "005596",
+      "prompt": "a person stands with arms out partway to each side, lifts his right leg, swings it forward briefly, then sweeps it in a semicircle behind him before moving it forward and standing again; he then repeats the action.",
+      "gt_length": 171,
+      "target_length": 168,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005596.npy",
+      "hardness": 5.568,
+      "hardness_breakdown": {
+        "comp_raw": 13,
+        "fine_raw": 3,
+        "long_raw": 171,
+        "rare_raw": 4.277,
+        "z": [
+          3.92,
+          0.94,
+          0.4,
+          0.31
+        ]
+      }
+    },
+    {
+      "sample_id": "012668",
+      "prompt": "a man is standing still, puts his hands together and behind his back, then proceeds to lunge his hands forwards, as if he is fishing, then brings them back in",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012668.npy",
+      "hardness": 5.564,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.343,
+        "z": [
+          2.72,
+          1.52,
+          0.94,
+          0.38
+        ]
+      }
+    },
+    {
+      "sample_id": "009405",
+      "prompt": "a person walks forward and bends down and grabs his left knee in pain. he attempts to straighten up and walk forward and then bends down to grab his knee again. he then walks backward to his left.",
+      "gt_length": 138,
+      "target_length": 136,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009405.npy",
+      "hardness": 5.486,
+      "hardness_breakdown": {
+        "comp_raw": 13,
+        "fine_raw": 4,
+        "long_raw": 138,
+        "rare_raw": 4.252,
+        "z": [
+          3.92,
+          1.52,
+          -0.24,
+          0.29
+        ]
+      }
+    },
+    {
+      "sample_id": "000363",
+      "prompt": "a person marches in place while raising its arms, then it takes a break, then it starts running in place with raised arms.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000363.npy",
+      "hardness": 5.472,
+      "hardness_breakdown": {
+        "comp_raw": 12,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.613,
+        "z": [
+          3.52,
+          0.35,
+          0.94,
+          0.66
+        ]
+      }
+    },
+    {
+      "sample_id": "005106",
+      "prompt": "a person is bent over with their arms around a dog.  they bounce around, let the dog stand up and pet it.  they let the dog sit down, look around, and lift the dog up momentarily before putting him back down to their original position.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005106.npy",
+      "hardness": 5.406,
+      "hardness_breakdown": {
+        "comp_raw": 11,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.939,
+        "z": [
+          3.12,
+          0.35,
+          0.94,
+          0.99
+        ]
+      }
+    },
+    {
+      "sample_id": "001009",
+      "prompt": "person bends to pick up something approximately knee high on right side with right hand. he rotates to the left and takes that object and rubs it against something before returning it.",
+      "gt_length": 194,
+      "target_length": 192,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001009.npy",
+      "hardness": 5.321,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 5,
+        "long_raw": 194,
+        "rare_raw": 4.02,
+        "z": [
+          2.32,
+          2.1,
+          0.85,
+          0.05
+        ]
+      }
+    },
+    {
+      "sample_id": "010874",
+      "prompt": "a man brings his hands down to his thighs, standing with his knees bent, before extending his arms to either side and then bringing them back down to his thighs.",
+      "gt_length": 177,
+      "target_length": 176,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010874.npy",
+      "hardness": 5.251,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 6,
+        "long_raw": 177,
+        "rare_raw": 4.092,
+        "z": [
+          1.92,
+          2.69,
+          0.52,
+          0.12
+        ]
+      }
+    },
+    {
+      "sample_id": "002093",
+      "prompt": "a standing person is swaying gently back and forth as he holds his left hand to the left side of his head for a moment. he drops his arm, briefly, then raises it to look at his hand.",
+      "gt_length": 148,
+      "target_length": 148,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002093.npy",
+      "hardness": 5.209,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 7,
+        "long_raw": 148,
+        "rare_raw": 4.029,
+        "z": [
+          1.92,
+          3.27,
+          -0.04,
+          0.06
+        ]
+      }
+    },
+    {
+      "sample_id": "007715",
+      "prompt": "a person leans forward with their right hand as if to pick something up, walks to the left, turns right, and leans to pick something up again, then moves right arm as if to wipe something.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007715.npy",
+      "hardness": 5.189,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 2.836,
+        "z": [
+          2.72,
+          2.69,
+          0.94,
+          -1.16
+        ]
+      }
+    },
+    {
+      "sample_id": "011144",
+      "prompt": "someone is posing woth their right leg out straight, their right are bent 90 degrees, and their left arm fully extended with their left hand anove their head.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011144.npy",
+      "hardness": 5.177,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 8,
+        "long_raw": 199,
+        "rare_raw": 4.412,
+        "z": [
+          -0.07,
+          3.85,
+          0.94,
+          0.45
+        ]
+      }
+    },
+    {
+      "sample_id": "002192",
+      "prompt": "a man walks forward for a short time, turns slightly to the right to meet back at his starting point then continues forward for a short time and turns left heading back to starting point to create a figure 8.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002192.npy",
+      "hardness": 5.124,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.302,
+        "z": [
+          2.32,
+          1.52,
+          0.94,
+          0.34
+        ]
+      }
+    },
+    {
+      "sample_id": "011785",
+      "prompt": "a person steps forward with their right foot, then steps with their left foot, does a 180 degree turn to the left on their left foot, steps forward with their right foot and left again.",
+      "gt_length": 123,
+      "target_length": 120,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011785.npy",
+      "hardness": 5.077,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 10,
+        "long_raw": 123,
+        "rare_raw": 3.053,
+        "z": [
+          1.53,
+          5.02,
+          -0.53,
+          -0.94
+        ]
+      }
+    },
+    {
+      "sample_id": "007559",
+      "prompt": "a person is walking, turns back and to their left, proceeds to walk again, trips, then turns back once more, limping now.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007559.npy",
+      "hardness": 5.065,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.425,
+        "z": [
+          2.72,
+          0.94,
+          0.94,
+          0.46
+        ]
+      }
+    },
+    {
+      "sample_id": "000348",
+      "prompt": "a person kicks their right leg up twice while hopping between feet, then punches their right arm",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000348.npy",
+      "hardness": 5.038,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.428,
+        "z": [
+          1.53,
+          2.1,
+          0.94,
+          0.47
+        ]
+      }
+    },
+    {
+      "sample_id": "005818",
+      "prompt": "a man gets up from the ground pushing off with his left hand then walks in a counter clockwise circle back to where he began then lays down flat on the ground on his back.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005818.npy",
+      "hardness": 5.024,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.205,
+        "z": [
+          2.32,
+          1.52,
+          0.94,
+          0.24
+        ]
+      }
+    },
+    {
+      "sample_id": "008144",
+      "prompt": "the person leans on the right then left and then grabs something on the ground. they wipe something on the right hand side. they do a twisting motion like a doorknob and set an item down on the left side on the ground",
+      "gt_length": 176,
+      "target_length": 176,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008144.npy",
+      "hardness": 5.004,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 5,
+        "long_raw": 176,
+        "rare_raw": 4.051,
+        "z": [
+          2.32,
+          2.1,
+          0.5,
+          0.08
+        ]
+      }
+    },
+    {
+      "sample_id": "013255",
+      "prompt": "person makes action of stuffing something into an object, bends over to put the object down before walking forward to bend over and pick up another object and place it a little bit to the left and then returns to original spot.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013255.npy",
+      "hardness": 4.992,
+      "hardness_breakdown": {
+        "comp_raw": 13,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.326,
+        "z": [
+          3.92,
+          -0.23,
+          0.94,
+          0.36
+        ]
+      }
+    },
+    {
+      "sample_id": "007706",
+      "prompt": "person jumps to the right, then jumps to the left, then turns around and walks back to the start before jumping once again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007706.npy",
+      "hardness": 4.93,
+      "hardness_breakdown": {
+        "comp_raw": 13,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.124,
+        "z": [
+          3.92,
+          0.94,
+          0.94,
+          -0.87
+        ]
+      }
+    },
+    {
+      "sample_id": "003365",
+      "prompt": "a person steps back putting hands on hips then steps forward with the right leg then turns in a circle and steps with left leg forward.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003365.npy",
+      "hardness": 4.921,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 2.784,
+        "z": [
+          1.92,
+          3.27,
+          0.94,
+          -1.22
+        ]
+      }
+    },
+    {
+      "sample_id": "012561",
+      "prompt": "peron moves forward with arms shoulder height then fully turns arms to the back and moves further forward then turns to side and moves back quickly",
+      "gt_length": 168,
+      "target_length": 168,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012561.npy",
+      "hardness": 4.915,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 5,
+        "long_raw": 168,
+        "rare_raw": 4.115,
+        "z": [
+          2.32,
+          2.1,
+          0.34,
+          0.15
+        ]
+      }
+    },
+    {
+      "sample_id": "012527",
+      "prompt": "a person walking forward steps up onto something and then steps down off the other side, then again up onto something and down the other side, then turns right and walks forward, then turns right again and steps up onto something.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012527.npy",
+      "hardness": 4.824,
+      "hardness_breakdown": {
+        "comp_raw": 15,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 2.811,
+        "z": [
+          4.72,
+          0.35,
+          0.94,
+          -1.19
+        ]
+      }
+    },
+    {
+      "sample_id": "013610",
+      "prompt": "a man stretches his arms up with his hands touching, then stretches his arms to the sides towards left, shrugs, and then stretches arms up again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013610.npy",
+      "hardness": 4.795,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.801,
+        "z": [
+          1.92,
+          2.1,
+          0.94,
+          -0.18
+        ]
+      }
+    },
+    {
+      "sample_id": "006888",
+      "prompt": "a man turns to his left, walks forward, reaches out for something with his right hand, turns around counterclockwise, walks back, and then turns once again counterclockwise and walks.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006888.npy",
+      "hardness": 4.787,
+      "hardness_breakdown": {
+        "comp_raw": 12,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 2.804,
+        "z": [
+          3.52,
+          1.52,
+          0.94,
+          -1.2
+        ]
+      }
+    },
+    {
+      "sample_id": "005759",
+      "prompt": "a person is lifting their right arm waving his hand then raising it above his shoulder while swaying back and forth.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005759.npy",
+      "hardness": 4.731,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.739,
+        "z": [
+          1.92,
+          2.1,
+          0.94,
+          -0.24
+        ]
+      }
+    },
+    {
+      "sample_id": "010557",
+      "prompt": "person puts hands on head then chest then knees then toes",
+      "gt_length": 169,
+      "target_length": 168,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010557.npy",
+      "hardness": 4.711,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 5,
+        "long_raw": 169,
+        "rare_raw": 3.897,
+        "z": [
+          2.32,
+          2.1,
+          0.36,
+          -0.08
+        ]
+      }
+    },
+    {
+      "sample_id": "004331",
+      "prompt": "someone dusts a picture hanging on the wall with a cloth in their right hand, steadies the picture with their left hand, then finishes dusting it, and finally dusts all the way around the sides of the frame.",
+      "gt_length": 144,
+      "target_length": 144,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004331.npy",
+      "hardness": 4.686,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 4,
+        "long_raw": 144,
+        "rare_raw": 5.304,
+        "z": [
+          1.92,
+          1.52,
+          -0.12,
+          1.36
+        ]
+      }
+    },
+    {
+      "sample_id": "009877",
+      "prompt": "a man steps forward, then picks something up with his right hand, then with his right hand, brings them close together, and sets them back down in the same order.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009877.npy",
+      "hardness": 4.676,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.684,
+        "z": [
+          1.92,
+          2.1,
+          0.94,
+          -0.3
+        ]
+      }
+    },
+    {
+      "sample_id": "012143",
+      "prompt": "a man sidesteps suddenly to his right, bumps into something and leans over, looks around, then walks to his right, bumping into something else and once more leaning over.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012143.npy",
+      "hardness": 4.649,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.59,
+        "z": [
+          2.72,
+          0.35,
+          0.94,
+          0.63
+        ]
+      }
+    },
+    {
+      "sample_id": "008291",
+      "prompt": "a person picks up a cloth with his right hand, turns on a faucet with his left hand, and then washes something using his right hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008291.npy",
+      "hardness": 4.638,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 3.857,
+        "z": [
+          1.13,
+          2.69,
+          0.94,
+          -0.12
+        ]
+      }
+    },
+    {
+      "sample_id": "002168",
+      "prompt": "a person stands up straight from a bent over position, touches his head with his left arm, then bends his torso to the right and swings forward with his arms dangling in front of him. i",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002168.npy",
+      "hardness": 4.627,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 3.456,
+        "z": [
+          1.53,
+          2.69,
+          0.94,
+          -0.53
+        ]
+      }
+    },
+    {
+      "sample_id": "004424",
+      "prompt": "someone steps back with their right foot and then sits down while placing his hands on his knees with elbows out.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004424.npy",
+      "hardness": 4.606,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 3.435,
+        "z": [
+          1.53,
+          2.69,
+          0.94,
+          -0.55
+        ]
+      }
+    },
+    {
+      "sample_id": "005674",
+      "prompt": "a person sits down, jiggles his right knee, raises both hands quickly to his shoulders then rubs his stomach with his left hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005674.npy",
+      "hardness": 4.596,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 3.815,
+        "z": [
+          1.13,
+          2.69,
+          0.94,
+          -0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "002108",
+      "prompt": "person moves left foot infront to side then moves right foot  leading body to stand side on on opposite side of square",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002108.npy",
+      "hardness": 4.581,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.162,
+        "z": [
+          1.92,
+          1.52,
+          0.94,
+          0.19
+        ]
+      }
+    },
+    {
+      "sample_id": "008139",
+      "prompt": "a person rubs his upper body and right arm in a counterclockwise motion with his left hand and then rubs his left-arm in a counterclockwise motion with his right hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008139.npy",
+      "hardness": 4.569,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 8,
+        "long_raw": 199,
+        "rare_raw": 3.429,
+        "z": [
+          0.33,
+          3.85,
+          0.94,
+          -0.56
+        ]
+      }
+    },
+    {
+      "sample_id": "010703",
+      "prompt": "hands are on the knees, hands go to the chest in a scratching motion, and then hands go back down to the knees.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010703.npy",
+      "hardness": 4.531,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.961,
+        "z": [
+          0.33,
+          3.27,
+          0.94,
+          -0.01
+        ]
+      }
+    },
+    {
+      "sample_id": "012240",
+      "prompt": "a person bends down to their left side, then takes their left hand and places it on their right arm, and finally bends back down to the left with both hands.",
+      "gt_length": 185,
+      "target_length": 184,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012240.npy",
+      "hardness": 4.526,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 8,
+        "long_raw": 185,
+        "rare_raw": 2.872,
+        "z": [
+          1.13,
+          3.85,
+          0.67,
+          -1.13
+        ]
+      }
+    },
+    {
+      "sample_id": "001428",
+      "prompt": "a person, showing both hands holding nothing, waves his right hand then pulls something out of his left hand and throws it into the air.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001428.npy",
+      "hardness": 4.423,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.827,
+        "z": [
+          1.53,
+          2.1,
+          0.94,
+          -0.15
+        ]
+      }
+    },
+    {
+      "sample_id": "011863",
+      "prompt": "a man stands with his legs parted and slowly rotates his upper torso a few times, then starts to rotate his hips.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011863.npy",
+      "hardness": 4.399,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.944,
+        "z": [
+          1.53,
+          0.94,
+          0.94,
+          0.99
+        ]
+      }
+    },
+    {
+      "sample_id": "003339",
+      "prompt": "a man brings arms and hands together, sways left to right, brings his right arm down and then back up again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003339.npy",
+      "hardness": 4.374,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 7,
+        "long_raw": 199,
+        "rare_raw": 3.028,
+        "z": [
+          1.13,
+          3.27,
+          0.94,
+          -0.97
+        ]
+      }
+    },
+    {
+      "sample_id": "004206",
+      "prompt": "a person stretches their leg by lunging back and forth on it, stretches their arms one at a time by lifting them and bending at the waist in the opposite direction, then finally walks forward.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004206.npy",
+      "hardness": 4.339,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.925,
+        "z": [
+          1.92,
+          1.52,
+          0.94,
+          -0.05
+        ]
+      }
+    },
+    {
+      "sample_id": "013154",
+      "prompt": "a man steps forward, then brushes something at knee height with his right arm, then steps back and stretches his arms out to either side.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013154.npy",
+      "hardness": 4.332,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.348,
+        "z": [
+          1.92,
+          2.1,
+          0.94,
+          -0.64
+        ]
+      }
+    },
+    {
+      "sample_id": "005152",
+      "prompt": "a person stands with their knees slightly bent and their hands pulled toward their chest, twists to one side then the other side, squats further, and stands back up.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005152.npy",
+      "hardness": 4.298,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.275,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          0.31
+        ]
+      }
+    },
+    {
+      "sample_id": "000076",
+      "prompt": "man reaches down to the left as to pick up item and then reaches to the right as if emptying item then replaces it to the left.",
+      "gt_length": 172,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000076.npy",
+      "hardness": 4.259,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 3,
+        "long_raw": 172,
+        "rare_raw": 4.539,
+        "z": [
+          2.32,
+          0.94,
+          0.42,
+          0.58
+        ]
+      }
+    },
+    {
+      "sample_id": "004749",
+      "prompt": "a man twists his neck,moves his arms up and downs one after the other,and then makes a circular  hand motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004749.npy",
+      "hardness": 4.186,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.346,
+        "z": [
+          1.92,
+          0.94,
+          0.94,
+          0.38
+        ]
+      }
+    },
+    {
+      "sample_id": "004439",
+      "prompt": "a person walks from the left hand side to the right hand side in a waving path and then stops while facing towards the right.",
+      "gt_length": 195,
+      "target_length": 192,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004439.npy",
+      "hardness": 4.115,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 195,
+        "rare_raw": 3.212,
+        "z": [
+          1.92,
+          2.1,
+          0.87,
+          -0.78
+        ]
+      }
+    },
+    {
+      "sample_id": "000178",
+      "prompt": "someone walks backward beginning with the left foot while progressively swinging the left arm back and forth harder and harder with each swing.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000178.npy",
+      "hardness": 4.103,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.294,
+        "z": [
+          0.73,
+          2.1,
+          0.94,
+          0.33
+        ]
+      }
+    },
+    {
+      "sample_id": "002656",
+      "prompt": "a person pers someing with right hand then scratches something with left have and then steps backwards",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002656.npy",
+      "hardness": 4.015,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.179,
+        "z": [
+          1.92,
+          0.94,
+          0.94,
+          0.21
+        ]
+      }
+    },
+    {
+      "sample_id": "008598",
+      "prompt": "a person plays the air drums while standing, starting with the center drums, moving to the left and then all the way back to the right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008598.npy",
+      "hardness": 4.015,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.179,
+        "z": [
+          1.92,
+          0.94,
+          0.94,
+          0.21
+        ]
+      }
+    },
+    {
+      "sample_id": "013339",
+      "prompt": "a person raises both hands to chest level out in front of them makes a swatting motion with right hand for five seconds and then a single swatting motion with their right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013339.npy",
+      "hardness": 4.009,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.202,
+        "z": [
+          0.73,
+          2.1,
+          0.94,
+          0.24
+        ]
+      }
+    },
+    {
+      "sample_id": "004708",
+      "prompt": "the person steps a little wider than shoulder width apart first with their right foot, then with their left before squatting 4 times.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004708.npy",
+      "hardness": 3.988,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.362,
+        "z": [
+          1.13,
+          1.52,
+          0.94,
+          0.4
+        ]
+      }
+    },
+    {
+      "sample_id": "005920",
+      "prompt": "a man rope skipping and then remove the footwear and then rope skip again",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005920.npy",
+      "hardness": 3.984,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.639,
+        "z": [
+          1.13,
+          -0.81,
+          0.94,
+          2.73
+        ]
+      }
+    },
+    {
+      "sample_id": "007171",
+      "prompt": "a standing person leans forward and down then back up placing both their hand up infornt of their chest then elaning forward and down",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007171.npy",
+      "hardness": 3.946,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.111,
+        "z": [
+          1.92,
+          0.94,
+          0.94,
+          0.14
+        ]
+      }
+    },
+    {
+      "sample_id": "003541",
+      "prompt": "a person is dancing by putting their arms out making a t-pose and rotating their wrists, then moves their legs up and out one at a time.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003541.npy",
+      "hardness": 3.926,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.482,
+        "z": [
+          1.53,
+          0.94,
+          0.94,
+          0.52
+        ]
+      }
+    },
+    {
+      "sample_id": "007454",
+      "prompt": "a person waves with his right hand two times then stops, touching his left shoulder with his left hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007454.npy",
+      "hardness": 3.917,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 3.542,
+        "z": [
+          0.73,
+          2.69,
+          0.94,
+          -0.44
+        ]
+      }
+    },
+    {
+      "sample_id": "001738",
+      "prompt": "a person taps his right hand in the air twice. they then make a rowing movement on each side of their body and then outline a cloud infront of them",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001738.npy",
+      "hardness": 3.915,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 5.041,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          1.09
+        ]
+      }
+    },
+    {
+      "sample_id": "009645",
+      "prompt": "a person walks diagonally and raises arms in a t pose and seems to be balancing on a wide beam. then stops and drops arms to side.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009645.npy",
+      "hardness": 3.898,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.245,
+        "z": [
+          2.32,
+          0.35,
+          0.94,
+          0.28
+        ]
+      }
+    },
+    {
+      "sample_id": "012498",
+      "prompt": "pretend to hold a ball in your right hand, toss the ball upward and kick it with your right foot as it falls toward your foot. take steps forward and keep going out of the area.",
+      "gt_length": 90,
+      "target_length": 88,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012498.npy",
+      "hardness": 3.889,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 90,
+        "rare_raw": 4.977,
+        "z": [
+          1.92,
+          2.1,
+          -1.17,
+          1.03
+        ]
+      }
+    },
+    {
+      "sample_id": "008052",
+      "prompt": "a person delivers pizza, receives money, then waves goodbye",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008052.npy",
+      "hardness": 3.884,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.931,
+        "z": [
+          0.73,
+          -0.81,
+          0.94,
+          3.03
+        ]
+      }
+    },
+    {
+      "sample_id": "001380",
+      "prompt": "a person bent slightly over and picked something up with right hand and turned to right and  shaking item, looks as if is cooking and adding items to a pot of water.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001380.npy",
+      "hardness": 3.851,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.798,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          0.84
+        ]
+      }
+    },
+    {
+      "sample_id": "002459",
+      "prompt": "a person lowers the right hand bending down slightly to examine something, then straightens and raises something to his face with the left hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002459.npy",
+      "hardness": 3.83,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.818,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          -0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "013075",
+      "prompt": "person rolls his arms are boxing, then lift arms like celebrating, and push off to sides",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013075.npy",
+      "hardness": 3.828,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.957,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          1.01
+        ]
+      }
+    },
+    {
+      "sample_id": "004574",
+      "prompt": "a person moves his right arm outward, whilst his other arm is near their hip. the person then makes a shovelling movement with both their hands.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004574.npy",
+      "hardness": 3.828,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.415,
+        "z": [
+          0.33,
+          2.1,
+          0.94,
+          0.45
+        ]
+      }
+    },
+    {
+      "sample_id": "004276",
+      "prompt": "a person raises both hands, then just left, then right, then left again",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004276.npy",
+      "hardness": 3.819,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.027,
+        "z": [
+          2.32,
+          1.52,
+          0.94,
+          -0.97
+        ]
+      }
+    },
+    {
+      "sample_id": "004707",
+      "prompt": "the figure curls its arms outwards from its chest, it lowers its arms in the motion towards its groin and then raises them upwards at head level.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004707.npy",
+      "hardness": 3.805,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.573,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          0.61
+        ]
+      }
+    },
+    {
+      "sample_id": "004605",
+      "prompt": "a person steps forward with their left foot, then walks backwards and to the left and steps back with their right foot, then repeats the motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004605.npy",
+      "hardness": 3.788,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 2.636,
+        "z": [
+          1.53,
+          2.69,
+          0.94,
+          -1.37
+        ]
+      }
+    },
+    {
+      "sample_id": "009022",
+      "prompt": "a person holds their left foot, then bends down to hold it before standing up to balance on one foot.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009022.npy",
+      "hardness": 3.786,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.565,
+        "z": [
+          2.32,
+          0.94,
+          0.94,
+          -0.42
+        ]
+      }
+    },
+    {
+      "sample_id": "013632",
+      "prompt": "a person shakes arms to lossen up then walks backwads, then moves forward with the right arm in a swiming motion",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013632.npy",
+      "hardness": 3.778,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.947,
+        "z": [
+          1.92,
+          0.94,
+          0.94,
+          -0.03
+        ]
+      }
+    },
+    {
+      "sample_id": "007625",
+      "prompt": "a person who is prone pushes himself up off the ground using his arms and propping himself with his knees before standing awkwardly in a ready to wrestle position.",
+      "gt_length": 197,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007625.npy",
+      "hardness": 3.759,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 197,
+        "rare_raw": 4.927,
+        "z": [
+          1.53,
+          0.35,
+          0.9,
+          0.98
+        ]
+      }
+    },
+    {
+      "sample_id": "000865",
+      "prompt": "the person is preforming a swimming stroke know as the butterfly stroke.  the arms swing from behind the head and reenter the water propelling the person forward.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000865.npy",
+      "hardness": 3.744,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 5.654,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          1.72
+        ]
+      }
+    },
+    {
+      "sample_id": "004945",
+      "prompt": "person is bent down trying to pick up stuff, left arm is moved to the back, picks up more stuff and touches back again while bending down",
+      "gt_length": 149,
+      "target_length": 148,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004945.npy",
+      "hardness": 3.717,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 4,
+        "long_raw": 149,
+        "rare_raw": 4.264,
+        "z": [
+          1.92,
+          1.52,
+          -0.02,
+          0.3
+        ]
+      }
+    },
+    {
+      "sample_id": "000486",
+      "prompt": "a person walks with arms flapping then brings arms to the front and bends elbows and wrists.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000486.npy",
+      "hardness": 3.711,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.091,
+        "z": [
+          1.13,
+          1.52,
+          0.94,
+          0.12
+        ]
+      }
+    },
+    {
+      "sample_id": "010996",
+      "prompt": "a person stands on his left leg, swings his right leg out to the side, back, and then he returns to a two-legged standing position.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010996.npy",
+      "hardness": 3.619,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.431,
+        "z": [
+          1.13,
+          2.1,
+          0.94,
+          -0.55
+        ]
+      }
+    },
+    {
+      "sample_id": "001801",
+      "prompt": "a person bends at the waist, outstretching both arms to reach to the right, then the left, then straight in front of them",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001801.npy",
+      "hardness": 3.611,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.604,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          -0.38
+        ]
+      }
+    },
+    {
+      "sample_id": "009432",
+      "prompt": "a figure is laying on the ground then rolls into a sit, then into being on all fours, then to standing",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009432.npy",
+      "hardness": 3.609,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.103,
+        "z": [
+          2.32,
+          -0.81,
+          0.94,
+          1.16
+        ]
+      }
+    },
+    {
+      "sample_id": "004851",
+      "prompt": "a person bends down to pick something up with their right arm, sets it down with their left arm, and then starts to pour something into it.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004851.npy",
+      "hardness": 3.597,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.59,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          -0.39
+        ]
+      }
+    },
+    {
+      "sample_id": "004975",
+      "prompt": "a man shrugs his shoulders then takes a step back before waving with his right hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004975.npy",
+      "hardness": 3.59,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.583,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          -0.4
+        ]
+      }
+    },
+    {
+      "sample_id": "008207",
+      "prompt": "a person first waves both their left and right hands at the same time and after kicks his right foot to his right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008207.npy",
+      "hardness": 3.581,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 3.603,
+        "z": [
+          0.33,
+          2.69,
+          0.94,
+          -0.38
+        ]
+      }
+    },
+    {
+      "sample_id": "006420",
+      "prompt": "a figure spins rapidly with arms outstretched then adjusts sleeves",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006420.npy",
+      "hardness": 3.576,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.67,
+        "z": [
+          1.13,
+          -0.23,
+          0.94,
+          1.74
+        ]
+      }
+    },
+    {
+      "sample_id": "001005",
+      "prompt": "a person touches each elbow to the opposite knee then spreads his legs and starts to do squats.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001005.npy",
+      "hardness": 3.56,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.904,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          0.95
+        ]
+      }
+    },
+    {
+      "sample_id": "004455",
+      "prompt": "a person jogs in place, slowly at first, then increases speed. they then back up and squat down.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004455.npy",
+      "hardness": 3.552,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.867,
+        "z": [
+          1.92,
+          -0.23,
+          0.94,
+          0.92
+        ]
+      }
+    },
+    {
+      "sample_id": "006575",
+      "prompt": "a person is standing straight with their arms bowed forward, twisting their hips right and stretching their right arm in the process.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006575.npy",
+      "hardness": 3.527,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 4.121,
+        "z": [
+          0.33,
+          2.1,
+          0.94,
+          0.15
+        ]
+      }
+    },
+    {
+      "sample_id": "000519",
+      "prompt": "person uses right hand to hold and moves an item in a circular motion then grabs something with left hand and moves item in circular motion in front of them again",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000519.npy",
+      "hardness": 3.471,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.467,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          -0.52
+        ]
+      }
+    },
+    {
+      "sample_id": "010563",
+      "prompt": "a person lifts their left arm up, twitches a bit, then brings their right arm up while putting their left arm down.",
+      "gt_length": 90,
+      "target_length": 88,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010563.npy",
+      "hardness": 3.456,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 6,
+        "long_raw": 90,
+        "rare_raw": 3.984,
+        "z": [
+          1.92,
+          2.69,
+          -1.17,
+          0.01
+        ]
+      }
+    },
+    {
+      "sample_id": "007191",
+      "prompt": "a person raised the right hand, and moved it right and left direction and after raised both hands",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007191.npy",
+      "hardness": 3.444,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.26,
+        "z": [
+          1.13,
+          2.1,
+          0.94,
+          -0.73
+        ]
+      }
+    },
+    {
+      "sample_id": "007597",
+      "prompt": "the figure raises its left arm and makes reaching motions as if grabbing for something, and then extends its arms twice.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007597.npy",
+      "hardness": 3.427,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.994,
+        "z": [
+          1.53,
+          0.94,
+          0.94,
+          0.02
+        ]
+      }
+    },
+    {
+      "sample_id": "001437",
+      "prompt": "the person turns to their left and begins walking up what seem to be 3 stair steps. after the third step the person turns around and takes one step back down.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001437.npy",
+      "hardness": 3.425,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.173,
+        "z": [
+          1.92,
+          0.35,
+          0.94,
+          0.2
+        ]
+      }
+    },
+    {
+      "sample_id": "001772",
+      "prompt": "a person walks up to shake with their right hand, turns slightly right to shake again, and turns right again to shake for a final time.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001772.npy",
+      "hardness": 3.418,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.805,
+        "z": [
+          1.13,
+          1.52,
+          0.94,
+          -0.17
+        ]
+      }
+    },
+    {
+      "sample_id": "005465",
+      "prompt": "a man with his hands over his head turns left and right, then bends to the side left and right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005465.npy",
+      "hardness": 3.415,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 6,
+        "long_raw": 199,
+        "rare_raw": 2.661,
+        "z": [
+          1.13,
+          2.69,
+          0.94,
+          -1.34
+        ]
+      }
+    },
+    {
+      "sample_id": "003823",
+      "prompt": "person scatches head and armpit like a monkey then pretends to hold a baby",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003823.npy",
+      "hardness": 3.414,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.901,
+        "z": [
+          0.73,
+          -0.23,
+          0.94,
+          1.97
+        ]
+      }
+    },
+    {
+      "sample_id": "005052",
+      "prompt": "man stands holding both arms up at his sides at a right anglefor 7 seconds then brings both hands down together to his left side and squeezed an object.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005052.npy",
+      "hardness": 3.372,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.76,
+        "z": [
+          1.13,
+          1.52,
+          0.94,
+          -0.22
+        ]
+      }
+    },
+    {
+      "sample_id": "000717",
+      "prompt": "person turns around from front to rear and whilst holding his hand and arm stomach level then turns around again and goes to original position",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000717.npy",
+      "hardness": 3.359,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.108,
+        "z": [
+          1.92,
+          0.35,
+          0.94,
+          0.14
+        ]
+      }
+    },
+    {
+      "sample_id": "010116",
+      "prompt": "a man energetically backsteps, then turns to his right and walks forward, then backsteps again, keeping a spring in his step.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010116.npy",
+      "hardness": 3.35,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.28,
+        "z": [
+          2.32,
+          -0.23,
+          0.94,
+          0.31
+        ]
+      }
+    },
+    {
+      "sample_id": "007695",
+      "prompt": "the body paces back and forth, then lifts the right arm in the air, and continues to pace back and forth.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007695.npy",
+      "hardness": 3.328,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.717,
+        "z": [
+          1.13,
+          1.52,
+          0.94,
+          -0.26
+        ]
+      }
+    },
+    {
+      "sample_id": "004095",
+      "prompt": "person squats with knees facing inwards then stands up and quickly jogs  before stopping",
+      "gt_length": 185,
+      "target_length": 184,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004095.npy",
+      "hardness": 3.293,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 1,
+        "long_raw": 185,
+        "rare_raw": 4.488,
+        "z": [
+          2.32,
+          -0.23,
+          0.67,
+          0.53
+        ]
+      }
+    },
+    {
+      "sample_id": "006442",
+      "prompt": "a person puts their hands on their hips then checks the time on their left wrist.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006442.npy",
+      "hardness": 3.283,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.453,
+        "z": [
+          0.33,
+          1.52,
+          0.94,
+          0.49
+        ]
+      }
+    },
+    {
+      "sample_id": "006648",
+      "prompt": "the person fills the glass with water then pours it into the plant pot",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006648.npy",
+      "hardness": 3.262,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.713,
+        "z": [
+          0.33,
+          -0.81,
+          0.94,
+          2.8
+        ]
+      }
+    },
+    {
+      "sample_id": "011673",
+      "prompt": "subject is sitting flat on the ground feat straight in front then the subject stands straight up then sits back down with feet straight out in front again",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011673.npy",
+      "hardness": 3.245,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.387,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          0.42
+        ]
+      }
+    },
+    {
+      "sample_id": "005522",
+      "prompt": "a person walks forward, crouches down to pick something up, turns around and walks back where they came from, then turn around again and walk to set the item on something.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005522.npy",
+      "hardness": 3.221,
+      "hardness_breakdown": {
+        "comp_raw": 10,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 3.763,
+        "z": [
+          2.72,
+          -0.23,
+          0.94,
+          -0.21
+        ]
+      }
+    },
+    {
+      "sample_id": "002976",
+      "prompt": "a person walks forward and turns clockwise, then grabs their knee in pain before continuing ahead and turning clockwise again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002976.npy",
+      "hardness": 3.212,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.145,
+        "z": [
+          2.32,
+          -0.23,
+          0.94,
+          0.18
+        ]
+      }
+    },
+    {
+      "sample_id": "011813",
+      "prompt": "person uses right hand and arm to move to side then front ways then other movements",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011813.npy",
+      "hardness": 3.182,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.755,
+        "z": [
+          1.53,
+          0.94,
+          0.94,
+          -0.22
+        ]
+      }
+    },
+    {
+      "sample_id": "004317",
+      "prompt": "a person lifts his left hand up, then right hand up and waves them about, then put his hands down",
+      "gt_length": 137,
+      "target_length": 136,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004317.npy",
+      "hardness": 3.176,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 5,
+        "long_raw": 137,
+        "rare_raw": 3.392,
+        "z": [
+          1.92,
+          2.1,
+          -0.26,
+          -0.59
+        ]
+      }
+    },
+    {
+      "sample_id": "008498",
+      "prompt": "the person is shivering and then rubbing their hands together to stay warm.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008498.npy",
+      "hardness": 3.168,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.661,
+        "z": [
+          0.73,
+          -0.23,
+          0.94,
+          1.73
+        ]
+      }
+    },
+    {
+      "sample_id": "010526",
+      "prompt": "a person makes a toast, then raises a glass to take a drink and wipes his lips with a napkin.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010526.npy",
+      "hardness": 3.166,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.84,
+        "z": [
+          1.13,
+          -0.81,
+          0.94,
+          1.91
+        ]
+      }
+    },
+    {
+      "sample_id": "003537",
+      "prompt": "person opens something on the middle shelf, takes something from the top puts it on the ground, then takes something from the ground then puts it on middle shelf.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003537.npy",
+      "hardness": 3.132,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 4.637,
+        "z": [
+          2.32,
+          -0.81,
+          0.94,
+          0.68
+        ]
+      }
+    },
+    {
+      "sample_id": "009291",
+      "prompt": "outstretched arms to sides are lowered, raised, bent at the elbows several times, then lowered by sides.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009291.npy",
+      "hardness": 3.105,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.639,
+        "z": [
+          1.13,
+          0.35,
+          0.94,
+          0.68
+        ]
+      }
+    },
+    {
+      "sample_id": "000781",
+      "prompt": "a man raises left foot knee high then swings out and puts down repaets this motion twice",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000781.npy",
+      "hardness": 3.101,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.065,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          0.1
+        ]
+      }
+    },
+    {
+      "sample_id": "011226",
+      "prompt": "the person uses the left to grab the right elbow and swing it. the right arm raises up.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011226.npy",
+      "hardness": 3.083,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.686,
+        "z": [
+          0.33,
+          2.1,
+          0.94,
+          -0.29
+        ]
+      }
+    },
+    {
+      "sample_id": "008159",
+      "prompt": "this person is moving as if excited and animated while speaking.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008159.npy",
+      "hardness": 3.074,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.75,
+        "z": [
+          1.13,
+          -0.81,
+          0.94,
+          1.82
+        ]
+      }
+    },
+    {
+      "sample_id": "008179",
+      "prompt": "a man hold his arms above his head and then performs different motions with arms apart and then in front of him",
+      "gt_length": 180,
+      "target_length": 180,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008179.npy",
+      "hardness": 3.072,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 180,
+        "rare_raw": 4.396,
+        "z": [
+          1.13,
+          0.94,
+          0.58,
+          0.43
+        ]
+      }
+    },
+    {
+      "sample_id": "008697",
+      "prompt": "a person crosses arms briskly across the front of thier body, then raises one hand and moves both hands back and forth.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008697.npy",
+      "hardness": 3.066,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.85,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.13
+        ]
+      }
+    },
+    {
+      "sample_id": "005751",
+      "prompt": "a person balances on their right foot while kicking in multiple directions with their left foot.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005751.npy",
+      "hardness": 3.05,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.225,
+        "z": [
+          0.33,
+          1.52,
+          0.94,
+          0.26
+        ]
+      }
+    },
+    {
+      "sample_id": "004235",
+      "prompt": "a person steps forward and reaches out with their right hand to pick up an object that is at their waist level. they raise it to their mouth and take a sip, then put the object down.",
+      "gt_length": 140,
+      "target_length": 140,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004235.npy",
+      "hardness": 3.042,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 140,
+        "rare_raw": 4.344,
+        "z": [
+          1.92,
+          0.94,
+          -0.2,
+          0.38
+        ]
+      }
+    },
+    {
+      "sample_id": "010843",
+      "prompt": "a person holds their right arm out on something to support them while sticking their right leg up to balance.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010843.npy",
+      "hardness": 3.029,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.814,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "001384",
+      "prompt": "a person lifts his left hand and waves his hand to say hello then puts left hand back down",
+      "gt_length": 108,
+      "target_length": 108,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001384.npy",
+      "hardness": 3.024,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 6,
+        "long_raw": 108,
+        "rare_raw": 4.001,
+        "z": [
+          1.13,
+          2.69,
+          -0.82,
+          0.03
+        ]
+      }
+    },
+    {
+      "sample_id": "009477",
+      "prompt": "a person, whose hands is swaying front to back, is walking in a counter-clockwise circle while bringing their knees up as they walk.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009477.npy",
+      "hardness": 3.02,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.986,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          0.01
+        ]
+      }
+    },
+    {
+      "sample_id": "005092",
+      "prompt": "a person takes a step then moves their right hand to the left side in a grabbing motion, and then takes a step lower.",
+      "gt_length": 194,
+      "target_length": 192,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005092.npy",
+      "hardness": 3.019,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 194,
+        "rare_raw": 3.3,
+        "z": [
+          1.92,
+          0.94,
+          0.85,
+          -0.69
+        ]
+      }
+    },
+    {
+      "sample_id": "003149",
+      "prompt": "a person standing on one foot holds their right hand up while moving their left foot in a side to side motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003149.npy",
+      "hardness": 3.003,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 2.829,
+        "z": [
+          1.13,
+          2.1,
+          0.94,
+          -1.17
+        ]
+      }
+    },
+    {
+      "sample_id": "010995",
+      "prompt": "person reaches out right arm in front of them, puts their arm down, then reaches again with right arm.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010995.npy",
+      "hardness": 2.993,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.209,
+        "z": [
+          0.73,
+          2.1,
+          0.94,
+          -0.78
+        ]
+      }
+    },
+    {
+      "sample_id": "000088",
+      "prompt": "someone puts both of their hands on their chests and appears to be laughing. then waves their right hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000088.npy",
+      "hardness": 2.99,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.957,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          -0.02
+        ]
+      }
+    },
+    {
+      "sample_id": "001453",
+      "prompt": "quickly waving arms above head and then clapping while looking around.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001453.npy",
+      "hardness": 2.984,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.131,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "004521",
+      "prompt": "a person is making rapid swinging motions with their right leg in the air, while holding onto something with their right hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004521.npy",
+      "hardness": 2.981,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.767,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.21
+        ]
+      }
+    },
+    {
+      "sample_id": "007359",
+      "prompt": "a man lowers his arms, then looks to his left and right, then moves his head in a circle.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007359.npy",
+      "hardness": 2.958,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 2.966,
+        "z": [
+          1.53,
+          1.52,
+          0.94,
+          -1.03
+        ]
+      }
+    },
+    {
+      "sample_id": "002317",
+      "prompt": "a person steps around something then sits down on the item and rests each hand on the corresponding thigh",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002317.npy",
+      "hardness": 2.953,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.49,
+        "z": [
+          1.13,
+          0.35,
+          0.94,
+          0.53
+        ]
+      }
+    },
+    {
+      "sample_id": "011458",
+      "prompt": "a man repeatedly uses his right arm to reach for something slightly in front of him, back again, then looks to be stirring something.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011458.npy",
+      "hardness": 2.938,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.906,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          -0.07
+        ]
+      }
+    },
+    {
+      "sample_id": "013634",
+      "prompt": "the person picks something up with his left hand, pulls something towards him with his right hand, wipes it off, and puts it down in his left hand.",
+      "gt_length": 168,
+      "target_length": 168,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013634.npy",
+      "hardness": 2.932,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 6,
+        "long_raw": 168,
+        "rare_raw": 3.555,
+        "z": [
+          0.33,
+          2.69,
+          0.34,
+          -0.43
+        ]
+      }
+    },
+    {
+      "sample_id": "001169",
+      "prompt": "a person is boxing, throwing various combinations and demonstrating fighting footwork.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001169.npy",
+      "hardness": 2.928,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.387,
+        "z": [
+          0.33,
+          -0.81,
+          0.94,
+          2.47
+        ]
+      }
+    },
+    {
+      "sample_id": "010810",
+      "prompt": "a person sitting on the floor scratches their head and then leans back on their left hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010810.npy",
+      "hardness": 2.922,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.71,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.27
+        ]
+      }
+    },
+    {
+      "sample_id": "004012",
+      "prompt": "a person grab with left hand the stand, and doing the spesific motion with left leg, turning in different directions",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004012.npy",
+      "hardness": 2.908,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.475,
+        "z": [
+          -0.07,
+          1.52,
+          0.94,
+          0.51
+        ]
+      }
+    },
+    {
+      "sample_id": "013475",
+      "prompt": "the person balances on their right toe, then switches to the left and spins in a circle",
+      "gt_length": 189,
+      "target_length": 188,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013475.npy",
+      "hardness": 2.887,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 189,
+        "rare_raw": 4.435,
+        "z": [
+          0.73,
+          0.94,
+          0.75,
+          0.47
+        ]
+      }
+    },
+    {
+      "sample_id": "008902",
+      "prompt": "a person stands in one spot, waiting and looks around and then looks at their watch once.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008902.npy",
+      "hardness": 2.858,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 4.759,
+        "z": [
+          1.92,
+          -0.81,
+          0.94,
+          0.8
+        ]
+      }
+    },
+    {
+      "sample_id": "000876",
+      "prompt": "a man shifts from foot to foot then reaches upward with his right two times in different directions each time.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000876.npy",
+      "hardness": 2.854,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.604,
+        "z": [
+          0.33,
+          0.94,
+          0.94,
+          0.65
+        ]
+      }
+    },
+    {
+      "sample_id": "000926",
+      "prompt": "a person bends at the hips and moves from the left to right while lifting arms up, bent at the elbows",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000926.npy",
+      "hardness": 2.851,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 5,
+        "long_raw": 199,
+        "rare_raw": 3.461,
+        "z": [
+          0.33,
+          2.1,
+          0.94,
+          -0.52
+        ]
+      }
+    },
+    {
+      "sample_id": "000597",
+      "prompt": "the person is widewalking.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000597.npy",
+      "hardness": 2.844,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 7.474,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          3.58
+        ]
+      }
+    },
+    {
+      "sample_id": "006210",
+      "prompt": "the person is having a discussion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006210.npy",
+      "hardness": 2.844,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 7.474,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          3.58
+        ]
+      }
+    },
+    {
+      "sample_id": "012219",
+      "prompt": "person runs in place, stops, then runs in place again. he crouches down and creeps forward starting with his left foot.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012219.npy",
+      "hardness": 2.823,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 3.974,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          0.0
+        ]
+      }
+    },
+    {
+      "sample_id": "003082",
+      "prompt": "standing forward, hands are at the side moving toward sides of the head and back down while the legs are slightly jumping outwards. creating a jumping jack.",
+      "gt_length": 139,
+      "target_length": 136,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003082.npy",
+      "hardness": 2.819,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 139,
+        "rare_raw": 3.964,
+        "z": [
+          1.53,
+          1.52,
+          -0.22,
+          -0.01
+        ]
+      }
+    },
+    {
+      "sample_id": "005229",
+      "prompt": "a person squats to lift something up then struggles to carry and put it down.",
+      "gt_length": 198,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005229.npy",
+      "hardness": 2.79,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 0,
+        "long_raw": 198,
+        "rare_raw": 5.101,
+        "z": [
+          1.53,
+          -0.81,
+          0.92,
+          1.16
+        ]
+      }
+    },
+    {
+      "sample_id": "007540",
+      "prompt": "a person is holding its head with its right hand, then sets it down, then holds its head with both hand.",
+      "gt_length": 134,
+      "target_length": 132,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007540.npy",
+      "hardness": 2.783,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 5,
+        "long_raw": 134,
+        "rare_raw": 3.454,
+        "z": [
+          1.53,
+          2.1,
+          -0.32,
+          -0.53
+        ]
+      }
+    },
+    {
+      "sample_id": "013855",
+      "prompt": "person holds left arm out and right arm forward, then shuffles side to side as if doing the chacha dance",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013855.npy",
+      "hardness": 2.779,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.57,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.41
+        ]
+      }
+    },
+    {
+      "sample_id": "006214",
+      "prompt": "a person stands up from a sitting position, makes an overhand throw motion, and underhand throw motion, then a basketball shot motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006214.npy",
+      "hardness": 2.772,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.065,
+        "z": [
+          1.53,
+          -0.81,
+          0.94,
+          1.12
+        ]
+      }
+    },
+    {
+      "sample_id": "010545",
+      "prompt": "a standing person holds their right hand out in front of them, palms facing outward, and moves it in swiping motions from side to side and up and down.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010545.npy",
+      "hardness": 2.767,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.129,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "008567",
+      "prompt": "a person shifts their weight from side to side, first settling back on their left foot, then their right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008567.npy",
+      "hardness": 2.762,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.943,
+        "z": [
+          0.33,
+          1.52,
+          0.94,
+          -0.03
+        ]
+      }
+    },
+    {
+      "sample_id": "010150",
+      "prompt": "from a standing position person leans their head down to their right slowly, in front of their chest then back up kind of like a snake.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010150.npy",
+      "hardness": 2.73,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.912,
+        "z": [
+          0.33,
+          1.52,
+          0.94,
+          -0.06
+        ]
+      }
+    },
+    {
+      "sample_id": "008720",
+      "prompt": "a person raises both arms straight out before dropping to all fours and then rising into a kneeling position.",
+      "gt_length": 190,
+      "target_length": 188,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008720.npy",
+      "hardness": 2.714,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 1,
+        "long_raw": 190,
+        "rare_raw": 4.608,
+        "z": [
+          1.53,
+          -0.23,
+          0.77,
+          0.65
+        ]
+      }
+    },
+    {
+      "sample_id": "008238",
+      "prompt": "person turns around so their back is facing the front. they then walk forward for a moment before sliding to the right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008238.npy",
+      "hardness": 2.706,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 3.47,
+        "z": [
+          1.92,
+          0.35,
+          0.94,
+          -0.51
+        ]
+      }
+    },
+    {
+      "sample_id": "010736",
+      "prompt": "a person taking a bow forward. turning to his/her right, then taking another bow before returning to his/her original position.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010736.npy",
+      "hardness": 2.705,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.039,
+        "z": [
+          1.92,
+          -0.23,
+          0.94,
+          0.07
+        ]
+      }
+    },
+    {
+      "sample_id": "014384",
+      "prompt": "a person balances on one foot while moving their other, and then switches.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014384.npy",
+      "hardness": 2.701,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.425,
+        "z": [
+          1.53,
+          -0.23,
+          0.94,
+          0.46
+        ]
+      }
+    },
+    {
+      "sample_id": "009991",
+      "prompt": "the man reaches his right hand into the air then shrugs and digs a hole and shrugs again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009991.npy",
+      "hardness": 2.69,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.624,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          0.67
+        ]
+      }
+    },
+    {
+      "sample_id": "006662",
+      "prompt": "a man is shot in the chest, falls to the ground, crawls and pulls himself up.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006662.npy",
+      "hardness": 2.684,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.578,
+        "z": [
+          0.33,
+          -0.23,
+          0.94,
+          1.64
+        ]
+      }
+    },
+    {
+      "sample_id": "006390",
+      "prompt": "a person bends down and touches their toes, then reaches up and stretches back and forth",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006390.npy",
+      "hardness": 2.679,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.223,
+        "z": [
+          1.13,
+          0.35,
+          0.94,
+          0.26
+        ]
+      }
+    },
+    {
+      "sample_id": "009941",
+      "prompt": "excited person starts with arms out and bounces from one foot to the other while clapping.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009941.npy",
+      "hardness": 2.658,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.592,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          0.63
+        ]
+      }
+    },
+    {
+      "sample_id": "007286",
+      "prompt": "a person stands at the edge of a cliff trying to steel themselves for a jump, but failing to jump off.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007286.npy",
+      "hardness": 2.652,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.726,
+        "z": [
+          0.73,
+          -0.81,
+          0.94,
+          1.79
+        ]
+      }
+    },
+    {
+      "sample_id": "000780",
+      "prompt": "a person picks up something on the ground on his left side he picks it up to eye level and inspects it then puts it back on the floor to the left side",
+      "gt_length": 178,
+      "target_length": 176,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000780.npy",
+      "hardness": 2.646,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 178,
+        "rare_raw": 4.017,
+        "z": [
+          1.13,
+          0.94,
+          0.54,
+          0.05
+        ]
+      }
+    },
+    {
+      "sample_id": "011652",
+      "prompt": "a person jumps in the air, then abruptly stumbles to his left as if he had been pushed, and finally he regains his balance.",
+      "gt_length": 192,
+      "target_length": 192,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011652.npy",
+      "hardness": 2.645,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 1,
+        "long_raw": 192,
+        "rare_raw": 4.893,
+        "z": [
+          1.13,
+          -0.23,
+          0.81,
+          0.94
+        ]
+      }
+    },
+    {
+      "sample_id": "006145",
+      "prompt": "a person reaches for something with both hands, the raises their left hand then sets its hands back down.",
+      "gt_length": 185,
+      "target_length": 184,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006145.npy",
+      "hardness": 2.644,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 5,
+        "long_raw": 185,
+        "rare_raw": 3.133,
+        "z": [
+          0.73,
+          2.1,
+          0.67,
+          -0.86
+        ]
+      }
+    },
+    {
+      "sample_id": "006457",
+      "prompt": "a person catches a ball with their left arm then throws it with their right arm.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006457.npy",
+      "hardness": 2.635,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.82,
+        "z": [
+          0.33,
+          1.52,
+          0.94,
+          -0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "008704",
+      "prompt": "person holds roght leg up by the knee woth both hands and extends leg.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008704.npy",
+      "hardness": 2.608,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.573,
+        "z": [
+          -0.47,
+          1.52,
+          0.94,
+          0.61
+        ]
+      }
+    },
+    {
+      "sample_id": "008755",
+      "prompt": "a man holds right hand to right side of head and begins panting like he's out of breath.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008755.npy",
+      "hardness": 2.591,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.166,
+        "z": [
+          -0.07,
+          1.52,
+          0.94,
+          0.2
+        ]
+      }
+    },
+    {
+      "sample_id": "013122",
+      "prompt": "a man walks shakily for a word slightly bent at the waist, with arms raised above his head and them flopping loosely.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013122.npy",
+      "hardness": 2.58,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.726,
+        "z": [
+          -0.07,
+          0.94,
+          0.94,
+          0.77
+        ]
+      }
+    },
+    {
+      "sample_id": "000160",
+      "prompt": "a person holds their arms up then lowers them, then bends their arms at the elbow and moves back and forth",
+      "gt_length": 129,
+      "target_length": 128,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000160.npy",
+      "hardness": 2.572,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 4,
+        "long_raw": 129,
+        "rare_raw": 3.523,
+        "z": [
+          1.92,
+          1.52,
+          -0.41,
+          -0.46
+        ]
+      }
+    },
+    {
+      "sample_id": "001214",
+      "prompt": "a man hops on his right leg five times, makes a small jump, then steps forward into a strong push with both hands. he then returns to the starting position.",
+      "gt_length": 127,
+      "target_length": 124,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001214.npy",
+      "hardness": 2.566,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 127,
+        "rare_raw": 4.125,
+        "z": [
+          1.92,
+          0.94,
+          -0.45,
+          0.16
+        ]
+      }
+    },
+    {
+      "sample_id": "003638",
+      "prompt": "a figure speedily swings its arms first in a clockwise motion then backwards in an anti clockwise motion while slightly facing to the right",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003638.npy",
+      "hardness": 2.557,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.104,
+        "z": [
+          1.13,
+          0.35,
+          0.94,
+          0.13
+        ]
+      }
+    },
+    {
+      "sample_id": "000048",
+      "prompt": "a person gestures with both arms, puts their right hand on their hip, then gestures again",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000048.npy",
+      "hardness": 2.542,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.338,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.65
+        ]
+      }
+    },
+    {
+      "sample_id": "006828",
+      "prompt": "a person starts with their arms at waist height then moves slightly left and right.",
+      "gt_length": 198,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006828.npy",
+      "hardness": 2.539,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 198,
+        "rare_raw": 3.355,
+        "z": [
+          0.73,
+          1.52,
+          0.92,
+          -0.63
+        ]
+      }
+    },
+    {
+      "sample_id": "006133",
+      "prompt": "a person hunches with hands forward then shakes his head left to right.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006133.npy",
+      "hardness": 2.526,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 3.323,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -0.67
+        ]
+      }
+    },
+    {
+      "sample_id": "010254",
+      "prompt": "he balances on his right foot and similarly flaps his arms to that of a large bird taking off",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010254.npy",
+      "hardness": 2.512,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.659,
+        "z": [
+          -0.07,
+          0.94,
+          0.94,
+          0.7
+        ]
+      }
+    },
+    {
+      "sample_id": "004122",
+      "prompt": "a man raises his hands over his head, and to the sky. his lips move so as to mouth the words \"ascend.\"",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004122.npy",
+      "hardness": 2.507,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 5.224,
+        "z": [
+          -0.07,
+          0.35,
+          0.94,
+          1.28
+        ]
+      }
+    },
+    {
+      "sample_id": "000633",
+      "prompt": "a person stands while moving their right arm as if eating something with a spoon or fork three times.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000633.npy",
+      "hardness": 2.49,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.428,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          0.47
+        ]
+      }
+    },
+    {
+      "sample_id": "012578",
+      "prompt": "person person is planting vegetables.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012578.npy",
+      "hardness": 2.489,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 7.127,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          3.23
+        ]
+      }
+    },
+    {
+      "sample_id": "001969",
+      "prompt": "a man walks forward, then turns around and walks back before facing back and standing still.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001969.npy",
+      "hardness": 2.484,
+      "hardness_breakdown": {
+        "comp_raw": 9,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 2.863,
+        "z": [
+          2.32,
+          0.35,
+          0.94,
+          -1.14
+        ]
+      }
+    },
+    {
+      "sample_id": "011797",
+      "prompt": "a person is attempting to jump rope by hopping from one leg to the other as if running in place, but has to reset every two to three jumps.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011797.npy",
+      "hardness": 2.483,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.991,
+        "z": [
+          0.73,
+          -0.23,
+          0.94,
+          1.04
+        ]
+      }
+    },
+    {
+      "sample_id": "000750",
+      "prompt": "a man postures his arms like holding a dance partner and dances the waltz from the left hand side to the right hand side.",
+      "gt_length": 174,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000750.npy",
+      "hardness": 2.475,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 5,
+        "long_raw": 174,
+        "rare_raw": 3.956,
+        "z": [
+          -0.07,
+          2.1,
+          0.46,
+          -0.02
+        ]
+      }
+    },
+    {
+      "sample_id": "003179",
+      "prompt": "a person bends over to begin charging forward, turns around with arms raised, and charges back to original position.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003179.npy",
+      "hardness": 2.471,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.02,
+        "z": [
+          1.13,
+          0.35,
+          0.94,
+          0.05
+        ]
+      }
+    },
+    {
+      "sample_id": "008312",
+      "prompt": "the person walks across the area, picks something up and then starts to move its arm as if to make a scrubbing motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008312.npy",
+      "hardness": 2.456,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.186,
+        "z": [
+          1.53,
+          -0.23,
+          0.94,
+          0.22
+        ]
+      }
+    },
+    {
+      "sample_id": "014110",
+      "prompt": "the person is acting out the nursery rhyme cock robin.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014110.npy",
+      "hardness": 2.446,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 7.084,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          3.18
+        ]
+      }
+    },
+    {
+      "sample_id": "008069",
+      "prompt": "the person grabs something in front of them, walks away, walks back, returns it and picks it back up again and begins to walk away again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008069.npy",
+      "hardness": 2.436,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 3.596,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          -0.39
+        ]
+      }
+    },
+    {
+      "sample_id": "008877",
+      "prompt": "perso is keeping water out of their face while swimming .",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008877.npy",
+      "hardness": 2.432,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.902,
+        "z": [
+          0.33,
+          -0.81,
+          0.94,
+          1.97
+        ]
+      }
+    },
+    {
+      "sample_id": "000792",
+      "prompt": "a person imitates biting into something then waves their right hand around randomly.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000792.npy",
+      "hardness": 2.421,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.36,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          0.4
+        ]
+      }
+    },
+    {
+      "sample_id": "004336",
+      "prompt": "a person throws things to the right; first something underhand, then something overhand, and then something very far.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004336.npy",
+      "hardness": 2.419,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.929,
+        "z": [
+          0.73,
+          -0.23,
+          0.94,
+          0.98
+        ]
+      }
+    },
+    {
+      "sample_id": "001298",
+      "prompt": "someone stands with their hands on their upper legs spread apart, then straightens up and outstretches both arms.",
+      "gt_length": 143,
+      "target_length": 140,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001298.npy",
+      "hardness": 2.416,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 143,
+        "rare_raw": 4.455,
+        "z": [
+          1.13,
+          0.94,
+          -0.14,
+          0.49
+        ]
+      }
+    },
+    {
+      "sample_id": "014535",
+      "prompt": "a person appears to have severe arm pain holding and slouching their right shoulder.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014535.npy",
+      "hardness": 2.408,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.947,
+        "z": [
+          -0.47,
+          0.94,
+          0.94,
+          1.0
+        ]
+      }
+    },
+    {
+      "sample_id": "005213",
+      "prompt": "a person walks away diagonally to his right, picks something up, walks back, and then he again walks diagonally to his right and picks something up.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005213.npy",
+      "hardness": 2.403,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 2.993,
+        "z": [
+          1.53,
+          0.94,
+          0.94,
+          -1.0
+        ]
+      }
+    },
+    {
+      "sample_id": "003937",
+      "prompt": "a man turns slightly to his right then lefts his left leg slightly and stamps down with his heel, before returning to his original position.",
+      "gt_length": 102,
+      "target_length": 100,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003937.npy",
+      "hardness": 2.393,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 102,
+        "rare_raw": 4.248,
+        "z": [
+          1.53,
+          1.52,
+          -0.93,
+          0.28
+        ]
+      }
+    },
+    {
+      "sample_id": "000419",
+      "prompt": "a person lowers their hands then waves and waves again then waves in a wider motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000419.npy",
+      "hardness": 2.38,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.111,
+        "z": [
+          1.53,
+          -0.23,
+          0.94,
+          0.14
+        ]
+      }
+    },
+    {
+      "sample_id": "012132",
+      "prompt": "a man does a push up and then uses his arms to balance himself back to his feet.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012132.npy",
+      "hardness": 2.379,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.139,
+        "z": [
+          0.33,
+          0.94,
+          0.94,
+          0.17
+        ]
+      }
+    },
+    {
+      "sample_id": "000507",
+      "prompt": "a person while sitting on the floor throws with his right arm and then stands.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000507.npy",
+      "hardness": 2.376,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 3.537,
+        "z": [
+          1.53,
+          0.35,
+          0.94,
+          -0.45
+        ]
+      }
+    },
+    {
+      "sample_id": "005166",
+      "prompt": "a man ducks backwards towards his left, then ducks forward towards his right, he then stands up straight and walks backwards towards his left.",
+      "gt_length": 184,
+      "target_length": 184,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005166.npy",
+      "hardness": 2.373,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 184,
+        "rare_raw": 2.858,
+        "z": [
+          1.92,
+          0.94,
+          0.65,
+          -1.14
+        ]
+      }
+    },
+    {
+      "sample_id": "010752",
+      "prompt": "staying still then backing up.",
+      "gt_length": 185,
+      "target_length": 184,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010752.npy",
+      "hardness": 2.373,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 185,
+        "rare_raw": 6.109,
+        "z": [
+          0.33,
+          -0.81,
+          0.67,
+          2.19
+        ]
+      }
+    },
+    {
+      "sample_id": "006357",
+      "prompt": "the man stads still twitching his thumbs.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006357.npy",
+      "hardness": 2.373,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.623,
+        "z": [
+          -0.47,
+          -0.81,
+          0.94,
+          2.71
+        ]
+      }
+    },
+    {
+      "sample_id": "009493",
+      "prompt": "a person staggers around drunk and repeatedly gestures down with their right hand, as if mumbling an imaginary argument to themselves.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009493.npy",
+      "hardness": 2.329,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 5.051,
+        "z": [
+          -0.07,
+          0.35,
+          0.94,
+          1.1
+        ]
+      }
+    },
+    {
+      "sample_id": "013806",
+      "prompt": "the figure takes a few steps forward before pick something up turning around and walking back to where they were and crouching down to pick something up.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013806.npy",
+      "hardness": 2.31,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 3.654,
+        "z": [
+          1.92,
+          -0.23,
+          0.94,
+          -0.33
+        ]
+      }
+    },
+    {
+      "sample_id": "000320",
+      "prompt": "a person puts one hand on their hip and the other in the air, then raises and lowers both arms together",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000320.npy",
+      "hardness": 2.291,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.663,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.32
+        ]
+      }
+    },
+    {
+      "sample_id": "003301",
+      "prompt": "a person is standing with their hands on their hips, they walk forward and turn to the right, then relax their arms.",
+      "gt_length": 162,
+      "target_length": 160,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003301.npy",
+      "hardness": 2.287,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 4,
+        "long_raw": 162,
+        "rare_raw": 3.399,
+        "z": [
+          1.13,
+          1.52,
+          0.23,
+          -0.59
+        ]
+      }
+    },
+    {
+      "sample_id": "005399",
+      "prompt": "a man stands on the ground and lifts his right hand for a moment above the shoulder and then puts it down.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005399.npy",
+      "hardness": 2.285,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.657,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.32
+        ]
+      }
+    },
+    {
+      "sample_id": "003013",
+      "prompt": "a person is making rapid up and down, and side to side motions with their right arm, by bending it at the elbow.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003013.npy",
+      "hardness": 2.271,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.033,
+        "z": [
+          0.33,
+          0.94,
+          0.94,
+          0.06
+        ]
+      }
+    },
+    {
+      "sample_id": "007946",
+      "prompt": "a person is sitting with the chin in hand, stands up, and then returns to sitting",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007946.npy",
+      "hardness": 2.268,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.392,
+        "z": [
+          1.13,
+          -0.23,
+          0.94,
+          0.43
+        ]
+      }
+    },
+    {
+      "sample_id": "004275",
+      "prompt": "a man is standing with feet wide apart and arms out swinging/swaying different motions acting like a monkey.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004275.npy",
+      "hardness": 2.259,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.592,
+        "z": [
+          0.33,
+          0.35,
+          0.94,
+          0.63
+        ]
+      }
+    },
+    {
+      "sample_id": "011343",
+      "prompt": "a person with arms stretched straight out brings both hands to crotch, then returns to original position",
+      "gt_length": 173,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011343.npy",
+      "hardness": 2.248,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 173,
+        "rare_raw": 4.293,
+        "z": [
+          1.13,
+          0.35,
+          0.44,
+          0.33
+        ]
+      }
+    },
+    {
+      "sample_id": "003859",
+      "prompt": "person is walking forwards quite fast, then squats down to pick something up to then turn around and walk fast again. appears to be in a rush and moving an item",
+      "gt_length": 131,
+      "target_length": 128,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003859.npy",
+      "hardness": 2.244,
+      "hardness_breakdown": {
+        "comp_raw": 11,
+        "fine_raw": 0,
+        "long_raw": 131,
+        "rare_raw": 4.276,
+        "z": [
+          3.12,
+          -0.81,
+          -0.37,
+          0.31
+        ]
+      }
+    },
+    {
+      "sample_id": "013633",
+      "prompt": "a person walks forward after appearing to lift something with their right hand and swinging their right arm slightly whilst walking.",
+      "gt_length": 139,
+      "target_length": 136,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013633.npy",
+      "hardness": 2.23,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 139,
+        "rare_raw": 3.389,
+        "z": [
+          1.53,
+          1.52,
+          -0.22,
+          -0.6
+        ]
+      }
+    },
+    {
+      "sample_id": "002950",
+      "prompt": "a person hops forward with both legs and after a few hops they hop on top of something then back down right after.",
+      "gt_length": 133,
+      "target_length": 132,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002950.npy",
+      "hardness": 2.23,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 133,
+        "rare_raw": 3.683,
+        "z": [
+          1.92,
+          0.94,
+          -0.33,
+          -0.3
+        ]
+      }
+    },
+    {
+      "sample_id": "005728",
+      "prompt": "a person moves their elbows back and forth, moves forward, picks an object up off the ground, walks right, and reaches their right arm out.",
+      "gt_length": 160,
+      "target_length": 160,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005728.npy",
+      "hardness": 2.221,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 5,
+        "long_raw": 160,
+        "rare_raw": 3.193,
+        "z": [
+          0.73,
+          2.1,
+          0.19,
+          -0.8
+        ]
+      }
+    },
+    {
+      "sample_id": "005404",
+      "prompt": "someone is dancing they start off a clap and moves their arms around while moving their feet forward and backwards",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005404.npy",
+      "hardness": 2.221,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 3.775,
+        "z": [
+          1.13,
+          0.35,
+          0.94,
+          -0.2
+        ]
+      }
+    },
+    {
+      "sample_id": "014448",
+      "prompt": "a person walks forward, hops backwards, then defends themselves by putting their hands up in defense",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014448.npy",
+      "hardness": 2.217,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.342,
+        "z": [
+          1.13,
+          -0.23,
+          0.94,
+          0.38
+        ]
+      }
+    },
+    {
+      "sample_id": "012567",
+      "prompt": "a person rests their hands on their knees while squatting.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012567.npy",
+      "hardness": 2.207,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.542,
+        "z": [
+          0.33,
+          0.35,
+          0.94,
+          0.58
+        ]
+      }
+    },
+    {
+      "sample_id": "007423",
+      "prompt": "a figure seems to be gesturing for people to run past or through or under their other arm",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007423.npy",
+      "hardness": 2.2,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.495,
+        "z": [
+          -0.07,
+          -0.23,
+          0.94,
+          1.56
+        ]
+      }
+    },
+    {
+      "sample_id": "001768",
+      "prompt": "a man walks from side to side while holding his right forearm with left hand, and then walks back.",
+      "gt_length": 174,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001768.npy",
+      "hardness": 2.181,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 4,
+        "long_raw": 174,
+        "rare_raw": 2.679,
+        "z": [
+          1.53,
+          1.52,
+          0.46,
+          -1.32
+        ]
+      }
+    },
+    {
+      "sample_id": "005300",
+      "prompt": "a person dribbles a basketball through their legs then runs quickly.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005300.npy",
+      "hardness": 2.181,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.086,
+        "z": [
+          0.33,
+          -0.23,
+          0.94,
+          1.14
+        ]
+      }
+    },
+    {
+      "sample_id": "004573",
+      "prompt": "a person clas their hands out in front of them, drops them, then repeats.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004573.npy",
+      "hardness": 2.179,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.694,
+        "z": [
+          0.73,
+          -0.23,
+          0.94,
+          0.74
+        ]
+      }
+    },
+    {
+      "sample_id": "007692",
+      "prompt": "a person runs in place and then steps to the left, makes a clockwise circle while in a running motion, where his hands are moving up and down.",
+      "gt_length": 168,
+      "target_length": 168,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007692.npy",
+      "hardness": 2.172,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 2,
+        "long_raw": 168,
+        "rare_raw": 3.534,
+        "z": [
+          1.92,
+          0.35,
+          0.34,
+          -0.45
+        ]
+      }
+    },
+    {
+      "sample_id": "007411",
+      "prompt": "a person stands still with his arms as his side, and he rotates his head around while keeping his body motionless.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007411.npy",
+      "hardness": 2.16,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.105,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          0.14
+        ]
+      }
+    },
+    {
+      "sample_id": "004293",
+      "prompt": "a person confidently walks down an aisle while stretching/loosening up their arm.",
+      "gt_length": 175,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004293.npy",
+      "hardness": 2.149,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 175,
+        "rare_raw": 5.119,
+        "z": [
+          0.73,
+          -0.23,
+          0.48,
+          1.17
+        ]
+      }
+    },
+    {
+      "sample_id": "008105",
+      "prompt": "a person eagerly practicing karate.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008105.npy",
+      "hardness": 2.135,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.78,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          2.87
+        ]
+      }
+    },
+    {
+      "sample_id": "002453",
+      "prompt": "a person is rocking a baby",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002453.npy",
+      "hardness": 2.135,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.78,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          2.87
+        ]
+      }
+    },
+    {
+      "sample_id": "011280",
+      "prompt": "person has arms raised and brings then to hip level",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011280.npy",
+      "hardness": 2.123,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.459,
+        "z": [
+          0.33,
+          0.35,
+          0.94,
+          0.5
+        ]
+      }
+    },
+    {
+      "sample_id": "011255",
+      "prompt": "a man stretches his arms to his sides, and then lifts his right arm up and holds it there.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011255.npy",
+      "hardness": 2.123,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.499,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.48
+        ]
+      }
+    },
+    {
+      "sample_id": "009521",
+      "prompt": "the man takes a step and picks up 3 things takes a few more steps and places one thing on the table then turns around to head back.",
+      "gt_length": 144,
+      "target_length": 144,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009521.npy",
+      "hardness": 2.111,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 2,
+        "long_raw": 144,
+        "rare_raw": 3.929,
+        "z": [
+          1.92,
+          0.35,
+          -0.12,
+          -0.04
+        ]
+      }
+    },
+    {
+      "sample_id": "012956",
+      "prompt": "person seems to be preparing food",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012956.npy",
+      "hardness": 2.106,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.363,
+        "z": [
+          -0.47,
+          -0.81,
+          0.94,
+          2.45
+        ]
+      }
+    },
+    {
+      "sample_id": "004129",
+      "prompt": "someone jogs in place, makes a quarter turn to the left and back, jogs backwards and then forwards.",
+      "gt_length": 180,
+      "target_length": 180,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004129.npy",
+      "hardness": 2.094,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 180,
+        "rare_raw": 4.01,
+        "z": [
+          1.13,
+          0.35,
+          0.58,
+          0.04
+        ]
+      }
+    },
+    {
+      "sample_id": "014387",
+      "prompt": "a person slowly walked forward in righr direction and after person raised right and left hand",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014387.npy",
+      "hardness": 2.092,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.469,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.52
+        ]
+      }
+    },
+    {
+      "sample_id": "009917",
+      "prompt": "a person raised he lef for half and after changed the leg",
+      "gt_length": 167,
+      "target_length": 164,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009917.npy",
+      "hardness": 2.09,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 1,
+        "long_raw": 167,
+        "rare_raw": 5.603,
+        "z": [
+          0.33,
+          -0.23,
+          0.32,
+          1.67
+        ]
+      }
+    },
+    {
+      "sample_id": "000352",
+      "prompt": "person looks like theyre holding a microphone and talking into it",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000352.npy",
+      "hardness": 2.088,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.565,
+        "z": [
+          0.33,
+          -0.81,
+          0.94,
+          1.63
+        ]
+      }
+    },
+    {
+      "sample_id": "002658",
+      "prompt": "person swings their right arm and then has an injury on the elbow.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002658.npy",
+      "hardness": 2.08,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 4.237,
+        "z": [
+          -0.07,
+          0.94,
+          0.94,
+          0.27
+        ]
+      }
+    },
+    {
+      "sample_id": "003991",
+      "prompt": "a person kicks with their right leg twice, and then once with their left.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003991.npy",
+      "hardness": 2.068,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.446,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.54
+        ]
+      }
+    },
+    {
+      "sample_id": "006215",
+      "prompt": "a figure seems to gesture contritely or sincerely with their left hand as though entreating someone",
+      "gt_length": 172,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006215.npy",
+      "hardness": 2.064,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 2,
+        "long_raw": 172,
+        "rare_raw": 5.302,
+        "z": [
+          -0.07,
+          0.35,
+          0.42,
+          1.36
+        ]
+      }
+    },
+    {
+      "sample_id": "012616",
+      "prompt": "a person walks in a clockwise circle while bent forward at the waist, and holding their right leg with both hands.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\012616.npy",
+      "hardness": 2.063,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 2.871,
+        "z": [
+          0.73,
+          1.52,
+          0.94,
+          -1.13
+        ]
+      }
+    },
+    {
+      "sample_id": "007612",
+      "prompt": "a person does small movements as if they were imitating cooking. like adding spices to a dish or moving a pan.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007612.npy",
+      "hardness": 2.062,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.93,
+        "z": [
+          -0.07,
+          -0.81,
+          0.94,
+          2.0
+        ]
+      }
+    },
+    {
+      "sample_id": "002572",
+      "prompt": "person ran got down on his knees turn around and ran back the other way.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002572.npy",
+      "hardness": 2.057,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.394,
+        "z": [
+          0.33,
+          0.35,
+          0.94,
+          0.43
+        ]
+      }
+    },
+    {
+      "sample_id": "009283",
+      "prompt": "someone gets up from the floor, seems to be talking on the phone and starts to walk",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009283.npy",
+      "hardness": 2.045,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.134,
+        "z": [
+          0.73,
+          -0.81,
+          0.94,
+          1.19
+        ]
+      }
+    },
+    {
+      "sample_id": "009720",
+      "prompt": "a person is standing with slightly bent knees, then raises right arm to the side and holds for 8 seconds",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009720.npy",
+      "hardness": 2.038,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.416,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.57
+        ]
+      }
+    },
+    {
+      "sample_id": "009443",
+      "prompt": "a person attempts to get a rock out of their shoe.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009443.npy",
+      "hardness": 2.031,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.679,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          2.77
+        ]
+      }
+    },
+    {
+      "sample_id": "004679",
+      "prompt": "a person takes their hands from their side places them above their shoulders and then places them back at their side",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004679.npy",
+      "hardness": 2.029,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.408,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.58
+        ]
+      }
+    },
+    {
+      "sample_id": "005617",
+      "prompt": "a person bends forward and straights, and then bends forward to touch their feet.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005617.npy",
+      "hardness": 2.027,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.546,
+        "z": [
+          0.73,
+          -0.23,
+          0.94,
+          0.59
+        ]
+      }
+    },
+    {
+      "sample_id": "001782",
+      "prompt": "a man is crossing his arms in front of him and then swings them side to side and then up and down.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001782.npy",
+      "hardness": 2.019,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 3.759,
+        "z": [
+          1.53,
+          -0.23,
+          0.94,
+          -0.22
+        ]
+      }
+    },
+    {
+      "sample_id": "001725",
+      "prompt": "a person walks to the right with a limp, then turns around and sprints back to where he started",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\001725.npy",
+      "hardness": 2.018,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 3.967,
+        "z": [
+          0.73,
+          0.35,
+          0.94,
+          -0.01
+        ]
+      }
+    },
+    {
+      "sample_id": "011181",
+      "prompt": "a person swift the upper codre body, and start to stretch it",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011181.npy",
+      "hardness": 1.997,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.866,
+        "z": [
+          -0.07,
+          -0.81,
+          0.94,
+          1.94
+        ]
+      }
+    },
+    {
+      "sample_id": "014039",
+      "prompt": "a person either pleading or praying with their hands folded in front of them.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014039.npy",
+      "hardness": 1.996,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.295,
+        "z": [
+          -0.07,
+          -0.23,
+          0.94,
+          1.35
+        ]
+      }
+    },
+    {
+      "sample_id": "011146",
+      "prompt": "the figure rises from a laying position and walks in a clockwise circle, and then lays back down the ground.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011146.npy",
+      "hardness": 1.985,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.115,
+        "z": [
+          1.13,
+          -0.23,
+          0.94,
+          0.15
+        ]
+      }
+    },
+    {
+      "sample_id": "008843",
+      "prompt": "a person lifts and spins around their right leg then lifts and spins around their left.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008843.npy",
+      "hardness": 1.98,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 2.97,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          -1.03
+        ]
+      }
+    },
+    {
+      "sample_id": "002272",
+      "prompt": "someone getting into position to start catching and tossing an object.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002272.npy",
+      "hardness": 1.967,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.447,
+        "z": [
+          0.33,
+          -0.81,
+          0.94,
+          1.51
+        ]
+      }
+    },
+    {
+      "sample_id": "013125",
+      "prompt": "the sim is doing a range of motion exercise from their wrist to their shoulders on both their right & left sides.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013125.npy",
+      "hardness": 1.957,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 4,
+        "long_raw": 199,
+        "rare_raw": 4.326,
+        "z": [
+          -0.87,
+          1.52,
+          0.94,
+          0.36
+        ]
+      }
+    },
+    {
+      "sample_id": "006343",
+      "prompt": "the person is hammering a nail.",
+      "gt_length": 171,
+      "target_length": 168,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006343.npy",
+      "hardness": 1.947,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 171,
+        "rare_raw": 7.127,
+        "z": [
+          -0.87,
+          -0.81,
+          0.4,
+          3.23
+        ]
+      }
+    },
+    {
+      "sample_id": "004180",
+      "prompt": "a person holds their arms out to their side and lifts their right leg off the floor to balance on their left leg",
+      "gt_length": 183,
+      "target_length": 180,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004180.npy",
+      "hardness": 1.945,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 5,
+        "long_raw": 183,
+        "rare_raw": 3.267,
+        "z": [
+          -0.07,
+          2.1,
+          0.63,
+          -0.72
+        ]
+      }
+    },
+    {
+      "sample_id": "007573",
+      "prompt": "a man lifts each knee to his elbow multiple times and then does a squat.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007573.npy",
+      "hardness": 1.941,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.671,
+        "z": [
+          -0.07,
+          0.35,
+          0.94,
+          0.71
+        ]
+      }
+    },
+    {
+      "sample_id": "006281",
+      "prompt": "a person rolls his right ankle while walking",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006281.npy",
+      "hardness": 1.939,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 2,
+        "long_raw": 199,
+        "rare_raw": 4.28,
+        "z": [
+          0.33,
+          0.35,
+          0.94,
+          0.31
+        ]
+      }
+    },
+    {
+      "sample_id": "007561",
+      "prompt": "a man walks in a curve, then a straight line, then doubles back.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007561.npy",
+      "hardness": 1.936,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 4.067,
+        "z": [
+          1.13,
+          -0.23,
+          0.94,
+          0.1
+        ]
+      }
+    },
+    {
+      "sample_id": "004965",
+      "prompt": "a person walks forward to the left, picks something up and walks back and then shakes what is in the hand.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004965.npy",
+      "hardness": 1.927,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 2.918,
+        "z": [
+          1.13,
+          0.94,
+          0.94,
+          -1.08
+        ]
+      }
+    },
+    {
+      "sample_id": "008429",
+      "prompt": "a man left steps, then right steps, turns clockwise, left steps, then right steps back full circle.",
+      "gt_length": 119,
+      "target_length": 116,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008429.npy",
+      "hardness": 1.924,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 5,
+        "long_raw": 119,
+        "rare_raw": 2.898,
+        "z": [
+          1.53,
+          2.1,
+          -0.61,
+          -1.1
+        ]
+      }
+    },
+    {
+      "sample_id": "011127",
+      "prompt": "a person touches toward his pelvis, then extends hand and raises it.",
+      "gt_length": 174,
+      "target_length": 172,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011127.npy",
+      "hardness": 1.919,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 1,
+        "long_raw": 174,
+        "rare_raw": 4.914,
+        "z": [
+          0.73,
+          -0.23,
+          0.46,
+          0.96
+        ]
+      }
+    },
+    {
+      "sample_id": "006236",
+      "prompt": "a figure jumps a few times counter-clockwise, then quickly turns clockwise with one big twisting jump, then stumbles backward upon landing.",
+      "gt_length": 181,
+      "target_length": 180,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\006236.npy",
+      "hardness": 1.917,
+      "hardness_breakdown": {
+        "comp_raw": 7,
+        "fine_raw": 0,
+        "long_raw": 181,
+        "rare_raw": 4.569,
+        "z": [
+          1.53,
+          -0.81,
+          0.59,
+          0.61
+        ]
+      }
+    },
+    {
+      "sample_id": "013088",
+      "prompt": "the person picks up the bottle of shampoo to wash the dog",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013088.npy",
+      "hardness": 1.911,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.172,
+        "z": [
+          -0.47,
+          -0.81,
+          0.94,
+          2.25
+        ]
+      }
+    },
+    {
+      "sample_id": "014472",
+      "prompt": "a person dances briefly and then performs a backflip.",
+      "gt_length": 166,
+      "target_length": 164,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\014472.npy",
+      "hardness": 1.903,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 166,
+        "rare_raw": 6.009,
+        "z": [
+          0.33,
+          -0.81,
+          0.3,
+          2.08
+        ]
+      }
+    },
+    {
+      "sample_id": "005037",
+      "prompt": "the drunk guy struggles to walk down the street",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005037.npy",
+      "hardness": 1.902,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.163,
+        "z": [
+          -0.47,
+          -0.81,
+          0.94,
+          2.24
+        ]
+      }
+    },
+    {
+      "sample_id": "013753",
+      "prompt": "a person alternately uses his hands to illustrate a high-spirited drumming motion.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\013753.npy",
+      "hardness": 1.891,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 1,
+        "long_raw": 199,
+        "rare_raw": 5.582,
+        "z": [
+          -0.47,
+          -0.23,
+          0.94,
+          1.65
+        ]
+      }
+    },
+    {
+      "sample_id": "010529",
+      "prompt": "person is walking forward while leaning on something with the left arm, then they stop and bring their arms out to the side",
+      "gt_length": 142,
+      "target_length": 140,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\010529.npy",
+      "hardness": 1.887,
+      "hardness_breakdown": {
+        "comp_raw": 8,
+        "fine_raw": 3,
+        "long_raw": 142,
+        "rare_raw": 3.178,
+        "z": [
+          1.92,
+          0.94,
+          -0.16,
+          -0.81
+        ]
+      }
+    },
+    {
+      "sample_id": "007409",
+      "prompt": "the person is trying to hit a bug.",
+      "gt_length": 192,
+      "target_length": 192,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007409.npy",
+      "hardness": 1.885,
+      "hardness_breakdown": {
+        "comp_raw": 2,
+        "fine_raw": 0,
+        "long_raw": 192,
+        "rare_raw": 6.279,
+        "z": [
+          -0.47,
+          -0.81,
+          0.81,
+          2.36
+        ]
+      }
+    },
+    {
+      "sample_id": "005471",
+      "prompt": "a person dances rhythmically with their partner who leads the dance, and they execute a few spins.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\005471.npy",
+      "hardness": 1.883,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.755,
+        "z": [
+          -0.07,
+          -0.81,
+          0.94,
+          1.82
+        ]
+      }
+    },
+    {
+      "sample_id": "004472",
+      "prompt": "a man dodges something to the left, then the right and then the left again.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\004472.npy",
+      "hardness": 1.871,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.253,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.74
+        ]
+      }
+    },
+    {
+      "sample_id": "002074",
+      "prompt": "person is takign something throwing it then backing up.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\002074.npy",
+      "hardness": 1.868,
+      "hardness_breakdown": {
+        "comp_raw": 4,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 5.351,
+        "z": [
+          0.33,
+          -0.81,
+          0.94,
+          1.41
+        ]
+      }
+    },
+    {
+      "sample_id": "011682",
+      "prompt": "a man stands prepared and aware, then suddenly takes an abrupt step backwards and regains his ready stance.",
+      "gt_length": 182,
+      "target_length": 180,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\011682.npy",
+      "hardness": 1.863,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 0,
+        "long_raw": 182,
+        "rare_raw": 5.278,
+        "z": [
+          0.73,
+          -0.81,
+          0.61,
+          1.34
+        ]
+      }
+    },
+    {
+      "sample_id": "009338",
+      "prompt": "a person raises their left arm holding an object and then lowers their arm",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009338.npy",
+      "hardness": 1.861,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 3,
+        "long_raw": 199,
+        "rare_raw": 3.243,
+        "z": [
+          0.73,
+          0.94,
+          0.94,
+          -0.75
+        ]
+      }
+    },
+    {
+      "sample_id": "007496",
+      "prompt": "a person stands with knees bent and arms down on their sides, then continues to stand with arms spread out to the side.",
+      "gt_length": 144,
+      "target_length": 144,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\007496.npy",
+      "hardness": 1.858,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 3,
+        "long_raw": 144,
+        "rare_raw": 3.891,
+        "z": [
+          1.13,
+          0.94,
+          -0.12,
+          -0.08
+        ]
+      }
+    },
+    {
+      "sample_id": "000327",
+      "prompt": "a person raises their right arm and then bends to touch the floor in fromt of them, they repeat this motion twice.",
+      "gt_length": 152,
+      "target_length": 152,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\000327.npy",
+      "hardness": 1.855,
+      "hardness_breakdown": {
+        "comp_raw": 6,
+        "fine_raw": 2,
+        "long_raw": 152,
+        "rare_raw": 4.306,
+        "z": [
+          1.13,
+          0.35,
+          0.03,
+          0.34
+        ]
+      }
+    },
+    {
+      "sample_id": "008382",
+      "prompt": "a person does squats with raised hands, pushing their hand bove their head when they stand up from the squat.",
+      "gt_length": 157,
+      "target_length": 156,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\008382.npy",
+      "hardness": 1.852,
+      "hardness_breakdown": {
+        "comp_raw": 3,
+        "fine_raw": 3,
+        "long_raw": 157,
+        "rare_raw": 4.809,
+        "z": [
+          -0.07,
+          0.94,
+          0.13,
+          0.86
+        ]
+      }
+    },
+    {
+      "sample_id": "003729",
+      "prompt": "a person in boxing class",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\003729.npy",
+      "hardness": 1.848,
+      "hardness_breakdown": {
+        "comp_raw": 1,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 6.501,
+        "z": [
+          -0.87,
+          -0.81,
+          0.94,
+          2.59
+        ]
+      }
+    },
+    {
+      "sample_id": "009710",
+      "prompt": "the figure is standing facing forward, holding and exercising what can be a dumbbell.",
+      "gt_length": 199,
+      "target_length": 196,
+      "gt_path": "external_assets\\HumanML3D\\new_joints\\009710.npy",
+      "hardness": 1.847,
+      "hardness_breakdown": {
+        "comp_raw": 5,
+        "fine_raw": 0,
+        "long_raw": 199,
+        "rare_raw": 4.94,
+        "z": [
+          0.73,
+          -0.81,
+          0.94,
+          0.99
+        ]
+      }
+    }
+  ]
+}
