@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "protocol_freeze_validation",
+  "board_id": "AR-048",
+  "pool_root": "external_assets\\protocol_v1_pool_seed20260607",
+  "candidate_bank": "evals\\prompts\\protocol_v1_test_50_seed20260607.json",
+  "n_candidates": 50,
+  "n_select": 30,
+  "ratio_floor": 0.8,
+  "n_seeds": 3,
+  "generators": [
+    "mdm",
+    "momask",
+    "motiongpt"
+  ],
+  "selected_prompts": [
+    "003831",
+    "001425",
+    "011825",
+    "007301",
+    "005087",
+    "004504",
+    "003039",
+    "008803",
+    "011864",
+    "008824",
+    "009140",
+    "006705",
+    "002093",
+    "003174",
+    "010909",
+    "002928",
+    "003857",
+    "013343",
+    "011566",
+    "009385",
+    "005468",
+    "008144",
+    "003886",
+    "009401",
+    "010445",
+    "005481",
+    "013289",
+    "011534",
+    "012927",
+    "012877"
+  ],
+  "per_prompt_common_length": {
+    "003831": 96,
+    "001425": 192,
+    "011825": 40,
+    "007301": 196,
+    "005087": 76,
+    "004504": 72,
+    "003039": 100,
+    "008803": 192,
+    "011864": 104,
+    "008824": 148,
+    "009140": 60,
+    "006705": 116,
+    "002093": 148,
+    "003174": 60,
+    "010909": 156,
+    "002928": 92,
+    "003857": 192,
+    "013343": 76,
+    "011566": 192,
+    "009385": 52,
+    "005468": 88,
+    "008144": 176,
+    "003886": 192,
+    "009401": 64,
+    "010445": 140,
+    "005481": 64,
+    "013289": 192,
+    "011534": 196,
+    "012927": 44,
+    "012877": 164
+  },
+  "selected_ratios": {
+    "003831": 0.8,
+    "001425": 0.98,
+    "011825": 1.0,
+    "007301": 1.0,
+    "005087": 0.905,
+    "004504": 0.947,
+    "003039": 1.0,
+    "008803": 0.98,
+    "011864": 0.963,
+    "008824": 1.0,
+    "009140": 1.0,
+    "006705": 0.967,
+    "002093": 1.0,
+    "003174": 1.0,
+    "010909": 0.975,
+    "002928": 1.0,
+    "003857": 0.98,
+    "013343": 1.0,
+    "011566": 0.98,
+    "009385": 1.0,
+    "005468": 0.917,
+    "008144": 1.0,
+    "003886": 0.98,
+    "009401": 1.0,
+    "010445": 1.0,
+    "005481": 1.0,
+    "013289": 0.98,
+    "011534": 1.0,
+    "012927": 0.917,
+    "012877": 0.891
+  },
+  "ground_criterion": "lower-foot-height 10th percentile (NOT min-Y); tools/coords_protocol.estimate_ground",
+  "length_protocol": "MDM/MoMask honor target; MotionGPT native length; paired compare at per-prompt common_length (>= floor*target).",
+  "all_pass": true,
+  "checks": {
+    "1_prompt_gt_alignment": {
+      "pass": true,
+      "n_mismatch": 0,
+      "examples": []
+    },
+    "2_length_protocol": {
+      "pass": true,
+      "ratio_floor": 0.8,
+      "n_selected": 30,
+      "n_requested": 30,
+      "enough": true,
+      "min_selected_ratio": 0.8,
+      "mdm_momask_target_match": {
+        "mdm": {
+          "n": 90,
+          "match": 90
+        },
+        "momask": {
+          "n": 90,
+          "match": 90
+        }
+      },
+      "note": "per-prompt common_length 로 truncate 시 3 generator 동일 길이 + 의미 보존(ratio>=floor). MotionGPT 는 native length(강제 불가) → common_length 가 MotionGPT length."
+    },
+    "3_seeds_per_prompt": {
+      "pass": true,
+      "expected": 3,
+      "bad": []
+    },
+    "4_dual_representation": {
+      "pass": true,
+      "n_bad": 0,
+      "examples": []
+    },
+    "5_generator_separation": {
+      "pass": true,
+      "generator_ids": {
+        "mdm": [
+          "G1_mdm_model000750000"
+        ],
+        "momask": [
+          "G2_momask_t2m_nlayer8_nhead6_ld384_ff1024_cdp0.1_rvq6ns"
+        ],
+        "motiongpt": [
+          "G2_motiongpt_motiongpt_s3_h3d"
+        ]
+      },
+      "contamination": []
+    },
+    "6_metadata_provenance": {
+      "pass": true,
+      "required": [
+        "sample_id",
+        "prompt",
+        "seed",
+        "generator_id",
+        "target_length",
+        "ground_y"
+      ],
+      "n_bad": 0
+    },
+    "7_paired_complete": {
+      "pass": true,
+      "incomplete": []
+    }
+  },
+  "claim_boundary": "표현/provenance/length adapter freeze. generator 성능 우열 결론 아님."
+}
