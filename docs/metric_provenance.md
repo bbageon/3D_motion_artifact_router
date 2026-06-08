@@ -108,7 +108,22 @@ ArtifactRouter 의 모든 metric 을 다음 **3 Category** 로 분류:
 | **본 프로젝트 변형** | **FootFloatingEvaluator** (`evaluators/foot_floating_evaluator.py`) — simple Y-threshold (tau_float=0.05). **Sliding 의 horizontal velocity component 미포함**. |
 | **분류** | **B. variant** (현재 구현은 partial), **C. proxy** (외부 공개 시 caveat) |
 | **용도** | foot artifact diagnostic |
-| **CAVEAT (부록 Z 발견)** | 현재 구현 의 corruption robustness 부족 — synthetic `inject_foot_floating(0.08)` 이 evaluator max score 거의 안 올림. **standard foot skating / sliding metric 으로 보강 의무** (Item 6). |
+| **CAVEAT (부록 Z 발견)** | 현재 구현 의 corruption robustness 부족 — synthetic `inject_foot_floating(0.08)` 이 evaluator max score 거의 안 올림. **standard foot skating / sliding metric 으로 보강 의무** (Item 6) → **§3-1-1 에서 보강 (AR-029)**. |
+
+### 3-1-1. Standard Foot Skating (GMD/EDGE magnitude) — AR-029 보강
+
+§3-1 CAVEAT(부록 Z) 의 "standard foot skating/sliding 보강 의무" 이행. `FootFloatingEvaluator`(threshold ratio, Category C) 와 달리 **연속 magnitude 공식**.
+
+| Item | Value |
+|---|---|
+| **Source** | EDGE (Tseng et al., **CVPR 2023**) · GMD (Karunratanakul et al., **ICCV 2023**) — foot-skating magnitude. (원형 Ling et al. 2020 MotionVAE.) |
+| **공식** | `s = Σ_feet ‖Δp_xz(t)‖ · max(0, 2 − 2^(h_t/H))`, h<H. H=0.05m. 단위 m/frame. ground=per-motion min Y. |
+| **구현** | [`tools/physical_metric_g2_stress.py::foot_skate`](../tools/physical_metric_g2_stress.py) |
+| **분류** | **B. standard physical plausibility** (공식 자체는 literature 표준; ground=minY heuristic 은 variant) |
+| **용도** | foot sliding 의 standard-formula 재측정 (FID 가 둔감한 local artifact). FootFloating proxy 와 **다른 artifact**(floating≠sliding). |
+| **GATE_RELATIONSHIP (§3-25)** | FootLockTool target 과 상관 → 독립 free-lunch 아님. |
+| **실증 (real g2_stress n=65, [snapshot](../evals/snapshots/physical_metric_g2_stress_v1.json))** | original foot_skate=0.0039 (이미 극히 낮음, VQ generator). 보정 후 **오히려 악화** (oracle Δmed +13%, d+0.66, improved 3%) — float↓의 부작용(planted foot 의 잔여 수평이동이 skate 로 등록) + ground 추정 민감성. **MotionGPT 는 foot_skate headroom 없음.** |
+| **Caveat** | ground=minY 추정에 민감 (tool 이 min Y 변경 시 reference 이동). 절대 개선/악화 방향은 ground-independent metric(acceleration)으로 교차검증 권장. |
 
 ### 3-2. Fidelity Loss Protocol B simplified
 
@@ -139,6 +154,7 @@ ArtifactRouter 의 모든 metric 을 다음 **3 Category** 로 분류:
 | **분류** | **B. variant** (close to standard) |
 | **용도** | temporal smoothness diagnostic |
 | **Caveat** | mean acceleration norm 의 normalization 차이 (per-joint 평균 vs total) — 외부 공개 시 정확한 formula 인용 의무. |
+| **실증 (AR-029, ground-INDEPENDENT)** | real g2_stress n=65 ([snapshot](../evals/snapshots/physical_metric_g2_stress_v1.json)): 보정 후 acceleration **유의하게 감소(=smoother)** — accel_mean oracle d=-0.45 improved 63%, M0 d=-0.16 improved 42%. **FID 가 못 본 유일한 깨끗한 개선축** (단 효과 크기 작음 — 이미 smooth). |
 
 ### 3-5. PhysicalGateV0 — 5 Evaluator (Safe Orchestration Layer B, 2026-05-26 revised)
 
@@ -224,16 +240,32 @@ if JerkSpike_after > max(JerkSpike_before * 1.05, CleanP99_Jerk):
 | **용도** | **policy optimization reward** for RL-1 / RL-2. **NOT final motion quality metric**. |
 | **CAVEAT** | NetGain 의 결과 의 외부 공개 인용 시 의무 동반: "NetGain is a proxy reward, not a standard motion quality metric. Final quality is validated by standard metrics (FID, R-Precision, MM-Dist) + visual/perceptual rating." |
 
-### 4-1-1. safe_utility (Q_safe action-effect surface, RL-2 Stage 1+, 2026-05-29)
+### 4-1-1. validation-aware utility (Q action-effect surface, RL-2 Stage 1+, 2026-05-29/30)
 
 | Item | Value |
 |---|---|
 | **Source** | **본 프로젝트 자체 정의** — NetGain 의 single-step local form. no direct standard reference. |
-| **Formula** | `safe_utility(s, tool, u) = artifact_reduction - α·fidelity_loss - β·correction_magnitude - γ·tool_cost` (α=5.0, β=γ=0, NetGain weight 상속). single-step local: artifact_reduction = target(s) − target(s'), fidelity_loss = G2 Protocol B MPJPE(s', s) / synthetic Protocol A ΔMPJPE-to-clean. **physical_violation 시 hard constraint** (selection 에서 −∞, 학습 label 은 별도 risk head). |
-| **Q surface** | `Q_safe(s, tool, u)` = 위 utility 를 (state, tool, normalized intensity u∈[0,1]) 의 함수로 회귀 학습 ([action_space_provenance §5-2](action_space_provenance.md)). |
+| **Formula** | `utility(s, tool, u) = artifact_reduction - α·fidelity_loss - β·correction_magnitude - γ·tool_cost` (α=5.0, β=γ=0, NetGain weight 상속). single-step local: artifact_reduction = target(s) − target(s'), fidelity_loss = G2 Protocol B MPJPE(s', s) / synthetic Protocol A ΔMPJPE-to-clean. gate/pass-fail 은 selection/evaluation mode 에 따라 hard constraint, risk label, 또는 diagnostic annotation 으로 별도 기록. |
+| **Q surface** | `Q(s, tool, u)` 또는 shorthand `Q_safe(s, tool, u)` = 위 utility 와 validation annotation 을 (state, tool, normalized intensity u∈[0,1]) 의 함수로 학습/랭킹 ([action_space_provenance §5-2](action_space_provenance.md)). `Q_safe` 는 learned score 자체가 safety certificate 라는 뜻이 아님. |
 | **분류** | **C. proxy — internal routing reward only** (NetGain 과 동일 계층). |
-| **용도** | RL-2 reranking / continuous argmax 의 utility surface. **NOT final motion quality metric.** |
-| **CAVEAT** | NetGain 과 동일 — 외부 공개 시 standard metric (FID/R-Prec) + perceptual validation 동반 의무. physical gate 는 reward term 이 아니라 **hard gate** (추론 시 real gate 재검증, §5-2-6). |
+| **용도** | RL-2 action-effect surface / candidate selection / reranking / continuous argmax 의 internal objective. **NOT final motion quality metric.** |
+| **CAVEAT** | NetGain 과 동일 — 외부 공개 시 standard metric (FID/R-Prec/MM-Dist) + perceptual validation 동반 의무. learned risk/safety score 의 physical safety claim 은 실제 validation mode 와 함께 보고해야 함 ([AGENTS.md §3-25](../AGENTS.md)). |
+
+### 4-1-2. Policy / validation contribution diagnostics (2026-05-30)
+
+본 절 의 metric 은 policy 가 motion quality 향상에 기여했는지, 또는 physical gate / heuristic 만으로 설명되는지 분리하기 위한 **Category C diagnostic** 이다. 외부 공개 최종 품질 근거가 아니라 ablation/control 용도.
+
+| Metric | Definition | 용도 | 분류 |
+|---|---|---|---|
+| `safe_utility_recovery` | `(executed_utility - stop_utility) / (dense_oracle_safe_utility - stop_utility + eps)` | dense safe oracle 대비 utility 회수율 | C proxy |
+| `argmax_regret` | `dense_oracle_safe_utility - executed_utility` | continuous/dense oracle 대비 손실 | C proxy |
+| `topk_safe_recall` | top-k 후보 안에 dense safe oracle 또는 tolerance 내 safe action 이 포함되는 비율 | policy candidate ranking 품질 | C proxy |
+| `unsafe_topk_rate` | top-k 후보 중 physical gate fail 후보 비율 | high-utility unsafe 후보를 얼마나 상위로 올리는지 진단 | C proxy |
+| `unsafe_as_safe_rate` | learned risk/safety head 가 safe 로 예측했으나 real gate fail 인 비율 | risk head false-safe 진단 | C proxy |
+| `gate_rejection_rate` | evaluated candidates 중 gate rejected 비율 | validation layer burden / wasted candidate 진단 | C proxy |
+| `candidate_evals` | sample 당 실제 tool apply + gate 검증 후보 수 | latency / efficiency 진단 | C proxy |
+
+**CAVEAT**: 위 metric 은 policy contribution 을 분리하기 위한 control metric 이며, motion quality claim 은 FID/R-Prec/MM-Dist + physical violation + perceptual evidence 와 함께 보고해야 한다.
 
 ### 4-2. FootFloatingEvaluator (current)
 

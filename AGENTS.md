@@ -72,7 +72,7 @@
 - **§3-21 Action Space Provenance**: 모든 RL/Q-surface stage 의 action space 는 [action_space_provenance.md](docs/action_space_provenance.md) 등록. 리포트·외부 공개 시 `action_space_type` (`discrete_3level`/`discrete_5level`/`dense_grid_proxy`/`bounded_continuous_u`) + stage + STOP 포함 + u-mapper version 명시. 다른 grid 직접 비교 시 같은 sample/reference/config. **RL-2 historical: learned primary=3-level; 5-level=oracle ceiling** ; continuous-u 는 별도 stage 로 기록. 위반 = §6-5.
 - **§3-22 Research Grounding Gate**: 연구 설계 피드백/평가 해석/metric·baseline·algorithm 선택/외부 공개 판단 시 **2020+ peer-reviewed top-tier 논문 근거** 동반 (arXiv-only 단독 금지). 응답 4항목 (판단/근거논문/적용범위/불확실성). 근거 부족 시 `engineering heuristic`/`internal proxy assumption`/`pilot-only finding` 명시 (외부 단독 근거 금지). 상세 [04-evaluation §7-0](.claude/rules/phase/04-evaluation.md). 단순 버그·경로·테스트는 대상 아님.
 - **§3-23 Intent-Reconciliation Loop**: 새 evaluator/tool/oracle/baseline/policy/snapshot/framework doc commit 직전 5-step self-check → verdict `aligned`/`partial`/`misaligned`/`scope_creep`/`unintended_side_effect`. 뒤 3개는 사용자 보고 (commit 보류/confirm). 상세 [intent-reconciliation SKILL](.claude/skills/intent-reconciliation/SKILL.md).
-- **§3-24 Harness Rule vs Skill/Doc 분리**: AGENTS=invariant·필수 metadata field·evidence tier·silent invalidation·승인 게이트. **skills**=실행 절차/checklist/예시. **docs**=참조(용어·요약·spec). **Dashboard**=board. Dashboard row 는 1줄 index 로 유지하고 상세 작업 명세는 `.claude/docs/dashboard-task-specs/AR-NNN-*.md` 로 분리한다. AGENTS 는 아키텍처 역할을 과도하게 고정하지 않고 **configuration 과 claim 일치**를 강제. `heuristic`/`proxy`/`pilot` 근거는 절대 규칙 직접 승격 금지 → skills/docs 먼저 ([phase 01 §7-1](.claude/rules/phase/01-instructions.md)).
+- **§3-24 Harness Rule vs Skill/Doc 분리**: AGENTS=invariant·필수 metadata field·evidence tier·silent invalidation·승인 게이트. **skills**=실행 절차/checklist/예시. **docs**=참조(용어·요약·spec). **Dashboard**=board. Dashboard row 는 1줄 index 로 유지하고 상세 작업 명세는 `.claude/docs/dashboard-task-specs/<dashboard-id>-*.md` 로 분리한다. 예정사항·다음 순서·우선순위는 Dashboard 에 등록된 row 기준으로만 제시하며, Dashboard 에 없는 작업은 먼저 backlog 에 등록한다. AGENTS 는 아키텍처 역할을 과도하게 고정하지 않고 **configuration 과 claim 일치**를 강제. `heuristic`/`proxy`/`pilot` 근거는 절대 규칙 직접 승격 금지 → skills/docs 먼저 ([phase 01 §7-1](.claude/rules/phase/01-instructions.md)).
 - **§3-25 Policy-Validation Traceability**: learned policy/Q/risk head/heuristic/oracle/gate 결과 인용 시 **무엇이 품질 향상에 기여했는지 분리 가능**해야 함. `selection_mode`·`candidate_trace`·`gate_recheck`·`policy_contribution_baseline` 기록 ; `gate_recheck=false`=diagnostic only ; baseline 비교 없으면 `policy contribution not isolated`. field·claim rule 상세 [policy-validation-traceability](.claude/docs/policy-validation-traceability.md). 위반 = §6-5.
 - **§3-26 Action-Effect Coverage / Hard-Example Provenance**: continuous-u/Q-surface 단위 = `(state,tool,u,after_state,gate_result,utility)` transition. transition/hard-mining dataset 은 `transition_dataset_id`·`u_grid`·`seed`·`mining_reason` 등 기록 + hard-mined 는 natural 과 분리 보고. 상세 [policy-validation-traceability §3](.claude/docs/policy-validation-traceability.md).
 
@@ -146,7 +146,7 @@
 | `tools/` | 시각화·실험 도구 (synthetic injection / tool effect matrix / perceptual) |
 | `evals/` | `raw/` (Collect) · `snapshots/` · `reports/<period>.md` (5단계) · `hypotheses/`·`workarounds/` (append-only) |
 | `reports/` | 일자별 일지 + `figures/<date>/` |
-| `.claude/` | `rules/phase/` (지침) · `skills/` (실행) · `docs/` (참조) · `Dashboard/` (board, 상태별 파일 분리: backlog/todo/in-progress/done/cancelled) — §3-24 |
+| `.claude/` | `rules/phase/` (지침) · `skills/` (실행) · `docs/` (참조) · `Dashboard/` (board, 상태별 파일 분리: backlog/ready/in-progress/done/cancelled) — §3-24 |
 | `external_assets/` | public dataset + vestigial archive. read-only, 직접 수정 금지 (§4) |
 | `experiments/` | MVP feasibility (Week 1-4) segregated workspace |
 
@@ -157,4 +157,5 @@
 - **구현 레시피** (evaluator/tool/generator/가설/우회 추가, 네이밍·포맷): [.claude/docs/implementation-recipes.md](.claude/docs/implementation-recipes.md).
 - **용어 사전**: [.claude/docs/glossary.md](.claude/docs/glossary.md). **가설 요약**: [.claude/docs/hypotheses-summary.md](.claude/docs/hypotheses-summary.md). **작업 board**: [.claude/Dashboard/](.claude/Dashboard/README.md) (상태별 파일).
 - **연구 provenance** (단일 출처): [metric_provenance](docs/metric_provenance.md) · [action_space_provenance](docs/action_space_provenance.md) · [current_research_position](docs/current_research_position.md) · [motion_research_strategy_summary](docs/motion_research_strategy_summary.md).
+- **데이터셋 카드**: [docs/dataset/](docs/dataset/README.md) (G2=MotionGPT pool 등). **발견·시사점**: [docs/findings/](docs/findings/README.md). **generator 실패 유형**(문헌): [docs/generator_failure_mode_survey.md](docs/generator_failure_mode_survey.md).
 - **phase 지침**: [`.claude/rules/phase/`](.claude/rules/phase/) 01~04.
