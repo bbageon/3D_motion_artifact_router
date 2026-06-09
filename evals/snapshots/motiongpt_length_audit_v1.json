@@ -1,0 +1,198 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "motiongpt_length_audit",
+  "board_id": "AR-050",
+  "pool": "protocol_rep_pool_seed20260608",
+  "generator": "motiongpt",
+  "policy": "read-only audit. pool 원본 미변경. 짧은 출력은 native generation failure 로 유지.",
+  "length_distribution": {
+    "n": 900,
+    "exact_match": 0.219,
+    "shorter": 0.423,
+    "longer": 0.358,
+    "ratio_below_0.8": 0.208,
+    "ratio_below_0.6": 0.109,
+    "ratio_below_0.25": 0.012,
+    "actual_len_min": 4,
+    "actual_len_median": 164,
+    "actual_len_max": 200,
+    "ratio_median": 1.0
+  },
+  "extreme_early_termination_count": 1,
+  "extreme_early_termination": [
+    {
+      "sample_id": "011743",
+      "seed": 20506610,
+      "prompt": "turning body from side to side.",
+      "target_length": 196,
+      "actual_generated": 4,
+      "trajectory_npy": "external_assets\\protocol_rep_pool_seed20260608\\motiongpt\\011743__seed20506610.trajectory.npy"
+    }
+  ],
+  "per_prompt_high_length_variance": [
+    {
+      "sample_id": "011743",
+      "lengths": [
+        4,
+        188,
+        188
+      ],
+      "spread": 184
+    },
+    {
+      "sample_id": "006281",
+      "lengths": [
+        16,
+        192,
+        196
+      ],
+      "spread": 180
+    },
+    {
+      "sample_id": "005676",
+      "lengths": [
+        44,
+        148,
+        196
+      ],
+      "spread": 152
+    },
+    {
+      "sample_id": "008902",
+      "lengths": [
+        40,
+        192,
+        192
+      ],
+      "spread": 152
+    },
+    {
+      "sample_id": "010563",
+      "lengths": [
+        40,
+        76,
+        192
+      ],
+      "spread": 152
+    },
+    {
+      "sample_id": "013130",
+      "lengths": [
+        40,
+        112,
+        192
+      ],
+      "spread": 152
+    },
+    {
+      "sample_id": "004268",
+      "lengths": [
+        48,
+        196,
+        196
+      ],
+      "spread": 148
+    },
+    {
+      "sample_id": "004303",
+      "lengths": [
+        44,
+        96,
+        192
+      ],
+      "spread": 148
+    },
+    {
+      "sample_id": "006987",
+      "lengths": [
+        48,
+        196,
+        196
+      ],
+      "spread": 148
+    },
+    {
+      "sample_id": "000486",
+      "lengths": [
+        52,
+        192,
+        196
+      ],
+      "spread": 144
+    },
+    {
+      "sample_id": "009727",
+      "lengths": [
+        52,
+        196,
+        196
+      ],
+      "spread": 144
+    },
+    {
+      "sample_id": "004129",
+      "lengths": [
+        56,
+        196,
+        196
+      ],
+      "spread": 140
+    },
+    {
+      "sample_id": "003831",
+      "lengths": [
+        56,
+        140,
+        192
+      ],
+      "spread": 136
+    },
+    {
+      "sample_id": "008528",
+      "lengths": [
+        60,
+        68,
+        196
+      ],
+      "spread": 136
+    },
+    {
+      "sample_id": "014002",
+      "lengths": [
+        60,
+        196,
+        196
+      ],
+      "spread": 136
+    }
+  ],
+  "complexity_explore": {
+    "ratio_mean_overall_top25": 0.907,
+    "ratio_mean_overall_bottom25": 1.29,
+    "note": "탐색 분석 only — complexity 가 길이 실패의 원인이라 주장하지 않음"
+  },
+  "root_cause_hypothesis": "Docker service 는 n_frames 를 batch 에 넣으나 MotionGPT forward() 가 batch['length'] 를 generate_direct(do_sample=True) 에 전달하지 않음 → 모델이 token 수·EOS 를 확률적으로 결정. VAE 시간 downsampling=4 → motion token 1개 조기 종료 시 4-frame 복원. (코드 확인은 Part B/C.)",
+  "claim_boundary": "MotionGPT 전체 품질 낮음 증명 아님. 길이 제어 실패 발생률·원인 진단. cross-gen 측정 시 native vs sensitivity 분리.",
+  "root_cause_confirmed": {
+    "verified": "code-level (Part B/C 코드 확인)",
+    "evidence": [
+      "mGPT/models/mgpt.py:67 lengths_ref=batch[\"length\"] 읽지만, :71 generate_direct(texts, do_sample=True) 에 미전달",
+      "mGPT/archs/mgpt_lm.py:229 generate_direct(max_length=256, do_sample=True) → :268 max_new_tokens=256 + sampling → token 수·EOS 확률적 결정",
+      "VAE 시간 downsampling=4 → motion token 1개 조기 EOS = 4-frame 복원",
+      "동일 prompt 011743 3 seed = [4,188,188] (확률적 길이의 직접 증거)",
+      "4-frame sample target=196 actual=4 (4<196 → truncation 아님 = upstream generation)"
+    ],
+    "requested_length_used_in_direct_generation": false
+  },
+  "length_conditioned_path": {
+    "exists": true,
+    "method": "mGPT/archs/mgpt_lm.py:279 generate_conditional(..., lengths=Optional[List[int]])",
+    "used_by_current_t2m_forward": false,
+    "validation_status": "미실험 (Part C: service 수정+재생성 필요) — 품질 부작용·target-match 측정은 후속"
+  },
+  "protocol_decision": {
+    "native_behavior": "현재 direct output 그대로 = primary. generator length-failure prevalence 근거. representative pool 미변경(전부 유지).",
+    "length_conditioned_behavior": "generate_conditional 경로 검증 시 별도 protocol/version id 로 저장 (Part C 후속).",
+    "sensitivity_analysis": "cross-gen measurement(AR-051)에서 극단 짧은 sample(<=8frame 1개, ratio<0.6 10.9%) 포함/제외 결과 분리. 제외만 primary claim 금지."
+  }
+}
