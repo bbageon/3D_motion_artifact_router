@@ -82,16 +82,29 @@ def load_models() -> None:
     _STATE.update(cfg=cfg, model=model, device=device, ckpt=ckpt)
 
 
-def generate_motion(prompt: str, n_frames: int, seed: int):
+def generate_motion(prompt: str, n_frames: int, seed: int, with_len: bool = False):
     import pytorch_lightning as pl
 
     pl.seed_everything(seed)
     model = _STATE["model"]
-    batch = {"length": [int(n_frames)], "text": [prompt]}
-    with torch.no_grad():
-        outputs = model(batch, task="t2m")
+    length_field = None
+    if with_len:
+        # AR-050 Part C: length-conditioned path. prompt becomes
+        # "Generate motion with <N> frames: <caption>" (mgpt_lm.generate_conditional with_len).
+        # 길이는 instruction 으로 soft conditioning (decode 는 동일 do_sample).
+        with torch.no_grad():
+            tokens = model.lm.generate_conditional(
+                texts=[prompt], lengths=[int(n_frames)], task="t2m", with_len=True)
+            feats = model.vae.decode(tokens[0])
+            joints_obj = model.feats2joints(feats)
+        length_field = [int(feats.shape[1])]
+    else:
+        batch = {"length": [int(n_frames)], "text": [prompt]}
+        with torch.no_grad():
+            outputs = model(batch, task="t2m")
+        joints_obj = outputs["joints"]
+        length_field = outputs.get("length")
 
-    joints_obj = outputs["joints"]
     if isinstance(joints_obj, list):
         joints = joints_obj[0]
     else:
@@ -100,7 +113,6 @@ def generate_motion(prompt: str, n_frames: int, seed: int):
         joints = joints.detach().cpu().numpy()
     joints = np.asarray(joints, dtype=np.float64)
 
-    length_field = outputs.get("length")
     try:
         length_generated = int(length_field[0])
     except (TypeError, IndexError):
@@ -119,6 +131,7 @@ class GenRequest(BaseModel):
     prompt: str
     n_frames: int = 40
     seed: int = 42
+    with_len: bool = False  # AR-050 Part C: length-conditioned generation
 
 
 try:
@@ -147,7 +160,7 @@ def generate(req: GenRequest):
         raise HTTPException(status_code=503, detail="model not loaded: " + str(_STATE.get("error")))
     t0 = time.time()
     try:
-        motion_traj, length_generated = generate_motion(req.prompt, req.n_frames, req.seed)
+        motion_traj, length_generated = generate_motion(req.prompt, req.n_frames, req.seed, req.with_len)
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=f"{type(exc).__name__}: {exc}\n{traceback.format_exc()}")
     if motion_traj.ndim != 3 or motion_traj.shape[1] != 22 or motion_traj.shape[2] != 3:
@@ -165,5 +178,6 @@ def generate(req: GenRequest):
         "seed": req.seed,
         "prompt": req.prompt,
         "length_generated": length_generated,
+        "generation_mode": "length_conditioned" if req.with_len else "direct",
         "elapsed_sec": round(time.time() - t0, 3),
     }

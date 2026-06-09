@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "motiongpt_length_conditioned_compare",
+  "board_id": "AR-050",
+  "policy": "별도 protocol(Part C). representative pool 미변경. padding/interpolation 미사용 (순수 generation).",
+  "n_audit_prompts": 20,
+  "seeds": [
+    20260609,
+    20260610,
+    20260611
+  ],
+  "conditioned_mechanism": "generate_conditional(task=t2m, with_len=True): 'Generate motion with <N> frames: <caption>' instruction. soft conditioning (decode 는 동일 do_sample).",
+  "direct": {
+    "n": 60,
+    "exact_match_rate": 0.167,
+    "ratio_in_0.8_1.25": 0.683,
+    "degenerate_le8_rate": 0.0,
+    "ratio_median": 0.98,
+    "ratio_min": 0.204,
+    "actual_min": 40,
+    "mean_runtime_sec": 0.48
+  },
+  "length_conditioned": {
+    "n": 60,
+    "exact_match_rate": 0.017,
+    "ratio_in_0.8_1.25": 0.533,
+    "degenerate_le8_rate": 0.0,
+    "ratio_median": 0.959,
+    "ratio_min": 0.184,
+    "actual_min": 32,
+    "mean_runtime_sec": 0.4
+  },
+  "per_prompt_failure_cases": {
+    "011743": {
+      "target": 196,
+      "direct_lengths": [
+        188,
+        188,
+        188
+      ],
+      "conditioned_lengths": [
+        184,
+        184,
+        184
+      ]
+    },
+    "006281": {
+      "target": 196,
+      "direct_lengths": [
+        192,
+        192,
+        192
+      ],
+      "conditioned_lengths": [
+        188,
+        188,
+        188
+      ]
+    },
+    "005676": {
+      "target": 196,
+      "direct_lengths": [
+        112,
+        172,
+        196
+      ],
+      "conditioned_lengths": [
+        140,
+        140,
+        188
+      ]
+    },
+    "008902": {
+      "target": 196,
+      "direct_lengths": [
+        40,
+        192,
+        196
+      ],
+      "conditioned_lengths": [
+        40,
+        188,
+        192
+      ]
+    },
+    "010563": {
+      "target": 88,
+      "direct_lengths": [
+        44,
+        76,
+        196
+      ],
+      "conditioned_lengths": [
+        40,
+        44,
+        176
+      ]
+    }
+  },
+  "claim_boundary": "MotionGPT 길이 제어 개선 가능성 진단. semantic validity 전수(R-Prec)는 미측정(AR-051). 절대 품질 claim 아님."
+}

@@ -188,11 +188,11 @@
     "exists": true,
     "method": "mGPT/archs/mgpt_lm.py:279 generate_conditional(..., lengths=Optional[List[int]])",
     "used_by_current_t2m_forward": false,
-    "validation_status": "미실험 (Part C: service 수정+재생성 필요) — 품질 부작용·target-match 측정은 후속"
+    "validation_status": "Part C 완료(negative): with_len(generate_conditional) instruction conditioning 은 target-match 개선 못함(exact 1.7% vs direct 16.7%). soft conditioning + 확률적 decode 가 지배. → native primary + sensitivity 가 결론."
   },
   "protocol_decision": {
     "native_behavior": "현재 direct output 그대로 = primary. generator length-failure prevalence 근거. representative pool 미변경(전부 유지).",
-    "length_conditioned_behavior": "generate_conditional 경로 검증 시 별도 protocol/version id 로 저장 (Part C 후속).",
+    "length_conditioned_behavior": "검증 결과 개선 없음(Part C) → 대체 경로로 채택하지 않음. native(direct)가 primary.",
     "sensitivity_analysis": "cross-gen measurement(AR-051)에서 극단 짧은 sample(<=8frame 1개, ratio<0.6 10.9%) 포함/제외 결과 분리. 제외만 primary claim 금지."
   }
 }
