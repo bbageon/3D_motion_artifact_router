@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
-| AR-050 | Generator | MotionGPT length-control audit (Part A~D 완료) — exact 21.9%, 4-frame=seed-specific 희귀(011743 다른seed=188). 원인: generate_direct에 length 미전달→확률적 EOS. **Part C: length-conditioned(with_len)도 개선 안 됨(exact 1.7% vs 16.7%, negative)** → native primary + sensitivity 분리 protocol | 06-09 | 곧 commit · [audit](../../evals/snapshots/motiongpt_length_audit_v1.json) · [compare](../../evals/snapshots/motiongpt_length_conditioned_compare_v1.json) · [일지](../../reports/2026-06-09.md) |
+| AR-050 | Generator | MotionGPT length-control audit (Part A~D 완료) — exact 21.9%, 4-frame=seed-specific 희귀(011743 다른seed=188). 원인: generate_direct에 length 미전달→확률적 EOS. **Part C: length-conditioned(with_len)도 개선 안 됨(exact 1.7% vs 16.7%, negative)** → native primary + sensitivity 분리 protocol | 06-09 | 67c1f4d+3b1bd82 · [audit](../../evals/snapshots/motiongpt_length_audit_v1.json) · [compare](../../evals/snapshots/motiongpt_length_conditioned_compare_v1.json) · [일지](../../reports/2026-06-09.md) |
 | AR-044 | Evidence | representative-300 3-generator 문제 taxonomy — MDM world foot-skate 0.0108(약 2x)·MotionGPT FootFloating 41%. **문제량 확인 완료, 실제 tool 효과/시각 검증은 AR-051로 분리** | 06-09 | 72f9bc1 · [snapshot](../../evals/snapshots/representative_pool_measure_v1.json) · [일지](../../reports/2026-06-09.md) |
 | AR-022 | Generator | Representative-300 shared pool 생성·검증 (MDM) — 900 모션 fail 0, target-match 100%. freeze 8/8 PASS | 06-08 | ee10ee9 · [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) |
 | AR-045 | Generator | Representative-300 shared pool 생성·검증 (MoMask) — 900 모션 fail 0, target-match 100% | 06-08 | ee10ee9 · [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) |
