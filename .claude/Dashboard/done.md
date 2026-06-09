@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | 완료 | Evidence |
 |---|---|---|---|---|
-| AR-044 | Evidence | representative-300 3-generator 문제 taxonomy + tool headroom — MDM foot_skate_world 0.0108(2x, CI분리)·MotionGPT FootFloating 41%·MoMask 최저. generator별 problem profile 상이 = routing 근거 | 06-09 | 곧 commit · [snapshot](../../evals/snapshots/representative_pool_measure_v1.json) · [일지](../../reports/2026-06-09.md) |
+| AR-044 | Evidence | representative-300 3-generator 문제 taxonomy + tool headroom — MDM foot_skate_world 0.0108(2x, CI분리)·MotionGPT FootFloating 41%·MoMask 최저. generator별 problem profile 상이 = routing 근거 | 06-09 | 72f9bc1 · [snapshot](../../evals/snapshots/representative_pool_measure_v1.json) · [일지](../../reports/2026-06-09.md) |
 | AR-022 | Generator | Representative-300 shared pool 생성·검증 (MDM) — 900 모션 fail 0, target-match 100%. freeze 8/8 PASS | 06-08 | ee10ee9 · [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) |
 | AR-045 | Generator | Representative-300 shared pool 생성·검증 (MoMask) — 900 모션 fail 0, target-match 100% | 06-08 | ee10ee9 · [freeze](../../evals/snapshots/representative_pool_freeze_v1.json) |
 | AR-049 | Generator | Representative-300 prompt bank + a-priori complexity annotation — hardness 선별(길이편향 82.7%) 대신 representative 무작위 300(원분포, 180-199frame 46%); 4축 complexity는 annotation(raw/z+quartile)·hard-300은 challenge candidate 보존 | 06-08 | fa54f1c · [bank](../../evals/prompts/protocol_rep_test_300_seed20260608.json) · [spec](../docs/dashboard-task-specs/AR-049-representative-prompt-bank.md) |
