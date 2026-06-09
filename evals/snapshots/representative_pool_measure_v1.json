@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "representative_pool_measure",
+  "board_id": "AR-044",
+  "pool": "protocol_rep_pool_seed20260608",
+  "bank": "protocol_rep_test_300_seed20260608.json",
+  "generators": [
+    "motiongpt",
+    "mdm",
+    "momask"
+  ],
+  "n_prompts": 300,
+  "metric_provenance": {
+    "foot_skate_world": "GMD/EDGE on trajectory(world) + estimate_ground 10th pct (Category B)",
+    "accel": "per-joint accel norm mean on local-pose (smoothness, MDM)",
+    "artifact_total/*_fire": "local-pose, AR-043 threshold (Category C proxy)"
+  },
+  "evidence_tier": [
+    "real-distribution evidence (representative-300)"
+  ],
+  "stat_unit": "prompt (seed 평균 후 300 prompt; bootstrap CI)",
+  "overall": {
+    "motiongpt": {
+      "n_prompts": 300,
+      "overall": {
+        "foot_skate_world": {
+          "mean": 0.00564,
+          "ci95": [
+            0.00538,
+            0.00592
+          ]
+        },
+        "accel": {
+          "mean": 0.00704,
+          "ci95": [
+            0.00665,
+            0.00742
+          ]
+        },
+        "artifact_total": {
+          "mean": 0.04431,
+          "ci95": [
+            0.03963,
+            0.0491
+          ]
+        },
+        "FootFloating_fire": {
+          "mean": 0.40667,
+          "ci95": [
+            0.36556,
+            0.45222
+          ]
+        },
+        "Skate_gate_fire": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Float_gate_fire": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "BoneCV_fire": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "mdm": {
+      "n_prompts": 300,
+      "overall": {
+        "foot_skate_world": {
+          "mean": 0.0108,
+          "ci95": [
+            0.01017,
+            0.01141
+          ]
+        },
+        "accel": {
+          "mean": 0.00558,
+          "ci95": [
+            0.00498,
+            0.00615
+          ]
+        },
+        "artifact_total": {
+          "mean": 0.03511,
+          "ci95": [
+            0.03081,
+            0.03979
+          ]
+        },
+        "FootFloating_fire": {
+          "mean": 0.16556,
+          "ci95": [
+            0.13667,
+            0.19444
+          ]
+        },
+        "Skate_gate_fire": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Float_gate_fire": {
+          "mean": 0.00444,
+          "ci95": [
+            0.0,
+            0.01222
+          ]
+        },
+        "BoneCV_fire": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      }
+    },
+    "momask": {
+      "n_prompts": 300,
+      "overall": {
+        "foot_skate_world": {
+          "mean": 0.00447,
+          "ci95": [
+            0.00413,
+            0.00486
+          ]
+        },
+        "accel": {
+          "mean": 0.00563,
+          "ci95": [
+            0.00526,
+            0.00602
+          ]
+        },
+        "artifact_total": {
+          "mean": 0.03355,
+          "ci95": [
+            0.02921,
+            0.03825
+          ]
+        },
+        "FootFloating_fire": {
+          "mean": 0.32444,
+          "ci95": [
+            0.27889,
+            0.37333
+          ]
+        },
+        "Skate_gate_fire": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "Float_gate_fire": {
+          "mean": 0.00444,
+          "ci95": [
+            0.0,
+            0.01111
+          ]
+        },
+        "BoneCV_fire": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        }
+      }
+    }
+  },
+  "complexity_subgroup": {
+    "overall_top25": {
+      "n": 75,
+      "motiongpt": {
+        "foot_skate_world": 0.00527,
+        "accel": 0.00701,
+        "artifact_total": 0.05341,
+        "FootFloating_fire": 0.43556
+      },
+      "mdm": {
+        "foot_skate_world": 0.00927,
+        "accel": 0.00473,
+        "artifact_total": 0.03254,
+        "FootFloating_fire": 0.14222
+      },
+      "momask": {
+        "foot_skate_world": 0.00417,
+        "accel": 0.00531,
+        "artifact_total": 0.0399,
+        "FootFloating_fire": 0.44889
+      }
+    },
+    "overall_bottom25": {
+      "n": 75,
+      "motiongpt": {
+        "foot_skate_world": 0.00573,
+        "accel": 0.00702,
+        "artifact_total": 0.0361,
+        "FootFloating_fire": 0.32444
+      },
+      "mdm": {
+        "foot_skate_world": 0.01214,
+        "accel": 0.00627,
+        "artifact_total": 0.03391,
+        "FootFloating_fire": 0.16444
+      },
+      "momask": {
+        "foot_skate_world": 0.00477,
+        "accel": 0.00598,
+        "artifact_total": 0.02448,
+        "FootFloating_fire": 0.21778
+      }
+    }
+  },
+  "claim_boundary": "representative-300 taxonomy/headroom. generator 우열·tool 효과는 보정 적용 후 별도. n=300 절대 FID 단독 금지."
+}
