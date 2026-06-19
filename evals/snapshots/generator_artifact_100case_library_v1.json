@@ -1,0 +1,880 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "generator_artifact_100case_library",
+  "board_id": "AR-054",
+  "pool": "protocol_rep_pool_seed20260608",
+  "bank": "protocol_rep_test_300_seed20260608.json",
+  "n_per_generator": 100,
+  "generators": [
+    "motiongpt",
+    "mdm",
+    "momask"
+  ],
+  "claim_boundary": "Qualitative artifact example library only. Not generator ranking, prevalence estimate, or refinement-performance evidence.",
+  "selection_rules": {
+    "unit": "one generated motion instance: (generator, sample_id, seed)",
+    "source": "frozen representative pool only",
+    "prompt_duplicate_policy": "avoid duplicate prompt within each bucket when possible",
+    "preview_policy": "top 24 per generator can be used for GIF preview before full 100 GIF export"
+  },
+  "bucket_quotas": {
+    "motiongpt": {
+      "footfloating": 45,
+      "length_control_failure": 20,
+      "high_artifact_total": 15,
+      "footskate": 10,
+      "mixed_visible": 10
+    },
+    "mdm": {
+      "world_footskate": 55,
+      "trajectory_contact_drift": 15,
+      "footfloating": 10,
+      "jitter_smoothness": 10,
+      "mixed_visible": 10
+    },
+    "momask": {
+      "footfloating": 45,
+      "complex_pose_contact": 20,
+      "rare_footskate": 10,
+      "temporal_smoothness": 10,
+      "mixed_visible": 15
+    }
+  },
+  "group_target_quotas": {
+    "walk_locomotion": 16,
+    "run_jog": 10,
+    "turn_path": 12,
+    "jump_hop": 12,
+    "kick_squat_lunge": 12,
+    "dance_rhythmic": 8,
+    "sit_stand_transition": 10,
+    "upper_body_low_loco": 10,
+    "other": 10
+  },
+  "summaries": {
+    "motiongpt": {
+      "n_selected": 100,
+      "n_candidates": 900,
+      "bucket_counts": {
+        "footfloating": 45,
+        "length_control_failure": 23,
+        "high_artifact_total": 14,
+        "mixed_visible": 9,
+        "footskate": 9
+      },
+      "motion_group_counts": {
+        "walk_locomotion": 17,
+        "kick_squat_lunge": 12,
+        "turn_path": 14,
+        "jump_hop": 12,
+        "other": 10,
+        "sit_stand_transition": 10,
+        "upper_body_low_loco": 10,
+        "run_jog": 10,
+        "dance_rhythmic": 5
+      },
+      "available_unique_prompts_by_group": {
+        "walk_locomotion": 89,
+        "run_jog": 12,
+        "turn_path": 35,
+        "jump_hop": 16,
+        "kick_squat_lunge": 20,
+        "dance_rhythmic": 5,
+        "sit_stand_transition": 19,
+        "upper_body_low_loco": 21,
+        "other": 83
+      },
+      "group_target_quotas": {
+        "walk_locomotion": 16,
+        "run_jog": 10,
+        "turn_path": 12,
+        "jump_hop": 12,
+        "kick_squat_lunge": 12,
+        "dance_rhythmic": 8,
+        "sit_stand_transition": 10,
+        "upper_body_low_loco": 10,
+        "other": 10
+      },
+      "group_shortage_vs_target": {
+        "dance_rhythmic": 3
+      },
+      "unique_prompts": 100,
+      "metric_means_selected": {
+        "footfloating_score": 0.174745,
+        "foot_skate_world": 0.006231,
+        "artifact_total": 0.074231,
+        "accel": 0.008815,
+        "length_ratio": 1.291774
+      },
+      "top_preview_candidates": [
+        {
+          "generator": "motiongpt",
+          "sample_id": "010315",
+          "seed": 20483609,
+          "prompt": "the person is walking forward with the cake.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.625
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "005537",
+          "seed": 20380609,
+          "prompt": "a figure walks upstairs without a handrail.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.508333
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "005163",
+          "seed": 20373608,
+          "prompt": "a person is strolling around",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.464286
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "004601",
+          "seed": 20353610,
+          "prompt": "someone is climbing a ladder,  they walk up 3 steps and then back down.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.19898
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "012492",
+          "seed": 20518609,
+          "prompt": "a person stands with legs shoulder-width apart, slightly bent at the knees, arms outstretched at shoulder height, lowers left arm for several seconds, then brings with arm back to shoulder height.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.78125
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "011402",
+          "seed": 20503609,
+          "prompt": "a person slowly walks in a 3/4 circle.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.438776
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "006236",
+          "seed": 20397609,
+          "prompt": "a figure jumps a few times counter-clockwise, then quickly turns clockwise with one big twisting jump, then stumbles backward upon landing.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.227778
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "008069",
+          "seed": 20432608,
+          "prompt": "the person grabs something in front of them, walks away, walks back, returns it and picks it back up again and begins to walk away again.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.188776
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "010557",
+          "seed": 20488609,
+          "prompt": "person puts hands on head then chest then knees then toes",
+          "artifact_bucket": "footfloating",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.714286
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "010116",
+          "seed": 20474609,
+          "prompt": "a man energetically backsteps, then turns to his right and walks forward, then backsteps again, keeping a spring in his step.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.280612
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "008528",
+          "seed": 20445609,
+          "prompt": "jumping up and down.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.176471
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "010553",
+          "seed": 20487610,
+          "prompt": "a person is walking slowly in zigzag",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.168367
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "006106",
+          "seed": 20393610,
+          "prompt": "a person stands still for a moment, and then staggers forward.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "other",
+          "selection_score": 0.721154
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "000486",
+          "seed": 20271609,
+          "prompt": "a person walks with arms flapping then brings arms to the front and bends elbows and wrists.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "sit_stand_transition",
+          "selection_score": 0.709184
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "000792",
+          "seed": 20278608,
+          "prompt": "a person imitates biting into something then waves their right hand around randomly.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "upper_body_low_loco",
+          "selection_score": 0.515306
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "006383",
+          "seed": 20400608,
+          "prompt": "subject walks in a full circle, then side steps to turn around and walk around something to avoid running into.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "run_jog",
+          "selection_score": 0.255102
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "004320",
+          "seed": 20347608,
+          "prompt": "a man walks forward slowly, then turns around.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.239796
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "006839",
+          "seed": 20413608,
+          "prompt": "a person walks around and then crouches down with their arms forward",
+          "artifact_bucket": "footfloating",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.122449
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "003423",
+          "seed": 20323608,
+          "prompt": "a person walking in a crouched over position",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.12234
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "009351",
+          "seed": 20456610,
+          "prompt": "a person squats to almost parallel then jumps to the horizontally to the left.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.089286
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "003823",
+          "seed": 20332610,
+          "prompt": "person scatches head and armpit like a monkey then pretends to hold a baby",
+          "artifact_bucket": "footfloating",
+          "motion_group": "other",
+          "selection_score": 0.678571
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "004733",
+          "seed": 20360608,
+          "prompt": "a person is bent over at the waist, motioning forward with their right hand, then stands up.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "sit_stand_transition",
+          "selection_score": 0.586735
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "004724",
+          "seed": 20359609,
+          "prompt": "a person shifts around in place like a zombie, raising their arms up and down.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "upper_body_low_loco",
+          "selection_score": 0.321429
+        },
+        {
+          "generator": "motiongpt",
+          "sample_id": "014565",
+          "seed": 20558608,
+          "prompt": "person walks forward, turns and walks back",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.19
+        }
+      ]
+    },
+    "mdm": {
+      "n_selected": 100,
+      "n_candidates": 900,
+      "bucket_counts": {
+        "world_footskate": 55,
+        "trajectory_contact_drift": 16,
+        "footfloating": 11,
+        "mixed_visible": 9,
+        "jitter_smoothness": 9
+      },
+      "motion_group_counts": {
+        "walk_locomotion": 19,
+        "turn_path": 12,
+        "kick_squat_lunge": 12,
+        "jump_hop": 12,
+        "run_jog": 10,
+        "other": 10,
+        "upper_body_low_loco": 10,
+        "sit_stand_transition": 10,
+        "dance_rhythmic": 5
+      },
+      "available_unique_prompts_by_group": {
+        "walk_locomotion": 89,
+        "run_jog": 12,
+        "turn_path": 35,
+        "jump_hop": 16,
+        "kick_squat_lunge": 20,
+        "dance_rhythmic": 5,
+        "sit_stand_transition": 19,
+        "upper_body_low_loco": 21,
+        "other": 83
+      },
+      "group_target_quotas": {
+        "walk_locomotion": 16,
+        "run_jog": 10,
+        "turn_path": 12,
+        "jump_hop": 12,
+        "kick_squat_lunge": 12,
+        "dance_rhythmic": 8,
+        "sit_stand_transition": 10,
+        "upper_body_low_loco": 10,
+        "other": 10
+      },
+      "group_shortage_vs_target": {
+        "dance_rhythmic": 3
+      },
+      "unique_prompts": 100,
+      "metric_means_selected": {
+        "footfloating_score": 0.071849,
+        "foot_skate_world": 0.015168,
+        "artifact_total": 0.054683,
+        "accel": 0.00953,
+        "length_ratio": 1.0
+      },
+      "top_preview_candidates": [
+        {
+          "generator": "mdm",
+          "sample_id": "012495",
+          "seed": 20519610,
+          "prompt": "a person walks quickly forward, moving at a slight angle to the right",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.042687
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "003224",
+          "seed": 20319610,
+          "prompt": "person walks seven steps from centre back to slightly right of centre",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.040435
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "001723",
+          "seed": 20290609,
+          "prompt": "a person taking a huge diagonal step",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.034025
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "003539",
+          "seed": 20326609,
+          "prompt": "a person is pushed by their left arm while walking forward.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.032617
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "000304",
+          "seed": 20268608,
+          "prompt": "a person is walking in a steady forward motion.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.030759
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "004350",
+          "seed": 20348610,
+          "prompt": "a person walks forward and turns and walks backwards.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "turn_path",
+          "selection_score": 0.029946
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "005519",
+          "seed": 20378610,
+          "prompt": "the guy lunges forward just a bit and the video ends.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.026291
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "013222",
+          "seed": 20536608,
+          "prompt": "a person hops forward then turns around and hops back past where they started.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "jump_hop",
+          "selection_score": 0.018947
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "014506",
+          "seed": 20557609,
+          "prompt": "figure walks forward, raises foot to step up and over, uses other foot to drop down, walks forward and stops.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.029553
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "011743",
+          "seed": 20506610,
+          "prompt": "turning body from side to side.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "turn_path",
+          "selection_score": 0.027078
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "004117",
+          "seed": 20340609,
+          "prompt": "a person jumps into wide stance with his arms making a v shape and then jumps back into a normal, relaxed stance.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "jump_hop",
+          "selection_score": 0.018191
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "013806",
+          "seed": 20545610,
+          "prompt": "the figure takes a few steps forward before pick something up turning around and walking back to where they were and crouching down to pick something up.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.017748
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "013130",
+          "seed": 20532610,
+          "prompt": "a person runs forward with one leg crossing in front of the other repetitively before coming to a stop.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "run_jog",
+          "selection_score": 0.03519
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "000687",
+          "seed": 20275609,
+          "prompt": "a person takes in big steps in a hurry walking into the rectangular area while hands are dangling and swinging.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.027969
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "009123",
+          "seed": 20455609,
+          "prompt": "a person moves forward quickly and lifts both legs before landing and continuing to move forward.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "other",
+          "selection_score": 0.026748
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "000629",
+          "seed": 20272608,
+          "prompt": "a person walks forward gingerly, then walks to the back of the space and turns around",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "turn_path",
+          "selection_score": 0.025825
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "008157",
+          "seed": 20437609,
+          "prompt": "a person turns to their left while leaping forward.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "jump_hop",
+          "selection_score": 0.018126
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "005084",
+          "seed": 20371608,
+          "prompt": "a figure walks forward lightly kicking one foot out",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.016906
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "009762",
+          "seed": 20466610,
+          "prompt": "a person throws a shotput.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "upper_body_low_loco",
+          "selection_score": 0.015344
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "005932",
+          "seed": 20388608,
+          "prompt": "a person stretches their hips, then arms, then bends forwards and steps forwards.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "sit_stand_transition",
+          "selection_score": 0.012959
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "009924",
+          "seed": 20468610,
+          "prompt": "the  person is running over a vault.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "run_jog",
+          "selection_score": 0.028425
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "014192",
+          "seed": 20550608,
+          "prompt": "a person walks forward and then appears to bump into something, then continues walking forward.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.02727
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "007134",
+          "seed": 20419608,
+          "prompt": "the figure is walking in a counter clockwise motion slowly.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "turn_path",
+          "selection_score": 0.02441
+        },
+        {
+          "generator": "mdm",
+          "sample_id": "003584",
+          "seed": 20327608,
+          "prompt": "a person moves something out of the way in a effort to advance forward.",
+          "artifact_bucket": "world_footskate",
+          "motion_group": "other",
+          "selection_score": 0.02326
+        }
+      ]
+    },
+    "momask": {
+      "n_selected": 100,
+      "n_candidates": 900,
+      "bucket_counts": {
+        "footfloating": 45,
+        "complex_pose_contact": 20,
+        "mixed_visible": 15,
+        "rare_footskate": 10,
+        "temporal_smoothness": 10
+      },
+      "motion_group_counts": {
+        "walk_locomotion": 18,
+        "jump_hop": 12,
+        "turn_path": 12,
+        "kick_squat_lunge": 12,
+        "other": 11,
+        "sit_stand_transition": 10,
+        "upper_body_low_loco": 10,
+        "run_jog": 10,
+        "dance_rhythmic": 5
+      },
+      "available_unique_prompts_by_group": {
+        "walk_locomotion": 89,
+        "run_jog": 12,
+        "turn_path": 35,
+        "jump_hop": 16,
+        "kick_squat_lunge": 20,
+        "dance_rhythmic": 5,
+        "sit_stand_transition": 19,
+        "upper_body_low_loco": 21,
+        "other": 83
+      },
+      "group_target_quotas": {
+        "walk_locomotion": 16,
+        "run_jog": 10,
+        "turn_path": 12,
+        "jump_hop": 12,
+        "kick_squat_lunge": 12,
+        "dance_rhythmic": 8,
+        "sit_stand_transition": 10,
+        "upper_body_low_loco": 10,
+        "other": 10
+      },
+      "group_shortage_vs_target": {
+        "dance_rhythmic": 3
+      },
+      "unique_prompts": 100,
+      "metric_means_selected": {
+        "footfloating_score": 0.182744,
+        "foot_skate_world": 0.005399,
+        "artifact_total": 0.073525,
+        "accel": 0.007266,
+        "length_ratio": 1.0
+      },
+      "top_preview_candidates": [
+        {
+          "generator": "momask",
+          "sample_id": "005537",
+          "seed": 20380609,
+          "prompt": "a figure walks upstairs without a handrail.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.708333
+        },
+        {
+          "generator": "momask",
+          "sample_id": "004601",
+          "seed": 20353610,
+          "prompt": "someone is climbing a ladder,  they walk up 3 steps and then back down.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.484694
+        },
+        {
+          "generator": "momask",
+          "sample_id": "004823",
+          "seed": 20361608,
+          "prompt": "a person walks down stairs holding on to something on the right.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.44697
+        },
+        {
+          "generator": "momask",
+          "sample_id": "002357",
+          "seed": 20300608,
+          "prompt": "a headless line figure takes four steps forward, down a ramp, toward the viewer.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.386364
+        },
+        {
+          "generator": "momask",
+          "sample_id": "008349",
+          "seed": 20441609,
+          "prompt": "a person stands with his two feet apart and light hops in that position 14 times.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.669355
+        },
+        {
+          "generator": "momask",
+          "sample_id": "006814",
+          "seed": 20412610,
+          "prompt": "a person walks forward and then up stairs",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.383721
+        },
+        {
+          "generator": "momask",
+          "sample_id": "000021",
+          "seed": 20260609,
+          "prompt": "person is walking normally in a circle",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.244318
+        },
+        {
+          "generator": "momask",
+          "sample_id": "012668",
+          "seed": 20522608,
+          "prompt": "a man is standing still, puts his hands together and behind his back, then proceeds to lunge his hands forwards, as if he is fishing, then brings them back in",
+          "artifact_bucket": "footfloating",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.193878
+        },
+        {
+          "generator": "momask",
+          "sample_id": "008157",
+          "seed": 20437609,
+          "prompt": "a person turns to their left while leaping forward.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.5625
+        },
+        {
+          "generator": "momask",
+          "sample_id": "013174",
+          "seed": 20533609,
+          "prompt": "a person walks forward and picks up and moves a heavy object.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.357143
+        },
+        {
+          "generator": "momask",
+          "sample_id": "002522",
+          "seed": 20303608,
+          "prompt": "a man steps to the left steps in a small clockwise circle throws left arm then steps in a larger backward clockwise circle",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.192308
+        },
+        {
+          "generator": "momask",
+          "sample_id": "005519",
+          "seed": 20378610,
+          "prompt": "the guy lunges forward just a bit and the video ends.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.147727
+        },
+        {
+          "generator": "momask",
+          "sample_id": "010843",
+          "seed": 20493610,
+          "prompt": "a person holds their right arm out on something to support them while sticking their right leg up to balance.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "other",
+          "selection_score": 0.943878
+        },
+        {
+          "generator": "momask",
+          "sample_id": "014347",
+          "seed": 20554608,
+          "prompt": "a person is sitting down, using a phone with their hands and puts it up to their ear.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "sit_stand_transition",
+          "selection_score": 0.852041
+        },
+        {
+          "generator": "momask",
+          "sample_id": "008528",
+          "seed": 20445608,
+          "prompt": "jumping up and down.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.544118
+        },
+        {
+          "generator": "momask",
+          "sample_id": "009762",
+          "seed": 20466608,
+          "prompt": "a person throws a shotput.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "upper_body_low_loco",
+          "selection_score": 0.515306
+        },
+        {
+          "generator": "momask",
+          "sample_id": "003423",
+          "seed": 20323609,
+          "prompt": "a person walking in a crouched over position",
+          "artifact_bucket": "footfloating",
+          "motion_group": "walk_locomotion",
+          "selection_score": 0.351064
+        },
+        {
+          "generator": "momask",
+          "sample_id": "004129",
+          "seed": 20341610,
+          "prompt": "someone jogs in place, makes a quarter turn to the left and back, jogs backwards and then forwards.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "run_jog",
+          "selection_score": 0.333333
+        },
+        {
+          "generator": "momask",
+          "sample_id": "003942",
+          "seed": 20335609,
+          "prompt": "walking around in a circle.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "turn_path",
+          "selection_score": 0.180556
+        },
+        {
+          "generator": "momask",
+          "sample_id": "006839",
+          "seed": 20413610,
+          "prompt": "a person walks around and then crouches down with their arms forward",
+          "artifact_bucket": "footfloating",
+          "motion_group": "kick_squat_lunge",
+          "selection_score": 0.076531
+        },
+        {
+          "generator": "momask",
+          "sample_id": "002606",
+          "seed": 20305610,
+          "prompt": "a man is shadowboxing while standing still.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "other",
+          "selection_score": 0.5625
+        },
+        {
+          "generator": "momask",
+          "sample_id": "011643",
+          "seed": 20504608,
+          "prompt": "a person is doing jumping jacks.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "jump_hop",
+          "selection_score": 0.483333
+        },
+        {
+          "generator": "momask",
+          "sample_id": "013444",
+          "seed": 20539610,
+          "prompt": "a person bends over and flaps his arms.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "sit_stand_transition",
+          "selection_score": 0.382653
+        },
+        {
+          "generator": "momask",
+          "sample_id": "002661",
+          "seed": 20308608,
+          "prompt": "a person throws something upwards with two hands.",
+          "artifact_bucket": "footfloating",
+          "motion_group": "upper_body_low_loco",
+          "selection_score": 0.346939
+        }
+      ]
+    }
+  },
+  "manifest_files": {
+    "motiongpt": "reports\\figures\\2026-06-19\\ar054_generator_artifact_100cases\\artifact_100_manifest_motiongpt.json",
+    "mdm": "reports\\figures\\2026-06-19\\ar054_generator_artifact_100cases\\artifact_100_manifest_mdm.json",
+    "momask": "reports\\figures\\2026-06-19\\ar054_generator_artifact_100cases\\artifact_100_manifest_momask.json"
+  }
+}
