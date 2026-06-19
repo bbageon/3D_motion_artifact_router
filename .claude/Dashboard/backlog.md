@@ -4,8 +4,7 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-051 | Evidence | Cross-generator refinement effect validation — tool 적용 전후 Δ + Category-A 품질 보존 + 시각 사례 | 🟠 | **AR-050 이후 착수**(완료). AR-044 taxonomy의 실제 tool headroom을 검증하고 `q_proxy` 근거를 만든다. native + sensitivity(짧은 sample 포함/제외) 분리 보고. [spec](../docs/dashboard-task-specs/AR-051-cross-generator-refinement-effect.md) |
-| AR-040 | RL-Q | v0 global quality-aware ranker — `q_proxy` 정의 + v0 state vector + M1 dense effect oracle | 🟠 | **AR-051 이후 착수**. 실제 tool 전후 effect와 quality trade-off로 q_proxy 정의. action=`(tool,u)`, target-aware claim 없음 |
+| AR-052 | RL-Q | v0 learned ranker train/eval — AR-040 q_proxy oracle을 학습기가 얼마나 근사하는지 검증 | 🟠 | AR-040 후속. prompt-level split, leakage 방지. M1 oracle gap / top-1 match / false-improve / STOP calibration 확인. [spec](../docs/dashboard-task-specs/AR-052-v0-learned-ranker-train-eval.md) |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |
 | AR-042 | RL-Q | v2 support-aware ranker — data support/uncertainty state + OOD ablation | 🟡 | AR-037 후속. kNN/ensemble 기반 support, offline value overestimation 억제 |
 | AR-025 | Evidence | H-2026-204 (artifact-conditioned + closed-loop > fixed post-proc) 5단계 평가 | 🟡 | B2-family vs M0+gate, snapshot≥2 |
