@@ -4,7 +4,6 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-052 | RL-Q | v0 learned ranker train/eval — AR-040 q_proxy oracle을 학습기가 얼마나 근사하는지 검증 | 🟠 | AR-040 후속. prompt-level split, leakage 방지. M1 oracle gap / top-1 match / false-improve / STOP calibration 확인. [spec](../docs/dashboard-task-specs/AR-052-v0-learned-ranker-train-eval.md) |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |
 | AR-042 | RL-Q | v2 support-aware ranker — data support/uncertainty state + OOD ablation | 🟡 | AR-037 후속. kNN/ensemble 기반 support, offline value overestimation 억제 |
 | AR-025 | Evidence | H-2026-204 (artifact-conditioned + closed-loop > fixed post-proc) 5단계 평가 | 🟡 | B2-family vs M0+gate, snapshot≥2 |
