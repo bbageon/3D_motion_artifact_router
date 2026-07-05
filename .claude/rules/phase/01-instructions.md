@@ -1,4 +1,4 @@
-# 01. 지침(Instructions) Phase — ArtifactRouter
+﻿# 01. 지침(Instructions) Phase — ArtifactRouter
 
 > 본 phase 문서는 [`docs/harness-research-template/01-instructions.md`](../../../docs/harness-research-template/01-instructions.md) 의 "01. 지침 레이어 — Research Track" 규격을 본 프로젝트(**ArtifactRouter**: artifact-conditioned tool selection for generator-agnostic human motion refinement)에 적용한 결과이다. 작성 원칙·구성 파일 정의는 상위 템플릿을 상속하며, 본 문서는 중복 서술하지 않는다.
 
@@ -146,6 +146,15 @@ Agent는 다음을 **단독으로 진행하지 않는다** (사용자 승인 필
 
 본 규칙은 모든 phase·skill 응답에 적용된다. 단 본문이 매우 짧을 때 (예: 3 절 모두 한 줄씩 이내) 는 절 제목을 생략하고 한 단락으로 합쳐도 무방.
 
+### 2-5-3. 쉬운 비유로 원리 설명 의무
+
+사용자 directive (2026-07-05): "쉽게 비유를 들어서 **원리** 를 설명하라". 개념·결과·메커니즘·"왜" 를 설명할 때는 **정확한 기술 설명 + 일상적 비유(analogy)** 를 함께 제공해 원리를 직관적으로 전달한다. 단순 사실·수치 나열로 끝내지 않는다.
+
+- **대상**: non-trivial 개념·메커니즘·결과 해석 (예: "왜 VQ generator 는 물리적으로 깨끗한가", "FID 가 왜 local artifact 에 둔감한가", "selection bias 가 왜 결과를 왜곡하나", "length-conditioning 이 왜 안 통하나"). 단순 fact·경로·한 줄 검증 답변은 대상 아님 (§2-5-2 예외와 일관).
+- **형식**: 원리를 왜곡하지 않는 짧은 일상 비유 (예: "약 시험", "작문 첨삭", "체온계", "짜맞추기"). 비유 → 그 비유가 실제 원리에 어떻게 대응하는지 1줄 연결.
+- **정확성 우선**: 비유가 **틀린 직관** 을 주면 안 된다. 비유의 한계가 있으면 명시한다 (예: "이 비유는 X 까지만 맞고 Y 는 다름"). 정확성(§2-2 연구 정직성) > 쉬움.
+- **재사용**: 같은 주제를 여러 turn 에 걸쳐 설명할 때 **일관된 비유** 를 유지하면 사용자가 누적적으로 이해한다.
+
 ### 2-6. Role과 절대 규칙의 관계
 
 본 절은 Agent의 default 행동을 정의한다. AGENTS.md §3 절대 규칙·skill 게이트와 충돌하면 절대 규칙·게이트가 우선한다. Role은 "어떻게 일할지" 의 기본값이고, 절대 규칙은 "위반 시 결과를 무효화하는" 강한 제약이다.
@@ -219,7 +228,7 @@ phase 02·03·04와 skill 문서에서 AGENTS.md를 인용할 때:
 - 환경 준비·실행 명령 → [`AGENTS.md §2`](../../../AGENTS.md).
 - 핵심 가설 본문 (사전 등록) → [`evals/hypotheses/H-2026-200~203.md`](../../../evals/hypotheses/).
 - 연구 차원 리스크와 대응 → [`AGENTS.md §5`](../../../AGENTS.md).
-- 연구 방향·로드맵 → [`docs/motion_research_strategy_summary.md`](../../../docs/motion_research_strategy_summary.md) (단일 출처).
+- 연구 방향·로드맵 → [`.claude/docs/research/motion_research_strategy_summary.md`](../../docs/research/motion_research_strategy_summary.md) (단일 출처).
 - 평가 전략·정성·정량 지표 → [`04-evaluation.md`](./04-evaluation.md) + [`reproducibility-checklist SKILL §3`](../../skills/reproducibility-checklist/SKILL.md).
 
 새 도메인 사실은 위 분배에 직접 추가하며, 본 phase 문서에 두텁게 누적하지 않는다.
@@ -232,10 +241,12 @@ phase 02·03·04와 skill 문서에서 AGENTS.md를 인용할 때:
 |---|---|---|---|
 | **rules** (지침) | 위반 시 invalidation 되는 **절대 규칙·게이트** (invariant) | [`AGENTS.md`](../../../AGENTS.md) (원본) + `.claude/rules/phase/` | §3 절대 규칙, 사용자 승인 게이트 |
 | **skills** (실행) | Agent 가 **실행**하는 구체적 절차·checklist·명세 | [`.claude/skills/`](../../skills/) | eval-compare, hypothesis-registry, intent-reconciliation |
-| **docs** (참조) | Agent 가 **참조**하는 문서 (용어·요약·배경) | [`.claude/docs/`](../docs/) (harness 참조) + [`docs/`](../../../docs/) (연구 provenance) | glossary, hypotheses-summary, metric_provenance |
-| **Dashboard** (상태) | 작업 흐름·상태 board (상태별 파일) | [`.claude/Dashboard/`](../Dashboard/) | backlog/todo/in-progress/done/cancelled.md (index=README) |
+| **docs** (참조) | Agent 가 **참조**하는 문서 (용어·요약·배경) | [`.claude/docs/`](../../docs/) (프로젝트 참조·provenance·spec) + [`docs/harness-research-template/`](../../../docs/harness-research-template/) (범용 템플릿) | glossary, hypotheses-summary, metric_provenance |
+| **Dashboard** (상태) | 작업 흐름·상태 board (상태별 파일) | [`.claude/Dashboard/`](../Dashboard/) | backlog/ready/in-progress/done/cancelled.md (index=README) |
 
 판단: 위반 시 비교가능성·재현성·claim validity 가 깨지면 **rules**, 단계별 수행 절차면 **skills**, 인용·배경이면 **docs**, 진행 추적이면 **Dashboard**. `engineering heuristic`/`internal proxy`/`pilot-only` 근거는 절대 규칙(rules)으로 바로 승격하지 않고 skills/docs 에 먼저 둔다 (AGENTS.md §3-24).
+
+운영 원칙: 예정사항·다음 순서·우선순위는 Dashboard 에 등록된 row 기준으로 제시한다. Dashboard 에 없는 작업은 먼저 backlog 에 등록한 뒤 순서에 포함한다.
 
 ---
 
