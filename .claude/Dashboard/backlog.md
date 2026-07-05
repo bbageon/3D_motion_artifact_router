@@ -1,9 +1,11 @@
-# 🗂️ Backlog (미래)
+﻿# 🗂️ Backlog (미래)
 
 > 미착수·미래 작업. **연구방향이 자주 바뀌므로** 방향 변경 시 재정렬. [index](README.md) · 다음 상태: [ready](ready.md).
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
+| AR-061 | Tool | CoordinateFootSkateCleanupTool **프로토타입 구현 + 평가** — [frozen spec](../docs/design/coordinate_footskate_cleanup_tool_frozen_spec.md) 구현. base+scoring 동시 갱신 + unit round-trip/property test + representative pool 비교(none/Y-only/coord u_grid/oracle-u), paired Wilcoxon n≥20 | 🔴 | AR-060 후속. §4 change-obligation(correction_tools→base+구현체+orchestrator scoring+integration smoke) |
+| AR-059 | Future-RL | RS-GRPO-style scoped reward / intent evaluator — 현재는 오버엔지니어링, 먼 훗날 human labels 축적 후 reward-model/RL 학습 후보 | ⚪ | 지금은 scope 분리 철학만 AR-058-3e human rubric에 반영 |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |
 | AR-042 | RL-Q | v2 support-aware ranker — data support/uncertainty state + OOD ablation | 🟡 | AR-037 후속. kNN/ensemble 기반 support, offline value overestimation 억제 |
 | AR-025 | Evidence | H-2026-204 (artifact-conditioned + closed-loop > fixed post-proc) 5단계 평가 | 🟡 | B2-family vs M0+gate, snapshot≥2 |

@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| AR-058-3f | Evidence | Foot-skate human feedback pilot execution — 사람이 보기에도 품질 저하인지 검증하고 정의 freeze | 🔴 | 07-02 | Pack 준비 완료 + **skate-segment GIF 18개 추가**(0c70293, 움직임으로 판단 우선). [rater index](../../reports/figures/2026-07-02/ar058_3f_footskate_human_feedback_pack/rater_index.md). 완료는 사용자/평가자 응답 필요. [spec](../docs/dashboard-task-specs/AR-058-3f-human-feedback-pilot-execution.md) |
+| _(없음)_ | | | | | |
 
 ---
 
