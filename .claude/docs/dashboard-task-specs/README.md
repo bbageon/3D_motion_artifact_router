@@ -26,3 +26,4 @@ Dashboard row 는 작업의 1줄 index 만 유지한다. 자세한 배경, 설�
 | AR-063 | [Gate Evaluator Repair v0.2.0](AR-063-gate-evaluator-repair.md) (completed 07-07, 5afbae9) |
 | AR-064 | [Bone-Preserving Propagation](AR-064-bone-preserving-propagation.md) (backlog) |
 | AR-065 | [Effect-Aware State Rebuild on Repaired Evaluators](AR-065-effect-aware-state-rebuild.md) (backlog) |
+| AR-066 | [Intent-Aware Float Weighting](AR-066-intent-aware-float-weighting.md) (backlog) |
