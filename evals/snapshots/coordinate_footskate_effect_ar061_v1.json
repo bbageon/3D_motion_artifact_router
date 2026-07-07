@@ -1,0 +1,714 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "coordinate_footskate_effect",
+  "board_id": "AR-061",
+  "split_id": "protocol_rep_pool_seed20260608 (representative-300 full, 3 seeds/prompt)",
+  "severity_versions": {
+    "FootFloatingEvaluator": "1.2.0-2026-05-18",
+    "BoneLengthEvaluator": "1.0.0-2026-05-13",
+    "VelocityJitterEvaluator": "1.1.0-2026-05-18"
+  },
+  "evaluator_config_hashes": {
+    "FootLockTool": "c9716fab380b7052",
+    "CoordinateFootSkateCleanupTool": "ac83dde609187c95"
+  },
+  "action_space": {
+    "action_space_type": "bounded_continuous_u",
+    "u_grid": [
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "u_mapper_version": "coordinate_footskate_u_v1",
+    "stage": "AR-061 fixed-u sweep (learned policy 아님)"
+  },
+  "metric_provenance": {
+    "foot_skate_world": "B (GMD/EDGE, trajectory+estimate_ground 10th pct) — primary",
+    "float_mag": "B (local) — guard",
+    "artifact_total": "C proxy (local, Layer-A 3종) — guard 참고용",
+    "bone_cv_max": "B-계 raw (BoneLengthCVEvaluator score; gate-fire 아님 — AR-062 audit)",
+    "FID": "Category A — 본 snapshot 범위 밖 (별도 층)"
+  },
+  "coordinate_note": "yonly=local 적용(P4 재현), coord=trajectory 적용(frozen spec §1-2); 측정은 두 arm 모두 동일 함수 (fs=traj, 나머지=local).",
+  "stat_unit": "prompt (seed 평균; n=300/gen). lower=better; Δ<0=개선. bootstrap CI + Wilcoxon.",
+  "results": {
+    "motiongpt": {
+      "n_prompts": 300,
+      "arms": {
+        "yonly_large": {
+          "foot_skate_world": {
+            "mean_delta": 0.00467,
+            "ci95": [
+              0.00393,
+              0.00543
+            ],
+            "frac_improved": 0.263,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.02899,
+            "ci95": [
+              -0.03071,
+              -0.02733
+            ],
+            "frac_improved": 1.0,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": -0.02696,
+            "ci95": [
+              -0.03215,
+              -0.02218
+            ],
+            "frac_improved": 0.79,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.05728,
+            "ci95": [
+              0.04869,
+              0.06639
+            ],
+            "frac_improved": 0.03,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.05978,
+          "apply_ms_mean": 0.08
+        },
+        "coord_u25": {
+          "foot_skate_world": {
+            "mean_delta": 0.00018,
+            "ci95": [
+              0.00014,
+              0.00021
+            ],
+            "frac_improved": 0.103,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -7e-05,
+            "ci95": [
+              -0.00023,
+              0.00012
+            ],
+            "frac_improved": 0.633,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": 0.00028,
+            "ci95": [
+              -5e-05,
+              0.00063
+            ],
+            "frac_improved": 0.407,
+            "wilcoxon_p": 0.001322
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.00875,
+            "ci95": [
+              0.00645,
+              0.01148
+            ],
+            "frac_improved": 0.323,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.01058,
+          "apply_ms_mean": 0.26
+        },
+        "coord_u50": {
+          "foot_skate_world": {
+            "mean_delta": 0.00025,
+            "ci95": [
+              0.00018,
+              0.00031
+            ],
+            "frac_improved": 0.133,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.0001,
+            "ci95": [
+              -0.00039,
+              0.0002
+            ],
+            "frac_improved": 0.623,
+            "wilcoxon_p": 3e-06
+          },
+          "artifact_total": {
+            "mean_delta": 0.00133,
+            "ci95": [
+              0.00074,
+              0.00189
+            ],
+            "frac_improved": 0.35,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.02107,
+            "ci95": [
+              0.01637,
+              0.02663
+            ],
+            "frac_improved": 0.287,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.02116,
+          "apply_ms_mean": 0.24
+        },
+        "coord_u75": {
+          "foot_skate_world": {
+            "mean_delta": 0.00022,
+            "ci95": [
+              0.00013,
+              0.0003
+            ],
+            "frac_improved": 0.177,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": 7e-05,
+            "ci95": [
+              -0.00036,
+              0.00056
+            ],
+            "frac_improved": 0.613,
+            "wilcoxon_p": 2.8e-05
+          },
+          "artifact_total": {
+            "mean_delta": 0.00274,
+            "ci95": [
+              0.00174,
+              0.00394
+            ],
+            "frac_improved": 0.327,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.03247,
+            "ci95": [
+              0.02519,
+              0.03971
+            ],
+            "frac_improved": 0.257,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.03174,
+          "apply_ms_mean": 0.23
+        },
+        "coord_u100": {
+          "foot_skate_world": {
+            "mean_delta": 0.00011,
+            "ci95": [
+              -0.0,
+              0.00021
+            ],
+            "frac_improved": 0.223,
+            "wilcoxon_p": 0.001265
+          },
+          "float_mag": {
+            "mean_delta": 0.00018,
+            "ci95": [
+              -0.00034,
+              0.00073
+            ],
+            "frac_improved": 0.593,
+            "wilcoxon_p": 0.001235
+          },
+          "artifact_total": {
+            "mean_delta": 0.00371,
+            "ci95": [
+              0.00255,
+              0.00507
+            ],
+            "frac_improved": 0.293,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.04483,
+            "ci95": [
+              0.0362,
+              0.05429
+            ],
+            "frac_improved": 0.247,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.04232,
+          "apply_ms_mean": 0.24
+        },
+        "oracle_grid": {
+          "foot_skate_world": {
+            "mean_delta": -4e-05,
+            "ci95": [
+              -0.00013,
+              4e-05
+            ],
+            "frac_improved": 0.223
+          },
+          "foot_skate_world_with_stop": {
+            "mean_delta": -0.0002,
+            "ci95": [
+              -0.00027,
+              -0.00014
+            ]
+          },
+          "oracle_type": "single-step (per-prompt best-u within u_grid; STOP 변형 별도 표기)"
+        }
+      },
+      "coord_u100_n_correct_segments_total": 1420
+    },
+    "mdm": {
+      "n_prompts": 300,
+      "arms": {
+        "yonly_large": {
+          "foot_skate_world": {
+            "mean_delta": 0.01452,
+            "ci95": [
+              0.01288,
+              0.01608
+            ],
+            "frac_improved": 0.007,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.01878,
+            "ci95": [
+              -0.02023,
+              -0.01729
+            ],
+            "frac_improved": 1.0,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": -0.00814,
+            "ci95": [
+              -0.01255,
+              -0.00407
+            ],
+            "frac_improved": 0.533,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.00851,
+            "ci95": [
+              0.00527,
+              0.01249
+            ],
+            "frac_improved": 0.023,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.05362,
+          "apply_ms_mean": 0.08
+        },
+        "coord_u25": {
+          "foot_skate_world": {
+            "mean_delta": -0.00016,
+            "ci95": [
+              -0.0002,
+              -0.00012
+            ],
+            "frac_improved": 0.45,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.00088,
+            "ci95": [
+              -0.00112,
+              -0.00064
+            ],
+            "frac_improved": 0.737,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": 0.00062,
+            "ci95": [
+              0.0004,
+              0.00083
+            ],
+            "frac_improved": 0.32,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.00216,
+            "ci95": [
+              0.00101,
+              0.00354
+            ],
+            "frac_improved": 0.507,
+            "wilcoxon_p": 0.738506
+          },
+          "correction_magnitude_mean": 0.01479,
+          "apply_ms_mean": 0.39
+        },
+        "coord_u50": {
+          "foot_skate_world": {
+            "mean_delta": -0.00044,
+            "ci95": [
+              -0.00053,
+              -0.00036
+            ],
+            "frac_improved": 0.52,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.00262,
+            "ci95": [
+              -0.00312,
+              -0.00212
+            ],
+            "frac_improved": 0.777,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": 0.00218,
+            "ci95": [
+              0.00165,
+              0.00266
+            ],
+            "frac_improved": 0.27,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.01438,
+            "ci95": [
+              0.01091,
+              0.01806
+            ],
+            "frac_improved": 0.343,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.02958,
+          "apply_ms_mean": 0.37
+        },
+        "coord_u75": {
+          "foot_skate_world": {
+            "mean_delta": -0.00084,
+            "ci95": [
+              -0.001,
+              -0.00069
+            ],
+            "frac_improved": 0.553,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.0058,
+            "ci95": [
+              -0.00694,
+              -0.00466
+            ],
+            "frac_improved": 0.797,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": 0.00394,
+            "ci95": [
+              0.00321,
+              0.00465
+            ],
+            "frac_improved": 0.233,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.03091,
+            "ci95": [
+              0.02504,
+              0.03645
+            ],
+            "frac_improved": 0.32,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.04437,
+          "apply_ms_mean": 0.36
+        },
+        "coord_u100": {
+          "foot_skate_world": {
+            "mean_delta": -0.00129,
+            "ci95": [
+              -0.00152,
+              -0.00108
+            ],
+            "frac_improved": 0.583,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.00794,
+            "ci95": [
+              -0.00936,
+              -0.00666
+            ],
+            "frac_improved": 0.803,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": 0.00569,
+            "ci95": [
+              0.00474,
+              0.00661
+            ],
+            "frac_improved": 0.223,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.04727,
+            "ci95": [
+              0.03922,
+              0.05484
+            ],
+            "frac_improved": 0.297,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.05916,
+          "apply_ms_mean": 0.36
+        },
+        "oracle_grid": {
+          "foot_skate_world": {
+            "mean_delta": -0.0013,
+            "ci95": [
+              -0.00154,
+              -0.00108
+            ],
+            "frac_improved": 0.583
+          },
+          "foot_skate_world_with_stop": {
+            "mean_delta": -0.0013,
+            "ci95": [
+              -0.00152,
+              -0.00108
+            ]
+          },
+          "oracle_type": "single-step (per-prompt best-u within u_grid; STOP 변형 별도 표기)"
+        }
+      },
+      "coord_u100_n_correct_segments_total": 3573
+    },
+    "momask": {
+      "n_prompts": 300,
+      "arms": {
+        "yonly_large": {
+          "foot_skate_world": {
+            "mean_delta": 0.00458,
+            "ci95": [
+              0.00374,
+              0.00538
+            ],
+            "frac_improved": 0.253,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.02524,
+            "ci95": [
+              -0.0271,
+              -0.0232
+            ],
+            "frac_improved": 0.997,
+            "wilcoxon_p": 0.0
+          },
+          "artifact_total": {
+            "mean_delta": -0.01859,
+            "ci95": [
+              -0.02318,
+              -0.0144
+            ],
+            "frac_improved": 0.65,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.06258,
+            "ci95": [
+              0.05295,
+              0.07304
+            ],
+            "frac_improved": 0.043,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.05533,
+          "apply_ms_mean": 0.09
+        },
+        "coord_u25": {
+          "foot_skate_world": {
+            "mean_delta": 0.00021,
+            "ci95": [
+              0.00017,
+              0.00026
+            ],
+            "frac_improved": 0.047,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.00018,
+            "ci95": [
+              -0.0004,
+              -3e-05
+            ],
+            "frac_improved": 0.617,
+            "wilcoxon_p": 0.000103
+          },
+          "artifact_total": {
+            "mean_delta": 0.00036,
+            "ci95": [
+              0.00013,
+              0.0006
+            ],
+            "frac_improved": 0.433,
+            "wilcoxon_p": 0.005627
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.01115,
+            "ci95": [
+              0.00815,
+              0.01428
+            ],
+            "frac_improved": 0.327,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.01106,
+          "apply_ms_mean": 0.28
+        },
+        "coord_u50": {
+          "foot_skate_world": {
+            "mean_delta": 0.00033,
+            "ci95": [
+              0.00025,
+              0.00041
+            ],
+            "frac_improved": 0.063,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.0005,
+            "ci95": [
+              -0.00104,
+              -8e-05
+            ],
+            "frac_improved": 0.593,
+            "wilcoxon_p": 0.004009
+          },
+          "artifact_total": {
+            "mean_delta": 0.00131,
+            "ci95": [
+              0.00089,
+              0.00177
+            ],
+            "frac_improved": 0.357,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.02549,
+            "ci95": [
+              0.01962,
+              0.03144
+            ],
+            "frac_improved": 0.297,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.02211,
+          "apply_ms_mean": 0.27
+        },
+        "coord_u75": {
+          "foot_skate_world": {
+            "mean_delta": 0.00035,
+            "ci95": [
+              0.00026,
+              0.00044
+            ],
+            "frac_improved": 0.083,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.00069,
+            "ci95": [
+              -0.00137,
+              -0.00015
+            ],
+            "frac_improved": 0.617,
+            "wilcoxon_p": 0.000112
+          },
+          "artifact_total": {
+            "mean_delta": 0.00204,
+            "ci95": [
+              0.00144,
+              0.00264
+            ],
+            "frac_improved": 0.347,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.03858,
+            "ci95": [
+              0.03025,
+              0.04803
+            ],
+            "frac_improved": 0.287,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.03317,
+          "apply_ms_mean": 0.26
+        },
+        "coord_u100": {
+          "foot_skate_world": {
+            "mean_delta": 0.0003,
+            "ci95": [
+              0.00018,
+              0.00041
+            ],
+            "frac_improved": 0.113,
+            "wilcoxon_p": 0.0
+          },
+          "float_mag": {
+            "mean_delta": -0.0004,
+            "ci95": [
+              -0.00109,
+              0.00015
+            ],
+            "frac_improved": 0.567,
+            "wilcoxon_p": 0.154319
+          },
+          "artifact_total": {
+            "mean_delta": 0.00309,
+            "ci95": [
+              0.00225,
+              0.00403
+            ],
+            "frac_improved": 0.313,
+            "wilcoxon_p": 0.0
+          },
+          "bone_cv_max": {
+            "mean_delta": 0.05275,
+            "ci95": [
+              0.04171,
+              0.06566
+            ],
+            "frac_improved": 0.287,
+            "wilcoxon_p": 0.0
+          },
+          "correction_magnitude_mean": 0.04422,
+          "apply_ms_mean": 0.25
+        },
+        "oracle_grid": {
+          "foot_skate_world": {
+            "mean_delta": 0.0001,
+            "ci95": [
+              2e-05,
+              0.00017
+            ],
+            "frac_improved": 0.113
+          },
+          "foot_skate_world_with_stop": {
+            "mean_delta": -0.00011,
+            "ci95": [
+              -0.00018,
+              -5e-05
+            ]
+          },
+          "oracle_type": "single-step (per-prompt best-u within u_grid; STOP 변형 별도 표기)"
+        }
+      },
+      "coord_u100_n_correct_segments_total": 1527
+    }
+  },
+  "claim_boundary": "first snapshot — snapshot>=2 전 가설 status 근거 금지 (§3-9). learned optimum 주장 없음. FID(A) 검증 전 외부 최종성능 claim 금지 (§3-20).",
+  "grounding": [
+    "GMD ICCV2023 (foot-skate metric)",
+    "PhysDiff ICCV2023 (post-proc side effect)"
+  ]
+}

@@ -4,6 +4,7 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
+| AR-064 | Tool | Bone-preserving propagation — coord cleanup 의 leg-chain 선형 propagation(NOT IK)이 u 비례 BoneCV 상승(+0.045~0.053 @u=1.0) 유발 → IK 또는 사후 bone re-projection 으로 대체 | 🟠 | [AR-061 snapshot](../../evals/snapshots/coordinate_footskate_effect_ar061_v1.json) guard 결과. u=0.25 는 +0.002 로 미미 — 저강도 우선 운용 가능 |
 | AR-063 | Tool | Gate evaluator 수리 — SkateEvaluator contact 를 v2(수직속도)로, Penetrate/FootFloating 에 estimate_ground 주입, Float/BoneCV gate threshold 재보정 + clean 재calibration + AR-043/044 gate 컬럼 retroactive caveat | 🔴 | [AR-062 audit A-1~A-4/A-6](../docs/findings/artifact_tool_alignment_audit.md) 후속. routing/RL state 가 이 evaluator 출력이므로 방치 시 잘못된 state 학습. SEVERITY_VERSION bump + aggregation_rule_version ↑ (§4) |
 | AR-059 | Future-RL | RS-GRPO-style scoped reward / intent evaluator — 현재는 오버엔지니어링, 먼 훗날 human labels 축적 후 reward-model/RL 학습 후보 | ⚪ | 지금은 scope 분리 철학만 AR-058-3e human rubric에 반영 |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |

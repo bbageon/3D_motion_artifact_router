@@ -41,6 +41,11 @@ DEFAULT_TOOL_LOOKUP: dict[str, str] = {
     "foot_lock_tool": "FootLockTool",
     "bone_projection_tool": "BoneProjectionTool",
     "velocity_smoothing_tool": "VelocitySmoothingTool",
+    # AR-061: coordinate-aware foot-skate cleanup. 현재 어떤 evaluator 도 본 recommendation
+    # 을 emit 하지 않아 decision-invariant (inert). skate evaluator 수리(AR-063) 후
+    # recommendation 연결 예정. tool 자체는 DEFAULT_CORRECTION_TOOLS 미포함 (candidate-set
+    # freeze — correction_tools/__init__.py NB 참조).
+    "coordinate_footskate_cleanup_tool": "CoordinateFootSkateCleanupTool",
 }
 
 #: severity → tool strength mapping (간단한 default).
