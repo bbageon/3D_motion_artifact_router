@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "artifact_tool_alignment_audit",
+  "board_id": "AR-062",
+  "evidence_tier": "controlled_diagnostic (synthetic; 정의/논리 재현 — 성능 결론 아님, §3-17)",
+  "skate_evaluator_vacuity": {
+    "claim": "내부 contact(xz_vel<=0.02) 와 sliding(xz_vel>0.05) 교집합 공집합 — contact_labels 없이 fire 불가",
+    "synthetic": "T=30, 두 발 ground(y=0) 접지 + 0.06 m/frame 수평 slide (frame 전체가 skate)",
+    "internal_contact_reports": 0,
+    "external_labels_reports": 2,
+    "external_labels_scores": [
+      1.0,
+      1.0
+    ],
+    "v2_flags_same_motion": {
+      "contact": 30,
+      "skate": 30,
+      "T": 30
+    },
+    "code_refs": [
+      "evaluators/physical_gate.py:52 DEFAULT_V_CONTACT_THRESH=0.02",
+      "evaluators/physical_gate.py:51 DEFAULT_SKATE_THRESHOLD=0.05",
+      "evaluators/physical_gate.py:246 sliding = (vel > skate_threshold) & contact",
+      "tools/physical_gate_clean_calibration.py:86 ev.evaluate(motion) — labels/ground 미전달"
+    ],
+    "affected_prior_records": [
+      "evals/snapshots/physical_gate_clean_calibration_v1.json (Skate p99=0.0 = vacuous)",
+      "evals/snapshots/representative_pool_measure_v1.json Skate_gate_fire=0.0 (3 gen)",
+      "AR-043/AR-044 의 Skate_gate 컬럼 — 'skate 없음' 근거로 인용 금지"
+    ]
+  },
+  "penetrate_evaluator_vacuity": {
+    "claim": "내부 ground = min-Y(전 joint) — joint_y < ground - eps 는 정의상 불가능",
+    "synthetic": "T=30, RIGHT_FOOT 이 frame 10~19 에서 -0.08m 관통 (ground=0)",
+    "internal_ground_reports": 0,
+    "external_ground_reports": 1,
+    "external_ground_scores": [
+      0.3333
+    ],
+    "code_refs": [
+      "evaluators/physical_gate.py:75-77 _estimate_ground_y = min-Y 전 joint",
+      "evaluators/physical_gate.py:124 penetrate_mask = joint_y < (ground_y - eps)"
+    ],
+    "affected_prior_records": [
+      "evals/snapshots/physical_gate_clean_calibration_v1.json (Penetrate p99=0.0 = vacuous)",
+      "AR-043/AR-044 의 Penetrate 유병률 0% — '관통 없음' 근거로 인용 금지"
+    ]
+  },
+  "unaffected_conclusions": [
+    "foot_skate_world (trajectory + estimate_ground 10th pct, Category B) 는 건전 — MDM 2x 등 AR-044 headline 유지",
+    "float_mag / FID / R-Precision 기반 결론 유지"
+  ],
+  "full_matrix_doc": ".claude/docs/findings/artifact_tool_alignment_audit.md"
+}
