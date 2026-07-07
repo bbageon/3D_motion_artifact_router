@@ -4,8 +4,8 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-065 | RL-Q | Effect-aware state 재구축 검토 — 기존 learned ranker (AR-040/052 계열) 는 v0.1.0 무신호 feature (Skate/Penetrate ≡ 0) 로 학습됨 → 수리된 v0.2.0 state 로 feature 재산출 + re-train 여부 판단 | 🟠 | [AR-063 report §5](../../evals/reports/2026-07-07_gate_evaluator_repair_ar063.md) caveat 후속. 기존 결과 해석 시 "skate/penetrate state 무신호" caveat 동반 |
-| AR-064 | Tool | Bone-preserving propagation — coord cleanup 의 leg-chain 선형 propagation(NOT IK)이 u 비례 BoneCV 상승(+0.045~0.053 @u=1.0) 유발 → IK 또는 사후 bone re-projection 으로 대체 | 🟠 | [AR-061 snapshot](../../evals/snapshots/coordinate_footskate_effect_ar061_v1.json) guard 결과. u=0.25 는 +0.002 로 미미 — 저강도 우선 운용 가능 |
+| AR-065 | RL-Q | Effect-aware state 재구축 검토 — 기존 learned ranker (AR-040/052 계열) 는 v0.1.0 무신호 feature (Skate/Penetrate ≡ 0) 로 학습됨 → 수리된 v0.2.0 state 로 feature 재산출 + re-train 여부 판단 | 🟠 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-063 후속 |
+| AR-064 | Tool | Bone-preserving propagation — coord cleanup 의 leg-chain 선형 propagation(NOT IK)이 u 비례 BoneCV 상승(+0.045~0.053 @u=1.0) 유발 → IK 또는 사후 bone re-projection 으로 대체 | 🟠 | [spec](../docs/dashboard-task-specs/AR-064-bone-preserving-propagation.md). AR-061 후속. u=0.25 는 +0.002 로 미미 — 저강도 우선 운용 가능 |
 | AR-059 | Future-RL | RS-GRPO-style scoped reward / intent evaluator — 현재는 오버엔지니어링, 먼 훗날 human labels 축적 후 reward-model/RL 학습 후보 | ⚪ | 지금은 scope 분리 철학만 AR-058-3e human rubric에 반영 |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |
 | AR-042 | RL-Q | v2 support-aware ranker — data support/uncertainty state + OOD ablation | 🟡 | AR-037 후속. kNN/ensemble 기반 support, offline value overestimation 억제 |
