@@ -36,7 +36,7 @@ def _make_standing_motion(T: int = 30) -> np.ndarray:
 def test_oracle_type_and_weight_status_metadata() -> None:
     """AGENTS.md §3-16, §6-11 의 명시 의무 — field 가 박제돼 있어야 함."""
     clean = _make_standing_motion(T=20)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 20))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 10))
     sel = select_best_tool_single_step(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -58,7 +58,7 @@ def test_oracle_type_and_weight_status_metadata() -> None:
 def test_oracle_selects_matching_tool_for_foot_floating() -> None:
     """foot floating corrupted → FootLockTool 이 best 로 선택돼야 함."""
     clean = _make_standing_motion(T=30)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 15))
     sel = select_best_tool_single_step(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -101,7 +101,7 @@ def test_oracle_selects_matching_tool_for_global_jitter() -> None:
 def test_oracle_best_has_max_netgain() -> None:
     """best 의 netgain_provisional 이 모든 valid candidate 중 최대."""
     clean = _make_standing_motion(T=30)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 15))
     sel = select_best_tool_single_step(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -122,7 +122,7 @@ def test_oracle_best_has_max_netgain() -> None:
 def test_oracle_skipped_tool_not_selected_as_best() -> None:
     """BoneProjectionTool 이 target_part='both_feet' 로 호출되면 ValueError → skipped."""
     clean = _make_standing_motion(T=20)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 20))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 10))
     sel = select_best_tool_single_step(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -159,7 +159,7 @@ def test_oracle_missing_target_evaluator_raises() -> None:
 def test_oracle_candidate_records_cross_evaluator_delta() -> None:
     """AGENTS.md §6-12 — best 외 candidate 도 cross_evaluator_delta 박제."""
     clean = _make_standing_motion(T=30)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 15))
     sel = select_best_tool_single_step(
         clean_motion=clean,
         corrupted_motion=corrupted,

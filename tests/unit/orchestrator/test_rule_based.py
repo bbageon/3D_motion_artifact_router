@@ -265,12 +265,14 @@ def _make_standing_motion(T: int = 30) -> np.ndarray:
 def test_tool_effect_matrix_foot_lock_reduces_floating() -> None:
     """foot floating corrupted 에 FootLockTool 적용 → target_delta < 0.
 
-    v1.2.0 FootFloating contact heuristic 은 'velocity 정지 AND height ≤ tau_contact_height'
+    v2.0.0 FootFloating contact heuristic 은 '수직속도 정지 AND height ≤ tau_contact_height'
     이므로 lift_height 를 (tau_float, tau_contact_height) 범위 안에 둬 contact + floating
     동시 만족하도록 한다. 0.08 m = tau_float 0.05 < 0.08 < tau_contact_height 0.10.
+    주입은 **부분 구간** (0..15 of T=30) — 양발 전-구간 균일 lift 는 feet-percentile
+    ground 추정(v2.0.0)에서 지면 상승과 구분 불가하기 때문 (AR-063; 실제 floating 은 구간적).
     """
     clean = _make_standing_motion(T=30)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 15))
     entries = compute_tool_effect_matrix(
         artifact_pairs=[("foot_floating", clean, corrupted)],
         tools=[FootLockTool(default_ground_y=0.0)],
@@ -292,7 +294,7 @@ def test_tool_effect_matrix_records_cross_evaluator_delta() -> None:
     """Guard 5 — target evaluator 외에 다른 evaluator 의 delta 도 함께 기록."""
     clean = _make_standing_motion(T=30)
     # 동일 사유 — lift_height 0.08 (tau_float < lift < tau_contact_height).
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 15))
     entries = compute_tool_effect_matrix(
         artifact_pairs=[("foot_floating", clean, corrupted)],
         tools=[FootLockTool(default_ground_y=0.0)],

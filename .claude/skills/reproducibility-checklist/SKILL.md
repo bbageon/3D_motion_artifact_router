@@ -1,11 +1,12 @@
----
-description: NeurIPS reproducibility checklist를 본 프로젝트(ArtifactRouter)에 적응한 점검 절차이며, 각 평가 지표(artifact metric, NetGain, FidelityLoss, FID_motion 등)의 정의·계산식·해석을 함께 제공한다.
+﻿---
+description: NeurIPS reproducibility checklist를 본 프로젝트(ArtifactRouter)에 적응한 점검 절차이며, 각 평가 지표(artifact metric, NetGain, FidelityLoss, FID_motion 등)의 정의·계산식·해석과 policy/validation contribution 점검을 함께 제공한다.
 metadata:
   scope:
     paths:
       - "reports/checklists/**"
       - "evals/**"
-      - "docs/**"
+      - ".claude/docs/**"
+      - "docs/harness-research-template/**"
   activation:
     keywords:
       - "재현성"
@@ -33,15 +34,15 @@ metadata:
 
 다음을 보장한다.
 
-- 외부 공개 전 14+1 항목 점검.
+- 외부 공개 전 14+2 항목 점검.
 - 평가 지표 정의의 단일 출처 제공.
 - 통계 절차의 정합성.
 
 ---
 
-## 2. 14+1 점검 항목
+## 2. 14+2 점검 항목
 
-본 점검은 NeurIPS Reproducibility Checklist (Pineau et al. 2021) 에 명세 §9 ArtifactRouter 특화 항목을 추가한 것.
+본 점검은 NeurIPS Reproducibility Checklist (Pineau et al. 2021) 에 명세 §9 ArtifactRouter 특화 항목과 policy/validation contribution 항목을 추가한 것.
 
 ### 2-1. 데이터셋 (#1-3)
 
@@ -78,9 +79,10 @@ metadata:
 
 14. **Workaround ledger**: `evals/workarounds/_index.md` 의 `status: open` + `severity: critical` 항목이 0개임을 외부 공개 전 확인.
 
-### 2-7. ArtifactRouter 특화 (#15)
+### 2-7. ArtifactRouter 특화 (#15-16)
 
 15. **Tool registry config**: 사용한 evaluator 7종 · correction tool 9종 의 config hash. KDG nodes/edges 정의의 hash. orchestrator scoring weight (α, β, γ).
+16. **Policy / validation contribution**: learned policy, Q surface, risk head, heuristic, oracle, physical gate 중 하나라도 action selection 에 관여한 경우 `selection_mode`, `action_space_type`, `u_grid`, `candidate_trace`, `gate_recheck`, `policy_contribution_baseline` 을 기록. policy contribution claim 은 동일 gate/evaluator 조건의 STOP-only, random-safe 또는 heuristic-safe baseline 과 비교.
 
 ---
 
@@ -104,7 +106,7 @@ FootSliding = mean_t I(contact_foot(t)) * || p_foot_xy(t+1) - p_foot_xy(t) ||
 - Holden et al. 2017 ("Phase-Functioned Neural Networks for Character Control", ACM TOG) — foot contact + sliding 의 standard motion synthesis metric.
 - Tevet et al. 2023 ("Human Motion Diffusion Model" — MDM) — foot sliding metric in motion generation evaluation.
 - Karunratanakul et al. 2023 (GMD) — physical plausibility / foot sliding.
-- 본 프로젝트 변형: `contact_foot(t)` 는 simple Y-threshold (현재 evaluator 의 limitation, 부록 Z 의 motivation — Item 6 contact estimator).
+- 본 프로젝트 변형 (**v2 / gate v0.2.0, 2026-07-07 AR-063**): `contact_foot(t)` = (height ≤ 0.05) & (|수직속도| ≤ 0.035); skate = contact & (수평변위 ≥ 0.025 m/frame). **trajectory(world) 에서 측정** (local 은 root 이동 혼입 — AR-062 A-4). 구 정의 (수평속도 contact ≤0.02 & skate >0.05) 는 교집합 공집합으로 **구조적 fire 불가** — 구 기록 인용 금지 ([AR-062 audit A-1](../../docs/findings/artifact_tool_alignment_audit.md)).
 
 #### GroundPenetration ratio
 
@@ -117,7 +119,7 @@ GroundPenetration = mean_t max(0, ground_y - min_j p_j_y(t))
 **References**:
 - Tevet et al. 2023 (MDM) — foot below ground penetration metric.
 - Shi et al. 2024 (PhysDiff) — physics-aware motion generation, ground penetration.
-- 본 프로젝트 변형: `ground_y` 의 simple Y-min estimation (Skeleton Normalizer 의 default).
+- 본 프로젝트 변형 (**v0.2.0, 2026-07-07 AR-063**): `ground_y` = **feet lower-height 10th percentile** (coords_protocol 일치). 구 min-Y(전 joint) 추정은 정의상 어떤 joint 도 그 아래일 수 없어 **구조적 fire 불가** ([AR-062 audit A-2](../../docs/findings/artifact_tool_alignment_audit.md)) — 구 기록의 "관통 0%" 인용 금지. percentile ground 는 transient 관통(<10% frames)에만 robust.
 
 #### FootFloating ratio
 
@@ -129,8 +131,8 @@ FootFloating = mean_t I(contact_foot(t)) * I(p_foot_y(t) - ground_y > tau_float)
 
 **References**:
 - Zhang et al. 2022 (MotionDiffuse) — foot floating / suspended motion metric.
-- 본 프로젝트 변형: `tau_float=0.05`, simple Y threshold.
-- **CAVEAT (부록 Z, 2026-05-25 발견)**: 본 metric 의 max score 가 synthetic foot_floating injection (global Y shift) 에 sensitivity 부족. evaluator 의 corruption robustness 한계 — Item 6 (contact estimator) 도입 의 motivation.
+- 본 프로젝트 변형 (**v2.0.0, 2026-07-07 AR-063**): `tau_float=0.05`; contact-intended = (height ≤ 0.10) & (|수직속도| ≤ 0.035) — 수평속도 contact(v1.x) 은 local 좌표 보행 중 지지발 판정 실패로 교체 (AR-062 A-4). ground = feet 10th percentile.
+- **CAVEAT (부록 Z, 2026-05-25 발견)**: 본 metric 의 max score 가 synthetic foot_floating injection (global Y shift) 에 sensitivity 부족. evaluator 의 corruption robustness 한계 — Item 6 (contact estimator) 도입 의 motivation. **v2.0.0 추가 한계**: 양발 전-구간 균일 lift 는 feet-percentile ground 와 지면 상승이 구분 불가 (내부 추정 한계 — 외부 ground_y 필요).
 
 #### BoneLengthVariation
 
@@ -263,6 +265,36 @@ ArtifactReduction = TotalArtifactScore_before - TotalArtifactScore_after
 
 각 refinement step 의 (`step_idx`, `tool_id`, `target_part`, `frame_range`, `strength`, `score_before`, `score_after`, `score_delta`) 를 trace.json 에 저장.
 
+#### Candidate / validation trace
+
+학습 policy 또는 validation layer 의 contribution 을 인용하는 경우 step 별 후보 trace 를 추가 저장:
+
+```
+candidate_trace = [
+  {
+    "rank": 1,
+    "tool_id": "...",
+    "u": 0.0,
+    "strength": "...",
+    "predicted_utility": 0.0,
+    "predicted_risk": 0.0,
+    "gate_result": "pass|fail|not_checked",
+    "utility_after_apply": 0.0,
+    "executed": false
+  }
+]
+```
+
+**Required ablation when claiming policy contribution**:
+
+- STOP only.
+- random safe candidate + same physical gate.
+- heuristic safe candidate + same physical gate.
+- learned policy / Q surface + same physical gate.
+- dense/grid oracle + same physical gate (upper bound, 가능할 때).
+
+비교가 없으면 결과는 `gate-validated result; policy contribution not isolated` 로 표기.
+
 ### 3-7. 통계적 오라클
 
 - **Paired test**: Wilcoxon signed-rank — 동일 sample paired 두 처리 (예: rule-based vs learned orchestrator) 비교. p-value < 0.05.
@@ -274,7 +306,7 @@ ArtifactReduction = TotalArtifactScore_before - TotalArtifactScore_after
 
 ## 4. 점검 절차
 
-1. 외부 공개 직전 본 §2 14+1 항목을 `reports/checklists/<period>_<scope>.md` 에 기록.
+1. 외부 공개 직전 본 §2 14+2 항목을 `reports/checklists/<period>_<scope>.md` 에 기록.
 2. 각 항목별로 충족 여부 + 인용 경로 (`evals/raw/<id>.json`, `evals/snapshots/<period>.json`, `external_assets/local_lora_g3/model_card.json` 등) 명시.
 3. `evals/workarounds/_index.md` 의 critical open 항목 0개 확인.
 4. metric 정의는 본 §3 만 인용. 자체 재정의 또는 변형 사용 금지.

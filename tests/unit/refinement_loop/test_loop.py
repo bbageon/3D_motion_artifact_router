@@ -68,7 +68,7 @@ def test_clean_motion_immediate_stop() -> None:
 def test_foot_floating_corrupted_runs_and_reduces_score() -> None:
     """foot floating corrupted → tool 적용 → score 감소 → STOP 또는 max_iter."""
     motion = _make_standing_motion(T=30)
-    corrupted = inject_foot_floating(motion, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(motion, lift_height=0.08, frame_range=(0, 15))
     loop = _basic_loop(max_iterations=5)
     result = loop.run(corrupted)
 
@@ -88,7 +88,7 @@ def test_foot_floating_corrupted_runs_and_reduces_score() -> None:
 def test_max_iterations_terminates() -> None:
     """max_iterations 도달 시 종료."""
     motion = _make_standing_motion(T=30)
-    corrupted = inject_foot_floating(motion, lift_height=0.08, frame_range=(0, 30))
+    corrupted = inject_foot_floating(motion, lift_height=0.08, frame_range=(0, 15))
     loop = _basic_loop(max_iterations=2)
     result = loop.run(corrupted)
     # 5 step 안에 STOP 되거나, max_iter 도달.

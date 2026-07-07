@@ -1,4 +1,6 @@
-# AR-043 — Dataset Predefined Issue Prevalence Audit
+﻿# AR-043 — Dataset Predefined Issue Prevalence Audit
+
+> ⚠️ **Retroactive caveat (2026-07-07, AR-062/AR-063)**: 본 audit 의 **Skate/Penetrate gate 컬럼 (v0.1.0)** 은 구조적 vacuity (내부 contact/ground 추정으로는 정의상 fire 불가 — [audit A-1/A-2](../findings/artifact_tool_alignment_audit.md)) 로 "없음"의 증거가 아님. 유효한 유병률 = 수리(v0.2.0) 후 [gate_prevalence_remeasure_ar063_v1](../../../evals/snapshots/gate_prevalence_remeasure_ar063_v1.json). foot_skate_world 등 Category-B 결론은 영향 없음.
 
 ## 한 줄 목표
 

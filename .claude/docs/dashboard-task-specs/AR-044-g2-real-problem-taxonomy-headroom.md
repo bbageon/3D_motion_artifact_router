@@ -1,4 +1,6 @@
-# AR-044 — G2 Real Problem Taxonomy + Visual/Tool Headroom Audit
+﻿# AR-044 — G2 Real Problem Taxonomy + Visual/Tool Headroom Audit
+
+> ⚠️ **Retroactive caveat (2026-07-07, AR-062/AR-063)**: 본 taxonomy 의 **Skate_gate_fire / Penetrate 컬럼 (v0.1.0)** 은 구조적 vacuity 로 "없음"의 증거가 아님 ([audit A-1/A-2](../findings/artifact_tool_alignment_audit.md)). 수리(v0.2.0) 후 유효 유병률: **Skate fire MDM 23.1% vs VQ 1.3~1.7%** ([remeasure](../../../evals/snapshots/gate_prevalence_remeasure_ar063_v1.json)) — headline (MDM foot-skate headroom, Category-B foot_skate_world 기반) 은 오히려 **강화**됨.
 
 ## 한 줄 목표
 
@@ -53,6 +55,17 @@ Synthetic corruption은 본 작업의 핵심 근거가 아니다. 필요하면 a
 ## Claim Boundary
 
 이 작업은 policy 성능을 증명하지 않는다. G2 real output에 존재하는 문제 구조와 tool effect headroom을 확인하여, 이후 `q_proxy`와 policy 설계를 데이터 기반으로 만들기 위한 전제 분석이다.
+
+## 완료 범위 정정 (2026-06-09)
+
+AR-044 실행은 representative-300의 MotionGPT·MDM·MoMask 원본 출력에서 generator별 문제 분포를 측정하는 **taxonomy 단계**까지 완료했다. MDM의 높은 world-space foot-skate와 MotionGPT의 높은 FootFloating 발생률은 보정할 문제량이 존재함을 보이지만, 특정 tool이 이를 품질 손상 없이 개선한다는 의미의 **실제 tool headroom은 아직 검증되지 않았다**.
+
+원 명세의 다음 항목은 AR-051로 분리한다.
+
+- tool 적용 전후 paired Δ
+- Category-A 품질 보존/개선
+- 보정 전후 시각 자료와 failure gallery
+- 실제 effect에 기반한 `q_proxy` implication
 
 ## 근거
 

@@ -16,6 +16,29 @@ import numpy as np
 
 Severity = Literal["low", "medium", "high"]
 
+#: ground 추정 percentile — tools/coords_protocol.GROUND_PERCENTILE 과 동일 semantics.
+GROUND_PERCENTILE = 10.0
+
+
+def estimate_ground_y(motion: np.ndarray, percentile: float = GROUND_PERCENTILE) -> float:
+    """ground_y = frame별 lower-foot-height 의 하위 percentile (NOT min-Y).
+
+    AR-062 audit A-2 fix (AR-063): 기존 min-Y(전 joint) 추정은 "어떤 joint 도 전-joint
+    최저점 아래에 있을 수 없다"는 정의상 이유로 PenetrateEvaluator 를 vacuous 하게
+    만들었다. 본 함수는 tools/coords_protocol.estimate_ground 와 동일 정의 (발이 '쉬는'
+    높이; occasional penetration/float outlier 에 robust) 를 evaluator 계층에 제공한다.
+
+    한계 (self-referential estimator 의 내재 성질): 관통/부양이 **transient**
+    (< percentile 비율) 일 때만 robust — 양발이 전 구간 균일하게 뜨거나 percentile
+    이상 비율로 지속 관통하면 ground 가 발을 따라가 검출 불가. 그런 경우 외부
+    `ground_y` (예: trajectory 기반 floor, GT ground) 를 전달하라.
+
+    LEFT_FOOT=10, RIGHT_FOOT=11 (canonical SMPL-22).
+    """
+    m = np.asarray(motion, dtype=np.float64)
+    lower_foot_y = np.minimum(m[:, 10, 1], m[:, 11, 1])  # [T]
+    return float(np.percentile(lower_foot_y, percentile))
+
 
 @dataclass
 class EvaluatorReport:

@@ -19,7 +19,7 @@ from typing import Any, Optional
 
 import numpy as np
 
-from evaluators.base import Evaluator, EvaluatorReport, Severity
+from evaluators.base import Evaluator, EvaluatorReport, Severity, estimate_ground_y
 from skeleton_normalizer.canonical_smpl_22 import NAME_TO_IDX
 
 FOOT_JOINTS: dict[str, int] = {
@@ -29,8 +29,14 @@ FOOT_JOINTS: dict[str, int] = {
 
 #: Severity 정의 버전. threshold 또는 contact heuristic 변경 시 bump.
 #: AGENTS.md §4-2 evaluator 정의 변경 → aggregation_rule_version 의무.
+#: 2.0.0 (2026-07-07, AR-063 — AR-062 audit A-4/A-6 fix):
+#:   - contact heuristic: **수평(xz)속도 → 수직(y)속도** 기반 (v2, AR-058-3b 일치).
+#:     수평속도 기반은 local(root-relative) 좌표에서 보행 중 지지발이 pelvis 기준
+#:     수평 이동(≈보행속도)해 contact 판정 실패 → 보행 구간 floating blind (A-4).
+#:   - ground 추정: min-Y(전 joint) → feet lower-height 10th percentile (A-2 동일 fix).
+#:   호환성: 1.x 기록과 **비호환** (score 분포 이동) — 비교 시 severity_version 구분 의무.
 #: 1.2.0 (2026-05-18 hold-out 결과 반영): contact heuristic 을 velocity + height 결합으로 sharpen.
-SEVERITY_VERSION = "1.2.0-2026-05-18"
+SEVERITY_VERSION = "2.0.0-2026-07-07"
 
 # Severity thresholds (FootFloating ratio, 0~1).
 # Version 1.0.0 (Week 2 prototype): 0.05 / 0.15 / 0.30 — height 기반 contact heuristic.
@@ -42,10 +48,11 @@ SEV_MED = 0.15
 SEV_HIGH = 0.30
 
 DEFAULT_TAU_FLOAT = 0.05  # 5cm — foot 가 ground 대비 5cm 이상 떠 있으면 floating
-#: Velocity-based contact heuristic 의 임계 (foot xz-plane 의 frame 간 변위 m/frame).
-#: 20fps 기준 0.02 m/frame = 0.4 m/s — walking 의 stance phase (~0.1-0.2 m/s) 보다 위,
-#: swing phase (~0.7+ m/s) 보다 훨씬 아래.
-DEFAULT_V_CONTACT_THRESH = 0.02
+#: 수직속도 기반 contact heuristic 의 임계 (foot height 의 frame 간 변화 m/frame, v2).
+#: v2.0.0 (AR-063): 수평속도(0.02) → 수직속도(0.035) 교체 — 수평속도는 local 좌표에서
+#: 보행 중 지지발의 pelvis-상대 이동과 구분 불가 (AR-062 A-4). 수직 정지는 좌표계
+#: 무관하게 "발이 내려앉아 머무는" 상태를 포착.
+DEFAULT_VY_CONTACT_THRESH = 0.035
 #: Contact 추정 시 foot 의 최대 허용 ground 대비 높이 (m). 본 값보다 위면 정지 상태라도
 #: contact 가 아니라 "raised foot" 으로 분류 — 사용자 의도된 자세 (sitting/lying with feet
 #: up, 정지된 발 들기 등) 의 false-positive floating 방지.
@@ -57,27 +64,23 @@ class FootFloatingEvaluator(Evaluator):
 
     Quality-tier-agnostic — G1/G2 output 또는 synthetic injection 결과 모두에 적용.
 
-    Contact heuristic (v1.2.0, 2026-05-18 hold-out 결과 반영):
+    Contact heuristic (v2.0.0, 2026-07-07 AR-063 — AR-062 audit A-4 fix):
       - 외부에서 `contact_labels` 가 명시되면 그대로 사용.
-      - 명시 안 됨이면 **foot 의 horizontal (xz-plane) velocity ≤ v_contact_thresh
+      - 명시 안 됨이면 **foot 의 vertical (y) velocity ≤ vy_contact_thresh
         AND foot height (above ground) ≤ tau_contact_height** 둘 다 만족하는 frame
-        을 contact 로 판정.
-      - 본 정의의 의미: contact 는 "stance phase 의 ground 접촉" 이며 (a) horizontal
-        정지 + (b) ground 근처 둘 다 필요. 정지된 raised foot (sitting/lying with
-        feet up, 정지된 발 들기 등 자연스러운 자세) 은 contact 가 아니라 "intentional
-        raised foot" 으로 분류 → floating 정의 (contact AND height > tau_float) 에
-        걸리지 않아 false-positive 회피.
-      - trade-off: walking 의 stance phase 가 일시적으로 들렸을 때 (foot slide +
-        lift) 는 contact 아닌 것으로 분류 → 진짜 artifact 가 false-negative 가
-        될 수 있음. 본 evaluator 는 **clean motion 의 false-positive 최소화** 를
-        우선으로 한다 (H-2026-203 baseline 의 신뢰도가 NetGain 측정 신뢰성의 근본).
+        을 contact-intended 로 판정 (v2 계열 — AR-058-3b).
+      - 의미: "발이 내려앉아 수직으로 머무는" 상태. 수직 정지는 local/trajectory
+        좌표계 무관하게 유효 — 기존 수평속도 기반(v1.x)은 local 좌표에서 보행 중
+        지지발이 pelvis 기준 수평 이동해 contact 실패 (보행 구간 floating blind).
+      - 정지된 raised foot (> tau_contact_height) 은 여전히 contact 제외 →
+        intentional pose 의 false-positive 회피 (v1.2.0 의 height 조건 유지).
+      - ground 추정 (v2.0.0): min-Y(전 joint) → feet lower-height 10th percentile.
 
     이전 버전:
-      - v1.1.0 (2026-05-18 1st calibration): velocity-only contact. hold-out 측정
-        결과 자연스럽게 raised foot 인 자세를 contact 로 잘못 잡아 false-positive
-        지속.
-      - v1.0.0 (Week 2 prototype): height-only contact (`height < 2*tau_float`).
-        gross false-positive.
+      - v1.2.0 (2026-05-18): horizontal velocity + height 결합. local 좌표 보행
+        blind (AR-062 A-4) 로 v2.0.0 에서 대체.
+      - v1.1.0 (2026-05-18 1st calibration): velocity-only contact. false-positive.
+      - v1.0.0 (Week 2 prototype): height-only contact. gross false-positive.
     """
 
     name = "FootFloatingEvaluator"
@@ -85,18 +88,18 @@ class FootFloatingEvaluator(Evaluator):
     def __init__(
         self,
         tau_float: float = DEFAULT_TAU_FLOAT,
-        v_contact_thresh: float = DEFAULT_V_CONTACT_THRESH,
+        vy_contact_thresh: float = DEFAULT_VY_CONTACT_THRESH,
         tau_contact_height: float = DEFAULT_TAU_CONTACT_HEIGHT,
     ) -> None:
         """
         Args:
             tau_float: foot height 가 ground 대비 본 값보다 클 때 floating 으로 판정 (m 단위).
-            v_contact_thresh: foot 의 horizontal velocity 가 본 값 이하면 contact 후보 (m/frame).
+            vy_contact_thresh: foot 의 vertical velocity 가 본 값 이하면 contact 후보 (m/frame, v2).
             tau_contact_height: foot 의 ground 대비 높이가 본 값 이하면 contact 후보 (m).
                 두 조건 모두 만족해야 contact.
         """
         self.tau_float = tau_float
-        self.v_contact_thresh = v_contact_thresh
+        self.vy_contact_thresh = vy_contact_thresh
         self.tau_contact_height = tau_contact_height
 
     def evaluate(
@@ -116,27 +119,24 @@ class FootFloatingEvaluator(Evaluator):
         if T < 2:
             return []
 
-        # Ground 추정: 명시 안 됨이면 motion 전체에서 최저 y 값 (heuristic).
+        # Ground 추정 (v2.0.0): 명시 안 됨이면 feet lower-height 10th percentile (NOT min-Y).
         if ground_y is None:
-            ground_y = float(np.min(motion[:, :, 1]))
+            ground_y = estimate_ground_y(motion)
 
         reports: list[EvaluatorReport] = []
         for part, joint_idx in FOOT_JOINTS.items():
             foot_y = motion[:, joint_idx, 1]  # [T]
             height_above_ground = foot_y - ground_y  # [T]
 
-            # contact 추정 (v1.2.0): velocity 정지 AND height 낮음 둘 다.
+            # contact 추정 (v2.0.0): **수직속도** 정지 AND height 낮음 둘 다 (v2 계열).
             if contact_labels is None:
-                foot_xz = motion[:, joint_idx, :][:, [0, 2]]  # [T, 2]
                 if T >= 2:
-                    xz_disp = np.linalg.norm(np.diff(foot_xz, axis=0), axis=1)  # [T-1]
-                    # last frame 의 velocity 는 직전 frame 과 동일하게 pad (관성 가정).
-                    foot_xz_vel = np.concatenate([xz_disp, [xz_disp[-1]]])  # [T]
+                    foot_vy = np.abs(np.concatenate([np.diff(height_above_ground), [0.0]]))  # [T]
                 else:
-                    foot_xz_vel = np.zeros(T)
-                low_velocity = foot_xz_vel <= self.v_contact_thresh
+                    foot_vy = np.zeros(T)
+                low_vertical_velocity = foot_vy <= self.vy_contact_thresh
                 low_height = height_above_ground <= self.tau_contact_height
-                contact = low_velocity & low_height
+                contact = low_vertical_velocity & low_height
             else:
                 contact = contact_labels[:, joint_idx].astype(bool)
 
@@ -164,8 +164,8 @@ class FootFloatingEvaluator(Evaluator):
                     metadata={
                         "severity_version": SEVERITY_VERSION,
                         "tau_float_m": self.tau_float,
-                        "v_contact_thresh_m_per_frame": self.v_contact_thresh,
-                        "contact_heuristic": "velocity_based_v1.1.0"
+                        "vy_contact_thresh_m_per_frame": self.vy_contact_thresh,
+                        "contact_heuristic": "vertical_velocity_based_v2.0.0"
                             if contact_labels is None
                             else "external",
                         "ground_y": float(ground_y),

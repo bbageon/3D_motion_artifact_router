@@ -11,14 +11,14 @@ Evidence tier (§3-17): 본 문서의 vacuity 재현 = **controlled diagnostic**
 
 ## 0. 요약 (한눈에)
 
-| # | 발견 | 등급 |
-|---|---|---|
-| A-1 | **SkateEvaluator (gate) 는 내부 contact 추정 사용 시 구조적으로 fire 불가** (vacuous) — contact 조건(xz 속도 ≤ 0.02)과 skate 조건(xz 속도 > 0.05)의 교집합이 공집합 | 🔴 구조적 |
-| A-2 | **PenetrateEvaluator (gate) 는 내부 ground(min-Y) 사용 시 구조적으로 fire 불가** — 어떤 joint 도 전-joint min-Y 아래에 있을 수 없음 | 🔴 구조적 |
-| A-3 | **BoneLengthCV gate 는 무판별(no-discrimination)** — clean p99 = 5.5e-6 (HumanML3D bone 이 사실상 상수) → 생성 motion 100% fire | 🟠 보정 |
-| A-4 | **수평속도 기반 contact 검출을 local(root-relative) 좌표에 적용** — 보행 중 지지발은 pelvis 기준으로 뒤로 이동(≈보행속도)하므로 contact(속도≤0.02) 판정 실패 → FootFloating 은 보행 구간에서 사실상 blind | 🟠 좌표 |
-| A-5 | (기지, P4) **Y-only FootLock 은 skate 에 축 mismatch** — 전 frame 무조건 Y 하강 → swing 발이 지면 근처에서 수평 이동 = skate↑ | 🔴 확정(P4) |
-| A-6 | **floating 의 contact/ground 정의가 4종 공존** (FootFloating v1.2 / Float gate / float_mag / v2) — 같은 artifact 의 유병률이 정의에 따라 41% vs 0% 로 상반 | 🟠 정합 |
+| # | 발견 | 등급 | 상태 |
+|---|---|---|---|
+| A-1 | **SkateEvaluator (gate) 는 내부 contact 추정 사용 시 구조적으로 fire 불가** (vacuous) — contact 조건(xz 속도 ≤ 0.02)과 skate 조건(xz 속도 > 0.05)의 교집합이 공집합 | 🔴 구조적 | ✅ **수리됨 (AR-063, v0.2.0)** — contact→v2 수직속도, skate 0.025. 수리 후 유병률: MDM fire 23.1% vs VQ 1.3~1.7% ([remeasure](../../../evals/snapshots/gate_prevalence_remeasure_ar063_v1.json)) |
+| A-2 | **PenetrateEvaluator (gate) 는 내부 ground(min-Y) 사용 시 구조적으로 fire 불가** — 어떤 joint 도 전-joint min-Y 아래에 있을 수 없음 | 🔴 구조적 | ✅ **수리됨 (AR-063)** — ground→feet 10th pct. 유병률 실측: occur ≤1.8% (희소 확인 → 전용 tool 저우선) |
+| A-3 | **BoneLengthCV gate 는 무판별(no-discrimination)** — clean p99 = 5.5e-6 (HumanML3D bone 이 사실상 상수) → 생성 motion 100% fire | 🟠 보정 | 📌 **분포 특성 확인 (AR-063)** — v2 재보정에도 p99=1e-5 (해소 불가): raw score 사용 원칙 고정, gate-fire 는 diagnostic only |
+| A-4 | **수평속도 기반 contact 검출을 local(root-relative) 좌표에 적용** — 보행 중 지지발은 pelvis 기준으로 뒤로 이동(≈보행속도)하므로 contact(속도≤0.02) 판정 실패 → FootFloating 은 보행 구간에서 사실상 blind | 🟠 좌표 | ✅ **수리됨 (AR-063, FootFloating v2.0.0)** — 수직속도 contact. 좌표 효과 실증: Skate fire local 21.3% vs traj 1.7% (motiongpt) |
+| A-5 | (기지, P4) **Y-only FootLock 은 skate 에 축 mismatch** — 전 frame 무조건 Y 하강 → swing 발이 지면 근처에서 수평 이동 = skate↑ | 🔴 확정(P4) | ✅ **대체 tool 검증 (AR-061)** — coord cleanup 이 MDM CI-clean 개선 |
+| A-6 | **floating 의 contact/ground 정의가 4종 공존** (FootFloating v1.2 / Float gate / float_mag / v2) — 같은 artifact 의 유병률이 정의에 따라 41% vs 0% 로 상반 | 🟠 정합 | 🔶 **부분 수리 (AR-063)** — FootFloating/Float gate 를 v2 계열로 통일; `float_mag`(physical_metric, min-Y+수평속도) 는 historical 비교용 미변경 (신규 인용 시 v2 계열 우선) |
 
 **AR-061 verdict: PROCEED** (§7). CoordinateFootSkateCleanupTool 은 metric(foot_skate_world)과 **같은 변수·같은 좌표계** 를 수정하는 유일한 aligned mechanism. 단 평가에서 gate-fire 지표(Skate/Penetrate/BoneCV-fire) 인용 금지 — guard 는 foot_skate_world / float_mag / **raw BoneCV 값** / FID(equal-N) 로.
 

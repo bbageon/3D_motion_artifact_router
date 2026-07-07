@@ -33,7 +33,7 @@ def _make_standing_motion(T: int = 20) -> np.ndarray:
 
 def test_oracle_type_and_status_metadata() -> None:
     clean = _make_standing_motion(T=20)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 20))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 10))
     sel = select_best_sequence_oracle(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -72,7 +72,7 @@ def test_empty_sequence_is_candidate() -> None:
 def test_max_depth_respected() -> None:
     """max_depth 이상의 sequence 가 candidate 에 안 들어가야 함."""
     clean = _make_standing_motion(T=20)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 20))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 10))
     sel = select_best_sequence_oracle(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -92,7 +92,7 @@ def test_max_depth_respected() -> None:
 
 def test_best_has_max_netgain_among_explored() -> None:
     clean = _make_standing_motion(T=20)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 20))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 10))
     sel = select_best_sequence_oracle(
         clean_motion=clean,
         corrupted_motion=corrupted,
@@ -151,7 +151,7 @@ def test_pruning_counter_works() -> None:
 
 def test_top_k_length_limited() -> None:
     clean = _make_standing_motion(T=20)
-    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 20))
+    corrupted = inject_foot_floating(clean, lift_height=0.08, frame_range=(0, 10))
     sel = select_best_sequence_oracle(
         clean_motion=clean,
         corrupted_motion=corrupted,
