@@ -27,3 +27,4 @@ Dashboard row 는 작업의 1줄 index 만 유지한다. 자세한 배경, 설�
 | AR-064 | [Bone-Preserving Propagation](AR-064-bone-preserving-propagation.md) (backlog) |
 | AR-065 | [Effect-Aware State Rebuild on Repaired Evaluators](AR-065-effect-aware-state-rebuild.md) (backlog) |
 | AR-066 | [Intent-Aware Float Weighting](AR-066-intent-aware-float-weighting.md) (backlog) |
+| AR-067 | [KIT-ML Dataset Generalization Check](AR-067-kit-ml-dataset-generalization.md) (backlog) |

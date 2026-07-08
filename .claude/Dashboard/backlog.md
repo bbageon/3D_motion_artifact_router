@@ -15,6 +15,7 @@
 | AR-027 | RL-Q | Stage 4 constrained offline RL (CQL/IQL) — reranking 넘어 policy optimization | ⚪ | Stage 3 안정 후 |
 | AR-028 | RL-Q | sequence oracle (multi-step ceiling) vs step-1 oracle gap 측정 | ⚪ | 현재 oracle = step-1 dense |
 | AR-032b | Harness | (선택) gitignored regenerable 디스크 정리 (final_motions 96MB 등) | ⚪ | git 추적 밖. 재현 시 재생성 필요 → 보류, 디스크 압박 시만 |
+| AR-067 | Evidence | KIT-ML 데이터셋 일반화 — 현재 결론은 HumanML3D 단일 생태계(시험지·정답지·채점기·체크포인트) 범위. KIT-ML 에서 유병률·tool 효과 방향 재현 확인 | ⚪ | 사용자 directive 07-08: **등록만, 착수 나중**. [spec](../docs/dashboard-task-specs/AR-067-kit-ml-dataset-generalization.md). MMM 21-joint retargeting = §3-1/§4 게이트 대상. 외부 공개 시 그전까지 "단일 벤치마크 범위" 명시 |
 
 ---
 
