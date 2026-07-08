@@ -4,7 +4,8 @@
 
 | ID | Epic | Title | Priority | Blocked by / Note |
 |---|---|---|---|---|
-| AR-058-3f | Evidence | Foot-skate human feedback pilot execution — 사람이 보기에도 품질 저하인지 검증하고 정의 freeze | 🔴 | Pack 준비 완료 + skate-segment GIF 18개 추가(0c70293). 사용자/평가자 응답 대기. [rater index](../../reports/figures/2026-07-02/ar058_3f_footskate_human_feedback_pack/rater_index.md), [spec](../docs/dashboard-task-specs/AR-058-3f-human-feedback-pilot-execution.md) |
+| AR-058-3h | Perceptual | **A/B 선호 검정 (primary pair 한정)** — MDM worst-tail 15~20쌍, 원본 vs coord 보정본 강제선택. 절대평가→비교평가 전환. 사전 등록 kill 기준: 선호가 우연을 못 넘으면 perceptual claim 폐기 + §10 Go/Stop 소집 | 🔴 | 사용자 go 대기 (제작 반나절 + 판정 10~20분). P5 어조를 본 결과가 결정. [spec](../docs/dashboard-task-specs/AR-058-3h-ab-preference-perceptual-test.md) |
+| AR-058-3f | Evidence | Foot-skate human feedback pilot execution — 사람이 보기에도 품질 저하인지 검증하고 정의 freeze | 🔴 | Pack 준비 완료 + skate-segment GIF 18개 추가(0c70293). 사용자/평가자 응답 대기 (3h 의 A/B 와 상보 — 3f=가시성 절대평가, 3h=보정 선호). [rater index](../../reports/figures/2026-07-02/ar058_3f_footskate_human_feedback_pack/rater_index.md), [spec](../docs/dashboard-task-specs/AR-058-3f-human-feedback-pilot-execution.md) |
 | AR-058-5 | Evidence | P5 - artifact-aware state-conditioned routing 필요성 종합 | 🔴 | P1~P4 evidence chain을 도입부 주장/그림으로 통합. [spec](../docs/dashboard-task-specs/AR-058-5-p5-routing-necessity-synthesis.md) |
 | AR-020 | Evidence | H-2026-205 status `active`→`supported` 검토 | 🟠 | **사용자 승인 게이트** (AGENTS.md §3-11). snapshot≥2 + 12/12 재현 요건 충족 ([evals/reports/2026-06-01_g2_learned_vs_baseline.md](../../evals/reports/2026-06-01_g2_learned_vs_baseline.md)) |
 | AR-021 | RL-Q | g2_stress Stage 3 — continuous argmax 로 oracle headroom (d≈0.43) 회수 | 🟠 | FID 보존 조건. line search / Bayesian opt |

@@ -17,6 +17,7 @@ Dashboard row 는 작업의 1줄 index 만 유지한다. 자세한 배경, 설�
 | AR-058-3e | [Human Feedback Artifact Validation Protocol](AR-058-3e-human-feedback-artifact-validation-protocol.md) |
 | AR-058-3f | [Human Feedback Pilot Execution](AR-058-3f-human-feedback-pilot-execution.md) |
 | AR-058-3g | [Foot-Skate Segment-Level Visualization](AR-058-3g-footskate-segment-level-visualization.md) |
+| AR-058-3h | [A/B Preference Perceptual Test (Primary Pair)](AR-058-3h-ab-preference-perceptual-test.md) (ready) |
 | AR-058-4 | [P4 Fixed Tool Insufficiency](AR-058-4-p4-fixed-tool-insufficiency.md) |
 | AR-058-5 | [P5 Routing Necessity Synthesis](AR-058-5-p5-routing-necessity-synthesis.md) |
 | AR-059 | [RS-GRPO-Style Scoped Reward Future Work](AR-059-rs-grpo-scoped-reward-future-work.md) |
