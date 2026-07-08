@@ -1,0 +1,635 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "bone_chain_p1p4",
+  "board_id": "AR-070",
+  "split_id": "protocol_rep_pool_seed20260608 (representative-300 full, 3 seeds/prompt)",
+  "arms": {
+    "bone_large": "BoneProjectionTool left_leg+right_leg 순차, strength=large (ref=per-motion median)",
+    "cleanup_u75": "CoordinateFootSkateCleanupTool u=0.75 (A/B v1 동일)",
+    "combo": "cleanup_u75 -> bone_large (기존 tool 조합; KDG 참고 — 순차 2-step 진단, orchestrator 아님)"
+  },
+  "metric_provenance": {
+    "bone_cv_*": "raw BoneLengthCVEvaluator (gate-fire 아님 — AR-062); ref=per-motion median (자기참조 정의 명시)",
+    "leg_cv_max": "다리 8 bone 한정 max CV — 사용자 지각('발이 짧아져 땅으로') 표적 지표",
+    "foot_skate_world": "B (trajectory+estimate_ground)",
+    "float_mag": "B",
+    "artifact_total": "C proxy"
+  },
+  "stat_unit": "prompt (seed 평균, n=300/gen). lower=better; Δ<0=개선.",
+  "results": {
+    "motiongpt": {
+      "n_prompts": 300,
+      "P1_baseline": {
+        "bone_cv_max": {
+          "mean": 0.08205,
+          "ci95": [
+            0.07766,
+            0.0863
+          ],
+          "p50": 0.0747,
+          "p90": 0.13544,
+          "p99": 0.1866
+        },
+        "bone_cv_mean": {
+          "mean": 0.03001,
+          "ci95": [
+            0.02831,
+            0.03162
+          ],
+          "p50": 0.02621,
+          "p90": 0.04848,
+          "p99": 0.07673
+        },
+        "leg_cv_max": {
+          "mean": 0.05323,
+          "ci95": [
+            0.05005,
+            0.05674
+          ],
+          "p50": 0.04659,
+          "p90": 0.08282,
+          "p99": 0.14697
+        },
+        "foot_skate_world": {
+          "mean": 0.00564,
+          "ci95": [
+            0.00538,
+            0.00591
+          ],
+          "p50": 0.00563,
+          "p90": 0.00868,
+          "p99": 0.01167
+        },
+        "worst_bone_part_frequency": {
+          "arm": 0.599,
+          "leg": 0.308,
+          "spine_head": 0.093
+        }
+      },
+      "P4_deltas": {
+        "bone_large": {
+          "bone_cv_max": {
+            "mean_delta": -0.00489,
+            "ci95": [
+              -0.00605,
+              -0.00384
+            ],
+            "frac_improved": 0.447
+          },
+          "bone_cv_mean": {
+            "mean_delta": -0.0101,
+            "ci95": [
+              -0.01075,
+              -0.00948
+            ],
+            "frac_improved": 1.0
+          },
+          "leg_cv_max": {
+            "mean_delta": -0.05323,
+            "ci95": [
+              -0.05678,
+              -0.04999
+            ],
+            "frac_improved": 1.0
+          },
+          "foot_skate_world": {
+            "mean_delta": -0.00072,
+            "ci95": [
+              -0.00083,
+              -0.00061
+            ],
+            "frac_improved": 0.793
+          },
+          "float_mag": {
+            "mean_delta": 0.00026,
+            "ci95": [
+              -0.00067,
+              0.00125
+            ],
+            "frac_improved": 0.59
+          },
+          "artifact_total": {
+            "mean_delta": 0.00067,
+            "ci95": [
+              -0.00186,
+              0.00324
+            ],
+            "frac_improved": 0.46
+          }
+        },
+        "cleanup_u75": {
+          "bone_cv_max": {
+            "mean_delta": 0.03247,
+            "ci95": [
+              0.02615,
+              0.03955
+            ],
+            "frac_improved": 0.01
+          },
+          "bone_cv_mean": {
+            "mean_delta": 0.00277,
+            "ci95": [
+              0.00219,
+              0.00333
+            ],
+            "frac_improved": 0.033
+          },
+          "leg_cv_max": {
+            "mean_delta": 0.03665,
+            "ci95": [
+              0.02962,
+              0.04495
+            ],
+            "frac_improved": 0.03
+          },
+          "foot_skate_world": {
+            "mean_delta": 0.00022,
+            "ci95": [
+              0.00013,
+              0.0003
+            ],
+            "frac_improved": 0.177
+          },
+          "float_mag": {
+            "mean_delta": 7e-05,
+            "ci95": [
+              -0.00035,
+              0.00059
+            ],
+            "frac_improved": 0.373
+          },
+          "artifact_total": {
+            "mean_delta": 1e-05,
+            "ci95": [
+              -0.00055,
+              0.00055
+            ],
+            "frac_improved": 0.3
+          }
+        },
+        "combo": {
+          "bone_cv_max": {
+            "mean_delta": -0.00489,
+            "ci95": [
+              -0.00605,
+              -0.00391
+            ],
+            "frac_improved": 0.447
+          },
+          "bone_cv_mean": {
+            "mean_delta": -0.0101,
+            "ci95": [
+              -0.01068,
+              -0.00946
+            ],
+            "frac_improved": 1.0
+          },
+          "leg_cv_max": {
+            "mean_delta": -0.05323,
+            "ci95": [
+              -0.05631,
+              -0.04986
+            ],
+            "frac_improved": 1.0
+          },
+          "foot_skate_world": {
+            "mean_delta": -0.00107,
+            "ci95": [
+              -0.00123,
+              -0.00093
+            ],
+            "frac_improved": 0.83
+          },
+          "float_mag": {
+            "mean_delta": 0.00157,
+            "ci95": [
+              0.00042,
+              0.0027
+            ],
+            "frac_improved": 0.517
+          },
+          "artifact_total": {
+            "mean_delta": 0.0016,
+            "ci95": [
+              -0.00084,
+              0.00425
+            ],
+            "frac_improved": 0.443
+          }
+        }
+      }
+    },
+    "mdm": {
+      "n_prompts": 300,
+      "P1_baseline": {
+        "bone_cv_max": {
+          "mean": 0.20752,
+          "ci95": [
+            0.18608,
+            0.22963
+          ],
+          "p50": 0.12665,
+          "p90": 0.56291,
+          "p99": 0.78896
+        },
+        "bone_cv_mean": {
+          "mean": 0.04177,
+          "ci95": [
+            0.03807,
+            0.04551
+          ],
+          "p50": 0.03126,
+          "p90": 0.09336,
+          "p99": 0.12702
+        },
+        "leg_cv_max": {
+          "mean": 0.19039,
+          "ci95": [
+            0.16886,
+            0.21332
+          ],
+          "p50": 0.11753,
+          "p90": 0.51633,
+          "p99": 0.78896
+        },
+        "foot_skate_world": {
+          "mean": 0.0108,
+          "ci95": [
+            0.01018,
+            0.01138
+          ],
+          "p50": 0.0086,
+          "p90": 0.01881,
+          "p99": 0.02666
+        },
+        "worst_bone_part_frequency": {
+          "leg": 0.622,
+          "arm": 0.189,
+          "spine_head": 0.189
+        }
+      },
+      "P4_deltas": {
+        "bone_large": {
+          "bone_cv_max": {
+            "mean_delta": -0.04684,
+            "ci95": [
+              -0.05382,
+              -0.0407
+            ],
+            "frac_improved": 0.767
+          },
+          "bone_cv_mean": {
+            "mean_delta": -0.02157,
+            "ci95": [
+              -0.02387,
+              -0.01936
+            ],
+            "frac_improved": 1.0
+          },
+          "leg_cv_max": {
+            "mean_delta": -0.19039,
+            "ci95": [
+              -0.21343,
+              -0.16991
+            ],
+            "frac_improved": 1.0
+          },
+          "foot_skate_world": {
+            "mean_delta": -0.00114,
+            "ci95": [
+              -0.00137,
+              -0.00094
+            ],
+            "frac_improved": 0.807
+          },
+          "float_mag": {
+            "mean_delta": 0.00641,
+            "ci95": [
+              0.00511,
+              0.0079
+            ],
+            "frac_improved": 0.173
+          },
+          "artifact_total": {
+            "mean_delta": 0.00164,
+            "ci95": [
+              -0.00155,
+              0.00501
+            ],
+            "frac_improved": 0.41
+          }
+        },
+        "cleanup_u75": {
+          "bone_cv_max": {
+            "mean_delta": 0.03091,
+            "ci95": [
+              0.02532,
+              0.03696
+            ],
+            "frac_improved": 0.11
+          },
+          "bone_cv_mean": {
+            "mean_delta": 0.00657,
+            "ci95": [
+              0.0058,
+              0.00738
+            ],
+            "frac_improved": 0.0
+          },
+          "leg_cv_max": {
+            "mean_delta": 0.03139,
+            "ci95": [
+              0.0258,
+              0.03737
+            ],
+            "frac_improved": 0.113
+          },
+          "foot_skate_world": {
+            "mean_delta": -0.00084,
+            "ci95": [
+              -0.00098,
+              -0.00069
+            ],
+            "frac_improved": 0.553
+          },
+          "float_mag": {
+            "mean_delta": -0.0058,
+            "ci95": [
+              -0.00684,
+              -0.00478
+            ],
+            "frac_improved": 0.597
+          },
+          "artifact_total": {
+            "mean_delta": 0.00375,
+            "ci95": [
+              0.00317,
+              0.00438
+            ],
+            "frac_improved": 0.047
+          }
+        },
+        "combo": {
+          "bone_cv_max": {
+            "mean_delta": -0.04684,
+            "ci95": [
+              -0.05422,
+              -0.03991
+            ],
+            "frac_improved": 0.767
+          },
+          "bone_cv_mean": {
+            "mean_delta": -0.02157,
+            "ci95": [
+              -0.02388,
+              -0.01912
+            ],
+            "frac_improved": 1.0
+          },
+          "leg_cv_max": {
+            "mean_delta": -0.19039,
+            "ci95": [
+              -0.21292,
+              -0.16839
+            ],
+            "frac_improved": 1.0
+          },
+          "foot_skate_world": {
+            "mean_delta": -0.00296,
+            "ci95": [
+              -0.00335,
+              -0.00257
+            ],
+            "frac_improved": 0.903
+          },
+          "float_mag": {
+            "mean_delta": 0.01551,
+            "ci95": [
+              0.01356,
+              0.01761
+            ],
+            "frac_improved": 0.093
+          },
+          "artifact_total": {
+            "mean_delta": 0.00514,
+            "ci95": [
+              0.00117,
+              0.00919
+            ],
+            "frac_improved": 0.383
+          }
+        }
+      }
+    },
+    "momask": {
+      "n_prompts": 300,
+      "P1_baseline": {
+        "bone_cv_max": {
+          "mean": 0.06753,
+          "ci95": [
+            0.06325,
+            0.0724
+          ],
+          "p50": 0.05807,
+          "p90": 0.12294,
+          "p99": 0.19869
+        },
+        "bone_cv_mean": {
+          "mean": 0.02539,
+          "ci95": [
+            0.02366,
+            0.02719
+          ],
+          "p50": 0.02098,
+          "p90": 0.04111,
+          "p99": 0.08235
+        },
+        "leg_cv_max": {
+          "mean": 0.04367,
+          "ci95": [
+            0.04026,
+            0.04693
+          ],
+          "p50": 0.0357,
+          "p90": 0.07468,
+          "p99": 0.14578
+        },
+        "foot_skate_world": {
+          "mean": 0.00447,
+          "ci95": [
+            0.00411,
+            0.00484
+          ],
+          "p50": 0.00403,
+          "p90": 0.00747,
+          "p99": 0.01655
+        },
+        "worst_bone_part_frequency": {
+          "leg": 0.308,
+          "arm": 0.58,
+          "spine_head": 0.112
+        }
+      },
+      "P4_deltas": {
+        "bone_large": {
+          "bone_cv_max": {
+            "mean_delta": -0.0043,
+            "ci95": [
+              -0.00532,
+              -0.00328
+            ],
+            "frac_improved": 0.457
+          },
+          "bone_cv_mean": {
+            "mean_delta": -0.00849,
+            "ci95": [
+              -0.00928,
+              -0.00778
+            ],
+            "frac_improved": 1.0
+          },
+          "leg_cv_max": {
+            "mean_delta": -0.04367,
+            "ci95": [
+              -0.04736,
+              -0.04035
+            ],
+            "frac_improved": 1.0
+          },
+          "foot_skate_world": {
+            "mean_delta": 0.00035,
+            "ci95": [
+              0.00023,
+              0.00049
+            ],
+            "frac_improved": 0.427
+          },
+          "float_mag": {
+            "mean_delta": 0.00072,
+            "ci95": [
+              2e-05,
+              0.00147
+            ],
+            "frac_improved": 0.493
+          },
+          "artifact_total": {
+            "mean_delta": 0.0006,
+            "ci95": [
+              -0.00113,
+              0.00239
+            ],
+            "frac_improved": 0.42
+          }
+        },
+        "cleanup_u75": {
+          "bone_cv_max": {
+            "mean_delta": 0.03858,
+            "ci95": [
+              0.02947,
+              0.04804
+            ],
+            "frac_improved": 0.0
+          },
+          "bone_cv_mean": {
+            "mean_delta": 0.00327,
+            "ci95": [
+              0.00257,
+              0.00404
+            ],
+            "frac_improved": 0.003
+          },
+          "leg_cv_max": {
+            "mean_delta": 0.04259,
+            "ci95": [
+              0.03367,
+              0.0533
+            ],
+            "frac_improved": 0.003
+          },
+          "foot_skate_world": {
+            "mean_delta": 0.00035,
+            "ci95": [
+              0.00026,
+              0.00044
+            ],
+            "frac_improved": 0.083
+          },
+          "float_mag": {
+            "mean_delta": -0.00069,
+            "ci95": [
+              -0.00135,
+              -0.00019
+            ],
+            "frac_improved": 0.35
+          },
+          "artifact_total": {
+            "mean_delta": 0.00049,
+            "ci95": [
+              -7e-05,
+              0.00111
+            ],
+            "frac_improved": 0.293
+          }
+        },
+        "combo": {
+          "bone_cv_max": {
+            "mean_delta": -0.0043,
+            "ci95": [
+              -0.00539,
+              -0.00334
+            ],
+            "frac_improved": 0.457
+          },
+          "bone_cv_mean": {
+            "mean_delta": -0.00849,
+            "ci95": [
+              -0.00919,
+              -0.0078
+            ],
+            "frac_improved": 1.0
+          },
+          "leg_cv_max": {
+            "mean_delta": -0.04367,
+            "ci95": [
+              -0.04725,
+              -0.04039
+            ],
+            "frac_improved": 1.0
+          },
+          "foot_skate_world": {
+            "mean_delta": -0.00014,
+            "ci95": [
+              -0.00034,
+              8e-05
+            ],
+            "frac_improved": 0.527
+          },
+          "float_mag": {
+            "mean_delta": 0.0022,
+            "ci95": [
+              0.00118,
+              0.00323
+            ],
+            "frac_improved": 0.413
+          },
+          "artifact_total": {
+            "mean_delta": 0.00157,
+            "ci95": [
+              -0.00029,
+              0.00379
+            ],
+            "frac_improved": 0.41
+          }
+        }
+      }
+    }
+  },
+  "perceptual_context": "사용자 b1 관찰 (2026-07-08): cleanup 보정본에서 '발이 짧아져 땅으로 들어간 느낌' — propagation 다리 압축 기전과 일치. 본 측정은 그 관찰의 정량 대응물(leg_cv)과 조합 처방의 효과를 확인.",
+  "decision_rule_for_ab_v2": "combo 가 (a) cleanup 의 fs 이득 대부분 보존 AND (b) bone_cv/leg_cv 추가 왜곡 제거(Δ<=0) 면 -> A/B v2 는 기존 tool 조합으로. 아니면 AR-064 (foot-anchored re-projection) 구현 후.",
+  "claim_boundary": "물리 지표 측정 — 지각 결론 아님 (A/B v2 로만). bone ref=자기 median 이라 'GT 복원' 아님.",
+  "grounding": [
+    "HuMoR ICCV2021 (bone consistency)",
+    "PhysDiff ICCV2023 (post-proc side effect)",
+    "GMD ICCV2023 (fs metric)"
+  ]
+}
