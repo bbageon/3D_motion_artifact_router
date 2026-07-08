@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "ab_preference_result",
+  "board_id": "AR-058-3h",
+  "preregistration_ref": "evals/snapshots/ab_preference_pack_ar058_3h_v1.json",
+  "rater": {"rater_id": "rater1 (user/researcher)", "n_raters": 1, "tier": "b1 pilot",
+            "confidence": "미기입 (선택 항목)", "collection": "chat 응답 2026-07-08, blind 유지 (answer_key 미열람 상태에서 판정)"},
+  "responses_A_or_B": ["B","A","A","A","A","A","A","B","B","B","A","B","B","B","B","B","A","B","A","B"],
+  "preferred_motion_per_pair": {
+    "pair_01": "original", "pair_02": "original", "pair_03": "corrected", "pair_04": "original",
+    "pair_05": "original", "pair_06": "original", "pair_07": "corrected", "pair_08": "corrected",
+    "pair_09": "corrected", "pair_10": "corrected", "pair_11": "corrected", "pair_12": "corrected",
+    "pair_13": "original", "pair_14": "corrected", "pair_15": "original", "pair_16": "corrected",
+    "pair_17": "corrected", "pair_18": "original", "pair_19": "original", "pair_20": "corrected"
+  },
+  "result": {
+    "corrected_preferred": 11,
+    "original_preferred": 9,
+    "n_pairs": 20,
+    "binomial_one_sided_p_ge_11": 0.4119,
+    "binomial_two_sided_p": 0.8238,
+    "interpretation": "우연(50%) 수준과 구분 불가"
+  },
+  "preregistered_branch_triggered": {
+    "branch": "fail (<=12/20)",
+    "consequence": "primary pair (foot skating <-> coord cleanup) 의 지각 claim 불성립 (b1) -> AGENTS §10 Go/Stop 정식 소집 (사용자 게이트)",
+    "note": "기준은 결과 수집 전 사전 등록됨 (pack snapshot) — 사후 조정 없음"
+  },
+  "exploratory_posthoc_NOT_confirmatory": {
+    "label": "post-hoc 탐색 — 결론/근거 사용 금지 (HARKing 방지). 확인하려면 bone-preserving 보정으로 새 사전등록 재검정 필요",
+    "split_rule": "bone_cv_after - bone_cv_before > 0.03 = high distortion",
+    "low_distortion_pairs": {"n": 12, "corrected_preferred": 8, "rate": 0.667,
+                              "pairs": ["01","03","04","09","10","11","12","14","15","16","17","19"]},
+    "high_distortion_pairs": {"n": 8, "corrected_preferred": 3, "rate": 0.375,
+                               "pairs": ["02","05","06","07","08","13","18","20"]},
+    "counterexample": "pair_15: 왜곡 없음 + fs -51% 인데 원본 선호 (turning 동작의 발 고정이 뻣뻣해 보였을 가능성 — anchoring 의 다른 부작용 후보)",
+    "hypothesis_candidate": "propagation bone 왜곡(AR-064 대상)이 skate 개선의 지각 이득을 상쇄"
+  },
+  "evidence_tier": "b1 (단일 평가자) — quality-validated (b2/b3) 아님. 외부 공개 claim 불가",
+  "claim_boundary": "허용: 'b1 blind A/B 에서 보정본 선호가 우연과 구분 불가 — 사전등록 fail 분기 발동'. 금지: '보정이 지각적으로 무의미하다' 단정 (b1 + 탐색 가설 미검) / 탐색 subgroup 을 확증처럼 인용"
+}
