@@ -1,9 +1,28 @@
 # AR-066 - Intent-Aware Float Weighting (Text-Conditioned Floating Judgment)
 
-Status: backlog  
+Status: backlog — **경량화 확정 (2026-07-08 사용자 directive)**  
 Epic: Evaluator  
-Priority: 🟠  
-Parent: AR-063 (A-6 잔여) / 사용자 제안 (2026-07-07): "float 에 대해서는 text 의 intent 에 맞게 가중치를 조절할 필요가 있어보이는데?"
+Priority: 🟡 (하향 — floating 은 여러 artifact 축 중 하나, 본 연구 목적 대비 과투자 방지)  
+Parent: AR-063 (A-6 잔여) / 사용자 제안 (2026-07-07)
+
+> **2026-07-08 경량화 개정 (최종 설계 — 아래 구 설계 대체)**: 사용자 지적 — "floating
+> 판정이 연구의 기존 목적 수행 대비 너무 무거워지고 있다. floating 은 artifact/tool 중
+> 하나일 뿐." 필요한 정확도 = **명백한 오판(점프를 artifact 로 채점)을 제거하는 수준**이면
+> 충분. 임베딩 분류기·~100 라벨 검증·다중 ablation 의무를 폐기하고 아래 5-rule 로 확정:
+>
+> 1. **prompt 를 크게 4-bucket 분류** — `ground-required` / `airborne` / `seated-lying` / `ambiguous`.
+>    분류는 **keyword rule** (동사/구 리스트 사전 고정 — walk·run·stand·turn → ground-required;
+>    jump·leap·hop·climb·swim → airborne; sit·lie·crawl·kneel → seated-lying).
+> 2. **ground-required 에서만 floating 을 강한 artifact 로 판정** (층화 calibration).
+> 3. **airborne / seated-lying 은 float gate 에서 제외하거나 약하게 가중** (제외 or w≈0.2 — 착수 시 하나로 고정).
+> 4. **ambiguous 는 보류** — 복수 bucket 매칭·무매칭 ("walk then jump", "sit then stand") 은
+>    float 판정 유보, 비율만 보고 (강제 배정 금지).
+> 5. **좌표 기반 raw float score 는 전 prompt 계속 기록** (분류와 무관 — 정보 무손실).
+>
+> 검증도 경량: bucket 별 분류 결과 10~20개 spot-check (표로 박제) + ground-required 층화
+> clean p99 재산출로 판별력 확인. 2-arm (층화 유/무) 비교면 충분. **keyword 리스트는 결과
+> 보기 전 고정** (순환 차단 원칙 유지). 임베딩(zero-shot) 분류는 spot-check 에서 keyword
+> 오분류가 유의미할 때만 optional 업그레이드.
 
 ## Goal
 
@@ -15,7 +34,7 @@ Floating 판정의 변별력 부족 (clean p99 0.70 — 자연 동작이 float b
 - MotionGPT(VQ) 의 유일한 reliable 물리 축이 FootFloating (AR-043) — float 정의가 날카로워지면 VQ 쪽 routing 근거가 정밀해진다.
 - 비유: 작문 채점에서 "문장이 짧다"를 감점하려면 **시(詩)인지 논설문인지**를 먼저 알아야 한다 — 같은 현상도 의도에 따라 정상/결함이 갈린다.
 
-## Component Design (직교 성분 — 순차 의무 없음; 2026-07-08 사용자 지적으로 개정)
+## [SUPERSEDED — 위 5-rule 경량 설계로 대체됨; 이력 보존용] Component Design (직교 성분)
 
 > 개정 사유: (a) 지속시간 성분과 intent 성분은 **서로 다른 혼동 요인**을 고치는 직교 관계 —
 > 지속시간 가중은 순간적 자연 들림(heel roll)만 제거하고 점프·앉기의 "지속된 의도적 부양"은
