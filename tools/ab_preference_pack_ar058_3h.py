@@ -54,7 +54,9 @@ FPS = 8
 PAD = 5
 
 
-def _draw_panel(ax, motion, t, foot, seg_start, ground, lims):
+def _draw_panel(ax, motion, t, ground, lims):
+    """Skeleton + ground 만 렌더 — 발 marker/trail 없음 (2026-07-08 사용자 요청:
+    표시가 판정을 헷갈리게 함 → 오버레이 제거로 순수 자연스러움 비교)."""
     (cx, cy, cz, mx) = lims
     ax.clear()
     ax.view_init(elev=12, azim=-70, vertical_axis="y")  # §3-19 Y-up
@@ -66,11 +68,6 @@ def _draw_panel(ax, motion, t, foot, seg_start, ground, lims):
     gx = np.array([cx - mx, cx + mx]); gz = np.array([cz - mx, cz + mx])
     GX, GZ = np.meshgrid(gx, gz)
     ax.plot_surface(GX, np.full_like(GX, ground), GZ, alpha=0.12, color="gray")
-    # 발 marker + trail — 양 패널 동일 스타일 (blind: 색·문구로 정체 힌트 금지).
-    ax.scatter([motion[t, foot, 0]], [motion[t, foot, 1]], [motion[t, foot, 2]],
-               color="#1f77b4", s=80, edgecolors="k", zorder=5)
-    tr = motion[seg_start:t + 1, foot]
-    ax.plot(tr[:, 0], tr[:, 1], tr[:, 2], color="#1f77b4", lw=2.5, alpha=0.85)
     ax.set_xticks([]); ax.set_yticks([]); ax.set_zticks([])
 
 
@@ -90,8 +87,8 @@ def render_pair_gif(m_left, m_right, foot, s, e, ground, out_path):
     axR = fig.add_subplot(122, projection="3d")
 
     def draw(t):
-        _draw_panel(axL, m_left, t, foot, s0, ground, lims)
-        _draw_panel(axR, m_right, t, foot, s0, ground, lims)
+        _draw_panel(axL, m_left, t, ground, lims)
+        _draw_panel(axR, m_right, t, ground, lims)
         axL.set_title("A", fontsize=14)
         axR.set_title("B", fontsize=14)
         fig.suptitle(f"frame {t}", fontsize=10, color="#666")
