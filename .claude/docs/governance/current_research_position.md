@@ -23,7 +23,7 @@
 | 위상 | Pair | 실측 근거 | Caveat |
 |---|---|---|---|
 | **명확 (primary) — ⚠️ 2026-07-12 지각 검증 실패, 대증요법 재해석** | **foot skating → contact-aware cleanup / combo(+BoneProj)** | MDM CI-clean 개선 (P1~P4 완주) — **물리 지표(Cat B) 개선은 유효** | **A/B b1 2회 모두 우연** (v1 11/20 슬로모·v2 combo 10/20 실속도, 마지막 재검정 소진) → anchoring 계열 = **대증요법** (증상 억제, 병인 미해결). 병인 후보 = root 전진 부족 (AR-071: MDM v_root = GT의 42%, 100% prompt, 부족↔fs ρ=+0.34 p<1e-5; 방향 서명은 불확정) |
-| **후보 (게이트 대기)** | **root trajectory deficit → root-aware correction (AR-072)** | AR-071 부분 지지 (T2·T3) | **새 pair = 새 사전등록 + §3-11 사용자 게이트.** semantic 위험 (이동 거리=의미) → Cat-A guard 의무. 개입 실험 전 인과 미확증 |
+| **핵심 후보 — ✅ 2026-07-12 전 관문 통과** | **root trajectory deficit → root-aware correction (AR-072, RootGaitConsistencyTool)** | 기전 v_root/GT 0.42→1.02 (GT-free) · Cat-A 전 지표 유의 개선 (R@1 +0.043·MM −0.61·FID 7.2→3.3) · **blind A/B 19/20 (p<1e-4)** · 불변성 0/900 | anchoring(증상)은 A/B 우연(11/20·10/20), root(병인)은 압도(19/20) — **동일 조건 처방만 교체.** intervention evidence (인과 아님). b1·MDM·locomotion 한정 — 외부 claim 은 b2/b3. over-correction 꼬리(ratio>1.5 18.2%)·비-locomotion·VQ 는 경계조건 미검 |
 | 보조 | penetration → ground projection | 유병률 실측 희소 (occur ≤1.8%, AR-063) | **tool 미구현 정당** — 유병률이 실재할 때만 설계 |
 | 보조 | BoneCV → BoneProjectionTool | 메커니즘 정합 (audit 2-4) | side-effect guard 의무 (§6-12) + gate 무판별 → **raw 값 guard 로만** |
 | 보조 | jitter → VelocitySmoothingTool | 메커니즘 정합 (audit 2-5) | **secondary 위상** — smoothing 보상 함정 기지 |

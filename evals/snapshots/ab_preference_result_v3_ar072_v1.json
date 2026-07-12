@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "ab_preference_result_v3",
+  "board_id": "AR-072",
+  "preregistration_ref": "evals/snapshots/ab_preference_pack_v3_ar072_v1.json",
+  "treatment": "RootGaitConsistencyTool u=1.0 (contact-consistent root solve)",
+  "stimulus": {"playback_fps": 20},
+  "rater": {"rater_id": "rater1 (user/researcher)", "n_raters": 1, "tier": "b1",
+            "collection": "chat 응답 2026-07-12 'ABABABBBAAABABABBABA', blind (answer_key 미열람)"},
+  "responses_A_or_B": ["A","B","A","B","A","B","B","B","A","A","A","B","A","B","A","B","B","A","B","A"],
+  "result": {
+    "corrected_preferred": 19,
+    "original_preferred": 1,
+    "n_pairs": 20,
+    "binomial_two_sided_p": 4.0e-05,
+    "interpretation": "root-aware 보정본이 압도적 선호 — 우연(50%) 강하게 기각"
+  },
+  "preregistered_branch_triggered": {
+    "branch": "support (>=15/20)",
+    "consequence": "root pair 지각 회복 확인 (b1). 'artifact score 최적화가 아니라 기전(root/gait)을 고치면 지각 품질이 회복된다'의 intervention evidence. anchoring 계열(v1 11/20, v2 10/20 = 우연)과 정면 대비.",
+    "note": "기준 사후 조정 없음. 외부 공개 claim 은 b2/b3 (3+ 평가자, AR-023) 필요 — 본 결과는 b1."
+  },
+  "over_correction_subgroup": {
+    "n_ratio_gt_1.5": 5,
+    "corrected_preferred": 5,
+    "note": "GT 대비 과속(ratio>1.5) 꼬리 5쌍 전부 보정본 선호 — 사용자에겐 정지보다 과속이 덜 거슬렸을 가능성. 단 n=5 (post-hoc, 확증 아님)"
+  },
+  "only_original_preferred": {
+    "pair_16": {"ratio_after": 0.531, "fs_delta": -0.0016,
+                "note": "유일한 원본 선호 — ratio 회복이 가장 약하고(0.35->0.53) fs 개선도 최소. '보정이 약했던' case = 처방 강도와 선호의 정합"}
+  },
+  "contrast_with_anchoring": {
+    "v1_cleanup": "11/20 (p=0.82, 우연)", "v2_combo": "10/20 (p=1.0, 우연)", "v3_root": "19/20 (p<1e-4, 지지)",
+    "interpretation": "동일 rater·동일 protocol·동일 generator(MDM worst-tail)에서 처방만 교체 — 증상(발) 처방은 우연, 병인(root) 처방은 압도. mechanism-aware refinement 가설의 강한 개입 증거."
+  },
+  "evidence_tier": "b1 (단일 평가자) — 외부 공개 claim 불가 (b2/b3 필요)",
+  "claim_boundary": "허용: 'b1 blind A/B 에서 root-aware 보정이 압도적 선호 (19/20), anchoring(우연)과 대비 — mechanism-aware correction 의 intervention evidence'. 금지: '인과 증명'(개입이 경로·속도·리듬 동시 변경) / 'foot skating 해결'(단일 generator·locomotion·b1) / b1 을 확정 지각 근거로 외부 인용."
+}

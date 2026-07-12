@@ -49,9 +49,20 @@ Cross-link: [P1](2026-06-27_poc_artifact_occurrence_ar058_1.md) · [P3](2026-06-
 **허용**: 관측된 발생·공통좌표 측정가능성·품질 관계·고정 처방의 부작용·조건부 물리 개선·지각 불충분(2회)·기전 진단이 "artifact-aware **and mechanism-aware** refinement + 결정 계층"의 필요성을 동기화한다.
 **금지**: ArtifactRouter 가 artifact 를 해결했다 / 지각 품질 향상을 달성했다 / 모든 generator·데이터셋에 일반화된다 / root mismatch 가 foot skating 의 **유일** 원인이다 (ρ²≈0.11 — 복합 원인) / b1 지각 결과를 확정 지각 근거로 인용한다 (외부 공개 시 b2/b3 필수, AR-023).
 
-## 5. Future work — mechanism-aware correction 가능성 (AR-072, 게이트 대기)
+## 5. E8 — mechanism-aware correction 이 지각을 회복한다 (AR-072, ✅ 2026-07-12 완료)
 
-병인을 직접 다루는 후보: **contact-consistent root solve** — 접지 frame 의 stance foot world 속도가 0 이 되도록 root 수평 변위를 재해석 (발을 root 에 맞추는 대증요법의 역방향; GT-free). 착수 시 사전등록: semantic guard (이동 거리 = prompt 의미 → R-Precision/MM-Dist equal-N 보존 의무) + 새 pair 의 새 blind A/B. 본 개입 실험이 E7 상관의 인과 확증을 겸한다. [spec](../../.claude/docs/dashboard-task-specs/AR-072-root-aware-correction-design.md)
+병인 직접 처방 **contact-consistent root solve** (접지발 world-고정 제약에서 root 속도 역산; 다리 무수정, GT-free, world 평행이동 → local·bone·y 구조적 불변) 를 사전등록 guard 와 함께 실행한 결과 — **전 축이 같은 방향으로 개선**:
+
+| 축 | 결과 |
+|---|---|
+| 기전 표적 | v_root/GT **0.42 → 1.02** (GT 없이 GT-일치 복원) |
+| R-Precision @1 / MM-Dist / FID | 0.276→0.319 / 4.89→4.29 / **7.19→3.31** (전부 유의 개선) |
+| **blind A/B (b1, locomotion 20쌍)** | **19/20, p<1e-4** |
+| 대비 (동일 조건, 처방만 교체) | anchoring: v1 11/20·v2 10/20 (우연) vs **root 19/20 (지지)** |
+
+⟹ **"증상(artifact score)을 고치면 지각이 안 따라오지만, 병인(root/gait mismatch)을 고치면 물리·표준지표·지각이 모두 회복된다."** E6(물리≠지각)의 안티테제가 아니라 그 해답 — refinement 는 기전을 다뤄야 한다는 P5 주장의 직접 실증. **표현 규율: intervention evidence** (개입이 경로·속도·리듬 동시 변경 → 완전 인과 아님). [결과](2026-07-12_ab_preference_result_v3_ar072.md) · [spec](../../.claude/docs/dashboard-task-specs/AR-072-root-aware-correction-design.md)
+
+**남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (AR-023) · VQ/비-locomotion · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · orchestrator 통합 (root = KDG 최상위 노드) · 타 데이터셋 (AR-067).
 
 ## 6. Limitations
 

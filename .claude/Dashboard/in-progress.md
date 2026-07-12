@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| AR-072 | Tool | Root-aware correction — ①②③ 전 guard 통과 + **④ A/B v3 pack 완성(415eb7f), 사용자 판정 대기** (20쌍 ~10분). [index](../../reports/figures/2026-07-12/ar072_ab_v3_pack/index.md) → [rater_sheet.csv](../../reports/figures/2026-07-12/ar072_ab_v3_pack/rater_sheet.csv). ⚠️ answer_key 열람 금지 | 🔴 | 07-12 | 기준: ≥15 지지 / ≤12 → root pair 지각 기각 (1회 원칙) / 13~14 → b2. Cat-A: R@1 +0.043·MM −0.61·FID 7.2→3.3 (전부 유의 개선). [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) |
+| _(없음)_ | | | | | |
 
 ---
 
