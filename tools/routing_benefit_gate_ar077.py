@@ -101,28 +101,27 @@ def main() -> None:
     gens = np.array([r["gen"] for r in recs])
     N = len(recs)
 
-    # 피드백 1: benefit δ-3분류 (부호만이 아니라 최소 개선폭). δ = VQ ΔMM 절대값 중앙값(noise floor) + 고정값 sensitivity.
-    vq_mask = np.isin(gens, ["motiongpt", "momask"])
-    delta_noise = float(np.median(np.abs(dmm[vq_mask])))  # VQ 는 near-no-op → |ΔMM| noise floor
-    def _classes(dv, dlt):
-        return {"benefit": round(float((dv < -dlt).mean()), 3),
-                "neutral": round(float((np.abs(dv) <= dlt).mean()), 3),
-                "harm": round(float((dv > dlt).mean()), 3)}
-    delta_sensitivity = {}
-    for dlt in (0.0, 0.05, 0.1, round(delta_noise, 3)):
-        delta_sensitivity[str(dlt)] = {g: _classes(dmm[gens == g], dlt) for g in GENS}
-
-    # benefit label (gate 학습용) — δ=noise_floor 로 3분류 후 benefit=1(개선)/0(그 외).
-    delta = delta_noise
-    benefit = (dmm < -delta).astype(int)
-    gen_benefit = {g: round(float(benefit[gens == g].mean()), 3) for g in GENS}
-
-    # ---- sample_id 단독 split (같은 prompt 의 3 gen + 모든 seed 한쪽에 — cross-gen leakage 차단).
+    # ---- sample_id 단독 split **먼저** (δ 누수 차단 — 피드백 3차: split 후 calibration 에서만 δ 산출).
     rng = np.random.default_rng(args.seed)
     uniq = np.array(sorted(set(sids)))
     rng.shuffle(uniq)
     calib_sids = set(uniq[: len(uniq) // 2])
     is_calib = np.array([s in calib_sids for s in sids])
+
+    # 피드백 3차: δ 는 **calibration VQ 에서만** 산출 (holdout 미사용 — benefit 경계 누수 차단).
+    vq_mask = np.isin(gens, ["motiongpt", "momask"])
+    delta = float(np.median(np.abs(dmm[vq_mask & is_calib])))  # calibration VQ |ΔMM| median
+    def _classes(dv, dlt):
+        return {"benefit": round(float((dv < -dlt).mean()), 3),
+                "neutral": round(float((np.abs(dv) <= dlt).mean()), 3),
+                "harm": round(float((dv > dlt).mean()), 3)}
+    # δ-sensitivity 는 **참고 제시용** (고정 0.05/0.1 + calibration-δ). 전 pool 기준 (탐색).
+    delta_sensitivity = {str(dlt): {g: _classes(dmm[gens == g], dlt) for g in GENS}
+                         for dlt in (0.0, 0.05, 0.1, round(delta, 3))}
+
+    # benefit label — calibration 에서 산출한 δ 로 3분류 후 benefit=1(개선).
+    benefit = (dmm < -delta).astype(int)
+    gen_benefit_calib_delta = {g: round(float(benefit[gens == g].mean()), 3) for g in GENS}
 
     # calibration: Youden J 최대화 임계 (skate > thr → apply 예측).
     cand = np.quantile(skate[is_calib], np.linspace(0.05, 0.95, 40))
@@ -162,20 +161,24 @@ def main() -> None:
         "fixes_2nd_feedback": ["benefit δ-3분류", "sample_id 단독 split(cross-gen leakage 차단)",
                                "bootstrap multiplicity 보존"],
         "n_motions": N, "pool": "전체 300 prompt × 3 seed × 3 gen (GT 필터 없음 — 실배포 GT-free 조건)",
-        "benefit_label": f"ΔMM-Dist < -δ per motion (δ=VQ noise floor={round(delta,4)}). '부호만'(δ=0) 아님.",
-        "delta_sensitivity_benefit_neutral_harm": delta_sensitivity,
-        "delta_note": "δ=0 은 '부호만'(과장). VQ 는 near-no-op 이라 δ 올리면 benefit→neutral 로 이동 = '평균 악화하나 개별 Δ 절반씩 섞임'.",
+        "benefit_label": f"ΔMM-Dist < -δ per motion. **δ={round(delta,4)} = calibration VQ |ΔMM| median** "
+                         "(holdout 미사용 — 누수 차단, 피드백 3차). '부호만'(δ=0) 아님.",
+        "delta_caveat": "δ 는 VQ calibration median 기반 → VQ neutral 비율이 구조적으로 ~50% 근처가 됨. "
+                        "따라서 'VQ 절반이 실제 무효' / 'MDM 57%·VQ 20% benefit' / 'AUC 0.68' 은 **확정 사실 아니라 "
+                        "δ 조건부 exploratory**. 정확한 진술: '내부 δ 조건에서 MDM ~57%·VQ ~20% benefit, pooled AUC ~0.68'.",
+        "delta_sensitivity_benefit_neutral_harm_EXPLORATORY": delta_sensitivity,
         "gate_feature": "foot_skate (GT-free 관측)",
-        "generator_benefit_rate_at_delta": gen_benefit,
-        "overall_benefit_rate": round(float(benefit.mean()), 3),
+        "generator_benefit_rate_at_calib_delta": gen_benefit_calib_delta,
+        "overall_benefit_rate_at_calib_delta": round(float(benefit.mean()), 3),
         "calibration": {"n": int(is_calib.sum()), "youden_threshold": round(best_thr, 5), "youden_J": round(best_j, 3)},
         "holdout": {"n": int(ho.sum()),
                     "benefit_auc": auc_ho, "benefit_auc_ci95_boot1000": auc_ci,
                     "precision": precision, "recall": recall,
                     "false_apply_rate": false_apply, "false_stop_rate": false_stop,
                     "confusion": {"tp": tp, "fp": fp, "fn": fn, "tn": tn}},
-        "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). AUC>0.7 = foot_skate 가 held-out "
-                          "에서 benefit 예측. false_apply = APPLY 했는데 harm 비율 (no-harm 위반).",
+        "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). false_apply = APPLY 로 선택한 "
+                          "표본 중 **최소 benefit(δ) 기준 미충족** 비율 (neutral+harm 포함 — '절반이 품질 악화'가 "
+                          "아니라 '절반이 유의 개선 못함'). AUC/false_apply 모두 δ 조건부.",
         "claim_boundary": "held-out benefit-prediction gate. 완전 GT-free (pool 선정도 GT 무관). MM-Dist 를 "
                           "benefit proxy 로 사용 (지각 아님) — 지각 benefit 은 A/B 필요. MDM·단일 벤치마크.",
         "grounding": ["Guo HumanML3D CVPR2022 (MM-Dist)", "Safe Orchestration no-harm (position §0)"],

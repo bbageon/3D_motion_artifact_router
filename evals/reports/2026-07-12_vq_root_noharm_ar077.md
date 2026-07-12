@@ -86,12 +86,13 @@ VQ 통과율이 0%가 아니라 10~21% 이므로 **"VQ=STOP"이 아니라 "STOP 
 | precision / recall | 0.498 / 0.514 |
 | **false-apply / false-stop** | **0.502** / 0.255 |
 
-**결론 (2차 피드백 후 — 균형):**
-- **generator 수준**: 실질 benefit MDM 57% vs VQ 20% — **차이 명확·선명**(δ로 더 뚜렷).
-- **motion 수준**: foot_skate 가 per-motion benefit 을 **중간 수준 예측**(AUC 0.68 — 부호만 0.55 보다 유의미). **useless 아님.**
-- **실용 gate**: 그러나 operating point 에서 **false-apply 50%** — no-harm 목표엔 여전히 부족. **단일 skate gate 로는 불충분** → richer state 필요.
+**결론 (2차 피드백 후 — δ 조건부·exploratory 명시):**
+- ⚠️ **δ 조건부 caveat (3차 피드백)**: δ=0.116 은 **calibration VQ |ΔMM| median** (holdout 미사용 — 누수 차단). 단 VQ median 기반이라 **VQ neutral ~50% 는 구조적**. 따라서 "VQ 절반이 실제 무효" / "MDM 57%·VQ 20% benefit" / "AUC 0.68" 은 **확정 사실 아님 — δ 조건부 exploratory**. 정확: **"내부 δ 조건에서 MDM ~57%·VQ ~20% benefit 분류, pooled AUC ~0.68"**.
+- **generator 수준**: (δ 조건부) 실질 benefit MDM ~57% vs VQ ~20% — 차이 뚜렷.
+- **motion 수준**: foot_skate benefit-AUC ~0.68 (δ 조건부) — 부호만 0.55 보다 높으나 exploratory.
+- **실용 gate**: **false-apply ~50%** = APPLY 선택 표본의 절반이 **최소 benefit(δ) 기준 미충족** (neutral+harm 포함 — "절반이 품질 악화" 아님). no-harm gate 로 불충분.
 
-⟹ **"routing 이 작동한다"가 아니라 "moderate 신호는 있으나 단일-feature gate 로는 문제가 남아 있다"** — richer state 가 false-apply 를 낮추기 전까지.
+⟹ **"routing 이 작동한다" 아님 → "richer-state routing 의 필요성은 생겼으나 성능은 미검증"**. 단일 skate gate 는 δ 조건부 moderate 신호이나 no-harm 용으로 불충분.
 
 ## Claim Boundary (피드백 준수)
 
