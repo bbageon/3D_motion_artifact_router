@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| AR-072 | Tool | Root-aware correction — ①②③ 완료(8dd29a2·862d33b): 기전 명중(0.42→1.02) + **Cat-A 전 지표 유의 개선** (R@1 +0.043 / MM-Dist −0.61 / FID 7.2→3.3). 꼬리 18.2% 공시. 남은 관문: **④ blind A/B (locomotion 신규 20쌍)** | 🔴 | 07-12 | [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) · [semantic](../../evals/snapshots/root_semantic_guard_ar072_v1.json) · [FID](../../evals/snapshots/root_fid_guard_ar072_v1.json) |
+| AR-072 | Tool | Root-aware correction — ①②③ 전 guard 통과 + **④ A/B v3 pack 완성(415eb7f), 사용자 판정 대기** (20쌍 ~10분). [index](../../reports/figures/2026-07-12/ar072_ab_v3_pack/index.md) → [rater_sheet.csv](../../reports/figures/2026-07-12/ar072_ab_v3_pack/rater_sheet.csv). ⚠️ answer_key 열람 금지 | 🔴 | 07-12 | 기준: ≥15 지지 / ≤12 → root pair 지각 기각 (1회 원칙) / 13~14 → b2. Cat-A: R@1 +0.043·MM −0.61·FID 7.2→3.3 (전부 유의 개선). [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) |
 
 ---
 
