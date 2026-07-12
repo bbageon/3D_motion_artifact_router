@@ -19,15 +19,16 @@
 
 > v3 = 피드백 2차 통계 수정본 ([mdm](../snapshots/vq_root_catA_v3_ar077_mdm_v1.json)/[motiongpt](../snapshots/vq_root_catA_v3_ar077_motiongpt_v1.json)/[momask](../snapshots/vq_root_catA_v3_ar077_momask_v1.json)): orig/corr **동일 permutation(paired)** + **seed 미평균**(FID 분포 보존) + **엄격 3-seed equal-N**(P=165, skip 0) + **bootstrap 1000**. v2(버그본)는 superseded — 방향 불변, 수치 정합.
 
-root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric 변화 (Δ = corrected − original):
+root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric 변화 (Δ = corrected − original).
+**R@1 = R-Precision 수정본**([catA_rprec_fix](../snapshots/catA_rprec_fix_ar077_mdm_v1.json), 피드백 4: one-seed-per-prompt — 같은 caption seed 오답처리 버그 제거), MM-Dist/FID = v3:
 
-| generator | R@1 Δ [CI] | MM-Dist Δ [CI] | FID Δ [CI] | 판정 |
+| generator | R@1 Δ [CI] (수정본) | MM-Dist Δ [CI] | FID Δ [CI] | 판정 |
 |---|---|---|---|---|
-| **MDM** | **+0.045** [+0.022,+0.064] ↑ | **−1.00** [−1.20,−0.81] ↓ | **−7.3** [−9.3,−5.5] ↓ | **개선** (3/3 유의) |
-| MotionGPT | **−0.022** [−0.041,−0.004] ↓ | **+0.087** [+0.034,+0.140] ↑ | +0.20 [−0.05,+0.43] | **harm** (R@1·MM 유의) |
-| MoMask | **−0.040** [−0.056,−0.015] ↓ | **+0.150** [+0.064,+0.250] ↑ | +0.21 [−0.12,+0.58] | **harm** (R@1·MM 유의) |
+| **MDM** | **+0.047** [+0.019,+0.068] ↑ | **−1.00** [−1.20,−0.81] ↓ | **−7.3** [−9.3,−5.5] ↓ | **개선** (3/3 유의) |
+| MotionGPT | **−0.034** [−0.043,−0.001] ↓ | **+0.087** [+0.034,+0.140] ↑ | +0.20 [−0.05,+0.43] | **harm** (R@1·MM 유의) |
+| MoMask | **−0.035** [−0.062,−0.014] ↓ | **+0.150** [+0.064,+0.250] ↑ | +0.21 [−0.12,+0.58] | **harm** (R@1·MM 유의) |
 
-(↑ R@1 = 좋음, ↓ MM/FID = 좋음.)
+(↑ R@1 = 좋음, ↓ MM/FID = 좋음. R-Prec 수정 전후 방향·유의성 동일 — MDM 개선/VQ harm 확정.)
 
 - **MDM: 세 지표 모두 유의 개선** — correction 이 semantic·naturalness 회복 (AR-072 보강, loco 한정 정합 통계).
 - **VQ 둘: R@1·MM-Dist 유의 악화** (FID 는 CI 가 0 포함 — 비유의). deficit 없는 root 를 건드려 정렬 악화. **near-no-op 아님**: root 실제 이동(induced 0.37/0.41 m), foot_skate 이득 없이 semantic 악화 (분포 수준 harm).
