@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "root_stop_boundary",
+  "board_id": "AR-074",
+  "n_prompts": 300,
+  "n_loco": 165,
+  "n_nonloco": 135,
+  "self_stop_test": {
+    "loco_induced_disp_mean": 1.20474,
+    "loco_ci95": [
+      1.04905,
+      1.37368
+    ],
+    "nonloco_induced_disp_mean": 0.77015,
+    "nonloco_ci95": [
+      0.6893,
+      0.86968
+    ],
+    "ratio_nonloco_over_loco": 0.639,
+    "nonloco_root_path_after_mean": 0.8516,
+    "verdict": "harm 위험 (non-loco 도 큰 변위 — 명시적 gate 필요)"
+  },
+  "over_correction_prediction": {
+    "n_over": 30,
+    "n_loco": 165,
+    "auc_path_gain": 0.793,
+    "auc_induced_disp": 0.738,
+    "auc_cff": 0.218,
+    "note": "AUC>0.7 = 해당 GT-free 신호로 over-correction 사전 식별 가능"
+  },
+  "gt_free_signal": {
+    "induced_disp_vs_fs_improve_corr": 0.634,
+    "note": "induced_disp = 추론 시 관측 가능 (GT 불요). fs 개선과 상관 높으면 apply 가치 proxy."
+  },
+  "stop_rule_candidate": {
+    "rule": "STOP if (non-locomotion-like: 접지 backward-flow 미약 → induced_disp 작음 = self-STOP 자동) OR (over-correction risk: path_gain 극단). apply otherwise.",
+    "status": "관측 기반 rule 후보 — 학습 policy 아님. non-loco Cat-A/A/B 는 필요 시 후속."
+  },
+  "claim_boundary": "관측 진단 + rule 후보. 지각 harm 단정은 A/B 필요. MDM 단일.",
+  "grounding": [
+    "Safe Orchestration no-harm (position §0)",
+    "PhysDiff ICCV2023 (post-proc side effect)"
+  ]
+}

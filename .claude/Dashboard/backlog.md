@@ -4,7 +4,8 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-075 | RL-Q | Orchestrator 통합 — RootGaitConsistencyTool = KDG 최상위 노드로 routing 에 편입 (root-first → 말단 tool 순서). registry candidate-set 확장 = §4 change-obligation | 🟡 | AR-072 tool 은 현재 export 만 (freeze). Safe Orchestration 계층에 병인 tool 편입 |
+| AR-075 | RL-Q | Orchestrator 통합 — RootGaitConsistencyTool = KDG 최상위 노드 + **GT-free STOP gate** (AR-074: apply IF skate高 AND path_gain 정상 else STOP) 편입. registry candidate-set 확장 = §4 change-obligation | 🟠 | AR-072 tool export만(freeze). AR-074 STOP 신호 구현. Safe Orchestration no-harm gate |
+| AR-077 | Evidence | VQ(MotionGPT/MoMask) root 상태 + no-harm 진단 — VQ 에 root deficit 있나 / correction 무해한가 / STOP 이 정답인가. 3 시나리오 사전등록(깔끔/애매/놀람). AR-074 GT-free STOP 신호 재사용 | 🟠 | generator-conditioned routing 근거. diagnostic 먼저, A/B 는 애매 시만. mgpt env Cat-A |
 | AR-066 | Evaluator | Intent-aware float weighting — **경량 5-rule 확정**: prompt 4-bucket keyword 분류(ground-required/airborne/seated-lying/ambiguous) → ground-required 만 강한 float 판정, airborne/seated 제외·약가중, ambiguous 보류, raw score 전량 기록 | 🟡 | 07-08 경량화 (floating 은 축 하나 — 과투자 방지). [spec](../docs/dashboard-task-specs/AR-066-intent-aware-float-weighting.md). 임베딩 분류는 spot-check 실패 시만 optional |
 | AR-065 | RL-Q | Effect-aware state 재구축 검토 — 기존 learned ranker (AR-040/052 계열) 는 v0.1.0 무신호 feature (Skate/Penetrate ≡ 0) 로 학습됨 → 수리된 v0.2.0 state 로 feature 재산출 + re-train 여부 판단 | 🟠 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-063 후속 |
 | AR-064 | Tool | Bone-preserving propagation — coord cleanup 의 leg-chain 선형 propagation(NOT IK)이 u 비례 BoneCV 상승(+0.045~0.053 @u=1.0) 유발 → IK 또는 사후 bone re-projection 으로 대체 | 🟠 | [spec](../docs/dashboard-task-specs/AR-064-bone-preserving-propagation.md). AR-061 후속. u=0.25 는 +0.002 로 미미 — 저강도 우선 운용 가능 |

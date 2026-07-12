@@ -5,7 +5,6 @@
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
 | AR-073 | Perceptual | **AR-072 다중 평가자 pack 완성 — 평가자 모집·판정 대기(사용자)**. rater2/3 배포본 (익명 item_NN, 순서 셔플). 추가 rater = `--raters rater4 …` | 🔴 | 07-12 | [rater2](../../reports/figures/2026-07-12/ar073_multirater_pack/rater2/index.md) · [rater3](../../reports/figures/2026-07-12/ar073_multirater_pack/rater3/index.md). 응답 후 Fleiss κ + aggregate |
-| AR-074 | Tool | Root-aware 경계조건 diagnostic — 어디서 STOP해야 하나 (in-place/turn/circle/non-loco/already-good) | 🔴 | 07-12 | AR-072 후속. no-harm 판정 |
 
 ---
 
