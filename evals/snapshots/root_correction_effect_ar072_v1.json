@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "root_correction_effect",
+  "board_id": "AR-072",
+  "treatment": "RootGaitConsistencyTool u=1.0 (contact-consistent root solve, GT-free)",
+  "split_id": "protocol_rep_pool_seed20260608 mdm (300 prompts x 3 seeds)",
+  "invariance_check": {
+    "n_samples": 900,
+    "local_violations": 0
+  },
+  "mechanism_target": {
+    "ratio_before": {
+      "mean": 0.4193,
+      "ci95": [
+        0.3919,
+        0.4485
+      ]
+    },
+    "ratio_after": {
+      "mean": 1.0182,
+      "ci95": [
+        0.9169,
+        1.1282
+      ]
+    },
+    "n_locomotion": 165,
+    "note": "GT 는 판정 참조로만 — 보정 자체는 GT-free (constrained_frame_frac 참조)"
+  },
+  "foot_skate_world": {
+    "delta_mean": -0.00699,
+    "ci95": [
+      -0.0073,
+      -0.0067
+    ],
+    "frac_improved": 1.0,
+    "note": "정의상 감소 기대 — 성공 기준 아님 (사전등록)"
+  },
+  "root_accel_p95": {
+    "delta_mean": 0.00531,
+    "ci95": [
+      0.0049,
+      0.0058
+    ],
+    "frac_worsened": 1.0,
+    "before_mean": 0.00018,
+    "after_mean": 0.00549,
+    "gt_reference_mean": 0.00637,
+    "note": "원본 root 는 과소 이동이라 accel 도 과소 — GT 기준과 비교해 '자연 동역학 회복'인지 '과도 jitter'인지 판정"
+  },
+  "constrained_frame_frac_mean": 0.9138,
+  "corrected_dump": "external_assets\\ar072_root_corrected_mdm",
+  "next": "Cat-A guard (R-Prec/MM-Dist, mgpt env) — 기각 조건: R@1 CI-밖 하락 또는 MM-Dist 유의 악화",
+  "claim_boundary": "물리+기전 표적 측정 — 지각/semantic 판정 아님 (Cat-A 와 A/B 이후)"
+}

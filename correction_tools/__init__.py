@@ -12,6 +12,7 @@ from correction_tools.base import CorrectionReport, CorrectionTool
 from correction_tools.bone_projection_tool import BoneProjectionTool
 from correction_tools.coordinate_footskate_cleanup_tool import CoordinateFootSkateCleanupTool
 from correction_tools.foot_lock_tool import FootLockTool
+from correction_tools.root_gait_consistency_tool import RootGaitConsistencyTool
 from correction_tools.velocity_smoothing_tool import VelocitySmoothingTool
 
 #: 본 저장소의 default correction tool registry. orchestrator 가 본 list 를 iter 하며 apply().
@@ -35,5 +36,6 @@ __all__ = [
     "BoneProjectionTool",
     "VelocitySmoothingTool",
     "CoordinateFootSkateCleanupTool",
+    "RootGaitConsistencyTool",  # AR-072 — export 만 (candidate-set freeze 동일 정책)
     "DEFAULT_CORRECTION_TOOLS",
 ]

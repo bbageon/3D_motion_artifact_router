@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| _(없음)_ | | | | | |
+| AR-072 | Tool | Root-aware correction — ① semantic guard 사전등록 → ② contact-consistent root solve 구현 → ③ 물리+Cat-A 검증 → ④ 새 A/B | 🔴 | 07-12 | **사용자 게이트 통과** (승인 "응 진행해줘"). [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) |
 
 ---
 

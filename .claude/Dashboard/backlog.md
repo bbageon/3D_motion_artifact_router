@@ -4,7 +4,6 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-072 | Tool | Root-aware correction 설계 — 병인(root 전진 부족) 직접 처방: contact-consistent root solve (발이 아니라 root 를 고침, GT-free). **새 pair = 새 사전등록 + §3-11 사용자 게이트** | 🔴 | AR-071 부분 지지 후속 (사전 합의 ③). semantic(Cat-A) guard 의무. [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) |
 | AR-066 | Evaluator | Intent-aware float weighting — **경량 5-rule 확정**: prompt 4-bucket keyword 분류(ground-required/airborne/seated-lying/ambiguous) → ground-required 만 강한 float 판정, airborne/seated 제외·약가중, ambiguous 보류, raw score 전량 기록 | 🟡 | 07-08 경량화 (floating 은 축 하나 — 과투자 방지). [spec](../docs/dashboard-task-specs/AR-066-intent-aware-float-weighting.md). 임베딩 분류는 spot-check 실패 시만 optional |
 | AR-065 | RL-Q | Effect-aware state 재구축 검토 — 기존 learned ranker (AR-040/052 계열) 는 v0.1.0 무신호 feature (Skate/Penetrate ≡ 0) 로 학습됨 → 수리된 v0.2.0 state 로 feature 재산출 + re-train 여부 판단 | 🟠 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-063 후속 |
 | AR-064 | Tool | Bone-preserving propagation — coord cleanup 의 leg-chain 선형 propagation(NOT IK)이 u 비례 BoneCV 상승(+0.045~0.053 @u=1.0) 유발 → IK 또는 사후 bone re-projection 으로 대체 | 🟠 | [spec](../docs/dashboard-task-specs/AR-064-bone-preserving-propagation.md). AR-061 후속. u=0.25 는 +0.002 로 미미 — 저강도 우선 운용 가능 |

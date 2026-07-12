@@ -1,9 +1,37 @@
 # AR-072 - Root-Aware Correction Design (병인 직접 처방 — 새 pair 후보)
 
-Status: backlog — **착수 = 사용자 게이트** (새 pair = 새 사전등록, §3-11)  
+Status: **in-progress** (사용자 게이트 통과 2026-07-12 "응 진행해줘")  
 Epic: Tool  
-Priority: 🔴 (후보)  
+Priority: 🔴  
 Parent: AR-071 (부분 지지: MDM v_root = GT 의 42%, 부족↔fs ρ=+0.34) / 사전 합의 순서 ③
+
+## ① 사전등록 (2026-07-12 — 결과 보기 전 고정)
+
+**알고리즘 (RootGaitConsistencyTool)** — 다리(pose) 무수정, root 수평 궤적만 재구성:
+
+```
+1. contact = v2 정의 (height≤0.05 & |vy|≤0.035; ground=feet 10th pct)
+   — 수평 root 이동에 불변 (height·vy 는 수평 이동과 무관) → 재검출 루프 없음
+2. stance 제약: 접지발의 world 속도 = 0
+   ⇔ root_vel_target[t] = −mean_{접지발 f}( d/dt(foot_xz − pelvis_xz)[f][t] )
+3. 무접지 frame: 이웃 정의값 선형 보간 (전 구간 무접지 시 원본 유지)
+4. smoothing: 해 velocity 에 gaussian σ=2 frame (노이즈→root jitter 방지)
+5. blend: v_new = (1−u)·v_orig + u·v_target — primary u=1.0, u_grid {0.5,1.0} 참고
+6. 적분→새 pelvis 경로 (시작점 고정), offset 을 전 joint xz 에 동일 적용
+   → local(root-relative) 표현 = 구조적으로 완전 불변 (bone·pose·height 보존)
+```
+
+**Guards (사전 고정 — 기각 조건 포함)**:
+
+| Guard | 기준 | 판정 |
+|---|---|---|
+| **Semantic (Cat-A, 핵심)** | R-Precision top-1/2/3 + MM-Dist, equal-N (corrected vs original, 동일 caption, tm2t evaluator) | **R@1 하락이 CI 밖이거나 MM-Dist 유의 악화 → 처방 기각** (물리가 아무리 좋아도) |
+| 기전 표적 | v_root/GT ratio 가 0.42 → **1.0 방향으로 이동** | 이동 없으면 solve 결함 |
+| fs (Cat-B) | 감소 (정의상 기대 — 성공 기준 아님, 보고만) | — |
+| 불변성 | local·bone·float 완전 불변 (구조적) — assert 검증 | 위반 = 구현 버그 |
+| smoothness | root accel p95 악화 감시 | 유의 악화 시 σ 재설계 (사전등록 재개정 필요) |
+
+**검정 순서**: ② 구현+unit → ③ 물리(즉시)+Cat-A(mgpt env) → 통과 시 ④ 새 blind A/B (신규 20 prompt, v1/v2 와 비중복, 기준 ≥15/≤12/13-14 동일 구조, **1회 원칙**).
 
 ## Goal
 
