@@ -15,32 +15,34 @@
 
 (사전등록 3-시나리오 중 **"깔끔"** — VQ 는 root deficit 없음. preflight n=4 의 ratio 2.13 은 소표본 노이즈였음, full n=165 로 정정.)
 
-## 2. Cat-A no-harm (locomotion 한정, prompt-bootstrap, FID) — 핵심 표
+## 2. Cat-A no-harm (locomotion 165, prompt-bootstrap **B=1000**, FID) — 핵심 표 (v3, 통계 수정)
 
-root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric 변화:
+> v3 = 피드백 2차 통계 수정본 ([mdm](../snapshots/vq_root_catA_v3_ar077_mdm_v1.json)/[motiongpt](../snapshots/vq_root_catA_v3_ar077_motiongpt_v1.json)/[momask](../snapshots/vq_root_catA_v3_ar077_momask_v1.json)): orig/corr **동일 permutation(paired)** + **seed 미평균**(FID 분포 보존) + **엄격 3-seed equal-N**(P=165, skip 0) + **bootstrap 1000**. v2(버그본)는 superseded — 방향 불변, 수치 정합.
+
+root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric 변화 (Δ = corrected − original):
 
 | generator | R@1 Δ [CI] | MM-Dist Δ [CI] | FID Δ [CI] | 판정 |
 |---|---|---|---|---|
-| **MDM** | **+0.048** [+0.009,+0.089] ↑ | **−1.01** [−1.22,−0.83] ↓ | **−7.2** [−9.3,−5.4] ↓ | **개선** (apply 옳음) |
-| MotionGPT | −0.029 [−0.066,+0.003] | **+0.12** [+0.055,+0.178] ↑ | **+0.44** [+0.24,+0.70] ↑ | **harm** (2/3 유의 악화) |
-| MoMask | **−0.041** [−0.089,−0.008] ↓ | **+0.14** [+0.051,+0.243] ↑ | +0.23 [−0.07,+0.54] | **harm** (2/3 유의 악화) |
+| **MDM** | **+0.045** [+0.022,+0.064] ↑ | **−1.00** [−1.20,−0.81] ↓ | **−7.3** [−9.3,−5.5] ↓ | **개선** (3/3 유의) |
+| MotionGPT | **−0.022** [−0.041,−0.004] ↓ | **+0.087** [+0.034,+0.140] ↑ | +0.20 [−0.05,+0.43] | **harm** (R@1·MM 유의) |
+| MoMask | **−0.040** [−0.056,−0.015] ↓ | **+0.150** [+0.064,+0.250] ↑ | +0.21 [−0.12,+0.58] | **harm** (R@1·MM 유의) |
 
-(↑ R@1 = 좋음, ↓ MM/FID = 좋음. Δ = corrected − original.)
+(↑ R@1 = 좋음, ↓ MM/FID = 좋음.)
 
-- **MDM: 세 지표 모두 유의 개선** — correction 이 semantic·naturalness 를 회복 (AR-072 보강, 이번엔 loco 한정 prompt-bootstrap 로 더 엄격).
-- **VQ 둘: 각각 2/3 지표 유의 악화** — deficit 없는 root 를 건드려 정렬 악화. **near-no-op 아님**: root 는 실제 이동(induced_disp MGPT 0.37 / MoMask 0.41 m), foot_skate 이득 없이(≈0) semantic 만 악화.
+- **MDM: 세 지표 모두 유의 개선** — correction 이 semantic·naturalness 회복 (AR-072 보강, loco 한정 정합 통계).
+- **VQ 둘: R@1·MM-Dist 유의 악화** (FID 는 CI 가 0 포함 — 비유의). deficit 없는 root 를 건드려 정렬 악화. **near-no-op 아님**: root 실제 이동(induced 0.37/0.41 m), foot_skate 이득 없이 semantic 악화 (분포 수준 harm).
 
-## 3. GT-free STOP 분리 (피드백 5) — GT 없이 apply/STOP 갈림
+## 3. Generator 분리 진단 (피드백 정정 — "GT-free routing 실증" 아님)
 
-추론 시 GT root ratio 는 관측 불가. **관측 가능 신호(foot_skate)** 만으로 분리되나:
+> ⚠️ **표현 정정 (2026-07-12 2차 피드백)**: 아래는 "완전한 GT-free routing gate 실증" 이 **아니다**. (a) 평가 대상(locomotion 165)을 **GT root speed 로 선정** — gate 입력(foot_skate)은 GT-free 이나 subset 정의는 GT 사용. (b) apply-gate 통과율 74.5% 는 **임계값을 MDM 25th pct 로 정한 순환** — 성능 증거 아님. (c) AUC 의 label 은 "MDM 출력인가" = **generator 분류**이지 "correction 이 이득인가" 아님. 정확한 진술: **"GT 로 정의한 locomotion subset 안에서, 추론 가능한 foot_skate 가 generator 를 구분했다(AUC 0.83~0.88)."** 실배포 GT-free gate + benefit 예측 = §6 (held-out).
 
-| generator | foot_skate [CI] | apply-gate 통과율 (skate>MDM 25th pct) | induced_disp | path_gain |
+| generator | foot_skate [CI] | (임계=MDM 25th pct) 통과율 | induced_disp | path_gain |
 |---|---|---|---|---|
-| MDM | 0.0125 [0.0116,0.0134] | **74.5%** (apply) | 1.20 | 2.64 |
-| MotionGPT | 0.0065 | 21.2% (STOP) | 0.37 | 1.02 |
-| MoMask | 0.0053 | 10.3% (STOP) | 0.41 | 0.86 |
+| MDM | 0.0125 [0.0116,0.0134] | 74.5% (순환 — 참고 안 함) | 1.20 | 2.64 |
+| MotionGPT | 0.0065 | 21.2% | 0.37 | 1.02 |
+| MoMask | 0.0053 | 10.3% | 0.41 | 0.86 |
 
-**skate AUC(MDM vs VQ) = 0.834 / 0.879** — GT 없이 skate 신호 하나로 MDM(apply)/VQ(STOP) 강 분리. induced_disp·path_gain 도 분리(MDM 1.20 vs VQ 0.4; 2.64 vs ~1.0). ⟹ AR-074 GT-free STOP rule 이 VQ 를 자동 STOP.
+**skate AUC(MDM vs VQ) = 0.834 / 0.879** (label="MDM인가"). 의미: foot_skate 분포가 MDM/VQ 를 잘 구분. **STOP 규칙 아님** — benefit 예측은 §6.
 
 ## 4. 무조건-적용 보조분석 (superseded, 참고)
 
@@ -48,15 +50,47 @@ root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric
 
 ## 5. Routing decision + 방어 가능한 결론
 
-| generator | deficit | correction Cat-A | GT-free skate | **decision** |
+| generator | deficit | correction Cat-A | skate (apply 후보) | **경향** |
 |---|---|---|---|---|
-| MDM | 큼 (0.42) | 개선 | 높음(74.5% apply) | **APPLY** |
-| MotionGPT | 없음(0.99) | 악화 | 낮음(21% ) | **STOP** |
-| MoMask | 없음(1.00) | 악화 | 낮음(10%) | **STOP** |
+| MDM | 큼 (0.42) | 개선 | 높음 | **APPLY 후보 많음** |
+| MotionGPT | 없음(0.99) | 악화 | 낮음 (통과 21%) | **STOP 후보 많음** |
+| MoMask | 없음(1.00) | 악화 | 낮음 (통과 10%) | **STOP 후보 많음** |
 
-> **MDM locomotion 에서는 root progression deficit 과 root-aware correction 의 이득(R@1↑·MM↓·FID↓)이 관측된 반면, MotionGPT·MoMask 에서는 평균 root deficit 및 foot-skate 개선이 관측되지 않았고, 같은 보정을 적용하면 표준 text-motion metric 이 악화됐다. 따라서 root correction 은 generator 에 고정 적용할 수 없으며, 관측 가능한 motion state(foot-skate, AUC 0.83~0.88)에 기반한 APPLY/STOP 결정이 필요하다.**
+> **MDM 과 VQ generator 는 root-aware correction 의 필요성이 서로 다르며(MDM: deficit+이득 R@1↑·MM↓·FID↓ / VQ: deficit 증거 없음 + Cat-A 악화), 관측 가능한 foot-skate 신호가 그 차이를 포착한다(AUC 0.83~0.88). 다만 현재 신호는 generator 분리 진단이며, held-out motion 에서 correction benefit 을 직접 예측하는 routing gate 로서의 성능은 §6 (held-out)에서 별도 검증한다.**
 
-이 주장 = **결정 계층(apply/STOP)의 필요성**까지 (학습 RL routing 의 우월성 아님).
+VQ 통과율이 0%가 아니라 10~21% 이므로 **"VQ=STOP"이 아니라 "STOP 후보 다수"** — 최종 결정은 generator 이름보다 **motion state** 로 (state-conditioned routing 을 오히려 더 지지).
+
+## 6. Held-out benefit prediction — 진짜 routing gate 검증 (피드백 3, 핵심)
+
+이전 AUC(0.83~0.88)는 label="MDM인가"(**generator 분류**)였다. 진짜 routing gate 는
+"이 motion 에 correction 적용 시 이득인가"를 예측해야 한다. label 을 **per-motion
+ΔMM-Dist < −δ** (δ=VQ noise floor 0.116 — 부호만 아님, 2차 피드백 반영)로 두고,
+**전체 pool(3 gen, GT 필터 없음)** + **sample_id 단독 split**(cross-gen leakage 차단) +
+**multiplicity 보존 bootstrap** 으로 재측정 ([snapshot](../snapshots/routing_benefit_gate_ar077_v1.json), n=2699).
+
+**δ-sensitivity (benefit/neutral/harm, %)** — 피드백 1 반영:
+
+| δ | MDM | MotionGPT | MoMask |
+|---|---|---|---|
+| 0 (부호만, 과장) | 65 / 0 / 35 | 48 / 0 / 52 | 47 / 0 / 53 |
+| **0.116 (noise floor)** | **57 / 16 / 28** | **22 / 50 / 29** | **21 / 50 / 29** |
+
+⟹ **"VQ 47% benefit"은 부호만의 착시.** 실질(δ)로 보면 **VQ 는 절반이 neutral**(correction 무효과) + benefit 21% ≈ harm 29% = **평균 net-무효~약간 harm**. MDM 은 benefit 57% > harm 28% = **net 이득**.
+
+**held-out routing gate (benefit label δ=0.116, n=1350):**
+
+| | 값 |
+|---|---|
+| **benefit AUC** | **0.684** [0.642, 0.724] (proper bootstrap) — moderate (부호만 0.55 보다 높음: δ 가 noise coin-flip 제거) |
+| precision / recall | 0.498 / 0.514 |
+| **false-apply / false-stop** | **0.502** / 0.255 |
+
+**결론 (2차 피드백 후 — 균형):**
+- **generator 수준**: 실질 benefit MDM 57% vs VQ 20% — **차이 명확·선명**(δ로 더 뚜렷).
+- **motion 수준**: foot_skate 가 per-motion benefit 을 **중간 수준 예측**(AUC 0.68 — 부호만 0.55 보다 유의미). **useless 아님.**
+- **실용 gate**: 그러나 operating point 에서 **false-apply 50%** — no-harm 목표엔 여전히 부족. **단일 skate gate 로는 불충분** → richer state 필요.
+
+⟹ **"routing 이 작동한다"가 아니라 "moderate 신호는 있으나 단일-feature gate 로는 문제가 남아 있다"** — richer state 가 false-apply 를 낮추기 전까지.
 
 ## Claim Boundary (피드백 준수)
 
@@ -65,7 +99,22 @@ root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric
 - VQ Cat-A harm 은 표준 metric 악화 — **지각 harm 단정은 A/B 필요** (시나리오 "깔끔"이라 사전등록상 VQ A/B 는 선택).
 - MDM·단일 벤치마크(HumanML3D)·locomotion 한정. VQ 개별 sample 은 deficit 있을 수 있음(평균 진술).
 
-## 남은 항목 (마감 전)
+## 7. 최종 방어 가능한 결론 (2차 피드백 후 — 표현 하향)
 
+> **Root-aware correction 은 MDM 에서 분포 수준의 품질을 개선하지만(R@1↑·MM↓·FID↓, Cat-A v3), 개별 motion 의 적용 이득은 foot-skate 단일 feature 로 신뢰성 있게 예측할 수 없다(holdout AUC 0.55, false-apply 45%). 따라서 generator-level rule 은 유효한 baseline 이지만, per-motion no-harm routing 을 위해서는 richer pre-action state 가 필요하다.**
+
+| 층위 | 결론 (δ-수정) | 판정 |
+|---|---|---|
+| Generator 평균 | 실질 benefit MDM 57% vs VQ 20% | **명확** |
+| 개별 motion | foot-skate 로 benefit 예측 AUC 0.68 | **중간 (useless 아님)** |
+| 실용 gate | false-apply 50% | **단일-feature 로 불충분** |
+| Routing 필요성 (richer state 동기) | 성립 | ✅ |
+| Learned routing 성능 (benefit 잘 예측) | **미성립** | ❌ |
+
+**표현 규율**: richer state 가 false-apply 를 낮추기 전까지 **"routing 이 작동한다" 금지 → "moderate 신호 있으나 단일-feature gate 로 문제 남음"** (현 state 부족의 정확한 진단이지 연구 실패 아님).
+
+## 남은 항목 (마감 전 — AR-077 in-progress 정당)
+
+- **§6-1 재측정** (2차 피드백 4수정): benefit δ-3분류 / sample_id 단독 split / proper bootstrap CI / (Cat-A) R-Precision one-seed-per-prompt.
+- **의사결정**: AR-075 에 **foot-skate 단일 gate 통합 금지**. 먼저 **AR-065 Effect-aware state 재구축** 검토 → generator-only / skate-only / richer-state gate 를 held-out 에서 benefit-AUC·false-apply 로 비교 (AR-078).
 - (선택) VQ 소규모 A/B — 시나리오 "깔끔"이라 사전등록상 미필수.
-- AR-075 에서 GT-free STOP gate 를 orchestrator 에 구현·편입.

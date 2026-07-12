@@ -4,9 +4,10 @@
 
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
-| AR-075 | RL-Q | Orchestrator 통합 — RootGaitConsistencyTool = KDG 최상위 노드 + **GT-free STOP gate** (AR-074: apply IF skate高 AND path_gain 정상 else STOP) 편입. registry candidate-set 확장 = §4 change-obligation | 🟠 | AR-072 tool export만(freeze). AR-074 STOP 신호 구현. Safe Orchestration no-harm gate |
+| AR-078 | RL-Q | **Routing gate 비교 (held-out benefit-AUC)** — generator-only / skate-only(AR-077: AUC 0.55 사용불가) / **richer-state** gate 를 same held-out 에서 benefit-AUC·false-apply 로 비교. AR-065 재구축 state 활용 | 🔴 | AR-077 2차 피드백 결정: 단일 skate gate 불충분 확인 → richer pre-action state 필요. **AR-075 선행** |
+| AR-065 | RL-Q | **Effect-aware state 재구축 (AR-078 선행)** — 기존 learned ranker (AR-040/052) 는 v0.1.0 무신호 feature 로 학습됨 → 수리된 v0.2.0 state + root-deficit proxy(path_gain/induced_disp) feature 재산출 | 🟠 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-063/077 후속. richer routing state 후보 |
+| AR-075 | RL-Q | Orchestrator 통합 — RootGaitConsistencyTool = KDG 최상위 노드 + STOP gate 편입. ⚠️ **foot-skate 단일 gate 통합 금지** (AR-077: benefit-AUC 0.55, false-apply 45%) → AR-078 에서 richer-state gate 가 held-out 개선 확인 후 통합 | 🟡 | AR-078 결과 대기. registry 확장 = §4. Safe Orchestration no-harm gate |
 | AR-066 | Evaluator | Intent-aware float weighting — **경량 5-rule 확정**: prompt 4-bucket keyword 분류(ground-required/airborne/seated-lying/ambiguous) → ground-required 만 강한 float 판정, airborne/seated 제외·약가중, ambiguous 보류, raw score 전량 기록 | 🟡 | 07-08 경량화 (floating 은 축 하나 — 과투자 방지). [spec](../docs/dashboard-task-specs/AR-066-intent-aware-float-weighting.md). 임베딩 분류는 spot-check 실패 시만 optional |
-| AR-065 | RL-Q | Effect-aware state 재구축 검토 — 기존 learned ranker (AR-040/052 계열) 는 v0.1.0 무신호 feature (Skate/Penetrate ≡ 0) 로 학습됨 → 수리된 v0.2.0 state 로 feature 재산출 + re-train 여부 판단 | 🟠 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-063 후속 |
 | AR-064 | Tool | Bone-preserving propagation — coord cleanup 의 leg-chain 선형 propagation(NOT IK)이 u 비례 BoneCV 상승(+0.045~0.053 @u=1.0) 유발 → IK 또는 사후 bone re-projection 으로 대체 | 🟠 | [spec](../docs/dashboard-task-specs/AR-064-bone-preserving-propagation.md). AR-061 후속. u=0.25 는 +0.002 로 미미 — 저강도 우선 운용 가능 |
 | AR-059 | Future-RL | RS-GRPO-style scoped reward / intent evaluator — 현재는 오버엔지니어링, 먼 훗날 human labels 축적 후 reward-model/RL 학습 후보 | ⚪ | 지금은 scope 분리 철학만 AR-058-3e human rubric에 반영 |
 | AR-041 | RL-Q | v1 target-aware ranker — target proposal + local/relation feature 구현 | 🟠 | AR-037 후속. action=`(tool,target,u)`, g2_stress oracle gap 회수 목적 |
