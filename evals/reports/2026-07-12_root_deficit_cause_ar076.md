@@ -24,7 +24,9 @@
 
 ## 왜 중요한가 (P5·VQ 대비)
 
-1. **MDM 국소 버그가 아니라 diffusion 패러다임 수준 현상** — root 채널의 mode collapse 는 x0-예측 생성의 일반적 실패 유형. 본 연구 발견의 일반성↑ (단, MDM 단일 관측 — 타 diffusion 미검).
+> **문구 제한 (2026-07-12 피드백 채택)**: 본 결과의 정식 표현은 **"MDM 에서 root progression collapse 관측"** — "diffusion 패러다임 일반 현상" 은 MDM 단일 관측에서 과확장이므로 타 diffusion(MLD 등) 재현 전까지 주장하지 않는다.
+
+1. **MDM 국소 관측 (일반화 유보)** — root 채널의 mode collapse 는 x0-예측 생성의 실패 유형과 정합하나, **본 측정은 MDM 단일**. 타 diffusion 재현은 future work.
 2. **VQ(MotionGPT) root 가 깨끗한 이유 설명** — codebook 이 실데이터 root token 을 그대로 복사(quantize)하므로 평균 붕괴가 없음. AR-071/AR-063 의 "VQ 는 skate 희소" 와 한 그림.
 3. **AR-072 처방이 왜 통했는지 설명** — 병인이 "root 값이 상수로 붕괴"라, 접지 제약으로 root 를 다시 풀면(GT-free) 다리가 함의하는 이동량이 복원됨. 처방과 병인이 정합.
 
