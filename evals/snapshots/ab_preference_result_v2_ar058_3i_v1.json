@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "ab_preference_result_v2",
+  "board_id": "AR-058-3i",
+  "preregistration_ref": "evals/snapshots/ab_preference_pack_v2_ar058_3i_v1.json",
+  "stimulus": {"playback_fps": 20, "note": "실속도 제시 (v1 의 슬로모 confound 수정 후)"},
+  "rater": {"rater_id": "rater1 (user/researcher)", "n_raters": 1, "tier": "b1",
+            "collection": "chat 응답 2026-07-12 'BABABBBAABABAABABAAB', blind 유지 (answer_key 미열람 판정)"},
+  "responses_A_or_B": ["B","A","B","A","B","B","B","A","A","B","A","B","A","A","B","A","B","A","A","B"],
+  "preferred_motion_per_pair": {
+    "pair_01": "corrected", "pair_02": "corrected", "pair_03": "corrected", "pair_04": "corrected",
+    "pair_05": "original", "pair_06": "original", "pair_07": "corrected", "pair_08": "original",
+    "pair_09": "corrected", "pair_10": "original", "pair_11": "corrected", "pair_12": "original",
+    "pair_13": "corrected", "pair_14": "original", "pair_15": "original", "pair_16": "original",
+    "pair_17": "original", "pair_18": "corrected", "pair_19": "original", "pair_20": "corrected"
+  },
+  "result": {
+    "corrected_preferred": 10,
+    "original_preferred": 10,
+    "n_pairs": 20,
+    "binomial_two_sided_p": 1.0,
+    "interpretation": "정확히 우연(50%) — combo 처방도 지각 선호 없음"
+  },
+  "preregistered_branch_triggered": {
+    "branch": "fail (<=12/20)",
+    "consequence": "마지막 재검정 소진 — anchoring 계열 처방(cleanup 단독, combo)의 지각 claim 최종 불성립 (b1). Stop 방향. 단 사용자 사전 확정 순서에 따라 AR-071 (root/gait mismatch 기전 진단) 즉시 실행 — 지지 시 root-aware correction 은 별도 신규 pair (새 사전등록 + §3-11 게이트)로만.",
+    "note": "기준 사후 조정 없음. v1(11/20, 슬로모 제시) + v2(10/20, 실속도) — 제시 속도와 무관하게 우연 수준."
+  },
+  "exploratory_posthoc_NOT_confirmatory": {
+    "label": "post-hoc 탐색 — 결론/근거 사용 금지 (HARKing 방지)",
+    "fs_improvement_vs_preference": "fs 개선 최대 5쌍 (p10 -0.0186 / p17 -0.0170 / p15 -0.0156 / p19 -0.0149 / p06 -0.0140) 전부 original 선호; fs 개선 최소 3쌍 (p03/p18/p13) 은 corrected 선호 — '많이 고칠수록 나빠 보임'의 역상관 패턴. root-deficit 가설과 정합 (부족한 root 에 발을 강하게 고정할수록 제자리걸음 인상) — AR-071 이 검정",
+    "float_pattern": "float 악화 큰 쌍(>0.03) 5개 중 4개 original 선호 (반례 p01) — v1 의 bone 패턴보다 약함"
+  },
+  "evidence_tier": "b1 (단일 평가자) — 외부 공개 claim 불가",
+  "claim_boundary": "허용: 'anchoring 계열 처방은 b1 blind A/B 2회(v1 슬로모, v2 실속도)에서 모두 우연 수준'. 금지: '모든 보정이 지각적으로 무의미' 일반화 (root-space 처방은 미검) / 탐색 패턴의 확증 인용"
+}
