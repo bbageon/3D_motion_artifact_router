@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | Blocked by / Note |
 |---|---|---|---|---|
-| AR-058-3i | Perceptual | **A/B v2 — combo(cleanup u=0.75 → BoneProjection legs) 재검정** (마지막 재검정, 사전 명시). MDM worst-tail 신규 20 prompt (rank 21~40, v1 비중복 — 기억 오염 방지). float +1.5cm trade 공시. 기준: ≥15/20 지지 / ≤12/20 → Stop 방향 | 🔴 | AR-070 P5 설계 확정. 사용자 go 시 pack 제작 (반나절) |
+| AR-058-3i | Perceptual | **A/B v2 — pack 완성, 사용자 판정 대기** (20쌍, ~10분, **마지막 재검정**). [index](../../reports/figures/2026-07-12/ar058_3i_ab_v2_pack/index.md) → [rater_sheet.csv](../../reports/figures/2026-07-12/ar058_3i_ab_v2_pack/rater_sheet.csv). ⚠️ answer_key 판정 전 열람 금지 | 🔴 | 기준: ≥15/20 지지 / **≤12/20 → Stop 방향** / 13~14 → b2. combo 물리: fs −48% 20/20, legCV 전쌍 0, float +0.016 공시. [prereg](../../evals/snapshots/ab_preference_pack_v2_ar058_3i_v1.json) |
 | AR-058-3f | Evidence | Foot-skate human feedback pilot execution — 사람이 보기에도 품질 저하인지 검증하고 정의 freeze | 🔴 | Pack 준비 완료 + skate-segment GIF 18개 추가(0c70293). 사용자/평가자 응답 대기 (3h 의 A/B 와 상보 — 3f=가시성 절대평가, 3h=보정 선호). [rater index](../../reports/figures/2026-07-02/ar058_3f_footskate_human_feedback_pack/rater_index.md), [spec](../docs/dashboard-task-specs/AR-058-3f-human-feedback-pilot-execution.md) |
 | AR-058-5 | Evidence | P5 - artifact-aware state-conditioned routing 필요성 종합 | 🔴 | P1~P4 evidence chain을 도입부 주장/그림으로 통합. [spec](../docs/dashboard-task-specs/AR-058-5-p5-routing-necessity-synthesis.md) |
 | AR-020 | Evidence | H-2026-205 status `active`→`supported` 검토 | 🟠 | **사용자 승인 게이트** (AGENTS.md §3-11). snapshot≥2 + 12/12 재현 요건 충족 ([evals/reports/2026-06-01_g2_learned_vs_baseline.md](../../evals/reports/2026-06-01_g2_learned_vs_baseline.md)) |
