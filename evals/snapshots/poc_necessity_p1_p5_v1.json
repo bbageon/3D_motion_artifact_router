@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "poc_necessity_p1_p5",
+  "board_id": "AR-058-5",
+  "frame": "증상(artifact score) 최적화 ≠ 지각 품질 — post-generation refinement 는 motion 기전을 고려해야 한다",
+  "evidence_chain": [
+    {
+      "step": "P1/P2 problem & profile",
+      "claim": "foot skating 은 실재하고 generator-특이적 (MDM = VQ 의 ~2x; v2 gate fire 23% vs 1~2%)",
+      "numbers": {
+        "fs": {
+          "mdm": 0.0108,
+          "motiongpt": 0.00564,
+          "momask": 0.00447
+        },
+        "gate_fire_v2": {
+          "mdm": 0.23111,
+          "motiongpt": 0.01667,
+          "momask": 0.01333
+        }
+      },
+      "evidence": [
+        "representative_pool_measure_v1.json",
+        "gate_prevalence_remeasure_ar063_v1.json"
+      ],
+      "tier": "real-distribution",
+      "category": "B (+v2 gate)"
+    },
+    {
+      "step": "P3 quality relation",
+      "claim": "generator 수준에서 MDM foot-skate ↔ 나쁜 FID/R@1; bone 축은 matched_dist 방향 일치 (상관)",
+      "evidence": [
+        "poc_artifact_quality_link_ar058_3_v1.json"
+      ],
+      "tier": "real-distribution",
+      "category": "A proxy 연결"
+    },
+    {
+      "step": "P4 fixed insufficiency",
+      "claim": "고정 FootLock: artifact_total↓ 이면서 foot_skate↑ — 3/3 generator mixed",
+      "numbers": {
+        "fs_delta_large": {
+          "mdm": 0.01452,
+          "motiongpt": 0.00467,
+          "momask": 0.00458
+        }
+      },
+      "evidence": [
+        "p4_fixed_tool_effect_v1.json"
+      ],
+      "tier": "real-distribution",
+      "category": "B/C"
+    },
+    {
+      "step": "E5 conditional physics",
+      "claim": "coord cleanup: MDM CI-clean 개선 vs VQ 는 STOP 이 정답 — 조건부 선택 실증",
+      "numbers": {
+        "fs_delta_u100": {
+          "mdm": -0.00129,
+          "motiongpt": 0.00011,
+          "momask": 0.0003
+        }
+      },
+      "evidence": [
+        "coordinate_footskate_effect_ar061_v1.json"
+      ],
+      "tier": "real-distribution",
+      "category": "B"
+    },
+    {
+      "step": "E6 physics != perception",
+      "claim": "물리 개선(fs -48%, legCV 0)에도 blind 선호 = 우연 (v1 11/20 슬로모, v2 10/20 실속도) — 사전등록 2회",
+      "numbers": {
+        "ab_v1": "11/20",
+        "ab_v2": "10/20",
+        "v2_fs_improved": "20/20"
+      },
+      "evidence": [
+        "ab_preference_result_ar058_3h_v1.json",
+        "ab_preference_result_v2_ar058_3i_v1.json"
+      ],
+      "tier": "quality-validated 시도 (b1 한계)",
+      "category": "perceptual b1"
+    },
+    {
+      "step": "E7 mechanism",
+      "claim": "MDM root 전진 = GT 의 42% (165/165 prompt) + 부족↔fs rho=+0.34 — 증상이 아니라 기전 (방향 서명은 불확정)",
+      "numbers": {
+        "speed_ratio": 0.4192,
+        "rho": 0.3389,
+        "p": 8.481256240163952e-06
+      },
+      "evidence": [
+        "root_gait_mismatch_ar071_v1.json"
+      ],
+      "tier": "real-distribution (진단)",
+      "category": "B-계 (GT 참조)"
+    }
+  ],
+  "figure": "reports/figures/2026-07-12/poc_necessity_p1_p5/p5_evidence_chain_4panel.png",
+  "constraints_honored": [
+    "v0.1.0 gate-fire 불인용 (v2 만)",
+    "pair 구조 §0-0",
+    "b1 한계 명시",
+    "단일 벤치마크(HumanML3D) 스코프"
+  ],
+  "claim_boundary": {
+    "allowed": "관측된 발생·공통좌표 측정가능성·품질 관계·고정 처방의 부작용·조건부 물리 개선·지각 불충분·기전 진단이 'artifact-aware, mechanism-aware refinement' 의 필요성을 동기화한다",
+    "forbidden": "ArtifactRouter 가 artifact 를 해결했다 / 지각 품질 향상을 달성했다 / 모든 generator 에 일반화된다 (b1, 단일 벤치마크)"
+  }
+}
