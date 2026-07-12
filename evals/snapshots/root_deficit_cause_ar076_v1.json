@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "root_deficit_cause",
+  "board_id": "AR-076",
+  "n_locomotion_prompts": 165,
+  "split_id": "protocol_rep_pool_seed20260608 mdm + HumanML3D GT",
+  "candidate_A_root_channel": {
+    "stride_ratio_MDM_over_GT": {
+      "mean": 3.2987,
+      "ci95": [
+        1.1052,
+        7.5821
+      ]
+    },
+    "cadence_ratio_MDM_over_GT": {
+      "mean": 1.1451,
+      "ci95": [
+        1.0389,
+        1.2608
+      ]
+    },
+    "verdict": "root-only 지지 (gait 정상)"
+  },
+  "candidate_B_mean_regression": {
+    "ols_slope": 0.0272,
+    "ols_intercept": 0.00842,
+    "slope_ci95": [
+      0.0186,
+      0.0405
+    ],
+    "std_MDM": 0.00085,
+    "std_GT": 0.01493,
+    "std_ratio_MDM_over_GT": 0.0571,
+    "verdict": "지지 (기울기<1 + 분산 축소)"
+  },
+  "candidate_C_integration_drift": {
+    "first_half_speed_mean": 0.0092,
+    "second_half_speed_mean": 0.00912,
+    "second_over_first_ratio": {
+      "mean": 0.9915,
+      "ci95": [
+        0.9826,
+        1.0007
+      ]
+    },
+    "verdict": "불확정"
+  },
+  "overall_ratio_mean": 0.4193,
+  "claim_boundary": "관측 진단 (재학습/ablation 아님) — 확정 원인 주장 금지. MDM·단일 벤치마크 한정.",
+  "grounding": [
+    "Guo HumanML3D CVPR2022 (표현)",
+    "Tevet MDM ICLR2023 (x0 예측)",
+    "Guo MoMask CVPR2024 (VQ 대비)"
+  ]
+}

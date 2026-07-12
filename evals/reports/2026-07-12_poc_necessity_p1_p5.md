@@ -62,7 +62,9 @@ Cross-link: [P1](2026-06-27_poc_artifact_occurrence_ar058_1.md) · [P3](2026-06-
 
 ⟹ **"증상(artifact score)을 고치면 지각이 안 따라오지만, 병인(root/gait mismatch)을 고치면 물리·표준지표·지각이 모두 회복된다."** E6(물리≠지각)의 안티테제가 아니라 그 해답 — refinement 는 기전을 다뤄야 한다는 P5 주장의 직접 실증. **표현 규율: intervention evidence** (개입이 경로·속도·리듬 동시 변경 → 완전 인과 아님). [결과](2026-07-12_ab_preference_result_v3_ar072.md) · [spec](../../.claude/docs/dashboard-task-specs/AR-072-root-aware-correction-design.md)
 
-**남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (AR-023) · VQ/비-locomotion · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · orchestrator 통합 (root = KDG 최상위 노드) · 타 데이터셋 (AR-067).
+**E9 — 병인의 생성-기전 진단 (AR-076)**: 원본 MDM 이 왜 root 가 부족했나 = **root-속도 채널의 mode collapse (평균 회귀)** — OLS 기울기 0.027 (GT 요구와 거의 무관), 분산 = GT 의 5.7% (다양한 이동량을 상수로 붕괴). 적분 누적(C) 기각, leg cadence(A) 보존. ⟹ x0-예측 **diffusion 패러다임 수준** 현상 (MDM 국소 버그 아님; VQ 는 codebook 이 실 root 복사라 collapse 없음 → root 깨끗). 본 진단이 "증상 아니라 기전" 주장을 생성 단계까지 소급. **관측 진단** (재학습 ablation 아님 — 확정 인과 금지). [AR-076](2026-07-12_root_deficit_cause_ar076.md)
+
+**남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (AR-023) · VQ/비-locomotion · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · orchestrator 통합 (root = KDG 최상위 노드) · 타 데이터셋 (AR-067) · 타 diffusion (MLD 등) 에서 mode-collapse 재현.
 
 ## 6. Limitations
 
