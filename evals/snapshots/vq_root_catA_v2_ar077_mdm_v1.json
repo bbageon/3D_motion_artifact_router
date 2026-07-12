@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "vq_root_catA_v2",
+  "board_id": "AR-077",
+  "generator": "mdm",
+  "N_locomotion_prompts": 165,
+  "n_missing_or_skip": 0,
+  "protocol": "locomotion 한정, prompt 단위(seed-avg emb), prompt-bootstrap(B=300, 내부 batch-32 perm), equal-N",
+  "stat_unit": "prompt (seed 평균) — permutation 은 R-Prec 추정 내부 반복 (독립실험 아님)",
+  "original": {
+    "R@1": 0.2523,
+    "R@2": 0.3633,
+    "R@3": 0.4469,
+    "MM_Dist": 5.3476,
+    "FID_vs_GT": 13.931
+  },
+  "corrected": {
+    "R@1": 0.3,
+    "R@2": 0.45,
+    "R@3": 0.5437,
+    "MM_Dist": 4.3345,
+    "FID_vs_GT": 6.71
+  },
+  "paired_diff_prompt_bootstrap": {
+    "R@1": {
+      "mean": 0.05229,
+      "ci95": [
+        0.00889,
+        0.08869
+      ]
+    },
+    "MM_Dist": {
+      "mean": -1.01555,
+      "ci95": [
+        -1.22176,
+        -0.83467
+      ]
+    },
+    "FID": {
+      "mean": -7.225,
+      "ci95": [
+        -9.34892,
+        -5.36357
+      ]
+    }
+  },
+  "no_harm_verdict": "무해 (Cat-A 유지)",
+  "routing": "mdm locomotion: root-aware correction 이 Cat-A 를 유지. root deficit 여부(diagnostic)와 결합해 apply/STOP 판정.",
+  "claim_boundary": "locomotion 한정 공정 비교. generator 인과(VQ 구조) 금지. 지각은 A/B 별도. 'GT 와 동일' 금지 → '평균 root deficit 증거 없음'."
+}

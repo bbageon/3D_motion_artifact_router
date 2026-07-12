@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "gtfree_stop_separation",
+  "board_id": "AR-077",
+  "question": "GT root ratio 없이 관측 신호(skate/path_gain/induced_disp)만으로 MDM=apply, VQ=STOP 분리되나",
+  "skate_apply_threshold": {
+    "value": 0.00818,
+    "def": "MDM foot_skate 25th pct (AR-074 skate-high gate proxy)"
+  },
+  "per_generator": {
+    "mdm": {
+      "n": 165,
+      "skate": {
+        "mean": 0.01251,
+        "ci95": [
+          0.0116,
+          0.01336
+        ]
+      },
+      "path_gain": {
+        "mean": 2.642
+      },
+      "induced_disp": {
+        "mean": 1.2047
+      },
+      "frac_above_skate_thr": 0.745
+    },
+    "motiongpt": {
+      "n": 165,
+      "skate": {
+        "mean": 0.00651,
+        "ci95": [
+          0.00615,
+          0.00682
+        ]
+      },
+      "path_gain": {
+        "mean": 1.017
+      },
+      "induced_disp": {
+        "mean": 0.3668
+      },
+      "frac_above_skate_thr": 0.212
+    },
+    "momask": {
+      "n": 165,
+      "skate": {
+        "mean": 0.0053,
+        "ci95": [
+          0.00488,
+          0.00572
+        ]
+      },
+      "path_gain": {
+        "mean": 0.864
+      },
+      "induced_disp": {
+        "mean": 0.4142
+      },
+      "frac_above_skate_thr": 0.103
+    }
+  },
+  "separation_auc_MDM_vs_VQ": {
+    "skate": {
+      "vs_motiongpt": 0.834,
+      "vs_momask": 0.879
+    },
+    "induced_disp": {
+      "vs_motiongpt": 0.865,
+      "vs_momask": 0.837
+    }
+  },
+  "interpretation": "frac_above_skate_thr: MDM 높음(apply)·VQ 낮음(STOP) 이면 skate gate 하나로 GT-free 분리 성립. AUC≈1 = 신호가 MDM/VQ 를 강하게 분리.",
+  "claim_boundary": "GT-free 신호 분리 검증 (관측). generator 인과(VQ 구조) 주장 금지. MDM·단일 벤치마크."
+}
