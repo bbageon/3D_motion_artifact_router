@@ -5,9 +5,24 @@ Epic: Evidence
 Priority: 🔴 (v2 판정 해석에 직결)  
 Parent: AR-058-3i / 사용자 관찰: "걷는 것에 비해 전진 거리가 짧아 보이고, 그로 인해 foot skating 이 많이 발생한 것으로 보인다"
 
-## Hypothesis (internal, 검정 대상)
+## Hypothesis (internal, 검정 대상 — 사용자 확정 문구 2026-07-12)
 
-MDM foot-skate 의 지배 기전 = **root(골반) 전진량이 다리 보행 주기가 함의하는 속도보다 부족** (root translation deficit). 다리는 v_gait 로 걷는 pose 를 만드는데 root 는 v_root < v_gait 로만 전진 → 접지발의 world 속도 = v_root − v_gait < 0 → **접지 중 발이 뒤로 미끄러짐** (문워크 방향).
+> **"foot skating 은 root trajectory 와 gait speed mismatch 의 결과일 수 있음."**
+
+기전: root(골반) 전진량이 다리 보행 주기가 함의하는 속도보다 부족 (root translation
+deficit). 다리는 v_gait 로 걷는 pose 를 만드는데 root 는 v_root < v_gait 로만 전진 →
+접지발의 world 속도 = v_root − v_gait < 0 → **접지 중 발이 뒤로 미끄러짐** (문워크 방향).
+
+## 확정 실행 순서 (사용자 승인 2026-07-12 — 판정 전 고정)
+
+1. **AR-058-3i v2 A/B 판정 먼저** (본 진단 결과를 먼저 보면 기대 형성으로 판정 오염 —
+   진단은 판정 후에만 실행·보고).
+2. **AR-071 진단 실행** (아래 검정).
+3. **지지 시**: root-aware correction 을 **새 task 로 등록** (새 pair = 새 사전등록 +
+   사용자 게이트 — §3-11).
+4. **지지 시**: 기존 FootLock / coordinate cleanup 을 **"대증요법(symptomatic
+   treatment)"으로 재해석** — 증상(미끄러짐)을 국소 억제하나 병인(root deficit)을
+   고치지 않음. P5/position 문서에 재해석 반영.
 
 ## 검정 (싼 진단, MDM representative 300)
 
