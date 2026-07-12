@@ -9,8 +9,9 @@
   ],
   "n_motions": 2699,
   "pool": "전체 300 prompt × 3 seed × 3 gen (GT 필터 없음 — 실배포 GT-free 조건)",
-  "benefit_label": "ΔMM-Dist < -δ per motion (δ=VQ noise floor=0.1163). '부호만'(δ=0) 아님.",
-  "delta_sensitivity_benefit_neutral_harm": {
+  "benefit_label": "ΔMM-Dist < -δ per motion. **δ=0.0972 = calibration VQ |ΔMM| median** (holdout 미사용 — 누수 차단, 피드백 3차). '부호만'(δ=0) 아님.",
+  "delta_caveat": "δ 는 VQ calibration median 기반 → VQ neutral 비율이 구조적으로 ~50% 근처가 됨. 따라서 'VQ 절반이 실제 무효' / 'MDM 57%·VQ 20% benefit' / 'AUC 0.68' 은 **확정 사실 아니라 δ 조건부 exploratory**. 정확한 진술: '내부 δ 조건에서 MDM ~57%·VQ ~20% benefit, pooled AUC ~0.68'.",
+  "delta_sensitivity_benefit_neutral_harm_EXPLORATORY": {
     "0.0": {
       "mdm": {
         "benefit": 0.654,
@@ -62,56 +63,55 @@
         "harm": 0.304
       }
     },
-    "0.116": {
+    "0.097": {
       "mdm": {
-        "benefit": 0.567,
-        "neutral": 0.158,
-        "harm": 0.276
+        "benefit": 0.581,
+        "neutral": 0.129,
+        "harm": 0.29
       },
       "motiongpt": {
-        "benefit": 0.216,
-        "neutral": 0.499,
-        "harm": 0.285
+        "benefit": 0.235,
+        "neutral": 0.454,
+        "harm": 0.311
       },
       "momask": {
-        "benefit": 0.206,
-        "neutral": 0.5,
-        "harm": 0.294
+        "benefit": 0.227,
+        "neutral": 0.467,
+        "harm": 0.307
       }
     }
   },
-  "delta_note": "δ=0 은 '부호만'(과장). VQ 는 near-no-op 이라 δ 올리면 benefit→neutral 로 이동 = '평균 악화하나 개별 Δ 절반씩 섞임'.",
   "gate_feature": "foot_skate (GT-free 관측)",
-  "generator_benefit_rate_at_delta": {
-    "mdm": 0.566,
-    "motiongpt": 0.216,
-    "momask": 0.204
+  "generator_benefit_rate_at_calib_delta": {
+    "mdm": 0.581,
+    "motiongpt": 0.235,
+    "momask": 0.226
   },
-  "overall_benefit_rate": 0.329,
+  "overall_benefit_rate_at_calib_delta": 0.347,
   "calibration": {
     "n": 1349,
     "youden_threshold": 0.0077,
-    "youden_J": 0.336
+    "youden_J": 0.305
   },
   "holdout": {
     "n": 1350,
-    "benefit_auc": 0.684,
+    "benefit_auc": 0.674,
     "benefit_auc_ci95_boot1000": [
-      0.642,
-      0.724
+      0.631,
+      0.717
     ],
-    "precision": 0.498,
-    "recall": 0.514,
-    "false_apply_rate": 0.502,
-    "false_stop_rate": 0.255,
+    "precision": 0.504,
+    "recall": 0.499,
+    "false_apply_rate": 0.496,
+    "false_stop_rate": 0.274,
     "confusion": {
-      "tp": 236,
-      "fp": 238,
-      "fn": 223,
-      "tn": 653
+      "tp": 239,
+      "fp": 235,
+      "fn": 240,
+      "tn": 636
     }
   },
-  "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). AUC>0.7 = foot_skate 가 held-out 에서 benefit 예측. false_apply = APPLY 했는데 harm 비율 (no-harm 위반).",
+  "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). false_apply = APPLY 로 선택한 표본 중 **최소 benefit(δ) 기준 미충족** 비율 (neutral+harm 포함 — '절반이 품질 악화'가 아니라 '절반이 유의 개선 못함'). AUC/false_apply 모두 δ 조건부.",
   "claim_boundary": "held-out benefit-prediction gate. 완전 GT-free (pool 선정도 GT 무관). MM-Dist 를 benefit proxy 로 사용 (지각 아님) — 지각 benefit 은 A/B 필요. MDM·단일 벤치마크.",
   "grounding": [
     "Guo HumanML3D CVPR2022 (MM-Dist)",

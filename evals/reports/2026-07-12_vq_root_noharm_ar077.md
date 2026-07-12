@@ -78,18 +78,20 @@ VQ 통과율이 0%가 아니라 10~21% 이므로 **"VQ=STOP"이 아니라 "STOP 
 
 ⟹ **"VQ 47% benefit"은 부호만의 착시.** 실질(δ)로 보면 **VQ 는 절반이 neutral**(correction 무효과) + benefit 21% ≈ harm 29% = **평균 net-무효~약간 harm**. MDM 은 benefit 57% > harm 28% = **net 이득**.
 
-**held-out routing gate (benefit label δ=0.116, n=1350):**
+**held-out routing gate (benefit label δ=0.097 = calibration VQ median, 누수 차단, n=1350):**
 
 | | 값 |
 |---|---|
-| **benefit AUC** | **0.684** [0.642, 0.724] (proper bootstrap) — moderate (부호만 0.55 보다 높음: δ 가 noise coin-flip 제거) |
-| precision / recall | 0.498 / 0.514 |
-| **false-apply / false-stop** | **0.502** / 0.255 |
+| **benefit AUC** | **0.674** [0.631, 0.717] (proper bootstrap) — moderate (부호만 0.55 보다 높음). δ 누수 수정 전(0.684)과 사실상 동일 → 누수가 부풀린 것 아님 |
+| precision / recall | 0.504 / 0.499 |
+| **false-apply / false-stop** | **0.496** / 0.274 |
+
+(benefit@δ: MDM 0.581 / MotionGPT 0.235 / MoMask 0.226 — δ=calibration VQ median.)
 
 **결론 (2차 피드백 후 — δ 조건부·exploratory 명시):**
-- ⚠️ **δ 조건부 caveat (3차 피드백)**: δ=0.116 은 **calibration VQ |ΔMM| median** (holdout 미사용 — 누수 차단). 단 VQ median 기반이라 **VQ neutral ~50% 는 구조적**. 따라서 "VQ 절반이 실제 무효" / "MDM 57%·VQ 20% benefit" / "AUC 0.68" 은 **확정 사실 아님 — δ 조건부 exploratory**. 정확: **"내부 δ 조건에서 MDM ~57%·VQ ~20% benefit 분류, pooled AUC ~0.68"**.
-- **generator 수준**: (δ 조건부) 실질 benefit MDM ~57% vs VQ ~20% — 차이 뚜렷.
-- **motion 수준**: foot_skate benefit-AUC ~0.68 (δ 조건부) — 부호만 0.55 보다 높으나 exploratory.
+- ⚠️ **δ 조건부 caveat (3차 피드백)**: δ=0.097 은 **calibration VQ |ΔMM| median** (holdout 미사용 — 누수 차단). 단 VQ median 기반이라 **VQ neutral 비율이 구조적으로 ~50% 근처**. 따라서 "VQ 절반이 실제 무효" / "MDM 58%·VQ 23% benefit" / "AUC 0.67" 은 **확정 사실 아님 — δ 조건부 exploratory**. 정확: **"내부 δ 조건에서 MDM ~58%·VQ ~23% benefit 분류, pooled AUC ~0.67 [0.63,0.72]"**.
+- **generator 수준**: (δ 조건부) 실질 benefit MDM ~58% vs VQ ~23% — 차이 뚜렷.
+- **motion 수준**: foot_skate benefit-AUC ~0.67 (δ 조건부) — 부호만 0.55 보다 높으나 exploratory. δ 누수 수정 전후 동일(0.68→0.67).
 - **실용 gate**: **false-apply ~50%** = APPLY 선택 표본의 절반이 **최소 benefit(δ) 기준 미충족** (neutral+harm 포함 — "절반이 품질 악화" 아님). no-harm gate 로 불충분.
 
 ⟹ **"routing 이 작동한다" 아님 → "richer-state routing 의 필요성은 생겼으나 성능은 미검증"**. 단일 skate gate 는 δ 조건부 moderate 신호이나 no-harm 용으로 불충분.
@@ -105,10 +107,10 @@ VQ 통과율이 0%가 아니라 10~21% 이므로 **"VQ=STOP"이 아니라 "STOP 
 
 > **Root-aware correction 은 MDM 에서 분포 수준의 품질을 개선하지만(R@1↑·MM↓·FID↓, Cat-A v3), 개별 motion 의 적용 이득은 foot-skate 단일 feature 로 신뢰성 있게 예측할 수 없다(holdout AUC 0.55, false-apply 45%). 따라서 generator-level rule 은 유효한 baseline 이지만, per-motion no-harm routing 을 위해서는 richer pre-action state 가 필요하다.**
 
-| 층위 | 결론 (δ-수정) | 판정 |
+| 층위 | 결론 (δ 조건부 exploratory) | 판정 |
 |---|---|---|
-| Generator 평균 | 실질 benefit MDM 57% vs VQ 20% | **명확** |
-| 개별 motion | foot-skate 로 benefit 예측 AUC 0.68 | **중간 (useless 아님)** |
+| Generator 평균 | benefit@δ MDM 58% vs VQ 23% | **명확** |
+| 개별 motion | foot-skate 로 benefit 예측 AUC 0.67 [0.63,0.72] | **중간 (useless 아님)** |
 | 실용 gate | false-apply 50% | **단일-feature 로 불충분** |
 | Routing 필요성 (richer state 동기) | 성립 | ✅ |
 | Learned routing 성능 (benefit 잘 예측) | **미성립** | ❌ |

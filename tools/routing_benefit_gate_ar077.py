@@ -186,7 +186,7 @@ def main() -> None:
     args.output.parent.mkdir(parents=True, exist_ok=True)
     json.dump(out, open(args.output, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
     import sys as _s; _s.stdout.reconfigure(encoding="utf-8")
-    print(f"benefit rate by gen: {gen_benefit} | overall {benefit.mean():.3f}")
+    print(f"δ(calib VQ median)={delta:.4f} | benefit@δ by gen: {gen_benefit_calib_delta} | overall {benefit.mean():.3f}")
     print(f"calib thr {best_thr:.5f} (J {best_j:.3f}) | HOLDOUT benefit AUC {auc_ho} ci{auc_ci} "
           f"prec {precision} recall {recall} | false_apply {false_apply} false_stop {false_stop}")
     print(f"[OK] wrote {args.output}")
