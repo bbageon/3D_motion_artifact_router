@@ -50,6 +50,11 @@ SNAP = REPO_ROOT / "evals" / "snapshots" / "ab_preference_pack_v2_ar058_3i_v1.js
 U_CLEANUP = 0.75
 PAIR_RNG_SEED = 20260712
 N_LEG_BONES = 8
+#: 재생 실속도 (canonical 20fps, §3-1). Amendment (2026-07-12, 응답 수집 전):
+#: v1/초기 v2 는 8fps(2.5배 슬로모) 렌더 — 사용자 지적 "느려서 발이 끌리는 것처럼
+#: 보임" → 슬로모는 동적 결함(slide) 지각을 약화하고 정적 결함(hover)은 그대로
+#: 보여 보정본에 비대칭 불리. v2 판정은 실속도로.
+PLAYBACK_FPS = 20.0
 
 
 def apply_combo(traj, cleanup, bone_tool):
@@ -115,7 +120,7 @@ def main() -> None:
         left_is = "corrected" if rng.random() < 0.5 else "original"
         m_left, m_right = (combo, traj) if left_is == "corrected" else (traj, combo)
         gif = args.out_dir / f"pair_{k:02d}.gif"
-        render_pair_gif(m_left, m_right, foot, s, e, ground, gif)
+        render_pair_gif(m_left, m_right, foot, s, e, ground, gif, fps=PLAYBACK_FPS)
         pairs.append({
             "pair_id": f"pair_{k:02d}", "sample_id": m["sample_id"], "seed": m["seed"],
             "prompt": m["prompt"], "left_is": left_is,
@@ -138,6 +143,7 @@ def main() -> None:
         for p in pairs:
             w.writerow([p["pair_id"], "", "", ""])
     idx = ["# AR-058-3i A/B v2 Preference Test (blind) — 마지막 재검정", "",
+           "> **재생 = 실제 속도 (20fps)** — 지난 pack 과 달리 슬로모가 아닙니다.",
            "> 각 쌍에서 **발과 지면의 접촉, 다리의 자연스러움**을 보세요.",
            "> 왼쪽(A)과 오른쪽(B) 중 **어느 쪽이 더 자연스럽습니까?** 반드시 하나 선택 (강제선택)",
            "> + 확신도(0~3) → [rater_sheet.csv](rater_sheet.csv). 두 패널은 같은 구간 동기 재생.",
@@ -165,6 +171,10 @@ def main() -> None:
         "selection_rule": "MDM pool prompt별 max-seed foot_skate_world 순위에서 v1 20개 제외 후 상위 (rank 21~40 상당)",
         "blinding": {"pair_rng_seed": PAIR_RNG_SEED,
                      "left_corrected_count": sum(1 for p in pairs if p["left_is"] == "corrected")},
+        "stimulus": {"playback_fps": PLAYBACK_FPS, "native_fps": 20,
+                     "amendment_2026_07_12": "응답 수집 전 fps 8→20 (실속도). 사유: 슬로모(2.5x)가 "
+                                             "동적 결함(slide) 지각을 약화, 정적 결함(hover)은 유지 — "
+                                             "보정본에 비대칭 불리 (사용자 지적). v1 결과에는 caveat 주석."},
         "preregistered_criterion": {
             "rater_n": "1 (b1; 외부 claim 은 3+ 필요 — AR-023)",
             "support": ">=15/20 (이항 양측 p≈0.041) → P5 어조 '지각 선호 확인(b1)' + H-204 경로 개방",

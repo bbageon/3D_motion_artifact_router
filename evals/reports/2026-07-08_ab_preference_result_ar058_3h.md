@@ -1,5 +1,7 @@
 # AR-058-3h — A/B 선호 검정 결과 (b1, 사전등록 fail 분기 발동)
 
+> ⚠️ **Stimulus caveat (2026-07-12 발견, 사용자 지적)**: 본 검정의 GIF 는 **8fps 렌더 = 실속도(20fps)의 40%, 2.5배 슬로모**로 제시됐다. 양 패널이 동일 조건이라 **내적(A vs B) 비교의 공정성은 유지**되나, 슬로모는 동적 결함(미끄러짐 속도)의 지각을 약화하고 정적 결함(발 hover 높이)은 그대로 보여 **보정본에 비대칭적으로 불리한 제시**였을 수 있다. 본 결과(11/20)는 기록대로 유지하되 "슬로모 제시 하의 판정"으로 스코프 — v2 (AR-058-3i) 부터 실속도(20fps) 제시로 수정 (응답 수집 전 amendment).
+
 - 사전등록: [ab_preference_pack_ar058_3h_v1.json](../snapshots/ab_preference_pack_ar058_3h_v1.json) (판정 기준 결과 수집 전 박제)
 - 결과 raw: [ab_preference_result_ar058_3h_v1.json](../snapshots/ab_preference_result_ar058_3h_v1.json) · 응답: [rater_sheet_filled_rater1.csv](../../reports/figures/2026-07-08/ar058_3h_ab_preference_pack/rater_sheet_filled_rater1.csv)
 - Tier: **b1** (단일 평가자, blind 유지 — answer_key 미열람 판정). quality-validated (b2/b3) 아님.

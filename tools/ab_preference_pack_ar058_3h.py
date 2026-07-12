@@ -71,8 +71,13 @@ def _draw_panel(ax, motion, t, ground, lims):
     ax.set_xticks([]); ax.set_yticks([]); ax.set_zticks([])
 
 
-def render_pair_gif(m_left, m_right, foot, s, e, ground, out_path):
-    """좌/우 동기 재생 side-by-side GIF. 축 범위 = 두 motion 의 segment 합집합 (동일 스케일)."""
+def render_pair_gif(m_left, m_right, foot, s, e, ground, out_path, fps: float = FPS):
+    """좌/우 동기 재생 side-by-side GIF. 축 범위 = 두 motion 의 segment 합집합 (동일 스케일).
+
+    fps: 재생 속도. canonical motion 은 20fps (§3-1) — fps=20 이 실속도.
+    v1 pack 은 default 8fps (2.5배 슬로모) 로 제시됐음 (사용자 지적 2026-07-12:
+    슬로모는 동적 결함(slide) 대비 정적 결함(hover) 지각을 비대칭 왜곡 —
+    v1 결과 report 에 caveat 박제, v2 부터 fps=20 실속도)."""
     T = m_left.shape[0]
     s0, e0 = max(0, s - PAD), min(T - 1, e + PAD)
     seg = np.concatenate([m_left[s0:e0 + 1], m_right[s0:e0 + 1]], axis=0)
@@ -93,9 +98,9 @@ def render_pair_gif(m_left, m_right, foot, s, e, ground, out_path):
         axR.set_title("B", fontsize=14)
         fig.suptitle(f"frame {t}", fontsize=10, color="#666")
 
-    anim = FuncAnimation(fig, draw, frames=range(s0, e0 + 1), interval=1000 / FPS)
+    anim = FuncAnimation(fig, draw, frames=range(s0, e0 + 1), interval=1000 / fps)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    anim.save(str(out_path), writer=PillowWriter(fps=FPS))
+    anim.save(str(out_path), writer=PillowWriter(fps=fps))
     # §3-19 첫 frame 검사용 PNG.
     draw(s0)
     fig.savefig(str(out_path.with_suffix("")) + "_f0.png", dpi=70)
