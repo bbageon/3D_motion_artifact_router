@@ -29,3 +29,6 @@ Dashboard row 는 작업의 1줄 index 만 유지한다. 자세한 배경, 설�
 | AR-065 | [Effect-Aware State Rebuild on Repaired Evaluators](AR-065-effect-aware-state-rebuild.md) (backlog) |
 | AR-066 | [Intent-Aware Float Weighting](AR-066-intent-aware-float-weighting.md) (backlog) |
 | AR-067 | [KIT-ML Dataset Generalization Check](AR-067-kit-ml-dataset-generalization.md) (backlog) |
+| AR-058-3h | [A/B Preference Test v1](AR-058-3h-ab-preference-perceptual-test.md) (completed 07-08 — 11/20 fail) |
+| AR-071 | [Root Translation Deficit Diagnostic](AR-071-root-translation-deficit-diagnostic.md) (completed 07-12 — 부분 지지) |
+| AR-072 | [Root-Aware Correction Design](AR-072-root-aware-correction-design.md) (backlog — 새 pair, 사용자 게이트) |

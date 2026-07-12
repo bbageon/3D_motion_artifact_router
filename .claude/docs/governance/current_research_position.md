@@ -22,7 +22,8 @@
 
 | 위상 | Pair | 실측 근거 | Caveat |
 |---|---|---|---|
-| **명확 (primary)** | **foot skating → contact-aware cleanup (AR-061) / IK-계열 업그레이드 (AR-064)** | MDM CI-clean 개선 (Δ−0.00129, fi 58.3%, p<1e-6) + P1~P4 완주 + 프로파일 10배 차 (AR-063) | perceptual (A/B) 검증 대기 — **본 pair 만 지각 검증 대상** |
+| **명확 (primary) — ⚠️ 2026-07-12 지각 검증 실패, 대증요법 재해석** | **foot skating → contact-aware cleanup / combo(+BoneProj)** | MDM CI-clean 개선 (P1~P4 완주) — **물리 지표(Cat B) 개선은 유효** | **A/B b1 2회 모두 우연** (v1 11/20 슬로모·v2 combo 10/20 실속도, 마지막 재검정 소진) → anchoring 계열 = **대증요법** (증상 억제, 병인 미해결). 병인 후보 = root 전진 부족 (AR-071: MDM v_root = GT의 42%, 100% prompt, 부족↔fs ρ=+0.34 p<1e-5; 방향 서명은 불확정) |
+| **후보 (게이트 대기)** | **root trajectory deficit → root-aware correction (AR-072)** | AR-071 부분 지지 (T2·T3) | **새 pair = 새 사전등록 + §3-11 사용자 게이트.** semantic 위험 (이동 거리=의미) → Cat-A guard 의무. 개입 실험 전 인과 미확증 |
 | 보조 | penetration → ground projection | 유병률 실측 희소 (occur ≤1.8%, AR-063) | **tool 미구현 정당** — 유병률이 실재할 때만 설계 |
 | 보조 | BoneCV → BoneProjectionTool | 메커니즘 정합 (audit 2-4) | side-effect guard 의무 (§6-12) + gate 무판별 → **raw 값 guard 로만** |
 | 보조 | jitter → VelocitySmoothingTool | 메커니즘 정합 (audit 2-5) | **secondary 위상** — smoothing 보상 함정 기지 |

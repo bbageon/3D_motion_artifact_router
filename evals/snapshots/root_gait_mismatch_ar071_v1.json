@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "root_gait_mismatch_diagnostic",
+  "board_id": "AR-071",
+  "hypothesis": "foot skating 은 root trajectory 와 gait speed mismatch 의 결과일 수 있음 (사용자 2026-07-12)",
+  "split_id": "protocol_rep_pool_seed20260608 mdm (300 prompts x 3 seeds) + HumanML3D GT",
+  "design_note": "T2/T3 deficit 은 fs 정의와 독립인 골반 속도만 사용 (GT 기준) — spec 초안의 접지 상대속도 기반 mismatch 는 fs 와 수학적 얽힘(tautology 위험)으로 참고 지표로 강등",
+  "thresholds": {
+    "MOVE_THRESH": 0.005,
+    "LOCO_THRESH": 0.01,
+    "v2": [
+      0.05,
+      0.035,
+      0.025
+    ],
+    "t1_min_skate_frames": 5
+  },
+  "T1_direction_test": {
+    "n_prompts": 215,
+    "backward_frac_mean": 0.5383,
+    "backward_frac_ci95": [
+      0.4965,
+      0.5777
+    ],
+    "prompts_majority_backward": 0.5488,
+    "mean_signed_slide_m_per_frame": -0.00042,
+    "wilcoxon_p_signed_vs_0": 0.91627929
+  },
+  "T2_root_deficit_vs_GT": {
+    "n_locomotion_prompts": 165,
+    "speed_ratio_mean": 0.4192,
+    "speed_ratio_ci95": [
+      0.392,
+      0.4469
+    ],
+    "speed_ratio_p50": 0.3694,
+    "prompts_ratio_below_1": 1.0
+  },
+  "T3_deficit_fs_correlation": {
+    "spearman_rho_deficit_vs_fs": 0.3389,
+    "p_value": 8.481256240163952e-06,
+    "n": 165
+  },
+  "coverage": {
+    "n_prompts_total": 300,
+    "n_no_gt": 0
+  },
+  "preregistered_predictions": {
+    "T1": "backward 우세 (>0.5)",
+    "T2": "ratio < 1",
+    "T3": "rho > 0, p<0.05"
+  },
+  "verdict": {
+    "T1_direction": "불확정",
+    "T2_deficit_exists": "지지",
+    "T3_deficit_explains_fs": "지지",
+    "overall": "부분 지지",
+    "verdict_note": "CI 기반 규칙으로 재판정 (commit 전 로직 수정: 초기 코드는 점추정>0.5만 봐 T1 과판정. 원 통계치 무변경)"
+  },
+  "claim_boundary": "기전 진단 (상관+방향) — 인과 확증은 root-rescale 개입 실험으로만. 지지 시 root-aware correction 은 새 pair (새 사전등록 + §3-11 게이트).",
+  "grounding": [
+    "GMD ICCV2023 / EDGE CVPR2023 (contact 일관성·trajectory 유도 동기) — 본 가설 자체는 internal hypothesis"
+  ]
+}
