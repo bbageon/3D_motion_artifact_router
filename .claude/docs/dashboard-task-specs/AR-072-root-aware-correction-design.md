@@ -33,6 +33,14 @@ Parent: AR-071 (부분 지지: MDM v_root = GT 의 42%, 부족↔fs ρ=+0.34) / 
 
 **검정 순서**: ② 구현+unit → ③ 물리(즉시)+Cat-A(mgpt env) → 통과 시 ④ 새 blind A/B (신규 20 prompt, v1/v2 와 비중복, 기준 ≥15/≤12/13-14 동일 구조, **1회 원칙**).
 
+### ①-보강 (2026-07-12, 외부 피드백 채택 — Cat-A 결과 도착 전 amendment)
+
+1. **FID guard 추가**: equal-N — FID(corrected, GT-ref) 가 FID(original, GT-ref) 대비 유의 악화 시 기각 (분포 수준 축; R-Prec/MM-Dist 는 짝 수준 축 — 상보).
+2. **표현 규율**: 성공 시 "인과 증명" 금지 — **"기전 가설의 intervention evidence"** 까지만 (개입이 경로·속도·리듬을 동시에 바꾸므로 단일 요인 인과 아님).
+3. **④ A/B 는 locomotion subset 한정** (GT 평균 root 속도 > 0.01 m/frame): **"walk in place" 류가 본 처방의 급소** — 다리는 걷되 root 정지가 정답인 prompt 에서 solve 가 root 를 밀면 의미 파괴. + over-correction 꼬리 (ratio_after ≫ 1) 점검 보고.
+4. **contact 오추정 한계 명시**: confidence 가중 미구현 (현 완충: 접지 양끝 frame 만 제약 + 보간 + σ=2 smoothing + contact 판정의 수평-solve 불변성). guard 실패 시에만 구현하는 조건부 후속.
+5. anchoring 과의 지각 3-arm 은 하지 않음 — pairwise protocol 유지, anchoring 대비는 수치 표 (동일 pool 기존 snapshot).
+
 ## Goal
 
 foot skating 의 병인 후보(root 전진 부족)를 **직접** 다루는 보정 설계 — 발을 root 에 맞추는 대증요법(anchoring, b1 2회 실패)의 반대 방향: **root 를 발에 맞춘다**.

@@ -4,7 +4,7 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| AR-072 | Tool | Root-aware correction — ① semantic guard 사전등록 → ② contact-consistent root solve 구현 → ③ 물리+Cat-A 검증 → ④ 새 A/B | 🔴 | 07-12 | **사용자 게이트 통과** (승인 "응 진행해줘"). [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) |
+| AR-072 | Tool | Root-aware correction — ①②③물리 완료(8dd29a2): **기전 명중 (ratio 0.42→1.02, 불변성 0/900)**. 남은 관문: ③-Cat-A (mgpt env R-Prec/MM-Dist) → ④ 새 A/B | 🔴 | 07-12 | [spec](../docs/dashboard-task-specs/AR-072-root-aware-correction-design.md) · [물리 snapshot](../../evals/snapshots/root_correction_effect_ar072_v1.json) |
 
 ---
 

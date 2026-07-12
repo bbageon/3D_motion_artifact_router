@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "root_semantic_guard",
+  "board_id": "AR-072",
+  "n_pairs": 900,
+  "n_skip": 0,
+  "protocol": "paired, batch=32, reps=20 (동일 permutation 양 arm)",
+  "original": {
+    "R@1": 0.2758,
+    "R@2": 0.4427,
+    "R@3": 0.5554,
+    "MM_Dist": 4.8925
+  },
+  "corrected": {
+    "R@1": 0.3192,
+    "R@2": 0.4989,
+    "R@3": 0.6127,
+    "MM_Dist": 4.2855
+  },
+  "paired_diff": {
+    "R@1": {
+      "mean": 0.04336,
+      "ci95": [
+        0.02444,
+        0.05527
+      ]
+    },
+    "R@2": {
+      "mean": 0.05619,
+      "ci95": [
+        0.0365,
+        0.07659
+      ]
+    },
+    "R@3": {
+      "mean": 0.05737,
+      "ci95": [
+        0.04129,
+        0.07425
+      ]
+    },
+    "MM_Dist": {
+      "mean": -0.60708,
+      "ci95": [
+        -0.61086,
+        -0.6029
+      ]
+    }
+  },
+  "preregistered_criterion": "기각 = R@1 diff CI 상한 < 0 또는 MM-Dist diff CI 하한 > 0",
+  "verdict": "통과",
+  "claim_boundary": "semantic guard 판정 — 지각 판정 아님 (통과 시 A/B 로)."
+}
