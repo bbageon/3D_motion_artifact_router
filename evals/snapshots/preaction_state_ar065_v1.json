@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "preaction_state",
+  "board_id": "AR-065",
+  "leakage_audit": "전 feature = 원본 trajectory + prompt 만 사용 (correction 미실행, GT 미참조). root_gait_mismatch 는 counterfactual (접지발 상대 후류 속도 − root 속도) — induced_disp/path_gain 의 pre-action 대체물. label 은 본 파일에 없음 (AR-078 join).",
+  "per_generator": {
+    "mdm": {
+      "n": 900,
+      "foot_skate": {
+        "mean": 0.0108,
+        "p50": 0.00829
+      },
+      "root_gait_mismatch": {
+        "mean": 0.00999,
+        "p50": 0.00372
+      },
+      "mismatch_ratio": {
+        "mean": 1.99929,
+        "p50": 1.435
+      },
+      "contact_fraction": {
+        "mean": 0.80696,
+        "p50": 0.8858
+      },
+      "straightness": {
+        "mean": 0.99896,
+        "p50": 0.9997
+      },
+      "intent_dist": {
+        "locomotion": 345,
+        "in_place": 114,
+        "ambiguous": 441
+      }
+    },
+    "motiongpt": {
+      "n": 900,
+      "foot_skate": {
+        "mean": 0.00564,
+        "p50": 0.00512
+      },
+      "root_gait_mismatch": {
+        "mean": 0.00249,
+        "p50": 0.0025
+      },
+      "mismatch_ratio": {
+        "mean": 2.28079,
+        "p50": 1.328
+      },
+      "contact_fraction": {
+        "mean": 0.82444,
+        "p50": 0.88555
+      },
+      "straightness": {
+        "mean": 0.53598,
+        "p50": 0.5284
+      },
+      "intent_dist": {
+        "locomotion": 345,
+        "in_place": 114,
+        "ambiguous": 441
+      }
+    },
+    "momask": {
+      "n": 900,
+      "foot_skate": {
+        "mean": 0.00447,
+        "p50": 0.00389
+      },
+      "root_gait_mismatch": {
+        "mean": 2e-05,
+        "p50": 0.00112
+      },
+      "mismatch_ratio": {
+        "mean": 1.56945,
+        "p50": 1.185
+      },
+      "contact_fraction": {
+        "mean": 0.829,
+        "p50": 0.8902
+      },
+      "straightness": {
+        "mean": 0.50663,
+        "p50": 0.45395
+      },
+      "intent_dist": {
+        "locomotion": 345,
+        "in_place": 114,
+        "ambiguous": 441
+      }
+    }
+  },
+  "csv": "evals\\snapshots\\preaction_state_ar065_v1.csv",
+  "claim_boundary": "state 재료 산출 — gate 성능 claim 없음 (AR-078). 기존 learned ranker (AR-040/052) feature 재산출·re-train 판단은 AR-065 잔여 scope."
+}

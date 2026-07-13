@@ -141,8 +141,14 @@ def main() -> None:
     tp = int(np.sum(pred_ho & (benefit[ho] == 1))); fp = int(np.sum(pred_ho & (benefit[ho] == 0)))
     fn = int(np.sum(~pred_ho & (benefit[ho] == 1))); tn = int(np.sum(~pred_ho & (benefit[ho] == 0)))
     precision = round(tp / max(tp + fp, 1), 3); recall = round(tp / max(tp + fn, 1), 3)
-    # no-harm: APPLY 예측 중 실제 harm(benefit=0) 비율 = false-apply; STOP 중 놓친 benefit = false-stop.
-    false_apply = round(fp / max(tp + fp, 1), 3)
+    # 4차 피드백: false-apply 를 분해 — non-beneficial(=neutral+harm) vs **harmful(진짜 악화)만**.
+    # no-harm 판단에는 harmful_apply_rate 가 더 중요 (selective prediction 원리:
+    # Gangrade et al., AISTATS 2021 — 확신 낮으면 abstain, 정해진 적용률에서 harm 최소화).
+    harm_lab = (dmm > delta).astype(int)           # ΔMM > +δ = 실제 품질 악화
+    n_apply = max(tp + fp, 1)
+    non_beneficial_apply = round(fp / n_apply, 3)  # 이득 기준 미충족 (neutral+harm)
+    harmful_apply = round(float(np.sum(pred_ho & (harm_lab[ho] == 1))) / n_apply, 3)  # 진짜 악화만
+    neutral_apply = round(non_beneficial_apply - harmful_apply, 3)
     false_stop = round(fn / max(fn + tn, 1), 3)
 
     # bootstrap holdout AUC CI (1000) — 피드백 3: **multiplicity 유지** (set 변환 금지).
@@ -174,22 +180,42 @@ def main() -> None:
         "holdout": {"n": int(ho.sum()),
                     "benefit_auc": auc_ho, "benefit_auc_ci95_boot1000": auc_ci,
                     "precision": precision, "recall": recall,
-                    "false_apply_rate": false_apply, "false_stop_rate": false_stop,
+                    "apply_decomposition_4th_feedback": {
+                        "non_beneficial_apply_rate": non_beneficial_apply,
+                        "harmful_apply_rate": harmful_apply,
+                        "neutral_apply_rate": neutral_apply,
+                        "note": "no-harm 판단엔 harmful_apply(진짜 악화)가 핵심 — non-beneficial 은 neutral 포함"},
+                    "false_stop_rate": false_stop,
                     "confusion": {"tp": tp, "fp": fp, "fn": fn, "tn": tn}},
-        "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). false_apply = APPLY 로 선택한 "
-                          "표본 중 **최소 benefit(δ) 기준 미충족** 비율 (neutral+harm 포함 — '절반이 품질 악화'가 "
-                          "아니라 '절반이 유의 개선 못함'). AUC/false_apply 모두 δ 조건부.",
+        "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). non_beneficial_apply = APPLY 중 "
+                          "최소 benefit(δ) 기준 미충족 (neutral+harm); harmful_apply = 그중 실제 악화(ΔMM>+δ)만. "
+                          "selective prediction 원리(Gangrade AISTATS 2021): 전체 AUC 보다 정해진 적용률에서 "
+                          "harmful-apply 가 낮은지가 no-harm 시스템의 기준. AUC/rate 모두 δ 조건부.",
         "claim_boundary": "held-out benefit-prediction gate. 완전 GT-free (pool 선정도 GT 무관). MM-Dist 를 "
-                          "benefit proxy 로 사용 (지각 아님) — 지각 benefit 은 A/B 필요. MDM·단일 벤치마크.",
-        "grounding": ["Guo HumanML3D CVPR2022 (MM-Dist)", "Safe Orchestration no-harm (position §0)"],
+                          "benefit proxy 로 사용 (지각 아님) — 지각 benefit 은 A/B 필요. MDM·단일 벤치마크. "
+                          "동일 pool 재분석 = robustness evidence 이지 독립 snapshot 재현 아님.",
+        "grounding": ["Guo HumanML3D CVPR2022 (MM-Dist)", "Gangrade et al. AISTATS 2021 (selective prediction)",
+                      "Safe Orchestration no-harm (position §0)"],
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     json.dump(out, open(args.output, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+    # per-motion 레코드 dump — AR-078 gate 비교에서 재사용 (embedding 재계산 불요).
+    import csv as _csv
+    permotion_path = args.output.parent / "routing_benefit_permotion_ar077_v1.csv"
+    with open(permotion_path, "w", newline="", encoding="utf-8") as f:
+        w = _csv.writer(f)
+        w.writerow(["gen", "sid", "seed", "foot_skate", "path_gain_AFTER_ACTION",
+                    "mm_orig", "mm_corr", "dmm", "split"])
+        for i, r in enumerate(recs):
+            w.writerow([r["gen"], r["sid"], r["seed"], round(r["foot_skate"], 6),
+                        round(r["path_gain"], 4), round(r["mm_orig"], 4), round(r["mm_corr"], 4),
+                        round(dmm[i], 4), "calib" if is_calib[i] else "holdout"])
     import sys as _s; _s.stdout.reconfigure(encoding="utf-8")
     print(f"δ(calib VQ median)={delta:.4f} | benefit@δ by gen: {gen_benefit_calib_delta} | overall {benefit.mean():.3f}")
     print(f"calib thr {best_thr:.5f} (J {best_j:.3f}) | HOLDOUT benefit AUC {auc_ho} ci{auc_ci} "
-          f"prec {precision} recall {recall} | false_apply {false_apply} false_stop {false_stop}")
-    print(f"[OK] wrote {args.output}")
+          f"prec {precision} recall {recall}")
+    print(f"apply 분해: non-beneficial {non_beneficial_apply} = harmful {harmful_apply} + neutral {neutral_apply} | false_stop {false_stop}")
+    print(f"[OK] wrote {args.output} + {permotion_path.name}")
 
 
 if __name__ == "__main__":

@@ -28,7 +28,9 @@ root-aware correction 을 각 generator 에 적용 후 표준 text-motion metric
 | MotionGPT | **−0.034** [−0.043,−0.001] ↓ | **+0.087** [+0.034,+0.140] ↑ | +0.20 [−0.05,+0.43] | **harm** (R@1·MM 유의) |
 | MoMask | **−0.035** [−0.062,−0.014] ↓ | **+0.150** [+0.064,+0.250] ↑ | +0.21 [−0.12,+0.58] | **harm** (R@1·MM 유의) |
 
-(↑ R@1 = 좋음, ↓ MM/FID = 좋음. R-Prec 수정 전후 방향·유의성 동일 — MDM 개선/VQ harm 확정.)
+(↑ R@1 = 좋음, ↓ MM/FID = 좋음. R-Prec 수정 전후 방향·유의성 동일.)
+
+> ⚠️ **"확정" 아님 — pool-scoped 진술 (4차 피드백)**: 방어 가능한 표현은 — **"현재 HumanML3D representative pool 에서 root correction 은 MDM 의 평균 품질을 개선했지만, MotionGPT·MoMask 에는 고정 적용 시 평균적인 품질 손상을 일으켰다."** 버그 수정 후 결과 유지는 강한 **robustness evidence** 이나 **같은 pool 재분석이므로 독립 snapshot 재현이 아니다** — 외부 일반화 "확정"은 독립 pool/benchmark 재현 필요 (§3-9 snapshot≥2 정신).
 
 - **MDM: 세 지표 모두 유의 개선** — correction 이 semantic·naturalness 회복 (AR-072 보강, loco 한정 정합 통계).
 - **VQ 둘: R@1·MM-Dist 유의 악화** (FID 는 CI 가 0 포함 — 비유의). deficit 없는 root 를 건드려 정렬 악화. **near-no-op 아님**: root 실제 이동(induced 0.37/0.41 m), foot_skate 이득 없이 semantic 악화 (분포 수준 harm).
@@ -84,9 +86,12 @@ VQ 통과율이 0%가 아니라 10~21% 이므로 **"VQ=STOP"이 아니라 "STOP 
 |---|---|
 | **benefit AUC** | **0.674** [0.631, 0.717] (proper bootstrap) — moderate (부호만 0.55 보다 높음). δ 누수 수정 전(0.684)과 사실상 동일 → 누수가 부풀린 것 아님 |
 | precision / recall | 0.504 / 0.499 |
-| **false-apply / false-stop** | **0.496** / 0.274 |
+| **APPLY 분해 (4차 피드백)** | non-beneficial **49.6%** = **harmful 36.7%** (실제 악화 ΔMM>+δ) + neutral 12.9% |
+| false-stop | 0.274 |
 
 (benefit@δ: MDM 0.581 / MotionGPT 0.235 / MoMask 0.226 — δ=calibration VQ median.)
+
+**no-harm 관점의 핵심 수치 = harmful-apply 36.7%** — "APPLY 절반이 악화"(과장)가 아니라 "**APPLY 중 37%가 실제 악화, 13%는 무효**". no-harm 시스템 기준으로는 37%도 과함 — selective prediction 원리(Gangrade et al., AISTATS 2021: 확신 낮으면 abstain)에 따라 정해진 적용률에서 harmful-apply 를 낮추는 것이 AR-078 의 목표 지표.
 
 **결론 (2차 피드백 후 — δ 조건부·exploratory 명시):**
 - ⚠️ **δ 조건부 caveat (3차 피드백)**: δ=0.097 은 **calibration VQ |ΔMM| median** (holdout 미사용 — 누수 차단). 단 VQ median 기반이라 **VQ neutral 비율이 구조적으로 ~50% 근처**. 따라서 "VQ 절반이 실제 무효" / "MDM 58%·VQ 23% benefit" / "AUC 0.67" 은 **확정 사실 아님 — δ 조건부 exploratory**. 정확: **"내부 δ 조건에서 MDM ~58%·VQ ~23% benefit 분류, pooled AUC ~0.67 [0.63,0.72]"**.
@@ -109,16 +114,16 @@ VQ 통과율이 0%가 아니라 10~21% 이므로 **"VQ=STOP"이 아니라 "STOP 
 
 | 층위 | 결론 (δ 조건부 exploratory) | 판정 |
 |---|---|---|
-| Generator 평균 | benefit@δ MDM 58% vs VQ 23% | **명확** |
+| Generator 평균 (pool-scoped) | benefit@δ MDM 58% vs VQ 23% | **명확 (robustness 확인, 독립 재현은 미완)** |
 | 개별 motion | foot-skate 로 benefit 예측 AUC 0.67 [0.63,0.72] | **중간 (useless 아님)** |
-| 실용 gate | false-apply 50% | **단일-feature 로 불충분** |
+| 실용 gate | non-beneficial apply ~50% (harmful-only 분해는 §6 재실행 반영) | **단일-feature 로 불충분** |
 | Routing 필요성 (richer state 동기) | 성립 | ✅ |
 | Learned routing 성능 (benefit 잘 예측) | **미성립** | ❌ |
 
-**표현 규율**: richer state 가 false-apply 를 낮추기 전까지 **"routing 이 작동한다" 금지 → "moderate 신호 있으나 단일-feature gate 로 문제 남음"** (현 state 부족의 정확한 진단이지 연구 실패 아님).
+**표현 규율**: richer state 가 false-apply 를 낮추기 전까지 **"routing 이 작동한다" 금지 → "moderate 신호 있으나 단일-feature gate 로 문제 남음"** (현 state 부족의 정확한 진단이지 연구 실패 아님). no-harm 시스템의 실용 기준은 전체 AUC 보다 **정해진 적용률에서의 harmful-apply**(selective prediction — Gangrade et al., AISTATS 2021: 확신 낮으면 abstain).
 
-## 남은 항목 (마감 전 — AR-077 in-progress 정당)
+## 남은 항목 (마감 = **AR-078 결과 후** — 4차 피드백: 진단 작업이므로 AR-075 구현까지 묶지 않음)
 
-- **§6-1 재측정** (2차 피드백 4수정): benefit δ-3분류 / sample_id 단독 split / proper bootstrap CI / (Cat-A) R-Precision one-seed-per-prompt.
-- **의사결정**: AR-075 에 **foot-skate 단일 gate 통합 금지**. 먼저 **AR-065 Effect-aware state 재구축** 검토 → generator-only / skate-only / richer-state gate 를 held-out 에서 benefit-AUC·false-apply 로 비교 (AR-078).
+- **§6-1 재측정** (2차 피드백 4수정): ✅ 전부 완료 (benefit δ-3분류 / sample_id 단독 split / proper bootstrap / R-Prec one-seed). + 4차: false-apply 분해 (non-beneficial vs **harmful-only**) 재실행 반영.
+- **의사결정**: AR-075 에 **foot-skate 단일 gate 통합 금지**. 순서 = **AR-065**(pre-action state 재구축) → **AR-078**(generator-only/skate-only/richer-state 를 같은 holdout 에서 benefit-AUC·**harmful-apply@적용률** 로 비교) → AR-075(검증된 gate 만 통합). AR-073 병렬.
 - (선택) VQ 소규모 A/B — 시나리오 "깔끔"이라 사전등록상 미필수.

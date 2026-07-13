@@ -102,7 +102,12 @@
     ],
     "precision": 0.504,
     "recall": 0.499,
-    "false_apply_rate": 0.496,
+    "apply_decomposition_4th_feedback": {
+      "non_beneficial_apply_rate": 0.496,
+      "harmful_apply_rate": 0.367,
+      "neutral_apply_rate": 0.129,
+      "note": "no-harm 판단엔 harmful_apply(진짜 악화)가 핵심 — non-beneficial 은 neutral 포함"
+    },
     "false_stop_rate": 0.274,
     "confusion": {
       "tp": 239,
@@ -111,10 +116,11 @@
       "tn": 636
     }
   },
-  "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). false_apply = APPLY 로 선택한 표본 중 **최소 benefit(δ) 기준 미충족** 비율 (neutral+harm 포함 — '절반이 품질 악화'가 아니라 '절반이 유의 개선 못함'). AUC/false_apply 모두 δ 조건부.",
-  "claim_boundary": "held-out benefit-prediction gate. 완전 GT-free (pool 선정도 GT 무관). MM-Dist 를 benefit proxy 로 사용 (지각 아님) — 지각 benefit 은 A/B 필요. MDM·단일 벤치마크.",
+  "interpretation": "benefit_auc 는 label='correction 이득'(generator 아님). non_beneficial_apply = APPLY 중 최소 benefit(δ) 기준 미충족 (neutral+harm); harmful_apply = 그중 실제 악화(ΔMM>+δ)만. selective prediction 원리(Gangrade AISTATS 2021): 전체 AUC 보다 정해진 적용률에서 harmful-apply 가 낮은지가 no-harm 시스템의 기준. AUC/rate 모두 δ 조건부.",
+  "claim_boundary": "held-out benefit-prediction gate. 완전 GT-free (pool 선정도 GT 무관). MM-Dist 를 benefit proxy 로 사용 (지각 아님) — 지각 benefit 은 A/B 필요. MDM·단일 벤치마크. 동일 pool 재분석 = robustness evidence 이지 독립 snapshot 재현 아님.",
   "grounding": [
     "Guo HumanML3D CVPR2022 (MM-Dist)",
+    "Gangrade et al. AISTATS 2021 (selective prediction)",
     "Safe Orchestration no-harm (position §0)"
   ]
 }

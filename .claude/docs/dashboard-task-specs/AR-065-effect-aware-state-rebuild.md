@@ -1,9 +1,25 @@
 # AR-065 - Effect-Aware State Rebuild on Repaired Evaluators
 
-Status: backlog  
+Status: **in-progress** (2026-07-13 착수 — 4차 피드백: P5 최종화보다 우선)  
 Epic: RL-Q  
 Priority: 🟠  
-Parent: AR-063 (gate 수리 후속)
+Parent: AR-063 (gate 수리 후속) / AR-077 (routing gate 재료 — AR-078 선행)
+
+## Pre-action State Feature 목록 (4차 피드백 채택 — 결과 보기 전 고정)
+
+전부 **원본 모션 + prompt 만으로, tool 적용 전** 계산 (GT-free, after-action leakage 금지):
+
+| # | feature | 정의 (pre-action) |
+|---|---|---|
+| 1 | `generator_id` | 배포 시 알려진 메타데이터 |
+| 2 | `foot_skate` | v2 정의 (원본 관측) |
+| 3 | `root_gait_mismatch` | **counterfactual**: 접지발의 골반-상대 후류 속도(=gait 함의 속도) − 실제 root 속도. induced_disp/path_gain 의 pre-action 대체물 |
+| 4 | `contact_persistence` | 접지 run 평균 길이 + 접지 비율 |
+| 5 | `trajectory_shape` | 경로 길이 + 직진도(net displacement / path length) |
+| 6 | `locomotion_intent` | prompt keyword bucket (경량 rule — AR-066 계열) |
+| 7 | (optional) `support/uncertainty` | kNN/ensemble — 본 착수 범위 밖, AR-042 연계 |
+
+**보정 후 값 (Cat-A 변화·path_gain·induced_disp) = label 또는 최종 guard 로만** — state 로 사용 금지.
 
 ## Goal
 
