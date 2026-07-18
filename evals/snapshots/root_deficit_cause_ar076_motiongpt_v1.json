@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "root_deficit_cause",
+  "board_id": "AR-076",
+  "generator": "motiongpt",
+  "n_locomotion_prompts": 165,
+  "split_id": "protocol_rep_pool_seed20260608 motiongpt + HumanML3D GT",
+  "symmetry_note": "2026-07-13 대칭 보완 — MDM 과 동일 검정. auto-verdict 문구는 deficit 질문 기준이므로 cross-generator 비교는 slope/std_ratio raw 수치로 읽을 것.",
+  "candidate_A_root_channel": {
+    "stride_ratio_MDM_over_GT": {
+      "mean": 4.7842,
+      "ci95": [
+        1.456,
+        11.2213
+      ]
+    },
+    "cadence_ratio_MDM_over_GT": {
+      "mean": 1.181,
+      "ci95": [
+        1.0629,
+        1.3142
+      ]
+    },
+    "verdict": "root-only 지지 (gait 정상)"
+  },
+  "candidate_B_mean_regression": {
+    "ols_slope": 0.5938,
+    "ols_intercept": 0.00921,
+    "slope_ci95": [
+      0.4801,
+      0.7609
+    ],
+    "std_MDM": 0.01475,
+    "std_GT": 0.01493,
+    "std_ratio_MDM_over_GT": 0.9877,
+    "verdict": "부분"
+  },
+  "candidate_C_integration_drift": {
+    "first_half_speed_mean": 0.02328,
+    "second_half_speed_mean": 0.02737,
+    "second_over_first_ratio": {
+      "mean": 1.8755,
+      "ci95": [
+        1.3606,
+        2.7685
+      ]
+    },
+    "verdict": "기각 (누적 편향 없음)"
+  },
+  "overall_ratio_mean": 0.9853,
+  "claim_boundary": "관측 진단 (재학습/ablation 아님) — 확정 원인 주장 금지. MDM·단일 벤치마크 한정.",
+  "grounding": [
+    "Guo HumanML3D CVPR2022 (표현)",
+    "Tevet MDM ICLR2023 (x0 예측)",
+    "Guo MoMask CVPR2024 (VQ 대비)"
+  ]
+}

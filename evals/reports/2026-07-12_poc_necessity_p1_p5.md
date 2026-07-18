@@ -24,7 +24,7 @@
 | E6 | **물리 ≠ 지각** | 물리 개선(fs −48%, legCV 0)에도 **blind 선호 = 우연 — 사전등록 2회 재현** | v1 11/20 (슬로모) · v2 10/20 (실속도) | b1 (한계 명시) |
 | E7 | **기전 진단** | MDM root 전진 = **GT 의 42%** (165/165 prompt 전부 부족) + 부족↔fs **ρ=+0.34 (p=8.5e-6)**; 방향 서명은 불확정 | ratio 0.419 [0.39, 0.45] | real-dist 진단 / B-계 |
 | E8 | **기전 처방 성공** | root solve: 물리·Cat-A·지각 **삼중 회복** — anchoring(우연)과 정면 대비 | ratio 0.42→1.02 · FID 7.2→3.3 · **A/B 19/20** | b1 + A (intervention evidence) |
-| E9 | 생성-기전 원인 | **MDM root progression collapse** — 요구 무관 상수 출력 | OLS 기울기 0.027, 분산 = GT 의 5.7% | 관측 진단 (MDM 단일) |
+| E9 | 생성-기전 원인 | **MDM root progression collapse** — 요구 무관 상수 출력 (3-gen 동일 검정 대비) | 기울기 0.027·분산 5.7% vs VQ 0.59/0.63·95~99% | 관측 진단 (diffusion n=1) |
 | E10 | **generator-조건부** | 같은 처방: MDM 개선 vs **VQ 손상** (pool-scoped) | VQ R@1 −0.034/−0.035·MM +0.09/+0.15 유의 | A (pool-scoped) |
 | E11 | **결정 계층 미완** | richer state: 순위 유의 개선, **no-harm 기준 미달** | AUC 0.722 vs 0.674 (CI-clean) · harm@30% 감소 비유의 | δ 조건부 exploratory |
 
@@ -71,7 +71,7 @@ Cross-link: [P1](2026-06-27_poc_artifact_occurrence_ar058_1.md) · [P3](2026-06-
 
 ⟹ **"증상(artifact score)을 고치면 지각이 안 따라오지만, 병인(root/gait mismatch)을 고치면 물리·표준지표·지각이 모두 회복된다."** E6(물리≠지각)의 안티테제가 아니라 그 해답 — refinement 는 기전을 다뤄야 한다는 P5 주장의 직접 실증. **표현 규율: intervention evidence** (개입이 경로·속도·리듬 동시 변경 → 완전 인과 아님). [결과](2026-07-12_ab_preference_result_v3_ar072.md) · [spec](../../.claude/docs/dashboard-task-specs/AR-072-root-aware-correction-design.md)
 
-**E9 — 병인의 생성-기전 진단 (AR-076, 문구 제한)**: **MDM 에서 root progression collapse 관측** — root-속도 채널이 프롬프트 요구와 거의 무관하게 상수로 붕괴 (OLS 기울기 0.027, 분산 = GT 의 5.7%). 적분 누적(C) 기각, leg cadence(A) 보존 → root-특이적. **스코프 엄격 제한: MDM 단일 관측** — "diffusion 패러다임 일반 현상" 은 타 diffusion 재현(future work) 전까지 주장 금지. **관측 진단** (재학습 ablation 아님 — 확정 인과 금지). [AR-076](2026-07-12_root_deficit_cause_ar076.md)
+**E9 — 병인의 생성-기전 진단 (AR-076 + 2026-07-13 대칭 보완)**: **MDM 에서 root progression collapse 관측** — root-속도 채널이 프롬프트 요구와 거의 무관하게 상수로 붕괴. **3 generator 를 동일한 회귀·분산 검정으로 직접 비교**: MDM 기울기 **0.027**·분산 **5.7%** vs MotionGPT 0.594·98.8% / MoMask 0.632·94.7% — collapse 는 MDM-특이 (VQ 도 기울기<1 의 경미한 평균 회귀는 있으나 ~20배 차이). 적분 누적(C) 기각, leg cadence(A) 보존 → root-특이적. **잔여 스코프 제한: diffusion n=1** — "diffusion 패러다임 일반 현상" 은 타 diffusion(MLD 등) 재현 전까지 주장 금지. **관측 진단** (재학습 ablation 아님 — 확정 인과 금지). [AR-076](2026-07-12_root_deficit_cause_ar076.md)
 
 ## 5-1. E10 — 같은 처방이 VQ 를 손상시킨다: generator-조건부 (AR-077, 2026-07-13 마감)
 

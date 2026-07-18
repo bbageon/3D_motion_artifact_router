@@ -1,13 +1,19 @@
-"""AR-076: root deficit 원인 3-way 진단 (원본 MDM vs GT, GPU 불필요).
+"""AR-076: root deficit 원인 3-way 진단 (원본 generator vs GT, GPU 불필요).
 
 A (root 채널): 발-골반 상대 stride 진폭·cadence 가 GT 수준인가 (관절 gait 정상, root 만 문제).
-B (평균 회귀): v_root_MDM vs v_root_GT 회귀 기울기 < 1 + 이동거리 분산 GT 대비 축소.
+B (평균 회귀): v_root vs v_root_GT 회귀 기울기 < 1 + 이동거리 분산 GT 대비 축소.
 C (적분 오차): 부족의 시간 누적 — 전반부 vs 후반부 speed ratio.
 
-per-prompt (seed 평균), MDM locomotion prompt (GT root speed > 0.01). 통계: bootstrap CI + OLS.
+per-prompt (seed 평균), locomotion prompt (GT root speed > 0.01). 통계: bootstrap CI + OLS.
+
+2026-07-13 대칭 보완 (사용자 directive): --gen 파라미터화 — MotionGPT/MoMask 에도 **동일**
+회귀·분산 검정 실행 ("MDM 만 자세히 검사했다"는 비대칭 제거). 기존 MDM snapshot
+(root_deficit_cause_ar076_v1.json) 은 무수정 보존 (§6-2); 신규 출력은 gen suffix.
+NB: A/B/C auto-verdict 문구는 deficit(MDM) 질문 기준으로 설계됨 — cross-generator
+비교는 raw 수치(slope·std_ratio)로 읽을 것.
 
 CLI (motion3d env):
-    python tools/root_deficit_cause_ar076.py
+    python tools/root_deficit_cause_ar076.py --gen motiongpt
 """
 from __future__ import annotations
 
@@ -25,7 +31,7 @@ sys.path.insert(0, str(REPO_ROOT))
 from tools.coords_protocol import PELVIS, LEFT_FOOT, RIGHT_FOOT, estimate_ground
 from correction_tools.coordinate_footskate_cleanup_tool import _v2_flags
 
-POOL = REPO_ROOT / "external_assets" / "protocol_rep_pool_seed20260608" / "mdm"
+POOL_ROOT = REPO_ROOT / "external_assets" / "protocol_rep_pool_seed20260608"
 GT_DIR = REPO_ROOT / "external_assets" / "HumanML3D" / "new_joints"
 LOCO_THRESH = 0.010
 V2 = (0.05, 0.035, 1e9)
@@ -70,14 +76,20 @@ def _boot_ci(a, rng, n=1000):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--gen", default="mdm", choices=["mdm", "motiongpt", "momask"])
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--seed", type=int, default=20260717)
-    ap.add_argument("--output", type=Path,
-                    default=REPO_ROOT / "evals" / "snapshots" / "root_deficit_cause_ar076_v1.json")
+    ap.add_argument("--output", type=Path, default=None)
     args = ap.parse_args()
+    if args.output is None:
+        # 원본 MDM snapshot (suffix 없음) 무수정 보존 — 신규 run 은 gen suffix.
+        name = ("root_deficit_cause_ar076_v1.json" if args.gen == "mdm"
+                else f"root_deficit_cause_ar076_{args.gen}_v1.json")
+        args.output = REPO_ROOT / "evals" / "snapshots" / name
+    pool = POOL_ROOT / args.gen
     rng = np.random.default_rng(args.seed)
 
-    metas = [json.load(open(p, encoding="utf-8")) for p in sorted(POOL.glob("*.json"))
+    metas = [json.load(open(p, encoding="utf-8")) for p in sorted(pool.glob("*.json"))
              if p.name != "_pool_summary.json"]
     if args.limit:
         metas = metas[:args.limit]
@@ -158,7 +170,11 @@ def main() -> None:
 
     out = {
         "schema_version": "1.0.0", "record_type": "root_deficit_cause", "board_id": "AR-076",
-        "n_locomotion_prompts": n, "split_id": "protocol_rep_pool_seed20260608 mdm + HumanML3D GT",
+        "generator": args.gen,
+        "n_locomotion_prompts": n, "split_id": f"protocol_rep_pool_seed20260608 {args.gen} + HumanML3D GT",
+        "symmetry_note": ("2026-07-13 대칭 보완 — MDM 과 동일 검정. auto-verdict 문구는 deficit 질문 "
+                          "기준이므로 cross-generator 비교는 slope/std_ratio raw 수치로 읽을 것."
+                          if args.gen != "mdm" else None),
         "candidate_A_root_channel": A,
         "candidate_B_mean_regression": B,
         "candidate_C_integration_drift": C,

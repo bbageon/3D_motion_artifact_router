@@ -35,6 +35,20 @@
 허용: "원본 MDM root deficit 의 지배 신호는 root-속도 채널의 mode-collapse (평균 회귀) 로 진단됨 — 관측 기반. 적분 누적(C)은 기각, leg cadence(A)는 보존."
 금지: 재학습/ablation 없는 "생성 알고리즘의 확정 인과" (관측 진단이지 개입 증명 아님) / MDM 외 diffusion·타 벤치마크 일반화 / A 의 stride 진폭(noisy)을 강한 근거로 사용.
 
+## 대칭 보완 (2026-07-13 addendum — 사용자 directive): VQ 에 동일 검정 실행
+
+"MDM 만 유독 자세히 검사했다"는 비대칭 제거 — MotionGPT/MoMask 에 **동일한** 회귀·분산 검정 실행
+([motiongpt](../snapshots/root_deficit_cause_ar076_motiongpt_v1.json) · [momask](../snapshots/root_deficit_cause_ar076_momask_v1.json), locomotion 165, 동일 seed/절차):
+
+| 동일 검정 | MDM | MotionGPT | MoMask |
+|---|---|---|---|
+| OLS 기울기 (v_root vs GT 요구) | **0.027** [0.019, 0.041] | 0.594 [0.480, 0.761] | 0.632 [0.502, 0.783] |
+| 분산 비율 (std / GT std) | **0.057** | 0.988 | 0.947 |
+| 평균 ratio | 0.419 | 0.985 | 1.001 |
+
+**이제 허용되는 대칭 진술**: "동일한 회귀·분산 기준에서 MDM 은 붕괴(기울기 0.027, 분산 5.7%)한 반면, MotionGPT·MoMask 는 GT 요구를 실질적으로 추종했다(기울기 0.59/0.63, 분산 95~99%)."
+정직 주석: VQ 기울기도 1 미만 — 경미한 평균 회귀는 VQ 에도 존재 (생성 모델 일반 현상). 차이는 정도: MDM 은 **~20배 평평**하고 분산이 17배 더 붕괴. collapse 는 MDM-특이 관측 (단, "diffusion 일반" 주장은 여전히 diffusion n=1 로 금지). VQ 의 후반/전반 speed >1 (1.88/3.07) 은 모션 구조(초반 정지→후반 이동) 반영으로 보이는 informational 관측.
+
 ## 남는 불확실성 (§3-22)
 
 - 관측 진단 — 인과는 training-time ablation 필요 (범위 밖).
