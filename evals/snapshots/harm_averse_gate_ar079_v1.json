@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "harm_averse_gate",
+  "board_id": "AR-079",
+  "n": 2699,
+  "n_holdout": 1350,
+  "delta": 0.0972,
+  "harm_predictability": {
+    "harm_auc_holdout": 0.663,
+    "ci95": [
+      0.615,
+      0.708
+    ],
+    "note": "≤0.55 면 harm 자체가 현 state 로 예측 곤란"
+  },
+  "lambda_selection_calib_only": {
+    "table": {
+      "0.25": {
+        "calib_harm30": 0.264,
+        "calib_capture30": 0.524,
+        "capture_constraint_ok": true
+      },
+      "0.5": {
+        "calib_harm30": 0.267,
+        "calib_capture30": 0.528,
+        "capture_constraint_ok": true
+      },
+      "1.0": {
+        "calib_harm30": 0.272,
+        "calib_capture30": 0.531,
+        "capture_constraint_ok": true
+      },
+      "2.0": {
+        "calib_harm30": 0.227,
+        "calib_capture30": 0.48,
+        "capture_constraint_ok": true
+      },
+      "4.0": {
+        "calib_harm30": 0.156,
+        "calib_capture30": 0.323,
+        "capture_constraint_ok": false
+      }
+    },
+    "chosen": 2.0,
+    "g5_calib_ref": {
+      "harm30": 0.267,
+      "capture30": 0.517
+    }
+  },
+  "holdout_at_rate": {
+    "G2_skate": {
+      "10%": {
+        "harm": 0.17,
+        "capture": 0.225
+      },
+      "20%": {
+        "harm": 0.311,
+        "capture": 0.355
+      },
+      "30%": {
+        "harm": 0.36,
+        "capture": 0.451
+      },
+      "40%": {
+        "harm": 0.385,
+        "capture": 0.551
+      },
+      "50%": {
+        "harm": 0.393,
+        "capture": 0.641
+      }
+    },
+    "G5_benefit_LR": {
+      "10%": {
+        "harm": 0.185,
+        "capture": 0.221
+      },
+      "20%": {
+        "harm": 0.241,
+        "capture": 0.386
+      },
+      "30%": {
+        "harm": 0.291,
+        "capture": 0.511
+      },
+      "40%": {
+        "harm": 0.357,
+        "capture": 0.58
+      },
+      "50%": {
+        "harm": 0.375,
+        "capture": 0.685
+      }
+    },
+    "HA_harm_averse": {
+      "10%": {
+        "harm": 0.193,
+        "capture": 0.213
+      },
+      "20%": {
+        "harm": 0.263,
+        "capture": 0.367
+      },
+      "30%": {
+        "harm": 0.262,
+        "capture": 0.468
+      },
+      "40%": {
+        "harm": 0.276,
+        "capture": 0.559
+      },
+      "50%": {
+        "harm": 0.265,
+        "capture": 0.618
+      }
+    },
+    "Hinv_low_harm_only": {
+      "10%": {
+        "harm": 0.067,
+        "capture": 0.05
+      },
+      "20%": {
+        "harm": 0.107,
+        "capture": 0.111
+      },
+      "30%": {
+        "harm": 0.153,
+        "capture": 0.215
+      },
+      "40%": {
+        "harm": 0.187,
+        "capture": 0.353
+      },
+      "50%": {
+        "harm": 0.219,
+        "capture": 0.478
+      }
+    }
+  },
+  "ha_benefit_auc_holdout": 0.643,
+  "harm30_diff_bootstrap": {
+    "HA_minus_G5": {
+      "mean": -0.024,
+      "ci95": [
+        -0.077,
+        0.025
+      ]
+    },
+    "HA_minus_G2": {
+      "mean": -0.088,
+      "ci95": [
+        -0.153,
+        -0.025
+      ]
+    }
+  },
+  "preregistered_verdict": {
+    "verdict": "기각/한계 — harm 유의 감소 실패",
+    "cond_a_harm_sig_lower_vs_G5": false,
+    "cond_b_capture_ge_0.8xG5": true
+  },
+  "claim_boundary": "δ 조건부 exploratory. MM-Dist proxy (지각 아님). λ 는 calib 전용 선택. 단일 벤치마크.",
+  "grounding": [
+    "Gangrade AISTATS 2021 (selective prediction)",
+    "Guo HumanML3D CVPR2022"
+  ]
+}
