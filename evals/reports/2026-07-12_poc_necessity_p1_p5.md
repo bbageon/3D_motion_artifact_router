@@ -56,7 +56,7 @@ Cross-link: [P1](2026-06-27_poc_artifact_occurrence_ar058_1.md) · [P3](2026-06-
 ## 4. Claim boundary (최종)
 
 **허용**: 발생·측정가능성·품질 관계·고정 처방 부작용·물리≠지각(2회)·기전 진단·기전 처방의 삼중 회복(intervention evidence)·generator-조건부 효과(pool-scoped)·gate 한계의 정량 특정 — 이 사슬이 "mechanism-aware refinement + 결정 계층 + 미해결 gate 문제"를 지지한다.
-**금지**: "routing 이 작동한다" (E11 미달 — richer state 순위 개선까지만) / ArtifactRouter 가 artifact 를 해결했다 / 모든 generator·데이터셋 일반화 (single benchmark; diffusion n=1) / root collapse 가 유일 원인 (ρ²≈0.11; 비이동 잔여 skating 별도 병인) / b1 을 확정 지각 근거로 (b2/b3 = AR-073 진행 중) / "Cat-A 확정" (pool-scoped — 독립 재현 필요) / δ 무관 benefit 수치 인용.
+**금지**: "routing 이 작동한다" (E11 미달 — richer state 순위 개선까지만) / ArtifactRouter 가 artifact 를 해결했다 / 모든 generator·데이터셋 일반화 (single benchmark; diffusion n=1) / root collapse 가 유일 원인 (ρ²≈0.11; 비이동 잔여 skating 별도 병인) / **b1 을 확정 지각 근거로 외부 인용 (b1 마감 상태 — 외부 공개 전 b2 재개 필수)** / "Cat-A 확정" (pool-scoped — 독립 재현 필요) / δ 무관 benefit 수치 인용.
 
 ## 5. E8 — mechanism-aware correction 이 지각을 회복한다 (AR-072, ✅ 2026-07-12 완료)
 
@@ -95,11 +95,11 @@ gate 5종을 같은 held-out(1,350)에서 비교 (benefit = ΔMM<−δ, δ=calib
 
 ⟹ **"routing 이 작동한다" 가 아니라 "routing 은 필요하며(E10), 그 gate 는 순위≠안전 축 분리까지 특정된 미해결 문제"** — 이것이 P5 의 마지막 정직한 문장이다. [AR-078](2026-07-13_routing_gate_compare_ar078.md) · [figure](../../reports/figures/2026-07-13/poc_necessity_p1_p5/p5_decision_layer_2panel.png)
 
-**남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (AR-073 진행 중) · harm-averse gate (AR-079 후보) · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · 비이동 잔여 skating 의 별도 병인 · orchestrator 통합 (AR-075 — 검증된 gate 생기면) · 타 데이터셋 (AR-067) · 타 diffusion (MLD 등) 재현.
+**남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (**논문화 시 재개** — b1 마감, pack 준비됨) · harm-averse gate 개선 (AR-079 는 "기각/한계" — 표본·label 개선 후) · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · 비이동 잔여 skating 의 별도 병인 · orchestrator 통합 (AR-075 — 검증된 gate 생기면) · 타 데이터셋 (AR-067) · 타 diffusion (AR-080, MLD) 재현.
 
 ## 6. Limitations (최종)
 
-1. **지각 = b1** (단일 평가자; blind 사전등록 3회 — 2 fail + 1 support) — 외부 claim 은 3+ 평가자 (AR-073 pack 배포됨).
+1. **지각 = b1** (단일 평가자; blind 사전등록 3회 — 2 fail + 1 support) — **b1 유지로 마감 (사용자 결정 2026-07-13)**. 외부 공개 시 3+ 평가자(b2) 재개 필수 (pack·집계기 준비돼 있음, AR-023).
 2. **단일 벤치마크** (HumanML3D 생태계) — KIT-ML 미검 (AR-067). **diffusion n=1** (MDM) — collapse 의 일반성 미검.
 3. E7 상관 + E8 개입 = intervention evidence 까지 (완전 인과 아님 — 개입이 경로·속도·리듬 동시 변경).
 4. E10 은 pool-scoped (같은 pool 재분석의 robustness — 독립 snapshot 재현 아님). E11 benefit 은 δ 조건부 MM-Dist proxy (지각 아님).
