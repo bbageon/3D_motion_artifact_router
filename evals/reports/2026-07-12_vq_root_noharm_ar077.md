@@ -1,6 +1,6 @@
 # AR-077 — VQ Root State + No-Harm (generator-conditioned routing 근거)
 
-> Status: **in-progress** (사용자 판단 — remediation 후 확정). 외부 피드백(2026-07-12) 6개 지적 전부 반영.
+> Status: **closed 2026-07-13** — 4차 피드백 합의("AR-078 결과로 마감")에 따라 [AR-078 gate 비교](2026-07-13_routing_gate_compare_ar078.md) 완료로 마감. 최종 결론: MDM 개선/VQ 악화 (pool-scoped, robustness 확인) + per-motion gate 미완 (AR-078: richer state 도 no-harm 기준 미달 — "한계 확정"). 1~4차 외부 피드백 전부 반영.
 
 - Snapshots: [diagnostic](../snapshots/vq_root_noharm_ar077_v1.json) · Cat-A v2 [mdm](../snapshots/vq_root_catA_v2_ar077_mdm_v1.json)/[motiongpt](../snapshots/vq_root_catA_v2_ar077_motiongpt_v1.json)/[momask](../snapshots/vq_root_catA_v2_ar077_momask_v1.json) · [GT-free 분리](../snapshots/gtfree_stop_separation_ar077_v1.json)
 - 표본: **locomotion 165 prompt** (GT root speed>0.01, 3 generator 동일 필터) × 3 seed. 통계 단위 = **prompt** (seed 평균), prompt-bootstrap B=300.
