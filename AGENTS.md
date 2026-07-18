@@ -1,8 +1,8 @@
-# AGENTS.md — motion-artifact-router (ArtifactRouter)
+﻿# AGENTS.md — motion-artifact-router (ArtifactRouter)
 
 > **본 파일 = 규칙 원본 (WHAT — 무엇이 규칙인가).** 위반 시 결과 invalidation 되는 **절대 규칙·게이트(invariant)** 만 둔다 (~200줄). Agent 의 **Role·페르소나·가치 우선순위·의사결정 권한·커뮤니케이션 스타일 (WHO/HOW — 누가 어떻게 적용하는가)** 는 본 문서가 아니라 [`.claude/rules/phase/01-instructions.md`](.claude/rules/phase/01-instructions.md) 가 owner (본 문서는 Role 을 정의하지 않는다; 둘이 합쳐 하네스 4계층의 "01 지침 레이어").
 >
-> 실행 절차 = `.claude/skills/`, 참조 문서 = `.claude/docs/` + `docs/`, 작업 board = `.claude/Dashboard/` (분배 기준 §3-24, [phase 01 §7-1](.claude/rules/phase/01-instructions.md)). 템플릿 상속: [`docs/harness-research-template/01-instructions.md §2`](docs/harness-research-template/01-instructions.md).
+> 실행 절차 = `.claude/skills/`, 프로젝트 참조 문서 = `.claude/docs/`, 범용 템플릿 = `docs/harness-research-template/`, 작업 board = `.claude/Dashboard/` (분배 기준 §3-24, [phase 01 §7-1](.claude/rules/phase/01-instructions.md)). 템플릿 상속: [`docs/harness-research-template/01-instructions.md §2`](docs/harness-research-template/01-instructions.md).
 
 ## 목차
 [1 컨텍스트](#1-시스템-컨텍스트) · [2 빌드&실행](#2-빌드--실행) · [3 절대 규칙](#3-절대-규칙) · [4 경로별 분기](#4-경로별-조건-분기) · [5 실패 대응](#5-실패-대응) · [6 위험 행동](#6-위험-행동) · [7 디렉토리](#7-디렉토리별-규칙) · [8 참조](#8-참조-전용)
@@ -11,15 +11,15 @@
 
 ## 1. 시스템 컨텍스트
 
-**ArtifactRouter** = 외부 motion generator (MotionGPT·MDM·MLD 등) output 위에서 **artifact state → correction action 매핑**을 routing 문제로 정식화한 generator-agnostic, tool-extensible decision system. 새 generator·새 단일 calibrator 개발 안 함. cost·risk (NetGain) 고려 + STOP(abstain) 포함. 정식 framing = **Safe Orchestration** (NOT NetGain-only): RL objective = `maximize artifact_improvement s.t. physical_validity + no_harm` ([docs/current_research_position.md §0](docs/current_research_position.md)).
+**ArtifactRouter** = 외부 motion generator (MotionGPT·MDM·MLD 등) output 위에서 **artifact state → correction action 매핑**을 routing 문제로 정식화한 generator-agnostic, tool-extensible decision system. 새 generator·새 단일 calibrator 개발 안 함. cost·risk (NetGain) 고려 + STOP(abstain) 포함. 정식 framing = **Safe Orchestration** (NOT NetGain-only): RL objective = `maximize artifact_improvement s.t. physical_validity + no_harm` ([.claude/docs/governance/current_research_position.md §0](.claude/docs/governance/current_research_position.md)).
 
 가치 우선순위 (상충 시 좌선): 연구 정직성 > 재현성 > 비교 가능성 > 효율성 > 편의성. **Role·정의·근거 = [01-instructions §2-2](.claude/rules/phase/01-instructions.md) owner** (본 문서는 규칙만, 가치관 정의 안 함).
 
-**핵심 가설** (canonical [`evals/hypotheses/`](evals/hypotheses/) append-only, 요약 [.claude/docs/hypotheses-summary.md](.claude/docs/hypotheses-summary.md)): [H-2026-204](evals/hypotheses/H-2026-204.md) (RQ1+2 vs fixed post-proc) · [H-2026-205](evals/hypotheses/H-2026-205.md) (RQ3 learnable routing) · [H-2026-206](evals/hypotheses/H-2026-206.md) (RQ4 generator-agnostic) · [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary no-harm). 종결: H-200/201/202 (2026-05-15 supersede). **가설 본문 수정·status 전환 = §3-11 사용자 승인 게이트.**
+**핵심 가설** (canonical [`evals/hypotheses/`](evals/hypotheses/) append-only, 요약 [.claude/docs/reference/hypotheses-summary.md](.claude/docs/reference/hypotheses-summary.md)): [H-2026-207](evals/hypotheses/H-2026-207.md) (RQ1+2 재작성 — 기전-겨냥+조건부 refinement, Cat-A+지각 통화; post-hoc registration) · [H-2026-205](evals/hypotheses/H-2026-205.md) (RQ3 learnable routing — inconclusive) · [H-2026-206](evals/hypotheses/H-2026-206.md) (RQ4 generator-agnostic — 미착수) · [H-2026-203](evals/hypotheses/H-2026-203.md) (secondary no-harm — 전제 반전 note). 종결: H-200/201/202 (2026-05-15) · H-204 (2026-07-13 supersede→H-207). **가설 본문 수정·status 전환 = §3-11 사용자 승인 게이트.**
 
-**기술 스택**: Python 3.10, conda env `motion-router` (메인) + `mgpt` (G2 inference). torch≥2.4 / transformers≥5.7 / scikit-learn 등. 외부 generator: **G2** (공식 MotionGPT, active) + **G1** (MDM/MLD, 미구축). 설치 상세 [`docs/setup.md`](docs/setup.md).
+**기술 스택**: Python 3.10, conda env `motion-router` (메인) + `mgpt` (G2 inference). torch≥2.4 / transformers≥5.7 / scikit-learn 등. 외부 generator: **G2** (공식 MotionGPT, active) + **G1** (MDM/MLD, 미구축). 설치 상세 [`.claude/docs/operations/setup.md`](.claude/docs/operations/setup.md).
 
-**소스 디렉토리** ([§7](#7-디렉토리별-규칙)): `generators/` `skeleton_normalizer/` `evaluators/` `correction_tools/` `orchestrator/` `refinement_loop/` `tools/` `evals/` `reports/` `docs/` `.claude/` `external_assets/`. 용어는 [.claude/docs/glossary.md](.claude/docs/glossary.md) 단일 출처.
+**소스 디렉토리** ([§7](#7-디렉토리별-규칙)): `generators/` `skeleton_normalizer/` `evaluators/` `correction_tools/` `orchestrator/` `refinement_loop/` `tools/` `evals/` `reports/` `docs/` `.claude/` `external_assets/`. 용어는 [.claude/docs/reference/glossary.md](.claude/docs/reference/glossary.md) 단일 출처.
 
 본 저장소 = **독립 프로젝트** (이전 저장소 후속 아님). import 자산 = public dataset + 시각화 utility 한정.
 
@@ -27,7 +27,7 @@
 
 ## 2. 빌드 & 실행
 
-- **환경**: 두 conda env (`motion-router` 메인 + `mgpt` G2). 설치·데이터 자산 확보 상세 → [`docs/setup.md`](docs/setup.md).
+- **환경**: 두 conda env (`motion-router` 메인 + `mgpt` G2). 설치·데이터 자산 확보 상세 → [`.claude/docs/operations/setup.md`](.claude/docs/operations/setup.md).
 - **실행** (예): `python -m generators.motiongpt_wrapper --prompt "walking" --n-frames 40` · `python -m refinement_loop.loop --generator G2 --max-iterations 5`. 도구별 CLI 는 각 tool docstring.
 - **센서** (코드·tool·평가 변경 시): `python -m py_compile <file>` · `pytest tests/unit/ -v` · `pytest tests/integration/ -v` · skeleton round-trip. 상세 [`02-sensor.md`](.claude/rules/phase/02-sensor.md).
 - **평가(L4)**: 관측 전용 (머지 비차단). 회귀 항목은 [`eval-compare SKILL §6`](.claude/skills/eval-compare/SKILL.md) 5단계 리포트로 본 문서/phase 갱신.
@@ -53,7 +53,7 @@
 - **§3-3 KDG Ordering**: tool 선택·ordering 은 [`orchestrator/kdg.py`](orchestrator/kdg.py) Kinematic Dependency Graph 위반 금지 (root/상위 node 먼저; 동 depth 는 hard-constraint→soft; ancestor-descendant joint 동 step 병렬 금지). 변경 = §3-11 게이트.
 - **§3-4 Closed-loop Score 비감소**: [`convergence.py`](refinement_loop/convergence.py) 종합 Score step별 non-decreasing. 악화 호출 reject/rollback. same `(tool,target)` 재호출은 strength 감소만 (oscillation 방지).
 - **§3-5 Generator Quality-tier 분리**: G1/G2 결과는 디렉토리·파일명·`generator_id` 로 분리. 한 generator 결과를 다른 generator 평가기 입력 금지. active scope = G1+G2 ; G3 (`external_assets/local_lora_g3/`) import·실행 금지.
-- **§3-6 평가 기록 의무**: 추론·평가 시 동시 기록 — generator id+hash+prompt / evaluator·tool config hash / model_card hash / artifact metric / NetGain / FidelityLoss(Protocol A/B/C) / efficiency / tool call trace. **policy/risk head/gate/heuristic/oracle 가 selection 에 관여 시 추가 field → [policy-validation-traceability](.claude/docs/policy-validation-traceability.md) (§3-25)**. 누락 record 는 비교 근거 인용 금지. 기록 = raw record (`evals/raw/`) + 일지 (`reports/<date>.md`) 동시.
+- **§3-6 평가 기록 의무**: 추론·평가 시 동시 기록 — generator id+hash+prompt / evaluator·tool config hash / model_card hash / artifact metric / NetGain / FidelityLoss(Protocol A/B/C) / efficiency / tool call trace. **policy/risk head/gate/heuristic/oracle 가 selection 에 관여 시 추가 field → [policy-validation-traceability](.claude/docs/governance/policy-validation-traceability.md) (§3-25)**. 누락 record 는 비교 근거 인용 금지. 기록 = raw record (`evals/raw/`) + 일지 (`reports/<date>.md`) 동시.
 - **§3-6-1 연구일지 의무**: 핵심 경로 변경 또는 generator inference·평가 1회+ 실행 시 `reports/<YYYY-MM-DD>.md` 작성 (정량지표·시각화·실험메타·raw cross-link 4항목). 상세 [research-journal SKILL](.claude/skills/research-journal/SKILL.md).
 - **§3-7 자가 수정 메타 규칙**: 동일 센서 실패 3회+ 또는 동일 회귀 2 스냅샷+ 시 재발 방지 규칙을 §3 또는 phase 에 추가. **메트릭 근거 없이 절대 규칙 추가 금지.**
 - **§3-8 검증 질의 ≠ 구현 지시**: 사용자 검증 질의("맞아?","왜?")는 답변만. 구현 지시로 확장 금지.
@@ -65,16 +65,16 @@
 - **§3-14 우회 기록 의무**: 정공법 실패 우회는 즉시 [workaround-tracking SKILL §4](.claude/skills/workaround-tracking/SKILL.md) `evals/workarounds/<W-id>.md` (append-only). `open`+`critical` 1개+ 시 외부 공개 보류.
 - **§3-15 Raw record metadata**: 모든 raw record 에 `severity_versions` + `split_id` (calibration↔holdout silent leakage 차단) + `evaluator_config_hashes` 누락 없이. 상세 [eval-collect SKILL](.claude/skills/eval-collect/SKILL.md). 누락 record 인용 금지.
 - **§3-16 Oracle type 명시**: oracle best-tool baseline 은 `oracle_type` field 로 **single-step** vs **sequence(=closed-loop, ≥single-step)** 명시. 두 type 혼합 인용 금지.
-- **§3-17 Synthetic vs Real 분리**: 모든 결과를 3-tier 로 분류·인용 — **controlled diagnostic** (synthetic, 최종 성능 sole evidence 금지) / **real-distribution** (G1/G2 natural) / **quality-validated** (perceptual b1/b2/b3). 결론 절에 keyword 명시 의무. 상세 [current_research_position §0](docs/current_research_position.md). 위반 = §6-5 silent invalidation.
+- **§3-17 Synthetic vs Real 분리**: 모든 결과를 3-tier 로 분류·인용 — **controlled diagnostic** (synthetic, 최종 성능 sole evidence 금지) / **real-distribution** (G1/G2 natural) / **quality-validated** (perceptual b1/b2/b3). 결론 절에 keyword 명시 의무. 상세 [current_research_position §0](.claude/docs/governance/current_research_position.md). 위반 = §6-5 silent invalidation.
 - **§3-18 Baseline Family Protocol**: "B2" 단독 표기 금지 → "B2-medium"/"B2-family" (fixed smoothing diagnostic family). 성공 기준 = "fixed smoothing family 대비 우월". B5/B6/B7 도 family. 상세 [reproducibility-checklist §3](.claude/skills/reproducibility-checklist/SKILL.md).
 - **§3-19 GIF/MP4 Axis Convention**: motion = Y-up (HEAD_y>PELVIS_y>FOOT_y). GIF/MP4/3D PNG 작성·수정 시 `ax.view_init(vertical_axis="y")` + 첫 frame inspection 의무. 상세 [02-sensor §1-2](.claude/rules/phase/02-sensor.md). 2026-05-25 이전 GIF = axis bug, `*_yup_fix/` 만 정식.
-- **§3-20 Metric Citation Gate**: 모든 metric 은 [metric_provenance.md](docs/metric_provenance.md) 등록 + Category **A** (standard, 외부 근거 가능) / **B** (variant, 명시 의무) / **C** (proxy, 외부 최종 성능 근거 금지). NetGain=C. 외부 근거 = A (FID/R-Prec/MM-Dist) + perceptual 동반. 위반 = §6-5.
-- **§3-21 Action Space Provenance**: 모든 RL/Q-surface stage 의 action space 는 [action_space_provenance.md](docs/action_space_provenance.md) 등록. 리포트·외부 공개 시 `action_space_type` (`discrete_3level`/`discrete_5level`/`dense_grid_proxy`/`bounded_continuous_u`) + stage + STOP 포함 + u-mapper version 명시. 다른 grid 직접 비교 시 같은 sample/reference/config. **RL-2 historical: learned primary=3-level; 5-level=oracle ceiling** ; continuous-u 는 별도 stage 로 기록. 위반 = §6-5.
+- **§3-20 Metric Citation Gate**: 모든 metric 은 [metric_provenance.md](.claude/docs/governance/metric_provenance.md) 등록 + Category **A** (standard, 외부 근거 가능) / **B** (variant, 명시 의무) / **C** (proxy, 외부 최종 성능 근거 금지). NetGain=C. 외부 근거 = A (FID/R-Prec/MM-Dist) + perceptual 동반. 위반 = §6-5.
+- **§3-21 Action Space Provenance**: 모든 RL/Q-surface stage 의 action space 는 [action_space_provenance.md](.claude/docs/governance/action_space_provenance.md) 등록. 리포트·외부 공개 시 `action_space_type` (`discrete_3level`/`discrete_5level`/`dense_grid_proxy`/`bounded_continuous_u`) + stage + STOP 포함 + u-mapper version 명시. 다른 grid 직접 비교 시 같은 sample/reference/config. **RL-2 historical: learned primary=3-level; 5-level=oracle ceiling** ; continuous-u 는 별도 stage 로 기록. 위반 = §6-5.
 - **§3-22 Research Grounding Gate**: 연구 설계 피드백/평가 해석/metric·baseline·algorithm 선택/외부 공개 판단 시 **2020+ peer-reviewed top-tier 논문 근거** 동반 (arXiv-only 단독 금지). 응답 4항목 (판단/근거논문/적용범위/불확실성). 근거 부족 시 `engineering heuristic`/`internal proxy assumption`/`pilot-only finding` 명시 (외부 단독 근거 금지). 상세 [04-evaluation §7-0](.claude/rules/phase/04-evaluation.md). 단순 버그·경로·테스트는 대상 아님.
 - **§3-23 Intent-Reconciliation Loop**: 새 evaluator/tool/oracle/baseline/policy/snapshot/framework doc commit 직전 5-step self-check → verdict `aligned`/`partial`/`misaligned`/`scope_creep`/`unintended_side_effect`. 뒤 3개는 사용자 보고 (commit 보류/confirm). 상세 [intent-reconciliation SKILL](.claude/skills/intent-reconciliation/SKILL.md).
 - **§3-24 Harness Rule vs Skill/Doc 분리**: AGENTS=invariant·필수 metadata field·evidence tier·silent invalidation·승인 게이트. **skills**=실행 절차/checklist/예시. **docs**=참조(용어·요약·spec). **Dashboard**=board. Dashboard row 는 1줄 index 로 유지하고 상세 작업 명세는 `.claude/docs/dashboard-task-specs/<dashboard-id>-*.md` 로 분리한다. 예정사항·다음 순서·우선순위는 Dashboard 에 등록된 row 기준으로만 제시하며, Dashboard 에 없는 작업은 먼저 backlog 에 등록한다. AGENTS 는 아키텍처 역할을 과도하게 고정하지 않고 **configuration 과 claim 일치**를 강제. `heuristic`/`proxy`/`pilot` 근거는 절대 규칙 직접 승격 금지 → skills/docs 먼저 ([phase 01 §7-1](.claude/rules/phase/01-instructions.md)).
-- **§3-25 Policy-Validation Traceability**: learned policy/Q/risk head/heuristic/oracle/gate 결과 인용 시 **무엇이 품질 향상에 기여했는지 분리 가능**해야 함. `selection_mode`·`candidate_trace`·`gate_recheck`·`policy_contribution_baseline` 기록 ; `gate_recheck=false`=diagnostic only ; baseline 비교 없으면 `policy contribution not isolated`. field·claim rule 상세 [policy-validation-traceability](.claude/docs/policy-validation-traceability.md). 위반 = §6-5.
-- **§3-26 Action-Effect Coverage / Hard-Example Provenance**: continuous-u/Q-surface 단위 = `(state,tool,u,after_state,gate_result,utility)` transition. transition/hard-mining dataset 은 `transition_dataset_id`·`u_grid`·`seed`·`mining_reason` 등 기록 + hard-mined 는 natural 과 분리 보고. 상세 [policy-validation-traceability §3](.claude/docs/policy-validation-traceability.md).
+- **§3-25 Policy-Validation Traceability**: learned policy/Q/risk head/heuristic/oracle/gate 결과 인용 시 **무엇이 품질 향상에 기여했는지 분리 가능**해야 함. `selection_mode`·`candidate_trace`·`gate_recheck`·`policy_contribution_baseline` 기록 ; `gate_recheck=false`=diagnostic only ; baseline 비교 없으면 `policy contribution not isolated`. field·claim rule 상세 [policy-validation-traceability](.claude/docs/governance/policy-validation-traceability.md). 위반 = §6-5.
+- **§3-26 Action-Effect Coverage / Hard-Example Provenance**: continuous-u/Q-surface 단위 = `(state,tool,u,after_state,gate_result,utility)` transition. transition/hard-mining dataset 은 `transition_dataset_id`·`u_grid`·`seed`·`mining_reason` 등 기록 + hard-mined 는 natural 과 분리 보고. 상세 [policy-validation-traceability §3](.claude/docs/governance/policy-validation-traceability.md).
 
 ---
 
@@ -99,7 +99,7 @@
 
 | 시그니처 | 대응 |
 |---|---|
-| `external_assets/` 손실 | [`docs/setup.md §2`](docs/setup.md) 옵션 A(재다운로드)/B(robocopy) 복구 |
+| `external_assets/` 손실 | [`.claude/docs/operations/setup.md §2`](.claude/docs/operations/setup.md) 옵션 A(재다운로드)/B(robocopy) 복구 |
 | generator 비결정성 | sampling/cuda non-determinism → N≥3 평균 또는 `torch.use_deterministic_algorithms(True)` |
 | Tool conflict | KDG ConflictScore threshold 초과 reject → `A(t)` 매핑·tool 분류 점검 |
 | loop oscillation | same `(tool,target)` 반복 → `convergence.py` `same_pair_strength_decay` 점검 |
@@ -127,7 +127,7 @@
 | 6-11 | provisional NetGain weight tagless 인용 | `netgain_weight_status` 명시 ; provisional 은 calibrated 처럼 외부 인용 금지 |
 | 6-12 | cross-evaluator side effect 미기록 | tool effect matrix 에 모든 evaluator before/after (`cross_evaluator_effects`) |
 | 6-13 | integration smoke 의 가설 근거 인용 | 5단계 리포트(trial≥20/paired)에서만 |
-| 6-14 | learned safety (P_safe/Q_safe/risk) gate-free 인용 | `diagnostic_no_gate` + false-safe rate ([§3-25 doc](.claude/docs/policy-validation-traceability.md)) |
+| 6-14 | learned safety (P_safe/Q_safe/risk) gate-free 인용 | `diagnostic_no_gate` + false-safe rate ([§3-25 doc](.claude/docs/governance/policy-validation-traceability.md)) |
 | 6-15 | action space evidence 혼합 인용 | `action_space_type`/`u_grid`/mapper version 분리 (§3-21) |
 | 6-16 | gate-only improvement 를 policy contribution 오인 | baseline 비교 없으면 `policy contribution not isolated` |
 
@@ -154,8 +154,8 @@
 
 ## 8. 참조 전용
 
-- **구현 레시피** (evaluator/tool/generator/가설/우회 추가, 네이밍·포맷): [.claude/docs/implementation-recipes.md](.claude/docs/implementation-recipes.md).
-- **용어 사전**: [.claude/docs/glossary.md](.claude/docs/glossary.md). **가설 요약**: [.claude/docs/hypotheses-summary.md](.claude/docs/hypotheses-summary.md). **작업 board**: [.claude/Dashboard/](.claude/Dashboard/README.md) (상태별 파일).
-- **연구 provenance** (단일 출처): [metric_provenance](docs/metric_provenance.md) · [action_space_provenance](docs/action_space_provenance.md) · [current_research_position](docs/current_research_position.md) · [motion_research_strategy_summary](docs/motion_research_strategy_summary.md).
-- **데이터셋 카드**: [docs/dataset/](docs/dataset/README.md) (G2=MotionGPT pool 등). **발견·시사점**: [docs/findings/](docs/findings/README.md). **generator 실패 유형**(문헌): [docs/generator_failure_mode_survey.md](docs/generator_failure_mode_survey.md).
+- **구현 레시피** (evaluator/tool/generator/가설/우회 추가, 네이밍·포맷): [.claude/docs/reference/implementation-recipes.md](.claude/docs/reference/implementation-recipes.md).
+- **용어 사전**: [.claude/docs/reference/glossary.md](.claude/docs/reference/glossary.md). **가설 요약**: [.claude/docs/reference/hypotheses-summary.md](.claude/docs/reference/hypotheses-summary.md). **작업 board**: [.claude/Dashboard/](.claude/Dashboard/README.md) (상태별 파일).
+- **연구 provenance** (단일 출처): [metric_provenance](.claude/docs/governance/metric_provenance.md) · [action_space_provenance](.claude/docs/governance/action_space_provenance.md) · [current_research_position](.claude/docs/governance/current_research_position.md) · [motion_research_strategy_summary](.claude/docs/research/motion_research_strategy_summary.md).
+- **데이터셋 카드**: [.claude/docs/dataset/](.claude/docs/dataset/README.md) (G2=MotionGPT pool 등). **발견·시사점**: [.claude/docs/findings/](.claude/docs/findings/README.md). **generator 실패 유형**(문헌): [.claude/docs/generator/generator_failure_mode_survey.md](.claude/docs/generator/generator_failure_mode_survey.md).
 - **phase 지침**: [`.claude/rules/phase/`](.claude/rules/phase/) 01~04.
