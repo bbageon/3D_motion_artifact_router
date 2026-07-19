@@ -9,7 +9,7 @@
 > **① Coordinate-level artifact score 를 직접 줄이는 보정은 지각 품질을 보장하지 않는다.**
 > **② MDM 의 foot skating 은 말단 발 위치의 문제가 아니라 root progression 의 붕괴에서 발생하며, 그 기전을 겨냥한 보정은 물리·표준지표·지각을 함께 회복시킨다 (intervention evidence).**
 > **③ 같은 보정이라도 generator/state 에 따라 효과가 반대다 — 본 pool 에서 MDM 은 개선, VQ 는 손상. 따라서 고정 적용은 불가하며 결정 계층(routing)이 필요하다.**
-> **④ 다만 개별 모션 단위의 no-harm 결정은 미해결로 남는다 — richer pre-action state 가 순위(AUC)는 유의 개선하나 안전 기준(harmful-apply 유의 감소)은 아직 못 넘는다.**
+> **④ 개별 모션 단위 결정은 apply/STOP 이분법으로는 미해결이었으나 (E11), 강도 축을 추가한 학습 정책 Q(s,u) 가 사전등록 기준을 정량·지각 양쪽에서 통과했다 (E12: holdout improvement CI-clean + harmful 1/3 + blind 16/20) — 단 one-shot·b1·VQ 적용 잔여 약점.**
 
 (원래 spec 의 "P1-P4 가 state-conditioned routing 을 정당화한다" 위에, ①②가 기전 층을, ③④가 결정 층의 근거와 **정직한 한계**를 얹는다.)
 
@@ -26,7 +26,8 @@
 | E8 | **기전 처방 성공** | root solve: 물리·Cat-A·지각 **삼중 회복** — anchoring(우연)과 정면 대비 | ratio 0.42→1.02 · FID 7.2→3.3 · **A/B 19/20** | b1 + A (intervention evidence) |
 | E9 | 생성-기전 원인 | **MDM root progression collapse** — 요구 무관 상수 출력 (3-gen 동일 검정 대비) | 기울기 0.027·분산 5.7% vs VQ 0.59/0.63·95~99% | 관측 진단 (diffusion n=1) |
 | E10 | **generator-조건부** | 같은 처방: MDM 개선 vs **VQ 손상** (pool-scoped) | VQ R@1 −0.034/−0.035·MM +0.09/+0.15 유의 | A (pool-scoped) |
-| E11 | **결정 계층 미완** | richer state: 순위 유의 개선, **no-harm 기준 미달** | AUC 0.722 vs 0.674 (CI-clean) · harm@30% 감소 비유의 | δ 조건부 exploratory |
+| E11 | 결정 계층 — 이분법 한계 | richer state: 순위 유의 개선, **apply/STOP gate 는 no-harm 기준 미달** | AUC 0.722 vs 0.674 (CI-clean) · harm@30% 감소 비유의 | δ 조건부 exploratory |
+| E12 | **결정 계층 — 강도 정책 통과** | Q(s,u) 정책: **정량+지각 이중 기준 통과** ("애매하면 약하게" 가능해진 행동 공간) | holdout imp +0.061 CI-clean·harmful 0.118 vs 0.326 · **blind 16/20 (p=0.012, 무작위 표본)** | b1·one-shot·δ 조건부 |
 
 Cross-link: [P1](2026-06-27_poc_artifact_occurrence_ar058_1.md) · [P3](2026-06-27_poc_artifact_quality_link_ar058_3.md) · [P4 snapshot](../snapshots/p4_fixed_tool_effect_v1.json) · [E5](2026-07-07_coordinate_footskate_effect_ar061.md) · [E6-v1](2026-07-08_ab_preference_result_ar058_3h.md)/[v2](2026-07-12_ab_preference_result_v2_ar058_3i.md) · [E7](2026-07-12_root_gait_mismatch_ar071.md) · [E8](2026-07-12_ab_preference_result_v3_ar072.md) · [E9](2026-07-12_root_deficit_cause_ar076.md) · [E10](2026-07-12_vq_root_noharm_ar077.md) · [E11](2026-07-13_routing_gate_compare_ar078.md)
 
@@ -93,7 +94,20 @@ gate 5종을 같은 held-out(1,350)에서 비교 (benefit = ΔMM<−δ, δ=calib
 - **안전**: 30% 적용률에서 harmful-apply 감소가 **비유의** (−0.063 [−0.123, +0.003]) → 사전등록 AND 기준 미달, 판정 **"한계 확정"**.
 - **축 분리 발견**: 순위 능력(AUC)과 안전(harm)은 다른 축 — skate 는 순위엔 유효하나 harm 이 base 보다 몰리고(0.360>0.326), 기전 신호(mismatch)는 순위 최저·harm 최저(0.274). 다음 설계 = harm 직접 최적화(selective prediction).
 
-⟹ **"routing 이 작동한다" 가 아니라 "routing 은 필요하며(E10), 그 gate 는 순위≠안전 축 분리까지 특정된 미해결 문제"** — 이것이 P5 의 마지막 정직한 문장이다. [AR-078](2026-07-13_routing_gate_compare_ar078.md) · [figure](../../reports/figures/2026-07-13/poc_necessity_p1_p5/p5_decision_layer_2panel.png)
+⟹ E11 시점의 결론은 "이분법 gate 로는 미해결" — 이것이 E12 의 출발점이 됐다. [AR-078](2026-07-13_routing_gate_compare_ar078.md) · [figure](../../reports/figures/2026-07-13/poc_necessity_p1_p5/p5_decision_layer_2panel.png)
+
+## 5-3. E12 — 강도 정책 Q(s,u) 가 이중 기준을 통과 (AR-081/082, 2026-07-13~19)
+
+apply/STOP 이분법이 3연속 미달한 자리에서, **강도 축(u∈{0,…,1}, u=0=STOP)을 추가한 학습 정책**이 사전등록 기준을 통과:
+
+| 축 | 결과 (holdout / blind) |
+|---|---|
+| 정량 (AR-081) | u\*(s) improvement **0.220 vs 고정 u=1.0 0.158** (+0.061 CI-clean) · harmful **0.118 vs 0.326** |
+| **지각 (AR-082)** | **16/20 (p=0.012)** — holdout **무작위** 표본 (정책의 실제 적용 분포), 정책이 고른 u\* 그대로 |
+| 행동 구조 | STOP 52% · u=1.0 33% · 중간 15% — "대부분 손대지 않고, 고칠 땐 세게, 애매하면 약하게" |
+| 검증 | generator ID 없이도 성립 (shortcut 아님) · 결정적 재현 확인 · oracle 상한 61% 회수 |
+
+통과의 구조적 이유: 이분법은 "애매하면 포기"만 가능했지만 u 축은 "애매하면 약하게"가 가능 — harm 을 낮추면서 improvement 를 유지. **잔여 약점 (정직 노출)**: 정책이 VQ 에 적용을 결정한 소수 케이스는 지각 4/8 (우연) — Cat-A(E10)와 정합; 16/20 은 이 약점 포함 성적. 한계: one-shot·MM proxy 라벨·b1·δ 조건부. [AR-081](2026-07-13_strength_q_v1_ar081.md) · [AR-082 결과](2026-07-19_ab_policy_result_ar082.md)
 
 **남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (**논문화 시 재개** — b1 마감, pack 준비됨) · harm-averse gate 개선 (AR-079 는 "기각/한계" — 표본·label 개선 후) · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · 비이동 잔여 skating 의 별도 병인 · orchestrator 통합 (AR-075 — 검증된 gate 생기면) · 타 데이터셋 (AR-067) · 타 diffusion (AR-080, MLD) 재현.
 
