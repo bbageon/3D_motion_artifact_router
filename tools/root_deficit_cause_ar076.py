@@ -79,6 +79,8 @@ def main() -> None:
     ap.add_argument("--gen", default="mdm", choices=["mdm", "motiongpt", "momask"])
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--seed", type=int, default=20260717)
+    ap.add_argument("--pool-root", type=Path, default=POOL_ROOT,
+                    help="독립 재현용 다른 pool (AR-024). 기본 = seed20260608 pool")
     ap.add_argument("--output", type=Path, default=None)
     args = ap.parse_args()
     if args.output is None:
@@ -86,7 +88,7 @@ def main() -> None:
         name = ("root_deficit_cause_ar076_v1.json" if args.gen == "mdm"
                 else f"root_deficit_cause_ar076_{args.gen}_v1.json")
         args.output = REPO_ROOT / "evals" / "snapshots" / name
-    pool = POOL_ROOT / args.gen
+    pool = args.pool_root / args.gen
     rng = np.random.default_rng(args.seed)
 
     metas = [json.load(open(p, encoding="utf-8")) for p in sorted(pool.glob("*.json"))
