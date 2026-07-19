@@ -21,10 +21,12 @@
 **하향되는 신규성 (표현 조정 필요):**
 - "contact 기반 root 재구성" **방법 자체는 최초가 아님** (Li et al. 2024 계열) → 우리 표현은 "새 알고리즘"이 아니라 **"training-free·generator-무관 post-hoc tool 로 분리 + 강도 매개변수화(u) + 붕괴 진단에 근거한 적용"** 으로 위치 지정. 인용 의무.
 
-## 3. 남은 확인 (원문 정독 2건 — 판정 뒤집힘 리스크 관리)
+## 3. 남은 확인 2건 — 처리 완료 (2026-07-19 2차)
 
-1. Li et al. 2024 원문 — root 재구성의 정확한 입력(contact? posture?)·독립 적용 가능성.
-2. GMD/OmniControl/PriorMDM 계열 (trajectory **controllability** 연구) — 자발적 root 붕괴의 **진단** 서술이 서론에 있는지 (현재까지의 조사로는 제어 가능성 동기이지 붕괴 정량 아님).
+1. **Li et al. 2024**: 원문 paywall (Wiley 402) — **초록·2차 소스 수준까지 확인**: differentiable root 재구성은 **자기 decoder 출력 기반·keyframe 합성 파이프라인 내장**, generator 결핍 진단·강도 매개변수·조건부 적용 없음. → 판정 유지 (방법 조각 계열 선행 인정 + 인용; 논문 작성 시 기관 접근으로 원문 확보 권장 — 보수적 인용 자세).
+2. **GMD (ICCV 2023) 원문 확인**: 동기 = **controllability** ("spatial constraints... pre-defined trajectories") — **자발적 root 결핍의 주장·정량 없음** ("they don't claim baseline models spontaneously produce inadequate root translation"). → 우리 진단 신규성에 영향 없음. OmniControl/PriorMDM 도 같은 controllability 계열로 분류 (동일 논리 — 필요 시 논문 단계 재확인).
+
+**최종 판정 확정: §2 그대로** — 핵심 신규성(상수-붕괴 정량 진단 + 사슬) 유지, 방법 조각은 Li et al. 인용으로 처리, "최초" 대신 "to our knowledge + 인용 대비".
 
 ## Sources
 

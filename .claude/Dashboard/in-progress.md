@@ -5,7 +5,6 @@
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
 | AR-024 | Evidence | **독립 pool 재현 착수(4f8da09)** — 새 base-seed 20260719, 동일 300 prompt bank × 3 gen × 3 seed 생성 (docker 서비스 경유, detach 실행 중). 완료 후 핵심 결과 재측정 (Cat-A pool-scoped → 재현) | 🔴 | 07-19 | 논문 요건 ③. log: external_assets/protocol_rep_pool_seed20260719/generation.log |
-| AR-084 | Evidence | 신규성 sweep(4f8da09) — **판정: 핵심 신규성 유지** (MDM root 상수-붕괴 정량 진단 + 사슬은 미보고로 판단), 단 contact 기반 root 재구성 방법 조각은 Li et al. 2024 계열 인용 필수. "최초" 표현 금지 | 🟠 | 07-19 | [report](../../evals/reports/2026-07-19_novelty_sweep_ar084.md). **잔여: Li 원문 정독·GMD 계열 서론 확인 2건** |
 | AR-065 | RL-Q | **① Pre-action state 재구축 — 산출 완료(4b15b9b)**: 2,700 motions [CSV](../../evals/snapshots/preaction_state_ar065_v1.csv) (leakage 없는 6 feature; counterfactual mismatch 가 GT-free 로 MDM 0.0100 vs VQ ≈0 분리). 잔여: 구 v0.1.0 feature 분포 비교 + AR-040/052 re-train 판단 | 🟠 | 07-13 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-078 에서 state 활용됨 (AUC 유의 개선 확인) |
 
 ---
