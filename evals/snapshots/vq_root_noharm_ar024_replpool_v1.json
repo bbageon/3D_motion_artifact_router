@@ -1,0 +1,134 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "vq_root_noharm",
+  "board_id": "AR-077",
+  "framing": "generator-conditioned routing — VQ apply vs STOP (사전등록 3-시나리오, HARKing 차단)",
+  "split_id": "protocol_rep_pool_seed20260608 (3 gen) + HumanML3D GT, locomotion 한정",
+  "results": {
+    "mdm": {
+      "n_locomotion": 165,
+      "root_ratio_before": {
+        "mean": 0.4184,
+        "ci95": [
+          0.3909,
+          0.4493
+        ],
+        "p50": 0.3586
+      },
+      "fs_delta": {
+        "mean": -0.00751,
+        "ci95": [
+          -0.0082,
+          -0.0069
+        ]
+      },
+      "induced_disp": {
+        "mean": 1.218,
+        "ci95": [
+          1.0832,
+          1.373
+        ]
+      },
+      "path_gain": {
+        "mean": 2.579,
+        "p95": 5.189,
+        "frac_gt_1.5": 0.127
+      },
+      "corrected_dump": "external_assets\\ar024_root_corrected_replpool\\mdm"
+    },
+    "motiongpt": {
+      "n_locomotion": 165,
+      "root_ratio_before": {
+        "mean": 0.9866,
+        "ci95": [
+          0.9112,
+          1.0638
+        ],
+        "p50": 0.9723
+      },
+      "fs_delta": {
+        "mean": 2e-05,
+        "ci95": [
+          -0.0002,
+          0.0002
+        ]
+      },
+      "induced_disp": {
+        "mean": 0.3775,
+        "ci95": [
+          0.3324,
+          0.4223
+        ]
+      },
+      "path_gain": {
+        "mean": 1.038,
+        "p95": 1.743,
+        "frac_gt_1.5": 0.079
+      },
+      "corrected_dump": "external_assets\\ar024_root_corrected_replpool\\motiongpt"
+    },
+    "momask": {
+      "n_locomotion": 165,
+      "root_ratio_before": {
+        "mean": 0.9959,
+        "ci95": [
+          0.9221,
+          1.0796
+        ],
+        "p50": 0.9128
+      },
+      "fs_delta": {
+        "mean": 0.00022,
+        "ci95": [
+          0.0,
+          0.0004
+        ]
+      },
+      "induced_disp": {
+        "mean": 0.4128,
+        "ci95": [
+          0.3578,
+          0.4837
+        ]
+      },
+      "path_gain": {
+        "mean": 0.847,
+        "p95": 1.249,
+        "frac_gt_1.5": 0.085
+      },
+      "corrected_dump": "external_assets\\ar024_root_corrected_replpool\\momask"
+    }
+  },
+  "scenario_verdict": {
+    "motiongpt": {
+      "root_ratio": 0.9866,
+      "ci95": [
+        0.9112,
+        1.0638
+      ],
+      "scenario": "깔끔 (deficit 없음 → STOP 정답)",
+      "vs_mdm": 0.568
+    },
+    "momask": {
+      "root_ratio": 0.9959,
+      "ci95": [
+        0.9221,
+        1.0796
+      ],
+      "scenario": "깔끔 (deficit 없음 → STOP 정답)",
+      "vs_mdm": 0.578
+    }
+  },
+  "mdm_reference": {
+    "root_ratio": 0.4184,
+    "note": "AR-076: root progression collapse (기울기 0.027)"
+  },
+  "routing_implication": "MDM 은 apply (deficit 큼); VQ 판정은 scenario_verdict 참조. Cat-A no-harm 은 vq_root_catA_ar077.py (mgpt env).",
+  "next": "Cat-A (R-Prec/MM-Dist/FID) 로 no-harm 확정 — VQ 에 correction 적용 시 악화하면 STOP 근거.",
+  "claim_boundary": "diagnostic — 지각 harm 은 A/B 필요 (애매/놀람 시). 3-시나리오 사후 재프레임 금지.",
+  "grounding": [
+    "Guo MoMask CVPR2024",
+    "Jiang MotionGPT NeurIPS2023",
+    "Tevet MDM ICLR2023"
+  ]
+}

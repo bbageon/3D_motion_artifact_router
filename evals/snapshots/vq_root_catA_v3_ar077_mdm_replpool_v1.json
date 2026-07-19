@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "vq_root_catA_v3",
+  "board_id": "AR-077",
+  "generator": "mdm",
+  "P_locomotion_prompts_3seed": 165,
+  "n_skip": 0,
+  "protocol": "locomotion + 엄격 3-seed equal-N; prompt-bootstrap B=1000; orig/corr 동일 permutation(paired); seed embedding 미평균(FID 분포 보존)",
+  "fixes_over_v2": [
+    "같은 permutation(paired)",
+    "seed 미평균",
+    "엄격 3-seed",
+    "bootstrap 1000"
+  ],
+  "original": {
+    "R@1": 0.2096,
+    "MM_Dist": 5.6927,
+    "FID_vs_GT": 14.031
+  },
+  "corrected": {
+    "R@1": 0.2547,
+    "MM_Dist": 4.8073,
+    "FID_vs_GT": 6.776
+  },
+  "paired_diff_prompt_bootstrap": {
+    "R@1": {
+      "mean": 0.03456,
+      "ci95": [
+        0.0125,
+        0.05599
+      ]
+    },
+    "MM_Dist": {
+      "mean": -0.88516,
+      "ci95": [
+        -1.08343,
+        -0.68093
+      ]
+    },
+    "FID": {
+      "mean": -7.292,
+      "ci95": [
+        -9.39522,
+        -5.42409
+      ]
+    }
+  },
+  "no_harm_verdict": "무해/개선",
+  "claim_boundary": "locomotion 한정 공정 비교, 통계 정합. generator 인과 금지. 지각은 A/B. MDM·단일 벤치마크."
+}

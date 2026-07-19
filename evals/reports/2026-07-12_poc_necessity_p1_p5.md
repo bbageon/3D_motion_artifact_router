@@ -57,7 +57,7 @@ Cross-link: [P1](2026-06-27_poc_artifact_occurrence_ar058_1.md) · [P3](2026-06-
 ## 4. Claim boundary (최종)
 
 **허용**: 발생·측정가능성·품질 관계·고정 처방 부작용·물리≠지각(2회)·기전 진단·기전 처방의 삼중 회복(intervention evidence)·generator-조건부 효과(pool-scoped)·gate 한계의 정량 특정 — 이 사슬이 "mechanism-aware refinement + 결정 계층 + 미해결 gate 문제"를 지지한다.
-**금지**: "routing 이 작동한다" (E11 미달 — richer state 순위 개선까지만) / ArtifactRouter 가 artifact 를 해결했다 / 모든 generator·데이터셋 일반화 (single benchmark; diffusion n=1) / root collapse 가 유일 원인 (ρ²≈0.11; 비이동 잔여 skating 별도 병인) / **b1 을 확정 지각 근거로 외부 인용 (b1 마감 상태 — 외부 공개 전 b2 재개 필수)** / "Cat-A 확정" (pool-scoped — 독립 재현 필요) / δ 무관 benefit 수치 인용.
+**금지**: "routing 이 작동한다"의 무단서 사용 (E12 는 one-shot·b1 한정) / ArtifactRouter 가 artifact 를 해결했다 / 모든 generator·데이터셋 일반화 (single benchmark; diffusion n=1) / root collapse 가 유일 원인 (ρ²≈0.11; 비이동 잔여 skating 별도 병인) / **b1 을 확정 지각 근거로 외부 인용 (b1 마감 — 논문에는 지각 불기재 결정)** / δ 무관 benefit 수치 인용. **갱신 (2026-07-19)**: E9·E10 은 [독립 생성 pool 에서 재현됨](2026-07-19_independent_pool_replication_ar024.md) — "pool-scoped" 단서를 "독립 재현됨(replicated); 단 MotionGPT 는 축별 유의성 pool 간 변동" 으로 교체 (동일 벤치마크 내 재현 — 타 데이터셋·타 diffusion 은 여전히 미검).
 
 ## 5. E8 — mechanism-aware correction 이 지각을 회복한다 (AR-072, ✅ 2026-07-12 완료)
 

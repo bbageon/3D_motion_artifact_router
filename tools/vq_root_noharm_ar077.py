@@ -51,12 +51,21 @@ def _boot_ci(a, rng, n=1000):
 
 
 def main() -> None:
+    global POOL_ROOT, DUMP_ROOT
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=None)
     ap.add_argument("--seed", type=int, default=20260719)
+    ap.add_argument("--pool-root", type=Path, default=None,
+                    help="독립 재현용 다른 pool (AR-024). 기본 = seed20260608")
+    ap.add_argument("--dump-root", type=Path, default=None,
+                    help="보정본 dump 위치 (pool 별 분리)")
     ap.add_argument("--output", type=Path,
                     default=REPO_ROOT / "evals" / "snapshots" / "vq_root_noharm_ar077_v1.json")
     args = ap.parse_args()
+    if args.pool_root is not None:
+        POOL_ROOT = args.pool_root
+    if args.dump_root is not None:
+        DUMP_ROOT = args.dump_root
     rng = np.random.default_rng(args.seed)
     tool = RootGaitConsistencyTool()
 
@@ -115,7 +124,8 @@ def main() -> None:
             "induced_disp": {"mean": round(float(ind.mean()), 4), "ci95": _boot_ci(ind, rng)},
             "path_gain": {"mean": round(float(pg.mean()), 3), "p95": round(float(np.percentile(pg, 95)), 3),
                           "frac_gt_1.5": round(float((rb * 0 + (np.array([r['ratio_after'] for r in loco]) > 1.5)).mean()), 3)},
-            "corrected_dump": str(dump.relative_to(REPO_ROOT)),
+            "corrected_dump": (str(dump.resolve().relative_to(REPO_ROOT))
+                               if dump.resolve().is_relative_to(REPO_ROOT) else str(dump)),
         }
         print(f"[{gen}] n={len(loco)} root_ratio={results[gen]['root_ratio_before']['mean']} "
               f"ci{results[gen]['root_ratio_before']['ci95']} | fsΔ={results[gen]['fs_delta']['mean']:+.5f} "

@@ -60,9 +60,12 @@ def _rprec_oneseed(text_p, orig_p, corr_p, rng):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--gen", required=True, choices=["mdm", "motiongpt", "momask"])
+    ap.add_argument("--pool-root", type=Path, default=POOL_ROOT)
+    ap.add_argument("--corr-root", type=Path, default=CORR_ROOT)
+    ap.add_argument("--out-suffix", default="")
     args = ap.parse_args()
-    pool = POOL_ROOT / args.gen; corr = CORR_ROOT / args.gen
-    out_path = REPO_ROOT / "evals" / "snapshots" / f"catA_rprec_fix_ar077_{args.gen}_v1.json"
+    pool = args.pool_root / args.gen; corr = args.corr_root / args.gen
+    out_path = REPO_ROOT / "evals" / "snapshots" / f"catA_rprec_fix_ar077_{args.gen}{args.out_suffix}_v1.json"
 
     G._setup_motion_process_globals()
     mean = np.load(str(G.MEAN_PATH)); std = np.load(str(G.STD_PATH))
