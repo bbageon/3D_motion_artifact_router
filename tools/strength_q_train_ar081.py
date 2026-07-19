@@ -168,6 +168,17 @@ def main() -> None:
     results["oracle_u_ceiling_LABEL_PEEK"] = {"mean_improvement": round(float(oracle_imp.mean()), 4),
                                               "note": "상한 참조 전용 — 정책 아님"}
 
+    # 정책 선택 dump (AR-082 지각 pack 입력 — holdout, 정책이 고른 u*).
+    choices_path = args.output.parent / "strength_q_choices_ar081_v1.csv"
+    idx_g, ch_g, ri_g, rh_g = per_policy_realized["policy_gen"][0], None, None, None
+    idx_g, ch_g, ri_g, rh_g = policy_choice(models["gen"], ho, lam_star)
+    with open(choices_path, "w", newline="", encoding="utf-8") as fch:
+        wch = csv.writer(fch)
+        wch.writerow(["gen", "sid", "seed", "u_star", "realized_improvement", "realized_harm"])
+        for i, u, ri_, rh_ in zip(idx_g, ch_g, ri_g, rh_g):
+            wch.writerow([rows[i]["gen"], rows[i]["sid"], rows[i]["seed"], u, round(float(ri_), 4), int(rh_)])
+    print(f"[OK] choices -> {choices_path}")
+
     # bootstrap (sid 단위, multiplicity 보존, 정책 간 paired).
     ho_sids = np.array(sorted(set(sid[ho])))
     pos_in_ho = {i: j for j, i in enumerate(ho_idx)}

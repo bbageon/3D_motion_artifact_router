@@ -5,7 +5,6 @@
 | ID | Epic | Title | Priority | Note |
 |---|---|---|---|---|
 | AR-075 | RL-Q | **③ Orchestrator 통합 — 보류** (AR-078 "한계 확정": 사전등록 기준 넘은 gate 없음 → 편입 대상 없음). 안전 운용 문서화 = generator-level rule (MDM 만 apply). 재개 조건 = harm-averse gate (AR-079 후보) 가 held-out 기준 통과 | 🟡 | "검증된 gate 만 통합" 원칙 유지. registry 확장 = §4 |
-| AR-082 | Perceptual | (후보) **u\*(s) 정책 지각 검증** — Q(s,u) 정책 보정본 vs 원본 blind A/B (신규 prompt, 사전등록 1회). "정책 작동" 표현의 관문 (AR-081 spec §4 유보 해제 조건) | 🔴 | 착수 = 사용자 게이트 (A/B 판정 필요). pack 제작은 Agent 가능 |
 | AR-083 | RL-Q | (후보) Closed-loop strength-Q — AR-081 spec §5 의 history 상태 (iteration_remaining·last_u·same_pair_count·누적 관측치·KDG mask) 추가 + transition 보존 검정 | 🟡 | one-shot 지지 후속. 착수 시 사전등록 |
 | AR-080 | Evidence | MLD 재현 — root progression collapse 가 **diffusion 계열 현상**인지 (두 번째 diffusion 으로 E9 의 n=1 해소). 동일 회귀·분산 검정 (AR-076 harness 재사용) | 🟡 | **환경 구축 필요** (MLD 체크포인트·의존성·wrapper — G1 계열 AR-022 연계). 구축 후 착수 |
 | AR-066 | Evaluator | Intent-aware float weighting — **경량 5-rule 확정**: prompt 4-bucket keyword 분류(ground-required/airborne/seated-lying/ambiguous) → ground-required 만 강한 float 판정, airborne/seated 제외·약가중, ambiguous 보류, raw score 전량 기록 | 🟡 | 07-08 경량화 (floating 은 축 하나 — 과투자 방지). [spec](../docs/dashboard-task-specs/AR-066-intent-aware-float-weighting.md). 임베딩 분류는 spot-check 실패 시만 optional |

@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "ab_policy_pack_preregistration",
+  "board_id": "AR-082",
+  "status": "pack_built_awaiting_ratings",
+  "treatment": "RootGaitConsistencyTool @ 정책 선택 u* (AR-081 policy_gen, λ*=0.5) — 일괄 u 아님",
+  "selection_rule": "holdout · u*>=0.5 · v1~v3 sid 제외 · (gen,sid) dedupe · random 20 (seed 20260729)",
+  "stimulus": {
+    "playback_fps": 20.0,
+    "side_seed": 20260730,
+    "left_corrected_count": 10
+  },
+  "composition": {
+    "by_gen": {
+      "mdm": 12,
+      "motiongpt": 5,
+      "momask": 3
+    },
+    "by_u": {
+      "1.0": 15,
+      "0.75": 2,
+      "0.5": 3
+    }
+  },
+  "preregistered_criterion": {
+    "support": ">=15/20 → '정책 작동' 유보 해제 (b1)",
+    "fail": "<=12/20 → 정책 지각 계층 불성립 (1회 원칙)",
+    "inconclusive": "13~14 → b2 검토"
+  },
+  "claim_scope": "u*>=0.5 적용분 한정 (적용 강도 질량 ~89%); STOP 정당성은 Cat-A(E10) 몫",
+  "evidence_tier": "b1 예정"
+}
