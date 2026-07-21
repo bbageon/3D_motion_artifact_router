@@ -221,18 +221,30 @@ ArtifactRouter 의 action space 의 정식 분류 + 근거 + grid 박제. RL-1 /
 
 ---
 
-### 5-3. Strength-Q v1 (AR-081, 2026-07-13 등록 — 사용자 directive)
+### 5-3. Strength `u` 의 정식 정의 (RootGaitConsistencyTool) — AR-081/085
+
+**정의 (단일 출처)**: strength `u` = **접지-일관 root 변위 보정의 적용 분율**.
+
+- **선형 성질 (증명·unit 검증)**: 위치 offset(u) = `cumsum(v_new − v_orig)` = `u · cumsum(v_target − v_orig)` = **`u · offset(u=1)`** — u 에 정확히 선형 (u 범위 무관, [test_u_linear_in_displacement_including_over_correction](../../../tests/unit/correction_tools/test_root_gait_consistency.py)).
+- **눈금 의미**: u=0 = STOP (무변경). u=1 = **우리 접지 추정 기준으로 stance foot world 속도 = 0 을 완전 강제**. **⚠️ u=1 은 GT-최적이 아니라 "제약 포화점"** — 접지 추정이 낮게 잡히면 u=1 도 잔여 deficit 이 남고(under), 반대로 GT 초과(over, AR-077 ratio>1.5 18.2%)도 가능. 따라서 **최적 strength 는 u=1 이 아닐 수 있고, 이것이 Q(s,u) 정책이 필요한 근본 이유.**
+- **단위/부호**: dimensionless. 물리 변위(m)로 환산 = u · |offset(u=1)| (correction_magnitude 로 기록).
+
+**Action space 이력:**
+
+| stage | u 범위 | u_grid | 등록 |
+|---|---|---|---|
+| **strength-Q-v1** (AR-081) | `[0, 1]` | {0, .25, .5, .75, 1.0} | 2026-07-13 |
+| **strength-Q-v2** (AR-085) | **`[0, 2]`** (over-correction 개방) | **{0, .25, .5, .75, 1.0, 1.25, 1.5, 2.0}** | 2026-07-22 |
 
 | 항목 | 값 |
 |---|---|
-| `action_space_type` | `bounded_continuous_u` (단일 tool 고정: RootGaitConsistencyTool) |
-| stage | **strength-Q-v1 (one-shot contextual Q — closed-loop MDP 아님)** |
-| action | `u ∈ [0,1]`, 학습/평가 `u_grid = {0, 0.25, 0.5, 0.75, 1.0}` (u=0 ≡ STOP) |
-| u-mapper | RootGaitConsistencyTool `continuous_u` blend (v_new = (1−u)·v_orig + u·v_target) — tool 구현 버전 해시로 기록 |
-| state | 13차원 의미 상태 ([AR-081 spec](../dashboard-task-specs/AR-081-strength-q-v1.md) 단일 출처 — 그룹별 additive 구조) |
-| 인용 의무 | 본 stage 결과 인용 시 `action_space_type=bounded_continuous_u` + `u_grid` + one-shot scope 명시. RL-2 계열 (3/5-level·G2 시대) 수치와 혼합 인용 금지 (§6-15) |
+| `action_space_type` | `bounded_continuous_u` (단일 tool: RootGaitConsistencyTool) |
+| stage | one-shot contextual Q (closed-loop MDP 아님) |
+| u-mapper | `continuous_u` blend (v_new = (1−u)·v_orig + u·v_target; u>1 = extrapolation). tool 버전 = `U_MAX_CONTINUOUS=2.0` (AR-085). u≤1 backward-compat (AR-072/077/081/082 불변) |
+| state | 13차원 의미 상태 ([AR-081 spec](../dashboard-task-specs/AR-081-strength-q-v1.md) — 직관 이름 naming 단일 출처) |
+| 인용 의무 | `action_space_type=bounded_continuous_u` + `u_grid` + u_max + one-shot scope 명시. RL-2 구계열(3/5-level·G2·NetGain) 혼합 인용 금지 (§6-15). v1(u≤1) 결과와 v2(u≤2) 결과는 u_max 로 구분 인용 |
 
-근거: §5-2 의 bounded continuous action-effect surface reframe 의 후속 — 대상 tool 이 root 계 (기전 보정) 로 교체되고 통화가 Cat-A(ΔMM) 로 바뀐 새 stage. Neural Additive Models (Agarwal et al., NeurIPS 2021) — additive 구조의 해석 가능성 근거.
+**AR-085 개방 근거** (사용자 directive 2026-07-22 "열어보자 — 과보정이 아닐 수도 있어"): u=1 의 접지-일관 제약은 **우리 접지 추정**에 의존하며, 추정이 stance frame 을 놓치거나 median/interp 로 target 을 낮추면 u=1 이 여전히 under-correction 일 수 있음. u>1 개방은 "u=1 이 상한이다"라는 미검증 가정을 제거하고 데이터로 최적 strength 를 발견 (AR-085 사전등록 검정). Neural Additive Models (Agarwal et al., NeurIPS 2021) — additive Q 해석 근거.
 
 ## 6. 외부 공개 인용 의 의무 (AGENTS.md §3-21)
 

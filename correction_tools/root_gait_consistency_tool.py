@@ -40,6 +40,13 @@ STRENGTH_U: dict[str, float] = {
 #: 해 velocity smoothing (사전등록 상수 — 노이즈가 root jitter 로 전이되는 것 방지).
 SOLVE_SMOOTH_SIGMA = 2.0
 
+#: continuous_u 상한 (AR-085, 2026-07-22 사용자 directive "열어보자"). u>1 = 접지-일관
+#: 제약을 과-적용 (extrapolation: v_new = v_target + (u-1)(v_target - v_orig)). u=1 은
+#: "우리 접지 추정 기준 완전 강제"일 뿐 GT-최적이 아니므로, 추정이 낮게 잡힌 모션에서
+#: u>1 이 GT 에 더 가까울 수 있음 (검정 대상). offset(u) = u·offset(u=1) 선형은 u 범위
+#: 무관하게 성립. u≤1 기존 호출 불변 (backward-compat: AR-072/077/081/082 영향 없음).
+U_MAX_CONTINUOUS = 2.0
+
 
 class RootGaitConsistencyTool(CorrectionTool):
     """Contact-consistent root solve — root 수평 궤적 재구성 (pose 무수정).
@@ -91,7 +98,7 @@ class RootGaitConsistencyTool(CorrectionTool):
                 metadata={"reason": "T < 3 — solve skipped"})
 
         if "continuous_u" in meta:
-            u = float(np.clip(float(meta["continuous_u"]), 0.0, 1.0))
+            u = float(np.clip(float(meta["continuous_u"]), 0.0, U_MAX_CONTINUOUS))
             u_source = "continuous"
         else:
             u = STRENGTH_U.get(strength, 1.0)

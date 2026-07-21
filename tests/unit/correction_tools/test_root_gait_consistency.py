@@ -96,6 +96,29 @@ def test_consistent_walk_is_near_noop() -> None:
     assert rep.metadata["max_offset"] < 0.05, f"unexpected large offset {rep.metadata['max_offset']}"
 
 
+def test_u_linear_in_displacement_including_over_correction() -> None:
+    """AR-085: offset(u) = u·offset(u=1) 가 u∈[0, U_MAX] 전 범위에서 성립 (u>1 포함).
+
+    strength 정의의 근거 — u 는 접지-일관 root 변위 보정의 '적용 분율' (선형).
+    """
+    from correction_tools.root_gait_consistency_tool import U_MAX_CONTINUOUS
+    motion = make_deficit_walk()
+    tool = RootGaitConsistencyTool()
+    T = motion.shape[0]
+    base, _ = tool.apply(motion, "root", [], (0, T - 1),
+                         metadata={"coord_space": "trajectory", "continuous_u": 1.0})
+    off1 = (base[:, PELVIS, :] - motion[:, PELVIS, :])[:, [0, 2]]
+    for u in (0.0, 0.5, 1.5, U_MAX_CONTINUOUS):
+        corr, _ = tool.apply(motion, "root", [], (0, T - 1),
+                             metadata={"coord_space": "trajectory", "continuous_u": u})
+        off_u = (corr[:, PELVIS, :] - motion[:, PELVIS, :])[:, [0, 2]]
+        assert np.allclose(off_u, u * off1, atol=1e-9), f"offset(u={u}) != u·offset(1)"
+    # 상한 clip: U_MAX 초과 요청은 U_MAX 로 saturate.
+    over, rep = tool.apply(motion, "root", [], (0, T - 1),
+                           metadata={"coord_space": "trajectory", "continuous_u": U_MAX_CONTINUOUS + 5})
+    assert rep.metadata["u"] == U_MAX_CONTINUOUS
+
+
 def test_local_coord_space_raises() -> None:
     motion = make_deficit_walk()
     tool = RootGaitConsistencyTool()
