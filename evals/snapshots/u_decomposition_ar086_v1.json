@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "u_decomposition",
+  "board_id": "AR-086",
+  "n_holdout_loco": 783,
+  "n_argmax_over1": 346,
+  "at_MM_argmax_u": {
+    "median_root_ratio_all": 0.937,
+    "median_root_ratio_argmax_over1": 1.087,
+    "foot_skate_delta_vs_u1": {
+      "mean": 0.00182,
+      "ci95": [
+        0.0016,
+        0.002
+      ],
+      "frac_worse": 0.645
+    }
+  },
+  "curves_mean": {
+    "0.0": {
+      "root_ratio": 0.7857,
+      "foot_skate": 0.00846,
+      "mm_improvement": 0.0
+    },
+    "0.25": {
+      "root_ratio": 0.7821,
+      "foot_skate": 0.00749,
+      "mm_improvement": 0.1004
+    },
+    "0.5": {
+      "root_ratio": 0.7997,
+      "foot_skate": 0.00678,
+      "mm_improvement": 0.1883
+    },
+    "0.75": {
+      "root_ratio": 0.838,
+      "foot_skate": 0.00627,
+      "mm_improvement": 0.2416
+    },
+    "1.0": {
+      "root_ratio": 0.8964,
+      "foot_skate": 0.00606,
+      "mm_improvement": 0.2509
+    },
+    "1.25": {
+      "root_ratio": 0.9758,
+      "foot_skate": 0.0066,
+      "mm_improvement": 0.2206
+    },
+    "1.5": {
+      "root_ratio": 1.0683,
+      "foot_skate": 0.00758,
+      "mm_improvement": 0.1569
+    },
+    "2.0": {
+      "root_ratio": 1.2784,
+      "foot_skate": 0.01002,
+      "mm_improvement": -0.0456
+    }
+  },
+  "preregistered_verdict": {
+    "verdict": "MM proxy 선호",
+    "physical_ok": false,
+    "proxy_ok": true,
+    "criterion": "물리=median ratio∈[.85,1.2] AND fs 비악화 / proxy=ratio>1.35 OR fs 유의악화"
+  },
+  "interpretation": "root_ratio→1 수렴하며 fs 비악화면 물리 복구; ratio 과증 또는 fs 악화하며 MM만 개선이면 proxy.",
+  "claim_boundary": "GT 참조 진단. GT_root_speed 를 유일 정답으로 단정 금지 (텍스트가 GT보다 큰 이동 요구 가능). 지각은 A/B 몫.",
+  "grounding": [
+    "Guo HumanML3D CVPR2022",
+    "AR-071/076 GT-참조 root 진단"
+  ]
+}
