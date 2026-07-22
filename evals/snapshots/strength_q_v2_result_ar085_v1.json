@@ -1,0 +1,139 @@
+{
+  "schema_version": "1.0.0",
+  "record_type": "strength_q_v2_result",
+  "board_id": "AR-085",
+  "u_grid": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0,
+    1.25,
+    1.5,
+    2.0
+  ],
+  "u_max": 2.0,
+  "delta": 0.0972,
+  "n": 2699,
+  "n_holdout_loco": 612,
+  "H_A_over_correction": {
+    "frac_argmax_u_over_1_holdout_loco": 0.428,
+    "best_u_minus_u1_improvement": {
+      "mean": 0.5323,
+      "ci95": [
+        0.4632,
+        0.6133
+      ]
+    },
+    "improvement_curve": {
+      "0.0": {
+        "mean_imp": 0.0,
+        "median_imp": 0.0,
+        "harm_rate": 0.0
+      },
+      "0.25": {
+        "mean_imp": 0.1217,
+        "median_imp": 0.0126,
+        "harm_rate": 0.1422
+      },
+      "0.5": {
+        "mean_imp": 0.2299,
+        "median_imp": 0.0274,
+        "harm_rate": 0.2337
+      },
+      "0.75": {
+        "mean_imp": 0.2936,
+        "median_imp": 0.0346,
+        "harm_rate": 0.3382
+      },
+      "1.0": {
+        "mean_imp": 0.312,
+        "median_imp": 0.0094,
+        "harm_rate": 0.3971
+      },
+      "1.25": {
+        "mean_imp": 0.2794,
+        "median_imp": -0.001,
+        "harm_rate": 0.4297
+      },
+      "1.5": {
+        "mean_imp": 0.1978,
+        "median_imp": -0.0382,
+        "harm_rate": 0.4608
+      },
+      "2.0": {
+        "mean_imp": -0.0717,
+        "median_imp": -0.1896,
+        "harm_rate": 0.5343
+      }
+    },
+    "argmax_u_dist_holdout_loco": {
+      "0.0": 0.328,
+      "0.25": 0.052,
+      "0.5": 0.07,
+      "0.75": 0.059,
+      "1.0": 0.062,
+      "1.25": 0.065,
+      "1.5": 0.062,
+      "2.0": 0.301
+    },
+    "by_gen_frac_over1_holdout": {
+      "mdm": 0.662,
+      "motiongpt": 0.338,
+      "momask": 0.284
+    },
+    "verdict": "지지 (u>1 이득 존재)"
+  },
+  "H_B_policy": {
+    "v2_grid": {
+      "mean_imp": 0.2434,
+      "harm": 0.1059,
+      "lam": 1.0,
+      "u_dist": {
+        "0.0": 0.541,
+        "0.25": 0.106,
+        "0.5": 0.045,
+        "0.75": 0.009,
+        "1.0": 0.03,
+        "1.25": 0.111,
+        "1.5": 0.058,
+        "2.0": 0.101
+      }
+    },
+    "v1_grid": {
+      "mean_imp": 0.2196,
+      "harm": 0.1178,
+      "lam": 0.5,
+      "u_dist": {
+        "0.0": 0.517,
+        "0.25": 0.053,
+        "0.5": 0.053,
+        "0.75": 0.048,
+        "1.0": 0.329
+      }
+    },
+    "v2_minus_v1": {
+      "improvement": {
+        "mean": 0.024,
+        "ci95": [
+          -0.0057,
+          0.0536
+        ]
+      },
+      "harm": {
+        "mean": -0.0118,
+        "ci95": [
+          -0.0326,
+          0.0081
+        ]
+      }
+    },
+    "verdict": "한계"
+  },
+  "claim_boundary": "δ 조건부 exploratory·MM proxy·one-shot. 지각/GT-최적 주장 없음. v1(u≤1) 무수정.",
+  "grounding": [
+    "Agarwal NeurIPS 2021",
+    "Gangrade AISTATS 2021",
+    "Guo CVPR2022"
+  ]
+}

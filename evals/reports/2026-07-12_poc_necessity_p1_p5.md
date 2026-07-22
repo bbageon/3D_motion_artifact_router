@@ -109,6 +109,8 @@ apply/STOP 이분법이 3연속 미달한 자리에서, **강도 축(u∈{0,…,
 
 통과의 구조적 이유: 이분법은 "애매하면 포기"만 가능했지만 u 축은 "애매하면 약하게"가 가능 — harm 을 낮추면서 improvement 를 유지. **잔여 약점 (정직 노출)**: 정책이 VQ 에 적용을 결정한 소수 케이스는 지각 4/8 (우연) — Cat-A(E10)와 정합; 16/20 은 이 약점 포함 성적. 한계: one-shot·MM proxy 라벨·b1·δ 조건부. [AR-081](2026-07-13_strength_q_v1_ar081.md) · [AR-082 결과](2026-07-19_ab_policy_result_ar082.md)
 
+**E12-b — strength 정식 정의 + over-correction 개방 (AR-085, 2026-07-22)**: strength `u` = 접지-일관 root 변위 보정의 **적용 분율** (offset(u)=u·offset(1) 선형; u=1 = 우리 접지 추정 기준 제약 포화점, **GT-최적 아님**). u∈[0,2] 개방 결과 — **holdout 43% 모션이 u>1 에서 최적**(MDM 66%), best-u(oracle) 가 고정 u=1 대비 +0.53 → **u=1 은 ceiling 이 아니라 접지추정 편향에 의한 under-correction**. 단 u=2.0 은 진짜 과보정(mean imp 음수) — 최적은 모션별 ~1.25~1.5. 확장-grid 정책은 v1 대비 비유의(+0.024, H-B 한계 — 순위-실현 격차 반복). 함의: strength 는 이제 정식 정의된 연구 객체이며, "u=1 상한" 가정을 데이터로 반증. δ 조건부·MM proxy. [AR-085](2026-07-22_strength_q_v2_open_u_ar085.md)
+
 **남은 경계조건 (미검, future work)**: b2/b3 다중 평가자 (**논문화 시 재개** — b1 마감, pack 준비됨) · harm-averse gate 개선 (AR-079 는 "기각/한계" — 표본·label 개선 후) · over-correction 꼬리 (ratio>1.5 = pool 18.2%; "walk in place" 급소) · 비이동 잔여 skating 의 별도 병인 · orchestrator 통합 (AR-075 — 검증된 gate 생기면) · 타 데이터셋 (AR-067) · 타 diffusion (AR-080, MLD) 재현.
 
 ## 6. Limitations (최종)

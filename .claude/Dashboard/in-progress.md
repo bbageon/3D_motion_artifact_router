@@ -4,7 +4,6 @@
 
 | ID | Epic | Title | Priority | 착수 | Note |
 |---|---|---|---|---|---|
-| AR-085 | RL-Q | **Strength-Q v2 — over-correction 개방 (u∈[0,2])** 사전등록+setup(66ee17e): strength 정식 정의(§5-3)·tool clip 개방(U_MAX=2.0, u≤1 불변)·unit 97/97·preflight MDM u>1 단조개선 신호. **1단계 라벨 생성 중** → H-A(u>1 이득?)·H-B(정책 개선?) | 🔴 | 07-22 | 사용자 directive. [spec](../docs/dashboard-task-specs/AR-085-strength-q-v2-open-u.md) |
 | AR-065 | RL-Q | **① Pre-action state 재구축 — 산출 완료(4b15b9b)**: 2,700 motions [CSV](../../evals/snapshots/preaction_state_ar065_v1.csv) (leakage 없는 6 feature; counterfactual mismatch 가 GT-free 로 MDM 0.0100 vs VQ ≈0 분리). 잔여: 구 v0.1.0 feature 분포 비교 + AR-040/052 re-train 판단 | 🟠 | 07-13 | [spec](../docs/dashboard-task-specs/AR-065-effect-aware-state-rebuild.md). AR-078 에서 state 활용됨 (AUC 유의 개선 확인) |
 
 ---
